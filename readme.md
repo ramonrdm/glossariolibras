@@ -3,6 +3,8 @@ by ramon.rdm
 Professores responseveis pela pesquisa:
 Janine Soares de Oliveira
 Marianne Rossi Stumpf
+Bolsista Extensão: 
+João Pedro Gutierrez Kieling Villegas
 
 Apoio institucional:
 UFSC
