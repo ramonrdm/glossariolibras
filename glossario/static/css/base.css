@@ -1,31 +1,18 @@
 
-a {
-    color: #093889;
-    text-decoration: none;
-    
-}
-
 .top{
-	border-style: ridge;
-	border-color: black;
-	width:100%;
-	min-height: 150px;
-
-
+	display: inline;
 }
 
 
-/* FUCKING IMAGENS */
+/* IMAGENS */
 #glossario{	
-left:0;
-position: fixed;
+
+position: static;
 
 }
 #logoufsc{
-
-right:0;
-position:fixed;
-
+	margin-top:10px;
+	float: right; 
 }
 
 
@@ -35,14 +22,17 @@ position:fixed;
 
 
 #menuS{
-	margin-top: 0px;
+	float: right;
+	margin-top: 40px;
+	
+	/*max-width: 550px;
 	min-width: 550px;
-	left: 30%;
-	top:5%;
-	position:fixed;
-
-
-/*position: absolute;*/
+	text-align: center;
+	border-radius: 10px;
+	border-style: solid;
+	background-color:#482AB3;
+	*/
+	/*position: absolute;*/
 
 }
 #menuS li:hover { 
@@ -52,19 +42,20 @@ position:fixed;
 
 #menuS ul{
 	
-	padding: 0px 0px 10px 10px;
+	padding: 5px 5px;
 	list-style: none;
-	margin:0px 0px 10px 10px;
+	margin:10px 10px 10px 10px;
 	
 
 }
 #menuS ul li{
 	border-width: medium;
 	border-style: ridge;
+	border-radius: 10px;
 	border-color: blue;
 	padding:2px 5px 5px 2px;
 	margin:10px;
-	background-color:#005696;
+	background-color:#482AB3;
 	display: inline;
 	
 	
@@ -77,3 +68,15 @@ position:fixed;
     font-weight: bold;
     
 }
+/* Parte Centro */
+.horiz{
+	max-width: 100%;
+	margin-bottom: 20%;
+	margin-left: 45px;
+	max-height: 300px;
+	
+	}
+#imgs{
+	margin: 20px 70px 20px 70px;
+	}
+
