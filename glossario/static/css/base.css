@@ -1,13 +1,14 @@
 
 .top{
 	display: inline;
+	text-align: center;
+	min-width: 550px;
 }
 
 
 /* IMAGENS */
 #glossario{	
-
-position: static;
+	/* position: static;*/
 
 }
 #logoufsc{
@@ -22,11 +23,10 @@ position: static;
 
 
 #menuS{
-	float: right;
+	float: center;
 	margin-top: 40px;
-	
-	/*max-width: 550px;
 	min-width: 550px;
+	/*
 	text-align: center;
 	border-radius: 10px;
 	border-style: solid;
