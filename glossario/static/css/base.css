@@ -1,0 +1,79 @@
+
+a {
+    color: #093889;
+    text-decoration: none;
+    
+}
+
+.top{
+	border-style: ridge;
+	border-color: black;
+	width:100%;
+	min-height: 150px;
+
+
+}
+
+
+/* FUCKING IMAGENS */
+#glossario{	
+left:0;
+position: fixed;
+
+}
+#logoufsc{
+
+right:0;
+position:fixed;
+
+}
+
+
+
+
+/* MENU SUPERIOR */
+
+
+#menuS{
+	margin-top: 0px;
+	min-width: 550px;
+	left: 30%;
+	top:5%;
+	position:fixed;
+
+
+/*position: absolute;*/
+
+}
+#menuS li:hover { 
+	border-width: thick;
+	border-color: black;
+ }
+
+#menuS ul{
+	
+	padding: 0px 0px 10px 10px;
+	list-style: none;
+	margin:0px 0px 10px 10px;
+	
+
+}
+#menuS ul li{
+	border-width: medium;
+	border-style: ridge;
+	border-color: blue;
+	padding:2px 5px 5px 2px;
+	margin:10px;
+	background-color:#005696;
+	display: inline;
+	
+	
+
+}
+#menuS ul li a{
+    color: white;
+    text-decoration: none;
+    font-family: helvetica;
+    font-weight: bold;
+    
+}
