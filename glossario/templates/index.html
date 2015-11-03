@@ -13,7 +13,13 @@
 <body>
     
     <div class="top">
-        <a href="http://ufsc.br"> <img id="logoufsc"  src='{% static "img/marca_ufsc.png" %}'/></a>
+        <div class="esquerda">
+         <a href="/"><img src='{% static "img/marca_glossario.png" %}'/></a>
+        </div>
+        <div class="direita">
+          <a href="http://ufsc.br"><img id="logoufsc"  src='{% static "img/marca_ufsc.png" %}'/></a>
+        </div>
+        <div class="centro">
           <nav id="menuS" >        
             <ul>
                 <li><a href="/index/enviarsinais" >Envie sinais</a></li>
@@ -23,19 +29,33 @@
                 <li><a href="/admin" >Admin</a></li>
             </ul>
         </nav>
-        <a href="/"><img id="glossario" src='{% static "img/marca_glossario.png" %}'/></a>
+        </div>
+
+    </div>
+
+    <div id="glossario">
+    <p> Bem vindo ao Glossário de Libras</br>
+    O conteúdo está dividido nos temas abaixo:
+    </p>
     </div>
 
 <div class="horiz" >
-     <a href="/letraslibras"><img id="imgs" src='{% static "img/marca_libras.png" %}'/></a>
-     <a href="/arquitetura" ><img id="imgs" src='{% static "img/arquitetura.png" %}'><img/></a>
-     <a href="#"><img id= "imgs" src='{% static "img/cinema.png" %}'><img/></a>
-     <a href="#"><img id= "imgs" src='{% static "img/3-pontos.png" %}' /></a>
+<div class="linha1">
+  <a href="/letraslibras"><img id="centro" src='{% static "img/marca_libras.png" %}'/></a>
+  <p>Letras Libras</p>
+  </div>
+<div class="linha1">
+  <a href="/arquitetura" ><img id="centro" src='{% static "img/arquitetura.png" %}'><img/></a>
+  <p>Arquitetura</p>
 </div>
-
-	
-
-	
-	
+<div class="linha1">
+  <a href="#"><img id= "centro" src='{% static "img/cinema.png" %}'><img/></a>
+  <p>Cinema</p>
+</div>
+<div class="linha1">
+  <a href="#"><img id= "centro" src='{% static "img/3-pontos.png" %}' /></a>
+  <p>Mais em breve...</p>
+</div>
+</div>
 </body>
 </html>

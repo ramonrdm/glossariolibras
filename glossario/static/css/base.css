@@ -1,19 +1,43 @@
 
 .top{
-	display: inline;
-	text-align: center;
-	min-width: 550px;
+display: table;
+width: 100%;
+/* min-width: 550px;*/
 }
+.esquerda{
+	float:left;
+	width: 30%;
+	min-width: 375px;
+}
+.direita{
+
+	width: 12%;
+	float: right;
+
+}
+
+.centro{
+	width: 50%;
+	min-width: 550px;
+	margin-right: 100px;
+	margin-left: 375px;
+	/* float:center;
+	width:30%; */
+	
+	
+}
+
 
 
 /* IMAGENS */
-#glossario{	
+#glossario{
+	margin-left: 15px;
 	/* position: static;*/
+	
 
 }
 #logoufsc{
-	margin-top:10px;
-	float: right; 
+
 }
 
 
@@ -23,16 +47,15 @@
 
 
 #menuS{
-	float: center;
+	
 	margin-top: 40px;
-	min-width: 550px;
-	/*
-	text-align: center;
 	border-radius: 10px;
 	border-style: solid;
 	background-color:#482AB3;
-	*/
-	/*position: absolute;*/
+	height:55px;
+
+	
+	/*Position: absolute;*/
 
 }
 #menuS li:hover { 
@@ -42,10 +65,10 @@
 
 #menuS ul{
 	
-	padding: 5px 5px;
+	padding: 10px 10px;
 	list-style: none;
 	margin:10px 10px 10px 10px;
-	
+	min-width: 530px;
 
 }
 #menuS ul li{
@@ -54,10 +77,9 @@
 	border-radius: 10px;
 	border-color: blue;
 	padding:2px 5px 5px 2px;
-	margin:10px;
+	margin:12px;
 	background-color:#482AB3;
 	display: inline;
-	
 	
 
 }
@@ -70,13 +92,13 @@
 }
 /* Parte Centro */
 .horiz{
-	max-width: 100%;
-	margin-bottom: 20%;
-	margin-left: 45px;
-	max-height: 300px;
+	margin-top: 50px;
+	text-align: center;
 	
-	}
-#imgs{
-	margin: 20px 70px 20px 70px;
-	}
+}
 
+.linha1{
+	margin-left: 10px;
+	width: 200px;
+	display: inline-block;
+}
