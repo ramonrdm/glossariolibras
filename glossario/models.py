@@ -4,10 +4,15 @@ from django.db import models
 
 class Glossario(models.Model):
 	nome = models.CharField(max_length=100)
+	
 
 
 
-#class Sinal(models.Model):
+class Sinal(models.Model):
 
 	# id
+
+
+
+class Video()
 
