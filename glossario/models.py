@@ -24,3 +24,6 @@ class Sinal(models.Model):
 class Grupo(models.Model):
 	nome = models.CharField(max_length=30)
 
+class Localizacao(models.Model):
+	nome = models.CharField(max_length=30)
+	bsw = models.TextField()
