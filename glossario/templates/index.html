@@ -56,6 +56,13 @@
   <a href="#"><img id= "centro" src='{% static "img/3-pontos.png" %}' /></a>
   <p>Mais em breve...</p>
 </div>
+
+<div class="horiz">
+{% for g in glossarios %}
+<div class="linha1">
+  <a href="/{{ g.nome }}" ><img id="centro" src = { "g.imagem.url"/ } >
+{% endfor %}
+
 </div>
 </body>
 </html>
