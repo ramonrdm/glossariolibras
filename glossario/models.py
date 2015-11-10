@@ -9,11 +9,13 @@ class Localizacao(models.Model):
 	bsw = models.TextField()
 
 class Video(FileField):
-	 capa = models.ImageField(blank=True)
+	capa = models.ImageField(blank=True)
+	videoMp4 = models.FileField()
 
 class Glossario(models.Model):
 	nome = models.CharField(max_length=100)
 	responsavel = models.ForeignKey(User)
+	#imgagem = models.ImageField(blank=True)
 
 class Sinal(models.Model):
 	glossario = models.ForeignKey(Glossario)
@@ -26,7 +28,14 @@ class Sinal(models.Model):
 	postador = models.ForeignKey(User)
 	publicado = models.BooleanField(default=False)
 	sinalLibras = Video()
-	# aqui deve ser uma field extendida, pois o arquivo vídeo eh uma field. Então faça a mesma coisa para os demais vídeos.
-	#descLibras = models.ForeignKey(Video, related_name="descricao")
-	#exemploLibras = models.ForeignKey(Video, related_name="exemplo")
-	#variacaoLibras = models.ForeignKey(Video, related_name="variacao")
+	descLibras = Video()
+	exemploLibras = Video()
+	varicLibras = Video()
+
+class GrupoCM (models.Model):
+	imagem = models.ImageField(blank=True)
+	bsw = models.TextField()
+
+class CM (models.Model):
+	imagem = models.ImageField(blank=True)
+	grupo = models.ForeignKey(GrupoCM)
