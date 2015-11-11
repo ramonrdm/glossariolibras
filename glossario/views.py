@@ -6,5 +6,4 @@ from glossario.models import Glossario
 def index(request):
 	glossarios = Glossario.objects.all()
 
-
 	return render_to_response("index.html", dict(glossarios=glossarios))

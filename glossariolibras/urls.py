@@ -7,5 +7,6 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', 'glossario.views.index', name='index'),
+   
     url(r'^admin/', include(admin.site.urls)),
-)+static(settings.STATIC_URL, document_root=settings.STATIC_URL)
+)+static(settings.MEDIA_URL, document_root=settings.MEDIA_URL)
