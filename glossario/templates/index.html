@@ -39,30 +39,16 @@
     </p>
     </div>
 
-<div class="horiz" >
-<div class="linha1">
-  <a href="/letraslibras"><img id="centro" src='{% static "img/marca_libras.png" %}'/></a>
-  <p>Letras Libras</p>
-  </div>
-<div class="linha1">
-  <a href="/arquitetura" ><img id="centro" src='{% static "img/arquitetura.png" %}'><img/></a>
-  <p>Arquitetura</p>
-</div>
-<div class="linha1">
-  <a href="#"><img id= "centro" src='{% static "img/cinema.png" %}'><img/></a>
-  <p>Cinema</p>
-</div>
-<div class="linha1">
-  <a href="#"><img id= "centro" src='{% static "img/3-pontos.png" %}' /></a>
-  <p>Mais em breve...</p>
-</div>
-
 <div class="horiz">
 {% for g in glossarios %}
 <div class="linha1">
-  <a href= /{{ g.nome }} ><img id="centro" src ="{{ g.imagem.url }}">
+  <a href= /{{ g.nome }} ><img id="centro" src ="{{ g.imagem.url }}" /></a>
+  <p> {{ g.nome }} </p>
+</div>
 {% endfor %}
-
+</div>
+<div class="horiz" id="baixo">
+<img id="borda" src = '{% static "img/borda.png" %}' />
 </div>
 </body>
 </html>

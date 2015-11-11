@@ -102,3 +102,13 @@ width: 100%;
 	width: 200px;
 	display: inline-block;
 }
+
+#borda{
+	min-width:1300px;
+	max-height: 100px;
+	margin-right: 50px; 
+}
+
+#baixo{
+	margin-top: 20%;
+}
