@@ -104,11 +104,19 @@ width: 100%;
 }
 
 #borda{
-	min-width:1300px;
+	min-width:100%;
 	max-height: 100px;
-	margin-right: 50px; 
+	/* position: static; */
 }
 
 #baixo{
-	margin-top: 20%;
+	position: fixed; 
+	bottom: 0;
+	min-width: 100%
+}
+
+body{
+	margin: 0px;
+	height: 100%;
+	min-height: 100%;
 }

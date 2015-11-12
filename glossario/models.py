@@ -18,6 +18,7 @@ class Glossario(models.Model):
 	nome = models.CharField(max_length=100)
 	responsavel = models.ForeignKey(User)
 	imagem = models.ImageField(blank=True)
+	link = models.CharField(max_length=20)
 
 	def __unicode__(self):
 		return self.nome

@@ -39,15 +39,15 @@
     </p>
     </div>
 
-<div class="horiz">
+<div class="horiz" id="centro">
 {% for g in glossarios %}
 <div class="linha1">
-  <a href= /{{ g.nome }} ><img id="centro" src ="{{ g.imagem.url }}" /></a>
+  <a href= /{{ g.link }} ><img id="centro" src ="{{ g.imagem.url }}" /></a>
   <p> {{ g.nome }} </p>
 </div>
 {% endfor %}
 </div>
-<div class="horiz" id="baixo">
+<div id="baixo">
 <img id="borda" src = '{% static "img/borda.png" %}' />
 </div>
 </body>
