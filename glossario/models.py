@@ -3,6 +3,7 @@ from django.db import models
 from django.db.models import FileField
 from django.core.files import File
 from django.contrib.auth.models import User
+import datetime
 
 class Localizacao(models.Model):
 	nome = models.CharField(max_length=30)
@@ -19,6 +20,7 @@ class Glossario(models.Model):
 	responsavel = models.ForeignKey(User)
 	imagem = models.ImageField(blank=True)
 	link = models.CharField(max_length=20)
+	dataCriacao = models.DateField(auto_now_add=True)
 
 	def __unicode__(self):
 		return self.nome
