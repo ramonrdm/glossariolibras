@@ -9,7 +9,6 @@ def index(request, glossario=None):
 			glossario = Glossario.objects.get(link=glossario)
 		except Glossario.DoesNotExist:
 			glossarios = Glossario.objects.all()
-
 	else:		
 		glossarios = Glossario.objects.all()
 

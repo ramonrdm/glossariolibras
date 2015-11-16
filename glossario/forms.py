@@ -8,13 +8,14 @@ class GlossarioForm(forms.ModelForm):
 
 	class Meta:
 		model = Glossario
-		exclude = ['link', 'dataCriacao']
+		exclude = ['link','dataCriacao']
 
-	def clean_nome(self):
-		palavra = self.cleaned_data['nome']
+#	def clean_nome(self):
+#		palavra = self.cleaned_data['nome']
 		#tudo para minusculo
 		#tirar espacos
 		#tirar acentos
-		self.fields['link'] = palavra
+		
+#		self.exclude.append('link')
 
-		return self.cleaned_data['nome']
+#		return self.cleaned_data['nome']
