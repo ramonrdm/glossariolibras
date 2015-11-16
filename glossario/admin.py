@@ -10,16 +10,12 @@ admin.site.register(Sinal)
 class GlossarioAdmin(admin.ModelAdmin):
 
 	form = GlossarioForm
-	#def get_form(self, request, obj=None, **kwargs):
-	#	self.exclude.append('dataCriacao', 'link')
+
 	def save_model(self, request, obj, form, change):
 		gLink = obj.nome.lower()
 		gLink = gLink.replace(" ", "-")
-		gLink = unicode(gLink)
-		gLink = normalize('NFKD', gLink.encode('ASCII','ignore'))
-		
-		print "AQUIIIIIIIIIIIIII   >>>>"
-		print gLink
+		gLink = gLink.encode("utf-8")
+		gLink = normalize('NFKD', gLink.decode("utf-8")).encode('ASCII','ignore') 
 		obj.link = gLink
 		obj.save()
 
