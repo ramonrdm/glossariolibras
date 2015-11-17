@@ -13,3 +13,15 @@ def index(request, glossario=None):
 		glossarios = Glossario.objects.all()
 
 	return render_to_response("index.html", dict(glossarios=glossarios))
+
+def equipe(request):
+
+	return render_to_response("equipe.html")
+
+def contato(request):
+	return render_to_response("contato.html")
+
+def historia(request):
+	
+	return render_to_response("historia.html")
+ 

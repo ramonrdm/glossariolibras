@@ -8,5 +8,8 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^admin', include(admin.site.urls)),
     url(r'^(?P<glosssario>\w+)$', 'glossario.views.index', name='glossarios'),
+    url(r'^index/equipe', 'glossario.views.equipe'),
+    url(r'^index/contato', 'glossario.views.contato'),
+    url(r'^index/historia', 'glossario.views.historia'),
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve',{'document_root': settings.MEDIA_ROOT}),
 )+static(settings.MEDIA_URL, document_root=settings.MEDIA_URL)

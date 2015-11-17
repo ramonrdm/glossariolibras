@@ -1,54 +1,23 @@
 <!DOCTYPE html>
-<html>
-<head>
-	{% load staticfiles %}
-	<META NAME="author" CONTENT="Ramon Dutra Miranda"/>
-	<META NAME="description" CONTENT="Glossario libras, ufsc, dicionario, letras libras, glossario cinema"/>
-    <META NAME="keywords" CONTENT="glossario, libras, ufsc, glossário, glossários, letras libras, dicionario"/>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" /> 
-    <title>Glossários de Libras - Glossário Letras Libras</title>
-    <link rel="stylesheet" type="text/css" href='{% static "css/base.css" %}'/> 
-</head>
-
+{% extends 'base.html' %}
+<title>{% block title %}Glossários de Libras - Glossário Letras Libras{% endblock %}</title>
+{% block Corpo %}
 <body>
-    
-    <div class="top">
-        <div class="esquerda">
-         <a href="/"><img src='{% static "img/marca_glossario.png" %}'/></a>
-        </div>
-        <div class="direita">
-          <a href="http://ufsc.br"><img id="logoufsc"  src='{% static "img/marca_ufsc.png" %}'/></a>
-        </div>
-        <div class="centro">
-          <nav id="menuS" >        
-            <ul>
-                <li><a href="/index/enviarsinais" >Envie sinais</a></li>
-                <li><a href="/index/contato" >Contato</a></li>
-                <li><a href="/index/equipe" >Equipe</a></li>
-                <li><a href="/index/historia" >História</a></li>
-                <li><a href="/admin" >Admin</a></li>
-            </ul>
-        </nav>
-        </div>
-
-    </div>
-
-    <div id="glossario">
+<html>
+<div id="glossario">
     <p> Bem vindo ao Glossário de Libras</br>
     O conteúdo está dividido nos temas abaixo:
     </p>
-    </div>
+</div>
 
 <div class="horiz" id="centro">
 {% for g in glossarios %}
-<div class="linha1">
-  <a href= /{{ g.link }} ><img id="centro" src ="{{ g.imagem.url }}" /></a>
-  <p> {{ g.nome }} </p>
-</div>
+    <div class="linha1">
+        <a href= /{{ g.link }} ><img id="centro" src ="{{ g.imagem.url }}" /></a>
+        <p> {{ g.nome }} </p>
+    </div>
 {% endfor %}
-</div>
-<div id="baixo">
-<img id="borda" src = '{% static "img/borda.png" %}' />
 </div>
 </body>
 </html>
+{% endblock %}

@@ -50,8 +50,6 @@ width: 100%;
 	
 	margin-top: 40px;
 	border-radius: 10px;
-	border-style: solid;
-	background-color:#482AB3;
 	height:55px;
 
 	
@@ -59,7 +57,6 @@ width: 100%;
 
 }
 #menuS li:hover { 
-	border-width: thick;
 	border-color: black;
  }
 
@@ -75,10 +72,10 @@ width: 100%;
 	border-width: medium;
 	border-style: ridge;
 	border-radius: 10px;
-	border-color: blue;
+	border-color: #005696;
 	padding:2px 5px 5px 2px;
-	margin:12px;
-	background-color:#482AB3;
+	margin:10px;
+	background-color:#005696;
 	display: inline;
 	
 
@@ -88,7 +85,8 @@ width: 100%;
     text-decoration: none;
     font-family: helvetica;
     font-weight: bold;
-    
+    margin-left: 2px;
+    margin-right: 2px;
 }
 /* Parte Centro */
 .horiz{
@@ -105,17 +103,35 @@ width: 100%;
 
 #borda{
 	min-width:100%;
-	max-height: 100px;
+	max-height: 70px;
 	/* position: static; */
 }
 
 #baixo{
 	position: fixed; 
-	bottom: 0;
-	min-width: 100%
+	bottom: 0px;
+	min-width: 100%;
+	margin:0px;
+	text-align: center;
+}
+.equipe{
+	float:center;
+	text-align: center;
+	position: static;
+	font-family: helvetica;
+}
+#decore{
+	font-family: helvetica;
+}
+#decore a {
+	text-decoration: none;
+}
+.historia{
+	font-family: helvetica;
+	margin-left: 20%;
 }
 
-body{
+html,body{
 	margin: 0px;
 	height: 100%;
 	min-height: 100%;
