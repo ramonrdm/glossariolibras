@@ -120,15 +120,16 @@ width: 100%;
 	position: static;
 	font-family: helvetica;
 }
-#decore{
+.decore{
 	font-family: helvetica;
 }
-#decore a {
+.decore a {
 	text-decoration: none;
 }
 .historia{
 	font-family: helvetica;
 	margin-left: 20%;
+	margin-top: 100px;
 }
 
 html,body{
