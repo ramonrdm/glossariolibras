@@ -12,7 +12,7 @@ def index(request, glossario=None):
 	else:		
 		glossarios = Glossario.objects.all()
 
-	return render_to_response("index.html", dict(glossarios=glossarios))
+	return render_to_response("index.html", dict(glossarios=glossarios, glossario=glossario))
 
 def equipe(request):
 

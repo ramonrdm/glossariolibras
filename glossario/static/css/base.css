@@ -17,10 +17,10 @@ width: 100%;
 }
 
 .centro{
-	width: 50%;
+	width: 60%;
 	min-width: 550px;
 	margin-right: 100px;
-	margin-left: 375px;
+	margin-left: 410px;
 	/* float:center;
 	width:30%; */
 	
@@ -74,7 +74,7 @@ width: 100%;
 	border-radius: 10px;
 	border-color: #005696;
 	padding:2px 5px 5px 2px;
-	margin:10px;
+	margin:15px;
 	background-color:#005696;
 	display: inline;
 	
