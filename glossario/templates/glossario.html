@@ -2,5 +2,19 @@
 {% extends 'base.html' %}
 <title>{% block title %}{{ glossario.nome }} - Glossário Letras Libras{% endblock %}</title>
 {% block Corpo %}
-	<a id="selecionada" href="media/"{{ glossario.link }}><img src="{{ glossario.imagem.url }}"/></a>
+{% load staticfiles %}
+<br><br><br><br>
+	<div ><a id="selecionada" href="media/"{{ glossario.link }}><img width="90px" height="120px" src="{{ glossario.imagem.url }}"/></a>
+</div>
+<div class="busca">
+<ul id="menubusca">
+	<li><a href="/pesquisa/"{{ glossario.link }}><img src='{% static "img/buscasinal.png" %}'/></a></li>
+	<li><a href="/pesquisa/"{{ glossario.link }}><img src='{% static "img/buscaport.png" %}'/></a></li>
+	<li><a href="/pesquisa/"{{ glossario.link }}><img src='{% static "img/buscaing.png" %}'/></a></li>
+</ul>
+<video id="videoprincip"> 
+	<source src="{{ glossario.videoGlossario.url }}">
+	Seu navegador não suporta vídeo html5, por favor atualize seu navegador.
+</video>
+</div>
 {% endblock %}

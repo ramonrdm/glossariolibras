@@ -1,18 +1,20 @@
-
+/* parte base index */
 .top{
 display: table;
 width: 100%;
 /* min-width: 550px;*/
 }
+
 .esquerda{
 	float:left;
 	width: 30%;
 	min-width: 375px;
 }
-.direita{
 
+.direita{
 	width: 12%;
 	float: right;
+	max-height: 132px;
 
 }
 
@@ -23,51 +25,29 @@ width: 100%;
 	margin-left: 410px;
 	/* float:center;
 	width:30%; */
-	
-	
 }
-
-
+/*fim index */
 
 /* IMAGENS */
 #glossario{
 	margin-left: 15px;
 	/* position: static;*/
-	
-
 }
-#logoufsc{
-
-}
-
-
-
-
 /* MENU SUPERIOR */
-
-
 #menuS{
-	
 	margin-top: 40px;
 	border-radius: 10px;
 	height:55px;
-
-	
 	/*Position: absolute;*/
-
 }
-#menuS li:hover { 
-	border-color: black;
- }
 
 #menuS ul{
-	
 	padding: 10px 10px;
 	list-style: none;
 	margin:10px 10px 10px 10px;
 	min-width: 530px;
-
 }
+
 #menuS ul li{
 	border-width: medium;
 	border-style: ridge;
@@ -77,9 +57,8 @@ width: 100%;
 	margin:10px;
 	background-color:#005696;
 	display: inline;
-	
-
 }
+
 #menuS ul li a{
     color: white;
     text-decoration: none;
@@ -88,19 +67,20 @@ width: 100%;
     margin-left: 2px;
     margin-right: 2px;
 }
-/* Parte Centro */
+/* Fim Menu Superior */
+/* classe horizontal */
 .horiz{
 	margin-top: 50px;
 	text-align: center;
 	
 }
-
+/* exibindo glossarios */
 .linha1{
 	margin-left: 10px;
 	width: 200px;
 	display: inline-block;
 }
-
+/* imagem no rodapé */
 #borda{
 	min-width:100%;
 	max-height: 70px;
@@ -114,25 +94,66 @@ width: 100%;
 	margin:0px;
 	text-align: center;
 }
+/*paginas*/
 .equipe{
 	float:center;
 	text-align: center;
 	position: static;
 	font-family: helvetica;
 }
+/* decoration */
 .decore{
 	font-family: helvetica;
 }
+
 .decore a {
 	text-decoration: none;
 }
+
 .historia{
 	font-family: helvetica;
 	margin-left: 20%;
 	margin-top: 100px;
 }
+/* fim paginas contato,equip,hist */
+/* tamanho glossario selecionado */
 #selecionada{
 	margin-left:100px;
+}
+/*menubusca*/
+#menubusca{
+	list-style: none;
+	height: 100%;
+	width: 288px;
+	background-image: url('/static/img/chanfrado.png');
+	display: inline-block;
+}
+
+#menubusca ul{
+	list-style: none;
+	margin-top: 20px;
+}
+
+#menubusca li{
+	padding:2px;
+	border: 1px;
+	margin-top: 30%;
+	width:200px;
+}
+
+#menubusca ul li a{
+	text-decoration: none;
+}
+/* fim menu busca */
+.busca{
+	height:68%;
+	width: 100%;
+	display: inline;
+}
+#videoprincip{
+	display: inline-block;
+	float: right;
+	margin-top: 10%;
 }
 
 html,body{

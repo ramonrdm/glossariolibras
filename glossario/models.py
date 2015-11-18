@@ -21,6 +21,7 @@ class Glossario(models.Model):
 	imagem = models.ImageField(blank=True)
 	link = models.CharField(max_length=20)
 	dataCriacao = models.DateField(auto_now_add=True)
+	videoGlossario = Video()
 
 	def __unicode__(self):
 		return self.nome
