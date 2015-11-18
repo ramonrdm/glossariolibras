@@ -7,6 +7,7 @@ def index(request, glossario=None):
 	if glossario:
 		try:
 			glossario = Glossario.objects.get(link=glossario)
+			return render_to_response("index.html", dict(glossario=glossario))
 		except Glossario.DoesNotExist:
 			glossarios = Glossario.objects.all()
 	else:		
