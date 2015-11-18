@@ -74,7 +74,7 @@ width: 100%;
 	border-radius: 10px;
 	border-color: #005696;
 	padding:2px 5px 5px 2px;
-	margin:15px;
+	margin:10px;
 	background-color:#005696;
 	display: inline;
 	
@@ -130,6 +130,9 @@ width: 100%;
 	font-family: helvetica;
 	margin-left: 20%;
 	margin-top: 100px;
+}
+#selecionada{
+	margin-left:100px;
 }
 
 html,body{
