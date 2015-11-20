@@ -83,8 +83,9 @@ max-height: 380px;
 }
 /* imagem no rodapé */
 #borda{
-	min-width:100%;
-	max-height: 70px;
+	width:100%;
+	max-height: 100px;
+	margin:0px;
 	/* position: static; */
 }
 
@@ -92,7 +93,7 @@ max-height: 380px;
 	position: fixed; 
 	bottom: 0px;
 	min-width: 100%;
-	margin:0px;
+	margin:-6px;
 	text-align: center;
 }
 /*paginas*/
@@ -121,25 +122,27 @@ max-height: 380px;
 .selecionada{
 	margin-left:13px;
 }
+#glossarioselec{
+	text-align: center;
+}
 /*menubusca*/
 #menubusca{
-	margin-top: 0px;
 	list-style: none;
 	height: 630px;
-	width: 288px;
-	display: inline-block;
-	background-image: url('/static/img/chanfrado.png');
+	display: inline-table;
 }
 
 #menubusca ul{
+	margin:0px;
+	height: 630px;
 	list-style: none;
-	margin-top: 20px;
+	background-image: url('/static/img/chanfrado.png');
 }
 
 #menubusca li{
 	padding:2px;
 	border: 1px;
-	margin-top: 30%;
+	margin-bottom: 30%;
 	width:200px;
 }
 
@@ -150,11 +153,20 @@ max-height: 380px;
 .busca{
 	width: 100%;
 	min-height: 630px;
+	display: table;
+}
+.video{
+	width:50%
+	height:50%;
+	float:right;
 }
 #videoprincip{
-	float: right;
-	display: inline-table;
-	margin-top: 165px;
+	margin-top: 150px;
+}
+#botoesVideo{
+	float:left;
+	list-style: none;
+	margin-top: 400px; 
 }
 
 html, body{

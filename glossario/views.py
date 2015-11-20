@@ -15,6 +15,11 @@ def index(request, glossario=None):
 
 	return render_to_response("index.html", dict(glossarios=glossarios, glossario=glossario))
 
+def pesquisa(request, glossario=None, tipopesq=None):
+
+	return render_to_response("pesquisa.html", dict(glossario=glossario, tipopesq=tipopesq))
+			
+
 def equipe(request):
 
 	return render_to_response("equipe.html")
