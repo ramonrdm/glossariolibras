@@ -1,4 +1,13 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
-<title>{% block title %}{% endblock %}</title>
-{% block Corpo %}{% endblock %}
+<title>{% block title %}Pesquisa {{ glossario.nome }} - Glossário Letras Libras {% endblock %}</title>
+{% block Corpo %}
+{% load staticfiles %}
+<div class="selecionada" >
+	<a href="media/"{{ glossario.link }}><img width="90px" height="120px" src="{{ glossario.imagem.url }}"/></a>
+	<div id="glossarioselec"><b>{{ glossario.nome }}</b></div>
+</div>
+<div>
+{{ form }}
+</div>
+{% endblock %}

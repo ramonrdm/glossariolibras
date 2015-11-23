@@ -93,7 +93,7 @@ max-height: 380px;
 	position: fixed; 
 	bottom: 0px;
 	min-width: 100%;
-	margin:-6px;
+	margin-bottom:-6px;
 	text-align: center;
 }
 /*paginas*/
@@ -128,13 +128,13 @@ max-height: 380px;
 /*menubusca*/
 #menubusca{
 	list-style: none;
-	height: 630px;
+	height: 100%;
 	display: inline-table;
 }
 
 #menubusca ul{
 	margin:0px;
-	height: 630px;
+	height: 580px;
 	list-style: none;
 	background-image: url('/static/img/chanfrado.png');
 }
@@ -152,16 +152,16 @@ max-height: 380px;
 /* fim menu busca */
 .busca{
 	width: 100%;
-	min-height: 630px;
+	min-width: 964px;
+	height: 580px;
 	display: table;
 }
 .video{
-	width:50%
-	height:50%;
-	float:right;
+	float: right;
+	display: inline-table;
 }
 #videoprincip{
-	margin-top: 150px;
+	margin-top: 70px;
 }
 #botoesVideo{
 	float:left;
