@@ -13,13 +13,13 @@ class GlossarioForm(forms.ModelForm):
 class PesquisaPortForm(forms.Form):
 
 	model = Sinal
-	fields = 'TraducaoP'
-	TraducaoP = forms.CharField(max_length=100)
+	fields = 'traducaoP'
+	TraducaoP = forms.CharField(max_length=30)
 
 class PesquisaIngForm(forms.Form):
 	model = Sinal
-	fields = 'TraducaoI'
-	TraducaoI = forms.CharField(max_length=100)
+	fields = 'traducaoI'
+	TraducaoI = forms.CharField(max_length=30)
 
 #	def clean_nome(self):
 #		palavra = self.cleaned_data['nome']

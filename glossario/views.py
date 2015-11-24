@@ -1,7 +1,7 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, render
 from glossario.models import Glossario, Sinal
 from glossario.forms import PesquisaPortForm, PesquisaIngForm
-
+from django.template import RequestContext
 # Create your views here.
 
 def index(request, glossario=None):
@@ -16,25 +16,36 @@ def index(request, glossario=None):
 
 	return render_to_response("index.html", dict(glossarios=glossarios, glossario=glossario))
 
-def pesquisa(request, glossario=None, tipopesq=None, form=None):
+def pesquisa(request, glossario=None, tipopesq=None):
 	if glossario:
-		try:
+		try:	
 			glossario = Glossario.objects.get(link=glossario)
 			if tipopesq	== "p":
-				form = PesquisaPortForm
-				return render_to_response("pesquisa.html", dict(glossario=glossario, form=form))
+				if request.method == "POST":
+					formulario = PesquisaPortForm()
+					request.POST = request.POST.copy()
+					return render_to_response("pesquisa.html", dict(glossario=glossario, formulario=formulario, context_instance=RequestContext(request)))
+				else:
+					formulario = PesquisaPortForm()
+					return render_to_response("pesquisa.html", dict(glossario=glossario, formulario=formulario, context_instance=RequestContext(request)))
+
 			elif tipopesq =="e":
-				form = PesquisaIngForm
-				return render_to_response("pesquisa.html", dict(glossario=glossario, form=form))
+				formulario = PesquisaIngForm()
+				if request.method == "POST":
+					return render_to_response("pesquisa.html", dict(glossario=glossario, formulario=formulario, context_instance=RequestContext(request)))
+				return render_to_response("pesquisa.html", dict(glossario=glossario, formulario=formulario, context_instance=RequestContext(request)))
+
 			elif tipopesq =="s":
-				form = None
-				return render_to_response("pesquisa.html", dict(glossario=glossario, form=form))
+				formulario = None
+				if request.method == "POST":
+					return render_to_response("pesquisa.html", dict(glossario=glossario, formulario=formulario, context_instance=RequestContext(request)))
+				return render_to_response("pesquisa.html", dict(glossario=glossario, formulario=formulario, context_instance=RequestContext(request)))
+					
 		except Glossario.DoesNotExist:
 			glossarios = Glossario.objects.all()
+			return render_to_response("index.html", dict(glossarios=glossarios, glossario=glossario))
 	else:
-		return render_to_response("pesquisa.html", dict(glossario=glossario, tipopesq=tipopesq))
-
-	return render_to_response("pesquisa.html", dict(glossario=glossario, tipopesq=tipopesq))
+		return render_to_response("index.html", dict(glossarios=glossarios, glossario=glossario))
 
 def equipe(request):
 

@@ -7,7 +7,10 @@
 	<a href="media/"{{ glossario.link }}><img width="90px" height="120px" src="{{ glossario.imagem.url }}"/></a>
 	<div id="glossarioselec"><b>{{ glossario.nome }}</b></div>
 </div>
-<div>
-{{ form }}
+<div class="formulario">	
+	<form action="" method="post">
+		{% csrf_token %}
+		{{ formulario.as_p }}<button type="submit">Pesquisar</button>
+	</form>
 </div>
 {% endblock %}
