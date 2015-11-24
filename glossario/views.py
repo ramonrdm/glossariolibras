@@ -1,8 +1,8 @@
+# -*- coding: utf-8 -*-
 from django.shortcuts import render_to_response, render
 from glossario.models import Glossario, Sinal
 from glossario.forms import PesquisaPortForm, PesquisaIngForm
 from django.template import RequestContext
-# Create your views here.
 
 def index(request, glossario=None):
 	if glossario:
@@ -17,35 +17,40 @@ def index(request, glossario=None):
 	return render_to_response("index.html", dict(glossarios=glossarios, glossario=glossario))
 
 def pesquisa(request, glossario=None, tipopesq=None):
-	if glossario:
-		try:	
-			glossario = Glossario.objects.get(link=glossario)
-			if tipopesq	== "p":
-				if request.method == "POST":
-					formulario = PesquisaPortForm()
-					request.POST = request.POST.copy()
-					return render_to_response("pesquisa.html", dict(glossario=glossario, formulario=formulario, context_instance=RequestContext(request)))
-				else:
-					formulario = PesquisaPortForm()
-					return render_to_response("pesquisa.html", dict(glossario=glossario, formulario=formulario, context_instance=RequestContext(request)))
+	#tens que resolver as coisas por partes...
 
-			elif tipopesq =="e":
-				formulario = PesquisaIngForm()
-				if request.method == "POST":
-					return render_to_response("pesquisa.html", dict(glossario=glossario, formulario=formulario, context_instance=RequestContext(request)))
-				return render_to_response("pesquisa.html", dict(glossario=glossario, formulario=formulario, context_instance=RequestContext(request)))
+	#Verificar se tem um glossário especifico senao transforma ele em None
+	try:
+		glossario = Glossario.objects.get(link=glossario)
+	except Glossario.DoesNotExist:
+		glossario = None
 
-			elif tipopesq =="s":
-				formulario = None
-				if request.method == "POST":
-					return render_to_response("pesquisa.html", dict(glossario=glossario, formulario=formulario, context_instance=RequestContext(request)))
-				return render_to_response("pesquisa.html", dict(glossario=glossario, formulario=formulario, context_instance=RequestContext(request)))
-					
-		except Glossario.DoesNotExist:
-			glossarios = Glossario.objects.all()
-			return render_to_response("index.html", dict(glossarios=glossarios, glossario=glossario))
+	# Verifica se é post, se for é uma pesquisa senão é a primeira vez que o cara entra na página.
+	if request.method == "POST":
+		formulario = PesquisaPortForm(request.POST)
+		#Verifica a validade do form, neste caso se tem alguam coisa diferente de vazio
+		if formulario.is_valid():
+			#Tratar cada possibilidade.
+			if tipopesq == "p":
+				sinais = None
+			elif tipopesq == "e":
+				sinais = None
+			elif tipopesq == "s":
+				sinais = None
+		else:
+			sinais = None
 	else:
-		return render_to_response("index.html", dict(glossarios=glossarios, glossario=glossario))
+		formulario = PesquisaPortForm()
+		sinais = None
+
+	# Enviar somente uma vez para um só lugar, o templete tem que identificar o que é diferente de None e exibir.
+	# Nosso erro estava em não encapsular os parametros dentro do context...
+	return render_to_response(
+		"pesquisa.html", 
+		context_instance=RequestContext(
+		request, 
+		{ 'glossario':glossario, 'formulario':formulario, "sinais":sinais}
+		))
 
 def equipe(request):
 
