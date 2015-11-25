@@ -38,7 +38,7 @@ class CM (models.Model):
 class Sinal(models.Model):
 	glossario = models.ForeignKey(Glossario)
 	traducaoP = models.CharField(max_length=30, verbose_name='Palavra')
-	traducaoI = models.CharField(max_length=30, verbose_name='Palavra')
+	traducaoI = models.CharField(max_length=30, verbose_name='Word')
 	bsw = models.TextField()
 	descricao = models.CharField(max_length=50)
 #	grupoCMe = models.ForeignKey(GrupoCM, related_name='Grupo_M_Esquerda')

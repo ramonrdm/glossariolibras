@@ -12,9 +12,12 @@
 		{% csrf_token %}
 		{{ formulario.as_p }}<button type="submit">Pesquisar</button>
 	</form>
-	<div> 
-
-
+	<div id="results"> 
+	{% for s in sinais %}
+	<div class="linha1">
+		{{ s.traducaoP }}
+	</div>
+	{% endfor %}
 	</div>
 </div>
 {% endblock %}

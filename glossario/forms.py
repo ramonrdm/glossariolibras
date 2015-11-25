@@ -17,7 +17,7 @@ class PesquisaPortForm(forms.ModelForm):
 		fields = ['traducaoP']
 
 
-class PesquisaIngForm(forms.Form):
+class PesquisaIngForm(forms.ModelForm):
 	
 	class Meta:
 		model = Sinal

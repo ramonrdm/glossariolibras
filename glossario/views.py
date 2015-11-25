@@ -17,20 +17,16 @@ def index(request, glossario=None):
 	return render_to_response("index.html", dict(glossarios=glossarios, glossario=glossario))
 
 def pesquisa(request, glossario=None, tipopesq=None):
-	#tens que resolver as coisas por partes...
-
-	#Verificar se tem um glossário especifico senao transforma ele em None
 	try:
 		glossario = Glossario.objects.get(link=glossario)
 	except Glossario.DoesNotExist:
 		glossario = None
 	if request.method == "POST":
-		formulario = PesquisaPortForm(request.POST)
-		if formulario.is_valid():
 			
-			if tipopesq == "p":
+		if tipopesq == "p":
+			formulario = PesquisaPortForm(request.POST)
+			if formulario.is_valid():
 				sinais = Sinal.objects.filter(traducaoP__contains=formulario.cleaned_data['traducaoP'])
-				print sinais
 				return render_to_response(
 					"pesquisa.html", 
 					context_instance=RequestContext(
@@ -38,9 +34,18 @@ def pesquisa(request, glossario=None, tipopesq=None):
 					{ 'glossario':glossario, 'formulario':formulario, "sinais":sinais, }
 					))
 				
-			elif tipopesq == "e":
-				sinais = None
-			elif tipopesq == "s":
+		elif tipopesq == "e":
+			formulario = PesquisaIngForm(request.POST)
+			if formulario.is_valid():
+				sinais = Sinal.objects.filter(traducaoI__contains=formulario.cleaned_data['traducaoI'])
+				return render_to_response(
+					"pesquisa.html", 
+					context_instance=RequestContext(
+					request, 
+					{ 'glossario':glossario, 'formulario':formulario, "sinais":sinais, }
+					))
+
+		elif tipopesq == "s":
 				sinais = None
 		
 		else:
@@ -52,7 +57,7 @@ def pesquisa(request, glossario=None, tipopesq=None):
 		"pesquisa.html", 
 		context_instance=RequestContext(
 		request, 
-		{ 'glossario':glossario, 'formulario':formulario, "sinais":sinais}
+		{ 'glossario':glossario, 'formulario':formulario}
 		))
 
 def equipe(request):

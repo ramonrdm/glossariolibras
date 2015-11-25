@@ -168,6 +168,9 @@ max-height: 380px;
 	list-style: none;
 	margin-top: 400px; 
 }
+#results{
+	float: right;
+}
 
 html, body{
 	margin: 0px;
