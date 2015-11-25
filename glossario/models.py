@@ -37,8 +37,8 @@ class CM (models.Model):
 
 class Sinal(models.Model):
 	glossario = models.ForeignKey(Glossario)
-	traducaoP = models.CharField(max_length=30)
-	traducaoI = models.CharField(max_length=30)
+	traducaoP = models.CharField(max_length=30, verbose_name='Palavra')
+	traducaoI = models.CharField(max_length=30, verbose_name='Palavra')
 	bsw = models.TextField()
 	descricao = models.CharField(max_length=50)
 #	grupoCMe = models.ForeignKey(GrupoCM, related_name='Grupo_M_Esquerda')
@@ -46,7 +46,7 @@ class Sinal(models.Model):
 #	grupoCMd = models.ForeignKey(GrupoCM, related_name='Grupo_M_Direita')
 #	cmD = models.ForeignKey(CM, related_name='C_M_Direita')
 #	localizacao = models.ForeignKey(Localizacao)
-#	dataPost = models.DateField()
+#	dataPost = models.DateField(now)
 	postador = models.ForeignKey(User)
 #	publicado = models.BooleanField(default=False)
 #	sinalLibras = Video()

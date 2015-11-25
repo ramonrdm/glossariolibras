@@ -10,16 +10,19 @@ class GlossarioForm(forms.ModelForm):
 		model = Glossario
 		exclude = ['link','dataCriacao']
 
-class PesquisaPortForm(forms.Form):
+class PesquisaPortForm(forms.ModelForm):
+	
+	class Meta:
+		model = Sinal
+		fields = ['traducaoP']
 
-	model = Sinal
-	fields = 'traducaoP'
-	TraducaoP = forms.CharField(max_length=30)
 
 class PesquisaIngForm(forms.Form):
-	model = Sinal
-	fields = 'traducaoI'
-	TraducaoI = forms.CharField(max_length=30)
+	
+	class Meta:
+		model = Sinal
+		fields = ['traducaoI']
+
 
 #	def clean_nome(self):
 #		palavra = self.cleaned_data['nome']

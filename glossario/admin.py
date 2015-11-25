@@ -17,8 +17,7 @@ class GlossarioAdmin(admin.ModelAdmin):
 		gLink = gLink.encode("utf-8")
 		gLink = normalize('NFKD', gLink.decode("utf-8")).encode('ASCII','ignore') 
 		obj.link = gLink
-		obj.save()
-
+		obj.save()	
 
 
 admin.site.register(Glossario, GlossarioAdmin)

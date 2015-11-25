@@ -24,27 +24,30 @@ def pesquisa(request, glossario=None, tipopesq=None):
 		glossario = Glossario.objects.get(link=glossario)
 	except Glossario.DoesNotExist:
 		glossario = None
-
-	# Verifica se é post, se for é uma pesquisa senão é a primeira vez que o cara entra na página.
 	if request.method == "POST":
 		formulario = PesquisaPortForm(request.POST)
-		#Verifica a validade do form, neste caso se tem alguam coisa diferente de vazio
 		if formulario.is_valid():
-			#Tratar cada possibilidade.
+			
 			if tipopesq == "p":
-				sinais = None
+				sinais = Sinal.objects.filter(traducaoP__contains=formulario.cleaned_data['traducaoP'])
+				print sinais
+				return render_to_response(
+					"pesquisa.html", 
+					context_instance=RequestContext(
+					request, 
+					{ 'glossario':glossario, 'formulario':formulario, "sinais":sinais, }
+					))
+				
 			elif tipopesq == "e":
 				sinais = None
 			elif tipopesq == "s":
 				sinais = None
+		
 		else:
 			sinais = None
 	else:
 		formulario = PesquisaPortForm()
 		sinais = None
-
-	# Enviar somente uma vez para um só lugar, o templete tem que identificar o que é diferente de None e exibir.
-	# Nosso erro estava em não encapsular os parametros dentro do context...
 	return render_to_response(
 		"pesquisa.html", 
 		context_instance=RequestContext(
