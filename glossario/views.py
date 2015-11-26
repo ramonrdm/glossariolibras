@@ -27,22 +27,24 @@ def pesquisa(request, glossario=None, tipopesq=None):
 			formulario = PesquisaPortForm(request.POST)
 			if formulario.is_valid():
 				sinais = Sinal.objects.filter(traducaoP__contains=formulario.cleaned_data['traducaoP'])
+				resultado = len(sinais)
 				return render_to_response(
 					"pesquisa.html", 
 					context_instance=RequestContext(
 					request, 
-					{ 'glossario':glossario, 'formulario':formulario, "sinais":sinais, }
+					{ 'glossario':glossario, 'formulario':formulario, "sinais":sinais, 'resultado':resultado}
 					))
 				
 		elif tipopesq == "e":
 			formulario = PesquisaIngForm(request.POST)
 			if formulario.is_valid():
 				sinais = Sinal.objects.filter(traducaoI__contains=formulario.cleaned_data['traducaoI'])
+				resultado = len(sinais)
 				return render_to_response(
 					"pesquisa.html", 
 					context_instance=RequestContext(
 					request, 
-					{ 'glossario':glossario, 'formulario':formulario, "sinais":sinais, }
+					{ 'glossario':glossario, 'formulario':formulario, "sinais":sinais, 'resultado':resultado}
 					))
 
 		elif tipopesq == "s":

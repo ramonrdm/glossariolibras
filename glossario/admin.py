@@ -5,6 +5,9 @@ from glossario.forms import GlossarioForm, SinalForm
 from unicodedata import normalize 
 	
 admin.site.register(Localizacao)
+admin.site.register(GrupoCM)
+admin.site.register(CM)
+admin.site.register(Tema)
 
 class GlossarioAdmin(admin.ModelAdmin):
 
@@ -23,7 +26,7 @@ class SinalAdmin(admin.ModelAdmin):
 	form = SinalForm
 
 	def save_model(self, request, obj, form, change):
-		dataPost = datetime.date.today()
+		obj.dataPost = datetime.date.today()
 		obj.postador = request.user
 		obj.save()
 

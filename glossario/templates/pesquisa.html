@@ -7,12 +7,14 @@
 	<a href="media/"{{ glossario.link }}><img width="90px" height="120px" src="{{ glossario.imagem.url }}"/></a>
 	<div id="glossarioselec"><b>{{ glossario.nome }}</b></div>
 </div>
-<div class="formulario">	
+<div class="formulario">
+
+<b>Exibindo :</b> {{ resultado }} resultados.	
 	<form action="" method="post">
 		{% csrf_token %}
 		{{ formulario.as_p }}<button type="submit">Pesquisar</button>
 	</form>
-	<div id="results"> 
+	<div id="results">  
 	{% for s in sinais %}
 	<div class="linha1">
 		{{ s.traducaoP }}
