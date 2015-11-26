@@ -2,11 +2,12 @@
 {% extends 'base.html' %}
 <title>{% block title %}Contato - Glossário Letras Libras{% endblock %}</title>
 {% block Corpo %}
+{% load staticfiles %}
 <div class="equipe" >
 <br>
 <br>
-<br><br><br><b>Contato:</b><br>
+<br><br><br><b>Contato:</b>
 <br>
-ramon.rdm@ufsc.br
+<img src='{% static "img/contato.png" %}' />
 </div>
 {% endblock %}

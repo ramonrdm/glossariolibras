@@ -23,6 +23,10 @@ class PesquisaIngForm(forms.ModelForm):
 		model = Sinal
 		fields = ['traducaoI']
 
+class SinalForm(forms.ModelForm):
+
+	class Meta:
+		model = Sinal
 
 #	def clean_nome(self):
 #		palavra = self.cleaned_data['nome']

@@ -5,6 +5,7 @@ from django.core.files import File
 from django.contrib.auth.models import User
 import datetime
 
+
 class Localizacao(models.Model):
 	nome = models.CharField(max_length=30)
 	bsw = models.TextField()
@@ -17,7 +18,7 @@ class Video(FileField):
 
 class Glossario(models.Model):
 	nome = models.CharField(max_length=100)
-	responsavel = models.ForeignKey(User)
+	responsavel = models.ManyToManyField(User)
 	imagem = models.ImageField(blank=True)
 	link = models.CharField(max_length=20)
 	dataCriacao = models.DateField(auto_now_add=True)
@@ -34,6 +35,8 @@ class CM (models.Model):
 	imagem = models.ImageField(blank=True)
 	grupo = models.ForeignKey(GrupoCM)
 
+class Tema(models.Model):
+	nome = models.CharField(max_length=30)
 
 class Sinal(models.Model):
 	glossario = models.ForeignKey(Glossario)
@@ -46,10 +49,11 @@ class Sinal(models.Model):
 #	grupoCMd = models.ForeignKey(GrupoCM, related_name='Grupo_M_Direita')
 #	cmD = models.ForeignKey(CM, related_name='C_M_Direita')
 #	localizacao = models.ForeignKey(Localizacao)
-#	dataPost = models.DateField(now)
+	dataPost = models.DateField()
 	postador = models.ForeignKey(User)
-#	publicado = models.BooleanField(default=False)
+	publicado = models.BooleanField(default=False)
 #	sinalLibras = Video()
 #	descLibras = Video()
 #	exemploLibras = Video()
 #	varicLibras = Video()
+#	tema = models.Foreignkey(Tema)

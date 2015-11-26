@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 from .models import *
-from glossario.forms import GlossarioForm
+from glossario.forms import GlossarioForm, SinalForm
 from unicodedata import normalize 
 	
 admin.site.register(Localizacao)
-admin.site.register(Sinal)
 
 class GlossarioAdmin(admin.ModelAdmin):
 
@@ -19,6 +18,22 @@ class GlossarioAdmin(admin.ModelAdmin):
 		obj.link = gLink
 		obj.save()	
 
+class SinalAdmin(admin.ModelAdmin):
+
+	form = SinalForm
+
+	def save_model(self, request, obj, form, change):
+		dataPost = datetime.date.today()
+		obj.postador = request.user
+		obj.save()
+
+	def get_form(self, request, obj, **kwargs):
+		self.exclude = ['postador','dataPost']
+		responsaveis = Glossario.objects.filter(responsavel=request.user)
+		if not request.user.is_superuser or responsaveis:
+			self.exclude.append('publicado')
+		return super(SinalAdmin, self).get_form(request, obj, **kwargs)
 
 admin.site.register(Glossario, GlossarioAdmin)
+admin.site.register(Sinal, SinalAdmin)
 	
