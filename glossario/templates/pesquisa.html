@@ -8,8 +8,9 @@
 	<div id="glossarioselec"><b>{{ glossario.nome }}</b></div>
 </div>
 <div class="formulario">
-
+{% if resultado %}
 <b>Exibindo :</b> {{ resultado }} resultados.	
+{% endif %}
 	<form action="" method="post">
 		{% csrf_token %}
 		{{ formulario.as_p }}<button type="submit">Pesquisar</button>

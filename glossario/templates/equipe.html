@@ -2,25 +2,10 @@
 {% extends 'base.html' %}
 <title>{% block title %}Equipe - Glossário Letras Libras{% endblock %}</title>
 {% block Corpo %}
-<div class="equipe">
-<b>Equipe Atual:</b>
-<br>
-<br>
-<b>Marianne Rossi Stumpf</b><br>
-Professora Doutora Supervisora do Projeto<br>
-<br>
-<b>Janine Soares de Oliveira</b><br>
-Doutoranda em Estudos de Tradução<br>
-Coordenadora de Equipes do Glossário<br>
-<br>
-<b>Ramon Dutra Miranda</b><br>
-Graduando do curso de Ciência da Computação<br>
-Programador responsável<br>
-<br>
-<b>João Pedro Gutierrez Kieling Villegas</b><br>
-Graduando do curso Sistemas de Informação<br>
-Desenvolvedor<br>
-<br>
+<div class="linha1">
+{% for u in usuario %}
+{{ u.nome }}
+{% endfor %}
 </div>
 <div class="equipe">
 <b>Colaboradores anteriores:</b>

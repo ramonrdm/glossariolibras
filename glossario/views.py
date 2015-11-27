@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render_to_response, render
-from glossario.models import Glossario, Sinal
+from glossario.models import Glossario, Sinal, Usuario
 from glossario.forms import PesquisaPortForm, PesquisaIngForm
 from django.template import RequestContext
 
@@ -63,8 +63,8 @@ def pesquisa(request, glossario=None, tipopesq=None):
 		))
 
 def equipe(request):
-
-	return render_to_response("equipe.html")
+	usuario = Usuario.objects.all()
+	return render_to_response("equipe.html", dict(usuario=usuario))
 
 def contato(request):
 	return render_to_response("contato.html")

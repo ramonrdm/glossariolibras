@@ -2,10 +2,21 @@
 from django.db import models
 from django.db.models import FileField
 from django.core.files import File
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractBaseUser, UserManager
 from unicodedata import normalize
 import datetime
 
+class Usuario(AbstractBaseUser):
+	usuario = models.CharField(unique=True, max_length=30)
+	nome = models.CharField(max_length=100)
+	foto = models.ImageField(blank=True)
+	latte = models.CharField(max_length=50)
+	email = models.EmailField(max_length=100, unique=True)
+
+	objects = UserManager()
+
+	USERNAME_FIELD = 'usuario'
+	REQUIRED_FIELDS = ['email']
 
 class Localizacao(models.Model):
 	nome = models.CharField(max_length=30)
@@ -19,8 +30,8 @@ class Video(FileField):
 
 class Glossario(models.Model):
 	nome = models.CharField(max_length=100)
-	responsavel = models.ManyToManyField(User)
-	membros = models.ManyToManyField(User, related_name='glossario_membros')
+	responsavel = models.ManyToManyField(Usuario)
+	membros = models.ManyToManyField(Usuario, related_name='glossario_membros')
 	imagem = models.ImageField(blank=True)
 	link = models.CharField(max_length=20)
 	dataCriacao = models.DateField(auto_now_add=True)
@@ -56,7 +67,7 @@ class Sinal(models.Model):
 	cmD = models.ForeignKey(CM, related_name='C_M_Direita', verbose_name='Configuração direita')
 	localizacao = models.ForeignKey(Localizacao)
 	dataPost = models.DateField()
-	postador = models.ForeignKey(User)
+	postador = models.ForeignKey(Usuario)
 	publicado = models.BooleanField(default=False)
 	sinalLibras = Video()
 	descLibras = Video()
