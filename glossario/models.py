@@ -2,21 +2,14 @@
 from django.db import models
 from django.db.models import FileField
 from django.core.files import File
-from django.contrib.auth.models import AbstractBaseUser, UserManager
+from django.contrib.auth.models import AbstractUser, User
 from unicodedata import normalize
 import datetime
 
-class Usuario(AbstractBaseUser):
-	usuario = models.CharField(unique=True, max_length=30)
+class Usuario(AbstractUser):
 	nome = models.CharField(max_length=100)
 	foto = models.ImageField(blank=True)
 	latte = models.CharField(max_length=50)
-	email = models.EmailField(max_length=100, unique=True)
-
-	objects = UserManager()
-
-	USERNAME_FIELD = 'usuario'
-	REQUIRED_FIELDS = ['email']
 
 class Localizacao(models.Model):
 	nome = models.CharField(max_length=30)

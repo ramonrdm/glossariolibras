@@ -3,11 +3,14 @@ from django.contrib import admin
 from .models import *
 from glossario.forms import GlossarioForm, SinalForm
 from unicodedata import normalize 
-	
+
+admin.site.register(Usuario)
 admin.site.register(Localizacao)
 admin.site.register(GrupoCM)
 admin.site.register(CM)
 admin.site.register(Tema)
+
+#
 
 class GlossarioAdmin(admin.ModelAdmin):
 
@@ -39,4 +42,3 @@ class SinalAdmin(admin.ModelAdmin):
 
 admin.site.register(Glossario, GlossarioAdmin)
 admin.site.register(Sinal, SinalAdmin)
-	

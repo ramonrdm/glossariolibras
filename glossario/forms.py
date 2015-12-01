@@ -28,6 +28,10 @@ class SinalForm(forms.ModelForm):
 	class Meta:
 		model = Sinal
 		fields = '__all__'
+
+#
+
+
 #	def clean_nome(self):
 #		palavra = self.cleaned_data['nome']
 		#tudo para minusculo
