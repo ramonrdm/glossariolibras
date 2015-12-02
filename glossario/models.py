@@ -2,11 +2,13 @@
 from django.db import models
 from django.db.models import FileField
 from django.core.files import File
-from django.contrib.auth.models import AbstractUser, User
+from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from unicodedata import normalize
 import datetime
 
 class Usuario(AbstractUser):
+	usuario = models.CharField(max_length=30)
 	nome = models.CharField(max_length=100)
 	foto = models.ImageField(blank=True)
 	latte = models.CharField(max_length=50)

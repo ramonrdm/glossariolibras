@@ -1,16 +1,26 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 from .models import *
-from glossario.forms import GlossarioForm, SinalForm
-from unicodedata import normalize 
+from glossario.forms import GlossarioForm, SinalForm, Usuario
+from unicodedata import normalize
+from django.db import models
+from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.models import User
 
-admin.site.register(Usuario)
 admin.site.register(Localizacao)
 admin.site.register(GrupoCM)
 admin.site.register(CM)
 admin.site.register(Tema)
 
-#
+class UsuarioInline(admin.StackedInline):
+	model = Usuario
+	can_delete = False
+	verbose_name_plural = 'userprofile'
+
+class UsuarioAdmin(UserAdmin):
+	inlines = [UsuarioInline]
+
+admin.site.register(Usuario, UsuarioAdmin)
 
 class GlossarioAdmin(admin.ModelAdmin):
 
