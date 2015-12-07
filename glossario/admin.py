@@ -5,22 +5,20 @@ from glossario.forms import GlossarioForm, SinalForm, Usuario
 from unicodedata import normalize
 from django.db import models
 from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth.models import User
 
 admin.site.register(Localizacao)
 admin.site.register(GrupoCM)
 admin.site.register(CM)
 admin.site.register(Tema)
 
-class UsuarioInline(admin.StackedInline):
-	model = Usuario
-	can_delete = False
-	verbose_name_plural = 'userprofile'
 
-class UsuarioAdmin(UserAdmin):
+class UsuarioInline(admin.StackedInline):
+	model = Usero
+
+class UserAdmin(UserAdmin):
 	inlines = [UsuarioInline]
 
-admin.site.register(Usuario, UsuarioAdmin)
+admin.site.register(Usuario, UserAdmin)
 
 class GlossarioAdmin(admin.ModelAdmin):
 

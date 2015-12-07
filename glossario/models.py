@@ -2,9 +2,7 @@
 from django.db import models
 from django.db.models import FileField
 from django.core.files import File
-from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
-from unicodedata import normalize
 import datetime
 
 class Usuario(AbstractUser):
@@ -12,6 +10,9 @@ class Usuario(AbstractUser):
 	nome = models.CharField(max_length=100)
 	foto = models.ImageField(blank=True)
 	latte = models.CharField(max_length=50)
+
+class Usero(models.Model):
+	usuario = models.ForeignKey(Usuario)
 
 class Localizacao(models.Model):
 	nome = models.CharField(max_length=30)
