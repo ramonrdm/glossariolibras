@@ -2,17 +2,47 @@
 from django.db import models
 from django.db.models import FileField
 from django.core.files import File
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.db.models.signals import post_save
 import datetime
 
-class Usuario(AbstractUser):
-	usuario = models.CharField(max_length=30)
-	nome = models.CharField(max_length=100)
-	foto = models.ImageField(blank=True)
-	latte = models.CharField(max_length=50)
+class UsuarioManager(BaseUserManager):
+	use_in_migrations = True
 
-class Usero(models.Model):
-	usuario = models.ForeignKey(Usuario)
+	def _create_user(self, username, email, password, **extra_fields):
+		if not username:
+			raise ValueError('Este campo é obrigatório')
+		email = self.normalize_email(email)
+		user = self.model(username=username, email=email, **extra_fields)
+		user.set_password(password)
+		user.save(using=self._db)
+		return user
+
+	def create_user(self, username, email=None, password=None, **extra_fields):
+		extra_fields.setdefault('is_staff', False)
+		extra_fields.setdefault('is_superuser', False)
+		return self._create_user(username, email, password, **extra_fields)
+
+	def create_superuser(self, username, email, password, **extra_fields):
+		extra_fields.setdefault('is_staff', True)
+		extra_fields.setdefault('is_superuser', True)
+
+		if extra_fields.get('is_staff') is not True:
+			raise ValueError('Não é membro da equipe.')
+		if extra_fields.get('is_superuser') is not True:
+			raise ValueError('Não é superusuario.')
+
+		return self._create_user(username, email, password, **extra_fields)
+
+
+
+class Usuario(AbstractUser):
+
+	latte = models.CharField(max_length=300)
+	foto = models.ImageField(blank=True)
+
+	objects = UsuarioManager()
+
 
 class Localizacao(models.Model):
 	nome = models.CharField(max_length=30)

@@ -4,28 +4,6 @@ from glossario.models import Glossario, Sinal, Usuario
 from django import forms
 import datetime
 
-class CriandoUser(UserCreationForm):
-	email = forms.EmailField(required = False)
-
-	class Meta:
-	    model = Usuario
-	    fields = ('username', 'email', 'foto', 'password1', 'password2','latte')
-
-	def save(self,commit = False):   
-	    user = super(CriandoUser, self).save(commit = False)
-	    user.email = self.cleaned_data['email']
-	    user.user_mobile = self.cleaned_data['latte']
-	    user.set_password(self.cleaned_data["password1"])
-
-	    user_default = User.objects.create_user(self.cleaned_data['username'], self.cleaned_data['email'], self.cleaned_data['password1'])
-	    user_default.save()
-
-	    if commit:
-	         user.save()
-
-	    return user    
-
-
 class GlossarioForm(forms.ModelForm):
 
 	class Meta:
