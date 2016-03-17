@@ -3,6 +3,7 @@ from django.db import models
 from django.db.models import FileField
 from django.core.files import File
 from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.contrib.auth import hashers
 from django.db.models.signals import post_save
 import datetime
 
@@ -19,7 +20,7 @@ class UsuarioManager(BaseUserManager):
 		return user
 
 	def create_user(self, username, email=None, password=None, **extra_fields):
-		extra_fields.setdefault('is_staff', False)
+		extra_fields.setdefault('is_staff', True)
 		extra_fields.setdefault('is_superuser', False)
 		return self._create_user(username, email, password, **extra_fields)
 
@@ -47,7 +48,7 @@ class Usuario(AbstractUser):
 class Localizacao(models.Model):
 	nome = models.CharField(max_length=30)
 	bsw = models.TextField()
-	imagem = models.ImageField(blank=True)
+	imagem = models.ImageField(blank=True, verbose_name='Imagem')
 	areaClicavel = models.TextField()
 
 class Video(FileField):
@@ -55,13 +56,13 @@ class Video(FileField):
 	videoMp4 = models.FileField()
 
 class Glossario(models.Model):
-	nome = models.CharField(max_length=100)
+	nome = models.CharField(max_length=100, verbose_name='Nome do Glossário')
 	responsavel = models.ManyToManyField(Usuario)
-	membros = models.ManyToManyField(Usuario, related_name='glossario_membros')
-	imagem = models.ImageField(blank=True)
+	membros = models.ManyToManyField(Usuario, related_name='glossario_membros', verbose_name='Membros')
+	imagem = models.ImageField(blank=True, verbose_name='Imagem')
 	link = models.CharField(max_length=20)
 	dataCriacao = models.DateField(auto_now_add=True)
-	videoGlossario = Video(blank=True)
+	videoGlossario = Video(blank=True, verbose_name='Vídeo')
 
 	def __unicode__(self):
 		return self.nome
@@ -85,21 +86,21 @@ class Sinal(models.Model):
 	glossario = models.ForeignKey(Glossario)
 	traducaoP = models.CharField(max_length=30, verbose_name='Palavra')
 	traducaoI = models.CharField(max_length=30, verbose_name='Word')
-	bsw = models.TextField()
-	descricao = models.CharField(max_length=50)
-	grupoCMe = models.ForeignKey(GrupoCM, related_name='Grupo_M_Esquerda', verbose_name='Grupo configuração esquerda')
-	cmE = models.ForeignKey(CM, related_name='C_M_Esquerda', verbose_name='Configuração esquerda')
-	grupoCMd = models.ForeignKey(GrupoCM, related_name='Grupo_M_Direita', verbose_name='Grupo configuração direita')
-	cmD = models.ForeignKey(CM, related_name='C_M_Direita', verbose_name='Configuração direita')
-	localizacao = models.ForeignKey(Localizacao)
-	dataPost = models.DateField()
-	postador = models.ForeignKey(Usuario)
-	publicado = models.BooleanField(default=False)
-	sinalLibras = Video()
-	descLibras = Video()
-	exemploLibras = Video()
-	varicLibras = Video()
-	tema = models.ForeignKey(Tema)
+	#bsw = models.TextField()
+	#descricao = models.CharField(max_length=50)
+	#grupoCMe = models.ForeignKey(GrupoCM, related_name='Grupo_M_Esquerda', verbose_name='Grupo configuração esquerda')
+	#cmE = models.ForeignKey(CM, related_name='C_M_Esquerda', verbose_name='Configuração esquerda')
+	#grupoCMd = models.ForeignKey(GrupoCM, related_name='Grupo_M_Direita', verbose_name='Grupo configuração direita')
+	#cmD = models.ForeignKey(CM, related_name='C_M_Direita', verbose_name='Configuração direita')
+	#localizacao = models.ForeignKey(Localizacao)
+	#dataPost = models.DateField()
+	#postador = models.ForeignKey(Usuario)
+	#publicado = models.BooleanField(default=False)
+	#sinalLibras = Video()
+	#descLibras = Video()
+	#exemploLibras = Video()
+	#varicLibras = Video()
+	#tema = models.ForeignKey(Tema)
 
 	def __unicode__(self):
 		return  self.traducaoP

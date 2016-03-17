@@ -4,6 +4,22 @@ from glossario.models import Glossario, Sinal, Usuario
 from django import forms
 import datetime
 
+
+class UsuarioForm(forms.ModelForm):
+
+	class Meta:
+		model = Usuario
+		widgets = {
+		'password': forms.PasswordInput(),
+		}
+		fields = '__all__'
+	def  save(self, commit=True):
+		user = super(UsuarioForm, self).save(commit=False)
+		user.set_password(self.cleaned_data["password"])
+		if commit:
+			user.save()
+		return user
+
 class GlossarioForm(forms.ModelForm):
 
 	class Meta:

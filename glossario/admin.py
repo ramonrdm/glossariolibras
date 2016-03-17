@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 from .models import *
-from glossario.forms import GlossarioForm, SinalForm
+from glossario.forms import GlossarioForm, SinalForm, UsuarioForm
 from unicodedata import normalize
 from django.db import models
 
@@ -9,7 +9,6 @@ admin.site.register(Localizacao)
 admin.site.register(GrupoCM)
 admin.site.register(CM)
 admin.site.register(Tema)
-admin.site.register(Usuario)
 
 class GlossarioAdmin(admin.ModelAdmin):
 
@@ -39,5 +38,12 @@ class SinalAdmin(admin.ModelAdmin):
 			self.exclude.append('publicado')
 		return super(SinalAdmin, self).get_form(request, obj, **kwargs)
 
+class UsuarioAdmin(admin.ModelAdmin):
+
+	form = UsuarioForm
+
+
+
+admin.site.register(Usuario, UsuarioAdmin)
 admin.site.register(Glossario, GlossarioAdmin)
 admin.site.register(Sinal, SinalAdmin)
