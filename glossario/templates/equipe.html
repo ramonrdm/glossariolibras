@@ -4,9 +4,12 @@
 {% block Corpo %}
 <div class="linha1">
 {% for u in usuario %}
+{% if u.foto %}
+<img src="{{ u.foto.url }}" />
+{% endif %}
 {{ u.nome }}
-{{ u.foto }}
 {{ u.latte }}
+{{ u.email }}
 {% endfor %}
 </div>
 <div class="equipe">

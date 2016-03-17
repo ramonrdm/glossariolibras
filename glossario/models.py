@@ -39,6 +39,7 @@ class UsuarioManager(BaseUserManager):
 
 class Usuario(AbstractUser):
 
+	nome = models.CharField(max_length=200)
 	latte = models.CharField(max_length=300)
 	foto = models.ImageField(blank=True)
 
