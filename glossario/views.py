@@ -72,4 +72,13 @@ def contato(request):
 def historia(request):
 	
 	return render_to_response("historia.html")
- 
+
+def sinal(request, sinal=None):
+	if sinal:
+		try:
+			sinal = Sinal.objects.get(id=sinal)
+			
+		except Sinal.DoesNotExist:
+			sinal = None
+			
+		return render_to_response("sinal.html", dict(sinal=sinal))

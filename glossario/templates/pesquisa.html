@@ -18,7 +18,7 @@
 	<div id="results">  
 	{% for s in sinais %}
 	<div class="linha1">
-		{{ s.traducaoP }}
+		<a href="/sinal/{{ s.id }}"> {{ s.traducaoP }}
 	</div>
 	{% endfor %}
 	</div>

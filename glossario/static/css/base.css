@@ -183,6 +183,22 @@ max-height: 380px;
 	width: 180px;
 	margin:0px;
 }
+.equipa a{
+	text-decoration: none;
+}
+
+/* EXIBIÇÃO SINAL */
+#palavratrad{
+	text-align: center;
+
+}
+#CMD{
+	float: left;
+}
+#CME{
+
+	float: right;
+}
 
 html, body{
 	margin: 0px;

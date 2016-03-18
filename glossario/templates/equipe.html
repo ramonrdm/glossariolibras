@@ -10,7 +10,9 @@
 <img src="{{ u.foto.url }}" />
 {% endif %}
 {{ u.nome }}<br><br>
-{{ u.latte }}<br>
+{% if u.latte %}
+<a href="http://{{ u.latte }}">{{ u.latte }}</a><br>
+{% endif %}
 {{ u.email }}
 </div>
 {% endfor %}

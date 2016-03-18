@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+<title>{% block title %}Sinal - Glossário Letras Libras{% endblock %}</title>
+{% block Corpo %}
+{% load staticfiles %}
+<div class="horiz">
+<div id="video1">
+</div>
+<div id="video2">
+</div>
+</div>
+<div id="palavratrad">
+Português: <b>{{ sinal.traducaoP }}.</b><br><br><br>Inglês: <b>{{ sinal.traducaoI }}.</b>
+<br>
+<br><br><br>
+<b>Descrição:</b>  {{ sinal.descricao }}
+</div>
+<div>
+<div id="CMD">
+Grupo de configuração da mão direita:<br>
+{{ sinal.grupoCMd }}<br>
+Configuração da mão direita:<br>
+{{ sinal.cmD }}<br>
+Localização do sinal
+{{ sinal.localizacao }}
+</div>
+<div id="CME">
+Grupo de configuração da mão esquerda:<br>
+{{ sinal.grupocmE }}<br>
+Configuração da mão esquerda:<br>
+{{ sinal.cmE }}<br>
+Sign Writing
+</div>
+</div>
+{% endblock %}
