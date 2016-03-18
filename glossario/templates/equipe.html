@@ -2,14 +2,17 @@
 {% extends 'base.html' %}
 <title>{% block title %}Equipe - Glossário Letras Libras{% endblock %}</title>
 {% block Corpo %}
-<div class="linha1">
+<div>
+<div class="linha2">
 {% for u in usuario %}
-{% if u.foto %}
+<div class="equipa">
+{% if u.foto %}<br>
 <img src="{{ u.foto.url }}" />
 {% endif %}
-{{ u.nome }}
-{{ u.latte }}
+{{ u.nome }}<br><br>
+{{ u.latte }}<br>
 {{ u.email }}
+</div>
 {% endfor %}
 </div>
 <div class="equipe">
@@ -75,5 +78,6 @@ Tradutora de Libras/Escrita de Sinais<br>
 Thaís Avelar<br>
 Mestre em Linguística<br>
 Revisora de Libras/Português.<br><br><br><br><br>
+</div>
 </div>
 {% endblock %}

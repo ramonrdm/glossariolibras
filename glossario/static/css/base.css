@@ -81,6 +81,7 @@ max-height: 380px;
 	width: 200px;
 	display: inline-block;
 }
+
 /* imagem no rodapé */
 #borda{
 	width:100%;
@@ -95,13 +96,6 @@ max-height: 380px;
 	min-width: 100%;
 	margin-bottom:-6px;
 	text-align: center;
-}
-/*paginas*/
-.equipe{
-	float:center;
-	text-align: center;
-	position: static;
-	font-family: helvetica;
 }
 /* decoration */
 .decore{
@@ -170,6 +164,24 @@ max-height: 380px;
 }
 #results{
 	float: right;
+}
+/*pagina de equipe */
+.equipe{
+	position: static;	
+	text-align: center;
+	font-family: helvetica;
+	margin-top: 50px;
+}
+.linha2{
+	text-align: center;
+	height: 20%;
+	width: 100%;
+}
+.equipa{
+	display: inline-block;
+	height: 259px;
+	width: 180px;
+	margin:0px;
 }
 
 html, body{
