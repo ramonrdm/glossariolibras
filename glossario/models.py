@@ -97,10 +97,10 @@ class Sinal(models.Model):
 	#dataPost = models.DateField()
 	#postador = models.ForeignKey(Usuario)
 	#publicado = models.BooleanField(default=False)
-	#sinalLibras = Video()
-	#descLibras = Video()
-	#exemploLibras = Video()
-	#varicLibras = Video()
+	sinalLibras = Video(verbose_name='Vídeo do Sinal')
+	descLibras = Video(verbose_name='Vídeo da Descrição')
+	exemploLibras = Video(verbose_name='Vídeo do Exemplo')
+	varicLibras = Video(verbose_name='Vídeo da Variação')
 	#tema = models.ForeignKey(Tema)
 
 	def __unicode__(self):

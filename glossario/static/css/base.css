@@ -188,16 +188,43 @@ max-height: 380px;
 }
 
 /* EXIBIÇÃO SINAL */
-#palavratrad{
+#descr{
 	text-align: center;
 
 }
+#palavratrad{
+	margin-left: 20%;
+	min-width: 450px;
+	max-width: 800px;
+	height: 70px;
+	text-align: center;
+	border-style: ridge;
+	border-radius:20px;
+	background-color: rgba(180,180,180,.2);
+}
+#palavratrad b{
+	margin-right:30px;
+}
+#palavratrad big{
+	margin-left:40px;
+}
 #CMD{
 	float: left;
+	background-color: rgba(180,180,180,.2);
+	border-style: ridge;
+	border-radius:20px;
+	margin-left: 10%;
 }
 #CME{
 
 	float: right;
+	background-color: rgba(180,180,180,.2);
+	border-style: ridge;
+	border-radius:20px;
+	margin-right: 10%;
+}
+.videos{
+
 }
 
 html, body{

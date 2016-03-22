@@ -3,16 +3,52 @@
 <title>{% block title %}Sinal - Glossário Letras Libras{% endblock %}</title>
 {% block Corpo %}
 {% load staticfiles %}
-<div class="horiz">
+<div class="videos">
 <div id="video1">
+<video controls poster="{{ sinal.sinalLibras.url }}" width="360" height="270"></video>
 </div>
 <div id="video2">
+<div class="tabberlive">
+<ul class="tabbernav">
+<li class=""><a id="Definição" href="javascript:void(0);" title="Definição"><img src= '{% static "img/2-b-definicao.png" %}'></a></li>
+<li class="tabberactive"><a id="Exemplo" href="javascript:void(0);" title="Exemplo"><img src= '{% static "img/2-b-exemplo.png" %}'></a></li>
+<li class=""><a id="Variações" href="javascript:void(0);" title="Variações"><img src= '{% static "img/2-b-variacoes.png" %}'></a></li>
+</ul>
+<div class="tabbertab         tabbertabhide" title="">
+    <h2>Definição</h2>
+    <p>
+    <video controls poster="" width="360" height="270">
+    <source type="video/mp4" src="{{ sinal.descLibras.url }}">
+    </video>
+    </p>
 </div>
+<div class="tabbertab           " title="">
+   <h2>Exemplo</h2>
+    <p>
+    <video controls poster="" width="360" height="270">
+    <source type="video/mp4" src="{{ sinal.exemploLibras.url }}">
+    </video>
+    </p>
+</div>
+<div class="tabbertab       tabbertabhide" title="">
+    <h2>Variações</h2>
+    <p>
+    <video controls poster="" width="360" height="270">
+    <source type="video/mp4" src="{{ sinal.varicLibra.url }}">
+    </video>
+    </p>
+    </div>
+</div>
+</div>
+<script type="text/javascript" src='{% static "js/sinal.js" %}'></script>
 </div>
 <div id="palavratrad">
-Português: <b>{{ sinal.traducaoP }}.</b><br><br><br>Inglês: <b>{{ sinal.traducaoI }}.</b>
+<br>
+<big>Português:</big> <b>{{ sinal.traducaoP }}.</b><br><big> Inglês: </big><b>{{ sinal.traducaoI }}.</b>
+</div>
 <br>
 <br><br><br>
+<div id="descr">
 <b>Descrição:</b>  {{ sinal.descricao }}
 </div>
 <div>
