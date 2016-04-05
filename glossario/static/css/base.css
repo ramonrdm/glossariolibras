@@ -214,6 +214,8 @@ max-height: 380px;
 	border-style: ridge;
 	border-radius:20px;
 	margin-left: 10%;
+	height: 300px;
+	margin-bottom: 10%;
 }
 #CME{
 
@@ -222,15 +224,17 @@ max-height: 380px;
 	border-style: ridge;
 	border-radius:20px;
 	margin-right: 10%;
+	height: 300px;
+	margin-bottom: 10%;
 }
 
-.videoUsando .tabHide {
+.tabberlive .tabbertabhide {
  display:none;
 }
 
-.videos {
+.tabber {
 }
-.videoUsando {
+.tabberlive {
  margin-top:1em;
 }
 
@@ -238,63 +242,72 @@ max-height: 380px;
   ul.tabbernav = the tab navigation list
   li.tabberactive = the active tab
   --------------------------------------------------*/
-ul.navegat
+ul.tabbernav
 {
- margin:0;
- padding: 3px 0;
- border-bottom: 1px solid #778;
+ text-align: center;
+ margin:50px;
+ padding: 2px;
+ border-bottom: 2px;
  font: bold 12px Verdana, sans-serif;
 }
 
-ul.navegat li
+ul.tabbernav li
 {
+ padding: 10px; 
+ background-color:#005696;
+ border-style: ridge;
+ border-radius: 20px;
+ border-width: medium;
  list-style: none;
- margin: 0;
+ margin: 50px;
  display: inline;
 }
 
-ul.navegat li a
+ul.tabbernav li a
 {
- padding: 3px 0.5em;
+ padding: 10px;
  margin-left: 3px;
- border: 1px solid #778;
+ border: 1px ;
  border-bottom: none;
- background: #DDE;
+ background: none;
  text-decoration: none;
 }
 
-ul.navegat li a:link { color: #448; }
-ul.navegat li a:visited { color: #667; }
+ul.tabbernav li a:link { color: white; }
+ul.tabbernav li a:visited { color: white; }
 
-ul.navegat li a:hover
+ul.tabbernav li a:hover
 {
- color: #000;
- background: #AAE;
- border-color: #227;
+ padding: 10px;
+ border-radius: 10px;
+ border-width: medium;
+ background: none;
+ color: white;
+ background:#005D97;
 }
 
-ul.navegat li.tabAtiv a
+ul.tabbernav li.tabberactive a
 {
- background-color: #fff;
- border-bottom: 1px solid #fff;
+ border-width: medium; 
+ border-radius: 10px;
+ background-color:#005D97;
+ color:white;
 }
 
-ul.navegat li.tabAtiv a:hover
+ul.tabbernav li.tabberactive a:hover
 {
- color: #000;
- background: white;
- border-bottom: 1px solid white;
+ color: white;
 }
 
 /*--------------------------------------------------
   .tabbertab = the tab content
   Add style only after the tabber interface is set up (.tabberlive)
   --------------------------------------------------*/
-.videoUsando .videoTab {
+.tabberlive .tabbertab {
  padding:5px;
- border:1px solid #aaa;
- border-top:0;
-
+ max-width: 670px;
+ max-height: 370;
+ margin-left: 23%;
  /* If you don't want the tab size changing whenever a tab is changed
     you can set a fixed height */
 
@@ -307,21 +320,25 @@ ul.navegat li.tabAtiv a:hover
 }
 
 /* If desired, hide the heading since a heading is provided by the tab */
-.videoUsando .videoTab h2 {
+.tabberlive .tabbertab h2 {
  display:none;
 }
-.videoUsando .videoTab h3 {
+.tabberlive .tabbertab h3 {
  display:none;
 }
 
 /* Example of using an ID to set different styles for the tabs on the page */
-.videoUsando#tab1 {
+.tabberlive#tab1 {
 }
-.videoUsando#tab2 {
+.tabberlive#tab2 {
 }
-.videoUsando#tab2 .videoTab {
+.tabberlive#tab2 .tabbertab {
  height:200px;
  overflow:auto;
+}
+.videos{
+ max-width: 648px;
+ max-height: 345px;
 }
 html, body{
 	margin: 0px;

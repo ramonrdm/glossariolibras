@@ -1,208 +1,232 @@
 function tabberObj(argsObj)
 {
-	var arg;
+  var arg;
 
-	this.div = null;
+  this.div = null;
 
-	this.classeMain = "videos"; /*tabber == classe da div main */ 
+  this.classMain = "tabber";
 
-	this.classeMainLive = "videoUsando"; /* tabberlive ==  */
+  this.classMainLive = "tabberlive";
 
-	this.classeDesu = "videoTab"; /* tabbertab */
+  this.classTab = "tabbertab";
 
-	this.classeDefault = "videoUse"; /* tabbertabdefault */
+  this.classTabDefault = "tabbertabdefault";
 
-	this.classeNaveg = "navegat"; /* tabbernav*/
+  this.classNav = "tabbernav";
 
-	this.classeHide = "tabHide"; /* tabbertabhide*/
+  this.classTabHide = "tabbertabhide";
 
-	this.classeNavegAtivo = "tabAtiv"; /* tabberactive */
+  this.classNavActive = "tabberactive";
 
-	this.elementosTitulo = ['h2', 'h3', 'h4', 'h5', 'h6'];
+  this.titleElements = ['h2','h3','h4','h5','h6'];
 
-	this.titleElementsStripHTML = true;
+  this.titleElementsStripHTML = true;
 
-	this.removerTitulo = true;
+  this.removeTitle = true;
 
-	this.adicionarIdLink = false;
+  this.addLinkId = false;
 
-	this.linkIdFormat = '<videosid>nav<tabnumberone>';
+  this.linkIdFormat = '<tabberid>nav<tabnumberone>';
 
-	for(arg in argsObj) { this[arg] = argsObj[arg]; }
+  for (arg in argsObj) { this[arg] = argsObj[arg]; }
 
-	this.REclasseMain = new RegExp('\\b' + this.classeMain + '\\b', 'gi');
-	this.REclasseMainLive = new RegExp('\\b' + this.classeMainLive + '\\b', 'gi');
-	this.REclasseDesu = new RegExp('\\b' + this.classeDesu + '\\b', 'gi');
-	this.REclasseDefault = new RegExp('\\b' + this.classeDefault + '\\b', 'gi');
-	this.REclasseHide = new RegExp('\\b' + this.classeHide + '\\b', 'gi');
+  this.REclassMain = new RegExp('\\b' + this.classMain + '\\b', 'gi');
+  this.REclassMainLive = new RegExp('\\b' + this.classMainLive + '\\b', 'gi');
+  this.REclassTab = new RegExp('\\b' + this.classTab + '\\b', 'gi');
+  this.REclassTabDefault = new RegExp('\\b' + this.classTabDefault + '\\b', 'gi');
+  this.REclassTabHide = new RegExp('\\b' + this.classTabHide + '\\b', 'gi');
 
-	this.tabs = new Array();
+  this.tabs = new Array();
 
-	if(this.div){
-		this.init(this.div);
-		this.div = null;
-	}
+  if (this.div) {
+
+    this.init(this.div);
+
+    this.div = null;
+  }
 }
+
+
 
 tabberObj.prototype.init = function(e)
 {
-	var
-	childNodes,
-	i, i2, /* indices loop */
-	t,
-	tabDefault = 0,
-	DOM_ul,
-	DOM_li,
-	DOM_a,
-	aId,
-	headingElement;
 
-	if(!document.getElementsByTagName) { return false; }
+  var
+  childNodes, 
+  i, i2, 
+  t, 
+  defaultTab=0, 
+  DOM_ul, 
+  DOM_li, 
+  DOM_a, 
+  aId, 
+  headingElement; 
 
-	if (e.id){
-		this.id = e.id;
-	}
-	this.tabs.length = 0;
-	
-	childNodes = e.childNodes;
+  if (!document.getElementsByTagName) { return false; }
 
-	for(i=0; i < childNodes.length; i++){
-		if( childNodes[i].className && 
-			childNodes[i].className.match(this.REclasseDesu )){
-			t = new Object();
+  if (e.id) {
+    this.id = e.id;
+  }
 
-			t.div = childNodes[i];
+  this.tabs.length = 0;
 
-			this.tabs[this.tabs.length] = t;
+  childNodes = e.childNodes;
+  for(i=0; i < childNodes.length; i++) {
 
-			if( childNodes[i].className.match(this.REclasseDefault)){
-				tabDefault = this.tabs.length-1;
-			}	
-		}
-	}
-	
-	DOM_ul = document.createElement("ul");
-	DOM_ul.className = this.classeNaveg;
-  
-	for (i=0; i < this.tabs.length; i++){
-		t = this.tabs[i];
-		t.headingText = t.div.title;
-		
-		if ( this.removerTitulo ) { t.div.title = '';}
-		
-		if ( !t.headingText ){
-			for (i2=0; i2<this.titleElements.length; i2++){
-				headingElement = t.div.getElementsByTagName(this.titleElements[i2])[0];
-				if (headingElement){
-					t.headingText = headingElement.innerHTML;
-					if (this.titleElementsStripHTML){
-						t.headingText.replace(/<br>/gi," ");
-						t.headingText = t.headingText.replace(/<[^>]+>/g,"");
-					}
-					break;
-				}
-			}
-		}
-		if(!t.headingText) {
-			t.headingText = i + 1;
-		}
-		
-		DOM_li = document.createElement("li");
+    if(childNodes[i].className &&
+       childNodes[i].className.match(this.REclassTab)) {
 
-		t.li = DOM_li;
+      t = new Object();
 
-		DOM_a = document.createElement("a");
-	    DOM_a.appendChild(document.createTextNode(t.headingText));
-	    DOM_a.href = "javascript:void(null);";
-	    DOM_a.title = t.headingText;
-	    DOM_a.onclick = this.navClick;
+      t.div = childNodes[i];
 
-	    DOM_a.tabber = this;
-	    DOM_a.tabberIndex = i;
+      this.tabs[this.tabs.length] = t;
 
-	    if(this.adicionarIdLink && this.linkIdFormat){
-	    	aId = this.linkIdFormat;
-	    	aId = aId.replace(/<tabberid>/gi, this.id);
-	    	aId = aId.replace(/<tabbernumberzero>/gi, i);
-	    	aId = aId.replace(/<tabnumberone>/gi, i+1);
-	    	aId.replace(/<tabtitle>/gi, t.headingText.replace(/[^a-zA-Z0-9\-]/gi, ''));
+      if (childNodes[i].className.match(this.REclassTabDefault)) {
+  defaultTab = this.tabs.length-1;
+      }
+    }
+  }
 
-	    	DOM_a.id = aId;
-	    }
+  DOM_ul = document.createElement("ul");
+  DOM_ul.className = this.classNav;
 
-		DOM_li.appendChild(DOM_a);
-	
-		DOM_ul.appendChild(DOM_li);
-	}
-	e.insertBefore(DOM_ul, e.firstChild);
-	e.className = e.className.replace(this.REclasseMain, this.classeMainLive);
-	this.tabShow(tabDefault);
+  for (i=0; i < this.tabs.length; i++) {
 
-	if (typeof this.onload == 'function'){
-		this.onload({tabber:this});
-	}
+    t = this.tabs[i];
 
-	return this;
+    t.headingText = t.div.title;
+
+    if (this.removeTitle) { t.div.title = ''; }
+
+    if (!t.headingText) {
+
+      for (i2=0; i2<this.titleElements.length; i2++) {
+  headingElement = t.div.getElementsByTagName(this.titleElements[i2])[0];
+  if (headingElement) {
+    t.headingText = headingElement.innerHTML;
+    if (this.titleElementsStripHTML) {
+      t.headingText.replace(/<br>/gi," ");
+      t.headingText = t.headingText.replace(/<[^>]+>/g,"");
+    }
+    break;
+  }
+      }
+    }
+
+    if (!t.headingText) {
+
+      t.headingText = i + 1;
+    }
+
+    DOM_li = document.createElement("li");
+
+    t.li = DOM_li;
+
+    DOM_a = document.createElement("a");
+    DOM_a.appendChild(document.createTextNode(t.headingText));
+    DOM_a.href = "javascript:void(null);";
+    DOM_a.title = t.headingText;
+    DOM_a.onclick = this.navClick;
+
+    DOM_a.tabber = this;
+    DOM_a.tabberIndex = i;
+
+    if (this.addLinkId && this.linkIdFormat) {
+
+      aId = this.linkIdFormat;
+      aId = aId.replace(/<tabberid>/gi, this.id);
+      aId = aId.replace(/<tabnumberzero>/gi, i);
+      aId = aId.replace(/<tabnumberone>/gi, i+1);
+      aId = aId.replace(/<tabtitle>/gi, t.headingText.replace(/[^a-zA-Z0-9\-]/gi, ''));
+
+      DOM_a.id = aId;
+    }
+
+    DOM_li.appendChild(DOM_a);
+
+    DOM_ul.appendChild(DOM_li);
+  }
+
+  e.insertBefore(DOM_ul, e.firstChild);
+
+  e.className = e.className.replace(this.REclassMain, this.classMainLive);
+
+  this.tabShow(defaultTab);
+
+  if (typeof this.onLoad == 'function') {
+    this.onLoad({tabber:this});
+  }
+
+  return this;
 };
+
 
 tabberObj.prototype.navClick = function(event)
 {
-	var
-	rVal,
-	a,
-	self,
-	tabberIndex,
-	onClickArgs;
+ 
+  var
+  rVal, 
+  a, 
+  self, 
+  tabberIndex, 
+  onClickArgs; 
 
-	a=this;
-	if (!a.tabber) { return false; }
+  a = this;
+  if (!a.tabber) { return false; }
 
-	self = a.tabber;
-	tabberIndex = a.tabberIndex;
+  self = a.tabber;
+  tabberIndex = a.tabberIndex;
 
-	a.blur();
+  a.blur();
 
-	if (typeof self.onClick == 'function') {
-		onClickArgs = {'tabber':self, 'index':tabberIndex, 'event':event};
+  if (typeof self.onClick == 'function') {
 
-		if (!event) { onClickArgs.event = window.event; }
+    onClickArgs = {'tabber':self, 'index':tabberIndex, 'event':event};
 
-		rVal = self.onClick(onClickArgs);
-		if (rVal === false) { return false; }
-	}
-	self.tabShow(tabberIndex);
+    if (!event) { onClickArgs.event = window.event; }
 
-	return false;
+    rVal = self.onClick(onClickArgs);
+    if (rVal === false) { return false; }
+  }
+
+  self.tabShow(tabberIndex);
+
+  return false;
 };
+
 
 tabberObj.prototype.tabHideAll = function()
 {
-	var i;
-	for (i = 0; i < this.tabs.length; i++){
-		this.tabHide(i);
-	}
+  var i; 
+
+  for (i = 0; i < this.tabs.length; i++) {
+    this.tabHide(i);
+  }
 };
 
-tabberObj.prototype.tabHide =function(tabberIndex)
+
+tabberObj.prototype.tabHide = function(tabberIndex)
 {
-	var div;
+  var div;
 
-	if (!this.tabs[tabberIndex]) { return false; }
+  if (!this.tabs[tabberIndex]) { return false; }
 
-	div = this.tabs[tabberIndex].div;
+  div = this.tabs[tabberIndex].div;
 
-	if (!div.className.match(this.REclasseHide)) {
-		div.className += ' ' + this.classeHide;
-	}
-	this.navClearActive(tabberIndex);
+  if (!div.className.match(this.REclassTabHide)) {
+    div.className += ' ' + this.classTabHide;
+  }
+  this.navClearActive(tabberIndex);
 
-	return this;
+  return this;
 };
 
 
 tabberObj.prototype.tabShow = function(tabberIndex)
 {
-	var div;
+
+  var div;
 
   if (!this.tabs[tabberIndex]) { return false; }
 
@@ -210,7 +234,7 @@ tabberObj.prototype.tabShow = function(tabberIndex)
 
   div = this.tabs[tabberIndex].div;
 
-  div.className = div.className.replace(this.REclasseHide, '');
+  div.className = div.className.replace(this.REclassTabHide, '');
 
   this.navSetActive(tabberIndex);
 
@@ -224,14 +248,14 @@ tabberObj.prototype.tabShow = function(tabberIndex)
 tabberObj.prototype.navSetActive = function(tabberIndex)
 {
 
-	this.tabs[tabberIndex].li.className = this.classNavActive;
+  this.tabs[tabberIndex].li.className = this.classNavActive;
 
-	return this;
+  return this;
 };
+
 
 tabberObj.prototype.navClearActive = function(tabberIndex)
 {
-
   this.tabs[tabberIndex].li.className = '';
 
   return this;
@@ -239,57 +263,56 @@ tabberObj.prototype.navClearActive = function(tabberIndex)
 
 function tabberAutomatic(tabberArgs)
 {
-	var
-	tempObj,
-	divs,
-	i;
+  var
+    tempObj, 
+    divs, 
+    i; 
 
-	if (tabberArgs){ tabberArgs = {}; }
+  if (!tabberArgs) { tabberArgs = {}; }
 
-	tempObj = new tabberObj(tabberArgs);
-	divs = document.getElementsByTagName("div");
-	for (i=0; i < divs.length; i++) {
-    
-    
-		if (divs[i].className && divs[i].className.match(tempObj.REclasseMain)) {
+  tempObj = new tabberObj(tabberArgs);
 
-    		tabberArgs.div = divs[i];
-    		divs[i].tabber = new tabberObj(tabberArgs);
-    
-    	}
-  	}
-  	return this;
+  divs = document.getElementsByTagName("div");
+  for (i=0; i < divs.length; i++) {
+
+    if (divs[i].className &&
+  divs[i].className.match(tempObj.REclassMain)) {
+
+      tabberArgs.div = divs[i];
+      divs[i].tabber = new tabberObj(tabberArgs);
+    }
+  }
+  
+  return this;
 }
+
 
 function tabberAutomaticOnLoad(tabberArgs)
 {
-
   var oldOnLoad;
 
   if (!tabberArgs) { tabberArgs = {}; }
 
-	oldOnLoad = window.onload;
-	if (typeof window.onload != 'function') {
-		window.onload = function() {
-		tabberAutomatic(tabberArgs);
-		};
-	} 
-	else {
-	    window.onload = function() {
-	      oldOnLoad();
-	      tabberAutomatic(tabberArgs);
-		};
-	}
+  oldOnLoad = window.onload;
+  if (typeof window.onload != 'function') {
+    window.onload = function() {
+      tabberAutomatic(tabberArgs);
+    };
+  } else {
+    window.onload = function() {
+      oldOnLoad();
+      tabberAutomatic(tabberArgs);
+    };
+  }
 }
 
 if (typeof tabberOptions == 'undefined') {
 
     tabberAutomaticOnLoad();
 
-} 
-else {
+} else {
+    if (!tabberOptions['manualStartup']) {
+      tabberAutomaticOnLoad(tabberOptions);
+    }
 
-	if (!tabberOptions['manualStartup']) {
-		tabberAutomaticOnLoad(tabberOptions);
-	}
 }

@@ -4,20 +4,19 @@
 {% block Corpo %}
 {% load staticfiles %}
 <script type="text/javascript" src='{% static "js/sinal.js" %}'></script>
-<div class="videos">
-<ul class="navegat">
-<li class="tabAtiv"><div id="videoUse"><h2>Sinal</h2>
-	
-</div></li>
-<li class="tabHide"><div id="videoTab"><h3>Exemplo</h3>
-	
-</div></li>
-<li class="tabHide"><div id="videoTab"><h4>Descrição</h4>
-	
-</div></li>
-<li class="tabHide"><div id="videoTab"><h5>Variação</h5>
-	
-</div></li>
+<div id="tabber" class ="tabber">
+<div class="tabbertab tabberdefault" title="Sinal"><h3>Sinal</h3>
+	<center><video class="videos" controls ><source src="{{ sinal.sinalLibras.url }}" type="video/mp4" ></video></center>
+</div>
+<div class="tabbertab" title="Exemplo"><h3>Exemplo</h3>
+	<center><video class="videos" controls ><source src="{{ sinal.exemploLibras.url }}" type="video/mp4" ></video></center>
+</div>
+<div class="tabbertab" title="Descrição"><h3>Descrição</h3>
+	<center><video class="videos" controls ><source src="{{ sinal.descLibras.url }}" type="video/mp4" ></video></center>
+</div>
+<div class="tabbertab" title"Variacão"><h3>Variação</h3>
+	<center><video class="videos" controls ><source src="{{ sinal.varicLibras.url }}" type="video/mp4" ></video></center>
+</div>
 </div>
 
 <div id="palavratrad">
