@@ -2,16 +2,21 @@
 {% extends 'base.html' %}
 <title>{% block title %}Glossários de Libras - Glossário Letras Libras{% endblock %}</title>
 {% block Corpo %}
+{% load staticfiles %}
 
-<div id="glossario">
+<div id = "glossario" >
     <p> Bem vindo ao Glossário de Libras</br>
     O conteúdo está dividido nos temas abaixo:
     </p>
 </div>
 
-<div class="horiz" >
+<div class = "horiz" >
+	<div class = "linha1" >
+	<a href = "/temas" ><img width = 160px height = 160px id = "centro" src = '{% static "img/arvore_banyan_havai.png" %}' /></a>
+	<p> Temas </p>
+	</div>
 {% for g in glossarios %}
-    <div class="linha1">
+    <div class = "linha1" >
         <a href= /{{ g.link }} ><img id="centro" src ="{{ g.imagem.url }}" /></a>
         <p> {{ g.nome }} </p>
     </div>

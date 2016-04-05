@@ -73,6 +73,10 @@ def historia(request):
 	
 	return render_to_response("historia.html")
 
+def temas(request):
+
+	return render_to_response("temas.html")
+
 def sinal(request, sinal=None):
 	if sinal:
 		try:
