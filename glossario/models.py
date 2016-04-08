@@ -79,7 +79,7 @@ class CM (models.Model):
 class Tema(models.Model):
 	nome = models.CharField(max_length=30)
 	descricao = models.CharField(max_length=100, null=True)
-	video = Video(null=True)
+	video = Video(null=True, blank=True)
 	imagem = models.ImageField(blank=True, null=True)
 	temaPai = models.ForeignKey('self',null=True, blank = True)
 

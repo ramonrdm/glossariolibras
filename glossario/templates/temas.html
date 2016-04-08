@@ -6,6 +6,8 @@
 <div class="selecionada" >
 	<a href="/temas" }}><img width="90px" height="120px" src = '{% static "img/arvore_banyan_havai.png" %}'/></a>
 	<div id="glossarioselec"><b>Temas</b></div>
+	{{raiz.tema.nome}}
+	{% include "nodo_temas.html" %}
 </div>
 
 {% endblock %}

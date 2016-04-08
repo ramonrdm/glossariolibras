@@ -86,7 +86,6 @@ def criaNo(temaPai):
 		for filho in filhosPai:
 			filhos2.append(criaNo(filho))
 	no = noTema(temaPai, filhos2)
-	#print no.tema
 	return no
 
 def mostraNo(noTema1, n):
@@ -115,7 +114,7 @@ def temas(request, temas=None):
 	mostraNo(raiz, 0)
 
 
-	return render_to_response("temas.html", dict(temas=temas))
+	return render_to_response("temas.html", dict(raiz=raiz))
 
 def sinal(request, sinal=None):
 	if sinal:
