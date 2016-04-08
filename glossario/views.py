@@ -73,9 +73,17 @@ def historia(request):
 	
 	return render_to_response("historia.html")
 
-def temas(request):
+def temas(request, temas=None):
+	if temas:
+		try:
+			temas = Tema.objects.all()
+				
 
-	return render_to_response("temas.html")
+		except Tema.DoesNotExist:
+			temas = None
+			return render_to_response("index.html")
+
+	return render_to_response("temas.html", dict(temas=temas))
 
 def sinal(request, sinal=None):
 	if sinal:
