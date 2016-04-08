@@ -1,6 +1,6 @@
 <ul>
 {% for nodo in raiz.filhos %}
-	<li> {{nodo.tema.nome}}
+	<li> {{nodo.nome}}
 	{% with "nodo_temas.html" as filename %}  
 	{% with nodo as raiz %}  
 		{% include filename %}  

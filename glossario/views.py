@@ -72,45 +72,33 @@ def contato(request):
 def historia(request):
 	return render_to_response("historia.html")
 
-class NodoTema:
-	def __init__(self, tema, filhos):
-		self.tema = tema
-		self.filhos = filhos
-	def filhos(self):
-		return self.filhos
-
-def criaNodo(temaPai):
-	filhosPai = queryTemas.filter(temaPai=temaPai)
-	filhos2 = list()
-	if filhosPai:
-		for filho in filhosPai:
-			filhos2.append(criaNodo(filho))
-	no = NodoTema(temaPai, filhos2)
-	return no
-
+def criaNodo(nodoPai):
+	filhosPai = queryTemas.filter(temaPai=nodoPai)
+	filhos = list()
+	for filho in filhosPai:
+		filhos.append(criaNodo(filho))
+	nodoPai.filhos = filhos
+	return nodoPai
+	
+#Metodo simples para exibição da lista no terminal
 def mostraNodo(nodoTema1, n):
 	txt = " - "*n
 	if nodoTema1.filhos:
-		print str(n) + txt +nodoTema1.tema.nome
+		print str(n) + txt +nodoTema1.nome
 		filhos = nodoTema1.filhos
 		for filho in filhos:
 			mostraNodo(filho, n+1)
 	else:
-		print str(n) + txt +nodoTema1.tema.nome
+		print str(n) + txt +nodoTema1.nome
 
 def temas(request, temas=None):
 	global queryTemas
+	queryTemas = Tema.objects.all()
 	try:
-		queryTemas = Tema.objects.all()
+		raiz = criaNodo(queryTemas.get(id=1))
+		mostraNodo(raiz, 0)
 	except Tema.DoesNotExist:
-		queryTemas = None
-
-		return render_to_response("index.html")
-	
-	raiz = criaNodo(queryTemas.get(id=1))
-	mostraNodo(raiz, 0)
-
-
+		raiz = None
 	return render_to_response("temas.html", dict(raiz=raiz))
 
 def sinal(request, sinal=None):
