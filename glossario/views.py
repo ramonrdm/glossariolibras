@@ -89,12 +89,7 @@ def criaNo(temaPai):
 	return no
 
 def mostraNo(noTema1, n):
-	x = n
-	txt = " "
-	while x:
-		txt = txt+" "
-		x = x-1
-
+	txt = " - "*n
 	if noTema1.filhos:
 		print str(n) + txt +noTema1.tema.nome
 		filhos = noTema1.filhos
