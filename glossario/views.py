@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render_to_response, render
-from glossario.models import Glossario, Sinal, Usuario
+from glossario.models import Glossario, Sinal, Usuario, Tema
 from glossario.forms import PesquisaPortForm, PesquisaIngForm
 from django.template import RequestContext
 
@@ -70,18 +70,50 @@ def contato(request):
 	return render_to_response("contato.html")
 
 def historia(request):
-	
 	return render_to_response("historia.html")
 
-def temas(request, temas=None):
-	if temas:
-		try:
-			temas = Tema.objects.all()
-				
+class noTema:
+	def __init__(self, tema, filhos):
+		self.tema = tema
+		self.filhos = filhos
+	def filhos(self):
+		return self.filhos
 
-		except Tema.DoesNotExist:
-			temas = None
-			return render_to_response("index.html")
+def criaNo(temaPai):
+	filhosPai = Tema.objects.filter(temaPai=temaPai)
+	filhos2 = list()
+	if filhosPai:
+		for filho in filhosPai:
+			filhos2.append(criaNo(filho))
+	no = noTema(temaPai, filhos2)
+	#print no.tema
+	return no
+
+def mostraNo(noTema1, n):
+	x = n
+	txt = " "
+	while x:
+		txt = txt+" "
+		x = x-1
+
+	if noTema1.filhos:
+		print str(n) + txt +noTema1.tema.nome
+		filhos = noTema1.filhos
+		for filho in filhos:
+			mostraNo(filho, n+1)
+	else:
+		print str(n) + txt +noTema1.tema.nome
+
+def temas(request, temas=None):
+	try:
+		temas = Tema.objects.all()
+	except Tema.DoesNotExist:
+		temas = None
+		return render_to_response("index.html")
+	
+	raiz = criaNo(temas.get(id=1))
+	mostraNo(raiz, 0)
+
 
 	return render_to_response("temas.html", dict(temas=temas))
 

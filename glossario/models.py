@@ -81,7 +81,10 @@ class Tema(models.Model):
 	descricao = models.CharField(max_length=100, null=True)
 	video = Video(null=True)
 	imagem = models.ImageField(blank=True, null=True)
-	temaPai = models.ForeignKey('self',null=True, blank = True) 
+	temaPai = models.ForeignKey('self',null=True, blank = True)
+
+	def __unicode__(self):
+		return self.nome
 
 class Sinal(models.Model):
 	glossario = models.ForeignKey(Glossario)
