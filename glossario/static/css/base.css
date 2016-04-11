@@ -116,9 +116,16 @@ max-height: 380px;
 .selecionada{
 	margin-left:13px;
 }
-#glossarioselec{
-	text-align: center;
+.glossarioselec ul{
+	padding: 10px 10px;
+	list-style: none;
+	margin:10px 10px 10px 10px;
+	display: block;
 }
+.glossarioselec ul li{
+	display: table-cell;
+}
+
 /*menubusca*/
 #menubusca{
 	list-style: none;

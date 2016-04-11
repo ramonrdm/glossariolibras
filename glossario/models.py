@@ -39,16 +39,16 @@ class UsuarioManager(BaseUserManager):
 
 class Usuario(AbstractUser):
 
-	nome = models.CharField(max_length=200)
-	latte = models.CharField(max_length=300)
-	foto = models.ImageField(blank=True)
+	nome = models.CharField(max_length=200, verbose_name = 'Nome')
+	latte = models.CharField(max_length=300, verbose_name = 'Currículo Latte')
+	foto = models.ImageField(blank=True, verbose_name = 'Foto')
 
 	objects = UsuarioManager()
 
 
 class Localizacao(models.Model):
-	nome = models.CharField(max_length=30)
-	bsw = models.TextField()
+	nome = models.CharField(max_length=30, verbose_name = 'Nome')
+	bsw = models.TextField(verbose_name ='BSW')
 	imagem = models.ImageField(blank=True, verbose_name='Imagem')
 	areaClicavel = models.TextField()
 
@@ -58,10 +58,10 @@ class Video(FileField):
 
 class Glossario(models.Model):
 	nome = models.CharField(max_length=100, verbose_name='Nome do Glossário')
-	responsavel = models.ManyToManyField(Usuario)
+	responsavel = models.ManyToManyField(Usuario, verbose_name = 'Responsável')
 	membros = models.ManyToManyField(Usuario, related_name='glossario_membros', verbose_name='Membros')
 	imagem = models.ImageField(blank=True, verbose_name='Imagem')
-	link = models.CharField(max_length=20)
+	link = models.CharField(max_length=20, verbose_name = 'Link')
 	dataCriacao = models.DateField(auto_now_add=True)
 	videoGlossario = Video(blank=True, verbose_name='Vídeo')
 
@@ -70,24 +70,24 @@ class Glossario(models.Model):
 
 class GrupoCM (models.Model):
 	imagem = models.ImageField(blank=True)
-	bsw = models.TextField()
+	bsw = models.TextField(verbose_name = 'BSW')
 
 class CM (models.Model):
 	imagem = models.ImageField(blank=True)
-	grupo = models.ForeignKey(GrupoCM)
+	grupo = models.ForeignKey(GrupoCM, verbose_name = 'Grupo de Configuração de Mão')
 
 class Tema(models.Model):
-	nome = models.CharField(max_length=30)
-	descricao = models.CharField(max_length=100, null=True)
-	video = Video(null=True, blank=True)
-	imagem = models.ImageField(blank=True, null=True)
-	temaPai = models.ForeignKey('self',null=True, blank = True)
+	nome = models.CharField(max_length=30, verbose_name = 'Nome')
+	descricao = models.CharField(max_length=100, null=True, verbose_name = 'Descrição')
+	video = Video(null=True, blank=True, verbose_name = 'Vídeo')
+	imagem = models.ImageField(blank=True, null=True, verbose_name = 'Imagem')
+	temaPai = models.ForeignKey('self',null=True, blank = True, verbose_name = 'Tema Pai')
 
 	def __unicode__(self):
 		return self.nome
 
 class Sinal(models.Model):
-	glossario = models.ForeignKey(Glossario)
+	glossario = models.ForeignKey(Glossario, verbose_name = 'Glossario')
 	traducaoP = models.CharField(max_length=30, verbose_name='Palavra')
 	traducaoI = models.CharField(max_length=30, verbose_name='Word')
 	#bsw = models.TextField()

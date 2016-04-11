@@ -1,13 +1,28 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
+{% load staticfiles %}
+<head> 
+		<script language="javascript" type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+        <script language="javascript" type="text/javascript" src='{% static "js/arbol/lib/arbor.js" %}' ></script>
+        <script language="javascript" type="text/javascript" src='{% static "js/arbol/demos/_/graphics.js" %}' ></script>
+        <script language="javascript" type="text/javascript" src='{% static "js/arbol/demos/halfviz/src/renderer.js" %}' ></script>
+</head>
 <title>{% block title %}Glossários de Libras - Temas{% endblock %}</title>
 {% block Corpo %}
-{% load staticfiles %}
+<canvas id="viewport" width="800" height="600"></canvas>
+<script language="javascript" type="text/javascript">
+	var sys = arbor.ParticleSystem(1000, 400, 1);
+	sys.parameters({gravity:true});
+	sys.renderer = Renderer("#viewport") ;
+	var temas = sys.addNode('Temas',{'color':'blue','shape':'dot','label':'Temas'});
+</script>
 <div class="selecionada" >
 	<a href="/temas" }}><img width="90px" height="120px" src = '{% static "img/arvore_banyan_havai.png" %}'/></a>
-	<div id="glossarioselec"><b>Temas</b></div>
-	{{raiz.nome}}
+	<div align="center"><b>Temas</b></div>
+	<div class="glossarioselec" align="center">
 	{% include "nodo_temas.html" %}
+	<canvas></canvas>
+	</div>
 </div>
 
 {% endblock %}
