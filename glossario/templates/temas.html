@@ -1,28 +1,33 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
 {% extends 'base.html' %}
-{% load staticfiles %}
-<head> 
-		<script language="javascript" type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
-        <script language="javascript" type="text/javascript" src='{% static "js/arbol/lib/arbor.js" %}' ></script>
-        <script language="javascript" type="text/javascript" src='{% static "js/arbol/demos/_/graphics.js" %}' ></script>
-        <script language="javascript" type="text/javascript" src='{% static "js/arbol/demos/halfviz/src/renderer.js" %}' ></script>
-</head>
-<title>{% block title %}Glossários de Libras - Temas{% endblock %}</title>
+<title>{% block title %} Temas - Glossário Letras Libras {% endblock %}</title>
 {% block Corpo %}
-<canvas id="viewport" width="800" height="600"></canvas>
-<script language="javascript" type="text/javascript">
-	var sys = arbor.ParticleSystem(1000, 400, 1);
-	sys.parameters({gravity:true});
-	sys.renderer = Renderer("#viewport") ;
-	var temas = sys.addNode('Temas',{'color':'blue','shape':'dot','label':'Temas'});
-</script>
-<div class="selecionada" >
-	<a href="/temas" }}><img width="90px" height="120px" src = '{% static "img/arvore_banyan_havai.png" %}'/></a>
-	<div align="center"><b>Temas</b></div>
-	<div class="glossarioselec" align="center">
-	{% include "nodo_temas.html" %}
-	<canvas></canvas>
-	</div>
-</div>
+{% load staticfiles %}
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+  <canvas id="viewport" width="800" height="600"></canvas>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+
+  <!-- run from the original source files: -->
+  <!--     <script src="../../src/etc.js"></script>
+       <script src="../../src/kernel.js"></script>
+       <script src="../../src/graphics/colors.js"></script>
+       <script src="../../src/graphics/primitives.js"></script>
+       <script src="../../src/graphics/graphics.js"></script>
+       <script src="../../src/tween/easing.js"></script>
+       <script src="../../src/tween/tween.js"></script>
+       <script src="../../src/physics/atoms.js"></script>
+      <script src="../../src/physics/physics.js"></script>
+       <script src="../../src/physics/system.js"></script>
+       <script src="../../src/dev.js"></script> -->
+
+  <!-- run from the minified library file: -->
+  <script src='{% static "js/arbor.js" %}'></script>  
+
+  <script src='{% static "js/main.js" %}'></script>
 
 {% endblock %}
