@@ -51,7 +51,7 @@
 
           // draw a line from pt1 to pt2
           ctx.strokeStyle = "rgba(0,0,0, .333)"
-          ctx.lineWidth = 1
+          ctx.lineWidth = 5
           ctx.beginPath()
           ctx.moveTo(pt1.x, pt1.y)
           ctx.lineTo(pt2.x, pt2.y)
@@ -59,13 +59,16 @@
         })
 
         particleSystem.eachNode(function(node, pt){
+
           // node: {mass:#, p:{x,y}, name:"", data:{}}
           // pt:   {x:#, y:#}  node position in screen coords
 
           // draw a rectangle centered at pt
-          var w = 30
-          ctx.fillStyle = (node.data.alone) ? "orange" : "black"
-          ctx.fillRect(pt.x-w/2, pt.y-w/2, w,w)
+          var w = 100
+          //ctx.text(node.name, pt.x, pt.y+7,{color:"white", align:"center", font:"Arial", size:"12"})
+          ctx.fillStyle = (node.data.alone) ? "black" : "rgb(0, 77, 153)"
+          ctx.fillRect(pt.x-w/2, pt.y-w/4, w,w/2)
+
         })    			
       },
       
@@ -134,8 +137,7 @@
     sys.addEdge('a','c')
     sys.addEdge('a','d')
     sys.addEdge('a','e')
-    sys.addNode('f', {alone:true, mass:.25})
-
+    sys.addNode('f',{alone:true, mass:.25})
     // or, equivalently:
     //
     // sys.graft({
