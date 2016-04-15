@@ -2,7 +2,7 @@
 //  main.js
 //
 //  A project template for using arbor.js
-//
+//  
 
 (function($){
 
@@ -10,6 +10,7 @@
     var canvas = $(canvas).get(0)
     var ctx = canvas.getContext("2d");
     var particleSystem
+    var gfx = arbor.Graphics(canvas)
 
     var that = {
       init:function(system){
@@ -32,6 +33,11 @@
       },
       
       redraw:function(){
+        gfx.clear()
+        particleSystem.eachEdge(function(edge, p1, p2){
+          if (edge.source.data.alpha * edge.target.data.alpha == 0) return
+          gfx.line(p1, p2, {stroke:"#b2b19d", width:2, alpha:edge.target.data.alpha})
+        })
         // 
         // redraw will be called repeatedly during the run whenever the node positions
         // change. the new positions for the nodes can be accessed by looking at the
@@ -41,35 +47,47 @@
         // which allow you to step through the actual node objects but also pass an
         // x,y point in the screen's coordinate system
         // 
-        ctx.fillStyle = "white"
-        ctx.fillRect(0,0, canvas.width, canvas.height)
-        
-        particleSystem.eachEdge(function(edge, pt1, pt2){
-          // edge: {source:Node, target:Node, length:#, data:{}}
-          // pt1:  {x:#, y:#}  source position in screen coords
-          // pt2:  {x:#, y:#}  target position in screen coords
-
-          // draw a line from pt1 to pt2
-          ctx.strokeStyle = "rgba(0,0,0, .333)"
-          ctx.lineWidth = 5
-          ctx.beginPath()
-          ctx.moveTo(pt1.x, pt1.y)
-          ctx.lineTo(pt2.x, pt2.y)
-          ctx.stroke()
-        })
 
         particleSystem.eachNode(function(node, pt){
+          var w = Math.max(20, 20+gfx.textWidth(node.name) )
+          if (node.data.alpha===0) return
+          if (node.data.shape=='dot'){
+            gfx.oval(pt.x-w/2, pt.y-w/2, w, w, {fill:node.data.color, alpha:node.data.alpha})
+            gfx.text(node.name, pt.x, pt.y+7, {color:"white", align:"center", font:"Arial", size:12})
+            gfx.text(node.name, pt.x, pt.y+7, {color:"white", align:"center", font:"Arial", size:12})
+          }else{
+            gfx.rect(pt.x-w/2, pt.y-8, w, 20, 4, {fill:node.data.color, alpha:node.data.alpha})
+            gfx.text(node.name, pt.x, pt.y+9, {color:"white", align:"center", font:"Arial", size:12})
+            gfx.text(node.name, pt.x, pt.y+9, {color:"white", align:"center", font:"Arial", size:12})
+          }
+        })
+        that._drawVignette()
+      },
+      
+      _drawVignette:function(){
+        var w = canvas.width
+        var h = canvas.height
+        var r = 20
 
-          // node: {mass:#, p:{x,y}, name:"", data:{}}
-          // pt:   {x:#, y:#}  node position in screen coords
+        if (!_vignette){
+          var top = ctx.createLinearGradient(0,0,0,r)
+          top.addColorStop(0, "#e0e0e0")
+          top.addColorStop(.7, "rgba(255,255,255,0)")
 
-          // draw a rectangle centered at pt
-          var w = 100
-          //ctx.text(node.name, pt.x, pt.y+7,{color:"white", align:"center", font:"Arial", size:"12"})
-          ctx.fillStyle = (node.data.alone) ? "black" : "rgb(0, 77, 153)"
-          ctx.fillRect(pt.x-w/2, pt.y-w/4, w,w/2)
+          var bot = ctx.createLinearGradient(0,h-r,0,h)
+          bot.addColorStop(0, "rgba(255,255,255,0)")
+          bot.addColorStop(1, "white")
 
-        })    			
+          _vignette = {top:top, bot:bot}
+        }
+        
+        // top
+        ctx.fillStyle = _vignette.top
+        ctx.fillRect(0,0, w,r)
+
+        // bot
+        ctx.fillStyle = _vignette.bot
+        ctx.fillRect(0,h-r, w,r)
       },
       
       initMouseHandling:function(){
@@ -132,27 +150,18 @@
     sys.parameters({gravity:true}) // use center-gravity to make the graph settle nicely (ymmv)
     sys.renderer = Renderer("#viewport") // our newly created renderer will have its .init() method called shortly by sys...
 
-    // add some nodes to the graph and watch it go...
-    sys.addEdge('a','b')
-    sys.addEdge('a','c')
-    sys.addEdge('a','d')
-    sys.addEdge('a','e')
-    sys.addNode('f',{alone:true, mass:.25})
-    // or, equivalently:
-    //
-    // sys.graft({
-    //   nodes:{
-    //     f:{alone:true, mass:.25}
-    //   }, 
-    //   edges:{
-    //     a:{ b:{},
-    //         c:{},
-    //         d:{},
-    //         e:{}
-    //     }
-    //   }
-    // })
-
+    var nodeEdg = {
+      nodes:{
+        "temas":{color:"red", shape:"dot", alpha:1, link:'/temas'},
+        "animais":{color:"green", shape:"dot", alpha:1}
+      },
+      edges:{
+        "temas":{
+          "animais":{}
+        }
+      }
+    }
+    sys.graft(nodeEdg)
   })
 
 })(this.jQuery)
