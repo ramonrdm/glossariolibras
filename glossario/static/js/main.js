@@ -12,6 +12,8 @@
     var particleSystem
     var gfx = arbor.Graphics(canvas)
 
+    var _vignette = null;
+
     var that = {
       init:function(system){
         //
@@ -150,18 +152,28 @@
     sys.parameters({gravity:true}) // use center-gravity to make the graph settle nicely (ymmv)
     sys.renderer = Renderer("#viewport") // our newly created renderer will have its .init() method called shortly by sys...
 
-    var nodeEdg = {
-      nodes:{
-        "temas":{color:"red", shape:"dot", alpha:1, link:'/temas'},
-        "animais":{color:"green", shape:"dot", alpha:1}
-      },
-      edges:{
-        "temas":{
-          "animais":{}
-        }
-      }
+//    var nodeEdg = {
+//      nodes:{
+//        "temas":{color:"red", shape:"dot", alpha:1, link:'/temas'},
+//        "animais":{color:"green", shape:"dot", alpha:1}
+//      },
+//      edges:{
+//        "temas":{
+//          "animais":{}
+//        }
+//      }
+//    }
+
+  $.ajax({
+    type: "GET",
+    url: 'temasjson',
+    success : function(response_data){
+      nodeEdg = response_data;
+      sys.graft(nodeEdg)
     }
-    sys.graft(nodeEdg)
+  });
+
+
   })
 
 })(this.jQuery)

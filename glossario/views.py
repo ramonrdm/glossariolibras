@@ -3,6 +3,8 @@ from django.shortcuts import render_to_response, render
 from glossario.models import Glossario, Sinal, Usuario, Tema
 from glossario.forms import PesquisaPortForm, PesquisaIngForm
 from django.template import RequestContext
+from django.http import JsonResponse
+import json
 
 def index(request, glossario=None):
 	if glossario:
@@ -110,3 +112,17 @@ def sinal(request, sinal=None):
 			sinal = None
 			
 		return render_to_response("sinal.html", dict(sinal=sinal))
+
+def temasjson(request):
+	data = {
+		"nodes":{
+			"joao" : {"color":"red", "shape":"dot", "alpha":1 },
+			"ramon" : {"color":"green", "shape":"dot", "alpha":1 }
+		},
+		"edges":{
+			"joao":{
+				"ramon":{}
+			}
+		}
+	}
+	return JsonResponse(data)
