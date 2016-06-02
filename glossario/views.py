@@ -93,6 +93,14 @@ def mostraNodo(nodoTema1, n):
 	else:
 		print str(n) + txt +nodoTema1.nome
 
+def mostraNodoJson(nodoTema1):
+	if nodoTema1.filhos:
+		filhos = nodoTema1.filhos
+		jsonTemas['edges'][nodoTema1.nome] = {}
+		for filho in filhos:
+			mostraNodoJson(filho)
+			jsonTemas['edges'][nodoTema1.nome][filho.nome] = {}
+	jsonTemas['nodes'][nodoTema1.nome] = {"color":"green", "shape":"dot", "alpha":1, "link":"www.libras.ufsc.br" }
 def temas(request, temas=None):
 	global queryTemas
 	queryTemas = Tema.objects.all()
@@ -114,22 +122,21 @@ def sinal(request, sinal=None):
 		return render_to_response("sinal.html", dict(sinal=sinal))
 
 def temasjson(request):
+	global jsonTemas
+	jsonTemas = {"nodes":{},"edges":{}}
 	data = {
-#		"nodes":{
-#			"joao" : {"color":"red", "shape":"dot", "alpha":1 },
-#			"ramon" : {"color":"green", "shape":"dot", "alpha":1, "link":"ramon" },
-#			"glossario" :{"color":"#b2b19d", "shape":"dot", "alpha":1}
-#		},
-#		"edges":{
-#			"glossario":{
-#				"joao":{
-#			},
-#				"ramon":{}
-#			}
-#		}
 		"nodes":{
-				
+			"joao" : {"color":"red", "shape":"dot", "alpha":1 },
+			"ramon" : {"color":"green", "shape":"dot", "alpha":1, "link":"ramon" },
+			"glossario" :{"color":"#b2b19d", "shape":"dot", "alpha":1},
+			"NALS" :{"color":"#b2b19d", "shape":"dot", "alpha":1}
+		},
+		"edges":{
+			"glossario":{"joao":{},"ramon":{}}
 		}
-
 	}
-	return JsonResponse(data)
+	data['nodes']['glossario'] = {"color":"green", "shape":"dot", "alpha":1, "link":"ramon" }
+	raiz = criaNodo(Tema.objects.get(id=1))
+	mostraNodoJson(raiz)
+	print jsonTemas
+	return JsonResponse(jsonTemas)
