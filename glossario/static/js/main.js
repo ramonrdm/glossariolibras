@@ -38,7 +38,7 @@
         gfx.clear()
         particleSystem.eachEdge(function(edge, p1, p2){
           if (edge.source.data.alpha * edge.target.data.alpha == 0) return
-          gfx.line(p1, p2, {stroke:"#b2b19d", width:2, alpha:edge.target.data.alpha})
+          gfx.line(p1, p2, {stroke:"#b2b19d", width:4, alpha:edge.target.data.alpha})
         })
         // 
         // redraw will be called repeatedly during the run whenever the node positions

@@ -115,14 +115,21 @@ def sinal(request, sinal=None):
 
 def temasjson(request):
 	data = {
+#		"nodes":{
+#			"joao" : {"color":"red", "shape":"dot", "alpha":1 },
+#			"ramon" : {"color":"green", "shape":"dot", "alpha":1, "link":"ramon" },
+#			"glossario" :{"color":"#b2b19d", "shape":"dot", "alpha":1}
+#		},
+#		"edges":{
+#			"glossario":{
+#				"joao":{
+#			},
+#				"ramon":{}
+#			}
+#		}
 		"nodes":{
-			"joao" : {"color":"red", "shape":"dot", "alpha":1 },
-			"ramon" : {"color":"green", "shape":"dot", "alpha":1 }
-		},
-		"edges":{
-			"joao":{
-				"ramon":{}
-			}
+				
 		}
+
 	}
 	return JsonResponse(data)
