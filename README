@@ -15,7 +15,7 @@ Este projeto inicia a nova fase do glossario.libras.ufsc.br
 Fique a vontade para compartilhar o conhecimento!
 :)
 
-Estou pensando em usar Django 1.8 e Python 3.x
+Estou pensando em usar Django 1.10.x e Python 2.7
 
 Plataforma de Glossários Libras
 Um glossário que reunie glossários de varias areas do conhecimento humano.
