@@ -7,6 +7,7 @@ Bolsistas:
 Sabrina Hanich
 Thiago Brezinski
 
+Equipe antiga:
 João Pedro Gutierrez Kieling Villegas
 
 Apoio institucional:
@@ -18,7 +19,7 @@ Este projeto inicia a nova fase do glossario.libras.ufsc.br
 Fique a vontade para compartilhar o conhecimento!
 :)
 
-Estou pensando em usar Django 1.10.x e Python 2.7
+Estamos usando Django 1.10.x e Python 2.7
 
 Plataforma de Glossários Libras
 Um glossário que reunie glossários de varias areas do conhecimento humano.
