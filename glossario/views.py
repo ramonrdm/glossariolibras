@@ -101,6 +101,7 @@ def mostraNodoJson(nodoTema1):
 			mostraNodoJson(filho)
 			jsonTemas['edges'][nodoTema1.nome][filho.nome] = {}
 	jsonTemas['nodes'][nodoTema1.nome] = {"color":"green", "shape":"dot", "alpha":1, "link":"www.libras.ufsc.br" }
+
 def temas(request, temas=None):
 	global queryTemas
 	queryTemas = Tema.objects.all()
