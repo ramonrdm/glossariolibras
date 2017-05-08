@@ -18,6 +18,5 @@ urlpatterns = [
     url(r'^(?P<glossario>[-\w]+)$', views.index, name='glossarios'),
     url(r'^(?P<glossario>[-\w]+)/(?P<tipopesq>[\w]+)$', views.pesquisa, name='pesquisa'),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
-]
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_URL)
+]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
