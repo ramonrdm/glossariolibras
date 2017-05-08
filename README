@@ -38,3 +38,8 @@ Um glossário que reunie glossários de varias areas do conhecimento humano.
 3.0 a versão que virou multi-glossarios, a atual em php e com mais de uma area do conhecimento.
 
 4.0 a versão que revolucionou tudo! python, html5, multiareas, multitemas, pesquisas diversas e tudo que suas mentes conseguirem imaginar!
+
+Requisitos:
+
+$ pip install Pillow (se houver erro, tentar dar upgrade na biblioteca zlib)
+
