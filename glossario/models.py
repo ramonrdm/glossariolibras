@@ -39,17 +39,17 @@ class UsuarioManager(BaseUserManager):
 
 class Usuario(AbstractUser):
 
-	nome = models.CharField(max_length=200, verbose_name = 'Nome')
-	latte = models.CharField(max_length=300, verbose_name = 'Currículo Latte')
-	foto = models.ImageField(blank=True, verbose_name = 'Foto')
+	nome = models.CharField('Nome', max_length=200)
+	latte = models.CharField('Currículo Latte', max_length=300)
+	foto = models.ImageField('Foto', blank=True)
 
 	objects = UsuarioManager()
 
 
 class Localizacao(models.Model):
-	nome = models.CharField(max_length=30, verbose_name = 'Nome')
-	bsw = models.TextField(verbose_name ='BSW')
-	imagem = models.ImageField(blank=True, verbose_name='Imagem')
+	nome = models.CharField('Nome', max_length=30)
+	bsw = models.TextField('BSW')
+	imagem = models.ImageField('Imagem', blank=True)
 	areaClicavel = models.TextField()
 
 class Video(FileField):
@@ -57,30 +57,30 @@ class Video(FileField):
 	videoMp4 = models.FileField()
 
 class Glossario(models.Model):
-	nome = models.CharField(max_length=100, verbose_name='Nome do Glossário')
+	nome = models.CharField('Nome do Glossário', max_length=100)
 	responsavel = models.ManyToManyField(Usuario, verbose_name = 'Responsável')
 	membros = models.ManyToManyField(Usuario, related_name='glossario_membros', verbose_name='Membros')
-	imagem = models.ImageField(blank=True, verbose_name='Imagem')
-	link = models.CharField(max_length=20, verbose_name = 'Link')
+	imagem = models.ImageField('Imagem', blank=True)
+	link = models.CharField('Link', max_length=20)
 	dataCriacao = models.DateField(auto_now_add=True)
-	videoGlossario = Video(blank=True, verbose_name='Vídeo')
+	videoGlossario = Video('Vídeo', blank=True)
 
 	def __unicode__(self):
 		return self.nome
 
 class GrupoCM (models.Model):
 	imagem = models.ImageField(blank=True)
-	bsw = models.TextField(verbose_name = 'BSW')
+	bsw = models.TextField('BSW')
 
 class CM (models.Model):
 	imagem = models.ImageField(blank=True)
 	grupo = models.ForeignKey(GrupoCM, verbose_name = 'Grupo de Configuração de Mão')
 
 class Tema(models.Model):
-	nome = models.CharField(max_length=30, verbose_name = 'Nome')
-	descricao = models.CharField(max_length=100, null=True, verbose_name = 'Descrição')
-	video = Video(null=True, blank=True, verbose_name = 'Vídeo')
-	imagem = models.ImageField(blank=True, null=True, verbose_name = 'Imagem')
+	nome = models.CharField('Nome', max_length=30)
+	descricao = models.CharField('Descrição', max_length=100, null=True)
+	video = Video('Vídeo', null=True, blank=True)
+	imagem = models.ImageField('Imagem', blank=True, null=True)
 	temaPai = models.ForeignKey('self',null=True, blank = True, verbose_name = 'Tema Pai')
 
 	def __unicode__(self):
@@ -88,8 +88,8 @@ class Tema(models.Model):
 
 class Sinal(models.Model):
 	glossario = models.ForeignKey(Glossario, verbose_name = 'Glossario')
-	traducaoP = models.CharField(max_length=30, verbose_name='Palavra')
-	traducaoI = models.CharField(max_length=30, verbose_name='Word')
+	traducaoP = models.CharField('Palavra', max_length=30)
+	traducaoI = models.CharField('Word', max_length=30)
 	bsw = models.TextField(null=True, blank = True)
 	descricao = models.CharField(max_length=50,null=True, blank = True)
 	grupoCMe = models.ForeignKey(GrupoCM, related_name='Grupo_M_Esquerda', verbose_name='Grupo configuração de mão esquerda')
@@ -100,10 +100,10 @@ class Sinal(models.Model):
 	dataPost = models.DateField()
 	postador = models.ForeignKey(Usuario)
 	publicado = models.BooleanField(default=False)
-	sinalLibras = Video(verbose_name='Vídeo do Sinal',null=True, blank = True)
-	descLibras = Video(verbose_name='Vídeo da Descrição',null=True, blank = True)
-	exemploLibras = Video(verbose_name='Vídeo do Exemplo',null=True, blank = True)
-	varicLibras = Video(verbose_name='Vídeo da Variação',null=True, blank = True)
+	sinalLibras = Video('Vídeo do Sinal',null=True, blank = True)
+	descLibras = Video('Vídeo da Descrição',null=True, blank = True)
+	exemploLibras = Video('Vídeo do Exemplo',null=True, blank = True)
+	varicLibras = Video('Vídeo da Variação',null=True, blank = True)
 	tema = models.ForeignKey(Tema)
 
 	def __unicode__(self):

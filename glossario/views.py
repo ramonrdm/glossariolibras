@@ -10,13 +10,13 @@ def index(request, glossario=None):
 	if glossario:
 		try:
 			glossario = Glossario.objects.get(link=glossario)
-			return render_to_response("glossario.html", dict(glossario=glossario))
+			return render(request, "glossario.html", dict(glossario=glossario))
 		except Glossario.DoesNotExist:
 			glossarios = Glossario.objects.all()
 	else:		
 		glossarios = Glossario.objects.all()
 
-	return render_to_response("index.html", dict(glossarios=glossarios, glossario=glossario))
+	return render(request, "index.html", dict(glossarios=glossarios, glossario=glossario))
 
 def pesquisa(request, glossario=None, tipopesq=None):
 	try:
@@ -30,7 +30,8 @@ def pesquisa(request, glossario=None, tipopesq=None):
 			if formulario.is_valid():
 				sinais = Sinal.objects.filter(traducaoP__contains=formulario.cleaned_data['traducaoP'])
 				resultado = len(sinais)
-				return render_to_response(
+				return render(
+					request,
 					"pesquisa.html", 
 					context_instance=RequestContext(
 					request, 
@@ -42,7 +43,8 @@ def pesquisa(request, glossario=None, tipopesq=None):
 			if formulario.is_valid():
 				sinais = Sinal.objects.filter(traducaoI__contains=formulario.cleaned_data['traducaoI'])
 				resultado = len(sinais)
-				return render_to_response(
+				return render(
+					request,
 					"pesquisa.html", 
 					context_instance=RequestContext(
 					request, 
@@ -57,7 +59,8 @@ def pesquisa(request, glossario=None, tipopesq=None):
 	else:
 		formulario = PesquisaPortForm()
 		sinais = None
-	return render_to_response(
+	return render(
+		request,
 		"pesquisa.html", 
 		context_instance=RequestContext(
 		request, 
@@ -66,13 +69,13 @@ def pesquisa(request, glossario=None, tipopesq=None):
 
 def equipe(request):
 	usuario = Usuario.objects.all()
-	return render_to_response("equipe.html", dict(usuario=usuario))
+	return render(request, "equipe.html", dict(usuario=usuario))
 
 def contato(request):
-	return render_to_response("contato.html")
+	return render(request, "contato.html")
 
 def historia(request):
-	return render_to_response("historia.html")
+	return render(request, "historia.html")
 
 def criaNodo(nodoPai):
 	filhosPai = queryTemas.filter(temaPai=nodoPai)
@@ -110,7 +113,7 @@ def temas(request, temas=None):
 		mostraNodo(raiz, 0)
 	except Tema.DoesNotExist:
 		raiz = None
-	return render_to_response("temas.html", dict(raiz=raiz))
+	return render(request, "temas.html", dict(raiz=raiz))
 
 def sinal(request, sinal=None):
 	if sinal:
@@ -120,7 +123,7 @@ def sinal(request, sinal=None):
 		except Sinal.DoesNotExist:
 			sinal = None
 			
-		return render_to_response("sinal.html", dict(sinal=sinal))
+		return render(request, "sinal.html", dict(sinal=sinal))
 
 def temasjson(request):
 	global jsonTemas
