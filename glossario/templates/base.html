@@ -16,7 +16,7 @@
 
 <body>
     <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo"><img src='{% static "img/marca_glossario.png" %}'/></a>
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo"><img src='{% static "img/marca_glossario.png" %}'></a>
       <ul class="right hide-on-med-and-down">
         <li><a href="/enviarsinais">Envie sinais</a></li>
         <li><a href="/contato">Contato</a></li>
@@ -31,27 +31,18 @@
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
     </nav>
-        <div class="direita">
-            <a href="http://ufsc.br"><img id="logoufsc"  src='{% static "img/marca_ufsc.png" %}'/></a>
-        </div>
-        <div class="centro">
-            <nav id="menuS" >        
-                <ul>
-                    <li><a href="/enviarsinais" >Envie sinais</a></li>
-                    <li><a href="/contato" >Contato</a></li>
-                    <li><a href="/equipe" >Equipe</a></li>
-                    <li><a href="/historia" >História</a></li>
-                    <li><a href="/admin" >Admin</a></li>
-                </ul>
-            </nav>
-        </div>
+
+    <div class="esquerda">
+        <a href="http://ufsc.br"><img id="logoufsc"  src='{% static "img/marca_ufsc.png" %}'></a>
     </div>
+
     <div id="baixo">
-        <img id="borda" src = '{% static "img/borda.png" %}' />
+        <img id="borda" src='{% static "img/borda.png" %}'>
     </div>
 
     {% block Corpo %}
     {% endblock %}
+
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="static/js/materialize.min.js"></script>
 </body>

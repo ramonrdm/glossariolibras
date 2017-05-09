@@ -71,9 +71,9 @@ max-height: 380px;
 /* Fim Menu Superior */
 /* classe horizontal */
 .horiz{
-	margin-top: 50px;
-	text-align: center;
-	
+	margin-left: 25%;
+	margin-right: 25%;
+	text-align: center;	
 }
 /* exibindo glossarios */
 .linha1{
