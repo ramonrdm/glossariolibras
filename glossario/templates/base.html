@@ -7,35 +7,52 @@
     <META NAME="keywords" CONTENT="glossario, libras, ufsc, glossário, glossários, letras libras, dicionario"/>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" /> 
     <link rel="stylesheet" type="text/css" href='{% static "css/base.css" %}'/>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="static/css/materialize.min.css"  media="screen,projection"/>
+    <link href="static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>{% block title %}{% endblock %}</title>
 </head>
 
 <body>
-    
-    <div id="top">
-        <div class="esquerda">
-         <a href="/"><img src='{% static "img/marca_glossario.png" %}'/></a>
-        </div>
+    <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo"><img src='{% static "img/marca_glossario.png" %}'/></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/enviarsinais">Envie sinais</a></li>
+        <li><a href="/contato">Contato</a></li>
+        <li><a href="/equipe">Equipe</a></li>
+        <li><a href="/historia">História</a></li>
+        <li><a href="/admin">Admin</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+    </nav>
         <div class="direita">
-          <a href="http://ufsc.br"><img id="logoufsc"  src='{% static "img/marca_ufsc.png" %}'/></a>
+            <a href="http://ufsc.br"><img id="logoufsc"  src='{% static "img/marca_ufsc.png" %}'/></a>
         </div>
         <div class="centro">
-          <nav id="menuS" >        
-            <ul>
-                <li><a href="/enviarsinais" >Envie sinais</a></li>
-                <li><a href="/contato" >Contato</a></li>
-                <li><a href="/equipe" >Equipe</a></li>
-                <li><a href="/historia" >História</a></li>
-                <li><a href="/admin" >Admin</a></li>
-            </ul>
-        </nav>
+            <nav id="menuS" >        
+                <ul>
+                    <li><a href="/enviarsinais" >Envie sinais</a></li>
+                    <li><a href="/contato" >Contato</a></li>
+                    <li><a href="/equipe" >Equipe</a></li>
+                    <li><a href="/historia" >História</a></li>
+                    <li><a href="/admin" >Admin</a></li>
+                </ul>
+            </nav>
         </div>
-
     </div>
-<div id="baixo">
-<img id="borda" src = '{% static "img/borda.png" %}' />
-</div>
-{% block Corpo %}
-{% endblock %}
+    <div id="baixo">
+        <img id="borda" src = '{% static "img/borda.png" %}' />
+    </div>
+
+    {% block Corpo %}
+    {% endblock %}
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="static/js/materialize.min.js"></script>
 </body>
 </html>
