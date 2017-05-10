@@ -27,15 +27,17 @@
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">Navbar Link</a></li>
+        <li onclick="$('.button-collapse').sideNav('show')">
+            <a href="/enviarsinais">Envie sinais</a>
+            <a href="/contato">Contato</a>
+            <a href="/equipe">Equipe</a>
+            <a href="/historia">História</a>
+            <a href="/admin">Admin</a>
+        </li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
     </nav>
-
-    <!--<div class="esquerda">
-        <a href="http://ufsc.br"><img id="logoufsc"  src='{% static "img/marca_ufsc.png" %}'></a>
-    </div>-->
 
     <div id="baixo">
         <img id="borda" src='{% static "img/borda.png" %}'>
@@ -46,5 +48,9 @@
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="static/js/materialize.min.js"></script>
+    <script type="text/javascript">
+        $(".button-collapse").sideNav();
+        $('.button-collapse').sideNav('hide');
+    </script>
 </body>
 </html>
