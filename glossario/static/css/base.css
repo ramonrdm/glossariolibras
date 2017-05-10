@@ -35,7 +35,13 @@ max-height: 380px;
 	/* position: static;*/
 }
 /* MENU SUPERIOR */
-#logoGlossario{
+#logoufsc{
+	width: auto;
+	height: 53.5px;
+	margin-top: 2%;
+}
+
+#logoGlossario {
 	width: 163px;
 	height: 53.5px;
 	margin-top: 2%;
