@@ -35,6 +35,12 @@ max-height: 380px;
 	/* position: static;*/
 }
 /* MENU SUPERIOR */
+#logoGlossario{
+	width: 163px;
+	height: 53.5px;
+	margin-top: 2%;
+}
+
 #menuS{
 	margin-top: 40px;
 	border-radius: 10px;
