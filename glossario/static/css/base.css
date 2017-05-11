@@ -81,6 +81,15 @@ max-height: 380px;
     margin-right: 2px;
 }
 /* Fim Menu Superior */
+
+/* Side navbar */
+
+#sidenav-letra {
+	color: darkblue;
+}
+
+/* Fim da side navbar */
+
 /* classe horizontal */
 .horiz{
 	margin-left: 25%;
