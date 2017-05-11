@@ -161,7 +161,8 @@ max-height: 380px;
 /* fim paginas contato,equip,hist */
 /* tamanho glossario selecionado */
 .selecionada{
-	margin-left:13px;
+	float: left;
+	margin-left: 3.5%;
 }
 .glossarioselec ul{
 	padding: 10px 10px;
@@ -175,6 +176,7 @@ max-height: 380px;
 
 /*menubusca*/
 #menubusca{
+	float: left;
 	list-style: none;
 	height: 100%;
 	display: inline-table;
@@ -205,16 +207,15 @@ max-height: 380px;
 	display: table;
 }
 .video{
-	float: right;
 	display: inline-table;
 }
 #videoprincip{
-	margin-top: 70px;
+
 }
 #botoesVideo{
-	float:left;
+	float: right;
 	list-style: none;
-	margin-top: 400px; 
+	margin-top: 200px; 
 }
 #results{
 	float: right;
