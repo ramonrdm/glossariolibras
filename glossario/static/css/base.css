@@ -127,11 +127,37 @@ max-height: 380px;
 	text-decoration: none;
 }
 
-.historia{
-	font-family: helvetica;
-	margin-left: 20%;
-	margin-top: 100px;
+.titulo {
+	margin-top: 7%;
+	text-align: center;
 }
+
+.historia-titulo {
+	margin-top: 100px;
+	margin-left: 5%;
+}
+
+.historia {
+	font-family: helvetica;
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 50px;
+	text-align: justify;
+	white-space: pre-line;
+}
+
+.definicao-titulo {
+	margin-top: 100px;
+	margin-left: 5%;
+}
+
+.rodape {
+	text-align: center;
+	white-space: pre-line;
+	margin-bottom: 10%;
+}
+
+
 /* fim paginas contato,equip,hist */
 /* tamanho glossario selecionado */
 .selecionada{
