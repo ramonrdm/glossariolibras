@@ -128,28 +128,34 @@ max-height: 380px;
 }
 
 .titulo {
-	margin-top: 7%;
+	margin-top: 5%;
 	text-align: center;
 }
 
 .historia-titulo {
-	margin-top: 100px;
+	margin-top: 5%;
 	margin-left: 5%;
 }
 
 .historia {
-	font-family: helvetica;
 	margin-left: 10%;
 	margin-right: 10%;
-	margin-top: 50px;
 	text-align: justify;
 	white-space: pre-line;
 }
 
 .definicao-titulo {
-	margin-top: 100px;
+	margin-top: 5%;
 	margin-left: 5%;
 }
+
+.definicao {
+	margin-top: 5%;
+	margin-left: 10%;
+	margin-right: 10%;
+	text-align: justify;
+}
+
 
 .rodape {
 	text-align: center;
