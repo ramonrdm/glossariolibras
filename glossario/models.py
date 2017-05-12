@@ -47,6 +47,9 @@ class Usuario(AbstractUser):
 
 
 class Localizacao(models.Model):
+	class Meta:
+		verbose_name_plural='localizações'
+
 	nome = models.CharField('Nome', max_length=30)
 	bsw = models.TextField('BSW')
 	imagem = models.ImageField('Imagem', blank=True)
@@ -57,6 +60,9 @@ class Video(FileField):
 	videoMp4 = models.FileField()
 
 class Glossario(models.Model):
+	class Meta:
+		verbose_name='glossário'
+
 	nome = models.CharField('Nome do Glossário', max_length=100)
 	responsavel = models.ManyToManyField(Usuario, verbose_name = 'Responsável')
 	membros = models.ManyToManyField(Usuario, related_name='glossario_membros', verbose_name='Membros')
@@ -69,12 +75,25 @@ class Glossario(models.Model):
 		return self.nome
 
 class GrupoCM (models.Model):
+	class Meta:
+		verbose_name_plural='Grupos de configurações de mão'
+
 	imagem = models.ImageField(blank=True)
 	bsw = models.TextField('BSW')
 
+	def __str__(self):
+		return 'Grupo de configuração de mão'
+
 class CM (models.Model):
+	class Meta:
+		verbose_name_plural='configurações de mão'
+
 	imagem = models.ImageField(blank=True)
 	grupo = models.ForeignKey(GrupoCM, verbose_name = 'Grupo de Configuração de Mão')
+
+	def __str__(self):
+		return 'Configuração de mão'
+
 
 class Tema(models.Model):
 	nome = models.CharField('Nome', max_length=30)
@@ -87,6 +106,9 @@ class Tema(models.Model):
 		return self.nome
 
 class Sinal(models.Model):
+	class Meta:
+		verbose_name_plural='sinais'
+
 	glossario = models.ForeignKey(Glossario, verbose_name = 'Glossario')
 	traducaoP = models.CharField('Palavra', max_length=30)
 	traducaoI = models.CharField('Word', max_length=30)
