@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
+
 <title>{% block title %}Glossários de Libras - Glossário Letras Libras{% endblock %}</title>
+
 {% block Corpo %}
 {% load staticfiles %}
 
@@ -16,9 +18,14 @@
 	</div>
 {% for g in glossarios %}
     <div class = "linha1" >
-        <a href= /{{ g.link }} ><img width="160" height="160" id="centro" src ="{{ g.imagem.url }}" /></a>
+        {% if g.imagem %}
+            <a href= /{{ g.link }} ><img width="160" height="160" id="centro" src ="{{ g.imagem.url }}" /></a>
+        {% else %}
+            <a href= /{{ g.link }} ><i class="large material-icons">cloud_off</i></a>
+        {% endif %} 
         <p> {{ g.nome }} </p>
     </div>
 {% endfor %}
 </div>
+
 {% endblock %}

@@ -7,12 +7,18 @@
 {% block Corpo %}
 {% load staticfiles %}
 
+{% if glossario.imagem %}
+	<div class="selecionada">
+			<a href="{{ glossario.link }}"><img width="90px" height="120px" src="{{ glossario.imagem.url }}"/></a>
+		<div id="glossarioselec"><b>{{ glossario.nome }}</b></div>
+	</div>
+{% else %}
+	<div class="selecionada">
+			<a href="{{ glossario.link }}"><i class="large material-icons">cloud_off</i></a>
+		<div id="glossarioselec"><b>{{ glossario.nome }}</b></div>
+	</div>
+{% endif %}
 
-
-<div class="selecionada">
-	<a href="{{ glossario.link }}"><img width="90px" height="120px" src="{{ glossario.imagem.url }}"/></a>
-	<div id="glossarioselec"><b>{{ glossario.nome }}</b></div>
-</div>
 <div class="busca">
 <div id="menubusca">
 <ul>
@@ -21,16 +27,22 @@
 	<li><a href="/{{ glossario.link }}/e"><img src='{% static "img/buscaing.png" %}'/></a></li>
 </ul>
 </div>
-<div class="video">
-<video width="675" id="videoprincip" muted="muted" preload="metadata"> 
-	<source src="{{ glossario.videoGlossario.url }}">
-	Seu navegador não suporta vídeo html5, por favor atualize seu navegador.
-</video>
-<ul id="botoesVideo">
-	<li><img id="play" src='{% static "img/play.png" %}'/></li>
-	<li><img id="pause" src='{% static "img/pause.png" %}'/></li>
-	<li><img id="stop" src='{% static "img/stop.png" %}'/></li>
-</ul>
+
+{% if glossario.videoGlossario %}
+	<div class="video">
+		<video width="675" id="videoprincip" muted="muted" preload="metadata">
+			<source src="{{ glossario.videoGlossario.url }}">
+			Seu navegador não suporta vídeo html5, por favor atualize seu navegador.
+		</video>
+	<ul id="botoesVideo">
+		<li><img id="play" src='{% static "img/play.png" %}'/></li>
+		<li><img id="pause" src='{% static "img/pause.png" %}'/></li>
+		<li><img id="stop" src='{% static "img/stop.png" %}'/></li>
+	</ul>
+{% else %}
+	<i class="large material-icons">videocam_off</i>
+{% endif %}
+
 <script type="text/javascript" src='{% static "img/videoControl.js" %}'></script>
 </div>
 </div>
