@@ -23,49 +23,32 @@ def pesquisa(request, glossario=None, tipopesq=None):
 		glossario = Glossario.objects.get(link=glossario)
 	except Glossario.DoesNotExist:
 		glossario = None
+	sinais = None
 	if request.method == "POST":
-			
 		if tipopesq == "p":
 			formulario = PesquisaPortForm(request.POST)
 			if formulario.is_valid():
-				sinais = Sinal.objects.filter(traducaoP__contains=formulario.cleaned_data['traducaoP'])
-				resultado = len(sinais)
-				return render(
-					request,
-					"pesquisa.html", 
-					context_instance=RequestContext(
-					request, 
-					{ 'glossario':glossario, 'formulario':formulario, "sinais":sinais, 'resultado':resultado}
-					))
-				
+				sinais = Sinal.objects.filter(traducaoP__contains=formulario.cleaned_data['traducaoP'])		
 		elif tipopesq == "e":
 			formulario = PesquisaIngForm(request.POST)
 			if formulario.is_valid():
 				sinais = Sinal.objects.filter(traducaoI__contains=formulario.cleaned_data['traducaoI'])
-				resultado = len(sinais)
-				return render(
-					request,
-					"pesquisa.html", 
-					context_instance=RequestContext(
-					request, 
-					{ 'glossario':glossario, 'formulario':formulario, "sinais":sinais, 'resultado':resultado}
-					))
-
 		elif tipopesq == "s":
-				sinais = None
-		
-		else:
+			#pesquisa pelo parametros do Libras, local, grupoCM, CMs
 			sinais = None
 	else:
 		formulario = PesquisaPortForm()
-		sinais = None
+
+	if(sinais):
+		resultado = len(sinais)
+	else:
+		resultado = None
+		
 	return render(
 		request,
 		"pesquisa.html", 
-		context_instance=RequestContext(
-		request, 
-		{ 'glossario':glossario, 'formulario':formulario}
-		))
+		{ 'glossario':glossario, 'formulario':formulario, 'sinais': sinais, 'nsinais': resultado}
+		)
 
 def equipe(request):
 	usuario = Usuario.objects.all()
