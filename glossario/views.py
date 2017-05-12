@@ -23,7 +23,7 @@ def pesquisa(request, glossario=None, tipopesq=None):
 		glossario = Glossario.objects.get(link=glossario)
 	except Glossario.DoesNotExist:
 		glossario = None
-	sinais = None
+	sinais = formulario = None
 	if request.method == "POST":
 		if tipopesq == "p":
 			formulario = PesquisaPortForm(request.POST)
@@ -43,7 +43,7 @@ def pesquisa(request, glossario=None, tipopesq=None):
 		resultado = len(sinais)
 	else:
 		resultado = None
-		
+
 	return render(
 		request,
 		"pesquisa.html", 
