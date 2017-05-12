@@ -9,15 +9,12 @@
 
 {% if glossario.imagem %}
 	<div class="selecionada">
-			<a href="{{ glossario.link }}"><img width="90px" height="120px" src="{{ glossario.imagem.url }}"/></a>
-		<div id="glossarioselec"><b>{{ glossario.nome }}</b></div>
-	</div>
+		<a href="{{ glossario.link }}"><img width="90px" height="120px" src="{{ glossario.imagem.url }}"/></a>
 {% else %}
-	<div class="selecionada">
-			<a href="{{ glossario.link }}"><i class="large material-icons">cloud_off</i></a>
+		<a href="{{ glossario.link }}"><i class="large material-icons">cloud_off</i></a>
+{% endif %}
 		<div id="glossarioselec"><b>{{ glossario.nome }}</b></div>
 	</div>
-{% endif %}
 
 <div class="busca">
 <div id="menubusca">
