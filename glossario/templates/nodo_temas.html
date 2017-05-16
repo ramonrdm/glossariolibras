@@ -1,7 +1,11 @@
 <ul>
 {% for nodo in raiz.filhos %}
-	<li> 
-	<img src='{{nodo.imagem.url}}' />
+	<li>
+	{% if nodo.imagem %} 
+		<img src='{{nodo.imagem.url}}'/>
+	{% else %}
+		<i class="large material-icons">cloud_off</i>
+	{% endif %}
 	<br>{{nodo.nome}}
 	{% with "nodo_temas.html" as filename %}  
 	{% with nodo as raiz %}  
