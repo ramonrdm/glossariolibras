@@ -7,6 +7,17 @@
 {% block Corpo %}
 {% load staticfiles %}
 
+<!--
+<div class="busca">
+<div id="menubusca">
+<ul>
+	<li><a href="/{{ glossario.link }}/s"><img src='{% static "img/buscasinal.png" %}'/></a></li>
+	<li><a href="/{{ glossario.link }}/p"><img src='{% static "img/buscaport.png" %}'/></a></li>
+	<li><a href="/{{ glossario.link }}/e"><img src='{% static "img/buscaing.png" %}'/></a></li>
+</ul>
+</div>
+-->
+
 {% if glossario.imagem %}
 	<div class="selecionada">
 		<a href="{{ glossario.link }}"><img width="90px" height="120px" src="{{ glossario.imagem.url }}"/></a>
@@ -16,18 +27,9 @@
 		<div id="glossarioselec"><b>{{ glossario.nome }}</b></div>
 	</div>
 
-<div class="busca">
-<div id="menubusca">
-<ul>
-	<li><a href="/{{ glossario.link }}/s"><img src='{% static "img/buscasinal.png" %}'/></a></li>
-	<li><a href="/{{ glossario.link }}/p"><img src='{% static "img/buscaport.png" %}'/></a></li>
-	<li><a href="/{{ glossario.link }}/e"><img src='{% static "img/buscaing.png" %}'/></a></li>
-</ul>
-</div>
-
 {% if glossario.videoGlossario %}
-	<div class="video">
-		<video width="675" id="videoprincip" muted="muted" preload="metadata">
+	<div class="videoprincip center">
+		<video width="800" id="videoprincip" muted="muted" preload="metadata">
 			<source src="{{ glossario.videoGlossario.url }}">
 			Seu navegador não suporta vídeo html5, por favor atualize seu navegador.
 		</video>
@@ -39,6 +41,7 @@
 {% else %}
 	<i class="large material-icons">videocam_off</i>
 {% endif %}
+
 
 <script type="text/javascript" src='{% static "img/videoControl.js" %}'></script>
 </div>

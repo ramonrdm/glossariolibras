@@ -168,8 +168,8 @@ max-height: 380px;
 /* tamanho glossario selecionado */
 .selecionada{
 	float: left;
-	margin-left: 3.5%;
 }
+
 .glossarioselec ul{
 	padding: 10px 10px;
 	list-style: none;
@@ -218,11 +218,18 @@ max-height: 380px;
 #videoprincip{
 
 }
-#botoesVideo{
-	float: right;
-	list-style: none;
-	margin-top: 200px; 
+
+@media only screen and (max-width: 992px) {
+	#videoprincip{
+		width: 80%;
+	}
 }
+
+#botoesVideo{
+	float: left;
+	margin-top: 20%;
+}
+
 #results{
 	float: right;
 }
