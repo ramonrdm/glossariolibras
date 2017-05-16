@@ -15,16 +15,34 @@
 </head>
 
 <body>
-    <nav class="light-blue darken-4" role="navigation">
-    <div class="nav-wrapper container-fluid"><a id="logo-container" href="/" class="brand-logo right"><img src='{% static "img/marca_ufsc2.png" %}' id="logoufsc"><a href="http://ufsc.br"></a>
-    <div class="nav-wrapper container-fluid"><a id="logo-container" href="/" class="brand-logo"><img src='{% static "img/marca_glossario2.png" %}' id="logoGlossario"><a href="http://ufsc.br"></a>
-      <ul class="brand-logo center hide-on-med-and-down">
-        <li><a href="/enviarsinais">Envie sinais</a></li>
-        <li><a href="/contato">Contato</a></li>
-        <li><a href="/equipe">Equipe</a></li>
-        <li><a href="/historia">História</a></li>
-        <li><a href="/admin">Admin</a></li>
-      </ul>
+    <!-- ADICIONAR ESTRUTURA DE SELEÇÃO: SE O TEMPLATE FOR pesquisa.html RENDERIZAR NAVBAR EXTENDIDA COM SEARCH FORM
+    {% if pesquisa.html %}
+    {% else %}
+    {% endif %}
+    -->
+        <nav class="light-blue darken-4" role="navigation">
+        <div class="nav-wrapper container-fluid"><a id="logo-container" href="/" class="brand-logo right"><img src='{% static "img/marca_ufsc2.png" %}' id="logoufsc"><a href="http://ufsc.br"></a>
+        <div class="nav-wrapper container-fluid"><a id="logo-container" href="/" class="brand-logo"><img src='{% static "img/marca_glossario2.png" %}' id="logoGlossario"><a href="http://ufsc.br"></a>
+            <ul class="brand-logo center hide-on-med-and-down">
+                <li><a href="/enviarsinais">Envie sinais</a></li>
+                <li><a href="/contato">Contato</a></li>
+                <li><a href="/equipe">Equipe</a></li>
+                <li><a href="/historia">História</a></li>
+                <li><a href="/admin">Admin</a></li>
+            </ul>
+    <!-- ADICIONA SEARCH FIELD MATERIALIZE AO CLICAR NA NAVBAR SUPERIOR (EM TODAS AS PAGINAS)
+        <nav>
+            <div class="extended-nav-wrapper light-blue darken-4">
+                <form>
+                    <div class="input-field">
+                        <input id="search" type="search" required>
+                        <label class="label-icon" for="search"><i class="material-icons"></i></label>
+                        <i class="material-icons">close</i>
+                    </div>
+                </form>
+            </div>
+        </nav>
+    -->
 
     <ul id="nav-mobile" class="side-nav">
         <li onclick="$('.button-collapse').sideNav('show')">

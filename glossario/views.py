@@ -102,10 +102,8 @@ def sinal(request, sinal=None):
 	if sinal:
 		try:
 			sinal = Sinal.objects.get(id=sinal)
-			
 		except Sinal.DoesNotExist:
 			sinal = None
-			
 		return render(request, "sinal.html", dict(sinal=sinal))
 
 def temasjson(request):
