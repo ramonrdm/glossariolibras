@@ -3,6 +3,17 @@
 <title>{% block title %}Pesquisa {{ glossario.nome }} - Glossário Letras Libras {% endblock %}</title>
 {% block Corpo %}
 {% load staticfiles %}
+
+<nav class="nav-extended light-blue" role="navigation">
+	<form>
+		<div class="input-field">
+			<input id="search" type="search" required>
+			<label class="label-icon" for="search"><i class="material-icons">search</i></label>
+			<i class="material-icons">close</i>
+		</div>
+	</form>
+</nav>
+
 <div class="selecionada">
 	{% if glossario.imagem %}
 		<a href="media/"{{ glossario.link }}><img width="90px" height="120px" src="{{ glossario.imagem.url }}"/></a>
