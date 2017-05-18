@@ -4,7 +4,17 @@
 {% block Corpo %}
 {% load staticfiles %}
 
-<nav class="nav-extended light-blue" role="navigation">
+<nav class="nav-extended light-blue darken-3 hide-on-med-and-down" role="navigation">
+		<ul class="tabs tabs-transparent">
+			<ul>
+				<li class="tab" id="tab-buscaSinal"><a target="_self" href="/letras-libras/s">Buscar pelo sinal</a></li>
+				<li class="tab" id="tab-buscaPortugues"><a target="_self" href="/letras-libras/p">Buscar pelo português</a></li>
+				<li class="tab" id="tab-buscaIngles"><a target="_self" href="/letras-libras/e">Buscar pelo inglês</a></li>
+			</ul>
+		</ul>
+</nav>
+
+<nav class="nav-extended light-blue darken" role="navigation">
 	<form>
 		<div class="input-field">
 			<input id="search" type="search" required>

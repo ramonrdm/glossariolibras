@@ -7,24 +7,12 @@
 {% block Corpo %}
 {% load staticfiles %}
 
-<!--
-<div class="busca">
-<div id="menubusca">
-<ul>
-	<li><a href="/{{ glossario.link }}/s"><img src='{% static "img/buscasinal.png" %}'/></a></li>
-	<li><a href="/{{ glossario.link }}/p"><img src='{% static "img/buscaport.png" %}'/></a></li>
-	<li><a href="/{{ glossario.link }}/e"><img src='{% static "img/buscaing.png" %}'/></a></li>
-</ul>
-</div>
--->
-
-<nav class="nav-extended light-blue darken-4" role="navigation">
+<nav class="nav-extended light-blue darken-4 hide-on-med-and-down" role="navigation">
 		<ul class="tabs tabs-transparent">
-			<ul class="brand-logo center hide-on-med-and-down">
-				<li class="tab"><a href="#test1">Test 1</a></li>
-				<li class="tab"><a href="#test2">Test 2</a></li>
-				<li class="tab"><a href="#test3">Test 3</a></li>
-				<li class="tab"><a href="#test4">Test 4</a></li>
+			<ul>
+				<li class="tab" id="tab-buscaSinal"><a target="_self" href="/letras-libras/s">Buscar pelo sinal</a></li>
+				<li class="tab" id="tab-buscaPortugues"><a target="_self" href="/letras-libras/p">Buscar pelo português</a></li>
+				<li class="tab" id="tab-buscaIngles"><a target="_self" href="/letras-libras/e">Buscar pelo inglês</a></li>
 			</ul>
 		</ul>
 </nav>
@@ -52,7 +40,6 @@
 {% else %}
 	<i class="large material-icons">videocam_off</i>
 {% endif %}
-
 
 <script type="text/javascript" src='{% static "img/videoControl.js" %}'></script>
 </div>
