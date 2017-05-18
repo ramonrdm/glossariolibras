@@ -6,82 +6,49 @@
     <META NAME="description" CONTENT="Glossario libras, ufsc, dicionario, letras libras, glossario cinema"/>
     <META NAME="keywords" CONTENT="glossario, libras, ufsc, glossário, glossários, letras libras, dicionario"/>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" /> 
-    <link rel="stylesheet" type="text/css" href='{% static "css/base.css" %}'/>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href='{% static "css/materialize.min.css" %}'  media="screen,projection"/>
+    <link rel="stylesheet" type="text/css" href='{% static "css/base.css" %}'/>
     <link href='{% static "css/style.css" %}' type="text/css" rel="stylesheet" media="screen,projection"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>{% block title %}{% endblock %}</title>
 </head>
 
 <body>
-<<<<<<< HEAD
 <div class="navbar-fixed">
     <nav class="light-blue darken-4" role="navigation">
-    <div class="nav-wrapper container-fluid"><a id="logo-container" href="/" class="brand-logo right"><img src='{% static "img/marca_ufsc2.png" %}' id="logoufsc"><a href="http://ufsc.br"></a>
-    <div class="nav-wrapper container-fluid"><a id="logo-container" href="/" class="brand-logo"><img src='{% static "img/marca_glossario2.png" %}' id="logoGlossario"><a href="http://ufsc.br"></a>
-      <ul class="brand-logo center hide-on-med-and-down">
-        <li><a href="/enviarsinais">Envie sinais</a></li>
-        <li><a href="/contato">Contato</a></li>
-        <li><a href="/equipe">Equipe</a></li>
-        <li><a href="/historia">História</a></li>
-        <li><a href="/admin">Admin</a></li>
-      </ul>
-     
-=======
-    <!-- ADICIONAR ESTRUTURA DE SELEÇÃO: SE O TEMPLATE FOR pesquisa.html RENDERIZAR NAVBAR EXTENDIDA COM SEARCH FORM
-    {% if pesquisa.html %}
-    {% else %}
-    {% endif %}
-    -->
-        <nav class="light-blue darken-4" role="navigation">
         <div class="nav-wrapper container-fluid"><a id="logo-container" href="/" class="brand-logo right"><img src='{% static "img/marca_ufsc2.png" %}' id="logoufsc"><a href="http://ufsc.br"></a>
         <div class="nav-wrapper container-fluid"><a id="logo-container" href="/" class="brand-logo"><img src='{% static "img/marca_glossario2.png" %}' id="logoGlossario"><a href="http://ufsc.br"></a>
-            <ul class="brand-logo center hide-on-med-and-down">
-                <li><a href="/enviarsinais">Envie sinais</a></li>
-                <li><a href="/contato">Contato</a></li>
-                <li><a href="/equipe">Equipe</a></li>
-                <li><a href="/historia">História</a></li>
-                <li><a href="/admin">Admin</a></li>
-            </ul>
-    <!-- ADICIONA SEARCH FIELD MATERIALIZE AO CLICAR NA NAVBAR SUPERIOR (EM TODAS AS PAGINAS)
-        <nav>
-            <div class="extended-nav-wrapper light-blue darken-4">
-                <form>
-                    <div class="input-field">
-                        <input id="search" type="search" required>
-                        <label class="label-icon" for="search"><i class="material-icons"></i></label>
-                        <i class="material-icons">close</i>
-                    </div>
-                </form>
-            </div>
-        </nav>
-    -->
-
->>>>>>> 0be7f969eb908400a2e3b3fe29b32a69a28a7618
-    <ul id="nav-mobile" class="side-nav">
-        <li onclick="$('.button-collapse').sideNav('show')">
-            <a id="sidenav-letra" href="/">Início</a>
-            <a id="sidenav-letra" href="/enviarsinais">Envie sinais</a>
-            <a id="sidenav-letra" href="/contato">Contato</a>
-            <a id="sidenav-letra" href="/equipe">Equipe</a>
-            <a id="sidenav-letra" href="/historia">História</a>
-            <a id="sidenav-letra" href="/admin">Admin</a>
-            <li><div class="divider"></div></li>
-            <li><a class="subheader">Glossários</a></li>
-            <li><a class="dropdown-button" href="#!" data-activates="dropdown1" id="sidenav-letra">Letras Libras<i class="material-icons right">arrow_drop_down</i></a></li>
+        <ul class="brand-logo center hide-on-med-and-down">
+            <li><a href="/enviarsinais">Envie sinais</a></li>
+            <li><a href="/contato">Contato</a></li>
+            <li><a href="/equipe">Equipe</a></li>
+            <li><a href="/historia">História</a></li>
+            <li><a href="/admin">Admin</a></li>
+        </ul>
+        <ul id="nav-mobile" class="side-nav">
+            <li onclick="$('.button-collapse').sideNav('show')">
+                <a id="sidenav-letra" href="/">Início</a>
+                <a id="sidenav-letra" href="/enviarsinais">Envie sinais</a>
+                <a id="sidenav-letra" href="/contato">Contato</a>
+                <a id="sidenav-letra" href="/equipe">Equipe</a>
+                <a id="sidenav-letra" href="/historia">História</a>
+                <a id="sidenav-letra" href="/admin">Admin</a>
+                <li><div class="divider"></div></li>
+                <li><a class="subheader">Glossários</a></li>
+                <li><a class="dropdown-button" href="#!" data-activates="dropdown1" id="sidenav-letra">Letras Libras<i class="material-icons right">arrow_drop_down</i></a></li>
                 <ul id='dropdown1' class='dropdown-content'>
                     <li><a href="/letras-libras/s" id="sidenav-letra">Buscar pelo sinal</a></li>
                     <li><a href="/letras-libras/p" id="sidenav-letra">Buscar pelo português</a></li>
                     <li><a href="/letras-libras/e" id="sidenav-letra">Buscar pelo inglês</a></li>
                 </ul>
             </li>
-    </ul>
-    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-    </div>
+        </ul>
+        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+        </div>
     </nav>
-    </div>
-    
+</div>
 
     <div id="baixo">
         <img id="borda" src='{% static "img/borda.png" %}'>
