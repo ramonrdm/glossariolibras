@@ -1,0 +1,63 @@
+[
+  {
+    "model": "glossario.Localizacao",
+    "pk": 1,
+    "fields": {
+      "nome": "UFSC",
+      "bsw": "1",
+      "imagem": "/media/3-pontos.png",
+      "areaClicavel": "teste"
+    }
+  },
+  {
+    "model": "glossario.Glossario",
+    "pk": 3,
+    "fields": {
+      "nome": "Glossario1",
+      "responsavel": "1",
+      "membros": "1",
+      "imagem": "/media/3-pontos.png",
+      "dataCriacao": "2017-01-01",
+      "videoGlossario": "/media/janine.mp4"
+    }
+  },
+  {
+    "model": "glossario.GrupoCM",
+    "pk": 4,
+    "fields": {
+      "imagem": "/media/3-pontos.png",
+      "bsw": "2"
+    }
+  },
+  {
+    "model": "glossario.Tema",
+    "pk": 5,
+    "fields": {
+      "nome": "temaTeste",
+      "descricao": "descricaoTeste",
+      "video": "/media/janine.mp4",
+      "imagem": "/media/3-pontos.png"
+    }
+  },
+  {
+    "model": "glossario.Sinal",
+    "pk": 6,
+    "fields": {
+      "glossario": "Glossario1",
+      "traducaoP": "Portugues",
+      "traducaoI": "Ingles",
+      "bsw": "3",
+      "descricao": "descricaoTeste",
+      "grupoCMe": "Grupo de configuração de mão",
+      "cmE": "Configuração de mão",
+      "grupoCMd": "Grupo de configuração de mão",
+      "cmD": "Configuração de mão",
+      "localizacao": "UFSC",
+      "sinalLibras": "/media/janine.mp4",
+      "descLibras": "/media/janine.mp4",
+      "exemploLibras": "/media/janine.mp4",
+      "varicLibras": "/media/janine.mp4",
+      "tema": "temaTeste"
+    }
+  }
+]
