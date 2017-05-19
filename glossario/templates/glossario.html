@@ -6,7 +6,7 @@
 
 {% block Corpo %}
 {% load staticfiles %}
-
+<!--
 <nav class="nav-extended light-blue darken-4 hide-on-med-and-down" role="navigation">
 		<ul class="tabs tabs-transparent">
 			<ul>
@@ -17,6 +17,10 @@
 			</ul>
 		</ul>
 </nav>
+-->
+
+<div class="col s12 m4 l3">
+</div>
 
 {% if glossario.imagem %}
 	<div class="selecionada">
@@ -28,7 +32,7 @@
 	</div>
 
 {% if glossario.videoGlossario %}
-	<div class="videoprincip center">
+	<div class="center">
 		<video width="800" id="videoprincip" muted="muted" preload="metadata">
 			<source src="{{ glossario.videoGlossario.url }}">
 			Seu navegador não suporta vídeo html5, por favor atualize seu navegador.

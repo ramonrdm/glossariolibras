@@ -217,9 +217,11 @@ max-height: 380px;
 	height: 580px;
 	display: table;
 }
+
 .video{
 	display: inline-table;
 }
+
 #videoprincip{
 	margin-top: 10px;
 }
@@ -229,6 +231,7 @@ max-height: 380px;
 		width: 80%;
 	}
 }
+
 
 #botoesVideo{
 	float: left;
