@@ -19,11 +19,12 @@
 		{% endif %}
 				<div id="glossarioselec"><b>{{ glossario.nome }}</b></div>
 			</div>
+
 		<div class="center">
-			<a class="waves-effect waves-light btn light-blue darken-4" id="btn-sidenav-desktop">{{ glossario.nome }}</a>
-			<a class="waves-effect waves-light btn light-blue darken-4" id="btn-sidenav-desktop">Buscar pelo sinal</a>
-			<a class="waves-effect waves-light btn light-blue darken-4" id="btn-sidenav-desktop">Buscar pelo português</a>
-			<a class="waves-effect waves-light btn light-blue darken-4" id="btn-sidenav-desktop">Buscar pelo inglês</a>
+				<a class="waves-effect waves-light btn light-blue darken-4" id="btn-sidenav-desktop">{{ glossario.nome }}</a>
+				<a class="waves-effect waves-light btn light-blue darken-4" id="btn-sidenav-desktop">Buscar pelo sinal</a>
+				<a class="waves-effect waves-light btn light-blue darken-4" id="btn-sidenav-desktop">Buscar pelo português</a>
+				<a class="waves-effect waves-light btn light-blue darken-4" id="btn-sidenav-desktop">Buscar pelo inglês</a>
 		</div>
 	</div>
 
@@ -35,9 +36,9 @@
 					Seu navegador não suporta vídeo html5, por favor atualize seu navegador.
 				</video>
 			<ul id="botoesVideo">
-				<li><img id="play" src='{% static "img/play.png" %}'/></li>
-				<li><img id="pause" src='{% static "img/pause.png" %}'/></li>
-				<li><img id="stop" src='{% static "img/stop.png" %}'/></li>
+				<li><i class="medium material-icons" id="play">play_arrow</i></li>
+				<li><i class="medium material-icons" id="pause">pause</i></li>
+				<li><i class="medium material-icons" id="stop">stop</i></li>
 			</ul>
 		{% else %}
 			<i class="large material-icons">videocam_off</i>

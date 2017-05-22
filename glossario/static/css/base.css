@@ -90,7 +90,7 @@ max-height: 380px;
 /* Side navbar desktop */
 
 #btn-sidenav-desktop{
-	width: 90%;
+	width: 100%;
 	margin-top: 5px;
 }
 
@@ -224,7 +224,7 @@ max-height: 380px;
 }
 
 .video{
-	display: inline-table;
+	/*display: inline-table;*/
 }
 
 #videoprincip{
