@@ -87,13 +87,14 @@ max-height: 380px;
 }
 /* Fim Menu Superior */
 
-/* Side navbar */
+/* Side navbar desktop */
 
-#sidenav-letra {
-	color: darkblue;
+#btn-sidenav-desktop{
+	width: 90%;
+	margin-top: 5px;
 }
 
-/* Fim da side navbar */
+/* Fim da side navbar desktop */
 
 /* classe horizontal */
 .horiz{
@@ -172,8 +173,12 @@ max-height: 380px;
 /* fim paginas contato,equip,hist */
 /* tamanho glossario selecionado */
 .selecionada{
-	float: left;
+
 }
+
+.col.s2.grey.lighten-2, .col.s10 {
+	min-height: 100vh;
+} 
 
 .glossarioselec ul{
 	padding: 10px 10px;

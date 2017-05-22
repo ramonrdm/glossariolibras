@@ -28,19 +28,19 @@
         </ul>
         <ul id="nav-mobile" class="side-nav">
             <li onclick="$('.button-collapse').sideNav('show')">
-                <a id="sidenav-letra" href="/">Início</a>
-                <a id="sidenav-letra" href="/enviarsinais">Envie sinais</a>
-                <a id="sidenav-letra" href="/contato">Contato</a>
-                <a id="sidenav-letra" href="/equipe">Equipe</a>
-                <a id="sidenav-letra" href="/historia">História</a>
-                <a id="sidenav-letra" href="/admin">Admin</a>
+                <a class="blue-text text-darken-4" href="/">Início</a>
+                <a class="blue-text text-darken-4" href="/enviarsinais">Envie sinais</a>
+                <a class="blue-text text-darken-4" href="/contato">Contato</a>
+                <a class="blue-text text-darken-4" href="/equipe">Equipe</a>
+                <a class="blue-text text-darken-4" href="/historia">História</a>
+                <a class="blue-text text-darken-4" href="/admin">Admin</a>
                 <li><div class="divider"></div></li>
                 <li><a class="subheader">Glossários</a></li>
-                <li><a class="dropdown-button" href="#!" data-activates="dropdown1" id="sidenav-letra">Letras Libras<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="blue-text text-darken-4 dropdown-button" href="#!" data-activates="dropdown1">Letras Libras<i class="material-icons right">arrow_drop_down</i></a></li>
                 <ul id='dropdown1' class='dropdown-content'>
-                    <li><a href="/letras-libras/s" id="sidenav-letra">Buscar pelo sinal</a></li>
-                    <li><a href="/letras-libras/p" id="sidenav-letra">Buscar pelo português</a></li>
-                    <li><a href="/letras-libras/e" id="sidenav-letra">Buscar pelo inglês</a></li>
+                    <li><a href="/letras-libras/s" class="blue-text text-darken-4">Buscar pelo sinal</a></li>
+                    <li><a href="/letras-libras/p" class="blue-text text-darken-4">Buscar pelo português</a></li>
+                    <li><a href="/letras-libras/e" class="blue-text text-darken-4">Buscar pelo inglês</a></li>
                 </ul>
             </li>
         </ul>
@@ -62,17 +62,6 @@
     <script type="text/javascript"> //Verificar necessidade desta tag script e o que tem dentro
         $(".button-collapse").sideNav();
         $('.button-collapse').sideNav('hide');
-    </script>
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>-->
-    <script>
-        $(document).ready(function(){
-            $('ul.tabs').tabs();
-            $('ul.tabs').tabs('select_tab', 'tab-glossario');
-            $('ul.tabs').tabs('select_tab', 'tab-buscaPortugues');
-            $('ul.tabs').tabs('select_tab', 'tab-buscaIngles');
-            $('ul.tabs').tabs('select_tab', 'tab-buscaSinal');
-        });
     </script>
 </body>
 </html>

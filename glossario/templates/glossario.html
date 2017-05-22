@@ -6,6 +6,53 @@
 
 {% block Corpo %}
 {% load staticfiles %}
+
+<div class="row">
+
+	<div class="col s2 grey lighten-2">
+	<!-- Grey navigation panel -->
+		{% if glossario.imagem %}
+			<div class="center selecionada">
+				<a href="{{ glossario.link }}"><img width="130" height="130" src="{{ glossario.imagem.url }}"/></a>
+		{% else %}
+				<a href="{{ glossario.link }}"><i class="large material-icons">cloud_off</i></a>
+		{% endif %}
+				<div id="glossarioselec"><b>{{ glossario.nome }}</b></div>
+			</div>
+		<div class="center">
+			<a class="waves-effect waves-light btn light-blue darken-4" id="btn-sidenav-desktop">{{ glossario.nome }}</a>
+			<a class="waves-effect waves-light btn light-blue darken-4" id="btn-sidenav-desktop">Buscar pelo sinal</a>
+			<a class="waves-effect waves-light btn light-blue darken-4" id="btn-sidenav-desktop">Buscar pelo português</a>
+			<a class="waves-effect waves-light btn light-blue darken-4" id="btn-sidenav-desktop">Buscar pelo inglês</a>
+		</div>
+	</div>
+
+	<div class="col s10">
+	<!-- Teal page content  -->
+		{% if glossario.videoGlossario %}
+			<div class="center">
+				<video width="800" id="videoprincip" muted="muted" preload="metadata"><source src="{{ glossario.videoGlossario.url }}">
+					Seu navegador não suporta vídeo html5, por favor atualize seu navegador.
+				</video>
+			<ul id="botoesVideo">
+				<li><img id="play" src='{% static "img/play.png" %}'/></li>
+				<li><img id="pause" src='{% static "img/pause.png" %}'/></li>
+				<li><img id="stop" src='{% static "img/stop.png" %}'/></li>
+			</ul>
+		{% else %}
+			<i class="large material-icons">videocam_off</i>
+		{% endif %}
+
+		<script type="text/javascript" src='{% static "img/videoControl.js" %}'></script>
+			</div>
+	</div>
+
+		{% endblock %}
+
+	</div>
+
+</div>
+
 <!--
 <nav class="nav-extended light-blue darken-4 hide-on-med-and-down" role="navigation">
 		<ul class="tabs tabs-transparent">
@@ -18,36 +65,3 @@
 		</ul>
 </nav>
 -->
-
-<div class="col s12 m4 l3">
-</div>
-
-{% if glossario.imagem %}
-	<div class="selecionada">
-		<a href="{{ glossario.link }}"><img width="90px" height="120px" src="{{ glossario.imagem.url }}"/></a>
-{% else %}
-		<a href="{{ glossario.link }}"><i class="large material-icons">cloud_off</i></a>
-{% endif %}
-		<div id="glossarioselec"><b>{{ glossario.nome }}</b></div>
-	</div>
-
-{% if glossario.videoGlossario %}
-	<div class="center">
-		<video width="800" id="videoprincip" muted="muted" preload="metadata">
-			<source src="{{ glossario.videoGlossario.url }}">
-			Seu navegador não suporta vídeo html5, por favor atualize seu navegador.
-		</video>
-	<ul id="botoesVideo">
-		<li><img id="play" src='{% static "img/play.png" %}'/></li>
-		<li><img id="pause" src='{% static "img/pause.png" %}'/></li>
-		<li><img id="stop" src='{% static "img/stop.png" %}'/></li>
-	</ul>
-{% else %}
-	<i class="large material-icons">videocam_off</i>
-{% endif %}
-
-<script type="text/javascript" src='{% static "img/videoControl.js" %}'></script>
-</div>
-</div>
-
-{% endblock %}
