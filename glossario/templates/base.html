@@ -36,12 +36,14 @@
                 <a class="blue-text text-darken-4" href="/admin">Admin</a>
                 <li><div class="divider"></div></li>
                 <li><a class="subheader">Glossários</a></li>
-                <li><a class="blue-text text-darken-4 dropdown-button" href="#!" data-activates="dropdown1">Letras Libras<i class="material-icons right">arrow_drop_down</i></a></li>
-                <ul id='dropdown1' class='dropdown-content'>
-                    <li><a href="/letras-libras/s" class="blue-text text-darken-4">Buscar pelo sinal</a></li>
-                    <li><a href="/letras-libras/p" class="blue-text text-darken-4">Buscar pelo português</a></li>
-                    <li><a href="/letras-libras/e" class="blue-text text-darken-4">Buscar pelo inglês</a></li>
-                </ul>
+                {% for g in glossarios %}
+                    <li><a class="blue-text text-darken-4 dropdown-button" href="#!" data-activates="dropdown1">{{ glossario.nome }}<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <ul id='dropdown1' class='dropdown-content'>
+                        <li><a href="/{{ glossario.link }}/s" class="blue-text text-darken-4">Buscar pelo sinal</a></li>
+                        <li><a href="/{{ glossario.link }}/p" class="blue-text text-darken-4">Buscar pelo português</a></li>
+                        <li><a href="/{{ glossario.link }}/e" class="blue-text text-darken-4">Buscar pelo inglês</a></li>
+                    </ul>
+                {% endfor %}
             </li>
         </ul>
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>

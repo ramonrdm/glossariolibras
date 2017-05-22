@@ -176,9 +176,11 @@ max-height: 380px;
 
 }
 
+/*
 .col.s2.grey.lighten-2, .col.s10 {
 	min-height: 100vh;
-} 
+}
+*/
 
 /*.glossarioselec ul{
 	padding: 10px 10px;
@@ -237,7 +239,6 @@ max-height: 380px;
 		width: 80%;
 	}
 }
-
 
 #botoesVideo{
 	margin-top: 25%;
