@@ -89,11 +89,6 @@ max-height: 380px;
 
 /* Side navbar desktop */
 
-#btn-sidenav-desktop{
-	width: 100%;
-	margin-top: 5px;
-}
-
 /* Fim da side navbar desktop */
 
 /* classe horizontal */
@@ -173,14 +168,18 @@ max-height: 380px;
 /* fim paginas contato,equip,hist */
 /* tamanho glossario selecionado */
 .selecionada{
-
+	margin-top: 25%;
 }
 
-/*
-.col.s2.grey.lighten-2, .col.s10 {
+#glossario-search {
+	margin-left: 20%;
+}
+
+
+.row{
 	min-height: 100vh;
 }
-*/
+
 
 /*.glossarioselec ul{
 	padding: 10px 10px;

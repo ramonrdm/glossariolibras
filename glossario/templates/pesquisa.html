@@ -4,48 +4,67 @@
 {% block Corpo %}
 {% load staticfiles %}
 
-<div class="col s2 grey lighten-2">
-	<div class="grey selecionada">
-		{% if glossario.imagem %}
-			<a href="media/"{{ glossario.link }}><img width="90px" height="120px" src="{{ glossario.imagem.url }}"/></a>
-		{% else %}
-			<i class="large material-icons">cloud_off</i>
-		{% endif %}
-		<div class="glossarioselec"><b>{{ glossario.nome }}</b></div>
-	</div>
-</div>
+<ul class="side-nav fixed grey lighten-4">
+	{% if glossario.imagem %}
+		<div class="center selecionada">
+			<a href="{{ glossario.link }}"><img width="130" height="130" src="{{ glossario.imagem.url }}"/></a>
+	{% else %}
+			<a href="{{ glossario.link }}"><i class="large material-icons">cloud_off</i></a>
+	{% endif %}
+			<div id="glossarioselec"><b>{{ glossario.nome }}</b></div>
+		</div>
+	<li><a href="/{{ glossario.link }}" class="waves-effect waves-light">{{ glossario.nome }}</a></li>
+	<li><a href="/{{ glossario.link }}/s" class="waves-effect waves-light">Buscar pelo sinal</a></li>
+	<li><a href="/{{ glossario.link }}/p" class="waves-effect waves-light">Buscar pelo português</a></li>
+	<li><a href="/{{ glossario.link }}/e" class="waves-effect waves-light">Buscar pelo inglês</a></li>
+</ul>
 
-<div class="col s10 blue">
-	<div class="formulario">
-		{% if resultado %}
-			<b>Exibindo :</b> {{ resultado }} resultados.	
-		{% endif %}
-		<form action="" method="post">
-			{% csrf_token %}
-			{{ formulario.as_p }}<button type="submit">Pesquisar</button>
-		</form>
-		<div id="results">  
-			{% for s in sinais %}
+<nav>
+	<div class="nav-wrapper light-green lighten-4">
+		<div class="formulario">
+			{% if resultado %}
+				<b>Exibindo :</b> {{ resultado }} resultados.	
+			{% endif %}
+			<form action="" method="post" id="glossario-search">
+				{% csrf_token %}
+				<div class="input-field">
+					<input id="search" type="search" required>
+					<label class="label-icon" for="search"><i class="material-icons">search</i></label>
+					<i class="material-icons">close</i>
+				</div>
+			</form>
+			<div id="results">  
+				{% for s in sinais %}
 				<div class="linha1">
 					<a href="/sinal/{{ s.id }}"> {{ s.traducaoP }} </a>
 				</div>
-			{% endfor %}
+				{% endfor %}
+			</div>
 		</div>
 	</div>
+</nav>
+
+<!--
+<div class="formulario">
+	{% if resultado %}
+		<b>Exibindo :</b> {{ resultado }} resultados.	
+	{% endif %}
+	<form action="" method="post">
+		{% csrf_token %}
+		{{ formulario.as_p }}<button type="submit">Pesquisar</button>
+	</form>
+	<div id="results">  
+		{% for s in sinais %}
+			<div class="linha1">
+				<a href="/sinal/{{ s.id }}"> {{ s.traducaoP }} </a>
+			</div>
+		{% endfor %}
+	</div>
 </div>
+-->
 {% endblock %}
 
 <!--
-<nav class="nav-extended light-blue darken-3 hide-on-med-and-down" role="navigation">
-		<ul class="tabs tabs-transparent">
-			<ul>
-				<li class="tab" id="tab-glossario"><a target="_self" href="/teste1">Glossário</a></li>
-				<li class="tab" id="tab-buscaSinal"><a target="_self" href="/teste1/s">Buscar pelo sinal</a></li>
-				<li class="tab" id="tab-buscaPortugues"><a target="_self" href="/teste1/p">Buscar pelo português</a></li>
-				<li class="tab" id="tab-buscaIngles"><a target="_self" href="/teste1/e">Buscar pelo inglês</a></li>
-			</ul>
-		</ul>
-</nav>
 
 <nav class="nav-extended light-blue darken" role="navigation">
 	<form id="materialize-form">

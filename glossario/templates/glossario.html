@@ -10,20 +10,20 @@
 <!--<div class="row">
 
 	<div class="col s2">-->
-		<ul class="side-nav fixed grey lighten-2">
+		<ul class="side-nav fixed grey lighten-4">
 			{% if glossario.imagem %}
 				<div class="center selecionada">
-					<a href="{{ glossario.link }}"><img width="150" height="180" src="{{ glossario.imagem.url }}"/></a>
+					<a href="{{ glossario.link }}"><img width="130" height="130" src="{{ glossario.imagem.url }}"/></a>
 			{% else %}
 					<a href="{{ glossario.link }}"><i class="large material-icons">cloud_off</i></a>
 			{% endif %}
 					<div id="glossarioselec"><b>{{ glossario.nome }}</b></div>
 				</div>
 
-			<li><a href="{{ glossario.link }}" class="waves-effect waves-light" id="btn-sidenav-desktop">{{ glossario.nome }}</a></li>
-			<li><a href="{{ glossario.link }}/s" class="waves-effect waves-light" id="btn-sidenav-desktop">Buscar pelo sinal</a></li>
-			<li><a href="{{ glossario.link }}/p" class="waves-effect waves-light" id="btn-sidenav-desktop">Buscar pelo português</a></li>
-			<li><a href="{{ glossario.link }}/e" class="waves-effect waves-light" id="btn-sidenav-desktop">Buscar pelo inglês</a></li>
+			<li><a href="/{{ glossario.link }}" class="waves-effect waves-light">{{ glossario.nome }}</a></li>
+			<li><a href="/{{ glossario.link }}/s" class="waves-effect waves-light">Buscar pelo sinal</a></li>
+			<li><a href="/{{ glossario.link }}/p" class="waves-effect waves-light">Buscar pelo português</a></li>
+			<li><a href="/{{ glossario.link }}/e" class="waves-effect waves-light">Buscar pelo inglês</a></li>
 		</ul>
 	<!--</div>-->
 
