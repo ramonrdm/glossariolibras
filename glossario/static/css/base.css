@@ -180,7 +180,7 @@ max-height: 380px;
 	min-height: 100vh;
 } 
 
-.glossarioselec ul{
+/*.glossarioselec ul{
 	padding: 10px 10px;
 	list-style: none;
 	margin:10px 10px 10px 10px;
@@ -189,6 +189,7 @@ max-height: 380px;
 .glossarioselec ul li{
 	display: table-cell;
 }
+*/
 
 /*menubusca*/
 #menubusca{
@@ -239,8 +240,7 @@ max-height: 380px;
 
 
 #botoesVideo{
-	float: left;
-	margin-top: 20%;
+	margin-top: 25%;
 }
 
 #results{

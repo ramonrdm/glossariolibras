@@ -4,6 +4,38 @@
 {% block Corpo %}
 {% load staticfiles %}
 
+<div class="col s2 grey lighten-2">
+	<div class="grey selecionada">
+		{% if glossario.imagem %}
+			<a href="media/"{{ glossario.link }}><img width="90px" height="120px" src="{{ glossario.imagem.url }}"/></a>
+		{% else %}
+			<i class="large material-icons">cloud_off</i>
+		{% endif %}
+		<div class="glossarioselec"><b>{{ glossario.nome }}</b></div>
+	</div>
+</div>
+
+<div class="col s10 blue">
+	<div class="formulario">
+		{% if resultado %}
+			<b>Exibindo :</b> {{ resultado }} resultados.	
+		{% endif %}
+		<form action="" method="post">
+			{% csrf_token %}
+			{{ formulario.as_p }}<button type="submit">Pesquisar</button>
+		</form>
+		<div id="results">  
+			{% for s in sinais %}
+				<div class="linha1">
+					<a href="/sinal/{{ s.id }}"> {{ s.traducaoP }} </a>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+<!--
 <nav class="nav-extended light-blue darken-3 hide-on-med-and-down" role="navigation">
 		<ul class="tabs tabs-transparent">
 			<ul>
@@ -24,29 +56,4 @@
 		</div>
 	</form>
 </nav>
-
-<div class="selecionada">
-	{% if glossario.imagem %}
-		<a href="media/"{{ glossario.link }}><img width="90px" height="120px" src="{{ glossario.imagem.url }}"/></a>
-	{% else %}
-		<i class="large material-icons">cloud_off</i>
-	{% endif %}
-	<div class="glossarioselec"><b>{{ glossario.nome }}</b></div>
-</div>
-<div class="formulario">
-{% if resultado %}
-<b>Exibindo :</b> {{ resultado }} resultados.	
-{% endif %}
-	<form action="" method="post">
-		{% csrf_token %}
-		{{ formulario.as_p }}<button type="submit">Pesquisar</button>
-	</form>
-	<div id="results">  
-	{% for s in sinais %}
-	<div class="linha1">
-		<a href="/sinal/{{ s.id }}"> {{ s.traducaoP }}
-	</div>
-	{% endfor %}
-	</div>
-</div>
-{% endblock %}
+-->
