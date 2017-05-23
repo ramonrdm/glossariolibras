@@ -19,60 +19,42 @@
 	<li><a href="/{{ glossario.link }}/e" class="waves-effect waves-light">Buscar pelo inglês</a></li>
 </ul>
 
-<nav>
-	<div class="nav-wrapper light-green lighten-4">
-		<div class="formulario">
-			{% if resultado %}
-				<b>Exibindo :</b> {{ resultado }} resultados.	
-			{% endif %}
-			<form action="" method="post" id="glossario-search">
-				{% csrf_token %}
-				<div class="input-field">
-					<input id="search" type="search" required>
-					<label class="label-icon" for="search"><i class="material-icons">search</i></label>
-					<i class="material-icons">close</i>
-				</div>
-			</form>
-			<div id="results">  
-				{% for s in sinais %}
-				<div class="linha1">
-					<a href="/sinal/{{ s.id }}"> {{ s.traducaoP }} </a>
-				</div>
-				{% endfor %}
-			</div>
-		</div>
-	</div>
-</nav>
-
-<!--
 <div class="formulario">
-	{% if resultado %}
-		<b>Exibindo :</b> {{ resultado }} resultados.	
+
+	{% if tipopesq == "p" %}
+		<p class="flow-text">Buscar pelo português:</p>
+	{% elif tipopesq == "e" %}
+		<p class="flow-text">Buscar pelo inglês:</p>
+	{% else %}
+		<p class="flow-text">Buscar pelo sinal:</p>
 	{% endif %}
-	<form action="" method="post">
-		{% csrf_token %}
-		{{ formulario.as_p }}<button type="submit">Pesquisar</button>
-	</form>
-	<div id="results">  
-		{% for s in sinais %}
-			<div class="linha1">
-				<a href="/sinal/{{ s.id }}"> {{ s.traducaoP }} </a>
+
+	{% if tipopesq == "p" or tipopesq == "e" %}
+		<form action="" method="post">
+			{% csrf_token %}
+			{{ formulario.as_p }}
+			<button class="waves-effect waves-light btn" type="submit"><i class="material-icons left">search</i>Pesquisar</button>
+		</form>
+		<div id="results">
+			{% if sinais %}
+				<p class="flow-text">Encontrado {{nsinais}} resultado(s):</p>
+				<div class="collection">
+				{% for s in sinais %}
+					{% if tipopesq == "p" %}
+						<a href="/sinal/{{ s.id }}" class="collection-item">{{ s.traducaoP }}</a>
+					{% elif tipopesq == "e" %}
+						<a href="/sinal/{{ s.id }}" class="collection-item">{{ s.traducaoI }}</a>
+					{% endif %}
+				{% endfor %}
+			{% else %}
+				{% if request.method == "POST" %}
+					<p class="flow-text">Nenhum resultado encontrado.</p>
+				{% endif %}
+			{% endif %}
 			</div>
-		{% endfor %}
-	</div>
-</div>
--->
-{% endblock %}
-
-<!--
-
-<nav class="nav-extended light-blue darken" role="navigation">
-	<form id="materialize-form">
-		<div class="input-field">
-			<input id="search" type="search" required>
-			<label class="label-icon" for="search"><i class="material-icons">search</i></label>
-			<i class="material-icons">close</i>
 		</div>
-	</form>
-</nav>
--->
+	<!-- Acrescentar aqui 'else' para exibir busca por sinal -->
+	{% endif %}
+</div>
+
+{% endblock %}

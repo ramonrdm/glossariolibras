@@ -47,7 +47,7 @@ def pesquisa(request, glossario=None, tipopesq=None):
 	return render(
 		request,
 		"pesquisa.html", 
-		{ 'glossario':glossario, 'formulario':formulario, 'sinais': sinais, 'nsinais': resultado}
+		{ 'glossario':glossario, 'formulario':formulario, 'sinais': sinais, 'nsinais': resultado, 'tipopesq':tipopesq}
 		)
 
 def equipe(request):
