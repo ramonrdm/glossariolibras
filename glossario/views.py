@@ -23,7 +23,9 @@ def pesquisa(request, glossario=None, tipopesq=None):
 		glossario = Glossario.objects.get(link=glossario)
 	except Glossario.DoesNotExist:
 		glossario = None
+
 	sinais = formulario = None
+
 	if request.method == "POST":
 		if tipopesq == "p":
 			formulario = PesquisaPortForm(request.POST)
@@ -37,18 +39,20 @@ def pesquisa(request, glossario=None, tipopesq=None):
 			#pesquisa pelo parametros do Libras, local, grupoCM, CMs
 			sinais = None
 	else:
-		formulario = PesquisaPortForm()
+		if tipopesq == "p":
+			formulario = PesquisaPortForm()
+		elif tipopesq == "e":
+			formulario = PesquisaIngForm()
+		elif tipopesq == "s":
+			#pesquisa pelo parametros do Libras, local, grupoCM, CMs 
+			pass
 
 	if(sinais):
 		resultado = len(sinais)
 	else:
 		resultado = None
 
-	return render(
-		request,
-		"pesquisa.html", 
-		{ 'glossario':glossario, 'formulario':formulario, 'sinais': sinais, 'nsinais': resultado, 'tipopesq':tipopesq}
-		)
+	return render(request, "pesquisa.html", {'glossario':glossario,'formulario':formulario,'sinais':sinais,'nsinais':resultado,'tipopesq':tipopesq})
 
 def equipe(request):
 	usuario = Usuario.objects.all()
