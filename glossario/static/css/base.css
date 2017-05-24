@@ -89,6 +89,10 @@ max-height: 380px;
 
 /* Side navbar desktop */
 
+.side-nav-links {
+	margin-top: 5%;
+}
+
 /* Fim da side navbar desktop */
 
 /* classe horizontal */

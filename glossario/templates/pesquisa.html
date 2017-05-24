@@ -13,9 +13,11 @@
 	{% endif %}
 			<div id="glossarioselec"><b>{{ glossario.nome }}</b></div>
 		</div>
-	<li><a href="/{{ glossario.link }}/s" class="waves-effect waves-light">Buscar pelo sinal</a></li>
-	<li><a href="/{{ glossario.link }}/p" class="waves-effect waves-light">Buscar pelo português</a></li>
-	<li><a href="/{{ glossario.link }}/e" class="waves-effect waves-light">Buscar pelo inglês</a></li>
+	<div class="side-nav-links">
+		<li><a href="/{{ glossario.link }}/s" class="waves-effect waves-light">Buscar pelo sinal</a></li>
+		<li><a href="/{{ glossario.link }}/p" class="waves-effect waves-light">Buscar pelo português</a></li>
+		<li><a href="/{{ glossario.link }}/e" class="waves-effect waves-light">Buscar pelo inglês</a></li>
+	</div>
 </ul>
 
 <div class="formulario">
