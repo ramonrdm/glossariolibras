@@ -1,21 +1,74 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    {% load staticfiles %}
-    <META NAME="author" CONTENT="Ramon Dutra Miranda"/>
-    <META NAME="description" CONTENT="Glossario libras, ufsc, dicionario, letras libras, glossario cinema"/>
-    <META NAME="keywords" CONTENT="glossario, libras, ufsc, glossário, glossários, letras libras, dicionario"/>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" /> 
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href='{% static "css/materialize.min.css" %}'  media="screen,projection"/>
-    <link rel="stylesheet" type="text/css" href='{% static "css/base.css" %}'/>
-    <link href='{% static "css/style.css" %}' type="text/css" rel="stylesheet" media="screen,projection"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>{% block title %}{% endblock %}</title>
+
+{% load staticfiles %}
+<META NAME="author" CONTENT="Ramon Dutra Miranda"/>
+<META NAME="description" CONTENT="Glossario libras, ufsc, dicionario, letras libras, glossario cinema"/>
+<META NAME="keywords" CONTENT="glossario, libras, ufsc, glossário, glossários, letras libras, dicionario"/>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" /> 
+<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href='{% static "css/materialize.min.css" %}'  media="screen,projection"/>
+<link rel="stylesheet" type="text/css" href='{% static "css/base.css" %}'/>
+<link href='{% static "css/style.css" %}' type="text/css" rel="stylesheet" media="screen,projection"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>{% block title %}{% endblock %}</title>
+
 </head>
 
 <body>
-<div class="navbar-fixed">
+
+<ul class="side-nav fixed">
+    <div class="nav-wrapper">
+        <a href="/" class="brand-logo"><img width="300" src='{% static "img/marca_glossario.png" %}'></a>
+    </div>
+    <div>
+        <li><a href="/enviarsinais">Envie sinais</a></li>
+        <li><a href="/contato">Contato</a></li>
+        <li><a href="/equipe">Equipe</a></li>
+        <li><a href="/historia">História</a></li>
+        <li><a href="/admin">Admin</a></li>
+    </div>
+</ul>
+
+<div class="navbar hide-on-large-only">
+    <nav class="light-blue darken-4" role="navigation">
+        <ul id="nav-mobile" class="side-nav">
+            <li onclick="$('.button-collapse').sideNav('show')">
+                <a class="blue-text text-darken-4" href="/">Início</a>
+                <a class="blue-text text-darken-4" href="/enviarsinais">Envie sinais</a>
+                <a class="blue-text text-darken-4" href="/contato">Contato</a>
+                <a class="blue-text text-darken-4" href="/equipe">Equipe</a>
+                <a class="blue-text text-darken-4" href="/historia">História</a>
+                <a class="blue-text text-darken-4" href="/admin">Admin</a>
+                <li><div class="divider"></div></li>
+                <li><a class="subheader">Glossários</a></li>
+            </li>
+        </ul>
+        <a data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </nav>
+</div>
+
+<div class="footer">
+    <img id="borda" src='{% static "img/borda.png" %}'>
+</div>
+
+{% block Corpo %}
+{% endblock %}
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="static/js/materialize.min.js"></script>
+
+<script type="text/javascript"> //Verificar necessidade desta tag script e o que tem dentro
+    $(".button-collapse").sideNav();
+    $('.button-collapse').sideNav('hide');
+</script>
+
+</body>
+</html>
+
+<!-- <div class="navbar-fixed">
     <nav class="light-blue darken-4" role="navigation">
         <div class="nav-wrapper container-fluid"><a id="logo-container" href="/" class="brand-logo right"><img src='{% static "img/marca_ufsc2.png" %}' id="logoufsc"><a href="http://ufsc.br"></a>
         <div class="nav-wrapper container-fluid"><a id="logo-container" href="/" class="brand-logo"><img src='{% static "img/marca_glossario2.png" %}' id="logoGlossario"><a href="http://ufsc.br"></a>
@@ -50,20 +103,4 @@
         </div>
         </div>
     </nav>
-</div>
-
-    <div id="baixo">
-        <img id="borda" src='{% static "img/borda.png" %}'>
-    </div>
-
-    {% block Corpo %}
-    {% endblock %}
-
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="static/js/materialize.min.js"></script>
-    <script type="text/javascript"> //Verificar necessidade desta tag script e o que tem dentro
-        $(".button-collapse").sideNav();
-        $('.button-collapse').sideNav('hide');
-    </script>
-</body>
-</html>
+</div> -->
