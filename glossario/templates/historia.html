@@ -1,44 +1,54 @@
 <!DOCTYPE html>
+<html>
+	<head>
+		{% extends 'base.html' %}
 
-{% extends 'base.html' %}
+		<title>{% block title %}História - Glossário Letras Libras{% endblock %}</title>
 
-<title>{% block title %}História - Glossário Letras Libras{% endblock %}</title>
+		{% load staticfiles %}
+	</head>
 
-{% block Corpo %}
+	<body>
+		{% block Corpo %}
 
-<div class="titulo">
-	<h2>Glossário Libras</h2>
-</div>
+		<div class="titulo"><h2>Glossário Libras</h2></div>
 
-<div class="definicao-titulo">
-	<h4>Definição</h4>
-</div>
+		<div class="definicao-titulo"><h4>Definição</h4></div>
 
-<div class="definicao">
-	<p class="flow-text">Glossário é uma lista de unidades lexicais específicas de um domínio de uma língua e geralmente surge como apêndice de uma obra temática.</p>
-</div>
+		<div class="definicao">
+			<p class="flow-text">Glossário é uma lista de unidades lexicais específicas de um domínio de uma língua e geralmente surge como apêndice de uma obra temática.</p></div>
 
-<div class="historia-titulo">
-	<h4>História</h4>
-</div>
+		<div class="historia-titulo"><h4>História</h4></div>
 
-<div class="historia">
-	<p class="flow-text">
-		Em 2006 a UFSC em parceria com outras 8 instituições de ensino superior ofertou pela primeira vez o curso de graduação em Letras-Libras na modalidade à distância. Foi desenvolvido ambiente virtual específico para disponibilizar os materiais do curso em Libras e Língua portuguesa aos estudantes surdos (a maioria). A tradução dos textos-base das disciplinas para Libras ficou a cargo de uma equipe de tradutores surdos. Esses tradutores logo identificaram a necessidade de pesquisar e/ou propor sinais correspondentes para termos das áreas de especialidades estudadas no curso.
-		Já no início do curso, a professora Marianne Stumpf coordenou um projeto de elaboração de um ‘dicionário’ do ambiente virtual, onde foram disponibilizados prioritariamente os sinais correspondentes à denominação das disciplinas do curso e termos que seriam utilizados pela equipe pedagógica e/ou na disciplina Introdução à EaD que seria a disciplina básica para o entendimento do ambiente de interação entre estudantes e professores.
-		Os sinais propostos foram armazenados no servidor do curso e disponibilizados aos alunos em espaço específico dentro do ambiente virtual de aprendizagem formando o banco de dados do Glossário Letras-Libras.
-		Desenvolvido por uma equipe de tradutores/pesquisadores, assim como a maioria dos glossários técnicos, é ao mesmo tempo produto do processo de tradução e ferramenta para outros tradutores.
-		A divulgação dos sinais do Glossário por estudantes do curso em outros espaços demonstrou a necessidade de ampliação e disponibilização desse banco de dados para a comunidade acadêmica. Com o objetivo de disponibilizar esses dados para todos os interessados iniciou-se o desenvolvimento de software para ordenação e busca dos sinais já produzidos no curso. Procurando atender às especificidades visuais-espaciais da Libras, a proposta inicial consistiu em ordenar o banco de dados segundo os parâmetros Configuração de Mão e Localização do Sinal.
-		Para que essa ferramenta fosse desenvolvida e atendesse aos propósitos de compreender e valorizar a expansão terminológica fomentada pelo curso Letras-Libras foram constituídas duas equipes de trabalho: um grupo de pesquisa com os tradutores surdos, cujo objetivo era oportunizar a discussão dos temas e conceitos presentes nos textos-base do curso, a criação lexical e a coleta de dados (a maioria das reuniões foi registrada em vídeo); e, em paralelo, uma equipe técnica formada por estudantes de ciência da computação e design para desenvolver as funcionalidades necessárias para o banco de dados. Para postagem, foi necessário definir os atributos de cada item lexical do banco de dado, assim, foi instituído que cada nova entrada deveria possuir (04) vídeos – um vídeo com o sinal, um vídeo com a explicação do conceito, um vídeo com exemplos de frases com o sinal extraídos dos textos-base das disciplinas do curso e um vídeo com variações de realização do sinal –, a tradução para português, a tradução para inglês e a transcrição do sinal em Escrita de Sinais.
-		Além dos filtros: Configuração de Mão e Localização do Sinal estão disponíveis também a busca pela digitação da palavra em português e a opção de busca do termo em inglês, ampliando ainda mais as possibilidades de divulgação do léxico de Libras e de interação com outros pesquisadores.
-	</p>
-</div>
+		<div class="historia">
+			<p class="flow-text">
+				Em 2006 a UFSC em parceria com outras 8 instituições de ensino superior ofertou pela primeira vez o curso de graduação em Letras-Libras na modalidade à distância. Foi desenvolvido ambiente virtual específico para disponibilizar os materiais do curso em Libras e Língua portuguesa aos estudantes surdos (a maioria). A tradução dos textos-base das disciplinas para Libras ficou a cargo de uma equipe de tradutores surdos. Esses tradutores logo identificaram a necessidade de pesquisar e/ou propor sinais correspondentes para termos das áreas de especialidades estudadas no curso.
 
-<div class="flow-text rodape">
-	<a href="http://libras.ufsc.br/">Baseado no glossário do Ambiente Libras</a>
-	<a href="http://glossario.libras.ufsc.br/swis/">Baseado no Sign Writing 2010</a>
-	<a href="https://github.com/ramonrdm/glossariolibras">Site do software</a>
-	<a href="">Confira os grupos das configurações de mão</a>
-</div>
+				Já no início do curso, a professora Marianne Stumpf coordenou um projeto de elaboração de um ‘dicionário’ do ambiente virtual, onde foram disponibilizados prioritariamente os sinais correspondentes à denominação das disciplinas do curso e termos que seriam utilizados pela equipe pedagógica e/ou na disciplina Introdução à EaD que seria a disciplina básica para o entendimento do ambiente de interação entre estudantes e professores.
+
+				Os sinais propostos foram armazenados no servidor do curso e disponibilizados aos alunos em espaço específico dentro do ambiente virtual de aprendizagem formando o banco de dados do Glossário Letras-Libras.
+				Desenvolvido por uma equipe de tradutores/pesquisadores, assim como a maioria dos glossários técnicos, é ao mesmo tempo produto do processo de tradução e ferramenta para outros tradutores.
+
+				A divulgação dos sinais do Glossário por estudantes do curso em outros espaços demonstrou a necessidade de ampliação e disponibilização desse banco de dados para a comunidade acadêmica. Com o objetivo de disponibilizar esses dados para todos os interessados iniciou-se o desenvolvimento de software para ordenação e busca dos sinais já produzidos no curso. Procurando atender às especificidades visuais-espaciais da Libras, a proposta inicial consistiu em ordenar o banco de dados segundo os parâmetros Configuração de Mão e Localização do Sinal.
+
+				Para que essa ferramenta fosse desenvolvida e atendesse aos propósitos de compreender e valorizar a expansão terminológica fomentada pelo curso Letras-Libras foram constituídas duas equipes de trabalho: um grupo de pesquisa com os tradutores surdos, cujo objetivo era oportunizar a discussão dos temas e conceitos presentes nos textos-base do curso, a criação lexical e a coleta de dados (a maioria das reuniões foi registrada em vídeo); e, em paralelo, uma equipe técnica formada por estudantes de ciência da computação e design para desenvolver as funcionalidades necessárias para o banco de dados. Para postagem, foi necessário definir os atributos de cada item lexical do banco de dado, assim, foi instituído que cada nova entrada deveria possuir (04) vídeos – um vídeo com o sinal, um vídeo com a explicação do conceito, um vídeo com exemplos de frases com o sinal extraídos dos textos-base das disciplinas do curso e um vídeo com variações de realização do sinal –, a tradução para português, a tradução para inglês e a transcrição do sinal em Escrita de Sinais.
+				
+				Além dos filtros: Configuração de Mão e Localização do Sinal estão disponíveis também a busca pela digitação da palavra em português e a opção de busca do termo em inglês, ampliando ainda mais as possibilidades de divulgação do léxico de Libras e de interação com outros pesquisadores.</p></div>
+
+		<div class="flow-text rodape">
+			<a href="{% static 'literatura/Tese Janine.pdf' %}">Baseado na Tese da Professora Dra. Janine Soares de Oliveira</a>
+			<a href="{% static 'literatura/Dissertacao Natalia.pdf' %}">Baseado na Dissertação da Msc. Natália Pizzetti Cardoso</a>
+			<a href="{% static 'literatura/TCC Ramon.pdf' %}">Baseado no Trabalho de Conclusão de Curso de Ramon Dutra Miranda</a>
+			<a href="http://libras.ufsc.br/">Baseado no glossário do Ambiente Libras</a>
+			<a href="http://glossario.libras.ufsc.br/swis/">Baseado no Sign Writing 2010</a>
+			<a href="https://github.com/ramonrdm/glossariolibras">Site do software</a>
+			<a href="">Confira os grupos das configurações de mão</a>
+		</div>
 
 {% endblock %}
+
+	</body>
+
+</html>
+
+
