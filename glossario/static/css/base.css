@@ -1,9 +1,6 @@
-/* parte base index */
+/*============= CLASSES REFATORADAS =============*/
 
-.imgIndex {
-	width: 160px;
-	height: 160px;
-}
+/* === BASE === */
 
 body {
 	padding-left: 300px;
@@ -16,6 +13,33 @@ body {
 	}
 }
 
+.logoUFSC{
+	margin-top: 250px;
+}
+
+.footer{
+	position: fixed; 
+	bottom: 0px;
+	min-width: 100%;
+	margin-bottom:-6px;
+	text-align: center;
+}
+
+.sideNavMobileLinks {
+	margin-top: 150px;
+}
+
+.sideNavLinks {
+	margin-top: 50px;
+}
+
+/* === INDEX === */
+
+.imgIndex {
+	width: 160px;
+	height: 160px;
+}
+
 .blockContainer {
 	margin-top: 5%;
 }
@@ -25,6 +49,9 @@ body {
 	display: inline-block;
 	margin-top: 2%;
 }
+
+/*===============================================*/
+
 
 #top {
 	display: table;
@@ -48,7 +75,7 @@ body {
 
 .centro {
 
-/*SUBSTITUIDO PELA CLASSE CONTAINER*/
+/*SUBSTITUIDO PELAS CLASSES BLOCK E BLOCKCONTAINER*/
 
 	width: 60%;
 	min-width: 550px;
@@ -61,28 +88,7 @@ body {
 
 /* IMAGENS */
 
-#glossario{
-	margin-left: 15px;
-	/* position: static;*/
-}
-
 /* MENU SUPERIOR */
-
-.navbar-fixed { 
-	z-index: 9999;
-}
-
-.logoUFSC{
-
-	margin-top: 250px;
-
-}
-
-#logoGlossario {
-	width: 163px;
-	height: 53.5px;
-	margin-top: 2%;
-}
 
 #menuS{
 	margin-top: 40px;
@@ -121,9 +127,7 @@ body {
 
 /* Side navbar desktop */
 
-.side-nav-links {
-	margin-top: 5%;
-}
+
 
 /* Fim da side navbar desktop */
 
@@ -131,7 +135,7 @@ body {
 
 .horiz{
 
-/*SUBSTITUIDO PELA CLASSE CONTAINER*/
+/*SUBSTITUIDO PELAS CLASSES BLOCK E BLOCKCONTAINER*/
 
 	margin-left: 25%;
 	margin-right: 25%;
@@ -142,7 +146,7 @@ body {
 
 .linha1{
 
-/*SUBSTITUIDO PELA CLASSE CONTAINER*/
+/*SUBSTITUIDO PELAS CLASSES BLOCK E BLOCKCONTAINER*/
 
 	margin-left: 10px;
 	width: 200px;
@@ -169,13 +173,7 @@ body {
 	text-align: center;
 }
 
-.footer{
-	position: fixed; 
-	bottom: 0px;
-	min-width: 100%;
-	margin-bottom:-6px;
-	text-align: center;
-}
+
 /* decoration */
 .decore{
 	font-family: helvetica;

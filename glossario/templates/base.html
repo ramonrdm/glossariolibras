@@ -18,97 +18,50 @@
 
     <body>
         <ul class="side-nav fixed">
-
-        <div class="nav-wrapper"><a href="/" class="brand-logo"><img width="300" src='{% static "img/marca_glossario.png" %}'></a></div>
-
-        <div>
-            <li><a href="/enviarsinais">Envie sinais</a></li>
-            <li><a href="/historia">História</a></li>
-            <li><a href="/equipe">Equipe</a></li>
-            <li><a href="/contato">Contato</a></li>
-            <!-- <li><a href="/admin">Admin</a></li> -->
-        </div>
-
-        <div class="nav-wrapper center logoUFSC"><a href="http://ufsc.br" class="brand-logo"><img width="120" src='{% static "img/marca_ufsc.png" %}'></a></div>
-
+            <div class="nav-wrapper"><a href="/" class="brand-logo"><img width="300" src='{% static "img/marca_glossario.png" %}'></a></div>
+            <div class="sideNavLinks">
+                <li><a href="/enviarsinais">Envie sinais</a></li>
+                <li><a href="/historia">História</a></li>
+                <li><a href="/equipe">Equipe</a></li>
+                <li><a href="/contato">Contato</a></li>
+                <!-- <li><a href="/admin">Admin</a></li> -->
+            </div>
+            <div class="nav-wrapper center logoUFSC"><a href="http://ufsc.br" class="brand-logo"><img width="120" src='{% static "img/marca_ufsc.png" %}'></a></div>
         </ul>
 
         <div class="navbar hide-on-large-only">
-
             <nav class="light-blue darken-4" role="navigation">
-
                 <ul id="nav-mobile" class="side-nav">
-                    <li onclick="$('.button-collapse').sideNav('show')">
-                        <a class="blue-text text-darken-4" href="/">Início</a>
-                        <a class="blue-text text-darken-4" href="/enviarsinais">Envie sinais</a>
-                        <a class="blue-text text-darken-4" href="/contato">Contato</a>
-                        <a class="blue-text text-darken-4" href="/equipe">Equipe</a>
-                        <a class="blue-text text-darken-4" href="/historia">História</a>
-                        <a class="blue-text text-darken-4" href="/admin">Admin</a>
-
-                        <li><div class="divider"></div></li>
-
-                        <li><a class="subheader">Glossários</a></li>
-
-                    </li>
+                    <!-- <li onclick="$('.button-collapse').sideNav('show')"></li> -->
+                    <div>
+                        <li><a href="/" class="brand-logo"><img width="300" src='{% static "img/marca_glossario.png" %}'></a></li>
+                    </div>
+                    <div class="sideNavMobileLinks">
+                        <li><a href="/enviarsinais">Envie sinais</a></li>
+                        <li><a href="/historia">História</a></li>
+                        <li><a href="/equipe">Equipe</a></li>
+                        <li><a href="/contato">Contato</a></li>
+                        <!-- <li><a href="/admin">Admin</a></li> -->
+                    </div>
+                    <div>
+                        <a href="http://ufsc.br" class="brand-logo"><img width="120" src='{% static "img/marca_ufsc.png" %}'></a>
+                    </div>
                 </ul>
-
                 <a data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
             </nav>
         </div>
 
         <div class="footer"><img id="borda" src='{% static "img/borda.png" %}'></div>
 
-    {% block Corpo %}
+        {% block Corpo %}
 
-    {% endblock %}
+        {% endblock %}
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    
-    <script type="text/javascript" src="static/js/materialize.min.js"></script>
-
-    <script type="text/javascript"> //Verificar necessidade desta tag script e o que tem dentro
-        $(".button-collapse").sideNav();
-        $('.button-collapse').sideNav('hide');
-    </script>
-
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="static/js/materialize.min.js"></script>
+        <script type="text/javascript"> //Verificar necessidade desta tag script e o que tem dentro
+            $(".button-collapse").sideNav();
+            $('.button-collapse').sideNav('hide');
+        </script>
     </body>
-
-    </html>
-
-<!-- <div class="navbar-fixed">
-    <nav class="light-blue darken-4" role="navigation">
-        <div class="nav-wrapper container-fluid"><a id="logo-container" href="/" class="brand-logo right"><img src='{% static "img/marca_ufsc2.png" %}' id="logoufsc"><a href="http://ufsc.br"></a>
-        <div class="nav-wrapper container-fluid"><a id="logo-container" href="/" class="brand-logo"><img src='{% static "img/marca_glossario2.png" %}' id="logoGlossario"><a href="http://ufsc.br"></a>
-        <ul class="brand-logo center hide-on-med-and-down">
-            <li><a href="/enviarsinais">Envie sinais</a></li>
-            <li><a href="/contato">Contato</a></li>
-            <li><a href="/equipe">Equipe</a></li>
-            <li><a href="/historia">História</a></li>
-            <li><a href="/admin">Admin</a></li>
-        </ul>
-        <ul id="nav-mobile" class="side-nav">
-            <li onclick="$('.button-collapse').sideNav('show')">
-                <a class="blue-text text-darken-4" href="/">Início</a>
-                <a class="blue-text text-darken-4" href="/enviarsinais">Envie sinais</a>
-                <a class="blue-text text-darken-4" href="/contato">Contato</a>
-                <a class="blue-text text-darken-4" href="/equipe">Equipe</a>
-                <a class="blue-text text-darken-4" href="/historia">História</a>
-                <a class="blue-text text-darken-4" href="/admin">Admin</a>
-                <li><div class="divider"></div></li>
-                <li><a class="subheader">Glossários</a></li>
-                {% for g in glossarios %}
-                    <li><a class="blue-text text-darken-4 dropdown-button" href="#!" data-activates="dropdown1">{{ glossario.nome }}<i class="material-icons right">arrow_drop_down</i></a></li>
-                    <ul id='dropdown1' class='dropdown-content'>
-                        <li><a href="/{{ glossario.link }}/s" class="blue-text text-darken-4">Buscar pelo sinal</a></li>
-                        <li><a href="/{{ glossario.link }}/p" class="blue-text text-darken-4">Buscar pelo português</a></li>
-                        <li><a href="/{{ glossario.link }}/e" class="blue-text text-darken-4">Buscar pelo inglês</a></li>
-                    </ul>
-                {% endfor %}
-            </li>
-        </ul>
-        <a data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-        </div>
-        </div>
-    </nav>
-</div> -->
+</html>
