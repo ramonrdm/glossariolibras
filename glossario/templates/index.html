@@ -6,13 +6,24 @@
 {% block Corpo %}
 {% load staticfiles %}
 
-<!-- <div id="glossario">
-    <p>Bem vindo ao Glossário de Libras</br>
-    O conteúdo está dividido nos temas abaixo:
-    </p>
-</div> -->
-<div class="horiz">
-	<div class="linha1">
+<div class="center blockContainer">
+    <div class="center block">
+        <a href="/temas"><img class="circle imgIndex" src="{% static 'img/arvore_banyan_havai.png' %}"><span class="flow-text">Temas</span></a>
+    </div>
+    {% for glossario in glossarios %}
+        <div class="center block">
+            {% if glossario.imagem %}
+                <a href="/{{glossario.link}}"><img class="circle imgIndex" src="{{glossario.imagem.url}}"><span class="flow-text">{{glossario.nome}}</span></a>
+            {% else %}
+                <a href="/{{glossario.link}}"><i class="large material-icons imgIndex">cloud_off</i><span class="flow-text">{{glossario.nome}}</span></a>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+
+
+<!-- <div class="horiz">
+	<div class="linha1 red">
             <a href="/temas"><img class="circle" width="160" height="160" id="centro" src="{% static 'img/arvore_banyan_havai.png' %}"/></a>
     	<p>Temas</p>
 	</div>
@@ -26,7 +37,7 @@
         <p> {{ g.nome }} </p>
     </div>
 {% endfor %}
-</div>
+</div> -->
 
 {% endblock %}
 

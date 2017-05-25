@@ -1,29 +1,55 @@
 /* parte base index */
+
+.imgIndex {
+	width: 160px;
+	height: 160px;
+}
+
 body {
+	padding-left: 300px;
 	background-color: #f7f7f7;
 }
 
-#top{
-display: table;
-width: 100%;
-max-height: 380px;
-/* min-width: 550px;*/
+@media only screen and (max-width : 992px) {
+	body {
+		padding-left: 0;
+	}
 }
 
-.esquerda{
+.blockContainer {
+	margin-top: 5%;
+}
+
+.block {
+	width: 200px;
+	display: inline-block;
+	margin-top: 2%;
+}
+
+#top {
+	display: table;
+	width: 100%;
+	max-height: 380px;
+	/* min-width: 550px;*/
+}
+
+.esquerda {
 	float:left;
 	width: 30%;
 	min-width: 375px;
 }
 
-.direita{
+.direita {
 	width: 12%;
 	float: right;
 	max-height: 132px;
 
 }
 
-.centro{
+.centro {
+
+/*SUBSTITUIDO PELA CLASSE CONTAINER*/
+
 	width: 60%;
 	min-width: 550px;
 	margin-right: 100px;
@@ -102,13 +128,22 @@ max-height: 380px;
 /* Fim da side navbar desktop */
 
 /* classe horizontal */
+
 .horiz{
+
+/*SUBSTITUIDO PELA CLASSE CONTAINER*/
+
 	margin-left: 25%;
 	margin-right: 25%;
 	text-align: center;	
 }
+
 /* exibindo glossarios */
+
 .linha1{
+
+/*SUBSTITUIDO PELA CLASSE CONTAINER*/
+
 	margin-left: 10px;
 	width: 200px;
 	display: inline-block;
