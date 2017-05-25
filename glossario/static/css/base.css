@@ -34,20 +34,22 @@ max-height: 380px;
 /*fim index */
 
 /* IMAGENS */
+
 #glossario{
 	margin-left: 15px;
 	/* position: static;*/
 }
+
 /* MENU SUPERIOR */
 
 .navbar-fixed { 
 	z-index: 9999;
 }
 
-#logoufsc{
-	width: auto;
-	height: 53.5px;
-	margin-top: 2%;
+.logoUFSC{
+
+	margin-top: 250px;
+
 }
 
 #logoGlossario {
