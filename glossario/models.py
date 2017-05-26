@@ -2,10 +2,11 @@
 from django.db import models
 from django.db.models import FileField
 from django.core.files import File
-from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.contrib.auth.models import AbstractUser, BaseUserManager, User
 from django.contrib.auth import hashers
 from django.db.models.signals import post_save
 import datetime
+from django.dispatch import receiver
 
 class UsuarioManager(BaseUserManager):
 	use_in_migrations = True

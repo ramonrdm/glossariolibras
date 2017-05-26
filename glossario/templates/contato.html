@@ -1,13 +1,32 @@
 <!DOCTYPE html>
-{% extends 'base.html' %}
-<title>{% block title %}Contato - Glossário Letras Libras{% endblock %}</title>
-{% block Corpo %}
-{% load staticfiles %}
-<div class="equipe" >
-<br>
-<br>
-<br><br><br><b>Contato:</b>
-<br>
-<img src='{% static "img/contato.png" %}' />
-</div>
-{% endblock %}
+
+<html>
+	<head>
+		{% extends 'base.html' %}
+
+		<title>{% block title %}Contato - Glossário Letras Libras{% endblock %}</title>
+	</head>
+
+	<body>
+		{% block Corpo %}
+
+		{% load staticfiles %}
+
+		<!--<div class="equipe" >
+			<br><br><br><br><br><b>Contato:</b><br>
+			<img src='{% static "img/contato.png" %}' />
+		</div>-->
+
+		<div class="container flow-text">
+			<h4>Contatos</h4>
+			<p><b>Dúvidas e apoio linguístico</b></p>
+			<p>Profa. Dra. Janine - janinemat@gmail.com</p>
+			<p>Marianne - marianne@ead.ufsc.br</p>
+			<p><b>Software</b></p>
+			<p>Ramon Dutra Miranda - ramon.rdm@ufsc.br</p>
+		</div>
+		
+
+		{% endblock %}
+	</body>
+</html>
