@@ -14,8 +14,8 @@ body {
 }
 
 .logoUFSC {
-	margin-top: 5%;
-	width: 120px;
+	margin-top: 10%;
+	width: 220px;
 }
 
 .logoGlossario {
@@ -31,11 +31,11 @@ body {
 }
 
 .sideNavMobileLinks {
-	margin-top: 150px;
+	margin-top: 40%;
 }
 
 .sideNavLinks {
-	margin-top: 50px;
+	margin-top: 5%;
 }
 
 /* === INDEX === */
@@ -63,6 +63,12 @@ body {
 	margin-top: 5%;
 }
 
+.imgGlossarioMobile {
+	width: 120px;
+	height: 120px;
+	margin-top: 50%;
+}
+
 .glossarioSearch {
 	width: 90%;
 	margin-top: 5%;
@@ -70,10 +76,16 @@ body {
 	margin-right: 5%;
 }
 
-.glossarioSearchIcon {
-
+.glossarioSearchMobile {
+	width: 90%;
+	margin-top: 0px;
+	margin-left: 5%;
+	margin-right: 5%;
 }
 
+.sideNavSearchMobileLinks {
+	margin-top: 10%;
+}
 
 /*===============================================*/
 

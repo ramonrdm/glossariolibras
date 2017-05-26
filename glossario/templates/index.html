@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 {% extends 'base.html' %}
 
 <title>{% block title %}Glossários de Libras - Glossário Letras Libras{% endblock %}</title>
@@ -15,14 +16,13 @@
             {% if glossario.imagem %}
                 <a href="/{{glossario.link}}"><img class="circle imgIndex" src="{{glossario.imagem.url}}"><span class="flow-text">{{glossario.nome}}</span></a>
             {% else %}
-                <a href="/{{glossario.link}}"><i class="large material-icons imgIndex">cloud_off</i><span class="flow-text">{{glossario.nome}}</span></a>
+                <a href="/{{glossario.link}}"><i class="large material-icons black-text imgIndex">cloud_off</i><span class="flow-text">{{glossario.nome}}</span></a>
             {% endif %}
         </div>
     {% endfor %}
 </div>
 
 {% endblock %}
-
 
 <!--
 
