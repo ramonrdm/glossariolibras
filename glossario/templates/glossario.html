@@ -7,45 +7,90 @@
 {% block Corpo %}
 {% load staticfiles %}
 
-<!--<div class="row">
 
-	<div class="col s2">-->
-		<ul class="side-nav fixed grey lighten-4">
-			{% if glossario.imagem %}
-				<div class="center selecionada">
-					<a href="{{ glossario.link }}"><img width="130" height="130" src="{{ glossario.imagem.url }}"/></a>
-			{% else %}
-					<a href="{{ glossario.link }}"><i class="large material-icons">cloud_off</i></a>
-			{% endif %}
-					<div id="glossarioselec"><b>{{ glossario.nome }}</b></div>
-				</div>
-			<div class="side-nav-links">
-				<li><a href="/{{ glossario.link }}/s" class="waves-effect waves-light">Buscar pelo sinal</a></li>
-				<li><a href="/{{ glossario.link }}/p" class="waves-effect waves-light">Buscar pelo português</a></li>
-				<li><a href="/{{ glossario.link }}/e" class="waves-effect waves-light">Buscar pelo inglês</a></li>
-			</div>
-		</ul>
-	<!--</div>-->
-
-	<!--<div class="col s10">-->
-		{% if glossario.videoGlossario %}
-			<div class="right">
-				<video width="800" id="videoprincip" muted="muted" preload="metadata"><source src="{{ glossario.videoGlossario.url }}">
-					Seu navegador não suporta vídeo html5, por favor atualize seu navegador.
-				</video>
-				<ul class="left" id="botoesVideo">
-					<li><i class="medium material-icons" id="play">play_arrow</i></li>
-					<li><i class="medium material-icons" id="pause">pause</i></li>
-					<li><i class="medium material-icons" id="stop">stop</i></li>
-				</ul>
-			</div>
+<ul class="side-nav fixed">
+    <div class="nav-wrapper center"><a href="/" class="brand-logo"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a></div>
+    <div class="center">
+    	{% if glossario.imagem %}
+			<a href="{{ glossario.link }}"><img class="circle imgGlossario" src="{{ glossario.imagem.url }}"/></a>
 		{% else %}
-			<i class="large material-icons">videocam_off</i>
+			<a href="{{ glossario.link }}"><i class="large material-icons imgGlossario">cloud_off</i></a>
 		{% endif %}
+		<div id="glossarioselec"><b>{{ glossario.nome }}</b></div>
+	</div>
+	<nav class="glossarioSearch">
+		<div class="nav-wrapper white">
+			<form>
+				<div class="input-field">
+					<input id="search" type="search" required>
+					<label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
+					<i class="material-icons">close</i>
+				</div>
+			</form>
+		</div>
+	</nav>
+    <div class="sideNavLinks"> 
+        <li><a href="/enviarsinais">Envie sinais</a></li>
+        <li><a href="/historia">História</a></li>
+        <li><a href="/equipe">Equipe</a></li>
+        <li><a href="/contato">Contato</a></li>
+        <!-- <li><a href="/admin">Admin</a></li> -->
+    </div>
+    <div class="nav-wrapper center"><a href="http://ufsc.br" class="brand-logo"><img class="logoUFSC" src='{% static "img/marca_ufsc.png" %}'></a></div>
+</ul>
 
-	<!--</div>-->
+<!-- <div class="navbar hide-on-large-only">
+    <nav class="light-blue darken-4" role="navigation">
+        <ul id="nav-mobile" class="side-nav">
+            <li onclick="$('.button-collapse').sideNav('show')"></li>
+            <div>
+                <li><a href="/" class="brand-logo"><img width="300" src='{% static "img/marca_glossario.png" %}'></a></li>
+            </div>
+            <div class="sideNavMobileLinks">
+                <li><a href="/enviarsinais">Envie sinais</a></li>
+                <li><a href="/historia">História</a></li>
+                <li><a href="/equipe">Equipe</a></li>
+                <li><a href="/contato">Contato</a></li>
+                <li><a href="/admin">Admin</a></li>
+            </div>
+            <div>
+                <a href="http://ufsc.br" class="brand-logo"><img width="120" src='{% static "img/marca_ufsc.png" %}'></a>
+            </div>
+        </ul>
+        <a data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </nav>
+</div> -->
+
+<!-- <ul class="side-nav fixed">
+	{% if glossario.imagem %}
+		<div class="center selecionada">
+			<a href="{{ glossario.link }}"><img width="130" height="130" src="{{ glossario.imagem.url }}"/></a>
+	{% else %}
+			<a href="{{ glossario.link }}"><i class="large material-icons">cloud_off</i></a>
+	{% endif %}
+			<div id="glossarioselec"><b>{{ glossario.nome }}</b></div>
+		</div>
+	<div class="side-nav-links">
+		<li><a href="/{{ glossario.link }}/s" class="waves-effect waves-light">Buscar pelo sinal</a></li>
+		<li><a href="/{{ glossario.link }}/p" class="waves-effect waves-light">Buscar pelo português</a></li>
+		<li><a href="/{{ glossario.link }}/e" class="waves-effect waves-light">Buscar pelo inglês</a></li>
+	</div>
+</ul>
+ -->
+{% if glossario.videoGlossario %}
+	<div class="right">
+		<video width="800" id="videoprincip" muted="muted" preload="metadata"><source src="{{ glossario.videoGlossario.url }}">
+			Seu navegador não suporta vídeo html5, por favor atualize seu navegador.
+		</video>
+		<ul class="left" id="botoesVideo">
+			<li><i class="medium material-icons" id="play">play_arrow</i></li>
+			<li><i class="medium material-icons" id="pause">pause</i></li>
+			<li><i class="medium material-icons" id="stop">stop</i></li>
+		</ul>
+	</div>
+{% else %}
+	<i class="large material-icons">videocam_off</i>
+{% endif %}
 
 <script type="text/javascript" src='{% static "img/videoControl.js" %}'></script>
 {% endblock %}
-
-<!--</div>-->

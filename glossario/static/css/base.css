@@ -13,8 +13,13 @@ body {
 	}
 }
 
-.logoUFSC{
-	margin-top: 250px;
+.logoUFSC {
+	margin-top: 5%;
+	width: 120px;
+}
+
+.logoGlossario {
+	width: 280px;
 }
 
 .footer{
@@ -49,6 +54,26 @@ body {
 	display: inline-block;
 	margin-top: 2%;
 }
+
+/* === GLOSSÁRIO === */
+
+.imgGlossario {
+	width: 120px;
+	height: 120px;
+	margin-top: 5%;
+}
+
+.glossarioSearch {
+	width: 90%;
+	margin-top: 5%;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+.glossarioSearchIcon {
+
+}
+
 
 /*===============================================*/
 
@@ -221,8 +246,13 @@ body {
 
 
 /* fim paginas contato,equip,hist */
+
 /* tamanho glossario selecionado */
+
 .selecionada{
+
+/* SUBSTITUÍDA PELA CLASSE imgGlossario */
+
 	margin-top: 25%;
 }
 
