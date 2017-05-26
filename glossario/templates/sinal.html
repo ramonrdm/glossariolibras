@@ -1,64 +1,82 @@
 <!DOCTYPE html>
-{% extends 'baseSearchNav.html' %}
-<title>{% block title %}Sinal - Glossário Letras Libras{% endblock %}</title>
-{% block Corpo %}
-{% load staticfiles %}
-<script type="text/javascript" src='{% static "js/sinal.js" %}'></script>
-<div id="tabber" class ="tabber">
-<div class="tabbertab tabberdefault" title="Sinal"><h3>Sinal</h3>
-	{% if sinal.sinalLibras %}
-		<center><video class="videos" controls ><source src="{{ sinal.sinalLibras.url }}" type="video/mp4" ></video></center>
-	{% else %}
-		<i class="large material-icons">videocam_off</i>
-	{% endif %}
-</div>
-<div class="tabbertab" title="Exemplo"><h3>Exemplo</h3>
-	{% if sinal.exemploLibras %}
-		<center><video class="videos" controls ><source src="{{ sinal.exemploLibras.url }}" type="video/mp4" ></video></center>
-	{% else %}
-		<i class="large material-icons">videocam_off</i>
-	{% endif %}
-</div>
-<div class="tabbertab" title="Descrição"><h3>Descrição</h3>
-	{% if sinal.descLibras %}
-		<center><video class="videos" controls ><source src="{{ sinal.descLibras.url }}" type="video/mp4" ></video></center>
-	{% else %}
-		<i class="large material-icons">videocam_off</i>
-	{% endif %}
-</div>
-<div class="tabbertab" title"Variacão"><h3>Variação</h3>
-	{% if sinal.varicLibras %}
-		<center><video class="videos" controls ><source src="{{ sinal.varicLibras.url }}" type="video/mp4" ></video></center>
-	{% else %}
-		<i class="large material-icons">videocam_off</i>
-	{% endif %}
-</div>
-</div>
 
-<div id="palavratrad">
-<br>
-<big>Português:</big> <b>{{ sinal.traducaoP }}.</b><br><big> Inglês: </big><b>{{ sinal.traducaoI }}.</b>
-</div>
-<br>
-<br><br><br>
-<div id="descr">
-<b>Descrição:</b>  {{ sinal.descricao }}
-</div>
-<div>
-<div id="CMD">
-Grupo de configuração da mão direita:<br>
-{{ sinal.grupoCMd }}<br>
-Configuração da mão direita:<br>
-{{ sinal.cmD }}<br>
-Localização do sinal
-{{ sinal.localizacao }}
-</div>
-<div id="CME">
-Grupo de configuração da mão esquerda:<br>
-{{ sinal.grupocmE }}<br>
-Configuração da mão esquerda:<br>
-{{ sinal.cmE }}<br>
-Sign Writing
-</div>
-</div>
+<html>
+	<head>
+		{% extends 'baseSearchNav.html' %}
+		<title>{% block title %}Sinal - Glossário Letras Libras{% endblock %}</title>
+	</head>
+
+	<body>
+		{% block Corpo %}
+		{% load staticfiles %}
+
+		<script type="text/javascript" src='{% static "js/sinal.js" %}'></script>
+		
+		<div id="tabber" class ="tabber">
+		
+		<div class="tabbertab tabberdefault" title="Sinal"><h3>Sinal</h3>
+	
+			{% if sinal.sinalLibras %}
+				<center><video class="videos" controls ><source src="{{ sinal.sinalLibras.url }}" type="video/mp4" ></video></center>
+			{% else %}
+				<i class="large material-icons">videocam_off</i>
+			{% endif %}
+		</div>
+
+		<div class="tabbertab" title="Exemplo"><h3>Exemplo</h3>
+			{% if sinal.exemploLibras %}
+				<center><video class="videos" controls ><source src="{{ sinal.exemploLibras.url }}" type="video/mp4" ></video></center>
+			{% else %}
+				<i class="large material-icons">videocam_off</i>
+			{% endif %}
+		</div>
+
+		<div class="tabbertab" title="Descrição"><h3>Descrição</h3>
+			{% if sinal.descLibras %}
+				<center><video class="videos" controls ><source src="{{ sinal.descLibras.url }}" type="video/mp4" ></video></center>
+			{% else %}
+				<i class="large material-icons">videocam_off</i>
+			{% endif %}
+		</div>
+
+		<div class="tabbertab" title"Variacão"><h3>Variação</h3>
+			{% if sinal.varicLibras %}
+				<center><video class="videos" controls ><source src="{{ sinal.varicLibras.url }}" type="video/mp4" ></video></center>
+			{% else %}
+				<i class="large material-icons">videocam_off</i>
+			{% endif %}
+		</div>
+		</div>
+
+		<div id="palavratrad"></br><big>Português:</big> <b>{{ sinal.traducaoP }}.</b><br><big> Inglês: </big><b>{{ sinal.traducaoI }}.</b></div>
+
+		</br></br></br></br>
+
+		<div id="descr"><b>Descrição:</b>  {{ sinal.descricao }}</div>
+
+		<div>
+			<div id="CMD">
+				Grupo de configuração da mão direita:</br>
+				{{ sinal.grupoCMd }}</br>
+				Configuração da mão direita:</br>
+				{{ sinal.cmD }}</br>
+				Localização do sinal
+				{{ sinal.localizacao }}
+			</div>
+
+			<div id="CME">
+				Grupo de configuração da mão esquerda:</br>
+				{{ sinal.grupocmE }}</br>
+				Configuração da mão esquerda:</br>
+				{{ sinal.cmE }}</br>
+				Sign Writing
+			</div>
+		</div>
+
 {% endblock %}
+	</body>
+	
+</html>
+
+
+
