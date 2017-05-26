@@ -1,24 +1,8 @@
 <!DOCTYPE html>
-{% extends 'base.html' %}
+{% extends 'baseSearchNav.html' %}
 <title>{% block title %}Pesquisa {{ glossario.nome }} - Glossário Letras Libras {% endblock %}</title>
 {% block Corpo %}
 {% load staticfiles %}
-
-<ul class="side-nav fixed grey lighten-4">
-	{% if glossario.imagem %}
-		<div class="center selecionada">
-			<a href="/{{ glossario.link }}"><img width="130" height="130" src="{{ glossario.imagem.url }}"/></a>
-	{% else %}
-			<a href="/{{ glossario.link }}"><i class="large material-icons">cloud_off</i></a>
-	{% endif %}
-			<div id="glossarioselec"><b>{{ glossario.nome }}</b></div>
-		</div>
-	<div class="side-nav-links">
-		<li><a href="/{{ glossario.link }}/s" class="waves-effect waves-light">Buscar pelo sinal</a></li>
-		<li><a href="/{{ glossario.link }}/p" class="waves-effect waves-light">Buscar pelo português</a></li>
-		<li><a href="/{{ glossario.link }}/e" class="waves-effect waves-light">Buscar pelo inglês</a></li>
-	</div>
-</ul>
 
 <div class="formulario">
 

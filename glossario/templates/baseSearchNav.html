@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load staticfiles %}
+
+        <meta name="author" content="Ramon Dutra Miranda"/>
+        <meta name="description" content="Glossario libras, ufsc, dicionario, letras libras, glossario cinema"/>
+        <meta name="keywords" content="glossario, libras, ufsc, glossário, glossários, letras libras, dicionario"/>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" /> 
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href='{% static "css/materialize.min.css" %}'  media="screen,projection"/>
+        <link rel="stylesheet" type="text/css" href='{% static "css/base.css" %}'/>
+        <link href='{% static "css/style.css" %}' type="text/css" rel="stylesheet" media="screen,projection"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+
+    <body>
+        
+        <ul class="side-nav fixed">
+            <div class="nav-wrapper center"><a href="/" class="brand-logo"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a></div>
+            <div class="center">
+                {% if glossario.imagem %}
+                    <a href="{{ glossario.link }}"><img class="circle imgGlossario" src="{{ glossario.imagem.url }}"/></a>
+                {% else %}
+                    <a href="{{ glossario.link }}"><i class="large material-icons imgGlossario">cloud_off</i></a>
+                {% endif %}
+                <div><b>{{ glossario.nome }}</b></div>
+            </div>
+            <nav class="glossarioSearch">
+                <div class="nav-wrapper white">
+                    <form>
+                        <div class="input-field">
+                            <input id="search" type="search" required>
+                            <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
+                            <i class="material-icons">close</i>
+                        </div>
+                    </form>
+                </div>
+            </nav>
+            <div class="sideNavLinks"> 
+                <li><a href="/enviarsinais"><i class="material-icons">send</i>Envie sinais</a></li>
+                <li><a href="/historia"><i class="material-icons">library_books</i>História</a></li>
+                <li><a href="/equipe"><i class="material-icons">supervisor_account</i>Equipe</a></li>
+                <li><a href="/contato"><i class="material-icons">call</i>Contato</a></li>
+                <!-- <li><a href="/admin">Admin</a></li> -->
+            </div>
+            <div class="nav-wrapper center"><a href="http://ufsc.br" class="brand-logo"><img class="logoUFSC" src='{% static "img/marca_ufsc2.png" %}'></a></div>
+        </ul>
+
+        <div class="navbar hide-on-large-only">
+            <nav class="light-blue darken-4" role="navigation">
+                <ul id="nav-mobile" class="side-nav">
+                    <!-- <li onclick="$('.button-collapse').sideNav('show')"></li> -->
+                    <div>
+                        <li><a href="/" class="brand-logo"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a></li>
+                    </div>
+                    <div class="center">
+                        {% if glossario.imagem %}
+                            <a href="{{ glossario.link }}"><img class="circle imgGlossarioMobile" src="{{ glossario.imagem.url }}"/></a>
+                        {% else %}
+                            <a href="{{ glossario.link }}"><i class="large material-icons imgGlossarioMobile">cloud_off</i></a>
+                        {% endif %}
+                        <div class="black-text"><b>{{ glossario.nome }}</b></div>
+                    </div>
+                    <nav class="glossarioSearchMobile">
+                        <div class="nav-wrapper white">
+                            <form>
+                                <div class="input-field">
+                                    <input id="search" type="search" required>
+                                    <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
+                                    <i class="material-icons">close</i>
+                                </div>
+                            </form>
+                        </div>
+                    </nav>
+                    <div class="sideNavSearchMobileLinks">
+                        <li><a href="/enviarsinais"><i class="material-icons">send</i>Envie sinais</a></li>
+                        <li><a href="/historia"><i class="material-icons">library_books</i>História</a></li>
+                        <li><a href="/equipe"><i class="material-icons">supervisor_account</i>Equipe</a></li>
+                        <li><a href="/contato"><i class="material-icons">call</i>Contato</a></li>
+                        <!-- <li><a href="/admin">Admin</a></li> -->
+                    </div>
+                    <div>
+                        <a href="http://ufsc.br" class="brand-logo"><img class="logoUFSC" src='{% static "img/marca_ufsc2.png" %}'></a>
+                    </div>
+                </ul>
+                <a data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+            </nav>
+        </div>
+
+        <div class="footer"><img id="borda" src='{% static "img/borda.png" %}'></div>
+
+        {% block Corpo %}
+
+        {% endblock %}
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="static/js/materialize.min.js"></script>
+        <script type="text/javascript"> //Verificar necessidade desta tag script e o que tem dentro
+            $(".button-collapse").sideNav();
+            $('.button-collapse').sideNav('hide');
+        </script>
+    </body>
+</html>
