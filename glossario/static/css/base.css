@@ -87,6 +87,23 @@ body {
 	margin-top: 10%;
 }
 
+.videoGlossario {
+	margin-top: 2%;
+	width: 800px;
+}
+
+.videoOff {
+	margin-top: 15%;
+}
+
+/*@media only screen and (max-width: 992px) {
+	 === RESPONSIVIDADE VIDEO === 
+	.videoGlossario {
+		width: 80%;
+	}
+}
+*/
+
 /*===============================================*/
 
 
@@ -320,24 +337,6 @@ body {
 	min-width: 964px;
 	height: 580px;
 	display: table;
-}
-
-.video{
-	/*display: inline-table;*/
-}
-
-#videoprincip{
-	margin-top: 10px;
-}
-
-@media only screen and (max-width: 992px) {
-	#videoprincip{
-		width: 80%;
-	}
-}
-
-#botoesVideo{
-	margin-top: 25%;
 }
 
 #results{

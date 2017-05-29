@@ -8,18 +8,16 @@
 {% load staticfiles %}
 
 {% if glossario.videoGlossario %}
-	<div class="right">
-		<video width="800" id="videoprincip" muted="muted" preload="metadata"><source src="{{ glossario.videoGlossario.url }}">
+	<div class="video-container center">
+		<video class="responsive-video videoGlossario" controls preload="metadata">
+			<source src="{{glossario.videoGlossario.url}}">
 			Seu navegador não suporta vídeo html5, por favor atualize seu navegador.
 		</video>
-		<ul class="left" id="botoesVideo">
-			<li><i class="medium material-icons" id="play">play_arrow</i></li>
-			<li><i class="medium material-icons" id="pause">pause</i></li>
-			<li><i class="medium material-icons" id="stop">stop</i></li>
-		</ul>
 	</div>
 {% else %}
-	<i class="large material-icons">videocam_off</i>
+	<div class="center">
+		<i class="large material-icons black-text videoOff">videocam_off</i>
+	</div>
 {% endif %}
 
 <script type="text/javascript" src='{% static "img/videoControl.js" %}'></script>
