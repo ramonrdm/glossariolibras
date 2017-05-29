@@ -96,6 +96,10 @@ body {
 	margin-top: 15%;
 }
 
+.icone {
+	color: #003a99;
+}
+
 /*@media only screen and (max-width: 992px) {
 	 === RESPONSIVIDADE VIDEO === 
 	.videoGlossario {
