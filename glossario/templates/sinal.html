@@ -12,7 +12,41 @@
 
 		<script type="text/javascript" src='{% static "js/sinal.js" %}'></script>
 		
-		<div id="tabber" class ="tabber">
+		{% if sinal.sinalLibras %}
+			<center><video class="videos" controls ><source src="{{ sinal.sinalLibras.url }}" type="video/mp4" ></video></center>
+		{% else %}
+			<i class="large material-icons icone">videocam_off</i>
+		{% endif %}
+
+		<div class="center">
+			<p class="flow-text">Português: {{sinal.traducaoP}}</p>
+			<p class="flow-text">Inglês: {{sinal.traducaoI}}
+		</div>
+
+		</br></br></br></br>
+
+		<div id="descr"><b>Descrição:</b>  {{ sinal.descricao }}</div>
+
+		<div>
+			<div id="CMD">
+				Grupo de configuração da mão direita:</br>
+				{{ sinal.grupoCMd }}</br>
+				Configuração da mão direita:</br>
+				{{ sinal.cmD }}</br>
+				Localização do sinal
+				{{ sinal.localizacao }}
+			</div>
+
+			<div id="CME">
+				Grupo de configuração da mão esquerda:</br>
+				{{ sinal.grupocmE }}</br>
+				Configuração da mão esquerda:</br>
+				{{ sinal.cmE }}</br>
+				Sign Writing
+			</div>
+		</div>
+
+<!-- 		<div id="tabber" class ="tabber">
 		
 		<div class="tabbertab tabberdefault" title="Sinal"><h3>Sinal</h3>
 	
@@ -72,7 +106,7 @@
 				Sign Writing
 			</div>
 		</div>
-
+-->
 {% endblock %}
 	</body>
 	
