@@ -39,6 +39,16 @@
                     </form>
                 </div>
             </nav>
+            {% if sinal %}
+                <div class="sideNavLinks">
+                    <ul>
+                        <li><a class="dropdown-button" href="#!" data-activates="dropdown1">{{sinal.traducaoP}} | {{sinal.traducaoI}}<i class="material-icons right">arrow_drop_down</i></a></li>
+                    </ul>
+                    <ul id='dropdown1' class='dropdown-content'>
+                        <li><a href="/">Sinal</a></li>
+                    </ul>
+                </div>
+            {% endif %}
             <div class="sideNavLinks"> 
                 <li><a href="/enviarsinais"><i class="material-icons">send</i>Envie sinais</a></li>
                 <li><a href="/historia"><i class="material-icons">library_books</i>História</a></li>
