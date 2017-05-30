@@ -45,6 +45,10 @@ body {
 	height: 160px;
 }
 
+.textoIndex {
+	color: #003a99;
+}
+
 .blockContainer {
 	margin-top: 5%;
 }
@@ -123,7 +127,7 @@ body {
 
 .videoSinal {
 	margin-top: 2%;
-	width: 400px;
+	width: 500px;
 }
 
 .maoEsquerda {

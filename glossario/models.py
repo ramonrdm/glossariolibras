@@ -56,6 +56,9 @@ class Localizacao(models.Model):
 	imagem = models.ImageField('Imagem', blank=True)
 	areaClicavel = models.TextField()
 
+	def __unicode__(self):
+		return self.nome
+
 class Video(FileField):
 	capa = models.ImageField(blank=True)
 	videoMp4 = models.FileField()
@@ -77,13 +80,13 @@ class Glossario(models.Model):
 
 class GrupoCM (models.Model):
 	class Meta:
-		verbose_name_plural='Grupos de configurações de mão'
+		verbose_name_plural='Grupos de configuração de mão'
 
 	imagem = models.ImageField(blank=True)
 	bsw = models.TextField('BSW')
 
 	def __str__(self):
-		return 'Grupo de configuração de mão'
+		return self.bsw
 
 class CM (models.Model):
 	class Meta:
