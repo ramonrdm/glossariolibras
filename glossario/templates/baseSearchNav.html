@@ -22,7 +22,7 @@
             <div class="nav-wrapper center"><a href="/" class="brand-logo"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a></div>
             <div class="center">
                 {% if glossario.imagem %}
-                    <a href="{{ glossario.link }}"><img class="circle imgGlossario" src="{{ glossario.imagem.url }}"/></a>
+                    <a href="{{ glossario.link }}"><img class="circle z-depth-4 imgGlossario" src="{{ glossario.imagem.url }}"/></a>
                 {% else %}
                     <a href="{{ glossario.link }}"><i class="large material-icons icone imgGlossario">cloud_off</i></a>
                 {% endif %}
@@ -60,7 +60,7 @@
         </ul>
 
         <div class="navbar hide-on-large-only">
-            <nav class="light-blue darken-4" role="navigation">
+            <nav class="blue darken-4" role="navigation">
                 <ul id="nav-mobile" class="side-nav">
                     <!-- <li onclick="$('.button-collapse').sideNav('show')"></li> -->
                     <div>
@@ -68,7 +68,7 @@
                     </div>
                     <div class="center">
                         {% if glossario.imagem %}
-                            <a href="{{ glossario.link }}"><img class="circle imgGlossarioMobile" src="{{ glossario.imagem.url }}"/></a>
+                            <a href="{{ glossario.link }}"><img class="circle z-depth-4 imgGlossarioMobile" src="{{ glossario.imagem.url }}"/></a>
                         {% else %}
                             <a href="{{ glossario.link }}"><i class="large material-icons icone imgGlossarioMobile">cloud_off</i></a>
                         {% endif %}

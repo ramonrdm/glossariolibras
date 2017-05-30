@@ -128,14 +128,16 @@ body {
 
 .maoEsquerda {
 	white-space: pre-line;
-	margin-left: 2%;
-	text-align: center;
 }
 
 .maoDireita {
 	white-space: pre-line;
 	margin-right: 2%;
 	text-align: center;
+}
+
+.cardMao {
+	margin-top: 5%;
 }
 
 /*===============================================*/
