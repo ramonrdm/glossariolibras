@@ -13,36 +13,61 @@
 		<script type="text/javascript" src='{% static "js/sinal.js" %}'></script>
 		
 		{% if sinal.sinalLibras %}
-			<center><video class="videos" controls ><source src="{{ sinal.sinalLibras.url }}" type="video/mp4" ></video></center>
+			<div class="center">
+				<video class="responsive-video videoSinal" controls preload="metadata">
+					<source src="{{sinal.sinalLibras.url}}">
+					Seu navegador não suporta vídeo html5, por favor atualize seu navegador.
+				</video>
+			</div>
 		{% else %}
 			<i class="large material-icons icone">videocam_off</i>
 		{% endif %}
 
 		<div class="center">
-			<p class="flow-text">Português: {{sinal.traducaoP}}</p>
-			<p class="flow-text">Inglês: {{sinal.traducaoI}}
+			<span class="flow-text nomeSinal">
+				Português: {{sinal.traducaoP}}
+				Inglês: {{sinal.traducaoI}}
+			</span>
 		</div>
 
-		</br></br></br></br>
-
-		<div id="descr"><b>Descrição:</b>  {{ sinal.descricao }}</div>
-
-		<div>
-			<div id="CMD">
-				Grupo de configuração da mão direita:</br>
-				{{ sinal.grupoCMd }}</br>
-				Configuração da mão direita:</br>
-				{{ sinal.cmD }}</br>
-				Localização do sinal
-				{{ sinal.localizacao }}
+		{% if sinal.descricao %}
+			<div class="center">
+				<p class="flow-text">Descrição: {{sinal.descricao}}</p>
 			</div>
+		{% endif %}
 
-			<div id="CME">
-				Grupo de configuração da mão esquerda:</br>
-				{{ sinal.grupocmE }}</br>
-				Configuração da mão esquerda:</br>
-				{{ sinal.cmE }}</br>
-				Sign Writing
+		<div class="row">
+			<div class="col s12 m6">
+				<div class="card blue-grey darken-1">
+					<div class="card-content white-text">
+						<span class="card-title">Mão esquerda</span>
+						<p>I am a very simple card. I am good at containing small bits of information.
+						I am convenient because I require little markup to use effectively.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="left maoEsquerda">
+				<span class="flow-text">
+					Grupo de configuração da mão esquerda:
+					{{ sinal.grupocmE }}
+					Configuração da mão esquerda:
+					{{ sinal.cmE }}
+					Localização do sinal:		<!-- VERIFICAR SE AQUI TEM LOCALIZACAO MESMO -->
+					{{ sinal.localizacao }}		<!-- VERIFICAR A NECESSIDADE DE 'SIGN WRITING' -->
+				</span>
+			</div>
+			<div class="right maoDireita">
+				<span class="flow-text">
+					Grupo de configuração da mão direita:
+					{{ sinal.grupoCMd }}
+					Configuração da mão direita:
+					{{ sinal.cmD }}
+					Localização do sinal:
+					{{ sinal.localizacao }}
+				</span>
 			</div>
 		</div>
 

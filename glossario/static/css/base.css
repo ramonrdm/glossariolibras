@@ -115,6 +115,29 @@ body {
 	margin-left: 5%;
 }
 
+/* === SINAL === */
+
+.nomeSinal {
+	white-space: pre-line;
+}
+
+.videoSinal {
+	margin-top: 2%;
+	width: 400px;
+}
+
+.maoEsquerda {
+	white-space: pre-line;
+	margin-left: 2%;
+	text-align: center;
+}
+
+.maoDireita {
+	white-space: pre-line;
+	margin-right: 2%;
+	text-align: center;
+}
+
 /*===============================================*/
 
 
