@@ -15,12 +15,25 @@
 	{% endif %}
 
 	{% if tipopesq == "p" or tipopesq == "e" %}
-		<form action="" method="post">
+<!-- 		<form action="" method="post">
 			{% csrf_token %}
 			{{ formulario.as_p }}
 			<button class="waves-effect waves-light btn" type="submit"><i class="material-icons left">search</i>Pesquisar</button>
-		</form>
+		</form> -->
 		
+        <nav class="glossarioSearch">
+            <div class="nav-wrapper white">
+                <form method="post">
+                	{% csrf_token %}
+                    <div class="input-field">
+						{{ formulario }}
+                        <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
+                        <i class="material-icons">close</i>
+                    </div>
+                </form>
+            </div>
+        </nav>
+
 		<div id="results">
 			{% if sinais %}
 				<p class="flow-text">Encontrado {{nsinais}} resultado(s):</p>

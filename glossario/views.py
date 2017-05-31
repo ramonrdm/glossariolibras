@@ -28,11 +28,11 @@ def pesquisa(request, glossario=None, tipopesq=None):
 
 	if request.method == "POST":
 		if tipopesq == "p":
-			formulario = PesquisaPortForm(request.POST)
+			formulario = PesquisaPortForm(request.POST, auto_id=False)
 			if formulario.is_valid():
 				sinais = Sinal.objects.filter(traducaoP__contains=formulario.cleaned_data['traducaoP'])		
 		elif tipopesq == "e":
-			formulario = PesquisaIngForm(request.POST)
+			formulario = PesquisaIngForm(request.POST, auto_id=False)
 			if formulario.is_valid():
 				sinais = Sinal.objects.filter(traducaoI__contains=formulario.cleaned_data['traducaoI'])
 		elif tipopesq == "s":
@@ -40,9 +40,9 @@ def pesquisa(request, glossario=None, tipopesq=None):
 			sinais = None
 	else:
 		if tipopesq == "p":
-			formulario = PesquisaPortForm()
+			formulario = PesquisaPortForm(auto_id=False)
 		elif tipopesq == "e":
-			formulario = PesquisaIngForm()
+			formulario = PesquisaIngForm(auto_id=False)
 		elif tipopesq == "s":
 			#pesquisa pelo parametros do Libras, local, grupoCM, CMs 
 			pass

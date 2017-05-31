@@ -28,11 +28,23 @@
                 {% endif %}
                 <div><b>{{ glossario.nome }}</b></div>
             </div>
-            <nav class="glossarioSearch">
+<!--             <nav class="glossarioSearch">
                 <div class="nav-wrapper white">
                     <form>
                         <div class="input-field">
                             <input id="search" type="search" required>
+                            <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
+                            <i class="material-icons">close</i>
+                        </div>
+                    </form>
+                </div>
+            </nav> -->
+            <nav class="glossarioSearch">
+                <div class="nav-wrapper white">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="input-field">
+                            {{ formulario }}
                             <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
                             <i class="material-icons">close</i>
                         </div>
