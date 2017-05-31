@@ -24,71 +24,90 @@
 	</div>
 	{% endfor %}
 	</div>
-	<div class="equipe flow-text">
+	<div class="equipe">
 
     <h2>Colaboradores:</h2>
     <div class="divider divisor"></div> </br>
 
       <div class="row">
-        <div class="col s12 m7">
-          <div class="card">
+        <div class="col s12 m3">
+          <div class="card medium hoverable">
             <div class="card-image">
-              <img src="{% static 'img/colaboradores/ramon.jpeg' %}">
+              <img class="responsive-img" src="{% static 'img/colaboradores/ramon.jpeg' %}">
               <span class="card-title"><b>Ramon Dutra Miranda</b></span>
             </div>
             <div class="card-content">
-              <p>Status do colaborador: Ativo. Bacharel em Ciências da Computação. Programador Responsável. ramon.rdm@ufsc.br</p>
+              <p class="cardTexto">Bacharel em Ciências da Computação. Programador Responsável. ramon.rdm@ufsc.br</p>
             </div>
             <div class="card-action">
               <a href="#">Currículo Lattes</a>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="row">
-        <div class="col s12 m7">
-          <div class="card">
+        <div class="col s12 m3">
+          <div class="card medium hoverable">
             <div class="card-image">
               <img src="{% static 'img/colaboradores/sabrina.jpeg' %}">
               <span class="card-title"><b>Sabrina Hanich</b></span>
             </div>
             <div class="card-content">
-              <p>Status do colaborador: Ativo. Bacharel em Psicologia e graduanda do curso de Análise e Desenvolvimento de Sistemas do CESUSC. Programadora.</p>
+              <p class="cardTexto">Bacharel em Psicologia e em Análise e Desenvolvimento de Sistemas do CESUSC. Programadora.</p>
             </div>
             <div class="card-action">
               <a href="#">Currículo Lattes</a>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="row">
-        <div class="col s12 m7">
-          <div class="card">
+         <div class="col s12 m3">
+          <div class="card medium hoverable">
             <div class="card-image">
               <img src="{% static 'img/colaboradores/thiago.jpeg' %}">
               <span class="card-title"><b>Thiago Brezinski</b></span>
             </div>
             <div class="card-content">
-              <p>Status do colaborador: Ativo. Bacharel em Sistemas de Informação. Programador.</p>
+              <p class="cardTexto">Bacharel em Sistemas de Informação. Programador.</p>
             </div>
             <div class="card-action">
               <a href="#">Currículo Lattes</a>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="row">
-        <div class="col s12 m7">
-          <div class="card">
+        <div class="col s12 m3">
+          <div class="card medium hoverable">
             <div class="card-image">
               <img src="{% static 'img/colaboradores/anaregina.jpeg' %}">
               <span class="card-title"><b>Ana Regina Campello</b></span>
             </div>
             <div class="card-content">
-              <p>Status do colaborador: Inativo. Professora Doutora. Tradutora de Português/Libras.</p>
+              <p class="cardTexto">Professora Doutora. Tradutora de Português/Libras.</p>
+            </div>
+            <div class="card-action">
+              <a href="#">Currículo Lattes</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m4">
+          <div class="card medium hoverable">
+            <div class="card-image">
+              <img src="{% static 'img/colaboradores/debora.jpeg' %}">
+              <span class="card-title"><b>Débora Wanderley</b></span>
+            </div>
+            <div class="card-content">
+              <p class="cardTexto">Mestre em Linguística. Tradutora de Português/Libras.</p>
+            </div>
+            <div class="card-action">
+              <a href="#">Currículo Lattes</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m4">
+          <div class="card medium hoverable">
+            <div class="card-image">
+              <i class="large material-icons">perm_identity</i>
+              <span class="card-title"><b>Fernanda Machado</b></span>
+            </div>
+            <div class="card-content">
+              <p class="cardTexto">Mestranda do Programa de Pós-Graduação em Estudos da Tradução. Tradutora de Português/Libras.</p>
             </div>
             <div class="card-action">
               <a href="#">Currículo Lattes</a>
@@ -97,39 +116,9 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="col s12 m7">
-          <div class="card">
-            <div class="card-image">
-              <img src="{% static 'img/colaboradores/debora.jpeg' %}">
-              <span class="card-title"><b>Débora Wanderley</b></span>
-            </div>
-            <div class="card-content">
-              <p>Status do colaborador: Inativo. Mestre em Linguística. Tradutora de Português/Libras.</p>
-            </div>
-            <div class="card-action">
-              <a href="#">Currículo Lattes</a>
-            </div>
-          </div>
-        </div>
-      </div>
       
-      <div class="row">
-        <div class="col s12 m7">
-          <div class="card">
-            <div class="card-image">
-              <i class="large material-icons">perm_identity</i>
-              <span class="card-title"><b>Fernanda Machado</b></span>
-            </div>
-            <div class="card-content">
-              <p>Status do colaborador: Inativo. Mestranda do Programa de Pós-Graduação em Estudos da Tradução. Tradutora de Português/Libras.</p>
-            </div>
-            <div class="card-action">
-              <a href="#">Currículo Lattes</a>
-            </div>
-          </div>
-        </div>
-      </div>
+
+
 
       <!-- -->
       <!-- -->
@@ -377,7 +366,7 @@
 				<p>Área: Bacharel em Sistemas de Informação</p>
 				<p>Função: Programador</p>
 				<p>E-mail:</p>
-				<p>Link para o Currículo Lattes</p>
+				<p><a href="http://lattes.cnpq.br/9255827597931552"> Link para o Currículo Lattes</a></p> 
 				<p>Status: <span id="ativo">Ativo</span></p>
 			</td>
 		</tr>
