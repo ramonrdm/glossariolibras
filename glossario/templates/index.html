@@ -9,12 +9,12 @@
 
 <div class="center blockContainer">
     <div class="center block">
-        <a href="/temas"><img class="circle z-depth-4 imgIndex" src="{% static 'img/arvore_banyan_havai.png' %}"><span class="flow-text textoIndex">Temas</span></a>
+        <a href="/temas"><img class="circle z-depth-4 hoverable imgIndex" src="{% static 'img/arvore_banyan_havai.png' %}"><span class="flow-text textoIndex">Temas</span></a>
     </div>
     {% for glossario in glossarios %}
         <div class="center block">
             {% if glossario.imagem %}
-                <a href="/{{glossario.link}}"><img class="circle z-depth-4 imgIndex" src="{{glossario.imagem.url}}"><span class="flow-text textoIndex">{{glossario.nome}}</span></a>
+                <a href="/{{glossario.link}}"><img class="circle z-depth-4 hoverable imgIndex" src="{{glossario.imagem.url}}"><span class="flow-text textoIndex">{{glossario.nome}}</span></a>
             {% else %}
                 <a href="/{{glossario.link}}"><i class="large material-icons icone imgIndex">cloud_off</i><span class="flow-text textoIndex">{{glossario.nome}}</span></a>
             {% endif %}

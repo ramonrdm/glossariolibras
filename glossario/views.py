@@ -1,22 +1,40 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render_to_response, render
 from glossario.models import Glossario, Sinal, Usuario, Tema
-from glossario.forms import PesquisaPortForm, PesquisaIngForm
+from glossario.forms import PesquisaPortForm, PesquisaIngForm, PesquisaForm
 from django.template import RequestContext
 from django.http import JsonResponse
 import json
+from django.db.models import Q
 
 def index(request, glossario=None):
 	if glossario:
 		try:
 			glossario = Glossario.objects.get(link=glossario)
 			return render(request, "glossario.html", dict(glossario=glossario))
+			# return render(glossario(request), {'glossario': glossario})
+			# return redirect('glossario', glossario=glossario)		TENTAR USAR REDIRECT
 		except Glossario.DoesNotExist:
 			glossarios = Glossario.objects.all()
 	else:		
 		glossarios = Glossario.objects.all()
 
 	return render(request, "index.html", dict(glossarios=glossarios, glossario=glossario))
+
+# def glossario(request):
+# 	if request.method == 'POST':
+# 		sinais = formulario = None
+# 		formulario = PesquisaForm(request.POST)
+# 		if formulario.is_valid():
+# 			sinais = Sinal.objects.filter(Q(traducaoP__icontains=formulario.data['busca']) | Q(traducaoI__icontains=formulario.data['busca']))
+# 		if(sinais):
+# 			resultado = len(sinais)
+# 		else:
+# 			resultado = None
+# 		render(request, 'pesquisa.html', {'formulario': formulario, 'sinais': sinais, 'resultado': resultado})
+# 	else:
+# 		glossario = Glossario.objects.get(link=glossario)
+# 		return render(request, 'glossario.html', {'glossario': glossario})
 
 def pesquisa(request, glossario=None, tipopesq=None):
 	try:
@@ -26,26 +44,33 @@ def pesquisa(request, glossario=None, tipopesq=None):
 
 	sinais = formulario = None
 
-	if request.method == "POST":
-		if tipopesq == "p":
-			formulario = PesquisaPortForm(request.POST, auto_id=False)
-			if formulario.is_valid():
-				sinais = Sinal.objects.filter(traducaoP__contains=formulario.cleaned_data['traducaoP'])		
-		elif tipopesq == "e":
-			formulario = PesquisaIngForm(request.POST, auto_id=False)
-			if formulario.is_valid():
-				sinais = Sinal.objects.filter(traducaoI__contains=formulario.cleaned_data['traducaoI'])
-		elif tipopesq == "s":
-			#pesquisa pelo parametros do Libras, local, grupoCM, CMs
-			sinais = None
+	# if request.method == "POST":
+	# 	if tipopesq == "p":
+	# 		formulario = PesquisaPortForm(request.POST, auto_id=False)
+	# 		if formulario.is_valid():
+	# 			sinais = Sinal.objects.filter(traducaoP__contains=formulario.cleaned_data['traducaoP'])		
+	# 	elif tipopesq == "e":
+	# 		formulario = PesquisaIngForm(request.POST, auto_id=False)
+	# 		if formulario.is_valid():
+	# 			sinais = Sinal.objects.filter(traducaoI__contains=formulario.cleaned_data['traducaoI'])
+	# 	elif tipopesq == "s":
+	# 		#pesquisa pelo parametros do Libras, local, grupoCM, CMs
+	# 		sinais = None
+	# else:
+	# 	if tipopesq == "p":
+	# 		formulario = PesquisaPortForm(auto_id=False)
+	# 	elif tipopesq == "e":
+	# 		formulario = PesquisaIngForm(auto_id=False)
+	# 	elif tipopesq == "s":
+	# 		#pesquisa pelo parametros do Libras, local, grupoCM, CMs 
+	# 		pass
+
+	if request.method == 'POST':
+		formulario = PesquisaForm(request.POST)
+		if formulario.is_valid():
+			sinais = Sinal.objects.filter(Q(traducaoP__icontains=formulario.data['busca']) | Q(traducaoI__icontains=formulario.data['busca']))
 	else:
-		if tipopesq == "p":
-			formulario = PesquisaPortForm(auto_id=False)
-		elif tipopesq == "e":
-			formulario = PesquisaIngForm(auto_id=False)
-		elif tipopesq == "s":
-			#pesquisa pelo parametros do Libras, local, grupoCM, CMs 
-			pass
+		formulario = PesquisaForm()
 
 	if(sinais):
 		resultado = len(sinais)

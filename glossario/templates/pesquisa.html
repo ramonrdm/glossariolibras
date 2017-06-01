@@ -6,7 +6,25 @@
 
 <div class="formulario">
 
-	{% if tipopesq == "p" %}
+	<div id="results">
+		{% if sinais %}
+			<p class="flow-text">Encontrado {{nsinais}} resultado(s):</p>
+			<div class="collection">
+			{% for s in sinais %}
+					<a href="/sinal/{{ s.id }}" class="collection-item">{{ s.traducaoP }}</a>
+					<a href="/sinal/{{ s.id }}" class="collection-item">{{ s.traducaoI }}</a>
+			{% endfor %}
+		{% else %}
+			{% if request.method == "POST" %}
+				<p class="flow-text">Nenhum resultado encontrado.</p>
+			{% endif %}
+		{% endif %}
+		</div>
+	</div>
+	
+</div>
+
+<!-- 	{% if tipopesq == "p" %}
 		<p class="flow-text">Buscar pelo português:</p>
 	{% elif tipopesq == "e" %}
 		<p class="flow-text">Buscar pelo inglês:</p>
@@ -14,14 +32,14 @@
 		<p class="flow-text">Buscar pelo sinal:</p>
 	{% endif %}
 
-	{% if tipopesq == "p" or tipopesq == "e" %}
+	{% if tipopesq == "p" or tipopesq == "e" %} -->
 <!-- 		<form action="" method="post">
 			{% csrf_token %}
 			{{ formulario.as_p }}
 			<button class="waves-effect waves-light btn" type="submit"><i class="material-icons left">search</i>Pesquisar</button>
 		</form> -->
 		
-        <nav class="glossarioSearch">
+<!--         <nav class="glossarioSearch">
             <div class="nav-wrapper white">
                 <form method="post">
                 	{% csrf_token %}
@@ -33,27 +51,10 @@
                 </form>
             </div>
         </nav>
+ -->
 
-		<div id="results">
-			{% if sinais %}
-				<p class="flow-text">Encontrado {{nsinais}} resultado(s):</p>
-				<div class="collection">
-				{% for s in sinais %}
-					{% if tipopesq == "p" %}
-						<a href="/sinal/{{ s.id }}" class="collection-item">{{ s.traducaoP }}</a>
-					{% elif tipopesq == "e" %}
-						<a href="/sinal/{{ s.id }}" class="collection-item">{{ s.traducaoI }}</a>
-					{% endif %}
-				{% endfor %}
-			{% else %}
-				{% if request.method == "POST" %}
-					<p class="flow-text">Nenhum resultado encontrado.</p>
-				{% endif %}
-			{% endif %}
-			</div>
-		</div>
 	<!-- Acrescentar aqui 'else' para exibir busca por sinal -->
-	{% endif %}
-</div>
+<!-- 	{% endif %} -->
+<!-- </div> -->
 
 {% endblock %}
