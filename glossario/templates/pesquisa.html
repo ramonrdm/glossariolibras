@@ -11,7 +11,7 @@
 			<p class="flow-text">Encontrado {{nsinais}} resultado(s):</p>
 			<div class="collection">
 			{% for s in sinais %}
-					<a href="/sinal/{{ s.id }}" class="collection-item">{{ s.traducaoP }}</a>
+					<a href="/{{glossario.link}}/sinal/{{ s.id }}" class="collection-item">{{ s.traducaoP }}</a>
 					<a href="/sinal/{{ s.id }}" class="collection-item">{{ s.traducaoI }}</a>
 			{% endfor %}
 		{% else %}

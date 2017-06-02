@@ -8,41 +8,67 @@ import json
 from django.db.models import Q
 
 def index(request, glossario=None):
-	if glossario:
-		try:
-			glossario = Glossario.objects.get(link=glossario)
-			return render(request, "glossario.html", dict(glossario=glossario))
-			# return render(glossario(request), {'glossario': glossario})
-			# return redirect('glossario', glossario=glossario)		TENTAR USAR REDIRECT
-		except Glossario.DoesNotExist:
-			glossarios = Glossario.objects.all()
-	else:		
-		glossarios = Glossario.objects.all()
+	# if glossario:
+	# 	try:
+	# 		#glossario = Glossario.objects.get(link=glossario)
+	# 		#return render(request, "glossario.html", dict(glossario=glossario))
+	# 		return redirect('viewGlossario')
+	# 	except Glossario.DoesNotExist:
+	# 		glossarios = Glossario.objects.all()
+	# else:
 
-	return render(request, "index.html", dict(glossarios=glossarios, glossario=glossario))
+	# if glossario:
+	# 	try:
+	# 		return redirect('glossarioSelecionado')
+	# 	except Glossario.DoesNotExist:
+	# 		glossarios = Glossario.objects.all()
 
-# def glossario(request):
-# 	if request.method == 'POST':
-# 		sinais = formulario = None
-# 		formulario = PesquisaForm(request.POST)
-# 		if formulario.is_valid():
-# 			sinais = Sinal.objects.filter(Q(traducaoP__icontains=formulario.data['busca']) | Q(traducaoI__icontains=formulario.data['busca']))
-# 		if(sinais):
-# 			resultado = len(sinais)
-# 		else:
-# 			resultado = None
-# 		render(request, 'pesquisa.html', {'formulario': formulario, 'sinais': sinais, 'resultado': resultado})
-# 	else:
-# 		glossario = Glossario.objects.get(link=glossario)
-# 		return render(request, 'glossario.html', {'glossario': glossario})
+	glossarios = Glossario.objects.all()
 
-def pesquisa(request, glossario=None, tipopesq=None):
+	return render(request, "index.html", dict(glossarios=glossarios))
+
+def glossarioSelecionado(request, glossario):
 	try:
 		glossario = Glossario.objects.get(link=glossario)
 	except Glossario.DoesNotExist:
 		glossario = None
 
-	sinais = formulario = None
+	if request.method == 'POST':
+		sinais = formulario = None
+		formulario = PesquisaForm(request.POST)
+		if formulario.is_valid():
+			sinais = Sinal.objects.filter(Q(traducaoP__icontains=formulario.data['busca']) | Q(traducaoI__icontains=formulario.data['busca']))
+		if(sinais):
+			resultado = len(sinais)
+		else:
+			resultado = None
+		return render(request, 'pesquisa.html', {'formulario': formulario, 'sinais': sinais, 'resultado': resultado, 'glossario': glossario})
+		#return redirect('pesquisa', {'formulario': formulario, 'sinais': sinais, 'resultado': resultado, 'glossario': glossario})
+	else:
+		formulario = PesquisaForm()
+		return render(request, 'glossario.html', {'glossario': glossario, 'formulario': formulario})
+
+def pesquisa(request, glossario=None, tipopesq=None, formulario=None, sinais=None, resultado=None):
+	# try:
+	# 	glossario = Glossario.objects.get(link=glossario)
+	# except Glossario.DoesNotExist:
+	# 	glossario = None
+
+	if request.method == 'POST':
+		sinais = formulario = None
+		formulario = PesquisaForm(request.POST)
+		if formulario.is_valid():
+			sinais = Sinal.objects.filter(Q(traducaoP__icontains=formulario.data['busca']) | Q(traducaoI__icontains=formulario.data['busca']))
+		if(sinais):
+			resultado = len(sinais)
+		else:
+			resultado = None
+
+	else:
+		formulario = PesquisaForm()
+		return render(request, 'pesquisa.html', {'formulario': formulario, 'sinais': sinais, 'resultado': resultado, 'glossario': glossario})
+
+	#return render(request, "pesquisa.html", {'glossario':glossario,'formulario':formulario,'sinais':sinais,'nsinais':resultado,'tipopesq':tipopesq})
 
 	# if request.method == "POST":
 	# 	if tipopesq == "p":
@@ -63,21 +89,8 @@ def pesquisa(request, glossario=None, tipopesq=None):
 	# 		formulario = PesquisaIngForm(auto_id=False)
 	# 	elif tipopesq == "s":
 	# 		#pesquisa pelo parametros do Libras, local, grupoCM, CMs 
-	# 		pass
 
-	if request.method == 'POST':
-		formulario = PesquisaForm(request.POST)
-		if formulario.is_valid():
-			sinais = Sinal.objects.filter(Q(traducaoP__icontains=formulario.data['busca']) | Q(traducaoI__icontains=formulario.data['busca']))
-	else:
-		formulario = PesquisaForm()
 
-	if(sinais):
-		resultado = len(sinais)
-	else:
-		resultado = None
-
-	return render(request, "pesquisa.html", {'glossario':glossario,'formulario':formulario,'sinais':sinais,'nsinais':resultado,'tipopesq':tipopesq})
 
 def equipe(request):
 	usuario = Usuario.objects.all()
@@ -127,13 +140,30 @@ def temas(request, temas=None):
 		raiz = None
 	return render(request, "temas.html", dict(raiz=raiz))
 
-def sinal(request, sinal=None):
-	if sinal:
-		try:
-			sinal = Sinal.objects.get(id=sinal)
-		except Sinal.DoesNotExist:
-			sinal = None
-		return render(request, "sinal.html", dict(sinal=sinal))
+def sinal(request, sinal=None, glossario=None):
+	try:
+		glossario = Glossario.objects.get(link=glossario)
+	except Glossario.DoesNotExist:
+		glossario = None
+
+	if request.method == 'POST':
+		sinais = formulario = None
+		formulario = PesquisaForm(request.POST)
+		if formulario.is_valid():
+			sinais = Sinal.objects.filter(Q(traducaoP__icontains=formulario.data['busca']) | Q(traducaoI__icontains=formulario.data['busca']))
+		if(sinais):
+			resultado = len(sinais)
+		else:
+			resultado = None
+		return render(request, 'pesquisa.html', {'formulario': formulario, 'sinais': sinais, 'resultado': resultado, 'glossario': glossario})
+	else:
+		if sinal:
+			try:
+				sinal = Sinal.objects.get(id=sinal) #RETORNANDO SINAL VAZIO
+			except Sinal.DoesNotExist:
+				sinal = None
+		formulario = PesquisaForm()
+		return render(request, "sinal.html", dict(sinal=sinal, glossario=glossario, formulario=formulario))
 
 def temasjson(request):
 	global jsonTemas
