@@ -22,13 +22,13 @@
             <div class="nav-wrapper center"><a href="/" class="brand-logo"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a></div>
             <div class="center">
                 {% if glossario.imagem %}
-                    <a href="{{ glossario.link }}"><img class="circle imgGlossario" src="{{ glossario.imagem.url }}"/></a>
+                    <a href="{{ glossario.link }}"><img class="circle z-depth-4 imgGlossario" src="{{ glossario.imagem.url }}"/></a>
                 {% else %}
                     <a href="{{ glossario.link }}"><i class="large material-icons icone imgGlossario">cloud_off</i></a>
                 {% endif %}
                 <div><b>{{ glossario.nome }}</b></div>
             </div>
-            <nav class="glossarioSearch">
+<!--             <nav class="glossarioSearch">
                 <div class="nav-wrapper white">
                     <form>
                         <div class="input-field">
@@ -38,15 +38,27 @@
                         </div>
                     </form>
                 </div>
+            </nav> -->
+            <nav class="glossarioSearch">
+                <div class="nav-wrapper white">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="input-field">
+                            {{ formulario }}
+                            <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
+                            <i class="material-icons">close</i>
+                        </div>
+                    </form>
+                </div>
             </nav>
             {% if sinal %}
                 <div class="sideNavLinks">
-                    <ul>
-                        <li><a class="dropdown-button" href="#!" data-activates="dropdown1">{{sinal.traducaoP}} | {{sinal.traducaoI}}<i class="material-icons right">arrow_drop_down</i></a></li>
-                    </ul>
-                    <ul id='dropdown1' class='dropdown-content'>
-                        <li><a href="/">Sinal</a></li>
-                    </ul>
+                    <li><a class="subheader">{{sinal.traducaoP}} | {{sinal.traducaoI}}</a></li>
+                    <li><a href="/sinal/{{sinal.id}}"><i class="material-icons">list</i>Sinal</a></li>
+                    <li><a href="/sinal/{{sinal.id}}/exemplo"><i class="material-icons">list</i>Exemplo</a></li>
+                    <li><a href="/sinal/{{sinal.id}}/descricao"><i class="material-icons">list</i>Descrição</a></li>
+                    <li><a href="/sinal/{{sinal.id}}/variacao"><i class="material-icons">list</i>Variação</a></li>
+                    <li><div class="divider"></div></li>
                 </div>
             {% endif %}
             <div class="sideNavLinks"> 
@@ -54,13 +66,13 @@
                 <li><a href="/historia"><i class="material-icons">library_books</i>História</a></li>
                 <li><a href="/equipe"><i class="material-icons">supervisor_account</i>Equipe</a></li>
                 <li><a href="/contato"><i class="material-icons">call</i>Contato</a></li>
-                <!-- <li><a href="/admin">Admin</a></li> -->
+                <li><a href="/admin"><i class="material-icons">https</i>Admin</a></li>
             </div>
             <div class="nav-wrapper center"><a href="http://ufsc.br" class="brand-logo"><img class="logoUFSC" src='{% static "img/marca_ufsc2.png" %}'></a></div>
         </ul>
 
         <div class="navbar hide-on-large-only">
-            <nav class="light-blue darken-4" role="navigation">
+            <nav class="blue darken-4" role="navigation">
                 <ul id="nav-mobile" class="side-nav">
                     <!-- <li onclick="$('.button-collapse').sideNav('show')"></li> -->
                     <div>
@@ -68,7 +80,7 @@
                     </div>
                     <div class="center">
                         {% if glossario.imagem %}
-                            <a href="{{ glossario.link }}"><img class="circle imgGlossarioMobile" src="{{ glossario.imagem.url }}"/></a>
+                            <a href="{{ glossario.link }}"><img class="circle z-depth-4 imgGlossarioMobile" src="{{ glossario.imagem.url }}"/></a>
                         {% else %}
                             <a href="{{ glossario.link }}"><i class="large material-icons icone imgGlossarioMobile">cloud_off</i></a>
                         {% endif %}
@@ -90,7 +102,7 @@
                         <li><a href="/historia"><i class="material-icons">library_books</i>História</a></li>
                         <li><a href="/equipe"><i class="material-icons">supervisor_account</i>Equipe</a></li>
                         <li><a href="/contato"><i class="material-icons">call</i>Contato</a></li>
-                        <!-- <li><a href="/admin">Admin</a></li> -->
+                        <li><a href="/admin"><i class="material-icons">https</i>Admin</a></li>
                     </div>
                     <div>
                         <a href="http://ufsc.br" class="brand-logo"><img class="logoUFSC" src='{% static "img/marca_ufsc2.png" %}'></a>

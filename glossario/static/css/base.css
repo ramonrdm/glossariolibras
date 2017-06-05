@@ -45,6 +45,10 @@ body {
 	height: 160px;
 }
 
+.textoIndex {
+	color: #003a99;
+}
+
 .blockContainer {
 	margin-top: 5%;
 }
@@ -115,7 +119,34 @@ body {
 	margin-left: 5%;
 }
 
-.cardTexto{
+/* === SINAL === */
+
+.nomeSinal {
+	white-space: pre-line;
+}
+
+.videoSinal {
+	margin-top: 2%;
+	width: 500px;
+}
+
+.maoEsquerda {
+	white-space: pre-line;
+}
+
+.maoDireita {
+	white-space: pre-line;
+	margin-right: 2%;
+	text-align: center;
+}
+
+.cardMao {
+	margin-top: 5%;
+}
+
+/* === EQUIPE === */
+
+.cardTexto {
 	text-align: justify;
 }
 

@@ -31,7 +31,9 @@ class PesquisaPortForm(forms.ModelForm):
 	class Meta:
 		model = Sinal
 		fields = ['traducaoP']
-
+		widgets = {
+        	'traducaoP': forms.TextInput(attrs={'id': 'search', 'type': 'search'}),
+        }
 
 class PesquisaIngForm(forms.ModelForm):
 	
@@ -45,6 +47,8 @@ class SinalForm(forms.ModelForm):
 		model = Sinal
 		fields = '__all__'
 
+class PesquisaForm(forms.Form):
+	busca = forms.CharField(label="", widget=forms.TextInput(attrs={'id': 'search', 'type': 'search'}))
 #
 
 

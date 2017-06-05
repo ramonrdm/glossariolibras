@@ -13,9 +13,11 @@ urlpatterns = [
     url(r'^historia', views.historia, name='historia'),
     url(r'^temas$', views.temas, name='temas'),
     url(r'^temasjson', views.temasjson, name='temasjson'),
-    url(r'^sinal/(\d+)$', views.sinal, name='sinal'),
-    url(r'^(?P<glossario>[-\w]+)$', views.index, name='glossarios'),
-    url(r'^(?P<glossario>[-\w]+)/(?P<tipopesq>[\w]+)$', views.pesquisa, name='pesquisa'),
+    #url(r'^sinal/(\d+)$', views.sinal, name='sinal'),
+    url(r'^(?P<glossario>[-\w]+)/sinal/(\d+)$', views.sinal, name='sinal'),
+    url(r'^(?P<glossario>[-\w]+)$', views.glossarioSelecionado, name='glossarios'),
+    # url(r'^(?P<glossario>[-\w]+)/(?P<tipopesq>[\w]+)$', views.pesquisa, name='pesquisa'),
+    # url(r'^(?P<glossario>[-\w]+)/pesquisa$', views.pesquisa, name='pesquisa'),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
 
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

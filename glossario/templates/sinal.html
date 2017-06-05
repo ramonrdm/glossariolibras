@@ -1,82 +1,107 @@
 <!DOCTYPE html>
 
 <html>
-	<head>
-		{% extends 'baseSearchNav.html' %}
-		<title>{% block title %}Sinal - Glossário Letras Libras{% endblock %}</title>
-	</head>
+<head>
+	{% extends 'baseSearchNav.html' %}
+	<title>{% block title %}Sinal - Glossário Letras Libras{% endblock %}</title>
+</head>
 
-	<body>
-		{% block Corpo %}
-		{% load staticfiles %}
+<body>
+	{% block Corpo %}
+	{% load staticfiles %}
 
-		<script type="text/javascript" src='{% static "js/sinal.js" %}'></script>
-		
-		<div id="tabber" class ="tabber">
-		
-		<div class="tabbertab tabberdefault" title="Sinal"><h3>Sinal</h3>
+	<script type="text/javascript" src='{% static "js/sinal.js" %}'></script>
 	
-			{% if sinal.sinalLibras %}
-				<center><video class="videos" controls ><source src="{{ sinal.sinalLibras.url }}" type="video/mp4" ></video></center>
-			{% else %}
-				<i class="large material-icons icone">videocam_off</i>
-			{% endif %}
+	{% if sinal.sinalLibras %}
+		<div class="center">
+			<video class="responsive-video z-depth-5 videoSinal" controls preload="metadata">
+				<source src="{{sinal.sinalLibras.url}}">
+				Seu navegador não suporta vídeo html5, por favor atualize seu navegador.
+			</video>
 		</div>
-
-		<div class="tabbertab" title="Exemplo"><h3>Exemplo</h3>
-			{% if sinal.exemploLibras %}
-				<center><video class="videos" controls ><source src="{{ sinal.exemploLibras.url }}" type="video/mp4" ></video></center>
-			{% else %}
-				<i class="large material-icons icone">videocam_off</i>
-			{% endif %}
+	{% else %}
+		<div class="center">
+			<i class="large material-icons videoSinal icone">videocam_off</i>
 		</div>
+	{% endif %}
 
-		<div class="tabbertab" title="Descrição"><h3>Descrição</h3>
-			{% if sinal.descLibras %}
-				<center><video class="videos" controls ><source src="{{ sinal.descLibras.url }}" type="video/mp4" ></video></center>
-			{% else %}
-				<i class="large material-icons icone">videocam_off</i>
-			{% endif %}
+	<div class="center">
+		<span class="flow-text nomeSinal">
+			Português: {{sinal.traducaoP}}
+			Inglês: {{sinal.traducaoI}}
+		</span>
+	</div>
+
+	{% if sinal.descricao %}
+		<div class="center">
+			<p class="flow-text">Descrição: {{sinal.descricao}}</p>
 		</div>
+	{% endif %}
 
-		<div class="tabbertab" title"Variacão"><h3>Variação</h3>
-			{% if sinal.varicLibras %}
-				<center><video class="videos" controls ><source src="{{ sinal.varicLibras.url }}" type="video/mp4" ></video></center>
-			{% else %}
-				<i class="large material-icons icone">videocam_off</i>
-			{% endif %}
-		</div>
-		</div>
-
-		<div id="palavratrad"></br><big>Português:</big> <b>{{ sinal.traducaoP }}.</b><br><big> Inglês: </big><b>{{ sinal.traducaoI }}.</b></div>
-
-		</br></br></br></br>
-
-		<div id="descr"><b>Descrição:</b>  {{ sinal.descricao }}</div>
-
-		<div>
-			<div id="CMD">
-				Grupo de configuração da mão direita:</br>
-				{{ sinal.grupoCMd }}</br>
-				Configuração da mão direita:</br>
-				{{ sinal.cmD }}</br>
-				Localização do sinal
-				{{ sinal.localizacao }}
-			</div>
-
-			<div id="CME">
-				Grupo de configuração da mão esquerda:</br>
-				{{ sinal.grupocmE }}</br>
-				Configuração da mão esquerda:</br>
-				{{ sinal.cmE }}</br>
-				Sign Writing
+	<div class="row">
+		<div class="col s12 m6">
+			<div class="card blue darken-4 z-depth-5 cardMao">
+				<div class="card-content white-text">
+					<span class="card-title">Mão esquerda</span>
+					<p class="maoEsquerda">
+						Grupo de configuração da mão esquerda: {{ sinal.grupoCMe }}
+						Configuração da mão esquerda: {{ sinal.cmE }}
+						Localização do sinal: {{ sinal.localizacao | lower }}
+					</p>
+				</div>
 			</div>
 		</div>
+		<div class="col s12 m6">
+			<div class="card blue darken-4 z-depth-5 cardMao">
+				<div class="card-content white-text">
+					<span class="card-title">Mão direita</span>
+					<p class="maoEsquerda">
+						Grupo de configuração da mão direita: {{ sinal.grupoCMd }}
+						Configuração da mão direita: {{ sinal.cmD }}
+						Localização do sinal: {{ sinal.localizacao | lower }}	
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
 
-{% endblock %}
-	</body>
+<!-- 		<div id="tabber" class ="tabber">
+	
+	<div class="tabbertab tabberdefault" title="Sinal"><h3>Sinal</h3>
+
+		{% if sinal.sinalLibras %}
+			<center><video class="videos" controls ><source src="{{ sinal.sinalLibras.url }}" type="video/mp4" ></video></center>
+		{% else %}
+			<i class="large material-icons icone">videocam_off</i>
+		{% endif %}
+	</div>
+
+	<div class="tabbertab" title="Exemplo"><h3>Exemplo</h3>
+		{% if sinal.exemploLibras %}
+			<center><video class="videos" controls ><source src="{{ sinal.exemploLibras.url }}" type="video/mp4" ></video></center>
+		{% else %}
+			<i class="large material-icons icone">videocam_off</i>
+		{% endif %}
+	</div>
+
+	<div class="tabbertab" title="Descrição"><h3>Descrição</h3>
+		{% if sinal.descLibras %}
+			<center><video class="videos" controls ><source src="{{ sinal.descLibras.url }}" type="video/mp4" ></video></center>
+		{% else %}
+			<i class="large material-icons icone">videocam_off</i>
+		{% endif %}
+	</div>
+
+	<div class="tabbertab" title"Variacão"><h3>Variação</h3>
+		{% if sinal.varicLibras %}
+			<center><video class="videos" controls ><source src="{{ sinal.varicLibras.url }}" type="video/mp4" ></video></center>
+		{% else %}
+			<i class="large material-icons icone">videocam_off</i>
+		{% endif %}
+	</div>
+	</div>
+-->
+	{% endblock %}
+</body>
 	
 </html>
-
-
-
