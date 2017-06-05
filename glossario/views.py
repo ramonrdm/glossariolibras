@@ -49,10 +49,12 @@ def glossarioSelecionado(request, glossario):
 		return render(request, 'glossario.html', {'glossario': glossario, 'formulario': formulario})
 
 def pesquisa(request, glossario=None, tipopesq=None, formulario=None, sinais=None, resultado=None):
-	# try:
-	# 	glossario = Glossario.objects.get(link=glossario)
-	# except Glossario.DoesNotExist:
-	# 	glossario = None
+	try:
+		glossario = Glossario.objects.get(link=glossario)
+	except Glossario.DoesNotExist:
+		glossario = None
+
+	# request.session['glossario'] = glossario
 
 	if request.method == 'POST':
 		sinais = formulario = None
@@ -141,10 +143,10 @@ def temas(request, temas=None):
 	return render(request, "temas.html", dict(raiz=raiz))
 
 def sinal(request, sinal=None, glossario=None):
-	try:
-		glossario = Glossario.objects.get(link=glossario)
-	except Glossario.DoesNotExist:
-		glossario = None
+	# try:
+	# 	glossario = Glossario.objects.get(link=glossario)
+	# except Glossario.DoesNotExist:
+	# 	glossario = None
 
 	if request.method == 'POST':
 		sinais = formulario = None
@@ -157,13 +159,15 @@ def sinal(request, sinal=None, glossario=None):
 			resultado = None
 		return render(request, 'pesquisa.html', {'formulario': formulario, 'sinais': sinais, 'resultado': resultado, 'glossario': glossario})
 	else:
+		# glossario = request.session['glossario']
 		if sinal:
 			try:
 				sinal = Sinal.objects.get(id=sinal) #RETORNANDO SINAL VAZIO
 			except Sinal.DoesNotExist:
 				sinal = None
 		formulario = PesquisaForm()
-		return render(request, "sinal.html", dict(sinal=sinal, glossario=glossario, formulario=formulario))
+		# return render(request, "sinal.html", dict(sinal=sinal, glossario=glossario, formulario=formulario))
+		return render(request, "sinal.html", {'sinal': sinal, 'glossario': glossario, 'formulario': formulario})
 
 def temasjson(request):
 	global jsonTemas
