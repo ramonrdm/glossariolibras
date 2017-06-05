@@ -63,7 +63,7 @@ def pesquisa(request, glossario=None, tipopesq=None, formulario=None, sinais=Non
 			resultado = len(sinais)
 		else:
 			resultado = None
-
+		return render(request, 'pesquisa.html', {'formulario': formulario, 'sinais': sinais, 'resultado': resultado, 'glossario': glossario})
 	else:
 		formulario = PesquisaForm()
 		return render(request, 'pesquisa.html', {'formulario': formulario, 'sinais': sinais, 'resultado': resultado, 'glossario': glossario})

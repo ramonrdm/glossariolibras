@@ -4,24 +4,19 @@
 {% block Corpo %}
 {% load staticfiles %}
 
-<div class="formulario">
-
-	<div id="results">
-		{% if sinais %}
-			<p class="flow-text">Encontrado {{nsinais}} resultado(s):</p>
-			<div class="collection">
-			{% for s in sinais %}
-					<a href="/{{glossario.link}}/sinal/{{ s.id }}" class="collection-item">{{ s.traducaoP }}</a>
-					<a href="/sinal/{{ s.id }}" class="collection-item">{{ s.traducaoI }}</a>
-			{% endfor %}
-		{% else %}
-			{% if request.method == "POST" %}
-				<p class="flow-text">Nenhum resultado encontrado.</p>
-			{% endif %}
+<div class="container">
+	{% if sinais %}
+		<h3>Encontrado {{resultado}} resultado(s):</h3>
+		<div class="collection">
+		{% for s in sinais %}
+				<a href="/{{glossario.link}}/sinal/{{s.id}}" class="collection-item">{{ s.traducaoP }}</a>
+				<a href="/sinal/{{ s.id }}" class="collection-item">{{ s.traducaoI }}</a>
+		{% endfor %}
+	{% else %}
+		{% if request.method == "POST" %}
+			<h3>Nenhum resultado encontrado.</h3>
 		{% endif %}
-		</div>
-	</div>
-	
+	{% endif %}
 </div>
 
 <!-- 	{% if tipopesq == "p" %}
