@@ -24,8 +24,7 @@ def index(request, glossario=None):
 	# 		glossarios = Glossario.objects.all()
 
 	glossarios = Glossario.objects.all()
-
-	return render(request, "index.html", dict(glossarios=glossarios))
+	return render(request, "index.html", {'glossarios': glossarios})
 
 def glossarioSelecionado(request, glossario):
 	try:
@@ -43,24 +42,16 @@ def glossarioSelecionado(request, glossario):
 		else:
 			resultado = None
 		return render(request, 'pesquisa.html', {'formulario': formulario, 'sinais': sinais, 'resultado': resultado, 'glossario': glossario})
-		#return redirect('pesquisa', {'formulario': formulario, 'sinais': sinais, 'resultado': resultado, 'glossario': glossario})
 	else:
 		formulario = PesquisaForm()
 		return render(request, 'glossario.html', {'glossario': glossario, 'formulario': formulario})
 
 def pesquisa(request, glossario=None, tipopesq=None, formulario=None, sinais=None, resultado=None):
-	try:
-		glossario = Glossario.objects.get(link=glossario)
-	except Glossario.DoesNotExist:
-		glossario = None
-
-	# request.session['glossario'] = glossario
-
 	if request.method == 'POST':
 		sinais = formulario = None
 		formulario = PesquisaForm(request.POST)
 		if formulario.is_valid():
-			sinais = Sinal.objects.filter(Q(traducaoP__icontains=formulario.data['busca']) | Q(traducaoI__icontains=formulario.data['busca']))
+			sinais = Sinal.objects.filter(Q(traducaoP__icontains=formulario.cleaned_data['busca']) | Q(traducaoI__icontains=formulario.cleaned_data['busca']))
 		if(sinais):
 			resultado = len(sinais)
 		else:
@@ -69,8 +60,6 @@ def pesquisa(request, glossario=None, tipopesq=None, formulario=None, sinais=Non
 	else:
 		formulario = PesquisaForm()
 		return render(request, 'pesquisa.html', {'formulario': formulario, 'sinais': sinais, 'resultado': resultado, 'glossario': glossario})
-
-	#return render(request, "pesquisa.html", {'glossario':glossario,'formulario':formulario,'sinais':sinais,'nsinais':resultado,'tipopesq':tipopesq})
 
 	# if request.method == "POST":
 	# 	if tipopesq == "p":
@@ -92,11 +81,12 @@ def pesquisa(request, glossario=None, tipopesq=None, formulario=None, sinais=Non
 	# 	elif tipopesq == "s":
 	# 		#pesquisa pelo parametros do Libras, local, grupoCM, CMs 
 
+	#return render(request, "pesquisa.html", {'glossario':glossario,'formulario':formulario,'sinais':sinais,'nsinais':resultado,'tipopesq':tipopesq})
 
 
 def equipe(request):
 	usuario = Usuario.objects.all()
-	return render(request, "equipe.html", dict(usuario=usuario))
+	return render(request, "equipe.html", {'usuario': usuario})
 
 def contato(request):
 	return render(request, "contato.html")
@@ -143,10 +133,12 @@ def temas(request, temas=None):
 	return render(request, "temas.html", dict(raiz=raiz))
 
 def sinal(request, sinal=None, glossario=None):
-	# try:
-	# 	glossario = Glossario.objects.get(link=glossario)
-	# except Glossario.DoesNotExist:
-	# 	glossario = None
+	if sinal:
+		try:
+			sinal = Sinal.objects.get(id=sinal)
+			glossario = sinal.glossario
+		except Sinal.DoesNotExist:
+			sinal = None
 
 	if request.method == 'POST':
 		sinais = formulario = None
@@ -159,14 +151,7 @@ def sinal(request, sinal=None, glossario=None):
 			resultado = None
 		return render(request, 'pesquisa.html', {'formulario': formulario, 'sinais': sinais, 'resultado': resultado, 'glossario': glossario})
 	else:
-		# glossario = request.session['glossario']
-		if sinal:
-			try:
-				sinal = Sinal.objects.get(id=sinal) #RETORNANDO SINAL VAZIO
-			except Sinal.DoesNotExist:
-				sinal = None
 		formulario = PesquisaForm()
-		# return render(request, "sinal.html", dict(sinal=sinal, glossario=glossario, formulario=formulario))
 		return render(request, "sinal.html", {'sinal': sinal, 'glossario': glossario, 'formulario': formulario})
 
 def temasjson(request):
