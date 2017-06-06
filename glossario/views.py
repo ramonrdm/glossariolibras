@@ -26,7 +26,7 @@ def index(request, glossario=None):
 	glossarios = Glossario.objects.all()
 	return render(request, "index.html", {'glossarios': glossarios})
 
-def glossarioSelecionado(request, glossario):
+def glossarioSelecionado(request, glossario): #LÓGICA DAS CHECKBOXES IMPLEMENTADAS SOMENTE PARA ESTA VIEW, FAZER PARA AS OUTRAS
 	try:
 		glossario = Glossario.objects.get(link=glossario)
 	except Glossario.DoesNotExist:
@@ -35,12 +35,26 @@ def glossarioSelecionado(request, glossario):
 	if request.method == 'POST':
 		sinais = formulario = None
 		formulario = PesquisaForm(request.POST)
-		if formulario.is_valid():
-			sinais = Sinal.objects.filter(Q(traducaoP__icontains=formulario.data['busca']) | Q(traducaoI__icontains=formulario.data['busca']))
+		checkboxPort = request.POST.get('checkboxPort', False)	#VERIFICAR O PORQUÊ DO VALOR BOOLEANO E ESTUDAR REQUEST.POST
+		checkboxIng = request.POST.get('checkboxIng', False)	#VERIFICAR O PORQUÊ DO VALOR BOOLEANO E ESTUDAR REQUEST.POST
+		if checkboxPort:
+			if formulario.is_valid():
+				sinais = Sinal.objects.filter(Q(traducaoP__icontains=formulario.cleaned_data['busca'])) #VERIFICAR NECESSIDADE DO Q() E LÓGICA
+		if checkboxIng:
+			if formulario.is_valid():
+				sinais = Sinal.objects.filter(Q(traducaoI__icontains=formulario.cleaned_data['busca']))	#VERIFICAR NECESSIDADE DO Q() E LÓGICA
+		if checkboxPort and checkboxIng:
+			if formulario.is_valid():
+				sinais = Sinal.objects.filter(Q(traducaoP__icontains=formulario.cleaned_data['busca']) | Q(traducaoI__icontains=formulario.cleaned_data['busca']))
+
+		# if formulario.is_valid():
+		# 	sinais = Sinal.objects.filter(Q(traducaoP__icontains=formulario.cleaned_data['busca']) | Q(traducaoI__icontains=formulario.cleaned_data['busca']))
+		
 		if(sinais):
 			resultado = len(sinais)
 		else:
 			resultado = None
+
 		return render(request, 'pesquisa.html', {'formulario': formulario, 'sinais': sinais, 'resultado': resultado, 'glossario': glossario})
 	else:
 		formulario = PesquisaForm()
@@ -144,7 +158,7 @@ def sinal(request, sinal=None, glossario=None):
 		sinais = formulario = None
 		formulario = PesquisaForm(request.POST)
 		if formulario.is_valid():
-			sinais = Sinal.objects.filter(Q(traducaoP__icontains=formulario.data['busca']) | Q(traducaoI__icontains=formulario.data['busca']))
+			sinais = Sinal.objects.filter(Q(traducaoP__icontains=formulario.cleaned_data['busca']) | Q(traducaoI__icontains=formulario.cleaned_data['busca']))
 		if(sinais):
 			resultado = len(sinais)
 		else:

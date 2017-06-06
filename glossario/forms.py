@@ -49,7 +49,12 @@ class SinalForm(forms.ModelForm):
 
 class PesquisaForm(forms.Form):
 	busca = forms.CharField(label="", widget=forms.TextInput(attrs={'id': 'search', 'type': 'search'}))
-#
+	# checkboxPort = forms.BooleanField(label="", initial=True)
+	# checkboxIng = forms.BooleanField(label="")
+	# widgets = {
+	# 	'checkboxPort': {'id': 'checkboxPort', 'type':'checkbox'},
+	# 	'checkboxIng': {'id': 'checkboxIng', 'type': 'checkbox'}
+	# }
 
 
 #	def clean_nome(self):

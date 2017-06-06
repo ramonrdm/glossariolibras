@@ -28,17 +28,6 @@
                 {% endif %}
                 <div><b>{{ glossario.nome }}</b></div>
             </div>
-<!--             <nav class="glossarioSearch">
-                <div class="nav-wrapper white">
-                    <form>
-                        <div class="input-field">
-                            <input id="search" type="search" required>
-                            <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
-                            <i class="material-icons">close</i>
-                        </div>
-                    </form>
-                </div>
-            </nav> -->
             <nav class="glossarioSearch">
                 <div class="nav-wrapper white">
                     <form method="post">
@@ -48,25 +37,33 @@
                             <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
                             <i class="material-icons">close</i>
                         </div>
+                        <div class="center">
+                            <input type="checkbox" class="filled-in" id="checkboxPort" name="checkboxPort" />
+                            <label for="checkboxPort">Português</label>
+                            <input type="checkbox" class="filled-in" id="checkboxIng" name="checkboxIng" />
+                            <label for="checkboxIng">Inglês</label>
+                        </div>
                     </form>
                 </div>
             </nav>
-            {% if sinal %}
-                <div class="sideNavLinks">
-                    <li><a class="subheader">{{sinal.traducaoP}} | {{sinal.traducaoI}}</a></li>
-                    <li><a href="/sinal/{{sinal.id}}"><i class="material-icons">list</i>Sinal</a></li>
-                    <li><a href="/sinal/{{sinal.id}}/exemplo"><i class="material-icons">list</i>Exemplo</a></li>
-                    <li><a href="/sinal/{{sinal.id}}/descricao"><i class="material-icons">list</i>Descrição</a></li>
-                    <li><a href="/sinal/{{sinal.id}}/variacao"><i class="material-icons">list</i>Variação</a></li>
-                    <li><div class="divider"></div></li>
+            <div class="linkContainer">
+                {% if sinal %}
+                    <div class="sideNavLinks">
+                        <li><a class="subheader">{{sinal.traducaoP}} | {{sinal.traducaoI}}</a></li>
+                        <li><a href="/sinal/{{sinal.id}}"><i class="material-icons">list</i>Sinal</a></li>
+                        <li><a href="/sinal/{{sinal.id}}/exemplo"><i class="material-icons">list</i>Exemplo</a></li>
+                        <li><a href="/sinal/{{sinal.id}}/descricao"><i class="material-icons">list</i>Descrição</a></li>
+                        <li><a href="/sinal/{{sinal.id}}/variacao"><i class="material-icons">list</i>Variação</a></li>
+                        <li><div class="divider"></div></li>
+                    </div>
+                {% endif %}
+                <div class="sideNavLinks"> 
+                    <li><a href="/enviarsinais"><i class="material-icons">send</i>Envie sinais</a></li>
+                    <li><a href="/historia"><i class="material-icons">library_books</i>História</a></li>
+                    <li><a href="/equipe"><i class="material-icons">supervisor_account</i>Equipe</a></li>
+                    <li><a href="/contato"><i class="material-icons">call</i>Contato</a></li>
+                    <li><a href="/admin"><i class="material-icons">https</i>Admin</a></li>
                 </div>
-            {% endif %}
-            <div class="sideNavLinks"> 
-                <li><a href="/enviarsinais"><i class="material-icons">send</i>Envie sinais</a></li>
-                <li><a href="/historia"><i class="material-icons">library_books</i>História</a></li>
-                <li><a href="/equipe"><i class="material-icons">supervisor_account</i>Equipe</a></li>
-                <li><a href="/contato"><i class="material-icons">call</i>Contato</a></li>
-                <li><a href="/admin"><i class="material-icons">https</i>Admin</a></li>
             </div>
             <div class="nav-wrapper center"><a href="http://ufsc.br" class="brand-logo"><img class="logoUFSC" src='{% static "img/marca_ufsc2.png" %}'></a></div>
         </ul>
