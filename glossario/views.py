@@ -4,8 +4,8 @@ from glossario.models import Glossario, Sinal, Usuario, Tema
 from glossario.forms import PesquisaPortForm, PesquisaIngForm, PesquisaForm
 from django.template import RequestContext
 from django.http import JsonResponse
-import json
 from django.db.models import Q
+import json
 
 def index(request, glossario=None):
 	# if glossario:
@@ -33,29 +33,37 @@ def glossarioSelecionado(request, glossario): #LÓGICA DAS CHECKBOXES IMPLEMENTA
 		glossario = None
 
 	if request.method == 'POST':
-		sinais = formulario = None
+		sinais = sinaisP = sinaisI = formulario = None
 		formulario = PesquisaForm(request.POST)
-		checkboxPort = request.POST.get('checkboxPort', False)	#VERIFICAR O PORQUÊ DO VALOR BOOLEANO E ESTUDAR REQUEST.POST
-		checkboxIng = request.POST.get('checkboxIng', False)	#VERIFICAR O PORQUÊ DO VALOR BOOLEANO E ESTUDAR REQUEST.POST
-		if checkboxPort:
-			if formulario.is_valid():
-				sinais = Sinal.objects.filter(Q(traducaoP__icontains=formulario.cleaned_data['busca'])) #VERIFICAR NECESSIDADE DO Q() E LÓGICA
-		if checkboxIng:
-			if formulario.is_valid():
-				sinais = Sinal.objects.filter(Q(traducaoI__icontains=formulario.cleaned_data['busca']))	#VERIFICAR NECESSIDADE DO Q() E LÓGICA
+		checkboxPort = request.POST.get('checkboxPort', False)
+		checkboxIng = request.POST.get('checkboxIng', False)
 		if checkboxPort and checkboxIng:
 			if formulario.is_valid():
-				sinais = Sinal.objects.filter(Q(traducaoP__icontains=formulario.cleaned_data['busca']) | Q(traducaoI__icontains=formulario.cleaned_data['busca']))
-
-		# if formulario.is_valid():
-		# 	sinais = Sinal.objects.filter(Q(traducaoP__icontains=formulario.cleaned_data['busca']) | Q(traducaoI__icontains=formulario.cleaned_data['busca']))
-		
-		if(sinais):
+				sinaisP = Sinal.objects.filter(traducaoP__icontains=formulario.cleaned_data['busca'])
+				sinaisI = Sinal.objects.filter(traducaoI__icontains=formulario.cleaned_data['busca'])
+		if checkboxPort and not checkboxIng:
+			if formulario.is_valid():
+				sinais = Sinal.objects.filter(traducaoP__icontains=formulario.cleaned_data['busca'])
+		if checkboxIng and not checkboxPort:
+			if formulario.is_valid():
+				sinais = Sinal.objects.filter(traducaoI__icontains=formulario.cleaned_data['busca'])
+		if sinais:
 			resultado = len(sinais)
 		else:
 			resultado = None
-
-		return render(request, 'pesquisa.html', {'formulario': formulario, 'sinais': sinais, 'resultado': resultado, 'glossario': glossario})
+		if sinaisP:
+			resultadoP = len(sinaisP)
+		else:
+			resultadoP = None
+		if sinaisI:
+			resultadoI = len(sinaisI)
+		else:
+			resultadoI = None
+		return render(request, 'pesquisa.html', {
+			'formulario': formulario, 'sinais': sinais, 'sinaisP': sinaisP, 'sinaisI': sinaisI,
+			'resultado': resultado, 'resultadoP': resultadoP, 'resultadoI': resultadoI, 'glossario': glossario,
+			'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng
+			})
 	else:
 		formulario = PesquisaForm()
 		return render(request, 'glossario.html', {'glossario': glossario, 'formulario': formulario})

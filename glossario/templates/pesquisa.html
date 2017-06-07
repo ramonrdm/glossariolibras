@@ -8,15 +8,47 @@
 	{% if sinais %}
 		<h3>Encontrado {{resultado}} resultado(s):</h3>
 		<div class="collection">
-		{% for s in sinais %}
+			{% for s in sinais %}
+				{% if checkboxPort %}
+					<a href="/sinal/{{s.id}}" class="collection-item">{{s.traducaoP}}</a>
+				{% elif checkboxIng %}
+					<a href="/sinal/{{s.id}}" class="collection-item">{{s.traducaoI}}</a>
+				{% endif %}
+			{% endfor %}
+		</div>
+	{% elif sinaisP and sinaisI %}
+		<h3>Encontrado {{resultadoP}} resultado(s) em português:</h3>
+		<div class="collection">
+			{% for s in sinaisP %}
 				<a href="/sinal/{{s.id}}" class="collection-item">{{s.traducaoP}}</a>
+			{% endfor %}
+		</div>
+		<h3>Encontrado {{resultadoI}} resultado(s) em inglês:</h3>
+		<div class="collection">
+			{% for s in sinaisI %}
 				<a href="/sinal/{{s.id}}" class="collection-item">{{s.traducaoI}}</a>
-		{% endfor %}
+			{% endfor %}
+		</div>
+	{% elif sinaisP and not sinaisI %}
+		<h3>Encontrado {{resultadoP}} resultado(s) em português:</h3>
+		<div class="collection">
+			{% for s in sinaisP %}
+				<a href="/sinal/{{s.id}}" class="collection-item">{{s.traducaoP}}</a>
+			{% endfor %}
+		</div>
+		<h3>Nenhum resultado enconrado em inglês.</h3>
+	{% elif not sinaisP and sinaisI %}
+		<h3>Nenhum resultado encontrado em português.</h3>
+		<h3>Encontrado {{resultadoI}} resultado(s) em inglês:</h3>
+		<div class="collection">
+			{% for s in sinaisI %}
+				<a href="/sinal/{{s.id}}" class="collection-item">{{s.traducaoI}}</a>
+			{% endfor %}
+		</div>
 	{% else %}
-		{% if request.method == "POST" %}
-			<h3>Nenhum resultado encontrado.</h3>
-		{% endif %}
+		<h3>Nenhum resultado encontrado.</h3>
 	{% endif %}
+
 </div>
 
 <!-- 	{% if tipopesq == "p" %}
