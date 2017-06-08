@@ -18,6 +18,8 @@
 
     <body>
         
+<!-- SIDENAV FIXA -->
+
         <ul class="side-nav fixed">
             <div class="nav-wrapper center"><a href="/" class="brand-logo"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a></div>
             <div class="center">
@@ -38,7 +40,7 @@
                             <i class="material-icons">close</i>
                         </div>
                         <div class="center">
-                            <input type="checkbox" class="filled-in" id="checkboxPort" name="checkboxPort" />
+                            <input type="checkbox" class="filled-in" id="checkboxPort" name="checkboxPort" checked="checked"/>
                             <label for="checkboxPort">Português</label>
                             <input type="checkbox" class="filled-in" id="checkboxIng" name="checkboxIng" />
                             <label for="checkboxIng">Inglês</label>
@@ -50,10 +52,10 @@
                 {% if sinal %}
                     <div class="sideNavLinks">
                         <li><a class="subheader">{{sinal.traducaoP}} | {{sinal.traducaoI}}</a></li>
-                        <li><a href="/sinal/{{sinal.id}}"><i class="material-icons">list</i>Sinal</a></li>
-                        <li><a href="/sinal/{{sinal.id}}/exemplo"><i class="material-icons">list</i>Exemplo</a></li>
-                        <li><a href="/sinal/{{sinal.id}}/descricao"><i class="material-icons">list</i>Descrição</a></li>
-                        <li><a href="/sinal/{{sinal.id}}/variacao"><i class="material-icons">list</i>Variação</a></li>
+                        <li><a id="botaoSinal"><i class="material-icons">list</i>Sinal</a></li>
+                        <li><a id="botaoExemplo"><i class="material-icons">list</i>Exemplo</a></li>
+                        <li><a id="botaoDescricao"><i class="material-icons">list</i>Descrição</a></li>
+                        <li><a id="botaoVariacao"><i class="material-icons">list</i>Variação</a></li>
                         <li><div class="divider"></div></li>
                     </div>
                 {% endif %}
@@ -67,6 +69,8 @@
             </div>
             <div class="nav-wrapper center"><a href="http://ufsc.br" class="brand-logo"><img class="logoUFSC" src='{% static "img/marca_ufsc2.png" %}'></a></div>
         </ul>
+
+<!-- NAVBAR MOBILE -->
 
         <div class="navbar hide-on-large-only">
             <nav class="blue darken-4" role="navigation">
@@ -92,9 +96,9 @@
                                     <i class="material-icons">close</i>
                                 </div>
                                 <div class="center">
-                                    <input type="checkbox" class="filled-in" id="checkboxPort" name="checkboxPort" />
+                                    <input type="checkbox" class="filled-in" id="checkboxPort" name="checkboxPort" checked="checked"/>
                                     <label for="checkboxPort">Português</label>
-                                    <input type="checkbox" class="filled-in" id="checkboxIng" name="checkboxIng" />
+                                    <input type="checkbox" class="filled-in" id="checkboxIng" name="checkboxIng"/>
                                     <label for="checkboxIng">Inglês</label>
                                 </div>
                             </form>
@@ -123,9 +127,71 @@
 
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="static/js/materialize.min.js"></script>
-        <script type="text/javascript"> //Verificar necessidade desta tag script e o que tem dentro
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="http://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
+
+<!-- ABRIR SIDENAV MOBILE -->
+
+        <script type="text/javascript"> //Verificar necessidade desta tag script
             $(".button-collapse").sideNav();
             $('.button-collapse').sideNav('hide');
+        </script>
+
+<!-- ABAS DO SINAL -->
+
+        <script>
+            $(document).ready(function() {
+                $('#videoExemplo').hide();
+                $('#videoDescricao').hide();
+                $('#videoVariacao').hide();
+            });
+            $('#botaoSinal').click(function() {
+                $('#videoSinal').show();
+                $('#videoExemplo').hide();
+                $('#videoDescricao').hide();
+                $('#videoVariacao').hide();
+            });
+            $('#botaoExemplo').click(function() {
+                $('#videoSinal').hide();
+                $('#videoExemplo').show();
+                $('#videoDescricao').hide();
+                $('#videoVariacao').hide();
+            });
+            $('#botaoDescricao').click(function() {
+                $('#videoSinal').hide();
+                $('#videoExemplo').hide();
+                $('#videoDescricao').show();
+                $('#videoVariacao').hide();
+            });
+            $('#botaoVariacao').click(function() {
+                $('#videoSinal').hide();
+                $('#videoExemplo').hide();
+                $('#videoDescricao').hide();
+                $('#videoVariacao').show();
+            });
+        </script>
+
+<!-- PERSISTÊNCIA DAS CHECKBOXES -->
+
+        <script>
+            var checkboxValues = {};
+            $(":checkbox").each(function(){
+              checkboxValues[this.id] = this.checked;
+            });
+            $.cookie('checkboxValues', checkboxValues, { expires: 7, path: '/' })
+
+            function repopulateCheckboxes(){
+                var checkboxValues = $.cookie('checkboxValues');
+                if(checkboxValues){
+                    Object.keys(checkboxValues).forEach(function(element) {
+                        var checked = checkboxValues[element];
+                        $("#" + element).prop('checked', checked);
+                    });
+                }
+            }
+
+            $.cookie.json = true;
+            repopulateCheckboxes();
         </script>
     </body>
 </html>

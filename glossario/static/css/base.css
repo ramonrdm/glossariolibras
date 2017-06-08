@@ -134,18 +134,18 @@ body {
 	width: 500px;
 }
 
-.maoEsquerda {
-	white-space: pre-line;
-}
-
-.maoDireita {
-	white-space: pre-line;
-	margin-right: 2%;
-	text-align: center;
+.mao {
+	margin-top: 20px;
 }
 
 .cardMao {
 	margin-top: 5%;
+	max-height: 650px;
+}
+
+.imgMao {
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 /* === EQUIPE === */
