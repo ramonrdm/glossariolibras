@@ -125,6 +125,11 @@ body {
 
 /* === SINAL === */
 
+.textoSinal {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
 .nomeSinal {
 	white-space: pre-line;
 }
