@@ -7,11 +7,15 @@
         <meta name="description" content="Glossario libras, ufsc, dicionario, letras libras, glossario cinema"/>
         <meta name="keywords" content="glossario, libras, ufsc, glossário, glossários, letras libras, dicionario"/>
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="http://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
+        <script type="text/javascript" src="static/js/materialize.min.js"></script>
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link type="text/css" rel="stylesheet" href='{% static "css/materialize.min.css" %}'  media="screen,projection"/>
         <link rel="stylesheet" type="text/css" href='{% static "css/base.css" %}'/>
         <link href='{% static "css/style.css" %}' type="text/css" rel="stylesheet" media="screen,projection"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
         <title>{% block title %}{% endblock %}</title>
     </head>
@@ -53,16 +57,16 @@
                     <div class="sideNavLinks">
                         {% if sinal.exemploLibras or sinal.descLibras or sinal.varicLibras %}
                             <li><a class="subheader truncate">{{sinal.traducaoP}} | {{sinal.traducaoI}}</a></li>
-                            <li><a id="botaoSinal"><i class="material-icons">list</i>Sinal</a></li>
+                            <li><a class="waves-effect waves-blue" id="botaoSinal"><i class="material-icons">list</i>Sinal</a></li>
                         {% endif %}
                         {% if sinal.exemploLibras %}
-                            <li><a id="botaoExemplo"><i class="material-icons">list</i>Exemplo</a></li>
+                            <li><a class="waves-effect waves-blue" id="botaoExemplo"><i class="material-icons">list</i>Exemplo</a></li>
                         {% endif %}
                         {% if sinal.descLibras %}
-                            <li><a id="botaoDescricao"><i class="material-icons">list</i>Descrição</a></li>
+                            <li><a class="waves-effect waves-blue" id="botaoDescricao"><i class="material-icons">list</i>Descrição</a></li>
                         {% endif %}
                         {% if sinal.varicLibras %}
-                            <li><a id="botaoVariacao"><i class="material-icons">list</i>Variação</a></li>
+                            <li><a class="waves-effect waves-blue" id="botaoVariacao"><i class="material-icons">list</i>Variação</a></li>
                         {% endif %}
                         {% if sinal.exemploLibras or sinal.descLibras or sinal.varicLibras %}
                             <li><div class="divider"></div></li>
@@ -70,11 +74,11 @@
                     </div>
                 {% endif %}
                 <div class="sideNavLinks"> 
-                    <li><a href="/enviarsinais"><i class="material-icons">send</i>Envie sinais</a></li>
-                    <li><a href="/historia"><i class="material-icons">library_books</i>História</a></li>
-                    <li><a href="/equipe"><i class="material-icons">supervisor_account</i>Equipe</a></li>
-                    <li><a href="/contato"><i class="material-icons">call</i>Contato</a></li>
-                    <li><a href="/admin"><i class="material-icons">https</i>Admin</a></li>
+                    <li><a class="waves-effect waves-blue" href="/enviarsinais"><i class="material-icons">send</i>Envie sinais</a></li>
+                    <li><a class="waves-effect waves-blue" href="/historia"><i class="material-icons">library_books</i>História</a></li>
+                    <li><a class="waves-effect waves-blue" href="/equipe"><i class="material-icons">supervisor_account</i>Equipe</a></li>
+                    <li><a class="waves-effect waves-blue" href="/contato"><i class="material-icons">call</i>Contato</a></li>
+                    <li><a class="waves-effect waves-blue" href="/admin"><i class="material-icons">https</i>Admin</a></li>
                 </div>
             </div>
             <div class="nav-wrapper center"><a href="http://ufsc.br" class="brand-logo"><img class="logoUFSC" src='{% static "img/marca_ufsc2.png" %}'></a></div>
@@ -115,11 +119,11 @@
                         </div>
                     </nav>
                     <div class="sideNavSearchMobileLinks">
-                        <li><a href="/enviarsinais"><i class="material-icons">send</i>Envie sinais</a></li>
-                        <li><a href="/historia"><i class="material-icons">library_books</i>História</a></li>
-                        <li><a href="/equipe"><i class="material-icons">supervisor_account</i>Equipe</a></li>
-                        <li><a href="/contato"><i class="material-icons">call</i>Contato</a></li>
-                        <li><a href="/admin"><i class="material-icons">https</i>Admin</a></li>
+                        <li><a class="waves-effect waves-blue" href="/enviarsinais"><i class="material-icons">send</i>Envie sinais</a></li>
+                        <li><a class="waves-effect waves-blue" href="/historia"><i class="material-icons">library_books</i>História</a></li>
+                        <li><a class="waves-effect waves-blue" href="/equipe"><i class="material-icons">supervisor_account</i>Equipe</a></li>
+                        <li><a class="waves-effect waves-blue" href="/contato"><i class="material-icons">call</i>Contato</a></li>
+                        <li><a class="waves-effect waves-blue" href="/admin"><i class="material-icons">https</i>Admin</a></li>
                     </div>
                     <div>
                         <a href="http://ufsc.br" class="brand-logo"><img class="logoUFSC" src='{% static "img/marca_ufsc2.png" %}'></a>
@@ -135,10 +139,8 @@
 
         {% endblock %}
 
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script type="text/javascript" src="static/js/materialize.min.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script src="http://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
+        
+
 
 <!-- ABRIR SIDENAV MOBILE -->
 
@@ -183,7 +185,7 @@
 
 <!-- PERSISTÊNCIA DAS CHECKBOXES -->
 
-        <script>
+<!--         <script>
             var checkboxValues = {};
             $(":checkbox").each(function(){
               checkboxValues[this.id] = this.checked;
@@ -204,4 +206,4 @@
             repopulateCheckboxes();
         </script>
     </body>
-</html>
+</html> -->

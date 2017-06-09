@@ -2,6 +2,10 @@
 
 /* === BASE === */
 
+.waves-effect.waves-blue .waves-ripple {
+	background-color: rgba(0, 0, 112, 0.65);
+}
+
 body {
 	padding-left: 300px;
 	background-color: #f7f7f7;
