@@ -9,21 +9,7 @@
 
 <body>
 	{% block Corpo %}
-	<div>
-	<div class="linha2">
-	{% for u in usuario %}
-	<div class="equipa">
-	{% if u.foto %}<br>
-	<img src="{{ u.foto.url }}" />
-	{% endif %}
-	{{ u.nome }}<br><br>
-	{% if u.latte %}
-	<a href="http://{{ u.latte }}">{{ u.latte }}</a><br>
-	{% endif %}
-	{{ u.email }}
-	</div>
-	{% endfor %}
-	</div>
+
 	<div class="equipe">
 
     <h2>Colaboradores:</h2>
@@ -41,7 +27,7 @@
 		    <div class="card-reveal">
 		      <span class="card-title grey-text text-darken-4">Ramon Dutra Miranda<i class="material-icons right">close</i></span>
 		      <p>Bacharel em Ciências da Computação. ramon.rdm@ufsc.br</p>
-		      <p><a href="http://lattes.cnpq.br/3221531249010809">Currículo Lattes</a></p>
+		      <p><a href="http://lattes.cnpq.br/3221531249010809" target="_blank">Currículo Lattes</a></p>
 		    </div>
 		  </div>
 
@@ -56,7 +42,7 @@
 		    <div class="card-reveal">
 		      <span class="card-title grey-text text-darken-4">Sabrina Hanich<i class="material-icons right">close</i></span>
 		      <p>Bacharel em Psicologia e em Análise e Desenvolvimento de Sistemas do CESUSC. </p>
-		      <p><a href="#">Currículo Lattes</a></p>
+		      <p><a href="http://lattes.cnpq.br/7693381810969866" target="_blank">Currículo Lattes</a></p>
 		    </div>
 		  </div>
 
@@ -71,7 +57,7 @@
 		    <div class="card-reveal">
 		      <span class="card-title grey-text text-darken-4">Thiago Brezinski<i class="material-icons right">close</i></span>
 		      <p>Bacharel em Sistemas de Informação. </p>
-		      <p><a href="#">Currículo Lattes</a></p>
+		      <p><a href="http://lattes.cnpq.br/9255827597931552" target="_blank">Currículo Lattes</a></p>
 		    </div>
 		  </div>
 
@@ -86,7 +72,7 @@
 		    <div class="card-reveal">
 		      <span class="card-title grey-text text-darken-4">Ana Regina Campello<i class="material-icons right">close</i></span>
 		      <p>Professora Doutora. </p>
-		      <p><a href="#">Currículo Lattes</a></p>
+		      <p><a href="http://lattes.cnpq.br/6945261731062194" target="_blank">Currículo Lattes</a></p>
 		    </div>
 		  </div>
 
@@ -101,7 +87,7 @@
 		    <div class="card-reveal">
 		      <span class="card-title grey-text text-darken-4">Débora Wanderley<i class="material-icons right">close</i></span>
 		      <p>Mestre em Linguística. </p>
-		      <p><a href="#">Currículo Lattes</a></p>
+		      <p><a href="http://lattes.cnpq.br/9003780617085002" target="_blank">Currículo Lattes</a></p>
 		    </div>
 		  </div>
 
@@ -121,7 +107,7 @@
 		  </div>
 
 		  <div class="card medium col s12 m3 hoverable">
-		    <div class="card-image waves-effect waves-block waves-light">
+		    <div class="card-image waves-effect waves-block waves-light"> 
 		      <img class="activator" src="{% static 'img/colaboradores/franz.jpeg' %}">
 		    </div>
 		    <div class="card-content">
@@ -131,7 +117,7 @@
 		    <div class="card-reveal">
 		      <span class="card-title grey-text text-darken-4">Franz Kafka Porto Domingos<i class="material-icons right">close</i></span>
 		      <p>Mestrando em Estudos da Tradução e Graduando do curso Letras-Libras. </p>
-		      <p><a href="#">Currículo Lattes</a></p>
+		      <p><a href="http://lattes.cnpq.br/6885796258165008" target="_blank">Currículo Lattes</a></p>
 		    </div>
 		  </div>
 
@@ -146,7 +132,7 @@
 		    <div class="card-reveal">
 		      <span class="card-title grey-text text-darken-4">Germano Dutra Junior<i class="material-icons right">close</i></span>
 		      <p>Graduado em Letras-Libras – Licenciatura e graduando do Curso de Cinema da UniSul.</p>
-		      <p><a href="#">Currículo Lattes</a></p>
+		      <p><a href="http://lattes.cnpq.br/7563518354797031" target="_blank">Currículo Lattes</a></p>
 		    </div>
 		  </div>
 
@@ -161,7 +147,7 @@
 		    <div class="card-reveal">
 		      <span class="card-title grey-text text-darken-4">Heloíse Gripp<i class="material-icons right">close</i></span>
 		      <p>Mestre em Linguística.</p>
-		      <p><a href="#">Currículo Lattes</a></p>
+		      <p><a href="http://lattes.cnpq.br/0922315610117042" target="_blank">Currículo Lattes</a></p>
 		    </div>
 		  </div>
 
@@ -176,7 +162,7 @@
 		    <div class="card-reveal">
 		      <span class="card-title grey-text text-darken-4">João Ricardo Rover<i class="material-icons right">close</i></span>
 		      <p>Bacharel em Ciências da Computação.</p>
-		      <p><a href="#">Currículo Lattes</a></p>
+		      <p><a href="http://lattes.cnpq.br/2360220129041620" target="_blank">Currículo Lattes</a></p>
 		    </div>
 		  </div>		  
 
@@ -191,7 +177,7 @@
 		    <div class="card-reveal">
 		      <span class="card-title grey-text text-darken-4">Lucas Müller de Jesus<i class="material-icons right">close</i></span>
 		      <p>Mestre em Design.</p>
-		      <p><a href="#">Currículo Lattes</a></p>
+		      <p><a href="http://lattes.cnpq.br/2995825736693097" target="_blank">Currículo Lattes</a></p>
 		    </div>
 		  </div>		  
 
@@ -206,7 +192,7 @@
 		    <div class="card-reveal">
 		      <span class="card-title grey-text text-darken-4">Natália Pizzetti<i class="material-icons right">close</i></span>
 		      <p>Mestre em Design e Expressão Gráfica.</p>
-		      <p><a href="#">Currículo Lattes</a></p>
+		      <p><a href="http://lattes.cnpq.br/7973881249890562" target="_blank">Currículo Lattes</a></p>
 		    </div>
 		  </div>		  
 
@@ -221,7 +207,7 @@
 		    <div class="card-reveal">
 		      <span class="card-title grey-text text-darken-4">Rafael Cavichiolli Teixeira<i class="material-icons right">close</i></span>
 		      <p>Graduando em Letras-Libras.</p>
-		      <p><a href="#">Currículo Lattes</a></p>
+		      <p><a href="http://lattes.cnpq.br/4139678786976193" target="_blank">Currículo Lattes</a></p>
 		    </div>
 		  </div>		  
 
@@ -236,7 +222,7 @@
 		    <div class="card-reveal">
 		      <span class="card-title grey-text text-darken-4">Rimar Ramalho Segala<i class="material-icons right">close</i></span>
 		      <p>Mestre em Linguística.</p>
-		      <p><a href="#">Currículo Lattes</a></p>
+		      <p><a href="http://lattes.cnpq.br/4770939741538780" target="_blank">Currículo Lattes</a></p>
 		    </div>
 		  </div>	
 
@@ -252,7 +238,7 @@
 		    <div class="card-reveal">
 		      <span class="card-title grey-text text-darken-4">Rodrigo Custódio da Silva<i class="material-icons right">close</i></span>
 		      <p>Mestre em Linguística.</p>
-		      <p><a href="#">Currículo Lattes</a></p>
+		      <p><a href="http://lattes.cnpq.br/2009310466318492" target="_blank">Currículo Lattes</a></p>
 		    </div>
 		  </div>	
 
@@ -267,7 +253,7 @@
 		    <div class="card-reveal">
 		      <span class="card-title grey-text text-darken-4">Ronnie Fagundes de Brito<i class="material-icons right">close</i></span>
 		      <p>Professor Doutor em Engenharia e Gestão do Conhecimento.</p>
-		      <p><a href="#">Currículo Lattes</a></p>
+		      <p><a href="http://lattes.cnpq.br/9015008667871372" target="_blank">Currículo Lattes</a></p>
 		    </div>
 		  </div>	
 
@@ -282,7 +268,7 @@
 		    <div class="card-reveal">
 		      <span class="card-title grey-text text-darken-4">Rundesth Saboia Nobre<i class="material-icons right">close</i></span>
 		      <p>Mestre em Linguística.</p>
-		      <p><a href="#">Currículo Lattes</a></p>
+		      <p><a href="http://lattes.cnpq.br/9391586867878720" target="_blank">Currículo Lattes</a></p>
 		    </div>
 		  </div>	
 
@@ -297,225 +283,15 @@
 		    <div class="card-reveal">
 		      <span class="card-title grey-text text-darken-4">Thaís Fleury Avelar<i class="material-icons right">close</i></span>
 		      <p>Mestre em Linguística.</p>
-		      <p><a href="#">Currículo Lattes</a></p>
+		      <p><a href="http://lattes.cnpq.br/9891676875964555" target="_blank">Currículo Lattes</a></p>
 		    </div>
 		  </div>	
 
       </div>
       </div>
 
-      <!-- -->
-      <!--Diagramação em TABLE-->
-      <!-- -->
-
-    <!--<div align="left"><h4>Ativos:</h4></div>
-	<table>
-		<tr>
-			<td><img class="responsive-img" src="{% static 'img/colaboradores/ramon.jpeg' %}"></td>
-			<td><p><b>Ramon Dutra Miranda</b></p>
-				<p>Área: Bacharel em Ciências da Computação</p>
-				<p>Função: Programador Responsável</p>
-				<p>E-mail: ramon.rdm@ufsc.br</p>
-				<p><a href="http://lattes.cnpq.br/3221531249010809 ">Link para o Currículo Lattes</a></p>
-				<p>Status: <span id="ativo">Ativo</span></p>
-			</td>
-		</tr>
-
-		<tr>
-			<td><img class="responsive-img" src="{% static 'img/colaboradores/sabrina.jpeg' %}"></td>
-			<td><p><b>Sabrina Hanich</b></p>
-				<p>Área: Bacharel em Psicologia e graduanda do curso de Análise e Desenvolvimento de Sistemas do CESUSC</p>
-				<p>Função: Programadora</p>
-				<p>E-mail:</p>
-				<p><a href="http://lattes.cnpq.br/7693381810969866">Link para o Currículo Lattes</a></p>
-				<p>Status: <span id="ativo">Ativo</span></p>
-			</td>
-		</tr>
-
-		<tr>
-			<td><img class="responsive-img" src="{% static 'img/colaboradores/thiago.jpeg' %}"></td>
-			<td><p><b>Thiago Brezinski</b></p>
-				<p>Área: Bacharel em Sistemas de Informação</p>
-				<p>Função: Programador</p>
-				<p>E-mail:</p>
-				<p><a href="http://lattes.cnpq.br/9255827597931552"> Link para o Currículo Lattes</a></p> 
-				<p>Status: <span id="ativo">Ativo</span></p>
-			</td>
-		</tr>
-	</table>
-
-	<div align="left"><h4>Anteriores:</h5></div>
-
-	<table>
-		<tr>
-			<td><img class="responsive-img" src="{% static 'img/colaboradores/anaregina.jpeg' %}"></td>
-			<td><p><b>Ana Regina Campello</b></p>
-				<p>Área: Professora Doutora</p>
-				<p>Função: Tradutora de Português/Libras</p>
-				<p>E-mail:</p>
-				<p><a href="http://lattes.cnpq.br/6945261731062194">Link para o Currículo Lattes</a></p>
-				<p>Status: <span id="inativo">Inativo</span></p>
-			</td>
-		</tr>
-
-		<tr>
-			<td><img class="responsive-img" src="{% static 'img/colaboradores/debora.jpeg' %}"></td>
-			<td><p><b>Débora Wanderley</b></p>
-				<p>Área: Mestre em Linguística</p>
-				<p>Função: Tradutora de Português/Libras</p>
-				<p>E-mail:</p>
-				<p><a href="http://lattes.cnpq.br/9003780617085002 ">Link para o Currículo Lattes</a></p>
-				<p>Status: <span id="inativo">Inativo</span></p>
-			</td>
-		</tr>
-
-		<tr>
-			<td><i class="large material-icons">perm_identity</i></td>
-			<td><p><b>Fernanda Machado</b></p>
-				<p>Área: Mestranda do Programa de Pós-Graduação em Estudos da Tradução</p>
-				<p>Função: Tradutora de Português/Libras</p>
-				<p>E-mail:</p>
-				<p>Link para o Currículo Lattes</p>
-				<p>Status: <span id="inativo">Inativo</span></p>
-			</td>
-		</tr>
-
-		<tr>
-			<td><img class="responsive-img" src="{% static 'img/colaboradores/franz.jpeg' %}"> </td>
-			<td><p><b>Franz Kafka Porto Domingos</b></p>
-				<p>Área: Mestrando em Estudos da Tradução e Graduando do curso Letras-Libras</p>
-				<p>Função: Tradutor de Libras/Escrita de Sinais</p>
-				<p>E-mail:</p>
-				<p><a href="http://lattes.cnpq.br/6885796258165008">Link para o Currículo Lattes</a></p>
-				<p>Status: <span id="inativo">Inativo</span></p>
-			</td>
-		</tr>
-
-		<tr>
-			<td><img class="responsive-img" src="{% static 'img/colaboradores/germano.jpeg' %}"></td>
-			<td><p><b>Germano Dutra Junior</b></p>
-				<p>Área: Graduado em Letras-Libras – Licenciatura e graduando do Curso de Cinema da UniSul</p>
-				<p>Função: Tradutor de Português/Libras</p>
-				<p>E-mail:</p>
-				<p><a href="http://lattes.cnpq.br/7563518354797031">Link para o Currículo Lattes</a></p>
-				<p>Status: <span id="inativo">Inativo</span></p>
-			</td>
-		</tr>
-
-		<tr>
-			<td><i class="large material-icons">perm_identity</i></td>
-			<td><p><b>Heloíse Gripp</b></p>
-				<p>Área: Mestre em Linguística</p>
-				<p>Função: Tradutora de Português/Libras</p>
-				<p>E-mail:</p>
-				<p><a href="http://lattes.cnpq.br/0922315610117042">Link para o Currículo Lattes</a></p>
-				<p>Status: <span id="inativo">Inativo</span></p>
-			</td>
-		</tr>
-
-		<tr>
-			<td><img class="responsive-img" src="{% static 'img/colaboradores/joao.jpeg' %}"></td>
-			<td><p><b>João Ricardo Rover</b></p>
-				<p>Área: Bacharel em Ciências da Computação</p>
-				<p>Função: Programador</p>
-				<p>E-mail:</p>
-				<p><a href="http://lattes.cnpq.br/2360220129041620">Link para o Currículo Lattes</a></p>
-				<p>Status: <span id="inativo">Inativo</span></p>
-			</td>
-		</tr>
-
-		<tr>
-			<td><img class="responsive-img" src="{% static 'img/colaboradores/lucas.jpeg' %}"></td>
-			<td><p><b>Lucas Müller de Jesus</b></p>
-				<p>Área: Mestre em Design</p>
-				<p>Função: Designer e editor de vídeos</p>
-				<p>E-mail:</p>
-				<p><a href="http://lattes.cnpq.br/2995825736693097">Link para o Currículo Lattes</a></p>
-				<p>Status: <span id="inativo">Inativo</span></p>
-			</td>
-		</tr>
-
-		<tr>
-			<td><img class="responsive-img" src="{% static 'img/colaboradores/natalia.jpeg' %}"></td>
-			<td><p><b>Natália Pizzetti</b></p>
-				<p>Área: Mestre em Design e Expressão Gráfica</p>
-				<p>Função: Designer</p>
-				<p>E-mail:</p>
-				<p><a href="http://lattes.cnpq.br/7973881249890562">Link para o Currículo Lattes</a></p>
-				<p>Status: <span id="inativo">Inativo</span></p>
-			</td>
-		</tr>
-
-		<tr>
-			<td><img class="responsive-img" src="{% static 'img/colaboradores/rafael.jpeg' %}"></td>
-			<td><p><b>Rafael Cavichiolli Teixeira</b></p>
-				<p>Área: Graduando em Letras-Libras</p>
-				<p>Função: Cinegrafista</p>
-				<p>E-mail:</p>
-				<p><a href="http://lattes.cnpq.br/4139678786976193">Link para o Currículo Lattes</a></p>
-				<p>Status: <span id="inativo">Inativo</span></p>
-			</td>
-		</tr>
-
-		<tr>
-			<td><i class="large material-icons">perm_identity</i></td>
-			<td><p><b>Rimar Ramalho Segala</b></p>
-				<p>Área: Mestre em Linguística</p>
-				<p>Função: Tradutora de Português/Libras</p>
-				<p>E-mail:</p>
-				<p><a href="http://lattes.cnpq.br/4770939741538780">Link para o Currículo Lattes</a></p>
-				<p>Status: <span id="inativo">Inativo</span></p>
-			</td>
-		</tr>
-
-		<tr>
-			<td><img class="responsive-img" src="{% static 'img/colaboradores/rodrigo.jpeg' %}"></td>
-			<td><p><b>Rodrigo Custódio da Silva</b></p>
-				<p>Área: Mestre em Linguística</p>
-				<p>Função: Tradutor de Português/Libras</p>
-				<p>E-mail:</p>
-				<p><a href="http://lattes.cnpq.br/2009310466318492">Link para o Currículo Lattes</a></p>
-				<p>Status: <span id="inativo">Inativo</span></p>
-			</td>
-		</tr>
-
-		<tr>
-			<td><img class="responsive-img" src="{% static 'img/colaboradores/ronnie.jpeg' %}"></td>
-			<td><p><b>Ronnie Fagundes de Brito</b></p>
-				<p>Área: Professor Doutor em Engenharia e Gestão do Conhecimento</p>
-				<p>Função: Programador</p>
-				<p>E-mail:</p>
-				<p><a href="http://lattes.cnpq.br/9015008667871372">Link para o Currículo Lattes</a></p>
-				<p>Status: <span id="inativo">Inativo</span></p>
-			</td>
-		</tr>
-
-		<tr>
-			<td><img class="responsive-img" src="{% static 'img/colaboradores/rundesth.jpeg' %}"></td>
-			<td><p><b>Rundesth Saboia Nobre</b></p>
-				<p>Área: Mestre em Linguística</p>
-				<p>Função: Tradutor de Libras/Escrita de Sinais</p>
-				<p>E-mail:</p>
-				<p><a href="http://lattes.cnpq.br/9391586867878720">Link para o Currículo Lattes</a></p>
-				<p>Status: <span id="inativo">Inativo</span></p>
-			</td>
-		</tr>
-
-		<tr>
-			<td><img class="responsive-img" src="{% static 'img/colaboradores/thais.jpeg' %}"></td>
-			<td><p><b>Thaís Fleury Avelar</b></p>
-				<p>Área: Mestre em Linguística</p>
-				<p>Função: Revisora de Libras/Português</p>
-				<p>E-mail:</p>
-				<p><a href="ttp://lattes.cnpq.br/9891676875964555">Link para o Currículo Lattes</a></p>
-				<p>Status: <span id="inativo">Inativo</span></p>
-			</td>
-		</tr>
-	</table>-->
 
 	<div class="footer"><img id="borda" src='{% static "img/borda.png" %}'></div>
-
-
 
 	</br>
 	</br>
