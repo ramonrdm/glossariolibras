@@ -51,12 +51,22 @@
             <div class="linkContainer">
                 {% if sinal %}
                     <div class="sideNavLinks">
-                        <li><a class="subheader truncate">{{sinal.traducaoP}} | {{sinal.traducaoI}}</a></li>
-                        <li><a id="botaoSinal"><i class="material-icons">list</i>Sinal</a></li>
-                        <li><a id="botaoExemplo"><i class="material-icons">list</i>Exemplo</a></li>
-                        <li><a id="botaoDescricao"><i class="material-icons">list</i>Descrição</a></li>
-                        <li><a id="botaoVariacao"><i class="material-icons">list</i>Variação</a></li>
-                        <li><div class="divider"></div></li>
+                        {% if sinal.exemploLibras or sinal.descLibras or sinal.varicLibras %}
+                            <li><a class="subheader truncate">{{sinal.traducaoP}} | {{sinal.traducaoI}}</a></li>
+                            <li><a id="botaoSinal"><i class="material-icons">list</i>Sinal</a></li>
+                        {% endif %}
+                        {% if sinal.exemploLibras %}
+                            <li><a id="botaoExemplo"><i class="material-icons">list</i>Exemplo</a></li>
+                        {% endif %}
+                        {% if sinal.descLibras %}
+                            <li><a id="botaoDescricao"><i class="material-icons">list</i>Descrição</a></li>
+                        {% endif %}
+                        {% if sinal.varicLibras %}
+                            <li><a id="botaoVariacao"><i class="material-icons">list</i>Variação</a></li>
+                        {% endif %}
+                        {% if sinal.exemploLibras or sinal.descLibras or sinal.varicLibras %}
+                            <li><div class="divider"></div></li>
+                        {% endif %}
                     </div>
                 {% endif %}
                 <div class="sideNavLinks"> 
