@@ -103,16 +103,17 @@
                     </div>
                     <nav class="glossarioSearchMobile">
                         <div class="nav-wrapper white">
-                            <form>
+                            <form method="post">
+                                {% csrf_token %}
                                 <div class="input-field">
-                                    <input id="search" type="search" required>
+                                    {{ formulario }}
                                     <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
                                     <i class="material-icons">close</i>
                                 </div>
                                 <div class="center">
                                     <input type="checkbox" class="filled-in" id="checkboxPort" name="checkboxPort" checked="checked"/>
                                     <label for="checkboxPort">Português</label>
-                                    <input type="checkbox" class="filled-in" id="checkboxIng" name="checkboxIng"/>
+                                    <input type="checkbox" class="filled-in" id="checkboxIng" name="checkboxIng" />
                                     <label for="checkboxIng">Inglês</label>
                                 </div>
                             </form>
@@ -138,9 +139,6 @@
         {% block Corpo %}
 
         {% endblock %}
-
-        
-
 
 <!-- ABRIR SIDENAV MOBILE -->
 
