@@ -1,13 +1,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
    "http://www.w3.org/TR/html4/strict.dtd">
+
 {% extends 'base.html' %}
+
 <title>{% block title %} Temas - Glossário Letras Libras {% endblock %}</title>
-{% block Corpo %}
-{% load staticfiles %}
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
+
 <body>
+
+{% block Corpo %}
+{% load staticfiles %}
+
+
+
+
   <canvas id="viewport" width="1200" height="700"></canvas>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
