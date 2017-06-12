@@ -1,12 +1,22 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-   "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
 
 <html>
+
 	<head>
 		{% extends 'base.html' %}
-		<title>{% block title %} Temas - Glossário Letras Libras {% endblock %}</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		{% load staticfiles %}
+
+		<title>{% block title %} Temas - Glossário Letras Libras {% endblock %}</title>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+		<script type="text/javascript" src="{% static "js/arbor.js" %}"></script>  
+		<script type="text/javascript" src="{% static "js/graphics.js" %}"></script>
+		<script type="text/javascript" src="{% static "js/main.js" %}"></script>
+		<script type="text/javascript" src="{% static "js/arbol/demos/halfviz/src/renderer.js" %}"></script>
+		<script type="text/javascript" src="{% static "js/arbol/build/tmpl/arbor-tween.js" %}"></script>
+
+		<script language="javascript" type="text/javascript" src="{% static "js/arbol/demos/_/jquery-1.6.1.min.js" %}"></script>
 	</head>
 
 	<body>
@@ -14,7 +24,20 @@
 
 		<canvas id="viewport" width="1200" height="700"></canvas>
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<!-- teste -->
+		<script language="javascript" type="text/javascript">
+			var sys = arbor.ParticleSystem(1000, 400,1);
+			sys.parameters({gravity:true});
+			sys.renderer = Renderer("#viewport");
+
+			var animals = sys.addNode('Animals',{'color':'red','shape':'dot','label':'Animals'}); 
+			var dog = sys.addNode('dog',{'color':'green','shape':'dot','label':'dog'});
+          	var cat = sys.addNode('cat',{'color':'blue','shape':'dot','label':'cat'});
+
+          	sys.addEdge(animals, dog);
+          	sys.addEdge(animals, cat);
+		</script>
+
 
 		<!-- run from the original source files: -->
 		<!--     <script src="../../src/etc.js"></script>
@@ -28,11 +51,6 @@
       	<script src="../../src/physics/physics.js"></script>
        	<script src="../../src/physics/system.js"></script>
        	<script src="../../src/dev.js"></script> -->
-
-		<!-- run from the minified library file: -->
-		<script src='{% static "js/arbor.js" %}'></script>  
-		<script src='{% static "js/graphics.js" %}'></script>
-		<script src='{% static "js/main.js" %}'></script>
 
 		{% endblock %}]
 
