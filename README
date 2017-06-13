@@ -41,5 +41,8 @@ Um glossário que reunie glossários de varias areas do conhecimento humano.
 
 Requisitos:
 
-$ pip install Pillow (se houver erro, tentar dar upgrade na biblioteca zlib)
+$ pip install Pillow (se houver erro, tentar dar upgrade na biblioteca zlib).
 
+Procedimentos:
+
+Popular o banco de dados local (sqlite3): chamar o comando ./manage.py loaddata data_dump.json.
