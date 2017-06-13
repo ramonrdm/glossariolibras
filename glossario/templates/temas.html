@@ -1,63 +1,63 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 
-<html>
-
-	<head>
-		{% extends 'base.html' %}
-		{% load staticfiles %}
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<head>
+	{% block Head %}
+		{{block.super}}
+		
+	{% load staticfiles %}
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- 		<script language="javascript" type="text/javascript" src="{% static 'js/arbol/demos/_/jquery-1.6.1.min.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/arbor.js' %}"></script>  
-		<script type="text/javascript" src="{% static 'js/graphics.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/arbol/demos/halfviz/src/renderer.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/arbol/build/tmpl/arbor-tween.js' %}"></script> -->
+	<script type="text/javascript" src="{% static 'js/arbor.js' %}"></script>  
+	<script type="text/javascript" src="{% static 'js/graphics.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/arbol/demos/halfviz/src/renderer.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/arbol/build/tmpl/arbor-tween.js' %}"></script> -->
+	<script src="{% static 'arbor-master/lib/arbor.js' %}"></script>
+	<script src="{% static 'arbor-master/lib/arbor-tween.js' %}"></script>
 
-		<script src="{% static 'arbor-master/lib/arbor.js' %}"></script>
-		<script src="{% static 'arbor-master/lib/arbor-tween.js' %}"></script>
+	{% endblock %}
 
-		<title>{% block title %} Temas - Glossário Letras Libras {% endblock %}</title>
-	</head>
+	<title>{% block title %} Temas - Glossário Letras Libras {% endblock %}</title>
+</head>
 
-	<body>
-		{% block Corpo %}
+<body>
+	{% block Corpo %}
 
-		<canvas id="viewport" width="1200" height="700"></canvas>
+	<canvas id="viewport" width="1200" height="700"></canvas>
 
-		<!-- teste -->
+	<!-- teste -->
 <!-- 		<script language="javascript" type="text/javascript">
-			var sys = arbor.ParticleSystem(1000, 400,1);
-			sys.parameters({gravity:true});
-			sys.renderer = Renderer("#viewport");
+		var sys = arbor.ParticleSystem(1000, 400,1);
+		sys.parameters({gravity:true});
+		sys.renderer = Renderer("#viewport");
 
-			var animals = sys.addNode('Animals',{'color':'red','shape':'dot','label':'Animals'}); 
-			var dog = sys.addNode('dog',{'color':'green','shape':'dot','label':'dog'});
-          	var cat = sys.addNode('cat',{'color':'blue','shape':'dot','label':'cat'});
+		var animals = sys.addNode('Animals',{'color':'red','shape':'dot','label':'Animals'}); 
+		var dog = sys.addNode('dog',{'color':'green','shape':'dot','label':'dog'});
+      	var cat = sys.addNode('cat',{'color':'blue','shape':'dot','label':'cat'});
 
-          	sys.addEdge(animals, dog);
-          	sys.addEdge(animals, cat);
-		</script> -->
+      	sys.addEdge(animals, dog);
+      	sys.addEdge(animals, cat);
+	</script> -->
 
 
-		<!-- run from the original source files: -->
-		<!--     <script src="../../src/etc.js"></script>
-       	<script src="../../src/kernel.js"></script>
-       	<script src="../../src/graphics/colors.js"></script>
-       	<script src="../../src/graphics/primitives.js"></script>
-       	<script src="../../src/graphics/graphics.js"></script>
-       	<script src="../../src/tween/easing.js"></script>
-       	<script src="../../src/tween/tween.js"></script>
-       	<script src="../../src/physics/atoms.js"></script>
-      	<script src="../../src/physics/physics.js"></script>
-       	<script src="../../src/physics/system.js"></script>
-       	<script src="../../src/dev.js"></script> -->
+	<!-- run from the original source files: -->
+	<!--     <script src="../../src/etc.js"></script>
+   	<script src="../../src/kernel.js"></script>
+   	<script src="../../src/graphics/colors.js"></script>
+   	<script src="../../src/graphics/primitives.js"></script>
+   	<script src="../../src/graphics/graphics.js"></script>
+   	<script src="../../src/tween/easing.js"></script>
+   	<script src="../../src/tween/tween.js"></script>
+   	<script src="../../src/physics/atoms.js"></script>
+  	<script src="../../src/physics/physics.js"></script>
+   	<script src="../../src/physics/system.js"></script>
+   	<script src="../../src/dev.js"></script> -->
 
-		<!-- run from the minified library file: -->
+	<!-- run from the minified library file: -->
 <!-- 		<script src='{% static "js/arbor.js" %}'></script>  
-		<script src='{% static "js/graphics.js" %}'></script>
-		<script src='{% static "js/main.js" %}'></script> -->
+	<script src='{% static "js/graphics.js" %}'></script>
+	<script src='{% static "js/main.js" %}'></script> -->
 
-		{% endblock %}]
+	{% endblock %}]
 
-	</body>
-</html>
+</body>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        {% block Head %}
         {% load staticfiles %}
 
         <meta name="author" content="Ramon Dutra Miranda"/>
@@ -14,6 +15,8 @@
         <link type="text/css" rel="stylesheet" href='{% static "css/materialize.min.css" %}'  media="screen,projection"/>
         <link rel="stylesheet" type="text/css" href='{% static "css/base.css" %}'/>
         <link href='{% static "css/style.css" %}' type="text/css" rel="stylesheet" media="screen,projection"/>
+
+        {% endblock %}
 
         <title>{% block title %}{% endblock %}</title>
     </head>
