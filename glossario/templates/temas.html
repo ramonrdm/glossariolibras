@@ -5,18 +5,18 @@
 	<head>
 		{% extends 'base.html' %}
 		{% load staticfiles %}
-
-		<title>{% block title %} Temas - Glossário Letras Libras {% endblock %}</title>
-
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
+<!-- 		<script language="javascript" type="text/javascript" src="{% static 'js/arbol/demos/_/jquery-1.6.1.min.js' %}"></script>
 		<script type="text/javascript" src="{% static 'js/arbor.js' %}"></script>  
 		<script type="text/javascript" src="{% static 'js/graphics.js' %}"></script>
 		<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 		<script type="text/javascript" src="{% static 'js/arbol/demos/halfviz/src/renderer.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/arbol/build/tmpl/arbor-tween.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/arbol/build/tmpl/arbor-tween.js' %}"></script> -->
 
-		<script language="javascript" type="text/javascript" src="{% static 'js/arbol/demos/_/jquery-1.6.1.min.js' %}"></script>
+		<script src="{% static 'arbor-master/lib/arbor.js' %}"></script>
+		<script src="{% static 'arbor-master/lib/arbor-tween.js' %}"></script>
+
+		<title>{% block title %} Temas - Glossário Letras Libras {% endblock %}</title>
 	</head>
 
 	<body>
@@ -25,7 +25,7 @@
 		<canvas id="viewport" width="1200" height="700"></canvas>
 
 		<!-- teste -->
-		<script language="javascript" type="text/javascript">
+<!-- 		<script language="javascript" type="text/javascript">
 			var sys = arbor.ParticleSystem(1000, 400,1);
 			sys.parameters({gravity:true});
 			sys.renderer = Renderer("#viewport");
@@ -36,7 +36,7 @@
 
           	sys.addEdge(animals, dog);
           	sys.addEdge(animals, cat);
-		</script>
+		</script> -->
 
 
 		<!-- run from the original source files: -->
@@ -51,6 +51,11 @@
       	<script src="../../src/physics/physics.js"></script>
        	<script src="../../src/physics/system.js"></script>
        	<script src="../../src/dev.js"></script> -->
+
+		<!-- run from the minified library file: -->
+<!-- 		<script src='{% static "js/arbor.js" %}'></script>  
+		<script src='{% static "js/graphics.js" %}'></script>
+		<script src='{% static "js/main.js" %}'></script> -->
 
 		{% endblock %}]
 

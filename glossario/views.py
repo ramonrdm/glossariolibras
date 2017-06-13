@@ -90,54 +90,6 @@ def pesquisa(request, glossario=None, tipopesq=None, formulario=None, sinais=Non
 		formulario = PesquisaForm()
 		return render(request, 'pesquisa.html', {'formulario': formulario, 'sinais': sinais, 'resultado': resultado, 'glossario': glossario})
 
-def equipe(request):
-	usuario = Usuario.objects.all()
-	return render(request, "equipe.html", {'usuario': usuario})
-
-def contato(request):
-	return render(request, "contato.html")
-
-def historia(request):
-	return render(request, "historia.html")
-
-def criaNodo(nodoPai):
-	filhosPai = queryTemas.filter(temaPai=nodoPai)
-	filhos = list()
-	for filho in filhosPai:
-		filhos.append(criaNodo(filho))
-	nodoPai.filhos = filhos
-	return nodoPai
-	
-#Metodo simples para exibição da lista no terminal
-def mostraNodo(nodoTema1, n):
-	txt = " - "*n
-	if nodoTema1.filhos:
-		print str(n) + txt +nodoTema1.nome
-		filhos = nodoTema1.filhos
-		for filho in filhos:
-			mostraNodo(filho, n+1)
-	else:
-		print str(n) + txt +nodoTema1.nome
-
-def mostraNodoJson(nodoTema1):
-	if nodoTema1.filhos:
-		filhos = nodoTema1.filhos
-		jsonTemas['edges'][nodoTema1.nome] = {}
-		for filho in filhos:
-			mostraNodoJson(filho)
-			jsonTemas['edges'][nodoTema1.nome][filho.nome] = {}
-	jsonTemas['nodes'][nodoTema1.nome] = {"color":"green", "shape":"dot", "alpha":1, "link":"www.libras.ufsc.br" }
-
-def temas(request, temas=None):
-	global queryTemas
-	queryTemas = Tema.objects.all()
-	try:
-		raiz = criaNodo(queryTemas.get(id=1))
-		mostraNodo(raiz, 0)
-	except Tema.DoesNotExist:
-		raiz = None
-	return render(request, "temas.html", dict(raiz=raiz))
-
 def sinal(request, sinal=None, glossario=None):
 	if sinal:
 		try:
@@ -181,6 +133,54 @@ def sinal(request, sinal=None, glossario=None):
 	else:
 		formulario = PesquisaForm()
 		return render(request, "sinal.html", {'sinal': sinal, 'glossario': glossario, 'formulario': formulario})
+
+def historia(request):
+	return render(request, "historia.html")
+
+def equipe(request):
+	usuario = Usuario.objects.all()
+	return render(request, "equipe.html", {'usuario': usuario})
+
+def contato(request):
+	return render(request, "contato.html")
+
+def temas(request, temas=None):
+	global queryTemas
+	queryTemas = Tema.objects.all()
+	try:
+		raiz = criaNodo(queryTemas.get(id=1))
+		mostraNodo(raiz, 0)
+	except Tema.DoesNotExist:
+		raiz = None
+	return render(request, "temas.html", dict(raiz=raiz))
+
+def criaNodo(nodoPai):
+	filhosPai = queryTemas.filter(temaPai=nodoPai)
+	filhos = list()
+	for filho in filhosPai:
+		filhos.append(criaNodo(filho))
+	nodoPai.filhos = filhos
+	return nodoPai
+	
+#Metodo simples para exibição da lista no terminal
+def mostraNodo(nodoTema1, n):
+	txt = " - "*n
+	if nodoTema1.filhos:
+		print str(n) + txt +nodoTema1.nome
+		filhos = nodoTema1.filhos
+		for filho in filhos:
+			mostraNodo(filho, n+1)
+	else:
+		print str(n) + txt +nodoTema1.nome
+
+def mostraNodoJson(nodoTema1):
+	if nodoTema1.filhos:
+		filhos = nodoTema1.filhos
+		jsonTemas['edges'][nodoTema1.nome] = {}
+		for filho in filhos:
+			mostraNodoJson(filho)
+			jsonTemas['edges'][nodoTema1.nome][filho.nome] = {}
+	jsonTemas['nodes'][nodoTema1.nome] = {"color":"green", "shape":"dot", "alpha":1, "link":"www.libras.ufsc.br" }
 
 def temasjson(request):
 	global jsonTemas
