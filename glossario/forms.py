@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
-from django.contrib.auth.forms import UserCreationForm
 from glossario.models import Glossario, Sinal, Usuario
 from django import forms
-import datetime
-
 
 class UsuarioForm(forms.ModelForm):
 

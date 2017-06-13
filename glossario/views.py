@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render_to_response, render
+from django.shortcuts import render
 from glossario.models import Glossario, Sinal, Usuario, Tema
-from glossario.forms import PesquisaPortForm, PesquisaIngForm, PesquisaForm
-from django.template import RequestContext
+from glossario.forms import PesquisaForm
 from django.http import JsonResponse
 from django.db.models import Q
 import json
