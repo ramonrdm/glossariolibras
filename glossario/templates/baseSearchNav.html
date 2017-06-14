@@ -32,7 +32,7 @@
                 {% else %}
                     <a href="/{{glossario.link}}"><i class="large material-icons icone imgGlossario">cloud_off</i></a>
                 {% endif %}
-                <div><b>{{ glossario.nome }}</b></div>
+                <span>{{ glossario.nome }}</span>
             </div>
             <nav class="glossarioSearch">
                 <div class="nav-wrapper white">
@@ -95,13 +95,13 @@
                             <a href="/" class="brand-logo"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a>
                         </div>
                     </li>
-                    <div class="userView">
+                    <div class="center">
                         {% if glossario.imagem %}
                             <a href="/{{glossario.link}}"><img class="circle z-depth-4 imgGlossarioMobile" src="{{ glossario.imagem.url }}"/></a>
                         {% else %}
                             <a href="/{{glossario.link}}"><i class="large material-icons icone imgGlossarioMobile">cloud_off</i></a>
                         {% endif %}
-                        <span class="black-text">{{ glossario.nome }}</span>
+                        <span class="flow-text black-text">{{ glossario.nome }}</span>
                     </div>
                     <nav class="glossarioSearchMobile">
                         <div class="nav-wrapper white">
