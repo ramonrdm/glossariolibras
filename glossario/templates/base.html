@@ -22,6 +22,9 @@
     </head>
 
     <body>
+
+<!-- SIDENAV FIXA -->
+
         <ul class="side-nav fixed">
             <div class="nav-wrapper center"><a href="/" class="brand-logo"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a></div>
             <div class="sideNavLinks">
@@ -34,13 +37,17 @@
             <div class="nav-wrapper center"><a href="http://ufsc.br" class="brand-logo"><img class="logoUFSC" src='{% static "img/marca_ufsc2.png" %}'></a></div>
         </ul>
 
+<!-- SIDENAV MOBILE -->
+
         <div class="navbar hide-on-large-only">
             <nav class="blue darken-4" role="navigation">
                 <ul id="nav-mobile" class="side-nav">
                     <!-- <li onclick="$('.button-collapse').sideNav('show')"></li> -->
-                    <div>
-                        <li><a href="/" class="brand-logo"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a></li>
-                    </div>
+                    <li>
+                        <div class="userView">
+                            <a href="/" class="brand-logo"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a>
+                        </div>
+                    </li>
                     <div class="sideNavMobileLinks">
                         <li><a class="waves-effect waves-blue" href="/enviarsinais"><i class="material-icons">send</i>Envie sinais</a></li>
                         <li><a class="waves-effect waves-blue" href="/historia"><i class="material-icons">library_books</i>História</a></li>
@@ -48,9 +55,11 @@
                         <li><a class="waves-effect waves-blue" href="/contato"><i class="material-icons">call</i>Contato</a></li>
                         <li><a class="waves-effect waves-blue" href="/admin"><i class="material-icons">https</i>Admin</a></li>
                     </div>
-                    <div>
-                        <a href="http://ufsc.br" class="brand-logo"><img class="logoUFSC" src='{% static "img/marca_ufsc2.png" %}'></a>
-                    </div>
+                    <li>
+                        <div class="userView">
+                            <a href="http://ufsc.br" class="brand-logo"><img class="logoUFSC" src='{% static "img/marca_ufsc2.png" %}'></a>
+                        </div>
+                    </li>
                 </ul>
                 <a data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
             </nav>

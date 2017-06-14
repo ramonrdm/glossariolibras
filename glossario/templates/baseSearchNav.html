@@ -90,16 +90,18 @@
             <nav class="blue darken-4" role="navigation">
                 <ul id="nav-mobile" class="side-nav">
                     <!-- <li onclick="$('.button-collapse').sideNav('show')"></li> -->
-                    <div>
-                        <li><a href="/" class="brand-logo"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a></li>
-                    </div>
-                    <div class="center">
+                    <li>
+                        <div class="userView">
+                            <a href="/" class="brand-logo"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a>
+                        </div>
+                    </li>
+                    <div class="userView">
                         {% if glossario.imagem %}
                             <a href="/{{glossario.link}}"><img class="circle z-depth-4 imgGlossarioMobile" src="{{ glossario.imagem.url }}"/></a>
                         {% else %}
                             <a href="/{{glossario.link}}"><i class="large material-icons icone imgGlossarioMobile">cloud_off</i></a>
                         {% endif %}
-                        <div class="black-text"><b>{{ glossario.nome }}</b></div>
+                        <span class="black-text">{{ glossario.nome }}</span>
                     </div>
                     <nav class="glossarioSearchMobile">
                         <div class="nav-wrapper white">
@@ -113,7 +115,7 @@
                                 <div class="center">
                                     <input type="checkbox" class="filled-in" id="checkboxPort" name="checkboxPort" checked="checked"/>
                                     <label for="checkboxPort">Português</label>
-                                    <input type="checkbox" class="filled-in" id="checkboxIng" name="checkboxIng" />
+                                    <input type="checkbox" class="filled-in" id="checkboxIng" name="checkboxIng"/>
                                     <label for="checkboxIng">Inglês</label>
                                 </div>
                             </form>
@@ -126,9 +128,11 @@
                         <li><a class="waves-effect waves-blue" href="/contato"><i class="material-icons">call</i>Contato</a></li>
                         <li><a class="waves-effect waves-blue" href="/admin"><i class="material-icons">https</i>Admin</a></li>
                     </div>
-                    <div>
-                        <a href="http://ufsc.br" class="brand-logo"><img class="logoUFSC" src='{% static "img/marca_ufsc2.png" %}'></a>
-                    </div>
+                    <li>
+                        <div class="userView">
+                            <a href="http://ufsc.br" class="brand-logo"><img class="logoUFSC" src='{% static "img/marca_ufsc2.png" %}'></a>
+                        </div>
+                    </li>
                 </ul>
                 <a data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
             </nav>
