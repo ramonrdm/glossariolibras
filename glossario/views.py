@@ -147,7 +147,7 @@ def temas(request, temas=None):
 	global queryTemas
 	queryTemas = Tema.objects.all()
 	try:
-		raiz = criaNodo(queryTemas.get(id=1))
+		raiz = criaNodo(queryTemas.get(temaPai=None))
 		mostraNodo(raiz, 0)
 	except Tema.DoesNotExist:
 		raiz = None
@@ -196,7 +196,7 @@ def temasjson(request):
 		}
 	}
 	data['nodes']['glossario'] = {"color":"green", "shape":"dot", "alpha":1, "link":"ramon" }
-	raiz = criaNodo(Tema.objects.get(id=1))
+	raiz = criaNodo(Tema.objects.get(temaPai=None))
 	mostraNodoJson(raiz)
 	print jsonTemas
 	return JsonResponse(jsonTemas)
