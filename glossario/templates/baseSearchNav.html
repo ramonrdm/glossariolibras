@@ -26,14 +26,14 @@
     
 <ul class="side-nav fixed">
     <div class="nav-wrapper center"><a href="/" class="brand-logo"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a></div>
-<!--     <div class="center">
+    <div class="center">
         {% if glossario.imagem %}
             <a href="/{{glossario.link}}"><img class="circle z-depth-4 imgGlossario" src="{{ glossario.imagem.url }}"/></a>
         {% else %}
             <a href="/{{glossario.link}}"><i class="large material-icons icone imgGlossario">cloud_off</i></a>
         {% endif %}
-        <span>{{ glossario.nome }}</span>
-    </div> -->
+        <div><span>{{ glossario.nome }}</span></div>
+    </div>
     <nav class="glossarioSearch">
         <div class="nav-wrapper white">
             <form method="post">
@@ -95,14 +95,14 @@
                             <a href="/" class="brand-logo"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a>
                         </div>
                     </li>
-<!--                     <div class="center">
+                    <div class="center">
                         {% if glossario.imagem %}
                             <a href="/{{glossario.link}}"><img class="circle z-depth-4 imgGlossarioMobile" src="{{ glossario.imagem.url }}"/></a>
                         {% else %}
                             <a href="/{{glossario.link}}"><i class="large material-icons icone imgGlossarioMobile">cloud_off</i></a>
                         {% endif %}
-                        <span class="flow-text black-text">{{ glossario.nome }}</span>
-                    </div> -->
+                        <span class="black-text">{{ glossario.nome }}</span>
+                    </div>
                     <nav class="glossarioSearchMobile">
                         <div class="nav-wrapper white">
                             <form method="post">
