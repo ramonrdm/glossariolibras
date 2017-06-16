@@ -158,6 +158,11 @@ body {
 	margin-bottom: 20px;
 }
 
+.imgSinal {
+	width: 100px;
+	height: 100px;
+}
+
 /* === EQUIPE === */
 
 .cardTexto {
