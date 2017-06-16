@@ -29,10 +29,20 @@
         // the new dimensions
         particleSystem.screenSize(canvas.width, canvas.height) 
         particleSystem.screenPadding(80) // leave an extra 80px of whitespace per side
+	$(window).resize(that.resize)
+	that.resize()
         
         // set up some event handlers to allow for node-dragging
         that.initMouseHandling()
       },
+
+resize: function(){
+       canvas.width = $(window).width()
+        canvas.height = .75* $(window).height()
+       particleSystem.screenSize(canvas.width, canvas.height) 
+        _vignette = null
+        that.redraw()
+},
       
       redraw:function(){
         gfx.clear()
