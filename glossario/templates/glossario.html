@@ -7,6 +7,16 @@
 {% block Corpo %}
 {% load staticfiles %}
 
+<!-- COMO ALINHAR AO CENTRO??? -->
+<!-- <div class="valign-wrapper">
+	{% if glossario.imagem %}
+		<a href="/{{glossario.link}}"><img class="circle z-depth-4 imgGlossario" src="{{ glossario.imagem.url }}"/></a>
+	{% else %}
+		<a href="/{{glossario.link}}"><i class="large material-icons icone imgGlossario">cloud_off</i></a>
+	{% endif %}
+	<span class="flow-text" style="margin-left: 3%;">{{ glossario.nome }}</span>
+</div> -->
+
 {% if glossario.videoGlossario %}
 	<div class="video-container center">
 		<video class="responsive-video z-depth-5 videoGlossario" controls preload="metadata">

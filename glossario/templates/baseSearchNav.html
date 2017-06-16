@@ -23,66 +23,66 @@
     <body>
         
 <!-- SIDENAV FIXA -->
-
-        <ul class="side-nav fixed">
-            <div class="nav-wrapper center"><a href="/" class="brand-logo"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a></div>
-            <div class="center">
-                {% if glossario.imagem %}
-                    <a href="/{{glossario.link}}"><img class="circle z-depth-4 imgGlossario" src="{{ glossario.imagem.url }}"/></a>
-                {% else %}
-                    <a href="/{{glossario.link}}"><i class="large material-icons icone imgGlossario">cloud_off</i></a>
-                {% endif %}
-                <span>{{ glossario.nome }}</span>
-            </div>
-            <nav class="glossarioSearch">
-                <div class="nav-wrapper white">
-                    <form method="post">
-                        {% csrf_token %}
-                        <div class="input-field">
-                            {{ formulario }}
-                            <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
-                            <i class="material-icons">close</i>
-                        </div>
-                        <div class="center">
-                            <input type="checkbox" class="filled-in" id="checkboxPort" name="checkboxPort" checked="checked"/>
-                            <label for="checkboxPort">Português</label>
-                            <input type="checkbox" class="filled-in" id="checkboxIng" name="checkboxIng" />
-                            <label for="checkboxIng">Inglês</label>
-                        </div>
-                    </form>
+    
+<ul class="side-nav fixed">
+    <div class="nav-wrapper center"><a href="/" class="brand-logo"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a></div>
+    <div class="center">
+        {% if glossario.imagem %}
+            <a href="/{{glossario.link}}"><img class="circle z-depth-4 imgGlossario" src="{{ glossario.imagem.url }}"/></a>
+        {% else %}
+            <a href="/{{glossario.link}}"><i class="large material-icons icone imgGlossario">cloud_off</i></a>
+        {% endif %}
+        <div><span>{{ glossario.nome }}</span></div>
+    </div>
+    <nav class="glossarioSearch">
+        <div class="nav-wrapper white">
+            <form method="post">
+                {% csrf_token %}
+                <div class="input-field">
+                    {{ formulario }}
+                    <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
+                    <i class="material-icons">close</i>
                 </div>
-            </nav>
-            <div class="linkContainer">
-                {% if sinal %}
-                    <div class="sideNavLinks">
-                        {% if sinal.exemploLibras or sinal.descLibras or sinal.varicLibras %}
-                            <li><a class="subheader truncate">{{sinal.traducaoP}} | {{sinal.traducaoI}}</a></li>
-                            <li><a class="waves-effect waves-blue" id="botaoSinal"><i class="material-icons">list</i>Sinal</a></li>
-                        {% endif %}
-                        {% if sinal.exemploLibras %}
-                            <li><a class="waves-effect waves-blue" id="botaoExemplo"><i class="material-icons">list</i>Exemplo</a></li>
-                        {% endif %}
-                        {% if sinal.descLibras %}
-                            <li><a class="waves-effect waves-blue" id="botaoDescricao"><i class="material-icons">list</i>Descrição</a></li>
-                        {% endif %}
-                        {% if sinal.varicLibras %}
-                            <li><a class="waves-effect waves-blue" id="botaoVariacao"><i class="material-icons">list</i>Variação</a></li>
-                        {% endif %}
-                        {% if sinal.exemploLibras or sinal.descLibras or sinal.varicLibras %}
-                            <li><div class="divider"></div></li>
-                        {% endif %}
-                    </div>
-                {% endif %}
-                <div class="sideNavLinks"> 
-                    <li><a class="waves-effect waves-blue" href="/enviarsinais"><i class="material-icons">send</i>Envie sinais</a></li>
-                    <li><a class="waves-effect waves-blue" href="/historia"><i class="material-icons">library_books</i>História</a></li>
-                    <li><a class="waves-effect waves-blue" href="/equipe"><i class="material-icons">supervisor_account</i>Equipe</a></li>
-                    <li><a class="waves-effect waves-blue" href="/contato"><i class="material-icons">call</i>Contato</a></li>
-                    <li><a class="waves-effect waves-blue" href="/admin"><i class="material-icons">https</i>Admin</a></li>
+                <div class="center">
+                    <input type="checkbox" class="filled-in" id="checkboxPort" name="checkboxPort" checked="checked"/>
+                    <label for="checkboxPort">Português</label>
+                    <input type="checkbox" class="filled-in" id="checkboxIng" name="checkboxIng" />
+                    <label for="checkboxIng">Inglês</label>
                 </div>
+            </form>
+        </div>
+    </nav>
+    <div class="linkContainer">
+        {% if sinal %}
+            <div class="sideNavLinks">
+                {% if sinal.exemploLibras or sinal.descLibras or sinal.varicLibras %}
+                    <li><a class="subheader truncate">{{sinal.traducaoP}} | {{sinal.traducaoI}}</a></li>
+                    <li><a class="waves-effect waves-blue" id="botaoSinal"><i class="material-icons">list</i>Sinal</a></li>
+                {% endif %}
+                {% if sinal.exemploLibras %}
+                    <li><a class="waves-effect waves-blue" id="botaoExemplo"><i class="material-icons">list</i>Exemplo</a></li>
+                {% endif %}
+                {% if sinal.descLibras %}
+                    <li><a class="waves-effect waves-blue" id="botaoDescricao"><i class="material-icons">list</i>Descrição</a></li>
+                {% endif %}
+                {% if sinal.varicLibras %}
+                    <li><a class="waves-effect waves-blue" id="botaoVariacao"><i class="material-icons">list</i>Variação</a></li>
+                {% endif %}
+                {% if sinal.exemploLibras or sinal.descLibras or sinal.varicLibras %}
+                    <li><div class="divider"></div></li>
+                {% endif %}
             </div>
-            <div class="nav-wrapper center"><a href="http://ufsc.br" class="brand-logo"><img class="logoUFSC" src='{% static "img/marca_ufsc2.png" %}'></a></div>
-        </ul>
+        {% endif %}
+        <div class="sideNavLinks"> 
+            <li><a class="waves-effect waves-blue" href="/enviarsinais"><i class="material-icons">send</i>Envie sinais</a></li>
+            <li><a class="waves-effect waves-blue" href="/historia"><i class="material-icons">library_books</i>História</a></li>
+            <li><a class="waves-effect waves-blue" href="/equipe"><i class="material-icons">supervisor_account</i>Equipe</a></li>
+            <li><a class="waves-effect waves-blue" href="/contato"><i class="material-icons">call</i>Contato</a></li>
+            <li><a class="waves-effect waves-blue" href="/admin"><i class="material-icons">https</i>Admin</a></li>
+        </div>
+    </div>
+    <div class="nav-wrapper center"><a href="http://ufsc.br" class="brand-logo"><img class="logoUFSC" src='{% static "img/marca_ufsc2.png" %}'></a></div>
+</ul>
 
 <!-- NAVBAR MOBILE -->
 
@@ -101,7 +101,7 @@
                         {% else %}
                             <a href="/{{glossario.link}}"><i class="large material-icons icone imgGlossarioMobile">cloud_off</i></a>
                         {% endif %}
-                        <span class="flow-text black-text">{{ glossario.nome }}</span>
+                        <span class="black-text">{{ glossario.nome }}</span>
                     </div>
                     <nav class="glossarioSearchMobile">
                         <div class="nav-wrapper white">
