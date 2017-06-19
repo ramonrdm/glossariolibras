@@ -12,15 +12,12 @@ admin.site.register(CM)
 admin.site.register(Tema)
 
 class GlossarioAdmin(admin.ModelAdmin):
-
-    def has_module_permission(self, request):
-        return True
         
     def get_queryset(self, request):
         qs = super(GlossarioAdmin, self).get_queryset(request)
         if request.user.is_superuser:
             return qs        
-        return qs.filter(responsavel=request.user)
+        return qs.filter(Q(responsavel=request.user) | Q(membros=request.user))
 
     # def has_add_permission(self, request):
     #     if request.user.is_superuser:
@@ -29,19 +26,16 @@ class GlossarioAdmin(admin.ModelAdmin):
     # def has_change_permission(self, request, obj=None):
     #     if obj is None:
     #         return False
-    #     if request.user.is_superuser or obj.responsavel == request.user:
-    #     	return True
-    #     return False
+    #     return True
 
     # def has_delete_permission(self, request, obj=None):
     #     if obj is None:
     #         return False
-    #     # if obj.responsavel == request.user:
-    #     #     return True
     #     if request.user.is_superuser:
     #     	return True
-    #     return False
 
+    # def has_module_permission(self, request):
+    #     return True
 
 	form = GlossarioForm
 
@@ -59,12 +53,11 @@ class SinalAdmin(admin.ModelAdmin):
 		qs = super(SinalAdmin, self).get_queryset(request)
 		if request.user.is_superuser:
 			return qs
-		# qsResponsavel = qs.filter(glossario__responsavel=request.user)
-		# if glossario__membros__icontains(request.user):
-		# 	qsMembro = qs.filter(glossario__membros=request.user)
-		# 	qsMembro.readonly_fields = '__all__'
-		# return qsResponsavel, qsMembro
 		return qs.filter(Q(glossario__responsavel=request.user) | Q(glossario__membros=request.user))
+
+		# DESCOBRIR MANEIRA DE NÃO DEIXAR O USUARIO EDITAR SINAIS DE GLOSSÁRIOS EM QUE É SOMENTE MEMBRO
+		# qsResponsavel = qs.filter(glossario__responsavel=request.user)
+		# qsMembro = qs.filter(glossario__membros=request.user)
 
 	form = SinalForm
 
