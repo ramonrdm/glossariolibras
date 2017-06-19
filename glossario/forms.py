@@ -9,7 +9,7 @@ class UsuarioForm(forms.ModelForm):
 		widgets = {
 		'password': forms.PasswordInput(),
 		}
-		fields = ['username', 'password', 'nome', 'latte', 'foto', 'email']
+		fields = ['username', 'password', 'nome', 'latte', 'foto', 'email', 'is_staff', 'groups']
 	def  save(self, commit=True):
 		user = super(UsuarioForm, self).save(commit=False)
 		user.set_password(self.cleaned_data["password"])
