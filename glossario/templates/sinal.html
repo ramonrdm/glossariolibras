@@ -1,12 +1,20 @@
 {% extends 'baseSearchNav.html' %}
 
 <head>
+	{% block Head %}
+		{{block.super}}
+
+	{% load staticfiles %}
+
+	<script type="text/javascript" src='{% static "js/sinal.js" %}'></script>
 	<title>{% block title %}Sinal - Glossário Letras Libras{% endblock %}</title>
+
+	{% endblock %}
 </head>
 
 <body>
+
 	{% block Corpo %}
-	{% load staticfiles %}
 
 	<script type="text/javascript" src='{% static "js/sinal.js" %}'></script>
 	
@@ -145,4 +153,5 @@
 	</div>
 
 	{% endblock %}
+
 </body>
