@@ -13,6 +13,11 @@ admin.site.register(Tema)
 
 class GlossarioAdmin(admin.ModelAdmin):
 
+	def get_readonly_fields(self, request, obj=None):
+		if obj and not request.user.is_superuser:
+			return ('nome', 'responsavel', 'membros', 'imagem', 'videoGlossario')
+		return []
+
 	def get_actions(self, request):
 		actions = super(GlossarioAdmin, self).get_actions(request)
 		if not request.user.is_superuser:
@@ -63,10 +68,6 @@ class SinalAdmin(admin.ModelAdmin):
 		if request.user.is_superuser:
 			return qs
 		return qs.filter(Q(glossario__responsavel=request.user) | Q(glossario__membros=request.user))
-
-		# DESCOBRIR MANEIRA DE NÃO DEIXAR O USUARIO EDITAR SINAIS DE GLOSSÁRIOS EM QUE É SOMENTE MEMBRO
-		# qsResponsavel = qs.filter(glossario__responsavel=request.user)
-		# qsMembro = qs.filter(glossario__membros=request.user)
 
 	form = SinalForm
 
