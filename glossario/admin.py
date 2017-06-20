@@ -12,16 +12,24 @@ admin.site.register(CM)
 admin.site.register(Tema)
 
 class GlossarioAdmin(admin.ModelAdmin):
-        
-    def get_queryset(self, request):
-        qs = super(GlossarioAdmin, self).get_queryset(request)
-        if request.user.is_superuser:
-            return qs        
-        return qs.filter(Q(responsavel=request.user) | Q(membros=request.user))
 
-    # def has_add_permission(self, request):
-    #     if request.user.is_superuser:
-    #     	return True
+	def get_actions(self, request):
+		actions = super(GlossarioAdmin, self).get_actions(request)
+		if not request.user.is_superuser:
+			if 'delete_selected' in actions:
+				del actions['delete_selected']
+		return actions
+
+	def get_queryset(self, request):
+		qs = super(GlossarioAdmin, self).get_queryset(request)
+		if request.user.is_superuser:
+			return qs
+		return qs.filter(Q(responsavel=request.user) | Q(membros=request.user))
+
+	def has_add_permission(self, request):
+		if request.user.is_superuser:
+			return True
+		return False
 
     # def has_change_permission(self, request, obj=None):
     #     if obj is None:
@@ -33,6 +41,7 @@ class GlossarioAdmin(admin.ModelAdmin):
     #         return False
     #     if request.user.is_superuser:
     #     	return True
+    #     return False
 
     # def has_module_permission(self, request):
     #     return True
