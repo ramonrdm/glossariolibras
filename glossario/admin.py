@@ -13,6 +13,8 @@ admin.site.register(Tema)
 
 class GlossarioAdmin(admin.ModelAdmin):
 
+	form = GlossarioForm
+
 	def get_readonly_fields(self, request, obj=None):
 		if obj and not request.user.is_superuser:
 			return ('nome', 'responsavel', 'membros', 'imagem', 'videoGlossario')
@@ -29,29 +31,14 @@ class GlossarioAdmin(admin.ModelAdmin):
 		qs = super(GlossarioAdmin, self).get_queryset(request)
 		if request.user.is_superuser:
 			return qs
-		return qs.filter(Q(responsavel=request.user) | Q(membros=request.user))
+		global qsFilter
+		qsFilter = qs.filter(Q(responsavel=request.user) | Q(membros=request.user))
+		return qsFilter
 
 	def has_add_permission(self, request):
 		if request.user.is_superuser:
 			return True
 		return False
-
-    # def has_change_permission(self, request, obj=None):
-    #     if obj is None:
-    #         return False
-    #     return True
-
-    # def has_delete_permission(self, request, obj=None):
-    #     if obj is None:
-    #         return False
-    #     if request.user.is_superuser:
-    #     	return True
-    #     return False
-
-    # def has_module_permission(self, request):
-    #     return True
-
-	form = GlossarioForm
 
 	def save_model(self, request, obj, form, change):
 		gLink = obj.nome.lower()
