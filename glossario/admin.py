@@ -13,16 +13,18 @@ admin.site.register(CM)
 admin.site.register(Tema)
 
 class GlossarioAdmin(admin.ModelAdmin):
-
+	
 	form = GlossarioForm
 
 	def get_readonly_fields(self, request, obj=None):
+		readonly_fields = ('nome', 'responsavel', 'membros', 'imagem', 'videoGlossario')
 		if obj and not request.user.is_superuser:
 			if qsResp:
-				for glossario in qsResp:
-					readonly_fields = ('responsavel',)
-			readonly_fields = ('nome', 'responsavel', 'membros', 'imagem', 'videoGlossario')
-		readonly_fields = []
+				readonly_fields = ('responsavel',)
+			else:
+				readonly_fields = ('nome', 'responsavel', 'membros', 'imagem', 'videoGlossario')
+		else:
+			readonly_fields = []
 		return readonly_fields
 
 	def get_actions(self, request):
