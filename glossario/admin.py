@@ -5,6 +5,7 @@ from glossario.forms import GlossarioForm, SinalForm, UsuarioForm
 from unicodedata import normalize
 from django.db import models
 from django.db.models import Q
+from django.core.exceptions import ObjectDoesNotExist
 
 admin.site.register(Localizacao)
 admin.site.register(GrupoCM)
@@ -17,8 +18,12 @@ class GlossarioAdmin(admin.ModelAdmin):
 
 	def get_readonly_fields(self, request, obj=None):
 		if obj and not request.user.is_superuser:
-			return ('nome', 'responsavel', 'membros', 'imagem', 'videoGlossario')
-		return []
+			if qsResp:
+				for glossario in qsResp:
+					readonly_fields = ('responsavel',)
+			readonly_fields = ('nome', 'responsavel', 'membros', 'imagem', 'videoGlossario')
+		readonly_fields = []
+		return readonly_fields
 
 	def get_actions(self, request):
 		actions = super(GlossarioAdmin, self).get_actions(request)
@@ -31,9 +36,9 @@ class GlossarioAdmin(admin.ModelAdmin):
 		qs = super(GlossarioAdmin, self).get_queryset(request)
 		if request.user.is_superuser:
 			return qs
-		global qsFilter
-		qsFilter = qs.filter(Q(responsavel=request.user) | Q(membros=request.user))
-		return qsFilter
+		global qsResp
+		qsResp = qs.filter(responsavel=request.user)
+		return qs.filter(Q(responsavel=request.user) | Q(membros=request.user))
 
 	def has_add_permission(self, request):
 		if request.user.is_superuser:
