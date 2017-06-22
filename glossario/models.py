@@ -69,11 +69,11 @@ class Glossario(models.Model):
 		verbose_name='glossário'
 
 	nome = models.CharField('Nome do Glossário', max_length=100)
-	responsavel = models.ManyToManyField(Usuario, verbose_name = 'Responsável')
-	membros = models.ManyToManyField(Usuario, related_name='glossario_membros', verbose_name='Membros')
+	responsavel = models.ManyToManyField(Usuario, verbose_name = 'responsável')
+	membros = models.ManyToManyField(Usuario, related_name='glossario_membros', verbose_name='membros')
 	imagem = models.ImageField('Imagem', blank=True)
 	link = models.CharField('Link', max_length=20)
-	dataCriacao = models.DateField(auto_now_add=True)
+	dataCriacao = models.DateField('data de criação', auto_now_add=True)
 	videoGlossario = Video('Vídeo', blank=True)
 
 	def __unicode__(self):
@@ -114,17 +114,17 @@ class Sinal(models.Model):
 	class Meta:
 		verbose_name_plural='sinais'
 
-	glossario = models.ForeignKey(Glossario, verbose_name = 'Glossario')
-	traducaoP = models.CharField('Palavra', max_length=30)
-	traducaoI = models.CharField('Word', max_length=30)
+	glossario = models.ForeignKey(Glossario, verbose_name = 'glossário')
+	traducaoP = models.CharField('palavra', max_length=30)
+	traducaoI = models.CharField('word', max_length=30)
 	bsw = models.TextField(null=True, blank = True)
-	descricao = models.CharField(max_length=50,null=True, blank = True)
-	grupoCMe = models.ForeignKey(GrupoCM, related_name='Grupo_M_Esquerda', verbose_name='Grupo configuração de mão esquerda')
-	cmE = models.ForeignKey(CM, related_name='C_M_Esquerda', verbose_name='Configuração esquerda')
-	grupoCMd = models.ForeignKey(GrupoCM, related_name='Grupo_M_Direita', verbose_name='Grupo configuração de mão direita')
-	cmD = models.ForeignKey(CM, related_name='C_M_Direita', verbose_name='Configuração direita')
-	localizacao = models.ForeignKey(Localizacao,null=True, blank = True)
-	dataPost = models.DateField()
+	descricao = models.CharField('descrição', max_length=50,null=True, blank = True)
+	grupoCMe = models.ForeignKey(GrupoCM, related_name='Grupo_M_Esquerda', verbose_name='grupo configuração de mão esquerda')
+	cmE = models.ForeignKey(CM, related_name='C_M_Esquerda', verbose_name='configuração esquerda')
+	grupoCMd = models.ForeignKey(GrupoCM, related_name='Grupo_M_Direita', verbose_name='grupo configuração de mão direita')
+	cmD = models.ForeignKey(CM, related_name='C_M_Direita', verbose_name='configuração direita')
+	localizacao = models.ForeignKey(Localizacao,null=True, blank = True, verbose_name='localização')
+	dataPost = models.DateField('data de criação')
 	postador = models.ForeignKey(Usuario)
 	publicado = models.BooleanField(default=False)
 	sinalLibras = Video('Vídeo do Sinal',null=True, blank = True)
