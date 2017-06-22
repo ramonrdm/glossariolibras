@@ -6,6 +6,7 @@ from unicodedata import normalize
 from django.db import models
 from django.db.models import Q
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.contenttypes.models import ContentType
 
 admin.site.register(Localizacao)
 admin.site.register(GrupoCM)

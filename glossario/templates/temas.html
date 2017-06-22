@@ -15,11 +15,20 @@
 
 <body>
 	{% block Corpo %}
+
 	<canvas id="viewport" width="1200" height="700"></canvas>
 
 	<script src='{% static "js/arbor.js" %}'></script>  
 	<script src='{% static "js/graphics.js" %}'></script>
 	<script src='{% static "js/main.js" %}'></script>
+
+
+<!-- TENTATIVA DE REDIRECIONAR PARA ALGUMA PAGINA AO CLICAR NO NODO (NÃO-FUNCIONANDO) -->
+<!-- 	<script>
+		$(raiz).click(function(){
+			window.location.href='index.html';
+		});
+	</script> -->
 
 	{% endblock %}
 </body>

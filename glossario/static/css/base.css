@@ -128,41 +128,6 @@ body {
 	margin-left: 5%;
 }
 
-/* === SINAL === */
-
-.textoSinal {
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-.nomeSinal {
-	white-space: pre-line;
-}
-
-.videoSinal {
-	margin-top: 2%;
-	width: 500px;
-}
-
-.mao {
-	margin-top: 20px;
-}
-
-.cardMao {
-	margin-top: 5%;
-	max-height: 650px;
-}
-
-.imgMao {
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
-
-.imgSinal {
-	width: 100px;
-	height: 100px;
-}
-
 /* === EQUIPE === */
 
 .cardTexto {

@@ -1,6 +1,16 @@
-<!DOCTYPE html>
 {% extends 'baseSearchNav.html' %}
-<title>{% block title %}Pesquisa {{ glossario.nome }} - Glossário Letras Libras {% endblock %}</title>
+{% load staticfiles %}
+
+<head>
+	{% block head %}
+		{{block.super}}
+	<link rel="stylesheet" type="text/css" href='{% static "css/pesquisa.css" %}'/>
+	<title>{% block title %}Pesquisa {{ glossario.nome }} - Glossário Letras Libras {% endblock %}</title>
+	
+	{% endblock %}
+</head>
+
+<body>
 {% block Corpo %}
 {% load staticfiles %}
 
@@ -55,3 +65,5 @@
 </div>
 
 {% endblock %}
+
+</body>

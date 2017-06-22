@@ -1,19 +1,18 @@
 {% extends 'baseSearchNav.html' %}
+{% load staticfiles %}
 
 <head>
 	{% block Head %}
 		{{block.super}}
 
-	{% load staticfiles %}
-
 	<script type="text/javascript" src='{% static "js/sinal.js" %}'></script>
+	<link rel="stylesheet" type="text/css" href='{% static "css/sinal.css" %}'/>
 	<title>{% block title %}Sinal - Glossário Letras Libras{% endblock %}</title>
 
 	{% endblock %}
 </head>
 
 <body>
-
 	{% block Corpo %}
 
 	<script type="text/javascript" src='{% static "js/sinal.js" %}'></script>
@@ -94,7 +93,7 @@
 							{% if sinal.grupoCMe.imagem %}
 								<img class="circle imgSinal" src="{{sinal.grupoCMe.imagem.url}}">
 							{% else %}
-								<i class="large material-icons white-text imgIndex">cloud_off</i>
+								<i class="large material-icons white-text imgSinal">cloud_off</i>
 							{% endif %}
 						</div>
 						Configuração da mão esquerda:
@@ -102,7 +101,7 @@
 							{% if sinal.cmE.imagem %}
 								<img class="circle imgSinal" src="{{sinal.cmE.imagem.url}}">
 							{% else %}
-								<i class="large material-icons white-text imgIndex">cloud_off</i>
+								<i class="large material-icons white-text imgSinal">cloud_off</i>
 							{% endif %}
 						</div>
 						Localização do sinal:
@@ -110,7 +109,7 @@
 							{% if sinal.localizacao.imagem %}
 								<img class="circle imgSinal" src="{{sinal.localizacao.imagem.url}}">
 							{% else %}
-								<i class="large material-icons white-text imgIndex">cloud_off</i>
+								<i class="large material-icons white-text imgSinal">cloud_off</i>
 							{% endif %}
 						</div>
 					</div>
@@ -127,7 +126,7 @@
 							{% if sinal.grupoCMd.imagem %}
 								<img class="circle imgSinal" src="{{sinal.grupoCMd.imagem.url}}">
 							{% else %}
-								<i class="large material-icons white-text imgIndex">cloud_off</i>
+								<i class="large material-icons white-text imgSinal">cloud_off</i>
 							{% endif %}
 						</div>
 						Configuração da mão direita:
@@ -135,7 +134,7 @@
 							{% if sinal.cmD.imagem %}
 								<img class="circle imgSinal" src="{{sinal.cmD.imagem.url}}">
 							{% else %}
-								<i class="large material-icons white-text imgIndex">cloud_off</i>
+								<i class="large material-icons white-text imgSinal">cloud_off</i>
 							{% endif %}
 						</div>
 						Localização do sinal:
@@ -143,7 +142,7 @@
 							{% if sinal.localizacao.imagem %}
 								<img class="circle imgSinal" src="{{sinal.localizacao.imagem.url}}">
 							{% else %}
-								<i class="large material-icons white-text imgIndex">cloud_off</i>
+								<i class="large material-icons white-text imgSinal">cloud_off</i>
 							{% endif %}
 						</div>
 					</div>
@@ -153,5 +152,4 @@
 	</div>
 
 	{% endblock %}
-
 </body>
