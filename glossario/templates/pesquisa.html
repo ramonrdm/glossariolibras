@@ -1,69 +1,66 @@
-{% extends 'baseSearchNav.html' %}
-{% load staticfiles %}
-
 <head>
-	{% block head %}
+	{% extends 'baseSearchNav.html' %}
+	{% load staticfiles %}
+	{% block Head %}
 		{{block.super}}
+
 	<link rel="stylesheet" type="text/css" href='{% static "css/pesquisa.css" %}'/>
 	<title>{% block title %}Pesquisa {{ glossario.nome }} - Glossário Letras Libras {% endblock %}</title>
 	
 	{% endblock %}
 </head>
-
 <body>
-{% block Corpo %}
-{% load staticfiles %}
+	{% block Corpo %}
 
-<div class="container">
-	<div class="center">
-		{% if sinais %}
-			<p class="flow-text">Encontrado {{resultado}} resultado(s):</p>
-			<div class="collection">
-				{% for s in sinais %}
-					{% if checkboxPort %}
+	<div class="container">
+		<div class="center">
+			{% if sinais %}
+				<p class="flow-text">Encontrado {{resultado}} resultado(s):</p>
+				<div class="collection">
+					{% for s in sinais %}
+						{% if checkboxPort %}
+							<a href="/sinal/{{s.id}}" class="collection-item">{{s.traducaoP}}</a>
+						{% elif checkboxIng %}
+							<a href="/sinal/{{s.id}}" class="collection-item">{{s.traducaoI}}</a>
+						{% endif %}
+					{% endfor %}
+				</div>
+			{% elif sinaisP and sinaisI %}
+				<p class="flow-text">Encontrado {{resultadoP}} resultado(s) em português:</p>
+				<div class="collection">
+					{% for s in sinaisP %}
 						<a href="/sinal/{{s.id}}" class="collection-item">{{s.traducaoP}}</a>
-					{% elif checkboxIng %}
+					{% endfor %}
+				</div>
+				<p class="flow-text">Encontrado {{resultadoI}} resultado(s) em inglês:</p>
+				<div class="collection">
+					{% for s in sinaisI %}
 						<a href="/sinal/{{s.id}}" class="collection-item">{{s.traducaoI}}</a>
-					{% endif %}
-				{% endfor %}
-			</div>
-		{% elif sinaisP and sinaisI %}
-			<p class="flow-text">Encontrado {{resultadoP}} resultado(s) em português:</p>
-			<div class="collection">
-				{% for s in sinaisP %}
-					<a href="/sinal/{{s.id}}" class="collection-item">{{s.traducaoP}}</a>
-				{% endfor %}
-			</div>
-			<p class="flow-text">Encontrado {{resultadoI}} resultado(s) em inglês:</p>
-			<div class="collection">
-				{% for s in sinaisI %}
-					<a href="/sinal/{{s.id}}" class="collection-item">{{s.traducaoI}}</a>
-				{% endfor %}
-			</div>
-		{% elif sinaisP and not sinaisI %}
-			<p class="flow-text">Encontrado {{resultadoP}} resultado(s) em português:</p>
-			<div class="collection">
-				{% for s in sinaisP %}
-					<a href="/sinal/{{s.id}}" class="collection-item">{{s.traducaoP}}</a>
-				{% endfor %}
-			</div>
-			<p class="flow-text">Nenhum resultado encontrado em inglês.</p>
-		{% elif not sinaisP and sinaisI %}
-			<p class="flow-text">Nenhum resultado encontrado em português.</p>
-			<p class="flow-text">Encontrado {{resultadoI}} resultado(s) em inglês:</p>
-			<div class="collection">
-				{% for s in sinaisI %}
-					<a href="/sinal/{{s.id}}" class="collection-item">{{s.traducaoI}}</a>
-				{% endfor %}
-			</div>
-		{% elif not checkboxPort and not checkboxIng %}
-			<p class="flow-text">Por favor, selecione ao menos um filtro de idioma.</p>
-		{% else %}
-			<p class="flow-text">Nenhum resultado encontrado.</p>
-		{% endif %}
+					{% endfor %}
+				</div>
+			{% elif sinaisP and not sinaisI %}
+				<p class="flow-text">Encontrado {{resultadoP}} resultado(s) em português:</p>
+				<div class="collection">
+					{% for s in sinaisP %}
+						<a href="/sinal/{{s.id}}" class="collection-item">{{s.traducaoP}}</a>
+					{% endfor %}
+				</div>
+				<p class="flow-text">Nenhum resultado encontrado em inglês.</p>
+			{% elif not sinaisP and sinaisI %}
+				<p class="flow-text">Nenhum resultado encontrado em português.</p>
+				<p class="flow-text">Encontrado {{resultadoI}} resultado(s) em inglês:</p>
+				<div class="collection">
+					{% for s in sinaisI %}
+						<a href="/sinal/{{s.id}}" class="collection-item">{{s.traducaoI}}</a>
+					{% endfor %}
+				</div>
+			{% elif not checkboxPort and not checkboxIng %}
+				<p class="flow-text">Por favor, selecione ao menos um filtro de idioma.</p>
+			{% else %}
+				<p class="flow-text">Nenhum resultado encontrado.</p>
+			{% endif %}
+		</div>
 	</div>
-</div>
 
-{% endblock %}
-
+	{% endblock %}
 </body>

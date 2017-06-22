@@ -1,21 +1,9 @@
-<!DOCTYPE html>
-
-<html>
-	<head>
-		{% extends 'base.html' %}
-
-		<title>{% block title %}Contato - Glossário Letras Libras{% endblock %}</title>
-	</head>
-
-	<body>
-		{% block Corpo %}
-
-		{% load staticfiles %}
-
-		<!--<div class="equipe" >
-			<br><br><br><br><br><b>Contato:</b><br>
-			<img src='{% static "img/contato.png" %}' />
-		</div>-->
+<head>
+	{% extends 'base.html' %}
+	<title>{% block title %}Contato - Glossário Letras Libras{% endblock %}</title>
+</head>
+<body>
+	{% block Corpo %}
 
 	<div class="container">
 		<h2>Contato</h2>
@@ -29,6 +17,5 @@
 		<p class="flow-text">Ramon Dutra Miranda - ramon.rdm@ufsc.br</p>
 	</div>
 
-		{% endblock %}
-	</body>
-</html>
+	{% endblock %}
+</body>

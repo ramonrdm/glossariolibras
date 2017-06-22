@@ -1,215 +1,216 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        {% block Head %}
+<head>
+    {% block Head %}
+    {% load staticfiles %}
 
-        {% load staticfiles %}
+    <meta name="author" content="Ramon Dutra Miranda"/>
+    <meta name="description" content="Glossario libras, ufsc, dicionario, letras libras, glossario cinema"/>
+    <meta name="keywords" content="glossario, libras, ufsc, glossário, glossários, letras libras, dicionario"/>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href='{% static "css/materialize.min.css" %}'  media="screen,projection"/>
+    <link rel="stylesheet" type="text/css" href='{% static "css/base.css" %}'/>
+    <link href='{% static "css/style.css" %}' type="text/css" rel="stylesheet" media="screen,projection"/>
 
-        <meta name="author" content="Ramon Dutra Miranda"/>
-        <meta name="description" content="Glossario libras, ufsc, dicionario, letras libras, glossario cinema"/>
-        <meta name="keywords" content="glossario, libras, ufsc, glossário, glossários, letras libras, dicionario"/>
-        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" /> 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script src="http://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
-        <!-- <script type="text/javascript" src="static/js/materialize.min.js"></script> -->
-        <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
-        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link type="text/css" rel="stylesheet" href='{% static "css/materialize.min.css" %}'  media="screen,projection"/>
-        <link rel="stylesheet" type="text/css" href='{% static "css/base.css" %}'/>
-        <link href='{% static "css/style.css" %}' type="text/css" rel="stylesheet" media="screen,projection"/>
+    <title>{% block title %}{% endblock %}</title>
 
-        <title>{% block title %}{% endblock %}</title>
+    {% endblock %}
+</head>
+<body>
 
-        {% endblock %}
-    </head>
-
-    <body>
-        
 <!-- SIDENAV FIXA -->
-            
-        <ul class="side-nav fixed">
-            <div class="nav-wrapper center"><a href="/" class="brand-logo"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a></div>
-            <div class="center">
-                {% if glossario.imagem %}
-                    <a href="/{{glossario.link}}"><img class="circle z-depth-4 imgGlossario" src="{{ glossario.imagem.url }}"/></a>
-                {% else %}
-                    <a href="/{{glossario.link}}"><i class="large material-icons icone imgGlossario">cloud_off</i></a>
-                {% endif %}
-                <div><span>{{ glossario.nome }}</span></div>
-            </div>
-            <nav class="glossarioSearch">
-                <div class="nav-wrapper white">
-                    <form method="post">
-                        {% csrf_token %}
-                        <div class="input-field">
-                            {{ formulario }}
-                            <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
-                            <i class="material-icons">close</i>
-                        </div>
-                        <div class="center">
-                            <input type="checkbox" class="filled-in" id="checkboxPort" name="checkboxPort" checked="checked"/>
-                            <label for="checkboxPort">Português</label>
-                            <input type="checkbox" class="filled-in" id="checkboxIng" name="checkboxIng" />
-                            <label for="checkboxIng">Inglês</label>
-                        </div>
-                    </form>
-                </div>
-            </nav>
-            <div class="linkContainer">
-                {% if sinal %}
-                    <div class="sideNavLinks">
-                        {% if sinal.exemploLibras or sinal.descLibras or sinal.varicLibras %}
-                            <li><a class="subheader truncate">{{sinal.traducaoP}} | {{sinal.traducaoI}}</a></li>
-                            <li><a class="waves-effect waves-blue" id="botaoSinal"><i class="material-icons">list</i>Sinal</a></li>
-                        {% endif %}
-                        {% if sinal.exemploLibras %}
-                            <li><a class="waves-effect waves-blue" id="botaoExemplo"><i class="material-icons">list</i>Exemplo</a></li>
-                        {% endif %}
-                        {% if sinal.descLibras %}
-                            <li><a class="waves-effect waves-blue" id="botaoDescricao"><i class="material-icons">list</i>Descrição</a></li>
-                        {% endif %}
-                        {% if sinal.varicLibras %}
-                            <li><a class="waves-effect waves-blue" id="botaoVariacao"><i class="material-icons">list</i>Variação</a></li>
-                        {% endif %}
-                        {% if sinal.exemploLibras or sinal.descLibras or sinal.varicLibras %}
-                            <li><div class="divider"></div></li>
-                        {% endif %}
+        
+    <ul class="side-nav fixed">
+        <div class="nav-wrapper center"><a href="/" class="brand-logo"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a></div>
+        <div class="center">
+            {% if glossario.imagem %}
+                <a href="/{{glossario.link}}"><img class="circle z-depth-4 imgGlossario" src="{{ glossario.imagem.url }}"/></a>
+            {% else %}
+                <a href="/{{glossario.link}}"><i class="large material-icons icone imgGlossario">cloud_off</i></a>
+            {% endif %}
+            <div><span>{{ glossario.nome }}</span></div>
+        </div>
+        <nav class="glossarioSearch">
+            <div class="nav-wrapper white">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="input-field">
+                        {{ formulario }}
+                        <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
+                        <i class="material-icons">close</i>
                     </div>
-                {% endif %}
-                <div class="sideNavLinks"> 
+                    <div class="center">
+                        <input type="checkbox" class="filled-in" id="checkboxPort" name="checkboxPort" checked="checked"/>
+                        <label for="checkboxPort">Português</label>
+                        <input type="checkbox" class="filled-in" id="checkboxIng" name="checkboxIng" />
+                        <label for="checkboxIng">Inglês</label>
+                    </div>
+                </form>
+            </div>
+        </nav>
+        <div class="linkContainer">
+            {% if sinal %}
+                <div class="sideNavLinks">
+                    {% if sinal.exemploLibras or sinal.descLibras or sinal.varicLibras %}
+                        <li><a class="subheader truncate">{{sinal.traducaoP}} | {{sinal.traducaoI}}</a></li>
+                        <li><a class="waves-effect waves-blue" id="botaoSinal"><i class="material-icons">list</i>Sinal</a></li>
+                    {% endif %}
+                    {% if sinal.exemploLibras %}
+                        <li><a class="waves-effect waves-blue" id="botaoExemplo"><i class="material-icons">list</i>Exemplo</a></li>
+                    {% endif %}
+                    {% if sinal.descLibras %}
+                        <li><a class="waves-effect waves-blue" id="botaoDescricao"><i class="material-icons">list</i>Descrição</a></li>
+                    {% endif %}
+                    {% if sinal.varicLibras %}
+                        <li><a class="waves-effect waves-blue" id="botaoVariacao"><i class="material-icons">list</i>Variação</a></li>
+                    {% endif %}
+                    {% if sinal.exemploLibras or sinal.descLibras or sinal.varicLibras %}
+                        <li><div class="divider"></div></li>
+                    {% endif %}
+                </div>
+            {% endif %}
+            <div class="sideNavLinks"> 
+                <li><a class="waves-effect waves-blue" href="/enviarsinais"><i class="material-icons">send</i>Envie sinais</a></li>
+                <li><a class="waves-effect waves-blue" href="/historia"><i class="material-icons">library_books</i>História</a></li>
+                <li><a class="waves-effect waves-blue" href="/equipe"><i class="material-icons">supervisor_account</i>Equipe</a></li>
+                <li><a class="waves-effect waves-blue" href="/contato"><i class="material-icons">call</i>Contato</a></li>
+                <li><a class="waves-effect waves-blue" href="/admin"><i class="material-icons">https</i>Admin</a></li>
+            </div>
+        </div>
+        <div class="nav-wrapper center"><a href="http://ufsc.br" class="brand-logo"><img class="logoUFSC" src='{% static "img/marca_ufsc2.png" %}'></a></div>
+    </ul>
+
+<!-- NAVBAR MOBILE -->
+
+    <div class="navbar hide-on-large-only">
+        <nav class="blue darken-4" role="navigation">
+            <ul id="nav-mobile" class="side-nav">
+                <!-- <li onclick="$('.button-collapse').sideNav('show')"></li> -->
+                <li>
+                    <div class="userView">
+                        <a href="/" class="brand-logo"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a>
+                    </div>
+                </li>
+                <div class="center">
+                    {% if glossario.imagem %}
+                        <a href="/{{glossario.link}}"><img class="circle z-depth-4 imgGlossarioMobile" src="{{ glossario.imagem.url }}"/></a>
+                    {% else %}
+                        <a href="/{{glossario.link}}"><i class="large material-icons icone imgGlossarioMobile">cloud_off</i></a>
+                    {% endif %}
+                    <span class="black-text">{{ glossario.nome }}</span>
+                </div>
+                <nav class="glossarioSearchMobile">
+                    <div class="nav-wrapper white">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="input-field">
+                                {{ formulario }}
+                                <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
+                                <i class="material-icons">close</i>
+                            </div>
+                            <div class="center">
+                                <input type="checkbox" class="filled-in" id="checkboxPort" name="checkboxPort" checked="checked"/>
+                                <label for="checkboxPort">Português</label>
+                                <input type="checkbox" class="filled-in" id="checkboxIng" name="checkboxIng"/>
+                                <label for="checkboxIng">Inglês</label>
+                            </div>
+                        </form>
+                    </div>
+                </nav>
+                <div class="sideNavSearchMobileLinks">
                     <li><a class="waves-effect waves-blue" href="/enviarsinais"><i class="material-icons">send</i>Envie sinais</a></li>
                     <li><a class="waves-effect waves-blue" href="/historia"><i class="material-icons">library_books</i>História</a></li>
                     <li><a class="waves-effect waves-blue" href="/equipe"><i class="material-icons">supervisor_account</i>Equipe</a></li>
                     <li><a class="waves-effect waves-blue" href="/contato"><i class="material-icons">call</i>Contato</a></li>
                     <li><a class="waves-effect waves-blue" href="/admin"><i class="material-icons">https</i>Admin</a></li>
                 </div>
-            </div>
-            <div class="nav-wrapper center"><a href="http://ufsc.br" class="brand-logo"><img class="logoUFSC" src='{% static "img/marca_ufsc2.png" %}'></a></div>
-        </ul>
-
-<!-- NAVBAR MOBILE -->
-
-        <div class="navbar hide-on-large-only">
-            <nav class="blue darken-4" role="navigation">
-                <ul id="nav-mobile" class="side-nav">
-                    <!-- <li onclick="$('.button-collapse').sideNav('show')"></li> -->
-                    <li>
-                        <div class="userView">
-                            <a href="/" class="brand-logo"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a>
-                        </div>
-                    </li>
-                    <div class="center">
-                        {% if glossario.imagem %}
-                            <a href="/{{glossario.link}}"><img class="circle z-depth-4 imgGlossarioMobile" src="{{ glossario.imagem.url }}"/></a>
-                        {% else %}
-                            <a href="/{{glossario.link}}"><i class="large material-icons icone imgGlossarioMobile">cloud_off</i></a>
-                        {% endif %}
-                        <span class="black-text">{{ glossario.nome }}</span>
+                <li>
+                    <div class="userView">
+                        <a href="http://ufsc.br" class="brand-logo"><img class="logoUFSC" src='{% static "img/marca_ufsc2.png" %}'></a>
                     </div>
-                    <nav class="glossarioSearchMobile">
-                        <div class="nav-wrapper white">
-                            <form method="post">
-                                {% csrf_token %}
-                                <div class="input-field">
-                                    {{ formulario }}
-                                    <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
-                                    <i class="material-icons">close</i>
-                                </div>
-                                <div class="center">
-                                    <input type="checkbox" class="filled-in" id="checkboxPort" name="checkboxPort" checked="checked"/>
-                                    <label for="checkboxPort">Português</label>
-                                    <input type="checkbox" class="filled-in" id="checkboxIng" name="checkboxIng"/>
-                                    <label for="checkboxIng">Inglês</label>
-                                </div>
-                            </form>
-                        </div>
-                    </nav>
-                    <div class="sideNavSearchMobileLinks">
-                        <li><a class="waves-effect waves-blue" href="/enviarsinais"><i class="material-icons">send</i>Envie sinais</a></li>
-                        <li><a class="waves-effect waves-blue" href="/historia"><i class="material-icons">library_books</i>História</a></li>
-                        <li><a class="waves-effect waves-blue" href="/equipe"><i class="material-icons">supervisor_account</i>Equipe</a></li>
-                        <li><a class="waves-effect waves-blue" href="/contato"><i class="material-icons">call</i>Contato</a></li>
-                        <li><a class="waves-effect waves-blue" href="/admin"><i class="material-icons">https</i>Admin</a></li>
-                    </div>
-                    <li>
-                        <div class="userView">
-                            <a href="http://ufsc.br" class="brand-logo"><img class="logoUFSC" src='{% static "img/marca_ufsc2.png" %}'></a>
-                        </div>
-                    </li>
-                </ul>
-                <a data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-            </nav>
-        </div>
+                </li>
+            </ul>
+            <a data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        </nav>
+    </div>
 
-        <div class="footer"><img id="borda" src='{% static "img/borda.png" %}'></div>
+<!-- FOOTER -->
 
-        {% block Corpo %}
-        {% endblock %}
+    <div class="footer"><img id="borda" src='{% static "img/borda.png" %}'></div>
+
+    {% block Corpo %}
+    {% endblock %}
 
 <!-- ABRIR SIDENAV MOBILE -->
 
-        <script type="text/javascript"> //Verificar necessidade desta tag script
-            $(".button-collapse").sideNav();
-            $('.button-collapse').sideNav('hide');
-        </script>
+    <script type="text/javascript"> //Verificar necessidade desta tag script
+        $(".button-collapse").sideNav();
+        $('.button-collapse').sideNav('hide');
+    </script>
 
 <!-- ABAS DO SINAL -->
 
-        <script>
-            $(document).ready(function() {
-                $('#videoExemplo').hide();
-                $('#videoDescricao').hide();
-                $('#videoVariacao').hide();
-            });
-            $('#botaoSinal').click(function() {
-                $('#videoSinal').show();
-                $('#videoExemplo').hide();
-                $('#videoDescricao').hide();
-                $('#videoVariacao').hide();
-            });
-            $('#botaoExemplo').click(function() {
-                $('#videoSinal').hide();
-                $('#videoExemplo').show();
-                $('#videoDescricao').hide();
-                $('#videoVariacao').hide();
-            });
-            $('#botaoDescricao').click(function() {
-                $('#videoSinal').hide();
-                $('#videoExemplo').hide();
-                $('#videoDescricao').show();
-                $('#videoVariacao').hide();
-            });
-            $('#botaoVariacao').click(function() {
-                $('#videoSinal').hide();
-                $('#videoExemplo').hide();
-                $('#videoDescricao').hide();
-                $('#videoVariacao').show();
-            });
-        </script>
+    <script>
+        $(document).ready(function() {
+            $('#videoExemplo').hide();
+            $('#videoDescricao').hide();
+            $('#videoVariacao').hide();
+        });
+        $('#botaoSinal').click(function() {
+            $('#videoSinal').show();
+            $('#videoExemplo').hide();
+            $('#videoDescricao').hide();
+            $('#videoVariacao').hide();
+        });
+        $('#botaoExemplo').click(function() {
+            $('#videoSinal').hide();
+            $('#videoExemplo').show();
+            $('#videoDescricao').hide();
+            $('#videoVariacao').hide();
+        });
+        $('#botaoDescricao').click(function() {
+            $('#videoSinal').hide();
+            $('#videoExemplo').hide();
+            $('#videoDescricao').show();
+            $('#videoVariacao').hide();
+        });
+        $('#botaoVariacao').click(function() {
+            $('#videoSinal').hide();
+            $('#videoExemplo').hide();
+            $('#videoDescricao').hide();
+            $('#videoVariacao').show();
+        });
+    </script>
 
 <!-- PERSISTÊNCIA DAS CHECKBOXES -->
 
-<!--         <script>
-            var checkboxValues = {};
-            $(":checkbox").each(function(){
-              checkboxValues[this.id] = this.checked;
-            });
-            $.cookie('checkboxValues', checkboxValues, { expires: 7, path: '/' })
+<!--     <script>
+        var checkboxValues = {};
+        $(":checkbox").each(function(){
+          checkboxValues[this.id] = this.checked;
+        });
+        $.cookie('checkboxValues', checkboxValues, { expires: 7, path: '/' })
 
-            function repopulateCheckboxes(){
-                var checkboxValues = $.cookie('checkboxValues');
-                if(checkboxValues){
-                    Object.keys(checkboxValues).forEach(function(element) {
-                        var checked = checkboxValues[element];
-                        $("#" + element).prop('checked', checked);
-                    });
-                }
+        function repopulateCheckboxes(){
+            var checkboxValues = $.cookie('checkboxValues');
+            if(checkboxValues){
+                Object.keys(checkboxValues).forEach(function(element) {
+                    var checked = checkboxValues[element];
+                    $("#" + element).prop('checked', checked);
+                });
             }
+        }
 
-            $.cookie.json = true;
-            repopulateCheckboxes();
-        </script>
-    </body>
-</html> -->
+        $.cookie.json = true;
+        repopulateCheckboxes();
+    </script>
+ -->
+
+</body>
+</html>

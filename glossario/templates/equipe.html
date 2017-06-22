@@ -1,14 +1,13 @@
-<!DOCTYPE html>
 <html>
-
 <head>
 	{% extends 'base.html' %}
-	<title>{% block title %}Equipe - Glossário Letras Libras{% endblock %}</title>
 	{% load staticfiles %}
+	<title>{% block title %}Equipe - Glossário Letras Libras{% endblock %}</title>
 </head>
-
 <body>
 	{% block Corpo %}
+
+<!-- COLABORADORES -->
 
 	<div class="equipe">
 
@@ -336,6 +335,7 @@
       </div>
       </div>
 
+<!-- FOOTER -->
 
 	<div class="footer"><img id="borda" src='{% static "img/borda.png" %}'></div>
 
@@ -344,7 +344,8 @@
 	</br>
 	</div>
 	</div>
-{% endblock %}
+
+	{% endblock %}
 </body>
 </html>
 
