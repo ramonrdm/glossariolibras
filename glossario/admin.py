@@ -20,7 +20,7 @@ class GlossarioAdmin(admin.ModelAdmin):
 	def get_readonly_fields(self, request, obj=None):
 		readonly_fields = ('nome', 'responsavel', 'membros', 'imagem', 'videoGlossario')
 		if obj and not request.user.is_superuser:
-			if qsResp:
+			if qsResponsavelGlossario:
 				readonly_fields = ('responsavel',)
 			else:
 				readonly_fields = ('nome', 'responsavel', 'membros', 'imagem', 'videoGlossario')
@@ -39,8 +39,8 @@ class GlossarioAdmin(admin.ModelAdmin):
 		qs = super(GlossarioAdmin, self).get_queryset(request)
 		if request.user.is_superuser:
 			return qs
-		global qsResp
-		qsResp = qs.filter(responsavel=request.user)
+		global qsResponsavelGlossario
+		qsResponsavelGlossario = qs.filter(responsavel=request.user)
 		return qs.filter(Q(responsavel=request.user) | Q(membros=request.user))
 
 	def has_add_permission(self, request):
@@ -58,13 +58,13 @@ class GlossarioAdmin(admin.ModelAdmin):
 
 class SinalAdmin(admin.ModelAdmin):
 
+	form = SinalForm
+
 	def get_queryset(self, request):
 		qs = super(SinalAdmin, self).get_queryset(request)
 		if request.user.is_superuser:
 			return qs
 		return qs.filter(Q(glossario__responsavel=request.user) | Q(glossario__membros=request.user))
-
-	form = SinalForm
 
 	def save_model(self, request, obj, form, change):
 		obj.dataPost = datetime.date.today()
