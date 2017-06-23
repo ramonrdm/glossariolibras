@@ -14,9 +14,18 @@
 	{% block Corpo %}
 	
 <!-- VÍDEOS -->
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+      
+ <div id="contentVideo">
+        <ul>
+          <li><a href="#tabs-1">Sinal</a></li>
+          <li><a href="#tabs-2">Conceito</a></li>
+          <li><a href="#tabs-3">exemplo</a></li>
+          <li><a href="#tabs-4">Variações</a></li>
+        </ul>
 
-	<div class="center" id="videoSinal">
-		<p class="flow-text">Sinal</p>
+	<div  id="tabs-1">
 		{% if sinal.sinalLibras %}
 			<video class="responsive-video z-depth-5 videoSinal" controls preload="metadata">
 				<source src="{{sinal.sinalLibras.url}}">
@@ -27,8 +36,7 @@
 		{% endif %}
 	</div>
 
-	<div class="center" id="videoExemplo">
-		<p class="flow-text">Exemplo</p>
+	<div id="tabs-2">
 		{% if sinal.exemploLibras %}
 			<video class="responsive-video z-depth-5 videoSinal" controls preload="metadata">
 				<source src="{{sinal.exemploLibras.url}}">
@@ -39,7 +47,7 @@
 		{% endif %}
 	</div>
 
-	<div class="center" id="videoDescricao">
+	<div id="tabs-3">
 		<p class="flow-text">Descrição</p>
 		{% if sinal.descLibras %}
 			<video class="responsive-video z-depth-5 videoSinal" controls preload="metadata">
@@ -51,7 +59,7 @@
 		{% endif %}
 	</div>
 
-	<div class="center" id="videoVariacao">
+	<div  id="tabs-4">
 		<p class="flow-text">Variação</p>
 		{% if sinal.varicLibras %}
 			<video class="responsive-video z-depth-5 videoSinal" controls preload="metadata">
@@ -63,6 +71,8 @@
 		{% endif %}
 	</div>
 
+</div>
+<script type="text/javascript">$(function(){$("#contentVideo").tabs();})</script>
 <!-- IDENTIFICAÇÃO DO SINAL -->
 
 	<div class="center">
