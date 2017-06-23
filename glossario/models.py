@@ -93,11 +93,13 @@ class CM (models.Model):
 	class Meta:
 		verbose_name_plural='configurações de mão'
 
+	bsw = models.TextField('BSW', blank=True, default='')
 	imagem = models.ImageField(blank=True)
 	grupo = models.ForeignKey(GrupoCM, verbose_name = 'Grupo de Configuração de Mão')
 
+
 	def __str__(self):
-		return 'Configuração de mão'
+		return str(self.bsw)+" - "+str(self.grupo)
 
 
 class Tema(models.Model):
