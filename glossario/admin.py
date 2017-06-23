@@ -19,15 +19,14 @@ class GlossarioAdmin(admin.ModelAdmin):
 	list_filter = ('responsavel', 'membros', 'dataCriacao')
 
 	def get_readonly_fields(self, request, obj=None):
-		readonly_fields = ('nome', 'responsavel', 'membros', 'imagem', 'videoGlossario')
-		if obj and not request.user.is_superuser:
-			if qsResponsavelGlossario:
-				readonly_fields = ('responsavel',)
-			else:
-				readonly_fields = ('nome', 'responsavel', 'membros', 'imagem', 'videoGlossario')
-		else:
-			readonly_fields = []
-		return readonly_fields
+		qs = super(GlossarioAdmin, self).get_queryset(request)
+		qsResp = qs.filter(responsavel=request.user)
+		qsMemb = qs.filter(membros=request.user)
+		if obj in qsResp or request.user.is_superuser:
+			return []
+		if obj in qsMemb:
+			return ('nome', 'responsavel', 'membros', 'imagem', 'videoGlossario')
+		return []
 
 	def get_actions(self, request):
 		actions = super(GlossarioAdmin, self).get_actions(request)
@@ -40,8 +39,6 @@ class GlossarioAdmin(admin.ModelAdmin):
 		qs = super(GlossarioAdmin, self).get_queryset(request)
 		if request.user.is_superuser:
 			return qs
-		global qsResponsavelGlossario
-		qsResponsavelGlossario = qs.filter(responsavel=request.user)
 		return qs.filter(Q(responsavel=request.user) | Q(membros=request.user))
 
 	def has_add_permission(self, request):
@@ -67,6 +64,20 @@ class SinalAdmin(admin.ModelAdmin):
 		if request.user.is_superuser:
 			return qs
 		return qs.filter(Q(glossario__responsavel=request.user) | Q(glossario__membros=request.user))
+
+	def get_readonly_fields(self, request, obj=None):
+		qs = super(SinalAdmin, self).get_queryset(request)
+		qsResp = qs.filter(glossario__responsavel=request.user)
+		qsMemb = qs.filter(glossario__membros=request.user)
+		if obj in qsResp or request.user.is_superuser:
+			return []
+		if obj in qsMemb:
+			# return self.fields or [f.name for f in self.model._meta.fields]
+			return ('glossario', 'traducaoP', 'traducaoI', 'bsw', 'descricao', 'grupoCMe', 'cmE',
+				'grupoCMd', 'cmD', 'localizacao', 'sinalLibras', 'descLibras', 'varicLibras',
+				'exemploLibras', 'tema',
+			)
+		return []
 
 	def save_model(self, request, obj, form, change):
 		obj.dataPost = datetime.date.today()
