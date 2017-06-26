@@ -70,7 +70,7 @@ class Glossario(models.Model):
 
 	nome = models.CharField('Nome do Glossário', max_length=100)
 	responsavel = models.ManyToManyField(Usuario, verbose_name = 'responsável')
-	membros = models.ManyToManyField(Usuario, related_name='glossario_membros', verbose_name='membros')
+	membros = models.ManyToManyField(Usuario, related_name='glossario_membros', verbose_name='membros', blank=True)
 	imagem = models.ImageField('Imagem', blank=True)
 	link = models.CharField('Link', max_length=20)
 	dataCriacao = models.DateField('data de criação', auto_now_add=True)

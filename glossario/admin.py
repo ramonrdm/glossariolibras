@@ -79,6 +79,14 @@ class SinalAdmin(admin.ModelAdmin):
 			)
 		return []
 
+	def formfield_for_foreignkey(self, db_field, request, **kwargs):
+		if db_field.name == "glossario":
+			if request.user.is_superuser:
+				kwargs["queryset"] = Glossario.objects.all()
+			else:
+				kwargs["queryset"] = Glossario.objects.filter(Q(responsavel=request.user) | Q(membros=request.user))
+		return super(SinalAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
+
 	def save_model(self, request, obj, form, change):
 		obj.dataPost = datetime.date.today()
 		obj.postador = request.user
@@ -94,8 +102,6 @@ class SinalAdmin(admin.ModelAdmin):
 class UsuarioAdmin(admin.ModelAdmin):
 
 	form = UsuarioForm
-
-
 
 admin.site.register(Usuario, UsuarioAdmin)
 admin.site.register(Glossario, GlossarioAdmin)
