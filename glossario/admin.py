@@ -75,7 +75,7 @@ class SinalAdmin(admin.ModelAdmin):
 			# return self.fields or [f.name for f in self.model._meta.fields]
 			return ('glossario', 'traducaoP', 'traducaoI', 'bsw', 'descricao', 'grupoCMe', 'cmE',
 				'grupoCMd', 'cmD', 'localizacao', 'sinalLibras', 'descLibras', 'varicLibras',
-				'exemploLibras', 'tema',
+				'exemploLibras', 'tema', 'publicado',
 			)
 		return []
 
@@ -92,11 +92,15 @@ class SinalAdmin(admin.ModelAdmin):
 		obj.postador = request.user
 		obj.save()
 
-	def get_form(self, request, obj, **kwargs):
+	def get_form(self, request, obj=None, **kwargs):
 		self.exclude = ['postador','dataPost']
-		responsaveis = Glossario.objects.filter(responsavel=request.user)
-		if not request.user.is_superuser or responsaveis:
-			self.exclude.append('publicado')
+		qs = super(SinalAdmin, self).get_queryset(request)
+		qsResp = qs.filter(glossario__responsavel=request.user)
+		# responsaveis = Glossario.objects.filter(responsavel=request.user)
+		if not request.user.is_superuser:
+			if obj not in qsResp:
+				# self.exclude.append('publicado')
+				self.exclude = ['postador','dataPost', 'publicado']
 		return super(SinalAdmin, self).get_form(request, obj, **kwargs)
 
 class UsuarioAdmin(admin.ModelAdmin):
