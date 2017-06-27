@@ -108,6 +108,7 @@ class SinalAdmin(admin.ModelAdmin):
 class UsuarioAdmin(admin.ModelAdmin):
 
 	form = UsuarioForm
+	list_display = ('username', 'nome', 'email', 'latte', 'foto', 'is_staff')
 
 admin.site.register(Usuario, UsuarioAdmin)
 admin.site.register(Glossario, GlossarioAdmin)
