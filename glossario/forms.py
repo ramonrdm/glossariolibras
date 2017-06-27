@@ -23,26 +23,14 @@ class GlossarioForm(forms.ModelForm):
 		model = Glossario
 		exclude = ['link','dataCriacao']
 
-class PesquisaPortForm(forms.ModelForm):
-	
-	class Meta:
-		model = Sinal
-		fields = ['traducaoP']
-		widgets = {
-        	'traducaoP': forms.TextInput(attrs={'id': 'search', 'type': 'search'}),
-        }
-
-class PesquisaIngForm(forms.ModelForm):
-	
-	class Meta:
-		model = Sinal
-		fields = ['traducaoI']
-
 class SinalForm(forms.ModelForm):
 
 	class Meta:
 		model = Sinal
-		fields = '__all__'
+		fields = ['tema', 'glossario', 'traducaoP', 'traducaoI', 'descricao', 'bsw', 'grupoCMe', 'cmE', 'grupoCMd',
+		'cmD', 'localizacao', 'dataPost', 'postador', 'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras',
+		'publicado',
+		]
 
 class PesquisaForm(forms.Form):
 	busca = forms.CharField(label="", widget=forms.TextInput(attrs={'id': 'search', 'type': 'search'}))
