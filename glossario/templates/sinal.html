@@ -14,70 +14,88 @@
 	{% block Corpo %}
 	
 <!-- VÍDEOS -->
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-      
- <div id="contentVideo">
-        <ul>
-          <li><a href="#tabs-1">Sinal</a></li>
-          <li><a href="#tabs-2">Conceito</a></li>
-          <li><a href="#tabs-3">Exemplo</a></li>
-          <li><a href="#tabs-4">Variações</a></li>
-        </ul>
 
-	<div  id="tabs-1">
-		{% if sinal.sinalLibras %}
-			<video class="responsive-video z-depth-5 videoSinal" controls preload="metadata">
-				<source src="{{sinal.sinalLibras.url}}">
-				Seu navegador não suporta vídeo html5, por favor atualize seu navegador.
-			</video>
-		{% else %}
-			<i class="large material-icons videoSinal icone">videocam_off</i>
-		{% endif %}
+	<div class="row">
+		<div class="col s12">
+			<ul class="tabs blue darken-4">
+				<div class="indicator light-blue lighten-4" style="z-index: 1"></div>
+				<li class="tab col s3"><a class="white-text" href="#tabSinal">Sinal</a></li>
+				<li class="tab col s3"><a class="white-text" href="#tabDescricao">Descrição</a></li>
+				<li class="tab col s3"><a class="white-text" href="#tabExemplo">Exemplo</a></li>
+				<li class="tab col s3"><a class="white-text" href="#tabVariacao">Variação</a></li>
+			</ul>
+		</div>
+		<div id="tabSinal" class="col s12">
+			<div class="center" id="videoSinal">
+				<div class="container">
+					<h2 class="thin">Sinal</h2>
+					<div class="divider"></div>
+				</div>
+				{% if sinal.sinalLibras %}
+					<video class="responsive-video z-depth-5 videoSinal" controls preload="metadata">
+						<source src="{{sinal.sinalLibras.url}}">
+						Seu navegador não suporta vídeo html5, por favor atualize seu navegador.
+					</video>
+				{% else %}
+					<i class="large material-icons videoSinal icone">videocam_off</i>
+				{% endif %}
+			</div>
+		</div>
+		<div id="tabDescricao" class="col s12">
+			<div class="center" id="videoDescricao">
+				<div class="container">
+					<h2 class="thin">Descrição</h2>
+					<div class="divider"></div>
+				</div>
+				{% if sinal.descLibras %}
+					<video class="responsive-video z-depth-5 videoSinal" controls preload="metadata">
+						<source src="{{sinal.descLibras.url}}">
+						Seu navegador não suporta vídeo html5, por favor atualize seu navegador.
+					</video>
+				{% else %}
+					<i class="large material-icons videoSinal icone">videocam_off</i>
+				{% endif %}
+			</div>
+		</div>
+		<div id="tabExemplo" class="col s12">
+			<div class="center" id="videoExemplo">
+				<div class="container">
+					<h2 class="thin">Exemplo</h2>
+					<div class="divider"></div>
+				</div>
+				{% if sinal.exemploLibras %}
+					<video class="responsive-video z-depth-5 videoSinal" controls preload="metadata">
+						<source src="{{sinal.exemploLibras.url}}">
+						Seu navegador não suporta vídeo html5, por favor atualize seu navegador.
+					</video>
+				{% else %}
+					<i class="large material-icons videoSinal icone">videocam_off</i>
+				{% endif %}
+			</div>
+		</div>
+		<div id="tabVariacao" class="col s12">
+			<div class="center" id="videoVariacao">
+				<div class="container">
+					<h2 class="thin">Variação</h2>
+					<div class="divider"></div>
+				</div>
+				{% if sinal.varicLibras %}
+					<video class="responsive-video z-depth-5 videoSinal" controls preload="metadata">
+						<source src="{{sinal.varicLibras.url}}">
+						Seu navegador não suporta vídeo html5, por favor atualize seu navegador.
+					</video>
+				{% else %}
+					<i class="large material-icons videoSinal icone">videocam_off</i>
+				{% endif %}
+			</div>
+		</div>
 	</div>
 
-	<div id="tabs-2">
-		{% if sinal.exemploLibras %}
-			<video class="responsive-video z-depth-5 videoSinal" controls preload="metadata">
-				<source src="{{sinal.exemploLibras.url}}">
-				Seu navegador não suporta vídeo html5, por favor atualize seu navegador.
-			</video>
-		{% else %}
-			<i class="large material-icons videoSinal icone">videocam_off</i>
-		{% endif %}
-	</div>
-
-	<div id="tabs-3">
-		<p class="flow-text">Descrição</p>
-		{% if sinal.descLibras %}
-			<video class="responsive-video z-depth-5 videoSinal" controls preload="metadata">
-				<source src="{{sinal.descLibras.url}}">
-				Seu navegador não suporta vídeo html5, por favor atualize seu navegador.
-			</video>
-		{% else %}
-			<i class="large material-icons videoSinal icone">videocam_off</i>
-		{% endif %}
-	</div>
-
-	<div  id="tabs-4">
-		<p class="flow-text">Variação</p>
-		{% if sinal.varicLibras %}
-			<video class="responsive-video z-depth-5 videoSinal" controls preload="metadata">
-				<source src="{{sinal.varicLibras.url}}">
-				Seu navegador não suporta vídeo html5, por favor atualize seu navegador.
-			</video>
-		{% else %}
-			<i class="large material-icons videoSinal icone">videocam_off</i>
-		{% endif %}
-	</div>
-
-</div>
-<script type="text/javascript">$(function(){$("#contentVideo").tabs();})</script>
 <!-- IDENTIFICAÇÃO DO SINAL -->
 
 	<div class="center">
-		<span class="flow-text nomeSinal">
-			Português: {{sinal.traducaoP}}
+		<span class="flow-text">
+			Português: {{sinal.traducaoP}}</br>
 			Inglês: {{sinal.traducaoI}}
 		</span>
 	</div>

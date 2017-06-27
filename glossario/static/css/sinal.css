@@ -3,13 +3,9 @@
 	text-overflow: ellipsis;
 }
 
-.nomeSinal {
-	white-space: pre-line;
-}
-
 .videoSinal {
 	margin-top: 2%;
-	width: 500px;
+	width: 750px;
 }
 
 .mao {

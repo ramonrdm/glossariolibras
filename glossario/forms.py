@@ -31,6 +31,7 @@ class SinalForm(forms.ModelForm):
 		'cmD', 'localizacao', 'dataPost', 'postador', 'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras',
 		'publicado',
 		]
+		inlines = ['SinalInlineForm']
 
 class PesquisaForm(forms.Form):
 	busca = forms.CharField(label="", widget=forms.TextInput(attrs={'id': 'search', 'type': 'search'}))
