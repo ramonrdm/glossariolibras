@@ -16,6 +16,7 @@ admin.site.register(Tema)
 class GlossarioAdmin(admin.ModelAdmin):
 	
 	form = GlossarioForm
+	list_display = ('nome', 'link', 'imagem', 'videoGlossario', 'dataCriacao')
 	list_filter = ('responsavel', 'membros', 'dataCriacao')
 
 	def get_readonly_fields(self, request, obj=None):
@@ -57,6 +58,7 @@ class GlossarioAdmin(admin.ModelAdmin):
 class SinalAdmin(admin.ModelAdmin):
 
 	form = SinalForm
+	list_display = ('traducaoP', 'traducaoI', 'tema', 'glossario', 'publicado')
 	list_filter = ('tema', 'glossario', 'localizacao', 'dataPost', 'publicado')
 
 	def get_queryset(self, request):

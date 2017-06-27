@@ -27,7 +27,9 @@
 <!-- SIDENAV FIXA -->
         
     <ul class="side-nav fixed">
-        <div class="nav-wrapper center"><a href="/" class="brand-logo"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a></div>
+        <div class="nav-wrapper center">
+            <a href="/" class="brand-logo"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a>
+        </div>
         <div class="center">
             {% if glossario.imagem %}
                 <a href="/{{glossario.link}}"><img class="circle z-depth-4 imgGlossario" src="{{ glossario.imagem.url }}"/></a>
