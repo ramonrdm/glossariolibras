@@ -21,10 +21,8 @@ def glossarioSelecionado(request, glossario):
 		formulario = PesquisaForm(request.POST)
 		checkboxPort = request.POST.get('checkboxPort', False)
 		checkboxIng = request.POST.get('checkboxIng', False)
-
-		# checkPort = request.session['checkboxPort']
-		# checkIng = request.session['checkboxIng']
-
+		request.session['checkboxPort'] = checkboxPort
+		request.session['checkboxIng'] = checkboxIng
 		sinaisGlossario = Sinal.objects.filter(glossario=glossario)
 		if checkboxPort and checkboxIng:
 			if formulario.is_valid():
@@ -59,9 +57,6 @@ def glossarioSelecionado(request, glossario):
 
 def sinal(request, sinal=None, glossario=None):
 	
-	# request.session['checkboxPort'] = checkPort
-	# request.session['checkboxIng'] = checkIng
-
 	if sinal:
 		try:
 			sinal = Sinal.objects.get(id=sinal)
@@ -72,8 +67,10 @@ def sinal(request, sinal=None, glossario=None):
 	if request.method == 'POST':
 		sinais = sinaisP = sinaisI = sinaisGlossario = formulario = None
 		formulario = PesquisaForm(request.POST)
-		checkboxPort = request.POST.get('checkboxPort', False)
-		checkboxIng = request.POST.get('checkboxIng', False)
+		# checkboxPort = request.POST.get('checkboxPort', False)
+		# checkboxIng = request.POST.get('checkboxIng', False)
+		checkboxPort = request.session['checkboxPort']
+		checkboxIng = request.session['checkboxIng']
 		sinaisGlossario = Sinal.objects.filter(glossario=glossario)
 		if checkboxPort and checkboxIng:
 			if formulario.is_valid():
@@ -103,8 +100,12 @@ def sinal(request, sinal=None, glossario=None):
 			'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng
 			})
 	else:
+		checkboxPort = request.session['checkboxPort']
+		checkboxIng = request.session['checkboxIng']
 		formulario = PesquisaForm()
-		return render(request, "sinal.html", {'sinal': sinal, 'glossario': glossario, 'formulario': formulario})
+		return render(request, "sinal.html", {'sinal': sinal, 'glossario': glossario, 'formulario': formulario,
+			# 'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng
+				})
 
 def historia(request):
 	return render(request, "historia.html")
