@@ -40,7 +40,7 @@ class GlossarioAdmin(admin.ModelAdmin):
 		qs = super(GlossarioAdmin, self).get_queryset(request)
 		if request.user.is_superuser:
 			return qs
-		return qs.filter(Q(responsavel=request.user) | Q(membros=request.user))
+		return qs.filter(Q(responsavel=request.user) | Q(membros=request.user)).distinct()
 
 	def has_add_permission(self, request):
 		if request.user.is_superuser:
@@ -65,7 +65,7 @@ class SinalAdmin(admin.ModelAdmin):
 		qs = super(SinalAdmin, self).get_queryset(request)
 		if request.user.is_superuser:
 			return qs
-		return qs.filter(Q(glossario__responsavel=request.user) | Q(glossario__membros=request.user))
+		return qs.filter(Q(glossario__responsavel=request.user) | Q(glossario__membros=request.user)).distinct()
 
 	# def get_readonly_fields(self, request, obj=None):
 	# 	qs = super(SinalAdmin, self).get_queryset(request)

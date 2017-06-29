@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from glossario.models import Glossario, Sinal, Usuario, Tema
 from glossario.forms import PesquisaForm
 from django.http import JsonResponse
 from django.db.models import Q
+from django.template import RequestContext
 import json
 
 def index(request, glossario=None):
@@ -51,6 +52,9 @@ def glossarioSelecionado(request, glossario):
 			'resultado': resultado, 'resultadoP': resultadoP, 'resultadoI': resultadoI, 'glossario': glossario,
 			'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng
 			})
+		# return render_to_response(request, 'pesquisa.html', {'formulario': formulario, 'sinais': sinais, 'sinaisP': sinaisP, 'sinaisI': sinaisI, 'sinaisGlossario': sinaisGlossario,
+		# 	'resultado': resultado, 'resultadoP': resultadoP, 'resultadoI': resultadoI, 'glossario': glossario,
+		# 	'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng}, context_instance=RequestContext(request))
 	else:
 		formulario = PesquisaForm()
 		return render(request, 'glossario.html', {'glossario': glossario, 'formulario': formulario})
@@ -67,10 +71,8 @@ def sinal(request, sinal=None, glossario=None):
 	if request.method == 'POST':
 		sinais = sinaisP = sinaisI = sinaisGlossario = formulario = None
 		formulario = PesquisaForm(request.POST)
-		# checkboxPort = request.POST.get('checkboxPort', False)
-		# checkboxIng = request.POST.get('checkboxIng', False)
-		checkboxPort = request.session['checkboxPort']
-		checkboxIng = request.session['checkboxIng']
+		checkboxPort = request.POST.get('checkboxPort', False)
+		checkboxIng = request.POST.get('checkboxIng', False)
 		sinaisGlossario = Sinal.objects.filter(glossario=glossario)
 		if checkboxPort and checkboxIng:
 			if formulario.is_valid():
@@ -100,12 +102,8 @@ def sinal(request, sinal=None, glossario=None):
 			'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng
 			})
 	else:
-		checkboxPort = request.session['checkboxPort']
-		checkboxIng = request.session['checkboxIng']
 		formulario = PesquisaForm()
-		return render(request, "sinal.html", {'sinal': sinal, 'glossario': glossario, 'formulario': formulario,
-			# 'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng
-				})
+		return render(request, "sinal.html", {'sinal': sinal, 'glossario': glossario, 'formulario': formulario})
 
 def historia(request):
 	return render(request, "historia.html")
