@@ -87,7 +87,7 @@ class GrupoCM (models.Model):
 	bsw = models.TextField('BSW')
 
 	def __str__(self):
-		return self.bsw
+		return str(self.id)
 
 class CM (models.Model):
 	class Meta:
@@ -99,7 +99,7 @@ class CM (models.Model):
 
 
 	def __str__(self):
-		return str(self.bsw)+" - "+str(self.grupo)
+		return str(self.id)+" - "+str(self.grupo)
 
 
 class Tema(models.Model):
@@ -136,4 +136,4 @@ class Sinal(models.Model):
 	tema = models.ForeignKey(Tema)
 
 	def __unicode__(self):
-		return  self.traducaoP
+		return self.traducaoP

@@ -85,7 +85,7 @@ class SinalAdmin(admin.ModelAdmin):
 			if request.user.is_superuser:
 				kwargs["queryset"] = Glossario.objects.all()
 			else:
-				kwargs["queryset"] = Glossario.objects.filter(Q(responsavel=request.user) | Q(membros=request.user))
+				kwargs["queryset"] = Glossario.objects.filter(Q(responsavel=request.user) | Q(membros=request.user)).distinct()
 		return super(SinalAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
 	def save_model(self, request, obj, form, change):

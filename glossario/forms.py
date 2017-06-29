@@ -10,6 +10,7 @@ class UsuarioForm(forms.ModelForm):
 		'password': forms.PasswordInput(),
 		}
 		fields = ['username', 'password', 'nome', 'latte', 'foto', 'email', 'is_staff', 'groups']
+		
 	def  save(self, commit=True):
 		user = super(UsuarioForm, self).save(commit=False)
 		user.set_password(self.cleaned_data["password"])
@@ -29,7 +30,7 @@ class SinalForm(forms.ModelForm):
 		model = Sinal
 		fields = ['tema', 'glossario', 'traducaoP', 'traducaoI', 'descricao', 'bsw', 'grupoCMe', 'cmE', 'grupoCMd',
 		'cmD', 'localizacao', 'dataPost', 'postador', 'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras',
-		'publicado',
+		'publicado'
 		]
 		inlines = ['SinalInlineForm']
 
