@@ -22,6 +22,8 @@ def glossarioSelecionado(request, glossario):
 		formulario = PesquisaForm(request.POST)
 		checkboxPort = request.POST.get('checkboxPort', False)
 		checkboxIng = request.POST.get('checkboxIng', False)
+		# checkboxPort = request.POST.get('checkboxPort')
+		# checkboxIng = request.POST.get('checkboxIng')
 		request.session['checkboxPort'] = checkboxPort
 		request.session['checkboxIng'] = checkboxIng
 		sinaisGlossario = Sinal.objects.filter(glossario=glossario)
@@ -56,8 +58,13 @@ def glossarioSelecionado(request, glossario):
 		# 	'resultado': resultado, 'resultadoP': resultadoP, 'resultadoI': resultadoI, 'glossario': glossario,
 		# 	'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng}, context_instance=RequestContext(request))
 	else:
+		checkboxPort = request.POST.get('checkboxPort')
+		checkboxIng = request.POST.get('checkboxIng')
+		checkboxIngSession = request.session['checkboxIng']
+		checkboxPortSession = request.session['checkboxPort']
 		formulario = PesquisaForm()
-		return render(request, 'glossario.html', {'glossario': glossario, 'formulario': formulario})
+		return render(request, 'glossario.html', {'glossario': glossario, 'formulario': formulario, 'checkboxPort': checkboxPort,
+			'checkboxIng': checkboxIng, 'checkboxPortSession': checkboxPortSession, 'checkboxIngSession': checkboxIngSession})
 
 def sinal(request, sinal=None, glossario=None):
 	
