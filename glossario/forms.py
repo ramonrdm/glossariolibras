@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from glossario.models import Glossario, Sinal, Usuario
+from glossario.models import Usuario, Glossario, Sinal, GrupoCM, CM, Localizacao
 from django import forms
 
 class UsuarioForm(forms.ModelForm):
@@ -30,9 +30,26 @@ class SinalForm(forms.ModelForm):
 		model = Sinal
 		fields = ['tema', 'glossario', 'traducaoP', 'traducaoI', 'descricao', 'bsw', 'grupoCMe', 'cmE', 'grupoCMd',
 		'cmD', 'localizacao', 'dataPost', 'postador', 'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras',
-		'publicado'
-		]
-		inlines = ['SinalInlineForm']
+		'publicado']
+		# inlines = ['SinalInlineForm']
+
+class GrupoCMForm(forms.ModelForm):
+
+	class Meta:
+		model = GrupoCM
+		fields = ['imagem', 'bsw']
+
+class CMForm(forms.ModelForm):
+
+	class Meta:
+		model = CM
+		fields = ['bsw', 'imagem', 'grupo']
+
+class LocalizacaoForm(forms.ModelForm):
+
+	class Meta:
+		model = Localizacao
+		fields = ['nome', 'imagem', 'bsw', 'areaClicavel']
 
 class PesquisaForm(forms.Form):
 	busca = forms.CharField(label="", widget=forms.TextInput(attrs={'id': 'search', 'type': 'search'}))

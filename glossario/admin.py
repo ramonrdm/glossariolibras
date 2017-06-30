@@ -1,23 +1,21 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 from .models import *
-from glossario.forms import GlossarioForm, SinalForm, UsuarioForm
+from glossario.forms import GlossarioForm, SinalForm, UsuarioForm, GrupoCMForm, CMForm, LocalizacaoForm
 from unicodedata import normalize
 from django.db import models
 from django.db.models import Q
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.contenttypes.models import ContentType
 
-admin.site.register(Localizacao)
-admin.site.register(GrupoCM)
-admin.site.register(CM)
-admin.site.register(Tema)
 
 class GlossarioAdmin(admin.ModelAdmin):
 	
 	form = GlossarioForm
-	list_display = ('nome', 'link', 'imagem', 'videoGlossario', 'dataCriacao')
+	list_display = ('nome', 'image_tag')
 	list_filter = ('responsavel', 'membros', 'dataCriacao')
+	# fields = ('imagem',)
+	# readonly_fields = ('imagem',)
 
 	def get_readonly_fields(self, request, obj=None):
 		qs = super(GlossarioAdmin, self).get_queryset(request)
@@ -104,11 +102,32 @@ class SinalAdmin(admin.ModelAdmin):
 				self.exclude = ['postador','dataPost', 'publicado']
 		return super(SinalAdmin, self).get_form(request, obj, **kwargs)
 
+class GrupoCMAdmin(admin.ModelAdmin):
+
+	form = GrupoCMForm
+	list_display = ('__str__', 'image_tag', 'bsw')
+	# fields = ('image_tag',)
+	# readonly_fields = ('image_tag',)
+
+class CMAdmin(admin.ModelAdmin):
+
+	form = CMForm
+	list_display = ('__str__', 'image_tag', 'bsw')
+
+class LocalizacaoAdmin(admin.ModelAdmin):
+
+	form = LocalizacaoForm
+	list_display = ('nome', 'image_tag', 'bsw')
+
 class UsuarioAdmin(admin.ModelAdmin):
 
 	form = UsuarioForm
 	list_display = ('username', 'nome', 'email', 'latte', 'foto', 'is_staff')
 
+admin.site.register(Tema)
 admin.site.register(Usuario, UsuarioAdmin)
 admin.site.register(Glossario, GlossarioAdmin)
 admin.site.register(Sinal, SinalAdmin)
+admin.site.register(GrupoCM, GrupoCMAdmin)
+admin.site.register(CM, CMAdmin)
+admin.site.register(Localizacao, LocalizacaoAdmin)
