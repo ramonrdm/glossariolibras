@@ -26,7 +26,7 @@ def glossarioSelecionado(request, glossario):
 		# checkboxIng = request.POST.get('checkboxIng')
 		request.session['checkboxPort'] = checkboxPort
 		request.session['checkboxIng'] = checkboxIng
-		sinaisGlossario = Sinal.objects.filter(glossario=glossario)
+		sinaisGlossario = Sinal.objects.filter(glossario=glossario).filter(publicado=True)
 		if checkboxPort and checkboxIng:
 			if formulario.is_valid():
 				sinaisP = sinaisGlossario.filter(traducaoP__icontains=formulario.cleaned_data['busca'])

@@ -5,8 +5,8 @@ from django.core.files import File
 from django.contrib.auth.models import AbstractUser, BaseUserManager, User
 from django.contrib.auth import hashers
 from django.db.models.signals import post_save
-import datetime
 from django.dispatch import receiver
+import datetime
 
 class UsuarioManager(BaseUserManager):
 	use_in_migrations = True
@@ -36,8 +36,6 @@ class UsuarioManager(BaseUserManager):
 
 		return self._create_user(username, email, password, **extra_fields)
 
-
-
 class Usuario(AbstractUser):
 
 	nome = models.CharField('Nome', max_length=200)
@@ -45,7 +43,6 @@ class Usuario(AbstractUser):
 	foto = models.ImageField('Foto', blank=True)
 
 	objects = UsuarioManager()
-
 
 class Localizacao(models.Model):
 	class Meta:
@@ -131,7 +128,6 @@ class CM (models.Model):
 
 	def __str__(self):
 		return str(self.id)+" - "+str(self.grupo)
-
 
 class Tema(models.Model):
 	nome = models.CharField('Nome', max_length=30)
