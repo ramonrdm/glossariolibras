@@ -152,9 +152,9 @@ class Sinal(models.Model):
 	traducaoI = models.CharField('word', max_length=30)
 	bsw = models.TextField(null=True, blank = True)
 	descricao = models.CharField('descrição', max_length=50,null=True, blank = True)
-	grupoCMe = models.ForeignKey(GrupoCM, related_name='Grupo_M_Esquerda', verbose_name='grupo configuração de mão esquerda')
+	grupoCMe = models.ForeignKey(GrupoCM, related_name='Grupo_M_Esquerda', verbose_name='grupo de configuração de mão esquerda')
 	cmE = models.ForeignKey(CM, related_name='C_M_Esquerda', verbose_name='configuração esquerda')
-	grupoCMd = models.ForeignKey(GrupoCM, related_name='Grupo_M_Direita', verbose_name='grupo configuração de mão direita')
+	grupoCMd = models.ForeignKey(GrupoCM, related_name='Grupo_M_Direita', verbose_name='grupo de configuração de mão direita')
 	cmD = models.ForeignKey(CM, related_name='C_M_Direita', verbose_name='configuração direita')
 	localizacao = models.ForeignKey(Localizacao,null=True, blank = True, verbose_name='localização')
 	dataPost = models.DateField('data de criação')
@@ -166,15 +166,30 @@ class Sinal(models.Model):
 	varicLibras = Video('Vídeo da Variação',null=True, blank = True)
 	tema = models.ForeignKey(Tema)
 
-# TESTANDO - FAZER PARA IMAGEM DE CMe E CMd
-
-	def image_tag(self):
-		if self.imagem:
+	def image_tag_cmE(self):
+		if self.cmE.imagem:
 			return u'<img src="%s" width="50" heigth="50"/>' % self.cmE.imagem.url
 		else:
 			return 'Sem imagem'
-	image_tag.short_description = 'Imagem'
-	image_tag.allow_tags = True
+	image_tag_cmE.short_description = 'esquerda'
+	image_tag_cmE.allow_tags = True
+
+	def image_tag_cmD(self):
+		if self.cmD.imagem:
+			return u'<img src="%s" width="50" heigth="50"/>' % self.cmD.imagem.url
+		else:
+			return 'Sem imagem'
+	image_tag_cmD.short_description = 'direita'
+	image_tag_cmD.allow_tags = True
+
+	def image_tag_localizacao(self):
+		if self.localizacao:
+			if self.localizacao.imagem:
+				return u'<img src="%s" width="50" heigth="50"/>' % self.localizacao.imagem.url
+		return 'Sem imagem'
+
+	image_tag_localizacao.short_description = 'localização'
+	image_tag_localizacao.allow_tags = True
 
 	def __unicode__(self):
 		return self.traducaoP

@@ -31,7 +31,6 @@ class SinalForm(forms.ModelForm):
 		fields = ['tema', 'glossario', 'traducaoP', 'traducaoI', 'descricao', 'bsw', 'grupoCMe', 'cmE', 'grupoCMd',
 		'cmD', 'localizacao', 'dataPost', 'postador', 'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras',
 		'publicado']
-		# inlines = ['SinalInlineForm']
 
 class GrupoCMForm(forms.ModelForm):
 

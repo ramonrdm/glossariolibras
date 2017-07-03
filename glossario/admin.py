@@ -54,7 +54,7 @@ class GlossarioAdmin(admin.ModelAdmin):
 class SinalAdmin(admin.ModelAdmin):
 
 	form = SinalForm
-	list_display = ('traducaoP', 'traducaoI', 'tema', 'glossario', 'publicado')
+	list_display = ('traducaoP', 'traducaoI', 'tema', 'glossario', 'image_tag_cmE', 'image_tag_cmD', 'image_tag_localizacao', 'publicado')
 	list_filter = ('tema', 'glossario', 'localizacao', 'dataPost', 'publicado')
 
 	def get_queryset(self, request):
