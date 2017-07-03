@@ -80,10 +80,12 @@
 					<div class="divider"></div>
 				</div>
 				{% if sinal.varicLibras %}
+					{% for sinal in sinal.varicLibras %}
 					<video class="responsive-video z-depth-5 videoSinal" controls preload="metadata">
 						<source src="{{sinal.varicLibras.url}}">
 						Seu navegador não suporta vídeo html5, por favor atualize seu navegador.
 					</video>
+					{% endfor %}
 				{% else %}
 					<i class="large material-icons videoSinal icone">videocam_off</i>
 				{% endif %}

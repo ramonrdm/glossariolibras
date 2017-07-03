@@ -80,7 +80,7 @@ def sinal(request, sinal=None, glossario=None):
 		formulario = PesquisaForm(request.POST)
 		checkboxPort = request.POST.get('checkboxPort', False)
 		checkboxIng = request.POST.get('checkboxIng', False)
-		sinaisGlossario = Sinal.objects.filter(glossario=glossario)
+		sinaisGlossario = Sinal.objects.filter(glossario=glossario).filter(publicado=True)
 		if checkboxPort and checkboxIng:
 			if formulario.is_valid():
 				sinaisP = sinaisGlossario.filter(traducaoP__icontains=formulario.cleaned_data['busca'])
