@@ -28,7 +28,7 @@
 		<div id="tabSinal" class="col s12">
 			<div class="center" id="videoSinal">
 				<div class="container">
-					<h2 class="thin">Sinal</h2>
+					<h2 class="thin">{{sinal.bsw}}</h2>
 					<div class="divider"></div>
 				</div>
 				{% if sinal.sinalLibras %}
@@ -44,7 +44,7 @@
 		<div id="tabDescricao" class="col s12">
 			<div class="center" id="videoDescricao">
 				<div class="container">
-					<h2 class="thin">Descrição</h2>
+					<h2 class="thin">{{sinal.bsw}}</h2>
 					<div class="divider"></div>
 				</div>
 				{% if sinal.descLibras %}
@@ -60,7 +60,7 @@
 		<div id="tabExemplo" class="col s12">
 			<div class="center" id="videoExemplo">
 				<div class="container">
-					<h2 class="thin">Exemplo</h2>
+					<h2 class="thin">{{sinal.bsw}}</h2>
 					<div class="divider"></div>
 				</div>
 				{% if sinal.exemploLibras %}
@@ -76,16 +76,14 @@
 		<div id="tabVariacao" class="col s12">
 			<div class="center" id="videoVariacao">
 				<div class="container">
-					<h2 class="thin">Variação</h2>
+					<h2 class="thin">{{sinal.bsw}}</h2>
 					<div class="divider"></div>
 				</div>
 				{% if sinal.varicLibras %}
-					{% for sinal in sinal.varicLibras %}
 					<video class="responsive-video z-depth-5 videoSinal" controls preload="metadata">
 						<source src="{{sinal.varicLibras.url}}">
 						Seu navegador não suporta vídeo html5, por favor atualize seu navegador.
 					</video>
-					{% endfor %}
 				{% else %}
 					<i class="large material-icons videoSinal icone">videocam_off</i>
 				{% endif %}
@@ -95,20 +93,35 @@
 
 <!-- IDENTIFICAÇÃO DO SINAL -->
 
-	<div class="center textoTraducoes">
-		<span class="flow-text">
-			Português: {{sinal.traducaoP}}</br>
-			Inglês: {{sinal.traducaoI}}
-		</span>
+	<div class="row rowAjuste">
+		<div class="col s12 m6">
+			<div class="card blue darken-4 z-depth-5 cardMao">
+				<div class="card-content white-text">
+					<span class="card-title center">Tradução</span>
+					<div class="mao center">
+						Português: {{sinal.traducaoP}}
+					</div>
+					<div class="center">
+						Inglês: {{sinal.traducaoI}}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col s12 m6">
+			<div class="card blue darken-4 z-depth-5 cardMao">
+				<div class="card-content white-text">
+					<span class="card-title center">Descrição</span>
+					<div class="mao center">
+						{% if sinal.descricao %}
+							{{sinal.descricao}}
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
-	{% if sinal.descricao %}
-		<div class="center">
-			<p class="flow-text">Descrição: {{sinal.descricao}}</p>
-		</div>
-	{% endif %}
-
-	<div class="row">
+	<div class="row rowAjuste">
 		<div class="col s12 m6">
 			<div class="card blue darken-4 z-depth-5 cardMao">
 				<div class="card-content white-text">
@@ -171,6 +184,23 @@
 								<i class="large material-icons white-text imgSinal">cloud_off</i>
 							{% endif %}
 						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row rowAjuste">
+		<div class="col s12">
+			<div class="card blue darken-4 z-depth-5 cardMao">
+				<div class="card-content white-text">
+					<span class="card-title center">Localização</span>
+					<div class="center imgMao">
+						{% if sinal.localizacao.imagem %}
+							<img class="circle imgSinal" src="{{sinal.localizacao.imagem.url}}">
+						{% else %}
+							<i class="large material-icons white-text imgSinal">cloud_off</i>
+						{% endif %}
 					</div>
 				</div>
 			</div>
