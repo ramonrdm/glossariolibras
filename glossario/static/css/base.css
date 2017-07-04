@@ -44,7 +44,7 @@ body {
 }
 
 .linkContainer {
-	margin-top: 20%;
+	margin-top: 23%;
 }
 
 /* === INDEX === */
@@ -84,20 +84,24 @@ body {
 
 .glossarioSearch {
 	width: 90%;
-	margin-top: 5%;
+	margin-top: 7%;
 	margin-left: 5%;
 	margin-right: 5%;
 }
 
+.checkboxes {
+	margin-top: 3%;
+}
+
 .glossarioSearchMobile {
 	width: 90%;
-	margin-top: 0px;
+	margin-top: 130px;
 	margin-left: 5%;
 	margin-right: 5%;
 }
 
 .sideNavSearchMobileLinks {
-	margin-top: 20%;
+	margin-top: 23%;
 }
 
 .videoGlossario {
@@ -320,9 +324,9 @@ body {
 	margin-right: 10%;
 }
 
-.row{
+/*.row{
 	min-height: 100vh;
-}
+}*/
 
 
 /*.glossarioselec ul{

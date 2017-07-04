@@ -13,7 +13,18 @@
 	margin-top: 20px;
 }
 
-.cardMao {
+.cardSinalMao {
+	min-height: 150px;
+	max-height: 650px;
+}
+
+@media only screen and (max-width : 992px) {
+	.cardSinalMao {
+		min-height: 450px;
+	}
+}
+
+.cardSinal {
 	min-height: 150px;
 	max-height: 650px;
 }
@@ -30,8 +41,4 @@
 
 .textoTraducoes {
 	margin-top: 3%;
-}
-
-.rowAjuste {
-	min-height: 0 !important;
 }

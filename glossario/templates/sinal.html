@@ -93,9 +93,9 @@
 
 <!-- IDENTIFICAÇÃO DO SINAL -->
 
-	<div class="row rowAjuste">
+	<div class="row">
 		<div class="col s12 m6">
-			<div class="card blue darken-4 z-depth-5 cardMao">
+			<div class="card blue darken-4 z-depth-5 cardSinal">
 				<div class="card-content white-text">
 					<span class="card-title center">Tradução</span>
 					<div class="mao center">
@@ -108,7 +108,7 @@
 			</div>
 		</div>
 		<div class="col s12 m6">
-			<div class="card blue darken-4 z-depth-5 cardMao">
+			<div class="card blue darken-4 z-depth-5 cardSinal">
 				<div class="card-content white-text">
 					<span class="card-title center">Descrição</span>
 					<div class="mao center">
@@ -121,13 +121,13 @@
 		</div>
 	</div>
 
-	<div class="row rowAjuste">
+	<div class="row">
 		<div class="col s12 m6">
-			<div class="card blue darken-4 z-depth-5 cardMao">
+			<div class="card blue darken-4 z-depth-5 cardSinalMao">
 				<div class="card-content white-text">
 					<span class="card-title">Mão esquerda</span>
 					<div class="mao">
-						Grupo de configuração da mão esquerda:
+						Grupo de configuração de mão:
 						<div class="center imgMao">
 							{% if sinal.grupoCMe.imagem %}
 								<img class="circle imgSinal" src="{{sinal.grupoCMe.imagem.url}}">
@@ -135,18 +135,10 @@
 								<i class="large material-icons white-text imgSinal">cloud_off</i>
 							{% endif %}
 						</div>
-						Configuração da mão esquerda:
+						Configuração de mão:
 						<div class="center imgMao">
 							{% if sinal.cmE.imagem %}
 								<img class="circle imgSinal" src="{{sinal.cmE.imagem.url}}">
-							{% else %}
-								<i class="large material-icons white-text imgSinal">cloud_off</i>
-							{% endif %}
-						</div>
-						Localização do sinal:
-						<div class="center imgMao">
-							{% if sinal.localizacao.imagem %}
-								<img class="circle imgSinal" src="{{sinal.localizacao.imagem.url}}">
 							{% else %}
 								<i class="large material-icons white-text imgSinal">cloud_off</i>
 							{% endif %}
@@ -156,11 +148,11 @@
 			</div>
 		</div>
 		<div class="col s12 m6">
-			<div class="card blue darken-4 z-depth-5 cardMao">
+			<div class="card blue darken-4 z-depth-5 cardSinalMao">
 				<div class="card-content white-text">
 					<span class="card-title">Mão direita</span>
 					<div class="mao">
-						Grupo de configuração da mão direita:
+						Grupo de configuração de mão:
 						<div class="center imgMao">
 							{% if sinal.grupoCMd.imagem %}
 								<img class="circle imgSinal" src="{{sinal.grupoCMd.imagem.url}}">
@@ -168,18 +160,10 @@
 								<i class="large material-icons white-text imgSinal">cloud_off</i>
 							{% endif %}
 						</div>
-						Configuração da mão direita:
+						Configuração de mão:
 						<div class="center imgMao">
 							{% if sinal.cmD.imagem %}
 								<img class="circle imgSinal" src="{{sinal.cmD.imagem.url}}">
-							{% else %}
-								<i class="large material-icons white-text imgSinal">cloud_off</i>
-							{% endif %}
-						</div>
-						Localização do sinal:
-						<div class="center imgMao">
-							{% if sinal.localizacao.imagem %}
-								<img class="circle imgSinal" src="{{sinal.localizacao.imagem.url}}">
 							{% else %}
 								<i class="large material-icons white-text imgSinal">cloud_off</i>
 							{% endif %}
@@ -190,9 +174,9 @@
 		</div>
 	</div>
 
-	<div class="row rowAjuste">
+	<div class="row">
 		<div class="col s12">
-			<div class="card blue darken-4 z-depth-5 cardMao">
+			<div class="card blue darken-4 z-depth-5 cardSinal">
 				<div class="card-content white-text">
 					<span class="card-title center">Localização</span>
 					<div class="center imgMao">
