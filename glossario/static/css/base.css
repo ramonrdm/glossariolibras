@@ -17,13 +17,23 @@ body {
 	}
 }
 
+.logoGlossario {
+	width: 280px;
+}
+
+.logoPortalLibras {
+	margin-top: 5%;
+	width: 150px;
+}
+
 .logoUFSC {
 	margin-top: 10%;
 	width: 220px;
 }
 
-.logoGlossario {
-	width: 280px;
+.logoUFSCMobile {
+	margin-top: 70%;
+	width: 220px;
 }
 
 .footer{
