@@ -147,7 +147,7 @@ class Sinal(models.Model):
 	traducaoP = models.CharField('palavra', max_length=30)
 	traducaoI = models.CharField('word', max_length=30)
 	bsw = models.TextField(null=True, blank = True)
-	descricao = models.CharField('descrição', max_length=50,null=True, blank = True)
+	descricao = models.CharField('descrição', max_length=50,null=True)
 	grupoCMe = models.ForeignKey(GrupoCM, related_name='Grupo_M_Esquerda', verbose_name='grupo de configuração de mão esquerda')
 	cmE = models.ForeignKey(CM, related_name='C_M_Esquerda', verbose_name='configuração esquerda')
 	grupoCMd = models.ForeignKey(GrupoCM, related_name='Grupo_M_Direita', verbose_name='grupo de configuração de mão direita')
