@@ -13,7 +13,7 @@
 	{% block Corpo %}
 
 	<div class="section container">
-		<div class="row rowAjuste valign-wrapper center">
+		<div class="row valign-wrapper">
 			<div class="col s12 m8 l6">
 				{% if glossario.imagem %}
 					<a href="/{{glossario.link}}"><img class="circle z-depth-4 imgGlossario" src="{{ glossario.imagem.url }}"/></a>
@@ -23,6 +23,7 @@
 			</div>
 			<div class="col s12 m8 l6 pull-s1 pull-m2 pull-l3">
 				<h3 class="thin">{{glossario.nome}}</h3>
+				<!-- <p>{{glossario.descricao}}</p> -->
 			</div>
 		</div>
 	</div>
