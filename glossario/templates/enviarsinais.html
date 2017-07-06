@@ -8,12 +8,14 @@
 	<div class="container">
 
 		<h2 class="thin center">Enviar sinais</h2>
+
 		<div class="divider"></div>
 
 		<form method="post" class="formEnviarSinais">
 			{% csrf_token %}
 			{% for field in formulario %}
 			{% if field.auto_id == 'id_sinalLibras' or field.auto_id == 'id_varicLibras' or field.auto_id == 'id_descLibras' or field.auto_id == 'id_exemploLibras' %}
+
 			<label for="{{field.auto_id}}">{{field.label_tag}}</label>
 			<div class="file-field input-field">
 				<div class="btn botaoEnviarSinal">
@@ -24,75 +26,24 @@
 					<input class="file-path validate" type="text">
 				</div>
 			</div>
+
 			{% else %}
+
 			<div class="fieldWrapper">
 				{{ field.errors }}
 				{{ field.label_tag }}
 				{{ field }}
 			</div>
+
 			{% endif %}
 			{% endfor%}
 		</form>
 	</div>
 
-		<script>
-			$(document).ready(function() {
-				$('select').material_select();
-			});
-		</script>
+	<script>
+		$(document).ready(function() {
+			$('select').material_select();
+		});
+	</script>
 	{% endblock %}
 </body>
-
-<!-- 			{{ formulario.non_field_errors }}
-
-			<div class="fieldWrapper">
-				{{ formulario.traducaoP.errors }}
-				<label for="{{ formulario.traducaoP.id_for_label }}">Palavra:</label>
-				{{ formulario.traducaoP }}
-			</div>
-			<div class="fieldWrapper">
-				{{ formulario.traducaoI.errors }}
-				<label for="{{ formulario.traducaoI.id_for_label }}">Word:</label>
-				{{ formulario.traducaoI }}
-			</div>
-			<div class="fieldWrapper">
-				{{ formulario.descricao.errors }}
-				<label for="{{ formulario.descricao.id_for_label }}">Descrição:</label>
-				{{ formulario.descricao }}
-			</div>
-
-
-			<label for="grupoCMe">Grupo de configuração de mão esquerda</label>
-			<select id="grupoCMe" class="browser-default">
-				{% for option in formulario.grupoCMe %}
-				<option value="{{option}}"></option>
-				{% endfor %}
-			</select>
-
-			<label for="grupoCMe">Configuração de mão esquerda</label>
-			<select id="grupoCMe" class="browser-default">
-				{% for option in formulario.cmE %}
-				<option value="{{option}}"></option>
-				{% endfor %}
-			</select>
-
-			<label for="grupoCMe">Grupo de configuração de mão direita</label>
-			<select id="grupoCMe" class="browser-default">
-				{% for option in formulario.grupoCMd %}
-				<option value="{{option}}"></option>
-				{% endfor %}
-			</select>
-
-			<label for="grupoCMe">Configuração de mão direita</label>
-			<select id="grupoCMe" class="browser-default">
-				{% for option in formulario.cmD %}
-				<option value="{{option}}"></option>
-				{% endfor %}
-			</select>
-
-			<label for="grupoCMe">Localização</label>
-			<select id="grupoCMe" class="browser-default">
-				{% for option in formulario.localizacao %}
-				<option value="{{option}}"></option>
-				{% endfor %}
-			</select> -->
