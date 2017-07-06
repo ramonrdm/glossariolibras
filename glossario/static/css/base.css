@@ -164,6 +164,20 @@ body {
 	text-align: justify;
 }
 
+/* === ENVIAR SINAIS */
+
+.formEnviarSinais {
+	padding-top: 5%;
+}
+
+.botaoEnviarSinal {
+	background-color: #003a99;
+}
+
+.botaoEnviarSinal:hover {
+	background-color: #0060ff;
+}
+
 /*===============================================*/
 
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, render_to_response
 from glossario.models import Glossario, Sinal, Usuario, Tema
-from glossario.forms import PesquisaForm
+from glossario.forms import PesquisaForm, EnviarSinaisForm
 from django.http import JsonResponse
 from django.db.models import Q
 from django.template import RequestContext
@@ -121,6 +121,17 @@ def temas(request, temas=None):
 	except Tema.DoesNotExist:
 		raiz = None
 	return render(request, "temas.html", dict(raiz=raiz))
+
+def enviarSinais(request):
+	if request.method == 'POST':
+		formulario = EnviarSinaisForm(request.POST)
+		dados = formulario.cleaned_data
+		return render(request, 'enviarsinais.html', {'formulario': formulario})
+	else:
+		formulario = EnviarSinaisForm()
+		for field in formulario:
+			print field
+		return render(request, 'enviarsinais.html', {'formulario': formulario})
 
 def criaNodo(nodoPai):
 	filhosPai = queryTemas.filter(temaPai=nodoPai)

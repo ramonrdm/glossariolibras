@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^temas$', views.temas, name='temas'),
     url(r'^temasjson', views.temasjson, name='temasjson'),
     url(r'^sinal/(\d+)$', views.sinal, name='sinal'),
+    url(r'^enviarsinais', views.enviarSinais, name='enviarsinais'),
     url(r'^(?P<glossario>[-\w]+)$', views.glossarioSelecionado, name='glossarios'),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
 

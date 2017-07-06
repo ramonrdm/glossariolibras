@@ -32,6 +32,18 @@ class SinalForm(forms.ModelForm):
 		'cmD', 'localizacao', 'dataPost', 'postador', 'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras',
 		'publicado']
 
+class EnviarSinaisForm(forms.ModelForm):
+
+	# def __init__(self, *args, **kwargs):
+	# 	super(EnviarSinaisForm, self).__init__(*args, **kwargs)
+	# 	for field_name, field in self.fields.items():
+	# 		field.widget.attrs['class'] = 'file-field input-field'
+
+	class Meta:
+		model = Sinal
+		fields = ['traducaoP', 'traducaoI', 'descricao', 'grupoCMe', 'cmE', 'grupoCMd', 'cmD', 'localizacao',
+		'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras']
+
 class GrupoCMForm(forms.ModelForm):
 
 	class Meta:
