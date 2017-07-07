@@ -34,7 +34,7 @@ class SinalForm(forms.ModelForm):
 
 class EnviarSinaisForm(forms.ModelForm):
 
-	# grupoCMe = ForeignKey(
+	# grupoCMe = forms.Select(
 	# 	GrupoCM,
 	# 	related_name='Grupo_M_Esquerda',
 	# 	verbose_name='grupo de configuração de mão esquerda',

@@ -122,10 +122,13 @@ def temas(request, temas=None):
 		raiz = None
 	return render(request, "temas.html", dict(raiz=raiz))
 
+# ================= ARRUMAR =================
+
 def enviarSinais(request):
 	if request.method == 'POST':
 		formulario = EnviarSinaisForm(request.POST)
-		dados = formulario.cleaned_data
+		if formulario.is_valid:
+			formulario.save()
 		return render(request, 'enviarsinais.html', {'formulario': formulario})
 	else:
 		formulario = EnviarSinaisForm()
