@@ -33,10 +33,20 @@
 				</div>
 			</div>
 
+			{% elif field.auto_id == 'id_traducaoP' or field.auto_id == 'id_traducaoI' or field.auto_id == 'id_descricao' %}
+
+			<div class="input-field col s12 m6">
+				<div class="fieldWrapper">
+					{{ field.errors }}
+					{{ field.label_tag }}
+					{{ field }}
+				</div>
+			</div>
+
 			{% else %}
 
 			<div class="col s12 m6">
-				<div class="fieldWrapper">
+				<div class="">
 					{{ field.errors }}
 					{{ field.label_tag }}
 					{{ field }}
