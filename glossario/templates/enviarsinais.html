@@ -13,30 +13,49 @@
 
 		<form method="post" class="formEnviarSinais">
 			{% csrf_token %}
+
+			<div class="row">
+
 			{% for field in formulario %}
+
 			{% if field.auto_id == 'id_sinalLibras' or field.auto_id == 'id_varicLibras' or field.auto_id == 'id_descLibras' or field.auto_id == 'id_exemploLibras' %}
 
-			<label for="{{field.auto_id}}">{{field.label_tag}}</label>
-			<div class="file-field input-field">
-				<div class="btn botaoEnviarSinal">
-					<span>Arquivo</span>
-					{{field}}
-				</div>
-				<div class="file-path-wrapper">
-					<input class="file-path validate" type="text">
+			<div class="col s12 m6">
+				<label for="{{field.auto_id}}">{{field.label_tag}}</label>
+				<div class="file-field input-field">
+					<div class="btn waves-effect waves-light botaoEnviarSinal">
+						<span>Arquivo</span>
+						{{field}}
+					</div>
+					<div class="file-path-wrapper">
+						<input class="file-path validate" type="text">
+					</div>
 				</div>
 			</div>
 
 			{% else %}
 
-			<div class="fieldWrapper">
-				{{ field.errors }}
-				{{ field.label_tag }}
-				{{ field }}
+			<div class="col s12 m6">
+				<div class="fieldWrapper">
+					{{ field.errors }}
+					{{ field.label_tag }}
+					{{ field }}
+				</div>
 			</div>
 
 			{% endif %}
+
 			{% endfor%}
+
+			</div>
+
+			<div class="center">
+				<button class="btn-large waves-effect waves-light botaoEnviarSinal" style="margin-top: 20px;" type="submit" name="botaoEnviaForm">
+					Enviar
+					<i class="material-icons right">send</i>
+				</button>
+			</div>
+
 		</form>
 	</div>
 

@@ -39,6 +39,14 @@ class EnviarSinaisForm(forms.ModelForm):
 		fields = ['traducaoP', 'traducaoI', 'descricao', 'grupoCMe', 'cmE', 'grupoCMd', 'cmD', 'localizacao',
 		'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras']
 
+	def __init__(self, *args, **kwargs):
+		super(EnviarSinaisForm, self).__init__(*args, **kwargs)
+		self.fields['grupoCMe'].empty_label = 'Selecione um grupo'
+		self.fields['grupoCMd'].empty_label = 'Selecione um grupo'
+		self.fields['cmE'].empty_label = 'Selecione uma configuração'
+		self.fields['cmD'].empty_label = 'Selecione um configuração'
+		self.fields['localizacao'].empty_label = 'Selecione uma localização'
+
 class GrupoCMForm(forms.ModelForm):
 
 	class Meta:
