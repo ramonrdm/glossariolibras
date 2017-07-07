@@ -6,9 +6,15 @@
 	background-color: rgba(0, 0, 112, 0.65);
 }
 
+/* Cor do underline do campo de texto de formulários */
 .input-field input[type=text]:focus {
 	border-bottom: 1px solid #003a99;
 	box-shadow: 0 1px 0 0 #003a99;
+}
+
+/* Cor do texto de selects de formulários */
+ul.dropdown-content.select-dropdown li span {
+    color: black;
 }
 
 body {

@@ -46,7 +46,7 @@ class EnviarSinaisForm(forms.ModelForm):
 		fields = ['traducaoP', 'traducaoI', 'descricao', 'grupoCMe', 'cmE', 'grupoCMd', 'cmD', 'localizacao',
 		'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras']
 		# widgets = {
-		# 	'grupoCMe': ForeignKey(attrs={'data-icon': {{grupoCMe.imagem.url}}}),
+		# 'grupoCMe': forms.Select(attrs={'data-icon': '{{grupoCMe.imagem.url}}'}),
 		# }
 
 	def __init__(self, *args, **kwargs):
