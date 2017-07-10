@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, render_to_response
-from glossario.models import Glossario, Sinal, Usuario, Tema
+from glossario.models import Glossario, Sinal, Usuario, Tema, GrupoCM
 from glossario.forms import PesquisaForm, EnviarSinaisForm
 from django.http import JsonResponse
 from django.db.models import Q
@@ -129,12 +129,12 @@ def enviarSinais(request):
 		formulario = EnviarSinaisForm(request.POST)
 		if formulario.is_valid:
 			formulario.save()
-		return render(request, 'enviarsinais.html', {'formulario': formulario})
+			return render(request, 'enviarsinais.html', {'formulario': formulario})
 	else:
 		formulario = EnviarSinaisForm()
-		for field in formulario:
-			print field
 		return render(request, 'enviarsinais.html', {'formulario': formulario})
+
+# ===========================================
 
 def criaNodo(nodoPai):
 	filhosPai = queryTemas.filter(temaPai=nodoPai)

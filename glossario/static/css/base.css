@@ -181,7 +181,7 @@ body {
 	padding-top: 5%;
 }
 
-.botaoEnviarSinal {
+.botaoEnviarSinal, .botaoEnviarSinal:focus {
 	background-color: #003a99;
 }
 

@@ -34,29 +34,16 @@ class SinalForm(forms.ModelForm):
 
 class EnviarSinaisForm(forms.ModelForm):
 
-	# grupoCMe = forms.Select(
-	# 	GrupoCM,
-	# 	related_name='Grupo_M_Esquerda',
-	# 	verbose_name='grupo de configuração de mão esquerda',
-	# 	attrs={'data-icon': {{grupoCMe.imagem.url}}}
-	# 	)
-
 	class Meta:
 		model = Sinal
 		fields = ['traducaoP', 'traducaoI', 'descricao', 'grupoCMe', 'cmE', 'grupoCMd', 'cmD', 'localizacao',
 		'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras']
-		# widgets = {
-		# 'grupoCMe': forms.Select(attrs={'data-icon': '{{grupoCMe.imagem.url}}'}),
-		# }
 
 	def __init__(self, *args, **kwargs):
 		super(EnviarSinaisForm, self).__init__(*args, **kwargs)
-		self.fields['grupoCMe'].empty_label = 'Selecione um grupo'
-		# self.fields['grupoCMe'].widget.attrs['class'] = '{{grupoCMe.imagem.url}}'
-		self.fields['grupoCMd'].empty_label = 'Selecione um grupo'
-		self.fields['cmE'].empty_label = 'Selecione uma configuração'
-		self.fields['cmD'].empty_label = 'Selecione um configuração'
-		self.fields['localizacao'].empty_label = 'Selecione uma localização'
+		for fields in self.fields:
+			self.fields[fields].empty_label = 'Selecione um item'
+
 
 class GrupoCMForm(forms.ModelForm):
 
