@@ -44,7 +44,6 @@ class EnviarSinaisForm(forms.ModelForm):
 		for fields in self.fields:
 			self.fields[fields].empty_label = 'Selecione um item'
 
-
 class GrupoCMForm(forms.ModelForm):
 
 	class Meta:

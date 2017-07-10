@@ -128,10 +128,14 @@ def enviarSinais(request):
 	if request.method == 'POST':
 		formulario = EnviarSinaisForm(request.POST)
 		if formulario.is_valid:
-			formulario.save()
+			dados = formulario.save(commit=False)
+			dados.glossario = Glossario.objects.get(nome='Sugestões')
+			# Definir valor inicial para outros fields ocultos no formulário?
+			# dados.tema
+			dados.save()
 			return render(request, 'enviarsinais.html', {'formulario': formulario})
 	else:
-		formulario = EnviarSinaisForm()
+		formulario = EnviarSinaisForm(initial={'glossario': Glossario.objects.get(id=1)})
 		return render(request, 'enviarsinais.html', {'formulario': formulario})
 
 # ===========================================

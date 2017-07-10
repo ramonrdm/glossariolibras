@@ -143,24 +143,24 @@ class Sinal(models.Model):
 	class Meta:
 		verbose_name_plural='sinais'
 
-	glossario = models.ForeignKey(Glossario, verbose_name = 'glossário')
+	glossario = models.ForeignKey(Glossario, verbose_name='glossário', null=True, blank=True)
 	traducaoP = models.CharField('palavra', max_length=30)
 	traducaoI = models.CharField('word', max_length=30)
-	bsw = models.TextField(null=True, blank = True)
-	descricao = models.CharField('descrição', max_length=50,null=True)
+	bsw = models.TextField(null=True, blank=True)
+	descricao = models.CharField('descrição', max_length=50, null=True)
 	grupoCMe = models.ForeignKey(GrupoCM, related_name='Grupo_M_Esquerda', verbose_name='grupo de configuração de mão esquerda')
 	cmE = models.ForeignKey(CM, related_name='C_M_Esquerda', verbose_name='configuração de mão esquerda')
 	grupoCMd = models.ForeignKey(GrupoCM, related_name='Grupo_M_Direita', verbose_name='grupo de configuração de mão direita')
 	cmD = models.ForeignKey(CM, related_name='C_M_Direita', verbose_name='configuração de mão direita')
-	localizacao = models.ForeignKey(Localizacao,null=True, blank = True, verbose_name='localização')
-	dataPost = models.DateField('data de criação')
-	postador = models.ForeignKey(Usuario)
+	localizacao = models.ForeignKey(Localizacao,null=True, blank=True, verbose_name='localização')
+	dataPost = models.DateField('data de criação', null=True, blank=True)
+	postador = models.ForeignKey(Usuario, null=True, blank=True)
 	publicado = models.BooleanField(default=False)
-	sinalLibras = Video('Vídeo do Sinal',null=True, blank = True)
-	descLibras = Video('Vídeo da Descrição',null=True, blank = True)
-	exemploLibras = Video('Vídeo do Exemplo',null=True, blank = True)
-	varicLibras = Video('Vídeo da Variação',null=True, blank = True)
-	tema = models.ForeignKey(Tema)
+	sinalLibras = Video('Vídeo do Sinal',null=True, blank=True)
+	descLibras = Video('Vídeo da Descrição',null=True, blank=True)
+	exemploLibras = Video('Vídeo do Exemplo',null=True, blank=True)
+	varicLibras = Video('Vídeo da Variação',null=True, blank=True)
+	tema = models.ForeignKey(Tema, null=True, blank=True)
 
 	def image_tag_cmE(self):
 		if self.cmE.imagem:
