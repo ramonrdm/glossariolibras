@@ -67,10 +67,16 @@
 		</form>
 	</div>
 
-	{% if chamaToast %}
+	{% if toastSucesso %}
 
 	<script>
 		Materialize.toast('Sinal enviado para avaliação', 5000)
+	</script>
+
+	{% elif toastRepetido %}
+
+	<script>
+		Materialize.toast('Ops! Parece que você já enviou este sinal', 5000)
 	</script>
 
 	{% endif %}

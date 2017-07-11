@@ -126,16 +126,16 @@ def temas(request, temas=None):
 def enviarSinais(request):
 	if request.method == 'POST':
 		formulario = EnviarSinaisForm(request.POST)
-		chamaToast = True
+		toastSucesso = True
 		if formulario.is_valid:
 			dados = formulario.save(commit=False)
 			dados.glossario = Glossario.objects.get(nome='Sugestões')
 			dados.dataPost = datetime.date.today()
 			dados.save()
 			formulario = EnviarSinaisForm()
-			return render(request, 'enviarsinais.html', {'formulario': formulario, 'chamaToast': chamaToast})
+			return render(request, 'enviarsinais.html', {'formulario': formulario, 'toastSucesso': toastSucesso})
 	else:
-		formulario = EnviarSinaisForm(initial={'glossario': Glossario.objects.get(id=1)})
+		formulario = EnviarSinaisForm()
 		return render(request, 'enviarsinais.html', {'formulario': formulario})
 
 def criaNodo(nodoPai):
