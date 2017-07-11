@@ -123,8 +123,6 @@ def temas(request, temas=None):
 		raiz = None
 	return render(request, "temas.html", dict(raiz=raiz))
 
-# ================= ARRUMAR =================
-
 def enviarSinais(request):
 	if request.method == 'POST':
 		formulario = EnviarSinaisForm(request.POST)
@@ -134,12 +132,11 @@ def enviarSinais(request):
 			dados.glossario = Glossario.objects.get(nome='Sugestões')
 			dados.dataPost = datetime.date.today()
 			dados.save()
+			formulario = EnviarSinaisForm()
 			return render(request, 'enviarsinais.html', {'formulario': formulario, 'chamaToast': chamaToast})
 	else:
 		formulario = EnviarSinaisForm(initial={'glossario': Glossario.objects.get(id=1)})
 		return render(request, 'enviarsinais.html', {'formulario': formulario})
-
-# ===========================================
 
 def criaNodo(nodoPai):
 	filhosPai = queryTemas.filter(temaPai=nodoPai)
