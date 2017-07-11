@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from django.db.models import Q
 from django.template import RequestContext
 import json
+import datetime
 
 def index(request, glossario=None):
 	glossarios = Glossario.objects.all()
@@ -130,8 +131,7 @@ def enviarSinais(request):
 		if formulario.is_valid:
 			dados = formulario.save(commit=False)
 			dados.glossario = Glossario.objects.get(nome='Sugestões')
-			# Definir valor inicial para outros fields ocultos no formulário?
-			# dados.tema
+			dados.dataPost = datetime.date.today()
 			dados.save()
 			return render(request, 'enviarsinais.html', {'formulario': formulario})
 	else:

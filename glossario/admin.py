@@ -63,19 +63,6 @@ class SinalAdmin(admin.ModelAdmin):
 			return qs
 		return qs.filter(Q(glossario__responsavel=request.user) | Q(glossario__membros=request.user)).distinct()
 
-	# def get_readonly_fields(self, request, obj=None):
-	# 	qs = super(SinalAdmin, self).get_queryset(request)
-	# 	qsResp = qs.filter(glossario__responsavel=request.user)
-	# 	qsMemb = qs.filter(glossario__membros=request.user)
-	# 	if obj in qsResp or request.user.is_superuser:
-	# 		return []
-	# 	if obj in qsMemb:
-	# 		return ('glossario', 'traducaoP', 'traducaoI', 'bsw', 'descricao', 'grupoCMe', 'cmE',
-	# 			'grupoCMd', 'cmD', 'localizacao', 'sinalLibras', 'descLibras', 'varicLibras',
-	# 			'exemploLibras', 'tema', 'publicado',
-	# 		)
-	# 	return []
-
 	def formfield_for_foreignkey(self, db_field, request, **kwargs):
 		if db_field.name == "glossario":
 			if request.user.is_superuser:

@@ -143,7 +143,7 @@ class Sinal(models.Model):
 	class Meta:
 		verbose_name_plural='sinais'
 
-	glossario = models.ForeignKey(Glossario, verbose_name='glossário', null=True, blank=True)
+	glossario = models.ForeignKey(Glossario, verbose_name='glossário', null=True)
 	traducaoP = models.CharField('palavra', max_length=30)
 	traducaoI = models.CharField('word', max_length=30)
 	bsw = models.TextField(null=True, blank=True)
@@ -153,14 +153,14 @@ class Sinal(models.Model):
 	grupoCMd = models.ForeignKey(GrupoCM, related_name='Grupo_M_Direita', verbose_name='grupo de configuração de mão direita')
 	cmD = models.ForeignKey(CM, related_name='C_M_Direita', verbose_name='configuração de mão direita')
 	localizacao = models.ForeignKey(Localizacao,null=True, blank=True, verbose_name='localização')
-	dataPost = models.DateField('data de criação', null=True, blank=True)
-	postador = models.ForeignKey(Usuario, null=True, blank=True)
+	dataPost = models.DateField('data de criação', null=True)
+	postador = models.ForeignKey(Usuario, null=True)
 	publicado = models.BooleanField(default=False)
 	sinalLibras = Video('Vídeo do Sinal',null=True, blank=True)
 	descLibras = Video('Vídeo da Descrição',null=True, blank=True)
 	exemploLibras = Video('Vídeo do Exemplo',null=True, blank=True)
 	varicLibras = Video('Vídeo da Variação',null=True, blank=True)
-	tema = models.ForeignKey(Tema, null=True, blank=True)
+	tema = models.ForeignKey(Tema, null=True)
 
 	def image_tag_cmE(self):
 		if self.cmE.imagem:
