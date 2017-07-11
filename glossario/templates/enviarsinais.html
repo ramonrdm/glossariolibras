@@ -35,7 +35,7 @@
 
 			{% elif field.auto_id == 'id_traducaoP' or field.auto_id == 'id_traducaoI' or field.auto_id == 'id_descricao' %}
 
-			<div class="input-field col s12 m6">
+			<div class="input-field col s12 m3">
 				<div class="fieldWrapper">
 					{{ field.errors }}
 					{{ field.label_tag }}
@@ -43,9 +43,18 @@
 				</div>
 			</div>
 
+			{% elif field.auto_id == 'id_localizacao' %}
+
+			<div class="col s12 m3" style="color: black">
+				{{ field.errors }}
+				{{ field.label_tag }}
+				{{ field }}
+			</div>
+
+
 			{% else %}
 
-			<div class="col s12 m6" style="color: black">
+			<div class="col s12 m3" style="color: black">
 				{{ field.errors }}
 				{{ field.label_tag }}
 				{{ field }}

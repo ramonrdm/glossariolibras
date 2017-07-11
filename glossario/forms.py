@@ -36,7 +36,7 @@ class EnviarSinaisForm(forms.ModelForm):
 
 	class Meta:
 		model = Sinal
-		fields = ['traducaoP', 'traducaoI', 'descricao', 'grupoCMe', 'cmE', 'grupoCMd', 'cmD', 'localizacao',
+		fields = ['traducaoP', 'traducaoI', 'descricao', 'localizacao', 'grupoCMe', 'cmE', 'grupoCMd', 'cmD',
 		'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras']
 
 	def __init__(self, *args, **kwargs):
