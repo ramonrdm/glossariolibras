@@ -142,7 +142,7 @@ class Tema(models.Model):
 class Sinal(models.Model):
 	class Meta:
 		verbose_name_plural='sinais'
-		unique_together = ('traducaoP', 'traducaoI')
+		unique_together = ('traducaoP', 'traducaoI', 'grupoCMe', 'cmE', 'grupoCMd', 'cmD', 'localizacao')
 
 	glossario = models.ForeignKey(Glossario, verbose_name='glossário', null=True)
 	traducaoP = models.CharField('palavra', max_length=30)
