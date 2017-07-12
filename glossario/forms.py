@@ -38,6 +38,11 @@ class EnviarSinaisForm(forms.ModelForm):
 		model = Sinal
 		fields = ['traducaoP', 'traducaoI', 'descricao', 'localizacao', 'grupoCMe', 'cmE', 'grupoCMd', 'cmD',
 		'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras']
+		# error_messages = {
+		# 	NON_FIELD_ERRORS: {
+		# 		'unique_together': "%(model_name)s's %(field_labels)s are not unique.",
+		# 	}
+		# }
 
 	def __init__(self, *args, **kwargs):
 		super(EnviarSinaisForm, self).__init__(*args, **kwargs)

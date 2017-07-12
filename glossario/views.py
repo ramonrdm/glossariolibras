@@ -127,13 +127,17 @@ def enviarSinais(request):
 	if request.method == 'POST':
 		formulario = EnviarSinaisForm(request.POST)
 		toastSucesso = True
-		if formulario.is_valid:
-			dados = formulario.save(commit=False)
-			dados.glossario = Glossario.objects.get(nome='Sugestões')
-			dados.dataPost = datetime.date.today()
-			dados.save()
-			formulario = EnviarSinaisForm()
-			return render(request, 'enviarsinais.html', {'formulario': formulario, 'toastSucesso': toastSucesso})
+		try:
+			if formulario.is_valid:
+				dados = formulario.save(commit=False)
+				dados.glossario = Glossario.objects.get(nome='Sugestões')
+				dados.dataPost = datetime.date.today()
+				dados.save()
+				formulario = EnviarSinaisForm()
+				return render(request, 'enviarsinais.html', {'formulario': formulario, 'toastSucesso': toastSucesso})
+		except ValueError:
+			toastRepetido = True
+			return render(request, 'enviarsinais.html', {'formulario': formulario, 'toastRepetido': toastRepetido})
 	else:
 		formulario = EnviarSinaisForm()
 		return render(request, 'enviarsinais.html', {'formulario': formulario})

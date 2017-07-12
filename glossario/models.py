@@ -142,12 +142,13 @@ class Tema(models.Model):
 class Sinal(models.Model):
 	class Meta:
 		verbose_name_plural='sinais'
+		unique_together = ('traducaoP', 'traducaoI')
 
 	glossario = models.ForeignKey(Glossario, verbose_name='glossário', null=True)
 	traducaoP = models.CharField('palavra', max_length=30)
 	traducaoI = models.CharField('word', max_length=30)
 	bsw = models.TextField(null=True, blank=True)
-	descricao = models.CharField('descrição', max_length=50, null=True)
+	descricao = models.CharField('descrição', max_length=200, null=True)
 	grupoCMe = models.ForeignKey(GrupoCM, related_name='Grupo_M_Esquerda', verbose_name='grupo da mão esquerda')
 	cmE = models.ForeignKey(CM, related_name='C_M_Esquerda', verbose_name='configuração da mão esquerda')
 	grupoCMd = models.ForeignKey(GrupoCM, related_name='Grupo_M_Direita', verbose_name='grupo da mão direita')
