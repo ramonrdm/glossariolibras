@@ -22,7 +22,7 @@ class GlossarioAdmin(admin.ModelAdmin):
 		if obj in qsResp or request.user.is_superuser:
 			return []
 		if obj in qsMemb:
-			return ('nome', 'responsavel', 'membros', 'imagem', 'videoGlossario')
+			return ('nome', 'responsavel', 'membros', 'imagem', 'videoGlossario', 'descricao')
 		return []
 
 	def get_actions(self, request):
