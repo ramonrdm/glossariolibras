@@ -56,6 +56,7 @@ class SinalAdmin(admin.ModelAdmin):
 	form = SinalForm
 	list_display = ('traducaoP', 'traducaoI', 'tema', 'glossario', 'image_tag_cmE', 'image_tag_cmD', 'image_tag_localizacao', 'publicado')
 	list_filter = ('tema', 'glossario', 'localizacao', 'dataPost', 'publicado')
+	actions = ['publicar_sinal',]
 
 	def get_queryset(self, request):
 		qs = super(SinalAdmin, self).get_queryset(request)
@@ -86,6 +87,10 @@ class SinalAdmin(admin.ModelAdmin):
 				# self.exclude.append('publicado')
 				self.exclude = ['postador','dataPost', 'publicado']
 		return super(SinalAdmin, self).get_form(request, obj, **kwargs)
+
+	def publicar_sinal(self, request, queryset):
+		queryset.update(publicado=True)
+	publicar_sinal.short_description = 'Publicar sinais selecionados'
 
 class GrupoCMAdmin(admin.ModelAdmin):
 
