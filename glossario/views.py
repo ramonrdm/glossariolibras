@@ -18,13 +18,14 @@ def glossarioSelecionado(request, glossario):
 	except Glossario.DoesNotExist:
 		glossario = None
 
+	checkboxPort = request.POST.get('checkboxPort', False)
+	checkboxIng = request.POST.get('checkboxIng', False)
+
 	if request.method == 'POST':
 		sinais = sinaisP = sinaisI = sinaisGlossario = formulario = None
 		formulario = PesquisaForm(request.POST)
-		checkboxPort = request.POST.get('checkboxPort', False)
-		checkboxIng = request.POST.get('checkboxIng', False)
-		request.session['checkboxPortSession'] = checkboxPort
-		request.session['checkboxIngSession'] = checkboxIng
+		request.session['checkboxPort'] = checkboxPort
+		request.session['checkboxIng'] = checkboxIng
 		sinaisGlossario = Sinal.objects.filter(glossario=glossario).filter(publicado=True)
 		if checkboxPort and checkboxIng:
 			if formulario.is_valid():
@@ -54,6 +55,8 @@ def glossarioSelecionado(request, glossario):
 			'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng
 			})
 	else:
+		checkboxPort = request.session['checkboxPort']
+		checkboxIng = request.session['checkboxIng']
 		formulario = PesquisaForm()
 		return render(request, 'glossario.html', {'glossario': glossario, 'formulario': formulario})
 
