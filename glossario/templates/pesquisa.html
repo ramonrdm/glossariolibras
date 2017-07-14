@@ -32,46 +32,47 @@
 
 	<div class="container">
 		<div class="center">
+
 			{% if sinais %}
+			
 				<p class="flow-text">Encontrado {{resultado}} resultado(s):</p>
-				<!-- <div class="collection"> -->
 					<table class="table-responsive highlight">
 						<thead>
 							<tr>
-								<th>Palavra</th>
+								{% if checkboxPort %}
+								<th>Português</th>
+								{% elif checkboxIng %}
+								<th>Inglês</th>
+								{% endif %}
 								<th>Esquerda</th>
 								<th>Direita</th>
 							</tr>
 						</thead>
-
 						<tbody>
-					
-					{% for s in sinais %}
-						{% if checkboxPort %}
-
-									<tr>
-										<td>{{s.traducaoP}}</td>
-										{% if s.cmE.imagem %}
-										<td><img src="{{s.cmE.imagem.url}}"></td>
-										{% else %}
-										<td></td>
-										{% endif %}
-										{% if s.cmD.imagem %}
-										<td>{{s.cmD.imagem.url}}</td>
-										{% else %}
-										<td></td>
-										{% endif %}
-									</tr>
+						{% for s in sinais %}
+							<tr onclick="window.location='/sinal/{{s.id}}';">
+								{% if checkboxPort %}
+									<td>{{s.traducaoP}}</td>
+								{% elif checkboxIng %}
+									<td>{{s.traducaoI}}</td>
+								{% endif %}
+								{% if s.cmE.imagem %}
+								<td><img src="{{s.cmE.imagem.url}}" width="50" class="circle"></td>
+								{% else %}
+								<td></td>
+								{% endif %}
+								{% if s.cmD.imagem %}
+								<td><img src="{{s.cmD.imagem.url}}" width="50" class="circle"></td>
+								{% else %}
+								<td></td>
+								{% endif %}
+							</tr>
+						{% endfor %}
 						</tbody>
 					</table>
 
-<!-- 							<a href="/sinal/{{s.id}}" class="collection-item">{{s.traducaoP}}<div class="secondary-content"><img src="{{s.cmE.imagem.url}}" class="circle" width="30"></div></a>
- -->						{% elif checkboxIng %}
-							<a href="/sinal/{{s.id}}" class="collection-item">{{s.traducaoI}}</a>
-						{% endif %}
-					{% endfor %}
-				</div>
 			{% elif sinaisP and sinaisI %}
+
 				<p class="flow-text">Encontrado {{resultadoP}} resultado(s) em português:</p>
 				<div class="collection">
 					{% for s in sinaisP %}
