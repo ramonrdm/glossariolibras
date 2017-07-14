@@ -34,11 +34,39 @@
 		<div class="center">
 			{% if sinais %}
 				<p class="flow-text">Encontrado {{resultado}} resultado(s):</p>
-				<div class="collection">
+				<!-- <div class="collection"> -->
+					<table class="table-responsive highlight">
+						<thead>
+							<tr>
+								<th>Palavra</th>
+								<th>Esquerda</th>
+								<th>Direita</th>
+							</tr>
+						</thead>
+
+						<tbody>
+					
 					{% for s in sinais %}
 						{% if checkboxPort %}
-							<a href="/sinal/{{s.id}}" class="collection-item">{{s.traducaoP}}</a>
-						{% elif checkboxIng %}
+
+									<tr>
+										<td>{{s.traducaoP}}</td>
+										{% if s.cmE.imagem %}
+										<td><img src="{{s.cmE.imagem.url}}"></td>
+										{% else %}
+										<td></td>
+										{% endif %}
+										{% if s.cmD.imagem %}
+										<td>{{s.cmD.imagem.url}}</td>
+										{% else %}
+										<td></td>
+										{% endif %}
+									</tr>
+						</tbody>
+					</table>
+
+<!-- 							<a href="/sinal/{{s.id}}" class="collection-item">{{s.traducaoP}}<div class="secondary-content"><img src="{{s.cmE.imagem.url}}" class="circle" width="30"></div></a>
+ -->						{% elif checkboxIng %}
 							<a href="/sinal/{{s.id}}" class="collection-item">{{s.traducaoI}}</a>
 						{% endif %}
 					{% endfor %}

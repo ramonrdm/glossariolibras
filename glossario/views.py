@@ -57,8 +57,12 @@ def glossarioSelecionado(request, glossario):
 	else:
 		checkboxPort = request.session['checkboxPort']
 		checkboxIng = request.session['checkboxIng']
+		print '==============================='
+		print checkboxPort
+		print checkboxIng
 		formulario = PesquisaForm()
-		return render(request, 'glossario.html', {'glossario': glossario, 'formulario': formulario})
+		return render(request, 'glossario.html', {'glossario': glossario, 'formulario': formulario,
+		'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng})
 
 def sinal(request, sinal=None, glossario=None):
 	
