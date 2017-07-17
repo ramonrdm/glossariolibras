@@ -65,6 +65,8 @@ class LocalizacaoForm(forms.ModelForm):
 class PesquisaForm(forms.Form):
 	busca = forms.CharField(label="", widget=forms.TextInput(attrs={'id': 'search', 'type': 'search'}))
 
+# class PesquisaCheckboxForm(forms.Form):
+
 #	def clean_nome(self):
 #		palavra = self.cleaned_data['nome']
 		#tudo para minusculo
