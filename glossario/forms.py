@@ -65,7 +65,18 @@ class LocalizacaoForm(forms.ModelForm):
 class PesquisaForm(forms.Form):
 	busca = forms.CharField(label="", widget=forms.TextInput(attrs={'id': 'search', 'type': 'search'}))
 
-# class PesquisaCheckboxForm(forms.Form):
+class PesquisaCheckboxForm(forms.Form):
+	checkboxPort = forms.BooleanField(label='Português', widget=forms.CheckboxInput(attrs={
+		'type': 'checkbox', 'class': 'filled-in checkboxAzul',
+		'id': 'checkboxPort', 'name': 'checkboxPort',
+		'checked': '{{checkboxPortSession}}'
+		}))
+	checkboxIng = forms.BooleanField(label='Inglês', widget=forms.CheckboxInput(attrs={
+		'type': 'checkbox', 'class': 'filled-in checkboxAzul',
+		'id': 'checkboxIng', 'name': 'checkboxIng',
+		'checked': '{{checkboxIngSession}}'
+		}))
+
 
 #	def clean_nome(self):
 #		palavra = self.cleaned_data['nome']

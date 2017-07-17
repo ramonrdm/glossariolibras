@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, render_to_response
 from glossario.models import Glossario, Sinal, Usuario, Tema, GrupoCM
-from glossario.forms import PesquisaForm, EnviarSinaisForm
+from glossario.forms import PesquisaForm, PesquisaCheckboxForm, EnviarSinaisForm
 from django.http import JsonResponse
 from django.db.models import Q
 from django.template import RequestContext
@@ -21,13 +21,14 @@ def glossarioSelecionado(request, glossario):
 	checkboxPort = request.POST.get('checkboxPort', False)
 	checkboxIng = request.POST.get('checkboxIng', False)
 	# if request.session['checkboxPort']:
-	# 	checkboxPort['checked'] = request.session['checkboxPort']
+	# 	checkboxPort.checked = request.session['checkboxPort']
 	# if request.session['checkboxIng']:
-	# 	checkboxIng['checked'] = request.session['checkboxIng']
-
+	# 	checkboxIng.checked = request.session['checkboxIng']
+	
 	if request.method == 'POST':
 		sinais = sinaisP = sinaisI = sinaisGlossario = formulario = None
 		formulario = PesquisaForm(request.POST)
+		# formCheckbox = PesquisaCheckboxForm(request.POST)
 		request.session['checkboxPort'] = checkboxPort
 		request.session['checkboxIng'] = checkboxIng
 		sinaisGlossario = Sinal.objects.filter(glossario=glossario).filter(publicado=True)
@@ -56,12 +57,15 @@ def glossarioSelecionado(request, glossario):
 		return render(request, 'pesquisa.html', {
 			'formulario': formulario, 'sinais': sinais, 'sinaisP': sinaisP, 'sinaisI': sinaisI, 'sinaisGlossario': sinaisGlossario,
 			'resultado': resultado, 'resultadoP': resultadoP, 'resultadoI': resultadoI, 'glossario': glossario,
-			'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng
+			'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng,
+			# 'formCheckbox': formCheckbox
 			})
 	else:
 		formulario = PesquisaForm()
+		# formCheckbox = PesquisaCheckboxForm()
 		return render(request, 'glossario.html', {'glossario': glossario, 'formulario': formulario,
-		'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng
+		'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng,
+		# 'formCheckbox': formCheckbox
 		})
 
 def sinal(request, sinal=None, glossario=None):
