@@ -88,7 +88,7 @@ body {
 	margin-top: 25%;
 }
 
-.checkboxAzul[type="checkbox"].filled-in:checked + label:after{
+.checkboxAzul[type="checkbox"].filled-in:checked + label:after {
      border: 2px solid #003a99;
      background-color: #003a99;
 }
