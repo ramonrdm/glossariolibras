@@ -25,6 +25,10 @@ def glossarioSelecionado(request, glossario):
 	if request.method == 'POST':
 		sinais = sinaisP = sinaisI = sinaisGlossario = formulario = None
 		formulario = PesquisaForm(request.POST)
+
+		# global post
+		# post = request.POST.copy()
+		
 		sinaisGlossario = Sinal.objects.filter(glossario=glossario).filter(publicado=True)
 		if checkboxPort and checkboxIng:
 			if formulario.is_valid():
@@ -68,11 +72,17 @@ def sinal(request, sinal=None, glossario=None):
 		except Sinal.DoesNotExist:
 			sinal = None
 
+	checkboxPort = request.POST.get('checkboxPort', False)
+	checkboxIng = request.POST.get('checkboxIng', False)
+
+	# print post
+
+	formCheckbox = PesquisaCheckboxForm(request.POST)
+	# formCheckbox = PesquisaCheckboxForm(post['checkboxPort'])
+	
 	if request.method == 'POST':
 		sinais = sinaisP = sinaisI = sinaisGlossario = formulario = None
 		formulario = PesquisaForm(request.POST)
-		checkboxPort = request.POST.get('checkboxPort', False)
-		checkboxIng = request.POST.get('checkboxIng', False)
 		sinaisGlossario = Sinal.objects.filter(glossario=glossario).filter(publicado=True)
 		if checkboxPort and checkboxIng:
 			if formulario.is_valid():
@@ -99,11 +109,13 @@ def sinal(request, sinal=None, glossario=None):
 		return render(request, 'pesquisa.html', {
 			'formulario': formulario, 'sinais': sinais, 'sinaisP': sinaisP, 'sinaisI': sinaisI, 'sinaisGlossario': sinaisGlossario,
 			'resultado': resultado, 'resultadoP': resultadoP, 'resultadoI': resultadoI, 'glossario': glossario,
-			'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng
+			'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox
 			})
 	else:
 		formulario = PesquisaForm()
-		return render(request, "sinal.html", {'sinal': sinal, 'glossario': glossario, 'formulario': formulario})
+		return render(request, 'glossario.html', {'glossario': glossario, 'formulario': formulario,
+		'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox
+		})
 
 def historia(request):
 	return render(request, "historia.html")
