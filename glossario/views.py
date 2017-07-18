@@ -20,6 +20,7 @@ def glossarioSelecionado(request, glossario):
 
 	checkboxPort = request.POST.get('checkboxPort', False)
 	checkboxIng = request.POST.get('checkboxIng', False)
+
 	# if request.session['checkboxPort']:
 	# 	checkboxPort.checked = request.session['checkboxPort']
 	# if request.session['checkboxIng']:
@@ -28,9 +29,14 @@ def glossarioSelecionado(request, glossario):
 	if request.method == 'POST':
 		sinais = sinaisP = sinaisI = sinaisGlossario = formulario = None
 		formulario = PesquisaForm(request.POST)
+		
 		# formCheckbox = PesquisaCheckboxForm(request.POST)
+		
 		request.session['checkboxPort'] = checkboxPort
 		request.session['checkboxIng'] = checkboxIng
+		
+		# post = request.POST.copy()
+
 		sinaisGlossario = Sinal.objects.filter(glossario=glossario).filter(publicado=True)
 		if checkboxPort and checkboxIng:
 			if formulario.is_valid():

@@ -157,10 +157,10 @@ class Sinal(models.Model):
 	dataPost = models.DateField('data de criação', null=True)
 	postador = models.ForeignKey(Usuario, null=True)
 	publicado = models.BooleanField(default=False)
-	sinalLibras = Video('Vídeo do Sinal',null=True, blank=True)
-	descLibras = Video('Vídeo da Descrição',null=True, blank=True)
-	exemploLibras = Video('Vídeo do Exemplo',null=True, blank=True)
-	varicLibras = Video('Vídeo da Variação',null=True, blank=True)
+	sinalLibras = Video('Vídeo do sinal',null=True, blank=True)
+	descLibras = Video('Vídeo da descrição',null=True, blank=True)
+	exemploLibras = Video('Vídeo do exemplo',null=True, blank=True)
+	varicLibras = Video('Vídeo da variação',null=True, blank=True)
 	tema = models.ForeignKey(Tema, null=True)
 
 	def image_tag_cmE(self):
