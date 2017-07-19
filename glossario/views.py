@@ -8,6 +8,8 @@ from django.template import RequestContext
 import json
 import datetime
 
+global post
+
 def index(request, glossario=None):
 	glossarios = Glossario.objects.all()
 	return render(request, "index.html", {'glossarios': glossarios})
@@ -20,15 +22,15 @@ def glossarioSelecionado(request, glossario):
 
 	checkboxPort = request.POST.get('checkboxPort', False)
 	checkboxIng = request.POST.get('checkboxIng', False)
-	formCheckbox = PesquisaCheckboxForm(request.POST)
-	
+	if post:
+		formCheckbox = PesquisaCheckboxForm(post)
+	else:
+		formCheckbox = PesquisaCheckboxForm(request.POST)
+
 	if request.method == 'POST':
 		sinais = sinaisP = sinaisI = sinaisGlossario = formulario = None
 		formulario = PesquisaForm(request.POST)
-
-		# global post
-		# post = request.POST.copy()
-		
+		post = request.POST.copy()
 		sinaisGlossario = Sinal.objects.filter(glossario=glossario).filter(publicado=True)
 		if checkboxPort and checkboxIng:
 			if formulario.is_valid():
@@ -74,15 +76,15 @@ def sinal(request, sinal=None, glossario=None):
 
 	checkboxPort = request.POST.get('checkboxPort', False)
 	checkboxIng = request.POST.get('checkboxIng', False)
-
-	# print post
-
-	formCheckbox = PesquisaCheckboxForm(request.POST)
-	# formCheckbox = PesquisaCheckboxForm(post['checkboxPort'])
+	if post:
+		formCheckbox = PesquisaCheckboxForm(post)
+	else:
+		formCheckbox = PesquisaCheckboxForm(request.POST)
 	
 	if request.method == 'POST':
 		sinais = sinaisP = sinaisI = sinaisGlossario = formulario = None
 		formulario = PesquisaForm(request.POST)
+		post = request.POST.copy()
 		sinaisGlossario = Sinal.objects.filter(glossario=glossario).filter(publicado=True)
 		if checkboxPort and checkboxIng:
 			if formulario.is_valid():
@@ -113,9 +115,9 @@ def sinal(request, sinal=None, glossario=None):
 			})
 	else:
 		formulario = PesquisaForm()
-		return render(request, 'glossario.html', {'glossario': glossario, 'formulario': formulario,
-		'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox
-		})
+		return render(request, "sinal.html", {'sinal': sinal, 'glossario': glossario,
+			'formulario': formulario, 'formCheckbox': formCheckbox
+			})
 
 def historia(request):
 	return render(request, "historia.html")
