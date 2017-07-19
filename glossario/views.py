@@ -8,13 +8,14 @@ from django.template import RequestContext
 import json
 import datetime
 
-global post
-
 def index(request, glossario=None):
 	glossarios = Glossario.objects.all()
 	return render(request, "index.html", {'glossarios': glossarios})
 
 def glossarioSelecionado(request, glossario):
+	
+	print 'Estou na view glossário'
+
 	try:
 		glossario = Glossario.objects.get(link=glossario)
 	except Glossario.DoesNotExist:
@@ -22,15 +23,12 @@ def glossarioSelecionado(request, glossario):
 
 	checkboxPort = request.POST.get('checkboxPort', False)
 	checkboxIng = request.POST.get('checkboxIng', False)
-	if post:
-		formCheckbox = PesquisaCheckboxForm(post)
-	else:
-		formCheckbox = PesquisaCheckboxForm(request.POST)
 
 	if request.method == 'POST':
 		sinais = sinaisP = sinaisI = sinaisGlossario = formulario = None
 		formulario = PesquisaForm(request.POST)
-		post = request.POST.copy()
+		request.session['checkboxes'] = request.POST.copy()
+		formCheckbox = PesquisaCheckboxForm(request.session['checkboxes'])
 		sinaisGlossario = Sinal.objects.filter(glossario=glossario).filter(publicado=True)
 		if checkboxPort and checkboxIng:
 			if formulario.is_valid():
@@ -60,6 +58,7 @@ def glossarioSelecionado(request, glossario):
 			'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox
 			})
 	else:
+		formCheckbox = PesquisaCheckboxForm(request.session['checkboxes'])
 		formulario = PesquisaForm()
 		return render(request, 'glossario.html', {'glossario': glossario, 'formulario': formulario,
 		'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox
@@ -76,15 +75,12 @@ def sinal(request, sinal=None, glossario=None):
 
 	checkboxPort = request.POST.get('checkboxPort', False)
 	checkboxIng = request.POST.get('checkboxIng', False)
-	if post:
-		formCheckbox = PesquisaCheckboxForm(post)
-	else:
-		formCheckbox = PesquisaCheckboxForm(request.POST)
 	
 	if request.method == 'POST':
 		sinais = sinaisP = sinaisI = sinaisGlossario = formulario = None
 		formulario = PesquisaForm(request.POST)
-		post = request.POST.copy()
+		request.session['checkboxes'] = request.POST.copy()
+		formCheckbox = PesquisaCheckboxForm(request.session['checkboxes'])
 		sinaisGlossario = Sinal.objects.filter(glossario=glossario).filter(publicado=True)
 		if checkboxPort and checkboxIng:
 			if formulario.is_valid():
@@ -115,6 +111,7 @@ def sinal(request, sinal=None, glossario=None):
 			})
 	else:
 		formulario = PesquisaForm()
+		formCheckbox = PesquisaCheckboxForm(request.session['checkboxes'])
 		return render(request, "sinal.html", {'sinal': sinal, 'glossario': glossario,
 			'formulario': formulario, 'formCheckbox': formCheckbox
 			})
