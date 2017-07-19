@@ -28,14 +28,6 @@
         <div class="nav-wrapper center">
             <a href="/" class="brand-logo"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a>
         </div>
-<!--         <div class="center">
-            {% if glossario.imagem %}
-                <a href="/{{glossario.link}}"><img class="circle z-depth-4 imgGlossario" src="{{ glossario.imagem.url }}"/></a>
-            {% else %}
-                <a href="/{{glossario.link}}"><i class="large material-icons icone imgGlossario">cloud_off</i></a>
-            {% endif %}
-            <div><span>{{ glossario.nome }}</span></div>
-        </div> -->
         <nav class="glossarioSearch">
             <div class="nav-wrapper white">
                 <form method="post">
@@ -46,9 +38,7 @@
                         <i class="material-icons">close</i>
                     </div>
                     <div class="center">
-
                         {{ formCheckbox }}
-
 <!--                         <input type="checkbox" class="filled-in checkboxAzul" id="checkboxPort" name="checkboxPort" checked="checked"/>
                         <label for="checkboxPort">Português</label>
                         <input type="checkbox" class="filled-in checkboxAzul" id="checkboxIng" name="checkboxIng" />
@@ -75,20 +65,11 @@
     <div class="navbar hide-on-large-only">
         <nav class="blue darken-4" role="navigation">
             <ul id="nav-mobile" class="side-nav">
-                <!-- <li onclick="$('.button-collapse').sideNav('show')"></li> -->
                 <li>
                     <div class="userView">
                         <a href="/" class="brand-logo"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a>
                     </div>
                 </li>
-<!--                 <div class="center">
-                    {% if glossario.imagem %}
-                        <a href="/{{glossario.link}}"><img class="circle z-depth-4 imgGlossarioMobile" src="{{ glossario.imagem.url }}"/></a>
-                    {% else %}
-                        <a href="/{{glossario.link}}"><i class="large material-icons icone imgGlossarioMobile">cloud_off</i></a>
-                    {% endif %}
-                    <span class="black-text">{{ glossario.nome }}</span>
-                </div> -->
                 <nav class="glossarioSearchMobile">
                     <div class="nav-wrapper white">
                         <form method="post">
@@ -137,7 +118,7 @@
 
 <!-- ABRIR SIDENAV MOBILE -->
 
-    <script type="text/javascript"> //Verificar necessidade desta tag script
+    <script type="text/javascript">
         $(".button-collapse").sideNav();
         $('.button-collapse').sideNav('hide');
     </script>
