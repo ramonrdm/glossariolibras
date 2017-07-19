@@ -13,9 +13,6 @@ def index(request, glossario=None):
 	return render(request, "index.html", {'glossarios': glossarios})
 
 def glossarioSelecionado(request, glossario):
-	
-	print 'Estou na view glossário'
-
 	try:
 		glossario = Glossario.objects.get(link=glossario)
 	except Glossario.DoesNotExist:
@@ -40,6 +37,7 @@ def glossarioSelecionado(request, glossario):
 		if checkboxIng and not checkboxPort:
 			if formulario.is_valid():
 				sinais = sinaisGlossario.filter(traducaoI__icontains=formulario.cleaned_data['busca'])
+		formulario = PesquisaForm() #Redefine o formulário em branco
 		if sinais:
 			resultado = len(sinais)
 		else:
@@ -65,7 +63,6 @@ def glossarioSelecionado(request, glossario):
 		})
 
 def sinal(request, sinal=None, glossario=None):
-	
 	if sinal:
 		try:
 			sinal = Sinal.objects.get(id=sinal)
@@ -92,6 +89,7 @@ def sinal(request, sinal=None, glossario=None):
 		if checkboxIng and not checkboxPort:
 			if formulario.is_valid():
 				sinais = sinaisGlossario.filter(traducaoI__icontains=formulario.cleaned_data['busca'])
+		formulario = PesquisaForm() #Redefine o formulário em branco
 		if sinais:
 			resultado = len(sinais)
 		else:
