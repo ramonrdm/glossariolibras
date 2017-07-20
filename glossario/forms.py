@@ -71,23 +71,12 @@ class PesquisaCheckboxForm(forms.Form):
 		'id': 'checkboxPort', 'name': 'checkboxPort',
 	}))
 	checkboxIng = forms.BooleanField(label='Inglês', widget=forms.CheckboxInput(attrs={
-		'type': 'checkbox', 'class': 'filled-in ',
-		'id': 'checkboxIng', 'name': 'checkboxIng',
-	}))
-
-	def __init__(self, *args, **kwargs):
-		super(PesquisaCheckboxForm, self).__init__(*args, **kwargs)
-		for fields in self.fields:
-			self.fields[fields].required = False
-
-class PesquisaCheckboxIngForm(forms.Form):
-	checkboxIng = forms.BooleanField(label='Inglês', widget=forms.CheckboxInput(attrs={
 		'type': 'checkbox', 'class': 'filled-in checkboxAzul',
 		'id': 'checkboxIng', 'name': 'checkboxIng',
 	}))
 
 	def __init__(self, *args, **kwargs):
-		super(PesquisaCheckboxIngForm, self).__init__(*args, **kwargs)
+		super(PesquisaCheckboxForm, self).__init__(*args, **kwargs)
 		for fields in self.fields:
 			self.fields[fields].required = False
 

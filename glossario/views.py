@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, render_to_response
 from glossario.models import Glossario, Sinal, Usuario, Tema, GrupoCM
-from glossario.forms import PesquisaForm, PesquisaCheckboxForm, PesquisaCheckboxIngForm, EnviarSinaisForm
+from glossario.forms import PesquisaForm, PesquisaCheckboxForm, EnviarSinaisForm
 from django.http import JsonResponse
 from django.db.models import Q
 from django.template import RequestContext
@@ -26,7 +26,6 @@ def glossarioSelecionado(request, glossario):
 		formulario = PesquisaForm(request.POST)
 		request.session['checkboxes'] = request.POST.copy()
 		formCheckbox = PesquisaCheckboxForm(request.session['checkboxes'])
-		# formCheckboxIng = PesquisaCheckboxIngForm(request.session['checkboxes'])
 		sinaisGlossario = Sinal.objects.filter(glossario=glossario).filter(publicado=True)
 		if checkboxPort and checkboxIng:
 			if formulario.is_valid():
@@ -55,15 +54,12 @@ def glossarioSelecionado(request, glossario):
 			'formulario': formulario, 'sinais': sinais, 'sinaisP': sinaisP, 'sinaisI': sinaisI, 'sinaisGlossario': sinaisGlossario,
 			'resultado': resultado, 'resultadoP': resultadoP, 'resultadoI': resultadoI, 'glossario': glossario,
 			'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox,
-			# 'formCheckboxIng': formCheckboxIng
 			})
 	else:
 		formCheckbox = PesquisaCheckboxForm(request.session['checkboxes'])
-		# formCheckboxIng = PesquisaCheckboxIngForm(request.session['checkboxes'])
 		formulario = PesquisaForm()
 		return render(request, 'glossario.html', {'glossario': glossario, 'formulario': formulario,
 			'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox,
-			# 'formCheckboxIng': formCheckboxIng
 			})
 
 def sinal(request, sinal=None, glossario=None):
