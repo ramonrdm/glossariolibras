@@ -8,6 +8,21 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 import datetime
 
+class Profile(models.Model):
+	user = models.OneToOneField(User, on_delete=models.CASCADE)
+	lattes = models.CharField('Currículo Lattes', max_length=200, blank=True)
+	foto = models.ImageField(blank=True)
+
+	def __unicode__(self):
+		return self.user.username
+
+@receiver(post_save, sender=User)
+def create_or_update_user_profile(sender, instance, created, **kwargs):
+	if created:
+		Profile.objects.create(user=instance)
+	instance.profile.save()
+
+
 class UsuarioManager(BaseUserManager):
 	use_in_migrations = True
 

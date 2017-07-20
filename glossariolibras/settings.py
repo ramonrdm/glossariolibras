@@ -36,7 +36,8 @@ INSTALLED_APPS = (
     'glossario'
 )
 
-AUTH_USER_MODEL = 'glossario.Usuario'
+# AUTH_USER_MODEL = 'glossario.Usuario'
+# AUTH_USER_MODEL = 'glossario.Profile'
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',

@@ -1,13 +1,38 @@
 # -*- coding: utf-8 -*-
-from django.contrib import admin
-from .models import *
 from glossario.forms import GlossarioForm, SinalForm, UsuarioForm, GrupoCMForm, CMForm, LocalizacaoForm
 from unicodedata import normalize
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import Q
-from django.core.exceptions import ObjectDoesNotExist
-from django.contrib.contenttypes.models import ContentType
+from .models import *
 
+class ProfileInline(admin.StackedInline):
+	model = Profile
+	can_delete = False
+	verbose_name_plural = 'Profile'
+	fk_name = 'user'
+
+class CustomUserAdmin(UserAdmin):
+	inlines = (ProfileInline,)
+	list_display = ('username', 'email', 'first_name', 'last_name', 'get_lattes', 'get_foto', 'is_staff')
+	list_select_related = ('profile',)
+
+	def get_lattes(self, instance):
+		return instance.profile.lattes
+	get_lattes.short_description = 'Lattes'
+
+	def get_foto(self, instance):
+		if instance.imagem:
+			return u'<img src="%s" width="50" heigth="50"/>' % instance.foto.url
+		else:
+			return 'Sem foto'
+
+	def get_inline_instances(self, request, obj=None):
+		if not obj:
+			return list()
+		return super(CustomUserAdmin, self).get_inline_instances(request, obj)
 
 class GlossarioAdmin(admin.ModelAdmin):
 	
@@ -112,6 +137,8 @@ class UsuarioAdmin(admin.ModelAdmin):
 	form = UsuarioForm
 	list_display = ('username', 'nome', 'email', 'latte', 'foto', 'is_staff')
 
+# admin.site.unregister(User)
+admin.site.register(User, CustomUserAdmin)
 admin.site.register(Tema)
 admin.site.register(Usuario, UsuarioAdmin)
 admin.site.register(Glossario, GlossarioAdmin)
