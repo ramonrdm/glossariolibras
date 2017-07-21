@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, render_to_response
-from glossario.models import Glossario, Sinal, Usuario, Tema, GrupoCM
+from glossario.models import Glossario, Sinal, Tema, GrupoCM
+# from glossario.models import Usuario
+from django.contrib.auth.models import User
 from glossario.forms import PesquisaForm, PesquisaCheckboxForm, EnviarSinaisForm
 from django.http import JsonResponse
 from django.db.models import Q
@@ -56,10 +58,13 @@ def glossarioSelecionado(request, glossario):
 			'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox,
 			})
 	else:
-		formCheckbox = PesquisaCheckboxForm(request.session['checkboxes'])
+		# if not request.session['checkboxes']:
+		# 	request.session['checkboxes'] = [checkboxPort, checkboxIng]
+		# formCheckbox = PesquisaCheckboxForm(request.session['checkboxes'])
 		formulario = PesquisaForm()
 		return render(request, 'glossario.html', {'glossario': glossario, 'formulario': formulario,
-			'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox,
+			'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng,
+			# 'formCheckbox': formCheckbox,
 			})
 
 def sinal(request, sinal=None, glossario=None):
@@ -118,7 +123,7 @@ def historia(request):
 	return render(request, "historia.html")
 
 def equipe(request):
-	usuario = Usuario.objects.all()
+	usuario = User.objects.all()
 	return render(request, "equipe.html", {'usuario': usuario})
 
 def contato(request):

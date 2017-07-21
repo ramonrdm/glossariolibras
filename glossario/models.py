@@ -22,42 +22,41 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
 		Profile.objects.create(user=instance)
 	instance.profile.save()
 
+# class UsuarioManager(BaseUserManager):
+# 	use_in_migrations = True
 
-class UsuarioManager(BaseUserManager):
-	use_in_migrations = True
+# 	def _create_user(self, username, email, password, **extra_fields):
+# 		if not username:
+# 			raise ValueError('Este campo é obrigatório')
+# 		email = self.normalize_email(email)
+# 		user = self.model(username=username, email=email, **extra_fields)
+# 		user.set_password(password)
+# 		user.save(using=self._db)
+# 		return user
 
-	def _create_user(self, username, email, password, **extra_fields):
-		if not username:
-			raise ValueError('Este campo é obrigatório')
-		email = self.normalize_email(email)
-		user = self.model(username=username, email=email, **extra_fields)
-		user.set_password(password)
-		user.save(using=self._db)
-		return user
+# 	def create_user(self, username, email=None, password=None, **extra_fields):
+# 		extra_fields.setdefault('is_staff', True)
+# 		extra_fields.setdefault('is_superuser', False)
+# 		return self._create_user(username, email, password, **extra_fields)
 
-	def create_user(self, username, email=None, password=None, **extra_fields):
-		extra_fields.setdefault('is_staff', True)
-		extra_fields.setdefault('is_superuser', False)
-		return self._create_user(username, email, password, **extra_fields)
+# 	def create_superuser(self, username, email, password, **extra_fields):
+# 		extra_fields.setdefault('is_staff', True)
+# 		extra_fields.setdefault('is_superuser', True)
 
-	def create_superuser(self, username, email, password, **extra_fields):
-		extra_fields.setdefault('is_staff', True)
-		extra_fields.setdefault('is_superuser', True)
+# 		if extra_fields.get('is_staff') is not True:
+# 			raise ValueError('Não é membro da equipe.')
+# 		if extra_fields.get('is_superuser') is not True:
+# 			raise ValueError('Não é superusuario.')
 
-		if extra_fields.get('is_staff') is not True:
-			raise ValueError('Não é membro da equipe.')
-		if extra_fields.get('is_superuser') is not True:
-			raise ValueError('Não é superusuario.')
+# 		return self._create_user(username, email, password, **extra_fields)
 
-		return self._create_user(username, email, password, **extra_fields)
+# class Usuario(AbstractUser):
 
-class Usuario(AbstractUser):
+# 	nome = models.CharField('Nome', max_length=200)
+# 	latte = models.CharField('Currículo Latte', max_length=300)
+# 	foto = models.ImageField('Foto', blank=True)
 
-	nome = models.CharField('Nome', max_length=200)
-	latte = models.CharField('Currículo Latte', max_length=300)
-	foto = models.ImageField('Foto', blank=True)
-
-	objects = UsuarioManager()
+# 	objects = UsuarioManager()
 
 class Localizacao(models.Model):
 	class Meta:
@@ -88,8 +87,8 @@ class Glossario(models.Model):
 		verbose_name='glossário'
 
 	nome = models.CharField('Nome do Glossário', max_length=100)
-	responsavel = models.ManyToManyField(Usuario, verbose_name = 'responsável')
-	membros = models.ManyToManyField(Usuario, related_name='glossario_membros', verbose_name='membros', blank=True)
+	responsavel = models.ManyToManyField(User, verbose_name = 'responsável')
+	membros = models.ManyToManyField(User, related_name='glossario_membros', verbose_name='membros', blank=True)
 	descricao = models.TextField("descrição", default='')
 	imagem = models.ImageField('Imagem', blank=True)
 	link = models.CharField('Link', max_length=20)
@@ -170,7 +169,7 @@ class Sinal(models.Model):
 	cmD = models.ForeignKey(CM, related_name='C_M_Direita', verbose_name='configuração da mão direita')
 	localizacao = models.ForeignKey(Localizacao,null=True, blank=True, verbose_name='localização')
 	dataPost = models.DateField('data de criação', null=True)
-	postador = models.ForeignKey(Usuario, null=True)
+	postador = models.ForeignKey(User, null=True)
 	publicado = models.BooleanField(default=False)
 	sinalLibras = Video('Vídeo do sinal',null=True, blank=True)
 	descLibras = Video('Vídeo da descrição',null=True, blank=True)
