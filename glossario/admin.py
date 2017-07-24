@@ -30,6 +30,7 @@ class CustomUserAdmin(UserAdmin):
 	# 		return u'<img src="%s" width="50" heigth="50"/>' % instance.foto.url
 	# 	else:
 	# 		return 'Sem foto'
+	# get_foto.short_description = 'Foto'
 
 	def get_inline_instances(self, request, obj=None):
 		if not obj:

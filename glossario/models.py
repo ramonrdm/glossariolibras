@@ -2,16 +2,21 @@
 from django.db import models
 from django.db.models import FileField
 from django.core.files import File
-from django.contrib.auth.models import AbstractUser, BaseUserManager, User
+# from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.contrib.auth.models import User
 from django.contrib.auth import hashers
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 import datetime
 
+def profile_upload_path(instance, filename):
+	# o arquivo será salvo em MEDIA_ROOT/profile_images/<username>/<filename>
+	return 'profile_images/{0}/{1}'.format(instance.user.username, filename)
+
 class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	lattes = models.CharField('Currículo Lattes', max_length=200, blank=True)
-	foto = models.ImageField(blank=True)
+	foto = models.ImageField(upload_to=profile_upload_path, blank=True)
 
 	def __unicode__(self):
 		return self.user.username
@@ -153,6 +158,11 @@ class Tema(models.Model):
 	def __unicode__(self):
 		return self.nome
 
+def sinal_upload_path(instance, filename):
+	# today = date.now()
+	# today_path = today.strftime('%Y/%m/%d')
+	return 'sinal_videos/sinal_{0}/{1}'.format(instance.id, filename)
+
 class Sinal(models.Model):
 	class Meta:
 		verbose_name_plural='sinais'
@@ -167,14 +177,14 @@ class Sinal(models.Model):
 	cmE = models.ForeignKey(CM, related_name='C_M_Esquerda', verbose_name='configuração da mão esquerda')
 	grupoCMd = models.ForeignKey(GrupoCM, related_name='Grupo_M_Direita', verbose_name='grupo da mão direita')
 	cmD = models.ForeignKey(CM, related_name='C_M_Direita', verbose_name='configuração da mão direita')
-	localizacao = models.ForeignKey(Localizacao,null=True, blank=True, verbose_name='localização')
+	localizacao = models.ForeignKey(Localizacao, null=True, blank=True, verbose_name='localização')
 	dataPost = models.DateField('data de criação', null=True)
 	postador = models.ForeignKey(User, null=True)
 	publicado = models.BooleanField(default=False)
-	sinalLibras = Video('Vídeo do sinal',null=True, blank=True)
-	descLibras = Video('Vídeo da descrição',null=True, blank=True)
-	exemploLibras = Video('Vídeo do exemplo',null=True, blank=True)
-	varicLibras = Video('Vídeo da variação',null=True, blank=True)
+	sinalLibras = Video('Vídeo do sinal', upload_to=sinal_upload_path, null=True, blank=True)
+	descLibras = Video('Vídeo da descrição', upload_to=sinal_upload_path, null=True, blank=True)
+	exemploLibras = Video('Vídeo do exemplo', upload_to=sinal_upload_path, null=True, blank=True)
+	varicLibras = Video('Vídeo da variação', upload_to=sinal_upload_path, null=True, blank=True)
 	tema = models.ForeignKey(Tema, null=True)
 
 	def image_tag_cmE(self):
