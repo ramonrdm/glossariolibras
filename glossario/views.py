@@ -137,13 +137,21 @@ def temas(request, temas=None):
 
 def enviarSinais(request):
 	if request.method == 'POST':
-		formulario = EnviarSinaisForm(request.POST)
+		formulario = EnviarSinaisForm(request.POST, request.FILES)
 		toastSucesso = True
 		try:
 			if formulario.is_valid:
 				dados = formulario.save(commit=False)
 				dados.glossario = Glossario.objects.get(nome='Sugestões')
 				dados.dataPost = datetime.date.today()
+				if request.FILES['sinalLibras']:
+					dados.sinalLibras = request.FILES['sinalLibras']
+				if request.FILES['descLibras']:
+					dados.descLibras = request.FILES['descLibras']
+				if request.FILES['exemploLibras']:
+					dados.exemploLibras = request.FILES['exemploLibras']
+				if request.FILES['varicLibras']:
+					dados.varicLibras = request.FILES['varicLibras']
 				dados.save()
 				formulario = EnviarSinaisForm()
 				return render(request, 'enviarsinais.html', {'formulario': formulario, 'toastSucesso': toastSucesso})

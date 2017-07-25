@@ -122,9 +122,9 @@ class Tema(models.Model):
 		return self.nome
 
 def sinal_upload_path(instance, filename):
-	# today = date.now()
-	# today_path = today.strftime('%Y/%m/%d')
-	return 'sinal_videos/sinal_{0}/{1}'.format(instance.id, filename)
+	if not instance.tema:
+		return 'sinal_videos/sinais_enviados/%Y/%m/%d/sinal_{0}/{1}'.format(instance.id, filename)
+	return 'sinal_videos/%Y/%m/%d/sinal_{0}/{1}'.format(instance.id, filename)
 
 class Sinal(models.Model):
 	class Meta:
