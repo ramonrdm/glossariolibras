@@ -36,8 +36,6 @@ INSTALLED_APPS = (
     'glossario'
 )
 
-# AUTH_USER_MODEL = 'glossario.Usuario'
-
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -84,10 +82,6 @@ STATIC_URL = '/static/'
 PROJECT_ROOT = os.path.dirname(os.path.dirname(__file__))
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
-#TEMPLATES_DIRS = (
-#    os.path.join(os.path.abspath(os.path.dirname(__file__)), 'templates'),
-#    )
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -106,4 +100,3 @@ TEMPLATES = [
     },
 ]
 
-# SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'

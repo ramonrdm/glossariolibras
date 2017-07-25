@@ -135,15 +135,9 @@ class LocalizacaoAdmin(admin.ModelAdmin):
 	form = LocalizacaoForm
 	list_display = ('nome', 'image_tag', 'bsw')
 
-# class UsuarioAdmin(admin.ModelAdmin):
-
-# 	form = UsuarioForm
-# 	list_display = ('username', 'nome', 'email', 'latte', 'foto', 'is_staff')
-
 admin.site.unregister(User)
 admin.site.register(User, CustomUserAdmin)
 admin.site.register(Tema)
-# admin.site.register(Usuario, UsuarioAdmin)
 admin.site.register(Glossario, GlossarioAdmin)
 admin.site.register(Sinal, SinalAdmin)
 admin.site.register(GrupoCM, GrupoCMAdmin)

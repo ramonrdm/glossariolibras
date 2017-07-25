@@ -1,23 +1,6 @@
 # -*- coding: utf-8 -*-
 from glossario.models import Glossario, Sinal, GrupoCM, CM, Localizacao
-# from glossario.models import Usuario
 from django import forms
-
-# class UsuarioForm(forms.ModelForm):
-
-# 	class Meta:
-# 		model = Usuario
-# 		widgets = {
-# 		'password': forms.PasswordInput(),
-# 		}
-# 		fields = ['username', 'password', 'nome', 'latte', 'foto', 'email', 'is_staff', 'groups']
-		
-# 	def  save(self, commit=True):
-# 		user = super(UsuarioForm, self).save(commit=False)
-# 		user.set_password(self.cleaned_data["password"])
-# 		if commit:
-# 			user.save()
-# 		return user
 
 class GlossarioForm(forms.ModelForm):
 

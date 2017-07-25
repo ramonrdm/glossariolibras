@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, render_to_response
 from glossario.models import Glossario, Sinal, Tema, GrupoCM
-# from glossario.models import Usuario
 from django.contrib.auth.models import User
 from glossario.forms import PesquisaForm, PesquisaCheckboxForm, EnviarSinaisForm
 from django.http import JsonResponse
