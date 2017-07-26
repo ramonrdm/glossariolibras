@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from glossario.forms import GlossarioForm, SinalForm, GrupoCMForm, CMForm, LocalizacaoForm
-# from glossario.forms import UsuarioForm
 from unicodedata import normalize
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
@@ -18,19 +17,20 @@ class ProfileInline(admin.StackedInline):
 
 class CustomUserAdmin(UserAdmin):
 	inlines = (ProfileInline,)
-	list_display = ('username', 'email', 'first_name', 'last_name', 'get_lattes', 'is_staff')
+	list_display = ('username', 'email', 'first_name', 'last_name', 'get_lattes', 'is_staff', 'image_tag')
 	list_select_related = ('profile',)
 
 	def get_lattes(self, instance):
 		return instance.profile.lattes
 	get_lattes.short_description = 'Lattes'
 
-	# def get_foto(self, instance):
-	# 	if instance.foto:
-	# 		return u'<img src="%s" width="50" heigth="50"/>' % instance.foto.url
-	# 	else:
-	# 		return 'Sem foto'
-	# get_foto.short_description = 'Foto'
+	def image_tag(self, instance):
+		if instance.profile.foto:
+			return u'<img src="%s" width="50" height="50"/>' % instance.profile.foto.url
+		else:
+			return 'Sem foto'
+	image_tag.short_description = 'Foto'
+	image_tag.allow_tags = True
 
 	def get_inline_instances(self, request, obj=None):
 		if not obj:

@@ -147,16 +147,14 @@ def enviarSinais(request):
 				dados = formulario.save(commit=False)
 				dados.glossario = Glossario.objects.get(nome='Sugestões')
 				dados.dataPost = datetime.date.today()
-				print "==============="
-				print request.FILES.get('sinalLibras')
-				# if request.FILES.get('sinalLibras'):
-				# 	dados.sinalLibras = request.FILES.get('sinalLibras')
-				# if request.FILES['descLibras']:
-				# 	dados.descLibras = request.FILES['descLibras']
-				# if request.FILES['exemploLibras']:
-				# 	dados.exemploLibras = request.FILES['exemploLibras']
-				# if request.FILES['varicLibras']:
-				# 	dados.varicLibras = request.FILES['varicLibras']
+				if request.FILES.get('sinalLibras'):
+					dados.sinalLibras = request.FILES['sinalLibras']
+				if request.FILES.get('descLibras'):
+					dados.descLibras = request.FILES['descLibras']
+				if request.FILES.get('exemploLibras'):
+					dados.exemploLibras = request.FILES['exemploLibras']
+				if request.FILES.get('varicLibras'):
+					dados.varicLibras = request.FILES['varicLibras']
 				dados.save()
 				formulario = EnviarSinaisForm()
 				return render(request, 'enviarsinais.html', {'formulario': formulario, 'toastSucesso': toastSucesso})

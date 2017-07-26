@@ -37,7 +37,7 @@ class Localizacao(models.Model):
 
 	def image_tag(self):
 		if self.imagem:
-			return u'<img src="%s" width="50" heigth="50"/>' % self.imagem.url
+			return u'<img src="%s" width="50" height="50"/>' % self.imagem.url
 		else:
 			return 'Sem imagem'
 	image_tag.short_description = 'Imagem'
@@ -65,7 +65,7 @@ class Glossario(models.Model):
 
 	def image_tag(self):
 		if self.imagem:
-			return u'<img src="%s" width="50" heigth="50"/>' % self.imagem.url
+			return u'<img src="%s" width="50" height="50"/>' % self.imagem.url
 		else:
 			return 'Sem imagem'
 	image_tag.short_description = 'Imagem'
@@ -83,7 +83,7 @@ class GrupoCM (models.Model):
 
 	def image_tag(self):
 		if self.imagem:
-			return u'<img src="%s" width="50" heigth="50"/>' % self.imagem.url
+			return u'<img src="%s" width="50" height="50"/>' % self.imagem.url
 		else:
 			return 'Sem imagem'
 	image_tag.short_description = 'Imagem'
@@ -102,7 +102,7 @@ class CM (models.Model):
 
 	def image_tag(self):
 		if self.imagem:
-			return u'<img src="%s" width="50" heigth="50"/>' % self.imagem.url
+			return u'<img src="%s" width="50" height="50"/>' % self.imagem.url
 		else:
 			return 'Sem imagem'
 	image_tag.short_description = 'Imagem'
@@ -121,12 +121,8 @@ class Tema(models.Model):
 	def __unicode__(self):
 		return self.nome
 
-# @receiver(pre_save, sender=Sinal)
-# def id_save(sender, instance, **kwargs):
-# 	instance.save()
-
 def sinal_upload_path(instance, filename):
-	# return 'sinal_videos/sinais_enviados/%Y/%m/%d/sinal_{0}/{1}'.format(instance.id, filename)
+	# o arquivo será salvo em MEDIA_ROOT/sinal_videos/%Y/%m/%d/sinal_<id>/<filename>
 	return 'sinal_videos/%Y/%m/%d/sinal_{0}/{1}'.format(instance.id, filename)
 
 class Sinal(models.Model):
@@ -155,7 +151,7 @@ class Sinal(models.Model):
 
 	def image_tag_cmE(self):
 		if self.cmE.imagem:
-			return u'<img src="%s" width="50" heigth="50"/>' % self.cmE.imagem.url
+			return u'<img src="%s" width="50" height="50"/>' % self.cmE.imagem.url
 		else:
 			return 'Sem imagem'
 	image_tag_cmE.short_description = 'esquerda'
@@ -163,7 +159,7 @@ class Sinal(models.Model):
 
 	def image_tag_cmD(self):
 		if self.cmD.imagem:
-			return u'<img src="%s" width="50" heigth="50"/>' % self.cmD.imagem.url
+			return u'<img src="%s" width="50" height="50"/>' % self.cmD.imagem.url
 		else:
 			return 'Sem imagem'
 	image_tag_cmD.short_description = 'direita'
@@ -172,7 +168,7 @@ class Sinal(models.Model):
 	def image_tag_localizacao(self):
 		if self.localizacao:
 			if self.localizacao.imagem:
-				return u'<img src="%s" width="50" heigth="50"/>' % self.localizacao.imagem.url
+				return u'<img src="%s" width="50" height="50"/>' % self.localizacao.imagem.url
 		return 'Sem imagem'
 
 	image_tag_localizacao.short_description = 'localização'
