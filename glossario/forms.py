@@ -17,9 +17,6 @@ class SinalForm(forms.ModelForm):
 		'publicado']
 
 class EnviarSinaisForm(forms.ModelForm):
-	
-	# def sinal_upload_path(instance, filename):
-	# 	return 'sinal_videos/sinais_enviados/%Y/%m/%d/sinal_{0}/{1}'.format(instance.id, filename)
 
 	class Meta:
 		model = Sinal
@@ -30,10 +27,6 @@ class EnviarSinaisForm(forms.ModelForm):
 		super(EnviarSinaisForm, self).__init__(*args, **kwargs)
 		for fields in self.fields:
 			self.fields[fields].empty_label = 'Selecione um item'
-			# self.fields['sinalLibras'].upload_to = sinal_upload_path
-			# self.fields['descLibras'].upload_to = sinal_upload_path
-			# self.fields['exemploLibras'].upload_to = sinal_upload_path
-			# self.fields['varicLibras'].upload_to = sinal_upload_path
 
 class GrupoCMForm(forms.ModelForm):
 

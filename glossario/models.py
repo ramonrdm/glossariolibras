@@ -122,8 +122,7 @@ class Tema(models.Model):
 		return self.nome
 
 def sinal_upload_path(instance, filename):
-	if not instance.tema:
-		return 'sinal_videos/sinais_enviados/%Y/%m/%d/sinal_{0}/{1}'.format(instance.id, filename)
+	# return 'sinal_videos/sinais_enviados/%Y/%m/%d/sinal_{0}/{1}'.format(instance.id, filename)
 	return 'sinal_videos/%Y/%m/%d/sinal_{0}/{1}'.format(instance.id, filename)
 
 class Sinal(models.Model):
