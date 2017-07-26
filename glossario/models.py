@@ -4,7 +4,7 @@ from django.db.models import FileField
 from django.core.files import File
 from django.contrib.auth.models import User
 from django.contrib.auth import hashers
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 import datetime
 
@@ -120,6 +120,10 @@ class Tema(models.Model):
 
 	def __unicode__(self):
 		return self.nome
+
+# @receiver(pre_save, sender=Sinal)
+# def id_save(sender, instance, **kwargs):
+# 	instance.save()
 
 def sinal_upload_path(instance, filename):
 	# return 'sinal_videos/sinais_enviados/%Y/%m/%d/sinal_{0}/{1}'.format(instance.id, filename)

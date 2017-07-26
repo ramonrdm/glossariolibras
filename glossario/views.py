@@ -57,7 +57,10 @@ def glossarioSelecionado(request, glossario):
 			'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox,
 			})
 	else:
-		formCheckbox = PesquisaCheckboxForm()
+		if request.session.get('checkboxes'):
+			formCheckbox = PesquisaCheckboxForm(request.session['checkboxes'])
+		else:
+			formCheckbox = PesquisaCheckboxForm()
 		formulario = PesquisaForm()
 		return render(request, 'glossario.html', {'glossario': glossario, 'formulario': formulario,
 			'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox,
