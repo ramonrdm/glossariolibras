@@ -9,7 +9,7 @@ from django.dispatch import receiver
 import datetime
 
 def profile_upload_path(instance, filename):
-	# o arquivo será salvo em MEDIA_ROOT/profile_images/<username>/<filename>
+	# o arquivo será salvo em MEDIA_ROOT/profile_images/user_<id>/<filename>
 	return 'profile_images/user_{0}/{1}'.format(instance.user.id, filename)
 
 class Profile(models.Model):
@@ -121,8 +121,29 @@ class Tema(models.Model):
 	def __unicode__(self):
 		return self.nome
 
-def sinal_upload_path(instance, filename):
-	# o arquivo será salvo em MEDIA_ROOT/sinal_videos/%Y/%m/%d/sinal_<id>/<filename>
+def sinal_upload_path(instance, filename, tipo):
+
+	# def switch(instance=None, filename=None, tipo=None):
+	# 	return {
+	# 		'sinal': 'sinal_videos/%Y/%m/%d/sinal_{0}/sinal_{1}'.format(instance.id, filename),
+	# 		'descricao': 'sinal_videos/%Y/%m/%d/sinal_{0}/descricao_{1}'.format(instance.id, filename),
+	# 		'exemplo': 'sinal_videos/%Y/%m/%d/sinal_{0}/exemplo_{1}'.format(instance.id, filename),
+	# 		'variacao': 'sinal_videos/%Y/%m/%d/sinal_{0}/variacao_{1}'.format(instance.id, filename),
+	# 		'padrao': 'sinal_videos/%Y/%m/%d/sinal_{0}/{1}'.format(instance.id, filename)
+	# 	}.get(tipo, 'padrao')
+
+	# return switch(tipo)
+
+	# if tipo == 'sinal':
+	# 	return 'sinal_videos/%Y/%m/%d/sinal_{0}/sinal_{1}'.format(instance.id, filename)
+	# elif tipo == 'descricao':
+	# 	return 'sinal_videos/%Y/%m/%d/sinal_{0}/descricao_{1}'.format(instance.id, filename)
+	# elif tipo == 'exemplo':
+	# 	return 'sinal_videos/%Y/%m/%d/sinal_{0}/exemplo_{1}'.format(instance.id, filename)
+	# elif tipo == 'variacao':
+	# 	return 'sinal_videos/%Y/%m/%d/sinal_{0}/variacao_{1}'.format(instance.id, filename)
+	# return 'sinal_videos/%Y/%m/%d/sinal_{0}/{1}'.format(instance.id, filename)
+
 	return 'sinal_videos/%Y/%m/%d/sinal_{0}/{1}'.format(instance.id, filename)
 
 class Sinal(models.Model):
