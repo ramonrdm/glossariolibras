@@ -10,7 +10,7 @@ import datetime
 
 def profile_upload_path(instance, filename):
 	# o arquivo será salvo em MEDIA_ROOT/profile_images/<username>/<filename>
-	return 'profile_images/{0}/{1}'.format(instance.user.username, filename)
+	return 'profile_images/user_{0}/{1}'.format(instance.user.id, filename)
 
 class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
