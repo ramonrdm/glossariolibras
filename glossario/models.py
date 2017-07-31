@@ -204,8 +204,10 @@ class Sinal(models.Model):
 
 @receiver(post_save, sender=Sinal)
 def update_upload_path(sender, instance, created, **kwargs):
+
 	originais = '{0}/sinal_videos/originais'.format(settings.MEDIA_ROOT)
 	convertidos = '{0}/sinal_videos/convertidos'.format(settings.MEDIA_ROOT)
+
 	return subprocess.call('cp {0}/{1} {2}/{3}-%Y-%m-%d'.format(
 		originais,
 		str(instance.sinalLibras).split('/')[2],
@@ -213,3 +215,4 @@ def update_upload_path(sender, instance, created, **kwargs):
 		instance.id
 		),
 		shell=True)
+#VERIFICAR shell=TRUE, pode ser um comando perigoso
