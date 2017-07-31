@@ -4,9 +4,12 @@ from django.db.models import FileField
 from django.core.files import File
 from django.contrib.auth.models import User
 from django.contrib.auth import hashers
+from django.db.models import F
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 import datetime
+import subprocess
+from django.conf import settings
 
 def profile_upload_path(instance, filename):
 	# o arquivo será salvo em MEDIA_ROOT/profile_images/user_<id>/<filename>
@@ -121,7 +124,8 @@ class Tema(models.Model):
 	def __unicode__(self):
 		return self.nome
 
-def sinal_upload_path(tipo):
+def sinal_upload_path(instance, filename):
+	return 'sinal_videos/originais/{0}'.format(filename)
 
 	# def switch(instance=None, filename=None, tipo=None):
 	# 	return {
@@ -134,15 +138,15 @@ def sinal_upload_path(tipo):
 
 	# return switch(tipo)
 
-	if tipo == 'sinal':
-		return 'sinal_videos/%Y/%m/%d/sinal_{0}/{1}'.format(id, tipo)
-	elif tipo == 'descricao':
-		return 'sinal_videos/%Y/%m/%d/sinal_{0}/{1}'.format(id, tipo)
-	elif tipo == 'exemplo':
-		return 'sinal_videos/%Y/%m/%d/sinal_{0}/{1}'.format(id, tipo)
-	elif tipo == 'variacao':
-		return 'sinal_videos/%Y/%m/%d/sinal_{0}/{1}'.format(id, tipo)
-	return 'sinal_videos/%Y/%m/%d/sinal_{0}/'.format(id)
+	# if tipo == 'sinal':
+	# 	return 'sinal_videos/%Y/%m/%d/sinal_{0}/{1}'.format(id, tipo)
+	# elif tipo == 'descricao':
+	# 	return 'sinal_videos/%Y/%m/%d/sinal_{0}/{1}'.format(id, tipo)
+	# elif tipo == 'exemplo':
+	# 	return 'sinal_videos/%Y/%m/%d/sinal_{0}/{1}'.format(id, tipo)
+	# elif tipo == 'variacao':
+	# 	return 'sinal_videos/%Y/%m/%d/sinal_{0}/{1}'.format(id, tipo)
+	# return 'sinal_videos/%Y/%m/%d/sinal_{0}/'.format(id)
 
 	# return 'sinal_videos/%Y/%m/%d/sinal_{0}/{1}'.format(instance.id, filename)
 
@@ -164,10 +168,10 @@ class Sinal(models.Model):
 	dataPost = models.DateField('data de criação', null=True)
 	postador = models.ForeignKey(User, null=True)
 	publicado = models.BooleanField(default=False)
-	sinalLibras = Video('Vídeo do sinal', upload_to='sinal_videos/originais', null=True, blank=True)
-	descLibras = Video('Vídeo da descrição', upload_to='sinal_videos/originais', null=True, blank=True)
-	exemploLibras = Video('Vídeo do exemplo', upload_to='sinal_videos/originais', null=True, blank=True)
-	varicLibras = Video('Vídeo da variação', upload_to='sinal_videos/originais', null=True, blank=True)
+	sinalLibras = Video('Vídeo do sinal', upload_to=sinal_upload_path, null=True, blank=True)
+	descLibras = Video('Vídeo da descrição', upload_to=sinal_upload_path, null=True, blank=True)
+	exemploLibras = Video('Vídeo do exemplo', upload_to=sinal_upload_path, null=True, blank=True)
+	varicLibras = Video('Vídeo da variação', upload_to=sinal_upload_path, null=True, blank=True)
 	tema = models.ForeignKey(Tema, null=True)
 
 	def image_tag_cmE(self):
@@ -197,3 +201,15 @@ class Sinal(models.Model):
 
 	def __unicode__(self):
 		return self.traducaoP
+
+@receiver(post_save, sender=Sinal)
+def update_upload_path(sender, instance, created, **kwargs):
+	originais = '{0}/sinal_videos/originais'.format(settings.MEDIA_ROOT)
+	convertidos = '{0}/sinal_videos/convertidos'.format(settings.MEDIA_ROOT)
+	return subprocess.call('cp {0}/{1} {2}/{3}-%Y-%m-%d'.format(
+		originais,
+		str(instance.sinalLibras).split('/')[2],
+		convertidos,
+		instance.id
+		),
+		shell=True)
