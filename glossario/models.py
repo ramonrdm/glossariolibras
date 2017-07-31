@@ -121,7 +121,7 @@ class Tema(models.Model):
 	def __unicode__(self):
 		return self.nome
 
-def sinal_upload_path(instance, filename, tipo):
+def sinal_upload_path(tipo):
 
 	# def switch(instance=None, filename=None, tipo=None):
 	# 	return {
@@ -134,17 +134,17 @@ def sinal_upload_path(instance, filename, tipo):
 
 	# return switch(tipo)
 
-	# if tipo == 'sinal':
-	# 	return 'sinal_videos/%Y/%m/%d/sinal_{0}/sinal_{1}'.format(instance.id, filename)
-	# elif tipo == 'descricao':
-	# 	return 'sinal_videos/%Y/%m/%d/sinal_{0}/descricao_{1}'.format(instance.id, filename)
-	# elif tipo == 'exemplo':
-	# 	return 'sinal_videos/%Y/%m/%d/sinal_{0}/exemplo_{1}'.format(instance.id, filename)
-	# elif tipo == 'variacao':
-	# 	return 'sinal_videos/%Y/%m/%d/sinal_{0}/variacao_{1}'.format(instance.id, filename)
-	# return 'sinal_videos/%Y/%m/%d/sinal_{0}/{1}'.format(instance.id, filename)
+	if tipo == 'sinal':
+		return 'sinal_videos/%Y/%m/%d/sinal_{0}/{1}'.format(id, tipo)
+	elif tipo == 'descricao':
+		return 'sinal_videos/%Y/%m/%d/sinal_{0}/{1}'.format(id, tipo)
+	elif tipo == 'exemplo':
+		return 'sinal_videos/%Y/%m/%d/sinal_{0}/{1}'.format(id, tipo)
+	elif tipo == 'variacao':
+		return 'sinal_videos/%Y/%m/%d/sinal_{0}/{1}'.format(id, tipo)
+	return 'sinal_videos/%Y/%m/%d/sinal_{0}/'.format(id)
 
-	return 'sinal_videos/%Y/%m/%d/sinal_{0}/{1}'.format(instance.id, filename)
+	# return 'sinal_videos/%Y/%m/%d/sinal_{0}/{1}'.format(instance.id, filename)
 
 class Sinal(models.Model):
 	class Meta:
@@ -164,10 +164,10 @@ class Sinal(models.Model):
 	dataPost = models.DateField('data de criação', null=True)
 	postador = models.ForeignKey(User, null=True)
 	publicado = models.BooleanField(default=False)
-	sinalLibras = Video('Vídeo do sinal', upload_to=sinal_upload_path, null=True, blank=True)
-	descLibras = Video('Vídeo da descrição', upload_to=sinal_upload_path, null=True, blank=True)
-	exemploLibras = Video('Vídeo do exemplo', upload_to=sinal_upload_path, null=True, blank=True)
-	varicLibras = Video('Vídeo da variação', upload_to=sinal_upload_path, null=True, blank=True)
+	sinalLibras = Video('Vídeo do sinal', upload_to='sinal_videos/originais', null=True, blank=True)
+	descLibras = Video('Vídeo da descrição', upload_to='sinal_videos/originais', null=True, blank=True)
+	exemploLibras = Video('Vídeo do exemplo', upload_to='sinal_videos/originais', null=True, blank=True)
+	varicLibras = Video('Vídeo da variação', upload_to='sinal_videos/originais', null=True, blank=True)
 	tema = models.ForeignKey(Tema, null=True)
 
 	def image_tag_cmE(self):
