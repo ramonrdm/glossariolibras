@@ -209,19 +209,18 @@ def update_upload_path(sender, instance, created, **kwargs):
 	convertidos = '{0}/sinal_videos/convertidos'.format(settings.MEDIA_ROOT)
 
 	videoFields = [instance.sinalLibras, instance.descLibras, instance.exemploLibras, instance.varicLibras]
+	tags = ['sinal', 'descricao', 'exemplo', 'variacao']
 
-	for field in videoFields:
-		print field
-		print '============'
-		print str(field)
-		# ========= TERMINAR AQUI ==========
+	print str(enumerate(videoFields))
+
+	for index, field in enumerate(videoFields):
 		if field:
 			subprocess.call('cp {0}/{1} {2}/{3}-{4}-%s'.format(
 					originais,
 					str(field).split('/')[2],
 					convertidos,
 					instance.id,
-					str(field).split('.')[1][0]
+					tags[index]
 					)
 					% datetime.datetime.now().strftime('%Y-%m-%d-%X'),
 					shell=True)
