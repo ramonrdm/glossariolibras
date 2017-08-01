@@ -13,7 +13,7 @@ import subprocess
 
 def profile_upload_path(instance, filename):
 	# o arquivo será salvo em MEDIA_ROOT/profile_images/user_<id>/<filename>
-	return 'profile_images/user_{0}/{1}'.format(instance.user.id, filename)
+	return 'profile_images/{0}'.format(instance.user.username)
 
 class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -210,8 +210,6 @@ def update_upload_path(sender, instance, created, **kwargs):
 
 	videoFields = [instance.sinalLibras, instance.descLibras, instance.exemploLibras, instance.varicLibras]
 	tags = ['sinal', 'descricao', 'exemplo', 'variacao']
-
-	print str(enumerate(videoFields))
 
 	for index, field in enumerate(videoFields):
 		if field:
