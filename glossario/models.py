@@ -4,7 +4,6 @@ from django.db.models import FileField
 from django.core.files import File
 from django.contrib.auth.models import User
 from django.contrib.auth import hashers
-from django.db.models import F
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from django.conf import settings
@@ -199,5 +198,5 @@ def update_upload_path(sender, instance, created, **kwargs):
 					instance.id,
 					tags[index]
 					)
-					% datetime.datetime.now().strftime('%Y-%m-%d-%X'),
+					% datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'),
 					shell=True)

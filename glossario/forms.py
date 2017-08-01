@@ -16,6 +16,11 @@ class SinalForm(forms.ModelForm):
 		'cmD', 'localizacao', 'dataPost', 'postador', 'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras',
 		'publicado']
 
+#CONTINUAR AQUI - CUSTOMIZAR WIDGET
+class ImageSelect(forms.Select):
+	def render_option(self, selected_choices, option_value, option_label):
+		return u'<option data-icon="{{}}">...</option>'
+
 class EnviarSinaisForm(forms.ModelForm):
 
 	class Meta:
@@ -25,6 +30,7 @@ class EnviarSinaisForm(forms.ModelForm):
 
 	def __init__(self, *args, **kwargs):
 		super(EnviarSinaisForm, self).__init__(*args, **kwargs)
+		# self.fields['localizacao'].choices['data-icon'] = 'blabla.jpg'
 		for fields in self.fields:
 			self.fields[fields].empty_label = 'Selecione um item'
 
