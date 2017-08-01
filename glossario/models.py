@@ -12,7 +12,7 @@ import datetime
 import subprocess
 
 def profile_upload_path(instance, filename):
-	# o arquivo será salvo em MEDIA_ROOT/profile_images/user_<id>/<filename>
+	# o arquivo será salvo em MEDIA_ROOT/profile_images/<username>
 	return 'profile_images/{0}'.format(instance.user.username)
 
 class Profile(models.Model):
@@ -125,30 +125,8 @@ class Tema(models.Model):
 		return self.nome
 
 def sinal_upload_path(instance, filename):
+	# o arquivo será salvo em MEDIA_ROOT/sinal_videos/originais/<filename>
 	return 'sinal_videos/originais/{0}'.format(filename)
-
-	# def switch(instance=None, filename=None, tipo=None):
-	# 	return {
-	# 		'sinal': 'sinal_videos/%Y/%m/%d/sinal_{0}/sinal_{1}'.format(instance.id, filename),
-	# 		'descricao': 'sinal_videos/%Y/%m/%d/sinal_{0}/descricao_{1}'.format(instance.id, filename),
-	# 		'exemplo': 'sinal_videos/%Y/%m/%d/sinal_{0}/exemplo_{1}'.format(instance.id, filename),
-	# 		'variacao': 'sinal_videos/%Y/%m/%d/sinal_{0}/variacao_{1}'.format(instance.id, filename),
-	# 		'padrao': 'sinal_videos/%Y/%m/%d/sinal_{0}/{1}'.format(instance.id, filename)
-	# 	}.get(tipo, 'padrao')
-
-	# return switch(tipo)
-
-	# if tipo == 'sinal':
-	# 	return 'sinal_videos/%Y/%m/%d/sinal_{0}/{1}'.format(id, tipo)
-	# elif tipo == 'descricao':
-	# 	return 'sinal_videos/%Y/%m/%d/sinal_{0}/{1}'.format(id, tipo)
-	# elif tipo == 'exemplo':
-	# 	return 'sinal_videos/%Y/%m/%d/sinal_{0}/{1}'.format(id, tipo)
-	# elif tipo == 'variacao':
-	# 	return 'sinal_videos/%Y/%m/%d/sinal_{0}/{1}'.format(id, tipo)
-	# return 'sinal_videos/%Y/%m/%d/sinal_{0}/'.format(id)
-
-	# return 'sinal_videos/%Y/%m/%d/sinal_{0}/{1}'.format(instance.id, filename)
 
 class Sinal(models.Model):
 	class Meta:
@@ -204,6 +182,7 @@ class Sinal(models.Model):
 
 @receiver(post_save, sender=Sinal)
 def update_upload_path(sender, instance, created, **kwargs):
+	# o arquivo será salvo em MEDIA_ROOT/sinal_videos/convertidos/<id>-<tipo>-<YYYY>-<MM>-<DD>-<HH:MM:SS>
 
 	originais = '{0}/sinal_videos/originais'.format(settings.MEDIA_ROOT)
 	convertidos = '{0}/sinal_videos/convertidos'.format(settings.MEDIA_ROOT)
