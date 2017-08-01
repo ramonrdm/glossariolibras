@@ -7,9 +7,9 @@ from django.contrib.auth import hashers
 from django.db.models import F
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
+from django.conf import settings
 import datetime
 import subprocess
-from django.conf import settings
 
 def profile_upload_path(instance, filename):
 	# o arquivo será salvo em MEDIA_ROOT/profile_images/user_<id>/<filename>
@@ -208,11 +208,20 @@ def update_upload_path(sender, instance, created, **kwargs):
 	originais = '{0}/sinal_videos/originais'.format(settings.MEDIA_ROOT)
 	convertidos = '{0}/sinal_videos/convertidos'.format(settings.MEDIA_ROOT)
 
-	return subprocess.call('cp {0}/{1} {2}/{3}-%Y-%m-%d'.format(
-		originais,
-		str(instance.sinalLibras).split('/')[2],
-		convertidos,
-		instance.id
-		),
-		shell=True)
-#VERIFICAR shell=TRUE, pode ser um comando perigoso
+	videoFields = [instance.sinalLibras, instance.descLibras, instance.exemploLibras, instance.varicLibras]
+
+	for field in videoFields:
+		print field
+		print '============'
+		print str(field)
+		# ========= TERMINAR AQUI ==========
+		if field:
+			subprocess.call('cp {0}/{1} {2}/{3}-{4}-%s'.format(
+					originais,
+					str(field).split('/')[2],
+					convertidos,
+					instance.id,
+					str(field).split('.')[1][0]
+					)
+					% datetime.datetime.now().strftime('%Y-%m-%d-%X'),
+					shell=True)
