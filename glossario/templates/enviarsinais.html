@@ -1,7 +1,11 @@
 <head>
 	{% extends 'base.html' %}
-	{% load staticfiles %}
+	{% block Head %}
+		{{block.super}}
+		<link rel="stylesheet" type="text/css" href="/static/css/image-picker.css"/>
+		<script type="text/javascript" src="/static/js/image-picker.js"></script>
 	<title>{% block title %}Enviar sinais - Glossário Letras Libras{% endblock %}</title>
+	{% endblock %}
 </head>
 <body>
 	{% block Corpo %}
@@ -52,7 +56,6 @@
 				{{ field }}
 			</div>
 
-
 			{% else %}
 
 			<div class="col s12 m3" style="color: black">
@@ -73,7 +76,6 @@
 					<i class="material-icons right">send</i>
 				</button>
 			</div>
-
 		</form>
 	</div>
 
@@ -94,6 +96,11 @@
 	<script>
 		$(document).ready(function() {
 			$('select').material_select();
+		});
+
+		$(document).ready(function(){
+			// the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+			$('.modal').modal();
 		});
 	</script>
 	{% endblock %}
