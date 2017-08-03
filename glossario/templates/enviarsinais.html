@@ -1,13 +1,11 @@
-<head>
-	{% extends 'base.html' %}
-	{% block Head %}
-		{{block.super}}
-		{% load staticfiles %}
-		<link rel="stylesheet" type="text/css" href="{% static 'css/image-picker.css' %}"/>
-		<script type="text/javascript" src="{% static 'js/image-picker.js' %}"></script>
+{% extends 'base.html' %}
+{% block Head %}
+	{{block.super}}
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static '/css/image-picker.css' %}"/>
+	<script type="text/javascript" src="{% static '/js/image-picker.min.js' %}"></script>
 	<title>{% block title %}Enviar sinais - Glossário Letras Libras{% endblock %}</title>
-	{% endblock %}
-</head>
+{% endblock %}
 <body>
 	{% block Corpo %}
 	<div class="container">
@@ -96,10 +94,14 @@
 
 	<script>
 		$(document).ready(function() {
-			$('select').material_select();
-			$('select').imagepicker()
+			// $('option').attr('data-img-src', 'haha');
+			// $('select').material_select();
+			$('select').imagepicker();
 		});
-
+	</script>
+	<script>
+		$(window).on('load', function() {
+		});
 	</script>
 	{% endblock %}
 </body>

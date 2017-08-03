@@ -25,12 +25,13 @@ from django.utils.translation import ugettext_lazy
 class ImageSelect(Select):
     # allow_multiple_selected = False
 
-    # def __init__(self, attrs=None, choices=()):
-    #     super(ImageSelect, self).__init__(attrs)
-    #     # choices can be any iterable, but we may need to render this widget
-    #     # multiple times. Thus, collapse it into a list so it can be consumed
-    #     # more than once.
-    #     self.choices = list(choices)
+    def __init__(self, attrs=None, choices=()):
+        super(ImageSelect, self).__init__(attrs)
+        # choices can be any iterable, but we may need to render this widget
+        # multiple times. Thus, collapse it into a list so it can be consumed
+        # more than once.
+        self.choices = list(choices)
+        print self.choices
 
     # def __deepcopy__(self, memo):
     #     obj = copy.copy(self)
@@ -39,16 +40,6 @@ class ImageSelect(Select):
     #     memo[id(self)] = obj
     #     return obj
 
-    # def render(self, name, value, attrs=None):
-    #     if value is None:
-    #         value = ''
-    #     final_attrs = self.build_attrs(attrs, name=name)
-    #     output = [format_html('<select{}>', flatatt(final_attrs))]
-    #     options = self.render_options([value])
-    #     if options:
-    #         output.append(options)
-    #     output.append('</select>')
-    #     return mark_safe('\n'.join(output))
     def render(self, name, value, attrs=None):
         if value is None:
             value = ''
@@ -71,7 +62,7 @@ class ImageSelect(Select):
                 selected_choices.remove(option_value)
         else:
             selected_html = ''
-        return format_html('<option data-img-src="/static/img/cinema.jpg" value="{}"{}>{}</option>', option_value, selected_html, force_text(option_label))
+        return format_html('<option data-img-src="{}" value="{}"{}>{}</option>', self.choices, option_value, selected_html, force_text(option_label))
 
     # def render_options(self, selected_choices):
     #     # Normalize to strings.
