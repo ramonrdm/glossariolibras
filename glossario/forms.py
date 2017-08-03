@@ -19,12 +19,13 @@ class SinalForm(forms.ModelForm):
 
 class EnviarSinaisForm(forms.ModelForm):
 
-	localizacao = forms.ChoiceField(widget=ImageSelect())
-
 	class Meta:
 		model = Sinal
 		fields = ['traducaoP', 'traducaoI', 'descricao', 'localizacao', 'grupoCMe', 'cmE', 'grupoCMd', 'cmD',
 		'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras']
+		widgets = {'localizacao': ImageSelect(),}
+
+	# localizacao = forms.ChoiceField(widget=ImageSelect())
 
 	def __init__(self, *args, **kwargs):
 		super(EnviarSinaisForm, self).__init__(*args, **kwargs)
