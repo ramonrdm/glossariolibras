@@ -2,8 +2,9 @@
 	{% extends 'base.html' %}
 	{% block Head %}
 		{{block.super}}
-		<link rel="stylesheet" type="text/css" href="/static/css/image-picker.css"/>
-		<script type="text/javascript" src="/static/js/image-picker.js"></script>
+		{% load staticfiles %}
+		<link rel="stylesheet" type="text/css" href="{% static 'css/image-picker.css' %}"/>
+		<script type="text/javascript" src="{% static 'js/image-picker.js' %}"></script>
 	<title>{% block title %}Enviar sinais - Glossário Letras Libras{% endblock %}</title>
 	{% endblock %}
 </head>
@@ -96,7 +97,7 @@
 	<script>
 		$(document).ready(function() {
 			$('select').material_select();
-			$("select").imagepicker()
+			$('select').imagepicker()
 		});
 
 	</script>
