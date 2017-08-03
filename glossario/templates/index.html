@@ -8,7 +8,7 @@
 
     <div class="center blockContainer">
         <div class="center block">
-            <a href="/temas"><img class="circle z-depth-2 hoverable imgIndex" src="{% static 'img/arvore_banyan_havai.png' %}"><span class="flow-text textoIndex">Temas</span></a>
+            <a href="{% url 'temas' %}"><img class="circle z-depth-2 hoverable imgIndex" src="{% static 'img/arvore_banyan_havai.png' %}"><span class="flow-text textoIndex">Temas</span></a>
         </div>
         {% for glossario in glossarios %}
             <div class="center block">
