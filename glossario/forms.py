@@ -25,18 +25,20 @@ class EnviarSinaisForm(forms.ModelForm):
 		model = Sinal
 		fields = ['traducaoP', 'traducaoI', 'descricao', 'localizacao', 'grupoCMe', 'cmE', 'grupoCMd', 'cmD',
 		'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras']
-		widgets = {'localizacao': ImageSelect(choices=Localizacao.objects.all()),}
+		widgets = {'localizacao': ImageSelect(attrs={'class': 'image-picker'}),}
 
-	# class Media:
-	# 	css = {
-	# 		'all': ('css/image-picker.css')
-	# 	}
-	# 	js = ('js/image-picker.js',)
+	class Media:
+		css = {
+			'all': ('css/image-picker.css')
+		}
+		js = ('js/image-picker.js',)
 
 	def __init__(self, *args, **kwargs):
 		super(EnviarSinaisForm, self).__init__(*args, **kwargs)
-		for fields in self.fields:
-			self.fields[fields].empty_label = 'Selecione um item'
+		if hasattr(self, 'instance'):
+			self.fields['localizacao'].widget.instance = self.instance
+		for field in self.fields:
+			self.fields[field].empty_label = 'Selecione um item'
 
 class GrupoCMForm(forms.ModelForm):
 

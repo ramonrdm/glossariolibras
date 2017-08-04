@@ -26,12 +26,13 @@ class ImageSelect(Select):
     # allow_multiple_selected = False
 
     def __init__(self, attrs=None, choices=()):
+        self.instance = None
         super(ImageSelect, self).__init__(attrs)
         # choices can be any iterable, but we may need to render this widget
         # multiple times. Thus, collapse it into a list so it can be consumed
         # more than once.
         self.choices = list(choices)
-        print self.choices
+        print self.instance
 
     # def __deepcopy__(self, memo):
     #     obj = copy.copy(self)
@@ -40,16 +41,16 @@ class ImageSelect(Select):
     #     memo[id(self)] = obj
     #     return obj
 
-    def render(self, name, value, attrs=None):
-        if value is None:
-            value = ''
-        final_attrs = self.build_attrs(attrs, name=name)
-        output = [format_html('<select{} class="image-picker">', flatatt(final_attrs))]
-        options = self.render_options([value])
-        if options:
-            output.append(options)
-        output.append('</select>')
-        return mark_safe('\n'.join(output))
+    # def render(self, name, value, attrs=None):
+    #     if value is None:
+    #         value = ''
+    #     final_attrs = self.build_attrs(attrs, name=name)
+    #     output = [format_html('<select{} class="image-picker">', flatatt(final_attrs))]
+    #     options = self.render_options([value])
+    #     if options:
+    #         output.append(options)
+    #     output.append('</select>')
+    #     return mark_safe('\n'.join(output))
 
     def render_option(self, selected_choices, option_value, option_label):
         if option_value is None:
@@ -62,7 +63,7 @@ class ImageSelect(Select):
                 selected_choices.remove(option_value)
         else:
             selected_html = ''
-        return format_html('<option data-img-src="{}" value="{}"{}>{}</option>', self.choices, option_value, selected_html, force_text(option_label))
+        return format_html('<option data-img-src="" value="{}"{}>{}</option>', option_value, selected_html, force_text(option_label))
 
     # def render_options(self, selected_choices):
     #     # Normalize to strings.
