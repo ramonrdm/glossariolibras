@@ -35,8 +35,6 @@ class EnviarSinaisForm(forms.ModelForm):
 
 	def __init__(self, *args, **kwargs):
 		super(EnviarSinaisForm, self).__init__(*args, **kwargs)
-		if hasattr(self, 'instance'):
-			self.fields['localizacao'].widget.instance = self.instance
 		for field in self.fields:
 			self.fields[field].empty_label = 'Selecione um item'
 

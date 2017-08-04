@@ -94,14 +94,14 @@
 
 	<script>
 		$(document).ready(function() {
-			// $('option').attr('data-img-src', 'haha');
 			$('select').material_select();
 			$('select').imagepicker();
+			// $('option').attr('data-img-src', {{formulario.localizacao.imagem.url}});
 
 		});
 	</script>
 	<script>
-		$('#myTextbox1').on('input', function() {
+		$('select').on('input', function() {
 			$('select').imagepicker();
 		});
 	</script>

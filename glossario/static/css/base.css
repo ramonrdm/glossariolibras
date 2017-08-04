@@ -2,6 +2,7 @@
 
 /* === BASE === */
 
+/* Efeito do clique nos links da sidenav */
 .waves-effect.waves-blue .waves-ripple {
 	background-color: rgba(0, 0, 112, 0.65);
 }
@@ -179,6 +180,11 @@ body {
 
 .formEnviarSinais {
 	padding-top: 5%;
+}
+
+/* Tamanho das imagens do imagepicker */
+.thumbnails li img{
+	width: 100px;
 }
 
 .botaoEnviarSinal, .botaoEnviarSinal:focus {

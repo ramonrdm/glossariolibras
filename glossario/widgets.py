@@ -23,16 +23,21 @@ from django.utils.six.moves import range
 from django.utils.translation import ugettext_lazy
 
 class ImageSelect(Select):
+
+    class Media:
+        css = {
+            'all': ('css/image-picker.css')
+        }
+        js = ('js/image-picker.js',)
+
     # allow_multiple_selected = False
 
     def __init__(self, attrs=None, choices=()):
-        self.instance = None
         super(ImageSelect, self).__init__(attrs)
         # choices can be any iterable, but we may need to render this widget
         # multiple times. Thus, collapse it into a list so it can be consumed
         # more than once.
         self.choices = list(choices)
-        print self.instance
 
     # def __deepcopy__(self, memo):
     #     obj = copy.copy(self)
