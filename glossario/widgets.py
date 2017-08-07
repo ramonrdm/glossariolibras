@@ -32,9 +32,11 @@ class ImageSelect(Select):
 
     # allow_multiple_selected = False
 
-    def __init__(self, attrs=None, choices=()):
+    def __init__(self, attrs=None, choices=(), imgURLs=None):
         super(ImageSelect, self).__init__(attrs)
         self.choices = list(choices)
+        self.imgURLs = imgURLs
+        print self.imgURLs
 
     # def __deepcopy__(self, memo):
     #     obj = copy.copy(self)
@@ -65,7 +67,7 @@ class ImageSelect(Select):
                 selected_choices.remove(option_value)
         else:
             selected_html = ''
-        return format_html('<option data-img-src="localizacaoOrelhas.png" value="{}"{}>{}</option>',
+        return format_html('<option data-img-src="https://oxfest.files.wordpress.com/2017/02/codingsnippet.jpg" value="{}"{}>{}</option>',
             option_value, selected_html,
             force_text(option_label)
             )

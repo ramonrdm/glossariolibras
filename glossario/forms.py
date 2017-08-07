@@ -39,6 +39,9 @@ class EnviarSinaisForm(forms.ModelForm):
 
 	def __init__(self, *args, **kwargs):
 		super(EnviarSinaisForm, self).__init__(*args, **kwargs)
+		# imgURLs = [self.fields['localizacao'].imagem.url, self.fields['grupoCMe'].imagem.url, self.fields['cmE'].imagem.url,
+		# self.fields['grupoCMd'].imagem.url, self.fields['cmD'].imagem.url]
+		# imgURLs = self.fields.get('localizacao').imagem.url
 		for field in self.fields:
 			self.fields[field].empty_label = 'Selecione um item'
 

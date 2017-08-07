@@ -1,0 +1,2 @@
+- Tratar envio de aquivos que não são vídeos no enviar sinais;
+- Rever as opções de conversão do FFMPEG para conseguir a melhor relação qualidade/tempo;
