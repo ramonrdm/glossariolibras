@@ -26,17 +26,14 @@ class ImageSelect(Select):
 
     class Media:
         css = {
-            'all': ('css/image-picker.css')
+            'all': ('/glossario/static/css/image-picker.css')
         }
-        js = ('js/image-picker.js',)
+        js = ('/glossario/static/js/image-picker.js',)
 
     # allow_multiple_selected = False
 
     def __init__(self, attrs=None, choices=()):
         super(ImageSelect, self).__init__(attrs)
-        # choices can be any iterable, but we may need to render this widget
-        # multiple times. Thus, collapse it into a list so it can be consumed
-        # more than once.
         self.choices = list(choices)
 
     # def __deepcopy__(self, memo):
@@ -68,7 +65,10 @@ class ImageSelect(Select):
                 selected_choices.remove(option_value)
         else:
             selected_html = ''
-        return format_html('<option data-img-src="" value="{}"{}>{}</option>', option_value, selected_html, force_text(option_label))
+        return format_html('<option data-img-src="localizacaoOrelhas.png" value="{}"{}>{}</option>',
+            option_value, selected_html,
+            force_text(option_label)
+            )
 
     # def render_options(self, selected_choices):
     #     # Normalize to strings.

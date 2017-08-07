@@ -191,7 +191,8 @@ def update_upload_path(sender, instance, created, **kwargs):
 
 	for index, field in enumerate(videoFields):
 		if field:
-			subprocess.call('ffmpeg -i {0}/{1} {2}/{3}-{4}-%s.mp4'.format(
+			subprocess.call('ffmpeg -i {0}/{1} -c:v libx264 -crf 19 -movflags faststart -threads 0 -preset slow -c:a aac -strict -2 {2}/{3}-{4}-%s.mp4'
+				.format(
 					originais,
 					str(field).split('/')[2],
 					convertidos,
@@ -199,4 +200,5 @@ def update_upload_path(sender, instance, created, **kwargs):
 					tags[index]
 					)
 					% datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'),
-					shell=True)
+					shell=True
+					)

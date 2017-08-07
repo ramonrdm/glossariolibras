@@ -188,6 +188,7 @@ body {
 }
 
 .botaoEnviarSinal, .botaoEnviarSinal:focus {
+	margin-top: 20px;
 	background-color: #003a99;
 }
 
