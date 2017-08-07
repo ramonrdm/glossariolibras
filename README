@@ -42,6 +42,7 @@ Um glossário que reunie glossários de varias areas do conhecimento humano.
 Requisitos:
 
 $ pip install Pillow (se houver erro, tentar dar upgrade na biblioteca zlib).
+$ sudo apt install ffmpeg (se a distro do linux utilizada não for Mint, substituir apt pelo gerenciador de pacotes da tal versão).
 
 Procedimentos:
 

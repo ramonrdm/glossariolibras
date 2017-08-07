@@ -181,7 +181,7 @@ class Sinal(models.Model):
 
 @receiver(post_save, sender=Sinal)
 def update_upload_path(sender, instance, created, **kwargs):
-	# o arquivo será salvo em MEDIA_ROOT/sinal_videos/convertidos/<id>-<tipo>-<YYYY>-<MM>-<DD>-<HH:MM:SS>
+	# o arquivo será salvo em MEDIA_ROOT/sinal_videos/convertidos/<id>-<tag>-<YYYY>-<MM>-<DD>-<HH><MM><SS>
 
 	originais = '{0}/sinal_videos/originais'.format(settings.MEDIA_ROOT)
 	convertidos = '{0}/sinal_videos/convertidos'.format(settings.MEDIA_ROOT)
@@ -191,7 +191,7 @@ def update_upload_path(sender, instance, created, **kwargs):
 
 	for index, field in enumerate(videoFields):
 		if field:
-			subprocess.call('cp {0}/{1} {2}/{3}-{4}-%s'.format(
+			subprocess.call('ffmpeg -i {0}/{1} {2}/{3}-{4}-%s.mp4'.format(
 					originais,
 					str(field).split('/')[2],
 					convertidos,
