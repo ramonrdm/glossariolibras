@@ -31,17 +31,9 @@ class EnviarSinaisForm(forms.ModelForm):
 					'cmD': ImageSelect(attrs={'class': 'image-picker'})
 					}
 
-	class Media:
-		css = {
-			'all': ('css/image-picker.css')
-		}
-		js = ('js/image-picker.js',)
-
 	def __init__(self, *args, **kwargs):
 		super(EnviarSinaisForm, self).__init__(*args, **kwargs)
-		# imgURLs = [self.fields['localizacao'].imagem.url, self.fields['grupoCMe'].imagem.url, self.fields['cmE'].imagem.url,
-		# self.fields['grupoCMd'].imagem.url, self.fields['cmD'].imagem.url]
-		# imgURLs = self.fields.get('localizacao').imagem.url
+		self.fields['localizacao'].widget.form_instance = Localizacao.objects.get(nome=self.fields['localizacao']).imagem.url
 		for field in self.fields:
 			self.fields[field].empty_label = 'Selecione um item'
 
@@ -78,8 +70,8 @@ class PesquisaCheckboxForm(forms.Form):
 
 	def __init__(self, *args, **kwargs):
 		super(PesquisaCheckboxForm, self).__init__(*args, **kwargs)
-		for fields in self.fields:
-			self.fields[fields].required = False
+		for field in self.fields:
+			self.fields[field].required = False
 
 #	def clean_nome(self):
 #		palavra = self.cleaned_data['nome']
