@@ -12,10 +12,10 @@ class ImageSelect(Select):
         }
         js = ('/static/js/image-picker.js',)
 
-    def __init__(self, attrs=None, choices=(), form_instance=None):
+    def __init__(self, attrs=None, choices=(), field_img=None):
         super(ImageSelect, self).__init__(attrs)
         self.choices = list(choices)
-        self.form_instance = form_instance
+        self.field_img = field_img
 
     def render_option(self, selected_choices, option_value, option_label):
         if option_value is None:
@@ -29,7 +29,7 @@ class ImageSelect(Select):
         else:
             selected_html = ''
         return format_html('<option data-img-src="{}" value="{}"{}>{}</option>',
-            str(self.form_instance), #TESTE
+            str(self.field_img),
             option_value,
             selected_html,
             force_text(option_label)
