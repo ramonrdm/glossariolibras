@@ -33,7 +33,7 @@ class EnviarSinaisForm(forms.ModelForm):
 
 	def __init__(self, *args, **kwargs):
 		super(EnviarSinaisForm, self).__init__(*args, **kwargs)
-		self.fields['localizacao'].widget.form_instance = Localizacao.objects.get(nome=self.fields['localizacao']).imagem.url
+		self.fields['localizacao'].widget.form_instance = self.fields['localizacao']
 		for field in self.fields:
 			self.fields[field].empty_label = 'Selecione um item'
 

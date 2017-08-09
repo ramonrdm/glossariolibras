@@ -16,7 +16,6 @@ class ImageSelect(Select):
         super(ImageSelect, self).__init__(attrs)
         self.choices = list(choices)
         self.form_instance = form_instance
-        print self.form_instance
 
     def render_option(self, selected_choices, option_value, option_label):
         if option_value is None:
@@ -29,7 +28,8 @@ class ImageSelect(Select):
                 selected_choices.remove(option_value)
         else:
             selected_html = ''
-        return format_html('<option data-img-src="" value="{}"{}>{}</option>',
+        return format_html('<option data-img-src="{}" value="{}"{}>{}</option>',
+            str(self.form_instance), #TESTE
             option_value,
             selected_html,
             force_text(option_label)
