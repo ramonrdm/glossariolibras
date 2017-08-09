@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from glossario.models import Glossario, Sinal, GrupoCM, CM, Localizacao
-from django import forms
 from glossario.widgets import ImageSelect
+from django.db.models import F
+from django import forms
 
 class GlossarioForm(forms.ModelForm):
 
@@ -34,7 +35,10 @@ class EnviarSinaisForm(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
 		super(EnviarSinaisForm, self).__init__(*args, **kwargs)
 		for field in self.fields:
-			self.fields[field].widget.field_img = 'path_para_a_imagem'
+			try:
+				self.fields[field].widget.field_img = Localizacao.objects.get(nome=F(self.fields[field])).imagem.url
+			except Localizacao.DoesNotExist:
+				self.fields[field].widget.field_img = 'sem imagem'
 			self.fields[field].empty_label = 'Selecione um item'
 
 class GrupoCMForm(forms.ModelForm):
