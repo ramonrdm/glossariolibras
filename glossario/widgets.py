@@ -28,8 +28,26 @@ class ImageSelect(Select):
                 selected_choices.remove(option_value)
         else:
             selected_html = ''
+
+        print 'aquiaquiaquiaquiaquiaquiaquiaqui'
+        print option_value
+
+        th = None
+        if self.field_img:
+            if option_value:
+                rdm = int(option_value) - 2
+                if 0 < rdm <13:
+                    th = self.field_img[rdm]
+                else:
+                    th = None
+
+        if option_value == '':
+            lista = ''
+        else:
+            lista = self.field_img[option_value - 1]
+
         return format_html('<option data-img-src="{}" value="{}"{}>{}</option>',
-            str(self.field_img),
+            th,
             option_value,
             selected_html,
             force_text(option_label)
