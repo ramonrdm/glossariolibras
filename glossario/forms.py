@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.forms.models import ModelChoiceField
 from glossario.models import Glossario, Sinal, GrupoCM, CM, Localizacao
 from glossario.widgets import ImageSelect
 from django import forms
@@ -33,12 +34,16 @@ class EnviarSinaisForm(forms.ModelForm):
 
 	def __init__(self, *args, **kwargs):
 		super(EnviarSinaisForm, self).__init__(*args, **kwargs)
-		i = 0
-		self.fields['localizacao'].widget.field_img = list()
 		for field in self.fields:
+			self.fields[field].widget.field_img = list()
 			self.fields[field].empty_label = 'Selecione um item'
-			self.fields['localizacao'].widget.field_img.append(self.fields['localizacao'].queryset[i].imagem.url)
-			i = i + 1
+			print type(self.fields[field])
+			for option in xrange(0, 20):
+			# xrange(0, len(fieldComMaisOptions))
+				if type(self.fields[field]) is ModelChoiceField:
+					if len(self.fields[field].queryset) >= option + 1:
+						self.fields[field].widget.field_img.append(self.fields[field].queryset[option].imagem.url)
+						print self.fields[field].widget.field_img
 
 class GrupoCMForm(forms.ModelForm):
 

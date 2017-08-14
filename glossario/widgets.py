@@ -14,10 +14,12 @@ class ImageSelect(Select):
 
     def __init__(self, attrs=None, choices=(), field_img=None):
         super(ImageSelect, self).__init__(attrs)
+        i = -1;
         self.choices = list(choices)
         self.field_img = field_img
 
     def render_option(self, selected_choices, option_value, option_label):
+        i += 1;
         if option_value is None:
             option_value = ''
         option_value = force_text(option_value)
@@ -29,25 +31,25 @@ class ImageSelect(Select):
         else:
             selected_html = ''
 
-        print 'aquiaquiaquiaquiaquiaquiaquiaqui'
-        print option_value
+        # print 'aquiaquiaquiaquiaquiaquiaquiaqui'
+        # print option_value
 
-        th = None
-        if self.field_img:
-            if option_value:
-                rdm = int(option_value) - 2
-                if 0 < rdm <13:
-                    th = self.field_img[rdm]
-                else:
-                    th = None
+        # th = None
+        # if self.field_img:
+        #     if option_value:
+        #         rdm = int(option_value) - 2
+        #         if 0 < rdm <13:
+        #             th = self.field_img[rdm]
+        #         else:
+        #             th = None
 
-        if option_value == '':
-            lista = ''
-        else:
-            lista = self.field_img[option_value - 1]
+        # if option_value == '':
+        #     lista = ''
+        # else:
+        #     lista = self.field_img[option_value - 1]
 
         return format_html('<option data-img-src="{}" value="{}"{}>{}</option>',
-            th,
+            self.field_img[i],
             option_value,
             selected_html,
             force_text(option_label)
