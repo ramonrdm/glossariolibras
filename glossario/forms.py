@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.forms.models import ModelChoiceField
 from glossario.models import Glossario, Sinal, GrupoCM, CM, Localizacao
+from django.conf import settings
 from glossario.widgets import ImageSelect
 from django import forms
 
@@ -20,6 +21,17 @@ class SinalForm(forms.ModelForm):
 
 class EnviarSinaisForm(forms.ModelForm):
 
+	class Media:
+		cssPath = '{0}/image-picker/image-picker/image-picker.css'.format(settings.STATIC_ROOT)
+		# cssPath2 = '{0}/css/image-picker.scss'.format(settings.STATIC_ROOT)
+		jsPath = '{0}/image-picker/image-picker/image-picker.min.js'.format(settings.STATIC_ROOT)
+		# jsPath2 = '{0}/js/image-picker.coffee'.format(settings.STATIC_ROOT)
+
+		css = {
+			'all': (cssPath,)
+		}
+		js = (jsPath,)
+
 	class Meta:
 		model = Sinal
 		fields = ['traducaoP', 'traducaoI', 'descricao', 'localizacao', 'grupoCMe', 'cmE', 'grupoCMd', 'cmD',
@@ -37,13 +49,11 @@ class EnviarSinaisForm(forms.ModelForm):
 		for field in self.fields:
 			self.fields[field].widget.field_img = list()
 			self.fields[field].empty_label = 'Selecione um item'
-			print type(self.fields[field])
 			for option in xrange(0, 20):
 			# xrange(0, len(fieldComMaisOptions))
 				if type(self.fields[field]) is ModelChoiceField:
 					if len(self.fields[field].queryset) >= option + 1:
 						self.fields[field].widget.field_img.append(self.fields[field].queryset[option].imagem.url)
-						print self.fields[field].widget.field_img
 
 class GrupoCMForm(forms.ModelForm):
 

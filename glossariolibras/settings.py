@@ -80,7 +80,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 PROJECT_ROOT = os.path.dirname(os.path.dirname(__file__))
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'glossario/static')
 
 TEMPLATES = [
     {
@@ -99,4 +99,3 @@ TEMPLATES = [
         },
     },
 ]
-
