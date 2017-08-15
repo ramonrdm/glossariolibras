@@ -9,9 +9,9 @@ class ImageSelect(Select):
 
     class Media:
         css = {
-            'all': ('image-picker.css')
+            'all': ('/static/image-picker/image-picker/image-picker.css')
         }
-        js = ('image-picker.min.js')
+        js = ('/static/image-picker/image-picker/image-picker.js')
 
     def __init__(self, attrs=None, choices=(), field_img=None):
         super(ImageSelect, self).__init__(attrs)

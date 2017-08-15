@@ -181,7 +181,7 @@ body {
 	padding-top: 5%;
 }
 
-/* Tamanho das imagens do imagepicker */
+/*Tamanho das imagens do imagepicker */
 .thumbnails li img {
 	width: 100px;
 }
@@ -195,7 +195,7 @@ body {
 	background-color: #0060ff;
 }
 
-/*===============================================*/
+/*========= FIM DAS CLASSES REFATORADAS =========*/
 
 .titulo {
 	margin-top: 5%;

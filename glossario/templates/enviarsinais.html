@@ -2,8 +2,8 @@
 {% block Head %}
 	{{block.super}}
 	{% load staticfiles %}
-	<link rel="stylesheet" type="text/css" href="{% static '/css/image-picker.css' %}"/>
-	<script type="text/javascript" src="{% static '/js/image-picker.min.js' %}"></script>
+	<link rel="stylesheet" type="text/css" href="/static/image-picker/image-picker/image-picker.css"/>
+	<script type="text/javascript" src="/static/image-picker/image-picker/image-picker.js"></script>
 	<title>{% block title %}Enviar sinais - Glossário Letras Libras{% endblock %}</title>
 {% endblock %}
 <body>
@@ -81,17 +81,13 @@
 	</div>
 
 	{% if toastSucesso %}
-
 	<script>
 		Materialize.toast('Sinal enviado para avaliação', 5000)
 	</script>
-
 	{% elif toastRepetido %}
-
 	<script>
 		Materialize.toast('Ops! Parece que este sinal já existe', 5000)
 	</script>
-
 	{% endif %}
 
 	<script>
