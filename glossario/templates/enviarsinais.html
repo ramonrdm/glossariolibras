@@ -3,17 +3,13 @@
 	{{block.super}}
 	{% load staticfiles %}
 	<link rel="stylesheet" type="text/css" href="{% static '/css/image-picker.css' %}"/>
-	<link rel="stylesheet" type="text/css" href="{% static '/css/image-picker.scss' %}"/>
 	<script type="text/javascript" src="{% static '/js/image-picker.min.js' %}"></script>
-	<script type="text/javascript" src="{% static '/js/image-picker.coffee' %}"></script>
-
-	<link rel="stylesheet" type="text/css" href="{% static '/image-picker/image-picker/image-picker.css' %}"/>
-	<script type="text/javascript" src="{% static '/image-picker/image-picker/image-picker.min.js' %}"></script>
-
 	<title>{% block title %}Enviar sinais - Glossário Letras Libras{% endblock %}</title>
 {% endblock %}
 <body>
+	{{formulario.media}}
 	{% block Corpo %}
+
 	<div class="container">
 
 		<h2 class="thin center">Enviar sinais</h2>

@@ -21,16 +21,11 @@ class SinalForm(forms.ModelForm):
 
 class EnviarSinaisForm(forms.ModelForm):
 
-	class Media:
-		cssPath = '{0}/image-picker/image-picker/image-picker.css'.format(settings.STATIC_ROOT)
-		# cssPath2 = '{0}/css/image-picker.scss'.format(settings.STATIC_ROOT)
-		jsPath = '{0}/image-picker/image-picker/image-picker.min.js'.format(settings.STATIC_ROOT)
-		# jsPath2 = '{0}/js/image-picker.coffee'.format(settings.STATIC_ROOT)
-
-		css = {
-			'all': (cssPath,)
-		}
-		js = (jsPath,)
+	# class Media:
+	# 	css = {
+	# 		'all': ('image-picker.css')
+	# 	}
+	# 	js = ('image-picker.min.js')
 
 	class Meta:
 		model = Sinal
@@ -48,9 +43,9 @@ class EnviarSinaisForm(forms.ModelForm):
 		super(EnviarSinaisForm, self).__init__(*args, **kwargs)
 		for field in self.fields:
 			self.fields[field].widget.field_img = list()
-			self.fields[field].empty_label = 'Selecione um item'
+			self.fields[field].empty_label = 'Nenhum'
 			for option in xrange(0, 20):
-			# xrange(0, len(fieldComMaisOptions))
+			# trocar 20 do xrange para length do select que tiver mais options
 				if type(self.fields[field]) is ModelChoiceField:
 					if len(self.fields[field].queryset) >= option + 1:
 						self.fields[field].widget.field_img.append(self.fields[field].queryset[option].imagem.url)

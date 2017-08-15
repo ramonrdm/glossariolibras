@@ -7,27 +7,11 @@ from django.conf import settings
 
 class ImageSelect(Select):
 
-    # class Media:
-    #     cssPath = '{0}/css/image-picker.css'.format(settings.STATIC_ROOT)
-    #     cssPath2 = '{0}/css/image-picker.scss'.format(settings.STATIC_ROOT)
-    #     jsPath = '{0}/js/image-picker.min.js'.format(settings.STATIC_ROOT)
-    #     jsPath2 = '{0}/js/image-picker.coffee'.format(settings.STATIC_ROOT)
-
-    #     css = {
-    #         'all': (cssPath, cssPath2)
-    #     }
-    #     js = (jsPath, jsPath2)
-
     class Media:
-        cssPath = '{0}/image-picker/image-picker/image-picker.css'.format(settings.STATIC_ROOT)
-        # cssPath2 = '{0}/css/image-picker.scss'.format(settings.STATIC_ROOT)
-        jsPath = '{0}/image-picker/image-picker/image-picker.min.js'.format(settings.STATIC_ROOT)
-        # jsPath2 = '{0}/js/image-picker.coffee'.format(settings.STATIC_ROOT)
-
         css = {
-            'all': (cssPath,)
+            'all': ('image-picker.css')
         }
-        js = (jsPath,)
+        js = ('image-picker.min.js')
 
     def __init__(self, attrs=None, choices=(), field_img=None):
         super(ImageSelect, self).__init__(attrs)
@@ -46,8 +30,7 @@ class ImageSelect(Select):
         else:
             selected_html = ''
 
-        i = None
-        img = None
+        i = img = None
         if option_value != '':
             i = int(option_value) - 1
             img = self.field_img[i]
