@@ -7,11 +7,11 @@ from django.conf import settings
 
 class ImageSelect(Select):
 
-    class Media:
-        css = {
-            'all': ('/static/image-picker/image-picker/image-picker.css')
-        }
-        js = ('/static/image-picker/image-picker/image-picker.js')
+    # class Media:
+    #     css = {
+    #         'all': ('/static/image-picker/image-picker/image-picker.css')
+    #     }
+    #     js = ('/static/image-picker/image-picker/image-picker.js')
 
     def __init__(self, attrs=None, choices=(), field_img=None):
         super(ImageSelect, self).__init__(attrs)

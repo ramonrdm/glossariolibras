@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{{formulario.media}}
 {% block Head %}
 	{{block.super}}
 	{% load staticfiles %}
@@ -7,24 +8,16 @@
 	<title>{% block title %}Enviar sinais - Glossário Letras Libras{% endblock %}</title>
 {% endblock %}
 <body>
-	{{formulario.media}}
 	{% block Corpo %}
 
 	<div class="container">
-
 		<h2 class="thin center">Enviar sinais</h2>
-
 		<div class="divider"></div>
-
 		<form method="post" class="formEnviarSinais" enctype="multipart/form-data">
 			{% csrf_token %}
-
 			<div class="row">
-
 			{% for field in formulario %}
-
 			{% if field.auto_id == 'id_sinalLibras' or field.auto_id == 'id_varicLibras' or field.auto_id == 'id_descLibras' or field.auto_id == 'id_exemploLibras' %}
-
 			<div class="col s12 m6">
 				<label for="{{field.auto_id}}">{{field.label_tag}}</label>
 				<div class="file-field input-field">
@@ -38,9 +31,7 @@
 					</div>
 				</div>
 			</div>
-
 			{% elif field.auto_id == 'id_traducaoP' or field.auto_id == 'id_traducaoI' or field.auto_id == 'id_descricao' %}
-
 			<div class="input-field col s12 m4">
 				<div class="fieldWrapper">
 					{{ field.errors }}
@@ -48,29 +39,21 @@
 					{{ field }}
 				</div>
 			</div>
-
 			{% elif field.auto_id == 'id_localizacao' %}
-
 			<div class="col s12">
 				{{ field.errors }}
 				{{ field.label_tag }}
 				{{ field }}
 			</div>
-
 			{% else %}
-
 			<div class="col s12 m6">
 				{{ field.errors }}
 				{{ field.label_tag }}
 				{{ field }}
 			</div>
-
 			{% endif %}
-
 			{% endfor%}
-
 			</div>
-
 			<div class="center">
 				<button class="btn-large waves-effect waves-light botaoEnviarSinal" type="submit" name="botaoEnviaForm">
 					Enviar
@@ -79,7 +62,6 @@
 			</div>
 		</form>
 	</div>
-
 	{% if toastSucesso %}
 	<script>
 		Materialize.toast('Sinal enviado para avaliação', 5000)
@@ -89,7 +71,6 @@
 		Materialize.toast('Ops! Parece que este sinal já existe', 5000)
 	</script>
 	{% endif %}
-
 	<script>
 		$(document).ready(function() {
 			// $('select').material_select();
@@ -98,5 +79,6 @@
 			});
 		});
 	</script>
+
 	{% endblock %}
 </body>

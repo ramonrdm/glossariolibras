@@ -186,6 +186,11 @@ body {
 	width: 100px;
 }
 
+/*Centralizar a descrição da option*/
+.thumbnails li p {
+	text-align: center;
+}
+
 .botaoEnviarSinal, .botaoEnviarSinal:focus {
 	margin-top: 20px;
 	background-color: #003a99;
