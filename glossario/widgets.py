@@ -25,7 +25,6 @@ class ImageSelect(Select):
         if option_value in selected_choices:
             selected_html = mark_safe(' selected="selected"')
             if not self.allow_multiple_selected:
-                # Only allow for a single selection.
                 selected_choices.remove(option_value)
         else:
             selected_html = ''

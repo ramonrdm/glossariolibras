@@ -12,7 +12,7 @@ class GlossarioForm(forms.ModelForm):
 		exclude = ['link','dataCriacao']
 
 class SinalForm(forms.ModelForm):
-
+	
 	class Meta:
 		model = Sinal
 		fields = ['tema', 'glossario', 'traducaoP', 'traducaoI', 'descricao', 'bsw', 'grupoCMe', 'cmE', 'grupoCMd',
