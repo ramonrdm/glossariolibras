@@ -175,18 +175,24 @@ body {
 	text-align: justify;
 }
 
-/* === ENVIAR SINAIS */
+/* === ENVIAR SINAIS === */
 
 .formEnviarSinais {
 	padding-top: 5%;
 }
 
-/*Tamanho das imagens do imagepicker */
+/* Transição das imagens do imagepicker */
+.thumbnail {
+	border-radius: 5px;
+	transition: all 0.2s ease-in-out;
+}
+
+/* Tamanho das imagens do imagepicker */
 .thumbnails li img {
 	width: 100px;
 }
 
-/*Centralizar a descrição da option*/
+/* Centralizar a descrição da option */
 .thumbnails li p {
 	text-align: center;
 }
