@@ -18,12 +18,11 @@ ul.dropdown-content.select-dropdown li span {
     color: black;
 }
 
-html {
+html, body, ul#nav-mobile.side-nav {
 	height: 100%;
 }
 
 body {
-	height: 100%;
 	padding-left: 300px;
 	background-color: #f7f7f7;
 }
@@ -33,6 +32,9 @@ body {
 		padding-left: 0;
 	}
 }
+
+/*.nav ul a:hover {
+}*/
 
 .logoGlossario {
 	width: 280px;
@@ -56,8 +58,14 @@ body {
 }
 
 .logoUFSCMobile {
-	/*margin-top: 10%;*/
 	width: 220px;
+	position: absolute;
+	margin-left: 20px;
+	margin-top: 5%;
+}
+
+.logoUFSCMobileWrapper {
+	position: relative;
 }
 
 .logoUFSCSearch {
@@ -191,6 +199,17 @@ body {
 	padding-top: 5%;
 }
 
+.botaoEnviarSinal, .botaoEnviarSinal:focus {
+	margin-top: 20px;
+	background-color: #003a99;
+}
+
+.botaoEnviarSinal:hover {
+	background-color: #0060ff;
+}
+
+/* === IMAGE PICKER === */
+
 /* Transição das imagens do imagepicker */
 .thumbnail {
 	border-radius: 5px;
@@ -207,14 +226,9 @@ body {
 	text-align: center;
 }
 
-.botaoEnviarSinal, .botaoEnviarSinal:focus {
-	margin-top: 20px;
-	background-color: #003a99;
-}
-
-.botaoEnviarSinal:hover {
-	background-color: #0060ff;
-}
+/*ul.thumbnails.image_picker_selector li .thumbnail.selected {
+	background-color: #439539;
+}*/
 
 /*========= FIM DAS CLASSES REFATORADAS =========*/
 

@@ -34,7 +34,8 @@ class ImageSelect(Select):
             i = int(option_value) - 1
             img = self.field_img[i]
         else:
-            img = '/static/img/nenhum.png'
+            # img = '/static/img/nenhum.png'
+            img = '/static/img/X.svg'
 
         return format_html('<option data-img-src="{}" value="{}"{}>{}</option>',
             img,
