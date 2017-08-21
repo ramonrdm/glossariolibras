@@ -44,11 +44,11 @@
         <nav class="blue darken-4" role="navigation">
             <ul id="nav-mobile" class="side-nav">
                 <li>
-                    <div>
-                        <a href="/" class="center"><img class="logoGlossarioMobile" src='{% static "img/marca_glossario.png" %}'></a>
+                    <div class="logoGlossarioWrapper">
+                        <a href="/" class="center"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a>
                     </div>
                 </li>
-                <div class="sideNavMobileLinks">
+                <div class="sideNavLinks">
                     <li><a class="waves-effect waves-blue" href="{% url 'enviarsinais' %}"><i class="material-icons">send</i>Enviar sinais</a></li>
                     <li><a class="waves-effect waves-blue" href="{% url 'historia' %}"><i class="material-icons">library_books</i>História</a></li>
                     <li><a class="waves-effect waves-blue" href="{% url 'equipe' %}"><i class="material-icons">supervisor_account</i>Equipe</a></li>
@@ -57,8 +57,8 @@
                     <li><a class="waves-effect waves-blue" href="{% url 'admin:index' %}"><i class="material-icons">https</i>Admin</a></li>
                 </div>
                 <li>
-                    <div class="logoUFSCMobileWrapper">
-                        <a href="http://ufsc.br"><img class="logoUFSCMobile" src='{% static "img/marca_ufsc.svg" %}'></a>
+                    <div class="logoUFSCWrapper">
+                        <a href="http://ufsc.br"><img class="logoUFSC" src='{% static "img/marca_ufsc.svg" %}'></a>
                     </div>
                 </li>
                 <img class="borda" src='{% static "img/borda2.png" %}'>

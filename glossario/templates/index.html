@@ -23,26 +23,3 @@
 
     {% endblock %}
 </body>
-
-<!--
-
-JAVASCRIPT 'CAROUSEL'
-
-<div class="carousel">
-    <a class="carousel-item" href="/temas"><img src="{% static 'img/arvore_banyan_havai.png' %}"/></a>
-    {% for g in glossarios %}
-        {% if g.imagem %}
-            <a class="carousel-item" href="/{{g.link}}"><img src="{{g.imagem.url}}"></a>
-        {% else %}
-            <a href="/{{g.link}}"><i class="large material-icons">cloud_off</i></a>
-        {% endif%}
-    {% endfor %}
-</div>
-
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('.carousel').carousel();
-    });
-</script>
-
--->

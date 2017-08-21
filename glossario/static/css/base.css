@@ -7,38 +7,44 @@ body {
 	padding-left: 0;
 }
 
-.logoGlossarioMobile {
+.logoGlossario {
 	width: 200px;
 }
 
-.logoUFSCMobile {
+.logoUFSC {
 	width: 220px;
 	position: absolute;
 	margin-left: 20px;
 	margin-top: 3%;
 }
 
-.logoUFSCMobileWrapper {
-	/*position: relative;*/
-}
+.logoGlossarioWrapper {}
 
-.logoUFSCSearchMobile {
+.logoUFSCWrapper {}
+
+.logoUFSCSearch {
 	margin-top: 10%;
 	width: 220px;
 }
 
-.glossarioSearchMobile {
+.glossarioSearch {
+	/*height: 10%;
+	max-height: 56px;*/
 	width: 90%;
-	margin-top: 130px;
+	margin-top: 5%;
 	margin-left: 5%;
 	margin-right: 5%;
 }
 
-.sideNavSearchMobileLinks {
-	margin-top: 25%;
+.iconeSearch {
+	/*line-height: 50px !important;*/
 }
 
-.sideNavMobileLinks {
+.sideNavSearchLinks {
+	margin-top: 15%;
+}
+
+.sideNavLinks {
 	margin-top: 3%;
 }
 
@@ -138,7 +144,7 @@ ul.thumbnails.image_picker_selector {
 
 /* =+=+=+=+=+= GLOSSÁRIO =+=+=+=+=+= */
 
-.imgGlossarioMobile {
+.imgGlossario {
 	width: 120px;
 	height: 120px;
 	margin-top: 50%;
@@ -209,9 +215,9 @@ ul.thumbnails.image_picker_selector {
 		margin-top: 5%;
 	}
 
-	.checkboxes {
+/*	.checkboxes {
 		margin-top: 3%;
-	}
+	}*/
 
 	.videoGlossario {
 		margin-top: 2%;

@@ -66,18 +66,18 @@
         <nav class="blue darken-4" role="navigation">
             <ul id="nav-mobile" class="side-nav">
                 <li>
-                    <div class="userView">
-                        <a href="/" class="brand-logo"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a>
+                    <div class="logoGlossarioWrapper">
+                        <a href="/" class="center"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a>
                     </div>
                 </li>
-                <nav class="glossarioSearchMobile">
+                <nav class="glossarioSearch">
                     <div class="nav-wrapper white">
                         <form method="post">
                             {% csrf_token %}
                             <div class="input-field">
                                 {{ formulario }}
-                                <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
-                                <i class="material-icons">close</i>
+                                <label class="label-icon" for="search"><i class="material-icons black-text iconeSearch">search</i></label>
+                                <i class="material-icons iconeSearch">close</i>
                             </div>
                             <div class="center">
 
@@ -91,7 +91,7 @@
                         </form>
                     </div>
                 </nav>
-                <div class="sideNavSearchMobileLinks">
+                <div class="sideNavSearchLinks">
                     <li><a class="waves-effect waves-blue" href="{% url 'enviarsinais' %}"><i class="material-icons">send</i>Enviar sinais</a></li>
                     <li><a class="waves-effect waves-blue" href="{% url 'historia' %}"><i class="material-icons">library_books</i>História</a></li>
                     <li><a class="waves-effect waves-blue" href="{% url 'equipe' %}"><i class="material-icons">supervisor_account</i>Equipe</a></li>
@@ -100,9 +100,10 @@
                     <li><a class="waves-effect waves-blue" href="{% url 'admin:index' %}"><i class="material-icons">https</i>Admin</a></li>
                 </div>
                 <li>
-                    <div class="userView">
-                        <a href="http://ufsc.br" class="brand-logo"><img class="logoUFSCSearchMobile" src='{% static "img/marca_ufsc.svg" %}'></a>
+                    <div class="logoUFSCSearchWrapper">
+                        <a href="http://ufsc.br"><img class="logoUFSCSearch" src='{% static "img/marca_ufsc.svg" %}'></a>
                     </div>
+                    <img class="borda" src='{% static "img/borda2.png" %}'>
                 </li>
             </ul>
             <a data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
