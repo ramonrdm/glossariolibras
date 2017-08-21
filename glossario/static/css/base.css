@@ -80,6 +80,11 @@ ul.dropdown-content.select-dropdown li span {
     color: black;
 }
 
+/* Cor padrão da aplicação para os material icons */
+.icone {
+	color: #003a99;
+}
+
 /* Para as imagens na sidenav mobile não mudarem de cor no hover */
 nav ul a:hover {
    background-color: white;
@@ -151,6 +156,12 @@ ul.thumbnails.image_picker_selector {
 	/*height: 120px;*/
 }
 
+/* =+=+=+=+=+= SINAL =+=+=+=+=+= */
+
+.videoSinal {
+	display: inline;
+}
+
 /* =+=+=+=+=+= ENVIAR SINAIS =+=+=+=+=+= */
 
 .botaoEnviarSinal, .botaoEnviarSinal:focus {
@@ -162,8 +173,60 @@ ul.thumbnails.image_picker_selector {
 	background-color: #0060ff;
 }
 
+/* =+=+=+=+=+= HISTÓRIA =+=+=+=+=+= */
+
+.titulo {
+	margin-top: 5%;
+	text-align: center;
+}
+
+.historia-titulo {
+	margin-top: 5%;
+	margin-left: 5%;
+}
+
+.historia {
+	margin-left: 10%;
+	margin-right: 10%;
+	text-align: justify;
+	white-space: pre-line;
+}
+
+.definicao-titulo {
+	margin-top: 5%;
+	margin-left: 5%;
+}
+
+.definicao {
+	margin-top: 5%;
+	margin-left: 10%;
+	margin-right: 10%;
+	text-align: justify;
+}
+
+.rodape {
+	text-align: center;
+	white-space: pre-line;
+	margin-bottom: 10%;
+}
+
+
 /* ================= TABLET ================= */
 @media screen and (min-width: 768px) {
+
+	.logoGlossario {
+		width: 280px;
+	}
+
+	.logoUFSC {
+		width: 220px;
+		position: absolute;
+		bottom: 7%;
+	}
+
+	.sideNavLinks {
+		margin-top: 15%;
+	}
 
 }
 
@@ -234,10 +297,6 @@ ul.thumbnails.image_picker_selector {
 
 	.videoOff {
 		margin-top: 15%;
-	}
-
-	.icone {
-		color: #003a99;
 	}
 
 	/* =+=+=+=+=+= HISTÓRIA =+=+=+=+=+= */
