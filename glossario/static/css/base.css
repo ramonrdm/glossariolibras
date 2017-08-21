@@ -2,6 +2,11 @@
 
 /* =+=+=+=+=+=+= BASE =+=+=+=+=+=+= */
 
+/* Para construir a página inteira e poder utilizar "bottom: 0;" 
+html, body, ul#nav-mobile.side-nav {
+	height: 100%;
+}*/
+
 /* Retira o deslocamento da página causado pela sidenav fixa */
 body {
 	padding-left: 0;
@@ -18,34 +23,45 @@ body {
 	margin-top: 3%;
 }
 
-.logoGlossarioWrapper {}
-
-.logoUFSCWrapper {}
-
 .logoUFSCSearch {
 	margin-top: 10%;
 	width: 220px;
 }
 
+.logoUFSCSmall {
+	width: 50px;
+	position: absolute;
+	right: 20px;
+}
+
+.logosPositionFix {
+	padding: 0 !important;
+	margin-bottom: 2px;
+}
+
 .glossarioSearch {
-	/*height: 10%;
-	max-height: 56px;*/
 	width: 90%;
-	margin-top: 5%;
+	margin-top: 0;
 	margin-left: 5%;
 	margin-right: 5%;
 }
 
-.iconeSearch {
-	/*line-height: 50px !important;*/
+.sideNavLinks {
+	margin-top: 3%;
 }
 
 .sideNavSearchLinks {
-	margin-top: 15%;
+	margin-top: 12%;
 }
 
-.sideNavLinks {
-	margin-top: 3%;
+.linkHeightFix {
+	height: 43px !important;
+}
+
+.iconePortalLibras {
+	width: 40px;
+	padding-top: 5px;
+	padding-right: 5px;
 }
 
 /* Efeito do clique nos links da sidenav */
@@ -62,11 +78,6 @@ body {
 /* Cor do texto de selects de formulários */
 ul.dropdown-content.select-dropdown li span {
     color: black;
-}
-
-/* Para construir a página inteira e poder utilizar "bottom: 0;" */
-html, body, ul#nav-mobile.side-nav {
-	height: 100%;
 }
 
 /* Para as imagens na sidenav mobile não mudarem de cor no hover */
@@ -93,12 +104,6 @@ nav ul a:hover {
 	margin-top: 2%;
 }
 
-.iconePortalLibras {
-	width: 40px;
-	padding-top: 5px;
-	padding-right: 5px;
-}
-
 .borda {
 	position: absolute;
 	bottom: 0;
@@ -110,13 +115,10 @@ nav ul a:hover {
 	background-color: #003a99;
 }
 
-.botaoEnviarSinal, .botaoEnviarSinal:focus {
-	margin-top: 20px;
-	background-color: #003a99;
-}
-
-.botaoEnviarSinal:hover {
-	background-color: #0060ff;
+.checkboxes {
+	text-align: center;
+	line-height: 50px;
+	max-height: 25px;
 }
 
 /* =+=+=+=+=+= IMAGE PICKER =+=+=+=+=+= */
@@ -145,9 +147,19 @@ ul.thumbnails.image_picker_selector {
 /* =+=+=+=+=+= GLOSSÁRIO =+=+=+=+=+= */
 
 .imgGlossario {
-	width: 120px;
-	height: 120px;
-	margin-top: 50%;
+	width: 100px;
+	/*height: 120px;*/
+}
+
+/* =+=+=+=+=+= ENVIAR SINAIS =+=+=+=+=+= */
+
+.botaoEnviarSinal, .botaoEnviarSinal:focus {
+	margin-top: 20px;
+	background-color: #003a99;
+}
+
+.botaoEnviarSinal:hover {
+	background-color: #0060ff;
 }
 
 /* ================= TABLET ================= */
@@ -214,10 +226,6 @@ ul.thumbnails.image_picker_selector {
 		height: 120px;
 		margin-top: 5%;
 	}
-
-/*	.checkboxes {
-		margin-top: 3%;
-	}*/
 
 	.videoGlossario {
 		margin-top: 2%;
