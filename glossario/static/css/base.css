@@ -37,6 +37,58 @@ nav ul a:hover {
    background-color: white;
 }
 
+.logoGlossario {
+	margin-left: -6px;
+	width: 280px;
+}
+
+.logoGlossarioSearch {
+	width: 280px;
+	margin-left: 10px;
+}
+
+.logoUFSC {
+	width: 220px;
+	position: absolute;
+	margin-left: 20px;
+	margin-top: 20%;
+}
+
+.sideNavLinks, .sideNavSearchLinks {
+	margin-top: 15%;
+}
+
+.logoUFSCWrapper {
+	padding: 0 !important;
+}
+
+.logoUFSCSearch {
+	margin-top: 8%;
+	margin-left: 25px;
+	width: 220px;
+}
+
+.logoUFSCSmall {
+	display: none;
+}
+
+.logosPositionFix {
+	padding: 0 !important;
+	margin-bottom: 2px;
+}
+
+.glossarioSearch {
+	width: 90%;
+	margin-top: 0;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+
+.linkHeightFix {
+	height: 43px !important;
+}
+
 .imgIndex {
 	width: 160px;
 	height: 160px;
@@ -153,7 +205,7 @@ ul.thumbnails.image_picker_selector {
 		display: none;
 	}
 
-	.logoGlossario {
+	.logoGlossario, .logoGlossarioSearch {
 		width: 200px;
 	}
 
@@ -170,6 +222,7 @@ ul.thumbnails.image_picker_selector {
 	}
 
 	.logoUFSCSmall {
+		display: inline;
 		width: 50px;
 		position: absolute;
 		right: 20px;
