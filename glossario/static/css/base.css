@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* ================= CELULARES ================= */
+=======
+ ================= COMUM ================= */
+>>>>>>> b890a3df5b35a8a48d2811b4237cfbd0435a7d4a
 
 /* Retira o deslocamento da página causado pela sidenav fixa */
 body {
@@ -37,6 +41,7 @@ nav ul a:hover {
    background-color: white;
 }
 
+<<<<<<< HEAD
 .logoGlossario {
 	margin-left: -6px;
 	width: 280px;
@@ -89,6 +94,8 @@ nav ul a:hover {
 	height: 43px !important;
 }
 
+=======
+>>>>>>> b890a3df5b35a8a48d2811b4237cfbd0435a7d4a
 .imgIndex {
 	width: 160px;
 	height: 160px;
@@ -98,16 +105,19 @@ nav ul a:hover {
 	color: #003a99;
 }
 
+/* Estrutura dos glossários no index */
 .blockContainer {
 	margin-top: 5%;
 }
 
+/* Glossários no index */
 .block {
 	width: 200px;
 	display: inline-block;
 	margin-top: 2%;
 }
 
+/* Footer da sidenav */
 .borda {
 	position: absolute;
 	bottom: 0;
@@ -150,6 +160,16 @@ ul.thumbnails.image_picker_selector {
 	/*height: 120px;*/
 }
 
+<<<<<<< HEAD
+=======
+.glossarioSearch {
+	width: 90%;
+	margin-top: 0;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+>>>>>>> b890a3df5b35a8a48d2811b4237cfbd0435a7d4a
 .videoSinal {
 	display: inline;
 }
@@ -198,6 +218,121 @@ ul.thumbnails.image_picker_selector {
 	margin-bottom: 10%;
 }
 
+/* =============== FIM COMUM =============== */
+
+/* =============== IPHONE 4 =============== */
+
+@media screen and (max-height: 480px) {
+
+	.logoGlossario, .logoGlossarioSearch {
+		width: 200px;
+	}
+
+	.logoUFSC {
+		width: 220px;
+		position: absolute;
+		margin-left: 20px;
+		margin-top: 3%;
+	}
+
+	.logoUFSCSearch {
+		margin-top: 10%;
+		width: 220px;
+	}
+
+	.logoUFSCSmall {
+		width: 50px;
+		position: absolute;
+		right: 20px;
+	}
+
+	.logosPositionFix {
+		padding: 0 !important;
+		margin-bottom: 2px;
+	}
+
+	.sideNavLinks {
+		margin-top: 3%;
+	}
+
+	.sideNavSearchLinks {
+		margin-top: 12%;
+	}
+
+	.linkHeightFix {
+		height: 43px !important;
+	}
+
+}
+
+/* ============== FIM IPHONE 4 ============== */
+
+/* ============== IPHONE 5 + ============== */
+
+@media screen and (max-height: 580px) {
+
+	.logoGlossario {
+		width: 280px;
+		margin-left: 10px;
+	}
+
+	a.logoGlossarioPaddingFix {
+		padding: 0;
+	}
+
+	.logoGlossarioSearch {
+		width: 250px;
+	}
+
+	.logoUFSCSmall {
+		display: none;
+	}
+
+	.logoUFSC {
+		width: 220px;
+		position: absolute;
+		margin-left: 25px;
+		bottom: 8%;
+	}
+
+	.logoUFSCSearch {
+		width: 220px;
+		position: absolute;
+		margin-left: 40px;
+		bottom: 7%
+	}
+
+	.glossarioSearch {
+		margin-top: 2%;
+	}
+
+	div.row.logosPositionFix {
+		margin-bottom: 0;
+	}
+
+	.sideNavLinks {
+		margin-top: 11%;
+	}
+
+	.sideNavSearchLinks {
+		margin-top: 14%;
+	}
+
+	.linkHeightFix {
+		height: 44px !important;
+	}
+
+}
+
+/* ============ FIM IPHONE 5 + ============= */
+
+/* ============ IPHONE 6S + ============= */
+
+@media screen and (max-height: 667px) {
+	
+}
+
+/* ============ FIM IPHONE 6S + ============= */
 
 @media screen and (max-height: 480px) {
 
@@ -287,6 +422,8 @@ ul.thumbnails.image_picker_selector {
 
 }
 
+/* =============== FIM TABLET =============== */
+
 /* ================= DESKTOP ================= */
 
 @media screen and (min-width: 992px) {
@@ -297,7 +434,7 @@ ul.thumbnails.image_picker_selector {
 		background-color: #f7f7f7;
 	}
 
-	.logoGlossario {
+	.logoGlossario, .logoGlossarioSearch {
 		width: 280px;
 	}
 
@@ -311,13 +448,6 @@ ul.thumbnails.image_picker_selector {
 	.logoUFSCSearch {
 		margin-top: 34%;
 		width: 220px;
-	}
-
-	.glossarioSearch {
-		width: 90%;
-		margin-top: 10%;
-		margin-left: 5%;
-		margin-right: 5%;
 	}
 
 	.sideNavLinks {
@@ -401,3 +531,5 @@ ul.thumbnails.image_picker_selector {
 	}
 
 }
+
+/* =============== FIM DESKTOP =============== 
