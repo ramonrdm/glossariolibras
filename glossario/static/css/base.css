@@ -1,61 +1,8 @@
-/* ================= CELULAR/GERAL ================= */
-
-/* =+=+=+=+=+=+= BASE =+=+=+=+=+=+= */
-
-/* Para construir a página inteira e poder utilizar "bottom: 0;" 
-html, body, ul#nav-mobile.side-nav {
-	height: 100%;
-}*/
+/* ================= CELULARES ================= */
 
 /* Retira o deslocamento da página causado pela sidenav fixa */
 body {
 	padding-left: 0;
-}
-
-.logoGlossario {
-	width: 200px;
-}
-
-.logoUFSC {
-	width: 220px;
-	position: absolute;
-	margin-left: 20px;
-	margin-top: 3%;
-}
-
-.logoUFSCSearch {
-	margin-top: 10%;
-	width: 220px;
-}
-
-.logoUFSCSmall {
-	width: 50px;
-	position: absolute;
-	right: 20px;
-}
-
-.logosPositionFix {
-	padding: 0 !important;
-	margin-bottom: 2px;
-}
-
-.glossarioSearch {
-	width: 90%;
-	margin-top: 0;
-	margin-left: 5%;
-	margin-right: 5%;
-}
-
-.sideNavLinks {
-	margin-top: 3%;
-}
-
-.sideNavSearchLinks {
-	margin-top: 12%;
-}
-
-.linkHeightFix {
-	height: 43px !important;
 }
 
 .iconePortalLibras {
@@ -126,8 +73,6 @@ nav ul a:hover {
 	max-height: 25px;
 }
 
-/* =+=+=+=+=+= IMAGE PICKER =+=+=+=+=+= */
-
 /* Transição das imagens do imagepicker */
 .thumbnail {
 	border-radius: 5px;
@@ -148,21 +93,14 @@ ul.thumbnails.image_picker_selector {
 	/* Centralizar o imagepicker */
 }
 
-
-/* =+=+=+=+=+= GLOSSÁRIO =+=+=+=+=+= */
-
 .imgGlossario {
 	width: 100px;
 	/*height: 120px;*/
 }
 
-/* =+=+=+=+=+= SINAL =+=+=+=+=+= */
-
 .videoSinal {
 	display: inline;
 }
-
-/* =+=+=+=+=+= ENVIAR SINAIS =+=+=+=+=+= */
 
 .botaoEnviarSinal, .botaoEnviarSinal:focus {
 	margin-top: 20px;
@@ -172,8 +110,6 @@ ul.thumbnails.image_picker_selector {
 .botaoEnviarSinal:hover {
 	background-color: #0060ff;
 }
-
-/* =+=+=+=+=+= HISTÓRIA =+=+=+=+=+= */
 
 .titulo {
 	margin-top: 5%;
@@ -211,8 +147,72 @@ ul.thumbnails.image_picker_selector {
 }
 
 
+@media screen and (max-height: 480px) {
+
+	.logoUFSCSearch {
+		display: none;
+	}
+
+	.logoGlossario {
+		width: 200px;
+	}
+
+	.logoUFSC {
+		width: 220px;
+		position: absolute;
+		margin-left: 20px;
+		margin-top: 3%;
+	}
+
+	.logoUFSCSearch {
+		margin-top: 10%;
+		width: 220px;
+	}
+
+	.logoUFSCSmall {
+		width: 50px;
+		position: absolute;
+		right: 20px;
+	}
+
+	.logoGlossarioPositionFix {
+		text-align: center;
+		line-height: 0;
+	}
+
+	.logosPositionFix {
+		padding: 0 !important;
+		margin-bottom: 2px;
+	}
+
+	.glossarioSearch {
+		width: 90%;
+		margin-top: 0;
+		margin-left: 5%;
+		margin-right: 5%;
+	}
+
+	.sideNavLinks {
+		margin-top: 3%;
+	}
+
+	.sideNavSearchLinks {
+		margin-top: 12%;
+	}
+
+	.linkHeightFix {
+		height: 43px !important;
+	}
+
+}
+
 /* ================= TABLET ================= */
+
 @media screen and (min-width: 768px) {
+
+	.logoUFSCSmall {
+		display: none;
+	}
 
 	.logoGlossario {
 		width: 280px;
@@ -228,13 +228,15 @@ ul.thumbnails.image_picker_selector {
 		margin-top: 15%;
 	}
 
+	.sideNavSearchLinks {
+		margin-top: 20%;
+	}
+
 }
 
 /* ================= DESKTOP ================= */
 
 @media screen and (min-width: 992px) {
-
-	/* =+=+=+=+=+=+= BASE =+=+=+=+=+=+= */
 
 	/* Desloca a página para a direita por causa da sidenav fixa */
 	body {
@@ -282,8 +284,6 @@ ul.thumbnails.image_picker_selector {
 		z-index: 1;
 	}
 
-	/* =+=+=+=+=+= GLOSSÁRIO =+=+=+=+=+= */
-
 	.imgGlossario {
 		width: 120px;
 		height: 120px;
@@ -299,26 +299,18 @@ ul.thumbnails.image_picker_selector {
 		margin-top: 15%;
 	}
 
-	/* =+=+=+=+=+= HISTÓRIA =+=+=+=+=+= */
-
 	.divisor {
 		margin-right: 5%;
 		margin-left: 5%;
 	}
 
-	/* =+=+=+=+=+= EQUIPE =+=+=+=+=+= */
-
 	.cardTexto {
 		text-align: justify;
 	}
 
-	/* =+=+=+=+= ENVIAR SINAIS =+=+=+=+= */
-
 	.formEnviarSinais {
 		padding-top: 5%;
 	}
-
-	/* =+=+=+=+=+= REFATORAR =+=+=+=+=+= */
 
 	.titulo {
 		margin-top: 5%;
