@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-/* ================= CELULARES ================= */
-=======
- ================= COMUM ================= */
->>>>>>> b890a3df5b35a8a48d2811b4237cfbd0435a7d4a
+/* ================= COMUM ================= */
 
 /* Retira o deslocamento da página causado pela sidenav fixa */
 body {
@@ -41,61 +37,6 @@ nav ul a:hover {
    background-color: white;
 }
 
-<<<<<<< HEAD
-.logoGlossario {
-	margin-left: -6px;
-	width: 280px;
-}
-
-.logoGlossarioSearch {
-	width: 280px;
-	margin-left: 10px;
-}
-
-.logoUFSC {
-	width: 220px;
-	position: absolute;
-	margin-left: 20px;
-	margin-top: 20%;
-}
-
-.sideNavLinks, .sideNavSearchLinks {
-	margin-top: 15%;
-}
-
-.logoUFSCWrapper {
-	padding: 0 !important;
-}
-
-.logoUFSCSearch {
-	margin-top: 8%;
-	margin-left: 25px;
-	width: 220px;
-}
-
-.logoUFSCSmall {
-	display: none;
-}
-
-.logosPositionFix {
-	padding: 0 !important;
-	margin-bottom: 2px;
-}
-
-.glossarioSearch {
-	width: 90%;
-	margin-top: 0;
-	margin-left: 5%;
-	margin-right: 5%;
-}
-
-
-.linkHeightFix {
-	height: 43px !important;
-}
-
-=======
->>>>>>> b890a3df5b35a8a48d2811b4237cfbd0435a7d4a
 .imgIndex {
 	width: 160px;
 	height: 160px;
@@ -160,8 +101,6 @@ ul.thumbnails.image_picker_selector {
 	/*height: 120px;*/
 }
 
-<<<<<<< HEAD
-=======
 .glossarioSearch {
 	width: 90%;
 	margin-top: 0;
@@ -169,7 +108,6 @@ ul.thumbnails.image_picker_selector {
 	margin-right: 5%;
 }
 
->>>>>>> b890a3df5b35a8a48d2811b4237cfbd0435a7d4a
 .videoSinal {
 	display: inline;
 }
@@ -334,73 +272,9 @@ ul.thumbnails.image_picker_selector {
 
 /* ============ FIM IPHONE 6S + ============= */
 
-@media screen and (max-height: 480px) {
-
-	.logoUFSCSearch {
-		display: none;
-	}
-
-	.logoGlossario, .logoGlossarioSearch {
-		width: 200px;
-	}
-
-	.logoUFSC {
-		width: 220px;
-		position: absolute;
-		margin-left: 20px;
-		margin-top: 3%;
-	}
-
-	.logoUFSCSearch {
-		margin-top: 10%;
-		width: 220px;
-	}
-
-	.logoUFSCSmall {
-		display: inline;
-		width: 50px;
-		position: absolute;
-		right: 20px;
-	}
-
-	.logoGlossarioPositionFix {
-		text-align: center;
-		line-height: 0;
-	}
-
-	.logosPositionFix {
-		padding: 0 !important;
-		margin-bottom: 2px;
-	}
-
-	.glossarioSearch {
-		width: 90%;
-		margin-top: 0;
-		margin-left: 5%;
-		margin-right: 5%;
-	}
-
-	.sideNavLinks {
-		margin-top: 3%;
-	}
-
-	.sideNavSearchLinks {
-		margin-top: 12%;
-	}
-
-	.linkHeightFix {
-		height: 43px !important;
-	}
-
-}
-
 /* ================= TABLET ================= */
 
 @media screen and (min-width: 768px) {
-
-	.logoUFSCSmall {
-		display: none;
-	}
 
 	.logoGlossario {
 		width: 280px;
@@ -414,10 +288,6 @@ ul.thumbnails.image_picker_selector {
 
 	.sideNavLinks {
 		margin-top: 15%;
-	}
-
-	.sideNavSearchLinks {
-		margin-top: 20%;
 	}
 
 }
@@ -532,4 +402,4 @@ ul.thumbnails.image_picker_selector {
 
 }
 
-/* =============== FIM DESKTOP =============== 
+/* =============== FIM DESKTOP =============== */
