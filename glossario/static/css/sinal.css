@@ -42,3 +42,7 @@
 .textoTraducoes {
 	margin-top: 3%;
 }
+
+a.white-text {
+	padding: 0 !important;
+}

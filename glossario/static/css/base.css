@@ -1,61 +1,8 @@
-/* ================= CELULAR/GERAL ================= */
-
-/* =+=+=+=+=+=+= BASE =+=+=+=+=+=+= */
-
-/* Para construir a página inteira e poder utilizar "bottom: 0;" 
-html, body, ul#nav-mobile.side-nav {
-	height: 100%;
-}*/
+ ================= COMUM ================= */
 
 /* Retira o deslocamento da página causado pela sidenav fixa */
 body {
 	padding-left: 0;
-}
-
-.logoGlossario {
-	width: 200px;
-}
-
-.logoUFSC {
-	width: 220px;
-	position: absolute;
-	margin-left: 20px;
-	margin-top: 3%;
-}
-
-.logoUFSCSearch {
-	margin-top: 10%;
-	width: 220px;
-}
-
-.logoUFSCSmall {
-	width: 50px;
-	position: absolute;
-	right: 20px;
-}
-
-.logosPositionFix {
-	padding: 0 !important;
-	margin-bottom: 2px;
-}
-
-.glossarioSearch {
-	width: 90%;
-	margin-top: 0;
-	margin-left: 5%;
-	margin-right: 5%;
-}
-
-.sideNavLinks {
-	margin-top: 3%;
-}
-
-.sideNavSearchLinks {
-	margin-top: 12%;
-}
-
-.linkHeightFix {
-	height: 43px !important;
 }
 
 .iconePortalLibras {
@@ -99,16 +46,19 @@ nav ul a:hover {
 	color: #003a99;
 }
 
+/* Estrutura dos glossários no index */
 .blockContainer {
 	margin-top: 5%;
 }
 
+/* Glossários no index */
 .block {
 	width: 200px;
 	display: inline-block;
 	margin-top: 2%;
 }
 
+/* Footer da sidenav */
 .borda {
 	position: absolute;
 	bottom: 0;
@@ -125,8 +75,6 @@ nav ul a:hover {
 	line-height: 50px;
 	max-height: 25px;
 }
-
-/* =+=+=+=+=+= IMAGE PICKER =+=+=+=+=+= */
 
 /* Transição das imagens do imagepicker */
 .thumbnail {
@@ -148,21 +96,21 @@ ul.thumbnails.image_picker_selector {
 	/* Centralizar o imagepicker */
 }
 
-
-/* =+=+=+=+=+= GLOSSÁRIO =+=+=+=+=+= */
-
 .imgGlossario {
 	width: 100px;
 	/*height: 120px;*/
 }
 
-/* =+=+=+=+=+= SINAL =+=+=+=+=+= */
+.glossarioSearch {
+	width: 90%;
+	margin-top: 0;
+	margin-left: 5%;
+	margin-right: 5%;
+}
 
 .videoSinal {
 	display: inline;
 }
-
-/* =+=+=+=+=+= ENVIAR SINAIS =+=+=+=+=+= */
 
 .botaoEnviarSinal, .botaoEnviarSinal:focus {
 	margin-top: 20px;
@@ -172,8 +120,6 @@ ul.thumbnails.image_picker_selector {
 .botaoEnviarSinal:hover {
 	background-color: #0060ff;
 }
-
-/* =+=+=+=+=+= HISTÓRIA =+=+=+=+=+= */
 
 .titulo {
 	margin-top: 5%;
@@ -210,8 +156,124 @@ ul.thumbnails.image_picker_selector {
 	margin-bottom: 10%;
 }
 
+/* =============== FIM COMUM =============== */
+
+/* =============== IPHONE 4 =============== */
+
+@media screen and (max-height: 480px) {
+
+	.logoGlossario, .logoGlossarioSearch {
+		width: 200px;
+	}
+
+	.logoUFSC {
+		width: 220px;
+		position: absolute;
+		margin-left: 20px;
+		margin-top: 3%;
+	}
+
+	.logoUFSCSearch {
+		margin-top: 10%;
+		width: 220px;
+	}
+
+	.logoUFSCSmall {
+		width: 50px;
+		position: absolute;
+		right: 20px;
+	}
+
+	.logosPositionFix {
+		padding: 0 !important;
+		margin-bottom: 2px;
+	}
+
+	.sideNavLinks {
+		margin-top: 3%;
+	}
+
+	.sideNavSearchLinks {
+		margin-top: 12%;
+	}
+
+	.linkHeightFix {
+		height: 43px !important;
+	}
+
+}
+
+/* ============== FIM IPHONE 4 ============== */
+
+/* ============== IPHONE 5 + ============== */
+
+@media screen and (max-height: 580px) {
+
+	.logoGlossario {
+		width: 280px;
+		margin-left: 10px;
+	}
+
+	a.logoGlossarioPaddingFix {
+		padding: 0;
+	}
+
+	.logoGlossarioSearch {
+		width: 250px;
+	}
+
+	.logoUFSCSmall {
+		display: none;
+	}
+
+	.logoUFSC {
+		width: 220px;
+		position: absolute;
+		margin-left: 25px;
+		bottom: 8%;
+	}
+
+	.logoUFSCSearch {
+		width: 220px;
+		position: absolute;
+		margin-left: 40px;
+		bottom: 7%
+	}
+
+	.glossarioSearch {
+		margin-top: 2%;
+	}
+
+	div.row.logosPositionFix {
+		margin-bottom: 0;
+	}
+
+	.sideNavLinks {
+		margin-top: 11%;
+	}
+
+	.sideNavSearchLinks {
+		margin-top: 14%;
+	}
+
+	.linkHeightFix {
+		height: 44px !important;
+	}
+
+}
+
+/* ============ FIM IPHONE 5 + ============= */
+
+/* ============ IPHONE 6S + ============= */
+
+@media screen and (max-height: 667px) {
+	
+}
+
+/* ============ FIM IPHONE 6S + ============= */
 
 /* ================= TABLET ================= */
+
 @media screen and (min-width: 768px) {
 
 	.logoGlossario {
@@ -230,11 +292,11 @@ ul.thumbnails.image_picker_selector {
 
 }
 
+/* =============== FIM TABLET =============== */
+
 /* ================= DESKTOP ================= */
 
 @media screen and (min-width: 992px) {
-
-	/* =+=+=+=+=+=+= BASE =+=+=+=+=+=+= */
 
 	/* Desloca a página para a direita por causa da sidenav fixa */
 	body {
@@ -242,7 +304,7 @@ ul.thumbnails.image_picker_selector {
 		background-color: #f7f7f7;
 	}
 
-	.logoGlossario {
+	.logoGlossario, .logoGlossarioSearch {
 		width: 280px;
 	}
 
@@ -256,13 +318,6 @@ ul.thumbnails.image_picker_selector {
 	.logoUFSCSearch {
 		margin-top: 34%;
 		width: 220px;
-	}
-
-	.glossarioSearch {
-		width: 90%;
-		margin-top: 10%;
-		margin-left: 5%;
-		margin-right: 5%;
 	}
 
 	.sideNavLinks {
@@ -282,8 +337,6 @@ ul.thumbnails.image_picker_selector {
 		z-index: 1;
 	}
 
-	/* =+=+=+=+=+= GLOSSÁRIO =+=+=+=+=+= */
-
 	.imgGlossario {
 		width: 120px;
 		height: 120px;
@@ -299,26 +352,18 @@ ul.thumbnails.image_picker_selector {
 		margin-top: 15%;
 	}
 
-	/* =+=+=+=+=+= HISTÓRIA =+=+=+=+=+= */
-
 	.divisor {
 		margin-right: 5%;
 		margin-left: 5%;
 	}
 
-	/* =+=+=+=+=+= EQUIPE =+=+=+=+=+= */
-
 	.cardTexto {
 		text-align: justify;
 	}
 
-	/* =+=+=+=+= ENVIAR SINAIS =+=+=+=+= */
-
 	.formEnviarSinais {
 		padding-top: 5%;
 	}
-
-	/* =+=+=+=+=+= REFATORAR =+=+=+=+=+= */
 
 	.titulo {
 		margin-top: 5%;
@@ -356,3 +401,5 @@ ul.thumbnails.image_picker_selector {
 	}
 
 }
+
+/* =============== FIM DESKTOP =============== 
