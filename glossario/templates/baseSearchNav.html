@@ -9,7 +9,6 @@
     <meta name="keywords" content="glossario, libras, ufsc, glossário, glossários, letras libras, dicionario"/>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" /> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
     <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
     <link type="text/css" rel="stylesheet" href='{% static "css/material-icons.css" %}'  media="screen,projection"/>
@@ -57,7 +56,8 @@
                 <li><a class="waves-effect waves-blue" href="{% url 'admin:index' %}"><i class="material-icons">https</i>Admin</a></li>
             </div>
         </div>
-        <div class="nav-wrapper center"><a href="http://ufsc.br" class="brand-logo"><img class="logoUFSCSearch" src='{% static "img/marca_ufsc.svg" %}'></a></div>
+        <div class="nav-wrapper"><a href="http://ufsc.br"><img class="logoUFSCSearch" src='{% static "img/marca_ufsc.svg" %}'></a></div>
+        <div class="nav-wrapper"><img class="borda" src='{% static "img/borda2.png" %}'></div>
     </ul>
 
 <!-- NAVBAR MOBILE -->

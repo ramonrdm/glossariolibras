@@ -43,6 +43,9 @@
 	margin-top: 3%;
 }
 
-a.white-text {
-	padding: 0 !important;
+/* Arrumar a largura das tabs mobile */
+@media screen and (max-width: 992px) {
+	a.white-text {
+		padding: 0 !important;
+	}
 }

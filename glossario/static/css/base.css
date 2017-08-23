@@ -11,10 +11,10 @@ body {
 	padding-right: 5px;
 }
 
-/* Efeito do clique nos links da sidenav */
+/* Efeito do clique nos links da sidenav 
 .waves-effect.waves-blue .waves-ripple {
 	background-color: rgba(0, 0, 112, 0.65);
-}
+}*/
 
 /* Cor do underline do campo de texto de formulários */
 .input-field input[type=text]:focus {
@@ -63,6 +63,11 @@ nav ul a:hover {
 	position: absolute;
 	bottom: 0;
 	z-index: -1;
+}
+
+.divisor {
+	margin-right: 5%;
+	margin-left: 5%;
 }
 
 .checkboxAzul[type="checkbox"].filled-in:checked + label:after {
@@ -280,6 +285,10 @@ ul.thumbnails.image_picker_selector {
 		margin-top: 23%;
 	}
 
+	.glossarioSearch {
+		margin-top: 8%;
+	}
+
 	.checkboxes {
 		text-align: center;
 		line-height: 70px;
@@ -368,11 +377,6 @@ ul.thumbnails.image_picker_selector {
 
 	.videoOff {
 		margin-top: 15%;
-	}
-
-	.divisor {
-		margin-right: 5%;
-		margin-left: 5%;
 	}
 
 	.cardTexto {
