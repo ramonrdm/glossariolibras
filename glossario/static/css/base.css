@@ -162,7 +162,12 @@ ul.thumbnails.image_picker_selector {
 
 @media screen and (max-height: 480px) {
 
-	.logoGlossario, .logoGlossarioSearch {
+	.logoGlossario {
+		width: 200px;
+		margin-left: 50px;
+	}
+	
+	.logoGlossarioSearch {
 		width: 200px;
 	}
 
@@ -174,8 +179,7 @@ ul.thumbnails.image_picker_selector {
 	}
 
 	.logoUFSCSearch {
-		margin-top: 10%;
-		width: 220px;
+		display: none;
 	}
 
 	.logoUFSCSmall {
@@ -207,7 +211,7 @@ ul.thumbnails.image_picker_selector {
 
 /* ============== IPHONE 5 + ============== */
 
-@media screen and (max-height: 580px) {
+@media screen and (min-height: 481px) {
 
 	.logoGlossario {
 		width: 280px;
@@ -266,7 +270,7 @@ ul.thumbnails.image_picker_selector {
 
 /* ============ IPHONE 6S + ============= */
 
-@media screen and (max-height: 667px) {
+@media screen and (min-height: 581px) {
 	
 }
 
