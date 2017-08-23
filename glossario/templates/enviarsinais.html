@@ -72,12 +72,24 @@
 	{% endif %}
 	<script>
 		$(document).ready(function() {
-			// $('select').material_select();
 			$('select').imagepicker({
 				show_label: true
 			});
 		});
+
+		$("div ul").click(function(){
+			console.log('hehe');
+		}); 
+
+
 	</script>
+
+	<style>
+		div.thumbnail:not(.selected) {
+			display: none;
+		}
+	</style>
+
 
 	{% endblock %}
 </body>
