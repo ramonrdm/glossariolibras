@@ -271,7 +271,21 @@ ul.thumbnails.image_picker_selector {
 /* ============ IPHONE 6S + ============= */
 
 @media screen and (min-height: 581px) {
-	
+
+	.linkHeightFix {
+		height: 48px !important;
+	}
+
+	.sideNavSearchLinks {
+		margin-top: 23%;
+	}
+
+	.checkboxes {
+		text-align: center;
+		line-height: 70px;
+		max-height: 25px;
+	}
+
 }
 
 /* ============ FIM IPHONE 6S + ============= */
