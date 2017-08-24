@@ -5,6 +5,7 @@
 	{% load staticfiles %}
 	<link rel="stylesheet" type="text/css" href="/static/image-picker/image-picker/image-picker.css"/>
 	<script type="text/javascript" src="/static/image-picker/image-picker/image-picker.js"></script>
+	<script type="text/javascript" src="/static/js/enviarsinais.js"></script>
 	<title>{% block title %}Enviar sinais - Glossário Letras Libras{% endblock %}</title>
 {% endblock %}
 <body>
@@ -71,71 +72,58 @@
 	</script>
 	{% endif %}
 	<script>
-		$(document).ready(function() {
-			$('select').imagepicker({
-				show_label: true
-			});
+		// $(document).ready(function() {
+		// 	$('select').imagepicker({
+		// 		show_label: true
+		// 	});
 
-			//EXIBIR
+		// 	//EXIBIR
 
-			$('#id_localizacao').find('li div.thumbnail.selected').click(function() {
-				$('#id_localizacao').find('li div.thumbnail').show();
-			});
+		// 	// $('#id_localizacao').find('li div.thumbnail.selected').click(function() {
+		// 	// 	$('#id_localizacao').find('li div.thumbnail').show();
+		// 	// });
+		// 	$('#id_localizacao li div.thumbnail.selected').click(function() {
+		// 		$('#id_localizacao li div.thumbnail').show();
+		// 	});
+		// 	$('#id_grupoCMe').find('li div.thumbnail.selected').click(function() {
+		// 		$('#id_grupoCMe').find('li div.thumbnail').show();
+		// 	});
+		// 	$('#id_grupoCMd').find('li div.thumbnail.selected').click(function() {
+		// 		$('#id_grupoCMd').find('li div.thumbnail').show();
+		// 	});
+		// 	$('#id_cmE').find('li div.thumbnail.selected').click(function() {
+		// 		$('#id_cmE').find('li div.thumbnail').show();
+		// 	});
+		// 	$('#id_cmD').find('li div.thumbnail.selected').click(function() {
+		// 		$('#id_cmD').find('li div.thumbnail').show();
+		// 	});			
 
-			$('#id_grupoCMe').find('li div.thumbnail.selected').click(function() {
-				$('#id_grupoCMe').find('li div.thumbnail').show();
-			});
+		// 	//ESCONDER
 
-			$('#id_grupoCMd').find('li div.thumbnail.selected').click(function() {
-				$('#id_grupoCMd').find('li div.thumbnail').show();
-			});
-
-			$('#id_cmE').find('li div.thumbnail.selected').click(function() {
-				$('#id_cmE').find('li div.thumbnail').show();
-			});
-
-			$('#id_cmD').find('li div.thumbnail.selected').click(function() {
-				$('#id_cmD').find('li div.thumbnail').show();
-			});			
-
-			//ESCONDER
-
-			$('#id_localizacao').find('li div.thumbnail:not(.selected)').click(function() {
-				$('#id_localizacao').find('li div.thumbnail:not(.selected)').hide();
-			});
-
-			$('#id_grupoCMe').find('li div.thumbnail:not(.selected)').click(function() {
-				$('#id_grupoCMe').find('li div.thumbnail:not(.selected)').hide();
-			});
-
-			$('#id_grupoCMd').find('li div.thumbnail:not(.selected)').click(function() {
-				$('#id_grupoCMd').find('li div.thumbnail:not(.selected)').hide();
-			});
-
-			$('#id_cmE').find('li div.thumbnail:not(.selected)').click(function() {
-				$('#id_cmE').find('li div.thumbnail:not(.selected)').hide();
-			});
-
-			$('#id_cmD').find('li div.thumbnail:not(.selected)').click(function() {
-				$('#id_cmD').find('li div.thumbnail:not(.selected)').hide();
-			});
-
-			// $('div.thumbnail:not(.selected)').click(function() {
-			// 	$('div.thumbnail:not(.selected)').hide();
-			// });
-		 
-		});
-
-
-
+		// 	$('#id_localizacao').find('li div.thumbnail:not(.selected)').click(function() {
+		// 		$('#id_localizacao').find('li div.thumbnail:not(.selected)').hide();
+		// 	});
+		// 	$('#id_grupoCMe').find('li div.thumbnail:not(.selected)').click(function() {
+		// 		$('#id_grupoCMe').find('li div.thumbnail:not(.selected)').hide();
+		// 	});
+		// 	$('#id_grupoCMd').find('li div.thumbnail:not(.selected)').click(function() {
+		// 		$('#id_grupoCMd').find('li div.thumbnail:not(.selected)').hide();
+		// 	});
+		// 	$('#id_cmE').find('li div.thumbnail:not(.selected)').click(function() {
+		// 		$('#id_cmE').find('li div.thumbnail:not(.selected)').hide();
+		// 	});
+		// 	$('#id_cmD').find('li div.thumbnail:not(.selected)').click(function() {
+		// 		$('#id_cmD').find('li div.thumbnail:not(.selected)').hide();
+		// 	});
+		// 	// $('div.thumbnail:not(.selected)').click(function() {
+		// 	// 	$('div.thumbnail:not(.selected)').hide();
+		// 	// });	 
+		// });
 	</script>
-
 	<style>
 		div.thumbnail:not(.selected) {
 			display: none;
 		}
 	</style>
-
-
 	{% endblock %}
 </body>
