@@ -89,6 +89,7 @@ nav ul a:hover {
 
 /* Tamanho das imagens do imagepicker */
 .thumbnails li img {
+	background-color: white;
 	width: 100px;
 }
 
@@ -209,6 +210,11 @@ ul.thumbnails.image_picker_selector {
 	.linkHeightFix {
 		height: 43px !important;
 	}
+
+/*	.imgIndex {
+		width: 80px;
+		height: 80px;
+	}*/
 
 }
 

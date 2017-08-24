@@ -75,11 +75,18 @@
 			$('select').imagepicker({
 				show_label: true
 			});
+
+			$('div.col.s12').find('li div.thumbnail.selected').click(function() {
+				$('div.thumbnail').show();
+			});
+
+			$('div.thumbnail:not(.selected)').click(function() {
+				$('div.thumbnail:not(.selected)').css('display', 'none');
+				// $('div.thumbnail.selected').css('display', 'inline-block');
+			});
+		 
 		});
 
-		$("div ul").click(function(){
-			console.log('hehe');
-		}); 
 
 
 	</script>

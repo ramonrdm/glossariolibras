@@ -37,7 +37,7 @@ class EnviarSinaisForm(forms.ModelForm):
 		super(EnviarSinaisForm, self).__init__(*args, **kwargs)
 		for field in self.fields:
 			self.fields[field].widget.field_img = list()
-			self.fields[field].empty_label = 'Nenhum'
+			self.fields[field].empty_label = 'Selecionar'
 			for option in xrange(0, 20):
 			# trocar 20 do xrange para length do select que tiver mais options
 				if type(self.fields[field]) is ModelChoiceField:
