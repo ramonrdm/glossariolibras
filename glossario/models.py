@@ -183,22 +183,24 @@ class Sinal(models.Model):
 def update_upload_path(sender, instance, created, **kwargs):
 	# o arquivo será salvo em MEDIA_ROOT/sinal_videos/convertidos/<id>-<tag>-<YYYY>-<MM>-<DD>-<HH><MM><SS>
 
-	originais = '{0}/sinal_videos/originais'.format(settings.MEDIA_ROOT)
-	convertidos = '{0}/sinal_videos/convertidos'.format(settings.MEDIA_ROOT)
+	if created:
+		
+		originais = '{0}/sinal_videos/originais'.format(settings.MEDIA_ROOT)
+		convertidos = '{0}/sinal_videos/convertidos'.format(settings.MEDIA_ROOT)
 
-	videoFields = [instance.sinalLibras, instance.descLibras, instance.exemploLibras, instance.varicLibras]
-	tags = ['sinal', 'descricao', 'exemplo', 'variacao']
+		videoFields = [instance.sinalLibras, instance.descLibras, instance.exemploLibras, instance.varicLibras]
+		tags = ['sinal', 'descricao', 'exemplo', 'variacao']
 
-	for index, field in enumerate(videoFields):
-		if field:
-			subprocess.call('ffmpeg -i {0}/{1} -c:v libx264 -crf 19 -movflags faststart -threads 0 -preset slow -c:a aac -strict -2 {2}/{3}-{4}-%s.mp4'
-				.format(
-					originais,
-					str(field).split('/')[2],
-					convertidos,
-					instance.id,
-					tags[index]
-					)
-					% datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'),
-					shell=True
-					)
+		for index, field in enumerate(videoFields):
+			if field:
+				subprocess.call('ffmpeg -i {0}/{1} -c:v libx264 -crf 19 -movflags faststart -threads 0 -preset slow -c:a aac -strict -2 {2}/{3}-{4}-%s.mp4'
+					.format(
+						originais,
+						str(field).split('/')[2],
+						convertidos,
+						instance.id,
+						tags[index]
+						)
+						% datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'),
+						shell=True
+						)
