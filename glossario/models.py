@@ -129,8 +129,13 @@ def sinal_upload_path(instance, filename):
 
 class Sinal(models.Model):
 	class Meta:
-		verbose_name_plural='sinais'
+		verbose_name_plural = 'sinais'
 		unique_together = ('traducaoP', 'traducaoI', 'grupoCMe', 'cmE', 'grupoCMd', 'cmD', 'localizacao')
+
+	# __original_sinalLibras = None
+	# __original_descLibras = None
+	# __original_exemploLibras = None
+	# __original_varicLibras = None
 
 	glossario = models.ForeignKey(Glossario, verbose_name='glossário', null=True)
 	traducaoP = models.CharField('palavra', max_length=30)
@@ -150,6 +155,13 @@ class Sinal(models.Model):
 	exemploLibras = Video('Vídeo do exemplo', upload_to=sinal_upload_path, null=True, blank=True)
 	varicLibras = Video('Vídeo da variação', upload_to=sinal_upload_path, null=True, blank=True)
 	tema = models.ForeignKey(Tema, null=True)
+
+	# def __init__(self, *args, **kwargs):
+	# 	super(Sinal, self).__init__(*args, **kwargs)
+	# 	self.__original_sinalLibras = self.sinalLibras
+	# 	self.__original_descLibras = self.descLibras
+	# 	self.__original_exemploLibras = self.exemploLibras
+	# 	self.__original_varicLibras = self.varicLibras
 
 	def image_tag_cmE(self):
 		if self.cmE.imagem:
@@ -183,24 +195,30 @@ class Sinal(models.Model):
 def update_upload_path(sender, instance, created, **kwargs):
 	# o arquivo será salvo em MEDIA_ROOT/sinal_videos/convertidos/<id>-<tag>-<YYYY>-<MM>-<DD>-<HH><MM><SS>
 
-	if created:
-		
-		originais = '{0}/sinal_videos/originais'.format(settings.MEDIA_ROOT)
-		convertidos = '{0}/sinal_videos/convertidos'.format(settings.MEDIA_ROOT)
+	originais = '{0}/sinal_videos/originais'.format(settings.MEDIA_ROOT)
+	convertidos = '{0}/sinal_videos/convertidos'.format(settings.MEDIA_ROOT)
 
-		videoFields = [instance.sinalLibras, instance.descLibras, instance.exemploLibras, instance.varicLibras]
-		tags = ['sinal', 'descricao', 'exemplo', 'variacao']
+	# originalFields = [instance.__original_sinalLibras, instance.__original_descLibras, instance.__original_exemploLibras, instance.__original_varicLibras]
+	videoFields = [instance.sinalLibras, instance.descLibras, instance.exemploLibras, instance.varicLibras]
+	tags = ['sinal', 'descricao', 'exemplo', 'variacao']
 
-		for index, field in enumerate(videoFields):
-			if field:
-				subprocess.call('ffmpeg -i {0}/{1} -c:v libx264 -crf 19 -movflags faststart -threads 0 -preset slow -c:a aac -strict -2 {2}/{3}-{4}-%s.mp4'
-					.format(
-						originais,
-						str(field).split('/')[2],
-						convertidos,
-						instance.id,
-						tags[index]
-						)
-						% datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'),
-						shell=True
-						)
+	for index, field in enumerate(videoFields):
+		if field:
+			# if field != originalFields[index]:
+			subprocess.call('ffmpeg -i {0}/{1} -c:v libx264 -crf 19 -movflags faststart -threads 0 -preset slow -c:a aac -strict -2 {2}/{3}-{4}-%s.mp4'
+				.format(
+					originais,
+					str(field).split('/')[2],
+					convertidos,
+					instance.id,
+					tags[index]
+					)
+					% datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'),
+					shell=True
+					)
+				
+	# 		originalFields[index] = field
+	# instance.__original_sinalLibras = originalFields[0]
+	# instance.__original_descLibras = originalFields[1]
+	# instance.__original_exemploLibras = originalFields[2]
+	# instance.__original_varicLibras = originalFields[3]
