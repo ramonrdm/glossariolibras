@@ -1,4 +1,4 @@
-/* ================= COMUM ================= */
+ ================= COMUM ================= */
 
 /* Retira o deslocamento da página causado pela sidenav fixa */
 body {
@@ -81,6 +81,11 @@ nav ul a:hover {
 	max-height: 25px;
 }
 
+/* Esconde as options que não estão selecionadas ao construir a página */
+div.thumbnail:not(.selected) {
+	display: none;
+}
+
 /* Transição das imagens do imagepicker */
 .thumbnail {
 	border-radius: 5px;
@@ -99,7 +104,7 @@ nav ul a:hover {
 }
 
 ul.thumbnails.image_picker_selector {
-	/* Centralizar o imagepicker */
+	padding: 15px !important;
 }
 
 .imgGlossario {
@@ -430,4 +435,4 @@ ul.thumbnails.image_picker_selector {
 
 }
 
-/* =============== FIM DESKTOP =============== */
+/* =============== FIM DESKTOP =============== 
