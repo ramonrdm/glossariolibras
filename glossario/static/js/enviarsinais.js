@@ -1,12 +1,16 @@
 $(document).ready(function() {
 
+	// INICIALIZA O IMAGEPICKER
 	$('select').imagepicker({
 		show_label: true
 	});
 
+	// ADICIONA CLASSE HOVERABLE
 	$('.thumbnail').addClass('hoverable');
 
-	// HIDE/SHOW DO IMAGEPICKER
+	// var original = $(thumbnail_refs[i] + ' p:first');
+
+	// HIDE/SHOW IMAGEPICKER
 
 	let thumbnail_refs = [
 		{id: '#id_localizacao .thumbnail', opened: false},
@@ -29,6 +33,10 @@ $(document).ready(function() {
 			if(thumbnail_refs[i].opened){
 				thumbnail_refs[i].opened = false;
 				$(thumbnail_not_refs[i]).hide();
+				$(thumbnail_refs[i].id.split('.')[0] + 'li').click(function() {
+					$(this).parent().prepend($(thumbnail_refs[i].id.split('.')[0] + 'li:contains("Selecionar")'));
+					$(this).parent().prepend(this);
+				});
 			} else {	
 				thumbnail_refs[i].opened = true;
 				$(thumbnail_not_refs[i]).show();
