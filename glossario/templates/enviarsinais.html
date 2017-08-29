@@ -5,6 +5,8 @@
 	{% load staticfiles %}
 	<link rel="stylesheet" type="text/css" href="/static/image-picker/image-picker/image-picker.css"/>
 	<script type="text/javascript" src="/static/image-picker/image-picker/image-picker.js"></script>
+	<!-- <script type="text/javascript" src="/static/js/jquery.imagemapster.min.js"></script> -->
+	<script type="text/javascript" src="/static/js/kinetic-v3.8.4.js"></script>
 	<script type="text/javascript" src="/static/js/enviarsinais.js"></script>
 	<title>{% block title %}Enviar sinais - Glossário Letras Libras{% endblock %}</title>
 {% endblock %}
@@ -40,11 +42,11 @@
 				</div>
 			</div>
 			{% elif field.auto_id == 'id_localizacao' %}
-			<div class="col s12" id="{{field.auto_id}}">
+<!-- 			<div class="col s12" id="{{field.auto_id}}">
 				{{ field.errors }}
 				{{ field.label_tag }}
 				{{ field }}
-			</div>
+			</div> -->
 			{% else %}
 			<div class="col s12 m6" id="{{field.auto_id}}">
 				{{ field.errors }}
