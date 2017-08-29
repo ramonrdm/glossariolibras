@@ -1,4 +1,4 @@
- ================= COMUM ================= */
+/* ================= COMUM ================= */
 
 /* Retira o deslocamento da página causado pela sidenav fixa */
 body {
@@ -220,10 +220,10 @@ ul.thumbnails.image_picker_selector li .thumbnail {
 		height: 43px !important;
 	}
 
-/*	.imgIndex {
+	.imgIndex {
 		width: 80px;
 		height: 80px;
-	}*/
+	}
 
 }
 
@@ -284,6 +284,12 @@ ul.thumbnails.image_picker_selector li .thumbnail {
 		height: 44px !important;
 	}
 
+	.imgIndex {
+		width: 80px;
+		height: 80px;
+	}
+
+
 }
 
 /* ============ FIM IPHONE 5 + ============= */
@@ -310,6 +316,11 @@ ul.thumbnails.image_picker_selector li .thumbnail {
 		max-height: 25px;
 	}
 
+	.imgIndex {
+		width: 100px;
+		height: 100px;
+	}
+
 }
 
 /* ============ FIM IPHONE 6S + ============= */
@@ -317,6 +328,12 @@ ul.thumbnails.image_picker_selector li .thumbnail {
 /* ================= TABLET ================= */
 
 @media screen and (min-width: 768px) {
+
+	/* Desloca a página para a direita por causa da sidenav fixa */
+	body {
+		padding-left: 300px;
+		background-color: #f7f7f7;
+	}
 
 	.logoGlossario {
 		width: 280px;
@@ -332,13 +349,18 @@ ul.thumbnails.image_picker_selector li .thumbnail {
 		margin-top: 15%;
 	}
 
+	.imgIndex {
+		width: 140px;
+		height: 140px;
+	}
+
 }
 
 /* =============== FIM TABLET =============== */
 
 /* ================= DESKTOP ================= */
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 992px, min-height: 769px) {
 
 	/* Desloca a página para a direita por causa da sidenav fixa */
 	body {
