@@ -43,30 +43,15 @@ $(document).ready(function() {
 	}
 
 
+	$('img').mapster( {
+		fillColor: 'ff0000',
+		stroke: true,
+		singleSelect: true,
 
+	});
 
-$('img').mapster( { 
-    fillColor: 'ff0000', 
-    stroke: true, 
-    singleSelect: true
-});
-
-
-$('area').mapster('select');
-$('area').mapster('set',true);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	$('#id1').click(function() {
+		$('#id1 option[value="2"]').prop('selected', true);
+	});
 
 });
