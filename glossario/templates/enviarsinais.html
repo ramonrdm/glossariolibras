@@ -5,8 +5,10 @@
 	{% load staticfiles %}
 	<link rel="stylesheet" type="text/css" href="/static/image-picker/image-picker/image-picker.css"/>
 	<script type="text/javascript" src="/static/image-picker/image-picker/image-picker.js"></script>
-	<!-- <script type="text/javascript" src="/static/js/jquery.imagemapster.min.js"></script> -->
-	<script type="text/javascript" src="/static/js/kinetic-v3.8.4.js"></script>
+	<script type="text/javascript" src="{% static 'js/jquery.imagemapster.min.js' %}"></script>
+	<!-- <script type="text/javascript" src="{% static 'mapper/wz_jsgraphics.js' %}"></script> -->
+	<!-- <script type="text/javascript" src="{% static 'mapper/mapper.js' %}"></script> -->
+	<!-- <script type="text/javascript" src="/static/js/kinetic-v3.8.4.js"></script> -->
 	<script type="text/javascript" src="/static/js/enviarsinais.js"></script>
 	<title>{% block title %}Enviar sinais - Glossário Letras Libras{% endblock %}</title>
 {% endblock %}
@@ -47,6 +49,23 @@
 				{{ field.label_tag }}
 				{{ field }}
 			</div> -->
+
+
+
+
+<img src="https://i.chzbgr.com/maxW500/7667283200/h3593C0C6/" width="499" height="709" border="0" id="dummy" class="map_dummy" usemap="#map_dummy" alt="" />
+
+<map name="map_dummy" id="map_dummy">
+    <area shape="poly" coords="226,245,334,335,434,345,454,317,308,194" href="http://www.google.de" alt="Object"  data-maphilight='{"strokeColor":"FF0000","strokeWidth":5,"fillColor":"ffffff","fillOpacity":0.5}'>
+    <area shape="poly" coords="9,566,51,509,171,584,306,582,406,670,386,687,174,689" href="#" alt="Subject"  data-maphilight='{"strokeColor":"FFFF00","strokeWidth":5,"fillColor":"ffffff","fillOpacity":0.5}'>
+</map>
+
+
+
+
+
+
+
 			{% else %}
 			<div class="col s12 m6" id="{{field.auto_id}}">
 				{{ field.errors }}

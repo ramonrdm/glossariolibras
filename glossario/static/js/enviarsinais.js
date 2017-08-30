@@ -8,8 +8,6 @@ $(document).ready(function() {
 	// ADICIONA CLASSE HOVERABLE
 	$('.thumbnail').addClass('hoverable');
 
-	// var original = $(thumbnail_refs[i] + ' p:first');
-
 	// HIDE/SHOW IMAGEPICKER
 
 	let thumbnail_refs = [
@@ -43,5 +41,32 @@ $(document).ready(function() {
 			}
 		});
 	}
+
+
+
+
+$('img').mapster( { 
+    fillColor: 'ff0000', 
+    stroke: true, 
+    singleSelect: true
+});
+
+
+$('area').mapster('select');
+$('area').mapster('set',true);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 });
