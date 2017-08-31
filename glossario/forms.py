@@ -2,7 +2,7 @@
 from django.forms.models import ModelChoiceField
 from glossario.models import Glossario, Sinal, GrupoCM, CM, Localizacao
 from django.conf import settings
-from glossario.widgets import ImageSelect, MapSelect
+from glossario.widgets import ImageSelect
 from django import forms
 
 class GlossarioForm(forms.ModelForm):
@@ -26,7 +26,7 @@ class EnviarSinaisForm(forms.ModelForm):
 		fields = ['traducaoP', 'traducaoI', 'descricao', 'localizacao', 'grupoCMe', 'cmE', 'grupoCMd', 'cmD',
 		'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras']
 		widgets =	{
-					'localizacao': MapSelect(),
+					'localizacao': ImageSelect(),
 					'grupoCMe': ImageSelect(),
 					'cmE': ImageSelect(),
 					'grupoCMd': ImageSelect(),

@@ -5,10 +5,10 @@ $(document).ready(function() {
 		show_label: true
 	});
 
-	// ADICIONA CLASSE HOVERABLE
+	// ADICIONA CLASSE HOVERABLE AOS THUMBNAILS
 	$('.thumbnail').addClass('hoverable');
 
-	// HIDE/SHOW IMAGEPICKER
+	// HIDE/SHOW IMAGEPICKER E AVATAR
 
 	let thumbnail_refs = [
 		{id: '#id_localizacao .thumbnail', opened: false},
@@ -28,6 +28,15 @@ $(document).ready(function() {
 
 	for(let i = 0; i < thumbnail_refs.length; i++){	
 		$(thumbnail_refs[i].id).click(function() {
+			if(thumbnail_refs[i].id === '#id_localizacao .thumbnail'){
+				if(thumbnail_refs[i].opened){
+					thumbnail_refs[i].opened = false;
+					$('.map').hide();
+				} else {
+					thumbnail_refs[i].opened = true;
+					$('.map').show();
+				}
+			}
 			if(thumbnail_refs[i].opened){
 				thumbnail_refs[i].opened = false;
 				$(thumbnail_not_refs[i]).hide();
@@ -42,16 +51,21 @@ $(document).ready(function() {
 		});
 	}
 
-
-	$('img').mapster( {
-		fillColor: 'ff0000',
-		stroke: true,
+	// INICIALIZA O IMAGEMAPSTER
+	$('#modeloImg').mapster( {
+		fillColor: '003a99',
 		singleSelect: true,
-
+		mapKey: 'data-key'
 	});
 
-	$('#id1').click(function() {
-		$('#id1 option[value="2"]').prop('selected', true);
+	// VINCULA A ÁREA CLICADA À OPTION DA SUA LOCALIZAÇÃO E ESCONDE O AVATAR
+	$('area').click(function() {
+		$(this).mapster('set',true);
+		thumbnail_refs[0].opened = false;
+		$('.map').hide();
+		let attrValue = $(this).attr('data-key');
+		$("#id_localizacao option[selected='selected']").attr('selected', '');
+		$("#id_localizacao option[value='" + attrValue + "']").attr('selected', 'selected');
 	});
 
 });

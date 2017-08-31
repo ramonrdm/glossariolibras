@@ -81,6 +81,11 @@ nav ul a:hover {
 	max-height: 25px;
 }
 
+/* Esconde o modelo do avatar da localização */
+.map {
+	display: none;
+}
+
 /* Esconde as options que não estão selecionadas ao construir a página */
 div.thumbnail:not(.selected) {
 	display: none;
@@ -92,14 +97,19 @@ div.thumbnail:not(.selected) {
 	/*transition: all 0.2s ease-in-out;*/
 }
 
-/* Tamanho das imagens do imagepicker */
+/* Tamanho e cor das imagens do imagepicker */
 .thumbnails li img {
 	background-color: white;
 	width: 100px;
 }
 
+div.thumbnail.hoverable:not(.selected) p{
+	color: black;
+}
+
 /* Centralizar a descrição da option */
 .thumbnails li p {
+	color: white;
 	text-align: center;
 }
 
