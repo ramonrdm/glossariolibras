@@ -86,6 +86,11 @@ nav ul a:hover {
 	display: none;
 }
 
+/* Centraliza o avatar */
+img#modeloImg {
+	/*float: center;*/
+}
+
 /* Esconde as options que não estão selecionadas ao construir a página */
 div.thumbnail:not(.selected) {
 	display: none;
@@ -103,6 +108,7 @@ div.thumbnail:not(.selected) {
 	width: 100px;
 }
 
+/* Define o texto das thumbnails como preto quando não está selecionado */
 div.thumbnail.hoverable:not(.selected) p{
 	color: black;
 }
