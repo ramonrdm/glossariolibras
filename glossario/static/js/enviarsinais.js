@@ -54,8 +54,10 @@ $(document).ready(function() {
 	// INICIALIZA O IMAGEMAPSTER
 	$('#modeloImg').mapster( {
 		fillColor: '003a99',
+		mapKey: 'data-key',
 		singleSelect: true,
-		mapKey: 'data-key'
+		scaleMap: true,
+		tooltip: true
 	});
 
 	// VINCULA A ÁREA CLICADA À OPTION DA SUA LOCALIZAÇÃO E ESCONDE O AVATAR
@@ -64,8 +66,12 @@ $(document).ready(function() {
 		thumbnail_refs[0].opened = false;
 		$('.map').hide();
 		let attrValue = $(this).attr('data-key');
-		$("#id_localizacao option[selected='selected']").attr('selected', '');
+		$("#id_localizacao option[selected='selected']").removeAttr('selected');
 		$("#id_localizacao option[value='" + attrValue + "']").attr('selected', 'selected');
+		$('select').imagepicker({
+			show_label: true
+		});
+		//RESETEI O PICKER MAS AGORA NÃO É CLICÁVEL E O THUMBNAIL DESLOCOU PARA A DIREITA
 	});
 
 });

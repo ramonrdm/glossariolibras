@@ -3,6 +3,7 @@
 /* Retira o deslocamento da página causado pela sidenav fixa */
 body {
 	padding-left: 0;
+	background-color: #f7f7f7;
 }
 
 .iconePortalLibras {
@@ -10,11 +11,6 @@ body {
 	padding-top: 5px;
 	padding-right: 5px;
 }
-
-/* Efeito do clique nos links da sidenav 
-.waves-effect.waves-blue .waves-ripple {
-	background-color: rgba(0, 0, 112, 0.65);
-}*/
 
 /* Cor do underline do campo de texto de formulários */
 .input-field input[type=text]:focus {
@@ -86,9 +82,12 @@ nav ul a:hover {
 	display: none;
 }
 
-/* Centraliza o avatar */
+/* Centraliza e define as dimensões do avatar */
 img#modeloImg {
-	/*float: center;*/
+	width: 600px;
+	height: 600px;
+/*	margin: auto;
+	display: block;*/
 }
 
 /* Esconde as options que não estão selecionadas ao construir a página */
