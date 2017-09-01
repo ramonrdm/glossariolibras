@@ -36,17 +36,18 @@ $(document).ready(function() {
 					thumbnail_refs[i].opened = true;
 					$('.map').show();
 				}
-			}
-			if(thumbnail_refs[i].opened){
-				thumbnail_refs[i].opened = false;
-				$(thumbnail_not_refs[i]).hide();
-				$(thumbnail_refs[i].id.split('.')[0] + 'li').click(function() {
-					$(this).parent().prepend($(thumbnail_refs[i].id.split('.')[0] + 'li:contains("Selecionar")'));
-					$(this).parent().prepend(this);
-				});
-			} else {	
-				thumbnail_refs[i].opened = true;
-				$(thumbnail_not_refs[i]).show();
+			} else {
+				if(thumbnail_refs[i].opened){
+					thumbnail_refs[i].opened = false;
+					$(thumbnail_not_refs[i]).hide();
+					$(thumbnail_refs[i].id.split('.')[0] + 'li').click(function() {
+						$(this).parent().prepend($(thumbnail_refs[i].id.split('.')[0] + 'li:contains("Selecionar")'));
+						$(this).parent().prepend(this);
+					});
+				} else {	
+					thumbnail_refs[i].opened = true;
+					$(thumbnail_not_refs[i]).show();
+				}
 			}
 		});
 	}
@@ -68,10 +69,11 @@ $(document).ready(function() {
 		let attrValue = $(this).attr('data-key');
 		$("#id_localizacao option[selected='selected']").removeAttr('selected');
 		$("#id_localizacao option[value='" + attrValue + "']").attr('selected', 'selected');
-		$('select').imagepicker({
-			show_label: true
-		});
-		//RESETEI O PICKER MAS AGORA NÃO É CLICÁVEL E O THUMBNAIL DESLOCOU PARA A DIREITA
+		$('#id_localizacao option').parent().prepend($('#id_localizacao option[selected="selected"]'));
+		$("select").data('picker').sync_picker_with_select();
+		// $('select').imagepicker({
+		// 	show_label: true
+		// });
 	});
 
 });
