@@ -63,7 +63,13 @@ $(document).ready(function() {
 		mapKey: 'data-key',
 		singleSelect: true,
 		scaleMap: true,
-		tooltip: true
+		tooltip: true,
+		areas: [
+			{
+				key: 1,
+				tooltip: "Cabeça"
+			}
+		]
 	});
 
 	// GERENCIA EVENTOS RELACIONADOS AO CLIQUE EM UMA ÁREA

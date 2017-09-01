@@ -84,8 +84,8 @@ nav ul a:hover {
 
 /* Centraliza e define as dimensões do avatar */
 img#modeloImg {
-	width: 600px;
-	height: 600px;
+	/*width: 600px;
+	height: 600px;*/
 /*	margin: auto;
 	display: block;*/
 }
