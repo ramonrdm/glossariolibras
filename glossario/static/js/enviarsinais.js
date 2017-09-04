@@ -59,24 +59,78 @@ $(document).ready(function() {
 
 	// INICIALIZA O IMAGEMAPSTER
 	$('#modeloImg').mapster( {
-		fillColor: '003a99',
+		fillColor: '000000',
 		mapKey: 'data-key',
 		singleSelect: true,
 		scaleMap: true,
-		tooltip: true,
+		isDeselectable: false,
+		showToolTip: true,
 		areas: [
 			{
-				key: 1,
-				tooltip: "Cabeça"
+				key: "1",
+				toolTip: "Cabeça",
+			},
+			{
+				key: "2",
+				toolTip: "Ombros"
+			},
+			{
+				key: "3",
+				toolTip: "Braços"
+			},
+			{
+				key: "4",
+				toolTip: "Nariz"
+			},
+			{
+				key: "5",
+				toolTip: "Bochechas"
+			},
+			{
+				key: "6",
+				toolTip: "Boca"
+			},
+			{
+				key: "7",
+				toolTip: "Tronco"
+			},
+			{
+				key: "8",
+				toolTip: "Espaço-neutro"
+			},
+			{
+				key: "9",
+				toolTip: "Olhos"
+			},
+			{
+				key: "10",
+				toolTip: "Orelhas"
+			},
+			{
+				key: "11",
+				toolTip: "Pescoço"
+			},
+			{
+				key: "12",
+				toolTip: "Queixo"
+			},
+			{
+				key: "13",
+				toolTip: "Testa"
+			},
+			{
+				key: "14",
+				toolTip: "Mãos"
 			}
+			
 		]
 	});
 
+	// CENTRALIZA O AVATAR
+	$('#modeloImg').parent().css({"margin":"0 auto"});
+
 	// GERENCIA EVENTOS RELACIONADOS AO CLIQUE EM UMA ÁREA
 	$('area').click(function() {
-
-		// ÁREA NUNCA DEIXA DE SER SELECIONADA
-		$(this).mapster('set',true);
 
 		// ESCONDE O AVATAR
 		thumbnail_localizacao_ref.opened = false;
@@ -100,5 +154,57 @@ $(document).ready(function() {
 		showAvatar();
 
 	});
+
+var resizeTime = 100;     // total duration of the resize effect, 0 is instant
+var resizeDelay = 100;    // time to wait before checking the window size again
+                          // the shorter the time, the more reactive it will be.
+
+// Resize the map to fit within the boundaries provided
+
+function resize(maxWidth,maxHeight) {
+     var image =  $('img'),
+        imgWidth = image.width(),
+        imgHeight = image.height(),
+        newWidth=0,
+        newHeight=0;
+
+    if (imgWidth/maxWidth>imgHeight/maxHeight) {
+        newWidth = maxWidth;
+    } else {
+        newHeight = maxHeight;
+    }
+    image.mapster('resize',newWidth,newHeight,resizeTime);   
+}
+
+// Track window resizing events, but only actually call the map resize when the
+// window isn't being resized any more
+
+function onWindowResize() {
+    
+    var curWidth = $('.map').width(),
+        curHeight = $('.map').height(),
+        checking=false;
+    if (checking) {
+        return;
+            }
+    checking = true;
+    window.setTimeout(function() {
+        var newWidth = $('.map').width(),
+           newHeight = $('.map').height();
+        if (newWidth === curWidth &&
+            newHeight === curHeight) {
+            resize(newWidth,newHeight); 
+        }
+        checking=false;
+    },resizeDelay );
+}
+
+$(window).bind('resize',onWindowResize);
+
+
+
+$('.tooltipped').tooltip({delay: 50});
+
+
 
 });

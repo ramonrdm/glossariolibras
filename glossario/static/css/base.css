@@ -80,14 +80,13 @@ nav ul a:hover {
 /* Esconde o modelo do avatar da localização */
 .map {
 	display: none;
+	line-height: 2.5;
 }
 
 /* Centraliza e define as dimensões do avatar */
 img#modeloImg {
-	/*width: 600px;
-	height: 600px;*/
-/*	margin: auto;
-	display: block;*/
+	width: 650px;
+	height: 650px;
 }
 
 /* Esconde as options que não estão selecionadas ao construir a página */
@@ -476,4 +475,4 @@ ul.thumbnails.image_picker_selector li .thumbnail {
 
 }
 
-/* =============== FIM DESKTOP =============== 
+/* =============== FIM DESKTOP =============== */
