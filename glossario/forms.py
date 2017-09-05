@@ -44,6 +44,30 @@ class EnviarSinaisForm(forms.ModelForm):
 					if len(self.fields[field].queryset) >= option + 1:
 						self.fields[field].widget.field_img.append(self.fields[field].queryset[option].imagem.url)
 
+class SinaisForm(forms.ModelForm):
+
+	class Meta:
+		model = Sinal
+		fields = ['localizacao', 'grupoCMe', 'cmE', 'grupoCMd', 'cmD']
+		widgets =	{
+					'localizacao': ImageSelect(),
+					'grupoCMe': ImageSelect(),
+					'cmE': ImageSelect(),
+					'grupoCMd': ImageSelect(),
+					'cmD': ImageSelect()
+					}
+
+	def __init__(self, *args, **kwargs):
+		super(SinaisForm, self).__init__(*args, **kwargs)
+		for field in self.fields:
+			self.fields[field].widget.field_img = list()
+			self.fields[field].empty_label = 'Selecionar'
+			for option in xrange(0, 20):
+			# trocar 20 do xrange para length do select que tiver mais options
+				if type(self.fields[field]) is ModelChoiceField:
+					if len(self.fields[field].queryset) >= option + 1:
+						self.fields[field].widget.field_img.append(self.fields[field].queryset[option].imagem.url)
+
 class GrupoCMForm(forms.ModelForm):
 
 	class Meta:

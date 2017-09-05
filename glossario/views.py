@@ -2,7 +2,7 @@
 from django.shortcuts import render, render_to_response
 from glossario.models import Glossario, Sinal, Tema, GrupoCM
 from django.contrib.auth.models import User
-from glossario.forms import PesquisaForm, PesquisaCheckboxForm, EnviarSinaisForm
+from glossario.forms import PesquisaForm, PesquisaCheckboxForm, EnviarSinaisForm, SinaisForm
 from django.http import JsonResponse
 from django.db.models import Q
 from django.template import RequestContext
@@ -62,8 +62,9 @@ def glossarioSelecionado(request, glossario):
 		else:
 			formCheckbox = PesquisaCheckboxForm()
 		formulario = PesquisaForm()
-		return render(request, 'glossario.html', {'glossario': glossario, 'formulario': formulario,
-			'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox,
+		formSinais = SinaisForm()
+		return render(request, 'glossario.html', {'glossario': glossario, 'formulario': formulario, 'checkboxPort': checkboxPort,
+			'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox, 'formSinais': formSinais
 			})
 
 def sinal(request, sinal=None, glossario=None):

@@ -77,6 +77,10 @@ nav ul a:hover {
 	max-height: 25px;
 }
 
+.formSinais {
+	zoom: 0.5;
+}
+
 /* Esconde o modelo do avatar da localização e corrige um deslocamento do highlight com a imagem */
 .map {
 	display: none;
