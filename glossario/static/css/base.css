@@ -77,13 +77,13 @@ nav ul a:hover {
 	max-height: 25px;
 }
 
-/* Esconde o modelo do avatar da localização */
+/* Esconde o modelo do avatar da localização e corrige um deslocamento do highlight com a imagem */
 .map {
 	display: none;
 	line-height: 2.5;
 }
 
-/* Centraliza e define as dimensões do avatar */
+/* Define as dimensões do avatar */
 img#modeloImg {
 	width: 650px;
 	height: 650px;
@@ -94,10 +94,9 @@ div.thumbnail:not(.selected) {
 	display: none;
 }
 
-/* Transição das imagens do imagepicker */
+/* Arredonda thumbnail do imagepicker */
 .thumbnail {
 	border-radius: 5px;
-	/*transition: all 0.2s ease-in-out;*/
 }
 
 /* Tamanho e cor das imagens do imagepicker */

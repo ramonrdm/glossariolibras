@@ -155,56 +155,52 @@ $(document).ready(function() {
 
 	});
 
-var resizeTime = 100;     // total duration of the resize effect, 0 is instant
-var resizeDelay = 100;    // time to wait before checking the window size again
-                          // the shorter the time, the more reactive it will be.
+// RESPONSIVIDADE
 
-// Resize the map to fit within the boundaries provided
+// var resizeTime = 100;     // total duration of the resize effect, 0 is instant
+// var resizeDelay = 100;    // time to wait before checking the window size again
+//                           // the shorter the time, the more reactive it will be.
 
-function resize(maxWidth,maxHeight) {
-     var image =  $('img'),
-        imgWidth = image.width(),
-        imgHeight = image.height(),
-        newWidth=0,
-        newHeight=0;
+// // Resize the map to fit within the boundaries provided
 
-    if (imgWidth/maxWidth>imgHeight/maxHeight) {
-        newWidth = maxWidth;
-    } else {
-        newHeight = maxHeight;
-    }
-    image.mapster('resize',newWidth,newHeight,resizeTime);   
-}
+// function resize(maxWidth,maxHeight) {
+//      var image =  $('img'),
+//         imgWidth = image.width(),
+//         imgHeight = image.height(),
+//         newWidth=0,
+//         newHeight=0;
 
-// Track window resizing events, but only actually call the map resize when the
-// window isn't being resized any more
+//     if (imgWidth/maxWidth>imgHeight/maxHeight) {
+//         newWidth = maxWidth;
+//     } else {
+//         newHeight = maxHeight;
+//     }
+//     image.mapster('resize',newWidth,newHeight,resizeTime);   
+// }
 
-function onWindowResize() {
+// // Track window resizing events, but only actually call the map resize when the
+// // window isn't being resized any more
+
+// function onWindowResize() {
     
-    var curWidth = $('.map').width(),
-        curHeight = $('.map').height(),
-        checking=false;
-    if (checking) {
-        return;
-            }
-    checking = true;
-    window.setTimeout(function() {
-        var newWidth = $('.map').width(),
-           newHeight = $('.map').height();
-        if (newWidth === curWidth &&
-            newHeight === curHeight) {
-            resize(newWidth,newHeight); 
-        }
-        checking=false;
-    },resizeDelay );
-}
+//     var curWidth = $('.map').width(),
+//         curHeight = $('.map').height(),
+//         checking=false;
+//     if (checking) {
+//         return;
+//             }
+//     checking = true;
+//     window.setTimeout(function() {
+//         var newWidth = $('.map').width(),
+//            newHeight = $('.map').height();
+//         if (newWidth === curWidth &&
+//             newHeight === curHeight) {
+//             resize(newWidth,newHeight); 
+//         }
+//         checking=false;
+//     },resizeDelay );
+// }
 
-$(window).bind('resize',onWindowResize);
-
-
-
-$('.tooltipped').tooltip({delay: 50});
-
-
+// $(window).bind('resize',onWindowResize);
 
 });
