@@ -7,8 +7,6 @@ $(document).ready(function() {
 
 	// ADICIONA CLASSE HOVERABLE AOS THUMBNAILS
 	$('.thumbnail').addClass('hoverable');
-	// $('.thumbnail').addClass('modal-trigger');
-	// $('.thumbnail').attr('href', '#modal1');
 
 	// HIDE/SHOW IMAGEPICKER E AVATAR
 
@@ -26,7 +24,7 @@ $(document).ready(function() {
 		'#id_cmD .thumbnail:not(.selected)'
 	];
 
-	let thumbnail_localizacao_ref = {id: '#id_localizacao .thumbnail', opened: false};
+	// let thumbnail_localizacao_ref = {id: '#id_localizacao .thumbnail', opened: false};
 
 	// function showAvatar(){
 	// 	$(thumbnail_localizacao_ref.id).click(function() {
@@ -157,19 +155,11 @@ $(document).ready(function() {
 
 	});
 
-		$(document).css({'width':'100%'})
-		$('.modal').modal();
-		
-	function bodyFix() {
-	}
-
-
 // RESPONSIVIDADE
 
 // var resizeTime = 100;     // total duration of the resize effect, 0 is instant
 // var resizeDelay = 100;    // time to wait before checking the window size again
 //                           // the shorter the time, the more reactive it will be.
-
 // // Resize the map to fit within the boundaries provided
 
 // function resize(maxWidth,maxHeight) {

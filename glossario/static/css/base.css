@@ -98,6 +98,10 @@ div.thumbnail:not(.selected) {
 	display: none;
 }
 
+.thumbnailModal div.thumbnail:not(.selected) {
+	display: inline-block !important;
+}
+
 /* Arredonda thumbnail do imagepicker */
 .thumbnail {
 	border-radius: 5px;
