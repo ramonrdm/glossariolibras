@@ -13,12 +13,12 @@
     <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
     <link type="text/css" rel="stylesheet" href='{% static "css/material-icons.css" %}'  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href='{% static "css/materialize.min.css" %}'  media="screen,projection"/>
-    <link rel="stylesheet" type="text/css" href='{% static "css/base.css" %}'/>
-
     <link rel="stylesheet" type="text/css" href="{% static 'image-picker/image-picker/image-picker.css' %}"/>
     <script type="text/javascript" src="{% static 'image-picker/image-picker/image-picker.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/jquery.imagemapster.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/enviarsinais.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/baseSearchNav.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href='{% static "css/base.css" %}'/>
+
 
     <title>{% block title %}{% endblock %}</title>
 
@@ -56,20 +56,22 @@
 
 
 
-<!-- <div class="row formSinais">
+<div class="row formSinais">
             {% for field in formSinais %}
             {% if field.auto_id == 'id_localizacao' %}
-            <div class="col s12" id="{{field.auto_id}}">
-                {{ field.errors }}
-                {{ field.label_tag }}
+            <div class="col s12 m4" id="{{field.auto_id}}">
+                <a class="modal-trigger" href="#modalLocalizacao">
+                <!-- {{ field.errors }} -->
+                <!-- {{ field.label_tag }} -->
                 {{ field }}
+                </a>
             </div>
             <div class="map">
                 <div class="row">
                     <div class="col s12">
                         <img id="modeloImg" src="{% static 'img/modelo2.png' %}" alt="" usemap="#modeloMap"/>
                         <map name="modeloMap" id="modeloMap">
-                            USAR DATA-KEY COMO O VALUE DAS OPTIONS DO SELECT
+                            <!-- USAR DATA-KEY COMO O VALUE DAS OPTIONS DO SELECT -->
                             <area data-key="2" alt="" title="" href="#" shape="poly" coords="241,123,247,144,302,133,339,135,385,152,391,154,400,125,365,108,351,103,324,122,314,122,292,105,242,123">
                             <area data-key="3" alt="" title="" href="#" shape="poly" coords="247,120,230,136,204,145,173,155,144,167,93,189,75,198,73,201,80,213,172,192,209,180,235,175,247,169,249,167,247,120,397,120,422,138,481,160,573,200,567,218,493,199,472,194,464,195,432,184,401,172,393,171,393,167,389,120">
                             <area data-key="4" alt="" title="" href="#" shape="poly" coords="316,53,309,67,309,70,332,71,332,68,324,54,321,52,320,52">
@@ -89,14 +91,15 @@
                 </div>
             </div>
             {% else %}
-            <div class="col s12 m6" id="{{field.auto_id}}">
-                {{ field.errors }}
-                {{ field.label_tag }}
+            <div class="col s12 m4" id="{{field.auto_id}}">
+                <!-- {{ field.errors }} -->
+                <!-- {{ field.label_tag }} -->
                 {{ field }}
             </div>
             {% endif %}
             {% endfor%}
-            </div> -->
+            </div>
+
 
 
 

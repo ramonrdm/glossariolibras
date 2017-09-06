@@ -109,6 +109,15 @@ div.thumbnail:not(.selected) {
 	width: 100px;
 }
 
+.formSinais .thumbnails li img {
+	width: 50px;
+}
+
+.formSinais .thumbnail {
+	height: 90px;
+	width: 50px;
+}
+
 /* Define o texto das thumbnails como preto quando não está selecionado */
 div.thumbnail.hoverable:not(.selected) p{
 	color: black;
