@@ -48,30 +48,51 @@
                         <input type="checkbox" class="filled-in checkboxAzul" id="checkboxIng" name="checkboxIng" />
                         <label for="checkboxIng">Inglês</label> -->
                     </div>
-
-                <div class="row formSinais">
-                    {% for field in formSinais %}
-                        {% if field.auto_id == 'id_localizacao' %}
-                            <div class="col s12 m4" id="{{field.auto_id}}">
-                                <a class="modal-trigger" href="#modalLocalizacao">
-                                    <!-- {{ field.errors }} -->
-                                    <!-- {{ field.label_tag }} -->
-                                    {{ field }}
-                                </a>
-                            </div>
-                        {% elif field.auto_id == 'id_grupoCMe' %}
-                            <div class="col s12 m4" id="{{field.auto_id}}">
-                                <a class="modal-trigger" href="#modalGrupoCMe">
-                                    <!-- onclick="$('#id_grupoCMe').appendTo('#modalGrupoCMe .modal-content')" -->
-                                    <!-- {{ field.errors }} -->
-                                    <!-- {{ field.label_tag }} -->
-                                    {{ field }}
-                                </a>
-                            </div>
-                        {% endif %}
-                    {% endfor%}
-                </div>
-
+                    <div class="row formSinais">
+                        {% for field in formSinais %}
+                            {% if field.auto_id == 'id_localizacao' %}
+                                <div class="col s12 m4" id="{{field.auto_id}}">
+                                    <a class="modal-trigger" href="#modalLocalizacao">
+                                        <!-- {{ field.errors }} -->
+                                        <!-- {{ field.label_tag }} -->
+                                        {{ field }}
+                                    </a>
+                                </div>
+                            {% elif field.auto_id == 'id_grupoCMe' %}
+                                <div class="col s12 m4" id="{{field.auto_id}}">
+                                    <a class="modal-trigger" href="#modalGrupoCMe">
+                                        <!-- {{ field.errors }} -->
+                                        <!-- {{ field.label_tag }} -->
+                                        {{ field }}
+                                    </a>
+                                </div>
+                            {% elif field.auto_id == 'id_grupoCMd' %}
+                                <div class="col s12 m4" id="{{field.auto_id}}">
+                                    <a class="modal-trigger" href="#modalGrupoCMd">
+                                        <!-- {{ field.errors }} -->
+                                        <!-- {{ field.label_tag }} -->
+                                        {{ field }}
+                                    </a>
+                                </div>
+                            {% elif field.auto_id == 'id_cmE' %}
+                                <div class="col s12 m4" id="{{field.auto_id}}">
+                                    <a class="modal-trigger" href="#modalCMe">
+                                        <!-- {{ field.errors }} -->
+                                        <!-- {{ field.label_tag }} -->
+                                        {{ field }}
+                                    </a>
+                                </div>
+                            {% elif field.auto_id == 'id_cmD' %}
+                                <div class="col s12 m4" id="{{field.auto_id}}">
+                                    <a class="modal-trigger" href="#modalCMd">
+                                        <!-- {{ field.errors }} -->
+                                        <!-- {{ field.label_tag }} -->
+                                        {{ field }}
+                                    </a>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                 </form>
             </div>
         </nav>

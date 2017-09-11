@@ -34,11 +34,38 @@
 	<div class="modal-content">
 		<h4>Grupo de configuração de mão esquerda</h4>
 		<div class="modal-action modal-close thumbnailModal">
+			{{ formSinais.grupoCMe }}
+		</div>
+	</div>
+</div>
+
+<div id="modalGrupoCMd" class="modal">
+	<div class="modal-content">
+		<h4>Grupo de configuração de mão direita</h4>
+		<div class="modal-action modal-close thumbnailModal">
+			{{ formSinais.grupoCMd }}
+		</div>
+	</div>
+</div>
+
+<div id="modalCMe" class="modal">
+	<div class="modal-content">
+		<h4>Configuração de mão esquerda</h4>
+		<div class="modal-action modal-close thumbnailModal">
+			{{ formSinais.cmE }}
+		</div>
+	</div>
+</div>
+
+<div id="modalCMd" class="modal">
+	<div class="modal-content">
+		<h4>Configuração de mão direita</h4>
+		<div class="modal-action modal-close thumbnailModal">
+			{{ formSinais.cmD }}
 		</div>
 	</div>
 </div>
 
 <script>
 	$('.modal').modal();
-	// $('div.thumbnail:not(.selected)').css({'display':'inline-block'});
 </script>
