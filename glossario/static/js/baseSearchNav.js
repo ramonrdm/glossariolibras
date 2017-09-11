@@ -24,6 +24,13 @@ $(document).ready(function() {
 		'#id_cmD .thumbnail:not(.selected)'
 	];
 
+	// let modal_refs = [
+	// 	'#modalGrupoCMe',
+	// 	'#modalGrupoCMd',
+	// 	'#id_cmE .thumbnail:not(.selected)',
+	// 	'#id_cmD .thumbnail:not(.selected)'
+	// ];
+
 	// let thumbnail_localizacao_ref = {id: '#id_localizacao .thumbnail', opened: false};
 
 	// function showAvatar(){
@@ -38,21 +45,22 @@ $(document).ready(function() {
 	// 	});
 	// }
 
-	// for(let i = 0; i < thumbnail_refs.length; i++){	
-	// 	$(thumbnail_refs[i].id).click(function() {
-	// 		if(thumbnail_refs[i].opened){
-	// 			thumbnail_refs[i].opened = false;
-	// 			$(thumbnail_not_refs[i]).hide();
-	// 			$(thumbnail_refs[i].id.split('.')[0] + 'li').click(function() {
-	// 				$(this).parent().prepend($(thumbnail_refs[i].id.split('.')[0] + 'li:contains("Selecionar")'));
-	// 				$(this).parent().prepend(this);
-	// 			});
-	// 		} else {	
-	// 			thumbnail_refs[i].opened = true;
-	// 			$(thumbnail_not_refs[i]).show();
-	// 		}
-	// 	});
-	// }
+	for(let i = 0; i < thumbnail_refs.length; i++){	
+		$(thumbnail_refs[i].id).click(function() {
+			if(thumbnail_refs[i].opened){
+				thumbnail_refs[i].opened = false;
+				$(thumbnail_not_refs[i]).hide();
+				$(thumbnail_refs[i].id.split('.')[0] + 'li').click(function() {
+					$(this).parent().prepend($(thumbnail_refs[i].id.split('.')[0] + 'li:contains("Selecionar")'));
+					$(this).parent().prepend(this);
+				});
+			} else {	
+				thumbnail_refs[i].opened = true;
+				// $(thumbnail_not_refs[i]).show();
+				// $(modal_refs[i]).modal('close');
+			}
+		});
+	}
 	
 	// // INICIALIZA A FUNÇÃO PARA MOSTRAR O AVATAR
 	// showAvatar();
@@ -133,8 +141,8 @@ $(document).ready(function() {
 	$('area').click(function() {
 
 		// ESCONDE O AVATAR
-		thumbnail_localizacao_ref.opened = false;
-		$('.map').hide();
+		// thumbnail_localizacao_ref.opened = false;
+		// $('.map').hide();
 
 		// VINCULA A ÁREA CLICADA À OPTION DA SUA LOCALIZAÇÃO
 		let attrValue = $(this).attr('data-key');
@@ -151,7 +159,7 @@ $(document).ready(function() {
 		$('.thumbnail').addClass('hoverable');
 
 		// VINCULA O IMAGEPICKER AO EVENTO DE MOSTRAR O AVATAR NOVAMENTE
-		showAvatar();
+		// showAvatar();
 
 	});
 
