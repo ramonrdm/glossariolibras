@@ -111,7 +111,8 @@ class CM (models.Model):
 	image_tag.allow_tags = True
 
 	def __str__(self):
-		return str(self.id)+" - "+str(self.grupo)
+		# return str(self.id)+" - "+str(self.grupo)
+		return str(self.id)
 
 class Tema(models.Model):
 	nome = models.CharField('Nome', max_length=30)

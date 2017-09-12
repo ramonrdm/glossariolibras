@@ -66,14 +66,6 @@
                                         {{ field }}
                                     </a>
                                 </div>
-                            {% elif field.auto_id == 'id_grupoCMd' %}
-                                <div class="col s12 m4" id="{{field.auto_id}}">
-                                    <a class="modal-trigger" href="#modalGrupoCMd">
-                                        <!-- {{ field.errors }} -->
-                                        <!-- {{ field.label_tag }} -->
-                                        {{ field }}
-                                    </a>
-                                </div>
                             {% elif field.auto_id == 'id_cmE' %}
                                 <div class="col s12 m4" id="{{field.auto_id}}">
                                     <a class="modal-trigger" href="#modalCMe">
@@ -82,8 +74,16 @@
                                         {{ field }}
                                     </a>
                                 </div>
+                            {% elif field.auto_id == 'id_grupoCMd' %}
+                                <div class="col s12 m6" id="{{field.auto_id}}">
+                                    <a class="modal-trigger" href="#modalGrupoCMd">
+                                        <!-- {{ field.errors }} -->
+                                        <!-- {{ field.label_tag }} -->
+                                        {{ field }}
+                                    </a>
+                                </div>
                             {% elif field.auto_id == 'id_cmD' %}
-                                <div class="col s12 m4" id="{{field.auto_id}}">
+                                <div class="col s12 m6" id="{{field.auto_id}}">
                                     <a class="modal-trigger" href="#modalCMd">
                                         <!-- {{ field.errors }} -->
                                         <!-- {{ field.label_tag }} -->

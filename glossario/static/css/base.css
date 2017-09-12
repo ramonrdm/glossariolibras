@@ -122,6 +122,21 @@ div.thumbnail:not(.selected) {
 	width: 50px;
 }
 
+.row.formSinais .col {
+	padding: 0;
+}
+
+.row.formSinais p {
+	font-size: 10px;
+}
+
+ul.thumbnails.image_picker_selector {
+	overflow: initial;
+	box-sizing: initial;
+}
+
+
+
 /* Define o texto das thumbnails como preto quando não está selecionado */
 div.thumbnail.hoverable:not(.selected) p{
 	color: black;
