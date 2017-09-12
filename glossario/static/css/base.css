@@ -1,4 +1,4 @@
-/* ================= COMUM ================= */
+ /* ================= COMUM ================= */
 
 /* Retira o deslocamento da página causado pela sidenav fixa */
 body {
@@ -122,6 +122,7 @@ div.thumbnail:not(.selected) {
 	width: 50px;
 }
 
+/* Correções nos thumbnails na sidenav */
 .row.formSinais .col {
 	padding: 0;
 }
@@ -130,12 +131,15 @@ div.thumbnail:not(.selected) {
 	font-size: 10px;
 }
 
+div#id_localizacao.col.s12.m4 {
+	max-height: 131px;
+}
+
 ul.thumbnails.image_picker_selector {
 	overflow: initial;
 	box-sizing: initial;
 }
-
-
+/* =================================== */
 
 /* Define o texto das thumbnails como preto quando não está selecionado */
 div.thumbnail.hoverable:not(.selected) p{
@@ -172,13 +176,21 @@ ul.thumbnails.image_picker_selector li .thumbnail {
 	display: inline;
 }
 
-.botaoEnviarSinal, .botaoEnviarSinal:focus {
-	margin-top: 20px;
+.botaoEnviarSinal, .botaoEnviarSinal:focus, .botaoPesquisar, .botaoPesquisar:focus {
 	background-color: #003a99;
 }
 
-.botaoEnviarSinal:hover {
+.botaoEnviarSinal {
+	margin-top: 20px;
+}
+
+.botaoEnviarSinal:hover, .botaoPesquisar:hover {
 	background-color: #0060ff;
+}
+
+/* Corrige centralização vertical do ícone no botão */
+.botaoPesquisar i.material-icons {
+	line-height: 36px;
 }
 
 .titulo {

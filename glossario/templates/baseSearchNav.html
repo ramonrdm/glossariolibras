@@ -74,24 +74,14 @@
                                         {{ field }}
                                     </a>
                                 </div>
-                            {% elif field.auto_id == 'id_grupoCMd' %}
-                                <div class="col s12 m6" id="{{field.auto_id}}">
-                                    <a class="modal-trigger" href="#modalGrupoCMd">
-                                        <!-- {{ field.errors }} -->
-                                        <!-- {{ field.label_tag }} -->
-                                        {{ field }}
-                                    </a>
-                                </div>
-                            {% elif field.auto_id == 'id_cmD' %}
-                                <div class="col s12 m6" id="{{field.auto_id}}">
-                                    <a class="modal-trigger" href="#modalCMd">
-                                        <!-- {{ field.errors }} -->
-                                        <!-- {{ field.label_tag }} -->
-                                        {{ field }}
-                                    </a>
-                                </div>
                             {% endif %}
                         {% endfor %}
+                        <div class="center">
+                            <button class="btn waves-effect waves-light botaoPesquisar" type="submit" name="botaoPesquisar">
+                                Pesquisar
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div>

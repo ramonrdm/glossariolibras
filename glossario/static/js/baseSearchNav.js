@@ -8,18 +8,15 @@ $(document).ready(function() {
 	// ADICIONA EFEITO DE HOVER AOS THUMBNAILS
 	$('.thumbnail').addClass('hoverable');
 
+	// USA SOMENTE CM E GRUPOCM ESQUERDA POIS TANTO FAZ PARA A PESQUISA
 	let modal_refs = [
 		'#modalGrupoCMe',
-		'#modalGrupoCMd',
-		'#modalCMe',
-		'#modalCMd'
+		'#modalCMe'
 	];
 
 	let select_refs = [
 		'#id_grupoCMe',
-		'#id_grupoCMd',
-		'#id_cmE',
-		'#id_cmD'
+		'#id_cmE'
 	];
 
 	// ATUALIZA THUMBNAIL EXIBIDO NA SIDENAV QUANDO ALGUM É SELECIONADO NO MODAL
@@ -31,8 +28,13 @@ $(document).ready(function() {
 				// REMOVE ATRIBUTO 'SELECTED' DA OPTION QUE JÁ ESTAVA SELECIONADA
 				$(".formSinais select" + select_refs[i] + " option[selected='selected']").removeAttr('selected');
 
+				let selectedOption = $(".formSinais select" + select_refs[i] + " option[value='" + attrValue + "']");
+
 				// ADICIONA ATRIBUTO 'SELECTED' À OPTION CLICADA
-				$(".formSinais select" + select_refs[i] + " option[value='" + attrValue + "']").attr('selected', 'selected');
+				$(selectedOption).attr('selected', 'selected');
+
+				// MOVE A OPTION SELECIONADA PARA O COMEÇO DO SELECT PARA NÃO SER DESLOCADA
+				$(selectedOption).parent().prepend(selectedOption);
 
 				// RECONSTRÓI O IMAGEPICKER PARA ATUALIZAR THUMBNAIL EXIBIDO
 				$('select' + select_refs[i]).imagepicker({
