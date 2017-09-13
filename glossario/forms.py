@@ -87,7 +87,7 @@ class LocalizacaoForm(forms.ModelForm):
 		fields = ['nome', 'imagem', 'bsw', 'areaClicavel']
 
 class PesquisaForm(forms.Form):
-	busca = forms.CharField(label="", widget=forms.TextInput(attrs={'id': 'search', 'type': 'search'}))
+	busca = forms.CharField(required=False, label="", widget=forms.TextInput(attrs={'id': 'search', 'type': 'search'}))
 
 class PesquisaCheckboxForm(forms.Form):
 	checkboxPort = forms.BooleanField(label='Português', widget=forms.CheckboxInput(attrs={

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
-{{formulario.media}}
+{{ form.media }}
 {% block Head %}
-	{{block.super}}
+	{{ block.super }}
 	{% load staticfiles %}
 	<link rel="stylesheet" type="text/css" href="{% static 'image-picker/image-picker/image-picker.css' %}"/>
 	<script type="text/javascript" src="{% static 'image-picker/image-picker/image-picker.js' %}"></script>
@@ -17,7 +17,7 @@
 		<form method="post" class="formEnviarSinais" enctype="multipart/form-data">
 			{% csrf_token %}
 			<div class="row">
-			{% for field in formulario %}
+			{% for field in form %}
 			{% if field.auto_id == 'id_sinalLibras' or field.auto_id == 'id_varicLibras' or field.auto_id == 'id_descLibras' or field.auto_id == 'id_exemploLibras' %}
 			<div class="col s12 m6">
 				<label for="{{field.auto_id}}">{{field.label_tag}}</label>
