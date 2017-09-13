@@ -27,6 +27,8 @@ def glossarioSelecionado(request, glossario):
 		formulario = PesquisaForm(request.POST)
 		request.session['checkboxes'] = request.POST.copy()
 		formCheckbox = PesquisaCheckboxForm(request.session['checkboxes'])
+		request.session['sinais'] = request.POST.copy()
+		formSinais = SinaisForm(request.session['sinais'])
 		sinaisGlossario = Sinal.objects.filter(glossario=glossario).filter(publicado=True)
 		if checkboxPort and checkboxIng:
 			if formulario.is_valid():
@@ -54,15 +56,18 @@ def glossarioSelecionado(request, glossario):
 		return render(request, 'pesquisa.html', {
 			'formulario': formulario, 'sinais': sinais, 'sinaisP': sinaisP, 'sinaisI': sinaisI, 'sinaisGlossario': sinaisGlossario,
 			'resultado': resultado, 'resultadoP': resultadoP, 'resultadoI': resultadoI, 'glossario': glossario,
-			'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox,
+			'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox, 'formSinais': formSinais
 			})
 	else:
 		if request.session.get('checkboxes'):
 			formCheckbox = PesquisaCheckboxForm(request.session['checkboxes'])
 		else:
 			formCheckbox = PesquisaCheckboxForm()
+		if request.session.get('sinais'):
+			formSinais = SinaisForm(request.session['sinais'])
+		else:
+			formSinais = SinaisForm()
 		formulario = PesquisaForm()
-		formSinais = SinaisForm()
 		return render(request, 'glossario.html', {'glossario': glossario, 'formulario': formulario, 'checkboxPort': checkboxPort,
 			'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox, 'formSinais': formSinais
 			})
@@ -83,6 +88,8 @@ def sinal(request, sinal=None, glossario=None):
 		formulario = PesquisaForm(request.POST)
 		request.session['checkboxes'] = request.POST.copy()
 		formCheckbox = PesquisaCheckboxForm(request.session['checkboxes'])
+		request.session['sinais'] = request.POST.copy()
+		formSinais = SinaisForm(request.session['sinais'])
 		sinaisGlossario = Sinal.objects.filter(glossario=glossario).filter(publicado=True)
 		if checkboxPort and checkboxIng:
 			if formulario.is_valid():
@@ -109,14 +116,15 @@ def sinal(request, sinal=None, glossario=None):
 			resultadoI = None
 		return render(request, 'pesquisa.html', {
 			'formulario': formulario, 'sinais': sinais, 'sinaisP': sinaisP, 'sinaisI': sinaisI, 'sinaisGlossario': sinaisGlossario,
-			'resultado': resultado, 'resultadoP': resultadoP, 'resultadoI': resultadoI, 'glossario': glossario,
-			'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox
+			'resultado': resultado, 'resultadoP': resultadoP, 'resultadoI': resultadoI, 'glossario': glossario, 'checkboxPort': checkboxPort,
+			'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox, 'formSinais': formSinais
 			})
 	else:
 		formulario = PesquisaForm()
 		formCheckbox = PesquisaCheckboxForm(request.session['checkboxes'])
-		return render(request, "sinal.html", {'sinal': sinal, 'glossario': glossario,
-			'formulario': formulario, 'formCheckbox': formCheckbox
+		formSinais = SinaisForm(request.session['sinais'])
+		return render(request, "sinal.html", {'sinal': sinal, 'glossario': glossario, 'formulario': formulario, 'formCheckbox': formCheckbox,
+			'formSinais': formSinais
 			})
 
 def historia(request):
