@@ -24,6 +24,8 @@ def glossarioSelecionado(request, glossario):
 	checkboxPort = request.POST.get('checkboxPort', False)
 	checkboxIng = request.POST.get('checkboxIng', False)
 
+	# request.session['sinaisCheckboxes'] = []
+
 	if request.method == 'POST':
 		sinais = sinaisP = sinaisI = sinaisGlossario = formPesquisa = None
 		formPesquisa = PesquisaForm(request.POST)
