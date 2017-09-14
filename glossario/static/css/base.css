@@ -139,6 +139,11 @@ ul.thumbnails.image_picker_selector {
 	overflow: initial;
 	box-sizing: initial;
 }
+
+.fixTableHeadWidth {
+	
+}
+
 /* =================================== */
 
 /* Define o texto das thumbnails como preto quando não está selecionado */

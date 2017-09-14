@@ -22,34 +22,37 @@ def glossarioSelecionado(request, glossario):
 	checkboxPort = request.POST.get('checkboxPort', False)
 	checkboxIng = request.POST.get('checkboxIng', False)
 
+	request.session['sinaisCheckboxes'] = []
+
 	if request.method == 'POST':
 		sinais = sinaisP = sinaisI = sinaisGlossario = formPesquisa = None
 		formPesquisa = PesquisaForm(request.POST)
 		request.session['sinaisCheckboxes'] = request.POST.copy()
 		formCheckbox = PesquisaCheckboxForm(request.session['sinaisCheckboxes'])
 		formSinais = SinaisForm(request.session['sinaisCheckboxes'])
-		sinaisGlossario = Sinal.objects.filter(glossario=glossario).filter(publicado=True)
-		if formPesquisa.is_valid():
-		# if formPesquisa.is_valid() and formSinais.is_valid():
+		# if formPesquisa.is_valid():
+		if formPesquisa.is_valid() and formSinais.is_valid():
+			sinaisGlossario = Sinal.objects.filter(glossario=glossario).filter(publicado=True)
+			resultadoTraducao = formPesquisa.cleaned_data['busca'] or []
 			if checkboxPort and checkboxIng:
-				# sinaisP = sinaisGlossario.filter(
-				# 	Q(traducaoP__icontains=formPesquisa.cleaned_data['busca']) |
-				# 	Q(localizacao__contains=formSinais.cleaned_data['localizacao']) |
-				# 	Q(grupoCMe__contains=formSinais.cleaned_data['grupoCMe']) |
-				# 	Q(grupoCMd__contains=formSinais.cleaned_data['grupoCMd']) |
-				# 	Q(cmE__contains=formSinais.cleaned_data['cmE']) |
-				# 	Q(cmD__contains=formSinais.cleaned_data['cmD'])
-				# ).distinct()
-				# sinaisI = sinaisGlossario.filter(
-				# 	Q(traducaoI__icontains=formPesquisa.cleaned_data['busca']) |
-				# 	Q(localizacao__contains=formSinais.cleaned_data['localizacao']) |
-				# 	Q(grupoCMe__contains=formSinais.cleaned_data['grupoCMe']) |
-				# 	Q(grupoCMd__contains=formSinais.cleaned_data['grupoCMd']) |
-				# 	Q(cmE__contains=formSinais.cleaned_data['cmE']) |
-				# 	Q(cmD__contains=formSinais.cleaned_data['cmD'])
-				# ).distinct()
-				sinaisP = sinaisGlossario.filter(traducaoP__icontains=formPesquisa.cleaned_data['busca'])
-				sinaisI = sinaisGlossario.filter(traducaoI__icontains=formPesquisa.cleaned_data['busca'])
+				sinaisP = sinaisGlossario.filter(
+					Q(traducaoP__icontains=resultadoTraducao) |
+					Q(localizacao=formSinais.cleaned_data['localizacao']) |
+					Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) |
+					Q(grupoCMd=formSinais.cleaned_data['grupoCMd']) |
+					Q(cmE=formSinais.cleaned_data['cmE']) |
+					Q(cmD=formSinais.cleaned_data['cmD'])
+				).distinct()
+				sinaisI = sinaisGlossario.filter(
+					Q(traducaoI__icontains=resultadoTraducao) |
+					Q(localizacao=formSinais.cleaned_data['localizacao']) |
+					Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) |
+					Q(grupoCMd=formSinais.cleaned_data['grupoCMd']) |
+					Q(cmE=formSinais.cleaned_data['cmE']) |
+					Q(cmD=formSinais.cleaned_data['cmD'])
+				).distinct()
+				# sinaisP = sinaisGlossario.filter(traducaoP__icontains=formPesquisa.cleaned_data['busca'])
+				# sinaisI = sinaisGlossario.filter(traducaoI__icontains=formPesquisa.cleaned_data['busca'])
 			elif checkboxPort and not checkboxIng:
 				sinais = sinaisGlossario.filter(traducaoP__icontains=formPesquisa.cleaned_data['busca'])
 			elif checkboxIng and not checkboxPort:

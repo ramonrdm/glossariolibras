@@ -21,15 +21,7 @@ $(document).ready(function() {
 
 	// ATUALIZA THUMBNAIL EXIBIDO NA SIDENAV QUANDO ALGUM É SELECIONADO NO MODAL
 	function sideNavThumbnailRefresh() {
-		// let localizacaoFromSession = $(".formSinais select#id_localizacao option[selected='selected']");
-		// $(localizacaoFromSession).parent().prepend(localizacaoFromSession);
 		for(let i = 0; i < modal_refs.length; i++){
-			// let optionFromSession = $(".formSinais select" + select_refs[i] + " option[selected='selected']");
-			// $(optionFromSession).parent().prepend(optionFromSession);
-			// $('select' + select_refs[i]).imagepicker({
-			// 	show_label: true
-			// });
-			// $('.thumbnail').addClass('hoverable');
 			$(modal_refs[i] + ' .thumbnail').click(function() {
 				let attrValue = $(this).find('p').html();
 

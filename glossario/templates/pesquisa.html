@@ -42,31 +42,43 @@
 						<thead>
 							<tr>
 								{% if checkboxPort %}
-								<th>Português</th>
+								<th class="center">Português</th>
 								{% elif checkboxIng %}
-								<th>Inglês</th>
+								<th class="center">Inglês</th>
 								{% endif %}
-								<th>Esquerda</th>
-								<th>Direita</th>
+								<th class="center">Grupo esquerda</th>
+								<th class="center">Configuração esquerda</th>
+								<th class="center">Grupo direita</th>
+								<th class="center">Configuração direita</th>
 							</tr>
 						</thead>
 						<tbody>
 						{% for s in sinais %}
 							<tr onclick="window.location='/sinal/{{s.id}}';">
 								{% if checkboxPort %}
-									<td>{{s.traducaoP}}</td>
+									<td class="center">{{s.traducaoP}}</td>
 								{% elif checkboxIng %}
-									<td>{{s.traducaoI}}</td>
+									<td class="center">{{s.traducaoI}}</td>
+								{% endif %}
+								{% if s.grupoCMe.imagem %}
+									<td class="center"><img src="{{s.grupoCMe.imagem.url}}" width="50" class="circle"></td>
+								{% else %}
+									<td></td>
 								{% endif %}
 								{% if s.cmE.imagem %}
-								<td><img src="{{s.cmE.imagem.url}}" width="50" class="circle"></td>
+									<td class="center"><img src="{{s.cmE.imagem.url}}" width="50" class="circle"></td>
 								{% else %}
-								<td></td>
+									<td></td>
+								{% endif %}
+								{% if s.grupoCMd.imagem %}
+									<td class="center"><img src="{{s.grupoCMd.imagem.url}}" width="50" class="circle"></td>
+								{% else %}
+									<td></td>
 								{% endif %}
 								{% if s.cmD.imagem %}
-								<td><img src="{{s.cmD.imagem.url}}" width="50" class="circle"></td>
+									<td class="center"><img src="{{s.cmD.imagem.url}}" width="50" class="circle"></td>
 								{% else %}
-								<td></td>
+									<td></td>
 								{% endif %}
 							</tr>
 						{% endfor %}
@@ -79,24 +91,36 @@
 				<table class="table-responsive highlight">
 					<thead>
 						<tr>
-							<th>Português</th>
-							<th>Esquerda</th>
-							<th>Direita</th>
+							<th class="center">Português</th>
+							<th class="center">Grupo esquerda</th>
+							<th class="center">Configuração esquerda</th>
+							<th class="center">Grupo direita</th>
+							<th class="center">Configuração direita</th>
 						</tr>
 					</thead>
 					<tbody>
 					{% for s in sinaisP %}
 						<tr onclick="window.location='/sinal/{{s.id}}';">
-							<td>{{s.traducaoP}}</td>
-							{% if s.cmE.imagem %}
-							<td><img src="{{s.cmE.imagem.url}}" width="50" class="circle"></td>
+							<td class="center">{{s.traducaoP}}</td>
+							{% if s.grupoCMe.imagem %}
+								<td class="center"><img src="{{s.grupoCMe.imagem.url}}" width="50" class="circle"></td>
 							{% else %}
-							<td></td>
+								<td></td>
+							{% endif %}
+							{% if s.cmE.imagem %}
+								<td class="center"><img src="{{s.cmE.imagem.url}}" width="50" class="circle"></td>
+							{% else %}
+								<td></td>
+							{% endif %}
+							{% if s.grupoCMd.imagem %}
+								<td class="center"><img src="{{s.grupoCMd.imagem.url}}" width="50" class="circle"></td>
+							{% else %}
+								<td></td>
 							{% endif %}
 							{% if s.cmD.imagem %}
-							<td><img src="{{s.cmD.imagem.url}}" width="50" class="circle"></td>
+								<td class="center"><img src="{{s.cmD.imagem.url}}" width="50" class="circle"></td>
 							{% else %}
-							<td></td>
+								<td></td>
 							{% endif %}
 						</tr>
 					{% endfor %}
@@ -107,24 +131,36 @@
 				<table class="table-responsive highlight">
 					<thead>
 						<tr>
-							<th>Inglês</th>
-							<th>Esquerda</th>
-							<th>Direita</th>
+							<th class="center fixTableHeadWidth">Inglês</th>
+							<th class="center">Grupo esquerda</th>
+							<th class="center">Configuração esquerda</th>
+							<th class="center">Grupo direita</th>
+							<th class="center">Configuração direita</th>
 						</tr>
 					</thead>
 					<tbody>
 					{% for s in sinaisI %}
 						<tr onclick="window.location='/sinal/{{s.id}}';">
-							<td>{{s.traducaoI}}</td>
-							{% if s.cmE.imagem %}
-							<td><img src="{{s.cmE.imagem.url}}" width="50" class="circle"></td>
+							<td class="center">{{s.traducaoI}}</td>
+							{% if s.grupoCMe.imagem %}
+								<td class="center"><img src="{{s.grupoCMe.imagem.url}}" width="50" class="circle"></td>
 							{% else %}
-							<td></td>
+								<td></td>
+							{% endif %}
+							{% if s.cmE.imagem %}
+								<td class="center"><img src="{{s.cmE.imagem.url}}" width="50" class="circle"></td>
+							{% else %}
+								<td></td>
+							{% endif %}
+							{% if s.grupoCMd.imagem %}
+								<td class="center"><img src="{{s.grupoCMd.imagem.url}}" width="50" class="circle"></td>
+							{% else %}
+								<td></td>
 							{% endif %}
 							{% if s.cmD.imagem %}
-							<td><img src="{{s.cmD.imagem.url}}" width="50" class="circle"></td>
+								<td class="center"><img src="{{s.cmD.imagem.url}}" width="50" class="circle"></td>
 							{% else %}
-							<td></td>
+								<td></td>
 							{% endif %}
 						</tr>
 					{% endfor %}
@@ -137,24 +173,36 @@
 				<table class="table-responsive highlight">
 					<thead>
 						<tr>
-							<th>Português</th>
-							<th>Esquerda</th>
-							<th>Direita</th>
+							<th class="center">Português</th>
+							<th class="center">Grupo esquerda</th>
+							<th class="center">Configuração esquerda</th>
+							<th class="center">Grupo direita</th>
+							<th class="center">Configuração direita</th>
 						</tr>
 					</thead>
 					<tbody>
 					{% for s in sinaisP %}
 						<tr onclick="window.location='/sinal/{{s.id}}';">
-							<td>{{s.traducaoP}}</td>
-							{% if s.cmE.imagem %}
-							<td><img src="{{s.cmE.imagem.url}}" width="50" class="circle"></td>
+							<td class="center">{{s.traducaoP}}</td>
+							{% if s.grupoCMe.imagem %}
+								<td class="center"><img src="{{s.grupoCMe.imagem.url}}" width="50" class="circle"></td>
 							{% else %}
-							<td></td>
+								<td></td>
+							{% endif %}
+							{% if s.cmE.imagem %}
+								<td class="center"><img src="{{s.cmE.imagem.url}}" width="50" class="circle"></td>
+							{% else %}
+								<td></td>
+							{% endif %}
+							{% if s.grupoCMd.imagem %}
+								<td class="center"><img src="{{s.grupoCMd.imagem.url}}" width="50" class="circle"></td>
+							{% else %}
+								<td></td>
 							{% endif %}
 							{% if s.cmD.imagem %}
-							<td><img src="{{s.cmD.imagem.url}}" width="50" class="circle"></td>
+								<td class="center"><img src="{{s.cmD.imagem.url}}" width="50" class="circle"></td>
 							{% else %}
-							<td></td>
+								<td></td>
 							{% endif %}
 						</tr>
 					{% endfor %}
@@ -169,24 +217,36 @@
 				<table class="table-responsive highlight">
 					<thead>
 						<tr>
-							<th>Inglês</th>
-							<th>Esquerda</th>
-							<th>Direita</th>
+							<th class="center">Inglês</th>
+							<th class="center">Grupo esquerda</th>
+							<th class="center">Configuração esquerda</th>
+							<th class="center">Grupo direita</th>
+							<th class="center">Configuração direita</th>
 						</tr>
 					</thead>
 					<tbody>
 					{% for s in sinaisI %}
 						<tr onclick="window.location='/sinal/{{s.id}}';">
-							<td>{{s.traducaoI}}</td>
-							{% if s.cmE.imagem %}
-							<td><img src="{{s.cmE.imagem.url}}" width="50" class="circle"></td>
+							<td class="center">{{s.traducaoI}}</td>
+							{% if s.grupoCMe.imagem %}
+								<td class="center"><img src="{{s.grupoCMe.imagem.url}}" width="50" class="circle"></td>
 							{% else %}
-							<td></td>
+								<td></td>
+							{% endif %}
+							{% if s.cmE.imagem %}
+								<td class="center"><img src="{{s.cmE.imagem.url}}" width="50" class="circle"></td>
+							{% else %}
+								<td></td>
+							{% endif %}
+							{% if s.grupoCMd.imagem %}
+								<td class="center"><img src="{{s.grupoCMd.imagem.url}}" width="50" class="circle"></td>
+							{% else %}
+								<td></td>
 							{% endif %}
 							{% if s.cmD.imagem %}
-							<td><img src="{{s.cmD.imagem.url}}" width="50" class="circle"></td>
+								<td class="center"><img src="{{s.cmD.imagem.url}}" width="50" class="circle"></td>
 							{% else %}
-							<td></td>
+								<td></td>
 							{% endif %}
 						</tr>
 					{% endfor %}
