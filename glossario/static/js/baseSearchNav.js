@@ -10,20 +10,37 @@ $(document).ready(function() {
 
 	// USA SOMENTE CM E GRUPOCM ESQUERDA POIS TANTO FAZ PARA A PESQUISA
 	let modal_refs = [
+		// '#modalLocalizacao',
 		'#modalGrupoCMe',
 		'#modalCMe'
 	];
 
 	let select_refs = [
+		// '#id_localizacao',
 		'#id_grupoCMe',
 		'#id_cmE'
 	];
 
+	// for(let i = 0; i < select_refs.length; i++){
+	// 	console.log('1');
+	// 	let selectedOption = $(".formSinais select" + select_refs[i] + " option[selected='selected']");
+	// 	$(selectedOption).parent().prepend(selectedOption);
+	// }
+
+	// for(let i = 0; i < select_refs.length; i++){
+	// 	console.log('2');
+	// 	$('select' + select_refs[i]).imagepicker({
+	// 		show_label: true
+	// 	});
+	// }
+	// $('.thumbnail').addClass('hoverable');
+
 	// ATUALIZA THUMBNAIL EXIBIDO NA SIDENAV QUANDO ALGUM É SELECIONADO NO MODAL
 	function sideNavThumbnailRefresh() {
 		for(let i = 0; i < modal_refs.length; i++){
+			$(modal_refs[i] + ' .thumbnail').unbind('click');
 			$(modal_refs[i] + ' .thumbnail').click(function() {
-				let attrValue = $(this).find('p').html();
+				let attrValue = $(this).find('p').html() === 'Selecionar' ? '' : $(this).find('p').html();
 
 				// REMOVE ATRIBUTO 'SELECTED' DA OPTION QUE JÁ ESTAVA SELECIONADA
 				$(".formSinais select" + select_refs[i] + " option[selected='selected']").removeAttr('selected');
@@ -31,10 +48,12 @@ $(document).ready(function() {
 				let selectedOption = $(".formSinais select" + select_refs[i] + " option[value='" + attrValue + "']");
 
 				// ADICIONA ATRIBUTO 'SELECTED' À OPTION CLICADA
-				$(selectedOption).attr('selected', 'selected');
+				// $(selectedOption).attr('selected', 'selected');
+				selectedOption.attr('selected', 'selected');
 
 				// MOVE A OPTION SELECIONADA PARA O COMEÇO DO SELECT PARA NÃO SER DESLOCADA
-				$(selectedOption).parent().prepend(selectedOption);
+				// $(selectedOption).parent().prepend(selectedOption);
+				selectedOption.parent().prepend(selectedOption);
 
 				// RECONSTRÓI O IMAGEPICKER PARA ATUALIZAR THUMBNAIL EXIBIDO
 				$('select' + select_refs[i]).imagepicker({
@@ -146,51 +165,5 @@ $(document).ready(function() {
 
 	});
 
-// RESPONSIVIDADE
-
-// var resizeTime = 100;     // total duration of the resize effect, 0 is instant
-// var resizeDelay = 100;    // time to wait before checking the window size again
-//                           // the shorter the time, the more reactive it will be.
-// // Resize the map to fit within the boundaries provided
-
-// function resize(maxWidth,maxHeight) {
-//      var image =  $('img'),
-//         imgWidth = image.width(),
-//         imgHeight = image.height(),
-//         newWidth=0,
-//         newHeight=0;
-
-//     if (imgWidth/maxWidth>imgHeight/maxHeight) {
-//         newWidth = maxWidth;
-//     } else {
-//         newHeight = maxHeight;
-//     }
-//     image.mapster('resize',newWidth,newHeight,resizeTime);   
-// }
-
-// // Track window resizing events, but only actually call the map resize when the
-// // window isn't being resized any more
-
-// function onWindowResize() {
-    
-//     var curWidth = $('.map').width(),
-//         curHeight = $('.map').height(),
-//         checking=false;
-//     if (checking) {
-//         return;
-//             }
-//     checking = true;
-//     window.setTimeout(function() {
-//         var newWidth = $('.map').width(),
-//            newHeight = $('.map').height();
-//         if (newWidth === curWidth &&
-//             newHeight === curHeight) {
-//             resize(newWidth,newHeight); 
-//         }
-//         checking=false;
-//     },resizeDelay );
-// }
-
-// $(window).bind('resize',onWindowResize);
 
 });

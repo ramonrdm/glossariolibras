@@ -44,21 +44,23 @@ class EnviarSinaisForm(forms.ModelForm):
 					if len(self.fields[field].queryset) >= option + 1:
 						self.fields[field].widget.field_img.append(self.fields[field].queryset[option].imagem.url)
 
-class SinaisForm(forms.ModelForm):
+class PesquisaSinaisForm(forms.ModelForm):
 
 	class Meta:
 		model = Sinal
-		fields = ['localizacao', 'grupoCMe', 'cmE', 'grupoCMd', 'cmD']
+		fields = ['localizacao', 'grupoCMe', 'cmE',
+		 # 'grupoCMd', 'cmD'
+		 ]
 		widgets =	{
 					'localizacao': ImageSelect(),
 					'grupoCMe': ImageSelect(),
 					'cmE': ImageSelect(),
-					'grupoCMd': ImageSelect(),
-					'cmD': ImageSelect()
+					# 'grupoCMd': ImageSelect(),
+					# 'cmD': ImageSelect()
 					}
 
 	def __init__(self, *args, **kwargs):
-		super(SinaisForm, self).__init__(*args, **kwargs)
+		super(PesquisaSinaisForm, self).__init__(*args, **kwargs)
 		for field in self.fields:
 			self.fields[field].widget.field_img = list()
 			self.fields[field].empty_label = 'Selecionar'

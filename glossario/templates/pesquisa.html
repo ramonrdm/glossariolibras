@@ -38,45 +38,45 @@
 			{% if sinais %}
 
 				<p class="flow-text">Encontrado {{resultado}} resultado(s):</p>
-					<table class="table-responsive highlight">
+					<table class="table-responsive highlight centered">
 						<thead>
 							<tr>
 								{% if checkboxPort %}
-								<th class="center">Português</th>
+								<th>Português</th>
 								{% elif checkboxIng %}
-								<th class="center">Inglês</th>
+								<th>Inglês</th>
 								{% endif %}
-								<th class="center">Grupo esquerda</th>
-								<th class="center">Configuração esquerda</th>
-								<th class="center">Grupo direita</th>
-								<th class="center">Configuração direita</th>
+								<th>Grupo esquerda</th>
+								<th>Configuração esquerda</th>
+								<th>Grupo direita</th>
+								<th>Configuração direita</th>
 							</tr>
 						</thead>
 						<tbody>
 						{% for s in sinais %}
 							<tr onclick="window.location='/sinal/{{s.id}}';">
 								{% if checkboxPort %}
-									<td class="center">{{s.traducaoP}}</td>
+									<td>{{s.traducaoP}}</td>
 								{% elif checkboxIng %}
-									<td class="center">{{s.traducaoI}}</td>
+									<td>{{s.traducaoI}}</td>
 								{% endif %}
 								{% if s.grupoCMe.imagem %}
-									<td class="center"><img src="{{s.grupoCMe.imagem.url}}" width="50" class="circle"></td>
+									<td><img src="{{s.grupoCMe.imagem.url}}" width="50" class="circle"></td>
 								{% else %}
 									<td></td>
 								{% endif %}
 								{% if s.cmE.imagem %}
-									<td class="center"><img src="{{s.cmE.imagem.url}}" width="50" class="circle"></td>
+									<td><img src="{{s.cmE.imagem.url}}" width="50" class="circle"></td>
 								{% else %}
 									<td></td>
 								{% endif %}
 								{% if s.grupoCMd.imagem %}
-									<td class="center"><img src="{{s.grupoCMd.imagem.url}}" width="50" class="circle"></td>
+									<td><img src="{{s.grupoCMd.imagem.url}}" width="50" class="circle"></td>
 								{% else %}
 									<td></td>
 								{% endif %}
 								{% if s.cmD.imagem %}
-									<td class="center"><img src="{{s.cmD.imagem.url}}" width="50" class="circle"></td>
+									<td><img src="{{s.cmD.imagem.url}}" width="50" class="circle"></td>
 								{% else %}
 									<td></td>
 								{% endif %}
@@ -88,37 +88,37 @@
 			{% elif sinaisP and sinaisI %}
 
 				<p class="flow-text">Encontrado {{resultadoP}} resultado(s) em português:</p>
-				<table class="table-responsive highlight">
+				<table class="table-responsive highlight centered">
 					<thead>
 						<tr>
-							<th class="center">Português</th>
-							<th class="center">Grupo esquerda</th>
-							<th class="center">Configuração esquerda</th>
-							<th class="center">Grupo direita</th>
-							<th class="center">Configuração direita</th>
+							<th>Português</th>
+							<th>Grupo esquerda</th>
+							<th>Configuração esquerda</th>
+							<th>Grupo direita</th>
+							<th>Configuração direita</th>
 						</tr>
 					</thead>
 					<tbody>
 					{% for s in sinaisP %}
 						<tr onclick="window.location='/sinal/{{s.id}}';">
-							<td class="center">{{s.traducaoP}}</td>
+							<td>{{s.traducaoP}}</td>
 							{% if s.grupoCMe.imagem %}
-								<td class="center"><img src="{{s.grupoCMe.imagem.url}}" width="50" class="circle"></td>
+								<td><img src="{{s.grupoCMe.imagem.url}}" width="50" class="circle"></td>
 							{% else %}
 								<td></td>
 							{% endif %}
 							{% if s.cmE.imagem %}
-								<td class="center"><img src="{{s.cmE.imagem.url}}" width="50" class="circle"></td>
+								<td><img src="{{s.cmE.imagem.url}}" width="50" class="circle"></td>
 							{% else %}
 								<td></td>
 							{% endif %}
 							{% if s.grupoCMd.imagem %}
-								<td class="center"><img src="{{s.grupoCMd.imagem.url}}" width="50" class="circle"></td>
+								<td><img src="{{s.grupoCMd.imagem.url}}" width="50" class="circle"></td>
 							{% else %}
 								<td></td>
 							{% endif %}
 							{% if s.cmD.imagem %}
-								<td class="center"><img src="{{s.cmD.imagem.url}}" width="50" class="circle"></td>
+								<td><img src="{{s.cmD.imagem.url}}" width="50" class="circle"></td>
 							{% else %}
 								<td></td>
 							{% endif %}
@@ -128,37 +128,37 @@
 				</table>
 
 				<p class="flow-text">Encontrado {{resultadoI}} resultado(s) em inglês:</p>
-				<table class="table-responsive highlight">
+				<table class="table-responsive highlight centered">
 					<thead>
 						<tr>
-							<th class="center fixTableHeadWidth">Inglês</th>
-							<th class="center">Grupo esquerda</th>
-							<th class="center">Configuração esquerda</th>
-							<th class="center">Grupo direita</th>
-							<th class="center">Configuração direita</th>
+							<th>Inglês</th>
+							<th>Grupo esquerda</th>
+							<th>Configuração esquerda</th>
+							<th>Grupo direita</th>
+							<th>Configuração direita</th>
 						</tr>
 					</thead>
 					<tbody>
 					{% for s in sinaisI %}
 						<tr onclick="window.location='/sinal/{{s.id}}';">
-							<td class="center">{{s.traducaoI}}</td>
+							<td>{{s.traducaoI}}</td>
 							{% if s.grupoCMe.imagem %}
-								<td class="center"><img src="{{s.grupoCMe.imagem.url}}" width="50" class="circle"></td>
+								<td><img src="{{s.grupoCMe.imagem.url}}" width="50" class="circle"></td>
 							{% else %}
 								<td></td>
 							{% endif %}
 							{% if s.cmE.imagem %}
-								<td class="center"><img src="{{s.cmE.imagem.url}}" width="50" class="circle"></td>
+								<td><img src="{{s.cmE.imagem.url}}" width="50" class="circle"></td>
 							{% else %}
 								<td></td>
 							{% endif %}
 							{% if s.grupoCMd.imagem %}
-								<td class="center"><img src="{{s.grupoCMd.imagem.url}}" width="50" class="circle"></td>
+								<td><img src="{{s.grupoCMd.imagem.url}}" width="50" class="circle"></td>
 							{% else %}
 								<td></td>
 							{% endif %}
 							{% if s.cmD.imagem %}
-								<td class="center"><img src="{{s.cmD.imagem.url}}" width="50" class="circle"></td>
+								<td><img src="{{s.cmD.imagem.url}}" width="50" class="circle"></td>
 							{% else %}
 								<td></td>
 							{% endif %}
@@ -170,37 +170,37 @@
 			{% elif sinaisP and not sinaisI %}
 
 				<p class="flow-text">Encontrado {{resultadoP}} resultado(s) em português:</p>
-				<table class="table-responsive highlight">
+				<table class="table-responsive highlight centered">
 					<thead>
 						<tr>
-							<th class="center">Português</th>
-							<th class="center">Grupo esquerda</th>
-							<th class="center">Configuração esquerda</th>
-							<th class="center">Grupo direita</th>
-							<th class="center">Configuração direita</th>
+							<th>Português</th>
+							<th>Grupo esquerda</th>
+							<th>Configuração esquerda</th>
+							<th>Grupo direita</th>
+							<th>Configuração direita</th>
 						</tr>
 					</thead>
 					<tbody>
 					{% for s in sinaisP %}
 						<tr onclick="window.location='/sinal/{{s.id}}';">
-							<td class="center">{{s.traducaoP}}</td>
+							<td>{{s.traducaoP}}</td>
 							{% if s.grupoCMe.imagem %}
-								<td class="center"><img src="{{s.grupoCMe.imagem.url}}" width="50" class="circle"></td>
+								<td><img src="{{s.grupoCMe.imagem.url}}" width="50" class="circle"></td>
 							{% else %}
 								<td></td>
 							{% endif %}
 							{% if s.cmE.imagem %}
-								<td class="center"><img src="{{s.cmE.imagem.url}}" width="50" class="circle"></td>
+								<td><img src="{{s.cmE.imagem.url}}" width="50" class="circle"></td>
 							{% else %}
 								<td></td>
 							{% endif %}
 							{% if s.grupoCMd.imagem %}
-								<td class="center"><img src="{{s.grupoCMd.imagem.url}}" width="50" class="circle"></td>
+								<td><img src="{{s.grupoCMd.imagem.url}}" width="50" class="circle"></td>
 							{% else %}
 								<td></td>
 							{% endif %}
 							{% if s.cmD.imagem %}
-								<td class="center"><img src="{{s.cmD.imagem.url}}" width="50" class="circle"></td>
+								<td><img src="{{s.cmD.imagem.url}}" width="50" class="circle"></td>
 							{% else %}
 								<td></td>
 							{% endif %}
@@ -214,37 +214,37 @@
 			{% elif not sinaisP and sinaisI %}
 
 				<p class="flow-text">Encontrado {{resultadoI}} resultado(s) em inglês:</p>
-				<table class="table-responsive highlight">
+				<table class="table-responsive highlight centered">
 					<thead>
 						<tr>
-							<th class="center">Inglês</th>
-							<th class="center">Grupo esquerda</th>
-							<th class="center">Configuração esquerda</th>
-							<th class="center">Grupo direita</th>
-							<th class="center">Configuração direita</th>
+							<th>Inglês</th>
+							<th>Grupo esquerda</th>
+							<th>Configuração esquerda</th>
+							<th>Grupo direita</th>
+							<th>Configuração direita</th>
 						</tr>
 					</thead>
 					<tbody>
 					{% for s in sinaisI %}
 						<tr onclick="window.location='/sinal/{{s.id}}';">
-							<td class="center">{{s.traducaoI}}</td>
+							<td>{{s.traducaoI}}</td>
 							{% if s.grupoCMe.imagem %}
-								<td class="center"><img src="{{s.grupoCMe.imagem.url}}" width="50" class="circle"></td>
+								<td><img src="{{s.grupoCMe.imagem.url}}" width="50" class="circle"></td>
 							{% else %}
 								<td></td>
 							{% endif %}
 							{% if s.cmE.imagem %}
-								<td class="center"><img src="{{s.cmE.imagem.url}}" width="50" class="circle"></td>
+								<td><img src="{{s.cmE.imagem.url}}" width="50" class="circle"></td>
 							{% else %}
 								<td></td>
 							{% endif %}
 							{% if s.grupoCMd.imagem %}
-								<td class="center"><img src="{{s.grupoCMd.imagem.url}}" width="50" class="circle"></td>
+								<td><img src="{{s.grupoCMd.imagem.url}}" width="50" class="circle"></td>
 							{% else %}
 								<td></td>
 							{% endif %}
 							{% if s.cmD.imagem %}
-								<td class="center"><img src="{{s.cmD.imagem.url}}" width="50" class="circle"></td>
+								<td><img src="{{s.cmD.imagem.url}}" width="50" class="circle"></td>
 							{% else %}
 								<td></td>
 							{% endif %}

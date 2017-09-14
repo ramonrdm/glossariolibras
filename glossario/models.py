@@ -133,11 +133,6 @@ class Sinal(models.Model):
 		verbose_name_plural = 'sinais'
 		unique_together = ('traducaoP', 'traducaoI', 'grupoCMe', 'cmE', 'grupoCMd', 'cmD', 'localizacao')
 
-	# __original_sinalLibras = None
-	# __original_descLibras = None
-	# __original_exemploLibras = None
-	# __original_varicLibras = None
-
 	glossario = models.ForeignKey(Glossario, verbose_name='glossário', null=True)
 	traducaoP = models.CharField('palavra', max_length=30)
 	traducaoI = models.CharField('word', max_length=30)
@@ -156,13 +151,6 @@ class Sinal(models.Model):
 	exemploLibras = Video('Vídeo do exemplo', upload_to=sinal_upload_path, null=True, blank=True)
 	varicLibras = Video('Vídeo da variação', upload_to=sinal_upload_path, null=True, blank=True)
 	tema = models.ForeignKey(Tema, null=True)
-
-	# def __init__(self, *args, **kwargs):
-	# 	super(Sinal, self).__init__(*args, **kwargs)
-	# 	self.__original_sinalLibras = self.sinalLibras
-	# 	self.__original_descLibras = self.descLibras
-	# 	self.__original_exemploLibras = self.exemploLibras
-	# 	self.__original_varicLibras = self.varicLibras
 
 	def image_tag_cmE(self):
 		if self.cmE.imagem:
@@ -199,13 +187,11 @@ def update_upload_path(sender, instance, created, **kwargs):
 	originais = '{0}/sinal_videos/originais'.format(settings.MEDIA_ROOT)
 	convertidos = '{0}/sinal_videos/convertidos'.format(settings.MEDIA_ROOT)
 
-	# originalFields = [instance.__original_sinalLibras, instance.__original_descLibras, instance.__original_exemploLibras, instance.__original_varicLibras]
 	videoFields = [instance.sinalLibras, instance.descLibras, instance.exemploLibras, instance.varicLibras]
 	tags = ['sinal', 'descricao', 'exemplo', 'variacao']
 
 	for index, field in enumerate(videoFields):
 		if field:
-			# if field != originalFields[index]:
 			subprocess.call('ffmpeg -i {0}/{1} -c:v libx264 -crf 19 -movflags faststart -threads 0 -preset slow -c:a aac -strict -2 {2}/{3}-{4}-%s.mp4'
 				.format(
 					originais,
@@ -217,9 +203,3 @@ def update_upload_path(sender, instance, created, **kwargs):
 					% datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'),
 					shell=True
 					)
-				
-	# 		originalFields[index] = field
-	# instance.__original_sinalLibras = originalFields[0]
-	# instance.__original_descLibras = originalFields[1]
-	# instance.__original_exemploLibras = originalFields[2]
-	# instance.__original_varicLibras = originalFields[3]
