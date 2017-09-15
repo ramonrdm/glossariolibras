@@ -24,7 +24,7 @@ def glossarioSelecionado(request, glossario):
 	checkboxPort = request.POST.get('checkboxPort', False)
 	checkboxIng = request.POST.get('checkboxIng', False)
 
-	# request.session['sinaisCheckboxes'] = []
+	request.session['sinaisCheckboxes'] = []
 
 	if request.method == 'POST':
 		sinais = sinaisP = sinaisI = sinaisGlossario = formPesquisa = None
@@ -206,20 +206,22 @@ def temasjson(request):
 
 def filterSinaisPort(formSinais, sinaisGlossario, resultadoTraducao):
 	return sinaisGlossario.filter(
+		# grupoCMe e cmE estão repetidos pois o form pesquisa só por um grupoCM e CM
 				Q(traducaoP__icontains=resultadoTraducao) |
 				Q(localizacao=formSinais.cleaned_data['localizacao']) |
 				Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) |
-				Q(grupoCMd=formSinais.cleaned_data['grupoCMd']) |
+				Q(grupoCMd=formSinais.cleaned_data['grupoCMe']) |
 				Q(cmE=formSinais.cleaned_data['cmE']) |
-				Q(cmD=formSinais.cleaned_data['cmD'])
+				Q(cmD=formSinais.cleaned_data['cmE'])
 			).distinct()
 
 def filterSinaisIng(formSinais, sinaisGlossario, resultadoTraducao):
 	return sinaisGlossario.filter(
+		# grupoCMe e cmE estão repetidos pois o form pesquisa só por um grupoCM e CM
 				Q(traducaoI__icontains=resultadoTraducao) |
 				Q(localizacao=formSinais.cleaned_data['localizacao']) |
 				Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) |
-				Q(grupoCMd=formSinais.cleaned_data['grupoCMd']) |
+				Q(grupoCMd=formSinais.cleaned_data['grupoCMe']) |
 				Q(cmE=formSinais.cleaned_data['cmE']) |
-				Q(cmD=formSinais.cleaned_data['cmD'])
+				Q(cmD=formSinais.cleaned_data['cmE'])
 			).distinct()

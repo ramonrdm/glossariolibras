@@ -53,7 +53,7 @@ class PesquisaSinaisForm(forms.ModelForm):
 		widgets =	{
 					'localizacao': ImageSelect(),
 					'grupoCMe': ImageSelect(),
-					'cmE': ImageSelect(),
+					'cmE': ImageSelect()
 					}
 					# 'grupoCMd': ImageSelect(),
 					# 'cmD': ImageSelect()

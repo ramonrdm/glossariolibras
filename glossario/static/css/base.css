@@ -520,3 +520,56 @@ ul.thumbnails.image_picker_selector li .thumbnail {
 }
 
 /* =============== FIM DESKTOP =============== */
+
+/* =============== NADA DE MAIS... =============== */
+
+@-webkit-keyframes nadaDeMais {
+    0%   { color  : red;    }
+    10%  { color  : orange; }
+    20%  { color  : yellow; }
+    40%  { color  : purple  }
+    50%  { color  : blue;   }
+    30%  { color  : green;  }
+    60%  { color  : pink;   }
+    70%  { color  : red;    }
+    80%  { color  : orange; }
+    90%  { color  : yellow; }
+    100% { color  : black;  }
+}
+
+@-moz-keyframes nadaDeMais {
+    0%   { color  : red;    }
+    10%  { color  : orange; }
+    20%  { color  : yellow; }
+    40%  { color  : purple  }
+    50%  { color  : blue;   }
+    30%  { color  : green;  }
+    60%  { color  : pink;   }
+    70%  { color  : red;    }
+    80%  { color  : orange; }
+    90%  { color  : yellow; }
+    100% { color  : black;  }
+}
+
+@keyframes nadaDeMais {
+    0%   { color  : red;    }
+    10%  { color  : orange; }
+    20%  { color  : yellow; }
+    40%  { color  : purple  }
+    50%  { color  : blue;   }
+    30%  { color  : green;  }
+    60%  { color  : pink;   }
+    70%  { color  : red;    }
+    80%  { color  : orange; }
+    90%  { color  : yellow; }
+    100% { color  : black;  }
+}
+
+
+.nadaDeMais {
+    -webkit-animation: nadaDeMais 0.1s linear infinite;
+    -moz-animation: nadaDeMais 0.1s linear infinite;
+    animation: nadaDeMais 0.1s linear infinite;
+}
+
+/* ============= FIM NADA DE MAIS... ============= */
