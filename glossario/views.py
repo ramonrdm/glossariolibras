@@ -32,6 +32,7 @@ def glossarioSelecionado(request, glossario):
 		request.session['sinaisCheckboxes'] = request.POST.copy()
 		formCheckbox = PesquisaCheckboxForm(request.session['sinaisCheckboxes'])
 		formSinais = PesquisaSinaisForm(request.session['sinaisCheckboxes'])
+		# formSinais = PesquisaSinaisForm(request.POST)
 		if formPesquisa.is_valid() and formSinais.is_valid():
 			sinaisGlossario = Sinal.objects.filter(glossario=glossario).filter(publicado=True)
 			resultadoTraducao = formPesquisa.cleaned_data['busca'] or []
@@ -55,6 +56,7 @@ def glossarioSelecionado(request, glossario):
 	else:
 		formCheckbox = PesquisaCheckboxForm(request.session['sinaisCheckboxes']) if request.session.get('sinaisCheckboxes')	else PesquisaCheckboxForm()
 		formSinais = PesquisaSinaisForm(request.session['sinaisCheckboxes']) if request.session.get('sinaisCheckboxes') else PesquisaSinaisForm()
+		# formSinais = PesquisaSinaisForm()
 		formPesquisa = PesquisaForm()
 		return render(request, 'glossario.html', {'glossario': glossario, 'formPesquisa': formPesquisa, 'checkboxPort': checkboxPort,
 			'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox, 'formSinais': formSinais
