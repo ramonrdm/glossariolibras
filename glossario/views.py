@@ -165,12 +165,12 @@ def criaNodo(nodoPai):
 def mostraNodo(nodoTema1, n):
 	txt = " - "*n
 	if nodoTema1.filhos:
-		print str(n) + txt +nodoTema1.nome
+		print( str(n) + txt +nodoTema1.nome)
 		filhos = nodoTema1.filhos
 		for filho in filhos:
 			mostraNodo(filho, n+1)
 	else:
-		print str(n) + txt +nodoTema1.nome
+		print (str(n) + txt +nodoTema1.nome)
 
 def mostraNodoJson(nodoTema1):
 	if nodoTema1.filhos:
@@ -198,5 +198,5 @@ def temasjson(request):
 	data['nodes']['glossario'] = {"color":"green", "shape":"dot", "alpha":1, "link":"ramon" }
 	raiz = criaNodo(Tema.objects.get(temaPai=None))
 	mostraNodoJson(raiz)
-	print jsonTemas
+	print (jsonTemas)
 	return JsonResponse(jsonTemas)
