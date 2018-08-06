@@ -38,7 +38,7 @@ class EnviarSinaisForm(forms.ModelForm):
 		for field in self.fields:
 			self.fields[field].widget.field_img = list()
 			self.fields[field].empty_label = 'Selecionar'
-			for option in xrange(0, 20):
+			for option in range(0, 20):
 			# trocar 20 do xrange para length do select que tiver mais options
 				if type(self.fields[field]) is ModelChoiceField:
 					if len(self.fields[field].queryset) >= option + 1:
@@ -64,7 +64,7 @@ class PesquisaSinaisForm(forms.ModelForm):
 			self.fields[field].widget.field_img = list()
 			self.fields[field].empty_label = 'Selecionar'
 			self.fields[field].required = False
-			for option in xrange(0, 20):
+			for option in range(0, 20):
 			# trocar 20 do xrange para length do select que tiver mais options
 				if type(self.fields[field]) is ModelChoiceField:
 					if len(self.fields[field].queryset) >= option + 1:

@@ -100,7 +100,7 @@ class CM (models.Model):
 
 	bsw = models.TextField('BSW', blank=True, default='')
 	imagem = models.ImageField(blank=True)
-	grupo = models.ForeignKey(GrupoCM, verbose_name = 'Grupo de Configuração de Mão')
+	grupo = models.ForeignKey(GrupoCM, verbose_name = 'Grupo de Configuração de Mão', on_delete=models.CASCADE)
 
 	def image_tag(self):
 		if self.imagem:
@@ -119,7 +119,7 @@ class Tema(models.Model):
 	descricao = models.CharField('Descrição', max_length=100, null=True)
 	video = Video('Vídeo', null=True, blank=True)
 	imagem = models.ImageField('Imagem', blank=True, null=True)
-	temaPai = models.ForeignKey('self',null=True, blank = True, verbose_name = 'Tema Pai')
+	temaPai = models.ForeignKey('self',null=True, blank = True, verbose_name = 'Tema Pai', on_delete=models.CASCADE)
 
 	def __unicode__(self):
 		return self.nome
@@ -133,24 +133,24 @@ class Sinal(models.Model):
 		verbose_name_plural = 'sinais'
 		unique_together = ('traducaoP', 'traducaoI', 'grupoCMe', 'cmE', 'grupoCMd', 'cmD', 'localizacao')
 
-	glossario = models.ForeignKey(Glossario, verbose_name='glossário', null=True)
+	glossario = models.ForeignKey(Glossario, verbose_name='glossário', null=True, on_delete=models.CASCADE)
 	traducaoP = models.CharField('palavra', max_length=30)
 	traducaoI = models.CharField('word', max_length=30)
 	bsw = models.TextField(null=True, blank=True)
 	descricao = models.CharField('descrição', max_length=200, null=True)
-	grupoCMe = models.ForeignKey(GrupoCM, related_name='Grupo_M_Esquerda', verbose_name='grupo da mão esquerda')
-	cmE = models.ForeignKey(CM, related_name='C_M_Esquerda', verbose_name='configuração da mão esquerda')
-	grupoCMd = models.ForeignKey(GrupoCM, related_name='Grupo_M_Direita', verbose_name='grupo da mão direita')
-	cmD = models.ForeignKey(CM, related_name='C_M_Direita', verbose_name='configuração da mão direita')
-	localizacao = models.ForeignKey(Localizacao, null=True, blank=True, verbose_name='localização')
+	grupoCMe = models.ForeignKey(GrupoCM, related_name='Grupo_M_Esquerda', verbose_name='grupo da mão esquerda', on_delete=models.CASCADE)
+	cmE = models.ForeignKey(CM, related_name='C_M_Esquerda', verbose_name='configuração da mão esquerda', on_delete=models.CASCADE)
+	grupoCMd = models.ForeignKey(GrupoCM, related_name='Grupo_M_Direita', verbose_name='grupo da mão direita', on_delete=models.CASCADE)
+	cmD = models.ForeignKey(CM, related_name='C_M_Direita', verbose_name='configuração da mão direita', on_delete=models.CASCADE)
+	localizacao = models.ForeignKey(Localizacao, null=True, blank=True, verbose_name='localização', on_delete=models.CASCADE)
 	dataPost = models.DateField('data de criação', null=True)
-	postador = models.ForeignKey(User, null=True)
+	postador = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
 	publicado = models.BooleanField(default=False)
 	sinalLibras = Video('Vídeo do sinal', upload_to=sinal_upload_path, null=True, blank=True)
 	descLibras = Video('Vídeo da descrição', upload_to=sinal_upload_path, null=True, blank=True)
 	exemploLibras = Video('Vídeo do exemplo', upload_to=sinal_upload_path, null=True, blank=True)
 	varicLibras = Video('Vídeo da variação', upload_to=sinal_upload_path, null=True, blank=True)
-	tema = models.ForeignKey(Tema, null=True)
+	tema = models.ForeignKey(Tema, null=True, on_delete=models.CASCADE)
 
 	def image_tag_cmE(self):
 		if self.cmE.imagem:
