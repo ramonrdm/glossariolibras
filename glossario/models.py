@@ -19,7 +19,7 @@ class Profile(models.Model):
 	lattes = models.CharField('Currículo Lattes', max_length=200, blank=True)
 	foto = models.ImageField(upload_to=profile_upload_path, blank=True)
 
-	def __unicode__(self):
+	def __str__(self):
 		return self.user.username
 
 @receiver(post_save, sender=User)
@@ -45,7 +45,7 @@ class Localizacao(models.Model):
 	image_tag.short_description = 'Imagem'
 	image_tag.allow_tags = True
 
-	def __unicode__(self):
+	def __str__(self):
 		return self.nome
 
 class Video(FileField):
@@ -73,7 +73,7 @@ class Glossario(models.Model):
 	image_tag.short_description = 'Imagem'
 	image_tag.allow_tags = True
 
-	def __unicode__(self):
+	def __str__(self):
 		return self.nome
 
 class GrupoCM (models.Model):
@@ -121,7 +121,7 @@ class Tema(models.Model):
 	imagem = models.ImageField('Imagem', blank=True, null=True)
 	temaPai = models.ForeignKey('self',null=True, blank = True, verbose_name = 'Tema Pai', on_delete=models.CASCADE)
 
-	def __unicode__(self):
+	def __str__(self):
 		return self.nome
 
 def sinal_upload_path(instance, filename):
@@ -177,7 +177,7 @@ class Sinal(models.Model):
 	image_tag_localizacao.short_description = 'localização'
 	image_tag_localizacao.allow_tags = True
 
-	def __unicode__(self):
+	def __str__(self):
 		return self.traducaoP
 
 @receiver(post_save, sender=Sinal)
