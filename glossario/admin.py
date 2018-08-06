@@ -1,13 +1,41 @@
 # -*- coding: utf-8 -*-
-from django.contrib import admin
-from .models import *
-from glossario.forms import GlossarioForm, SinalForm, UsuarioForm, GrupoCMForm, CMForm, LocalizacaoForm
+from glossario.forms import GlossarioForm, SinalForm, GrupoCMForm, CMForm, LocalizacaoForm
 from unicodedata import normalize
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import Q
-from django.core.exceptions import ObjectDoesNotExist
+from .models import *
 from django.contrib.contenttypes.models import ContentType
 
+class ProfileInline(admin.StackedInline):
+	model = Profile
+	can_delete = False
+	verbose_name_plural = 'Profile'
+	fk_name = 'user'
+
+class CustomUserAdmin(UserAdmin):
+	inlines = (ProfileInline,)
+	list_display = ('username', 'email', 'first_name', 'last_name', 'get_lattes', 'is_staff', 'image_tag')
+	list_select_related = ('profile',)
+
+	def get_lattes(self, instance):
+		return instance.profile.lattes
+	get_lattes.short_description = 'Lattes'
+
+	def image_tag(self, instance):
+		if instance.profile.foto:
+			return u'<img src="%s" width="50" height="50"/>' % instance.profile.foto.url
+		else:
+			return 'Sem foto'
+	image_tag.short_description = 'Foto'
+	image_tag.allow_tags = True
+
+	def get_inline_instances(self, request, obj=None):
+		if not obj:
+			return list()
+		return super(CustomUserAdmin, self).get_inline_instances(request, obj)
 
 class GlossarioAdmin(admin.ModelAdmin):
 	
@@ -107,13 +135,9 @@ class LocalizacaoAdmin(admin.ModelAdmin):
 	form = LocalizacaoForm
 	list_display = ('nome', 'image_tag', 'bsw')
 
-class UsuarioAdmin(admin.ModelAdmin):
-
-	form = UsuarioForm
-	list_display = ('username', 'nome', 'email', 'latte', 'foto', 'is_staff')
-
+admin.site.unregister(User)
+admin.site.register(User, CustomUserAdmin)
 admin.site.register(Tema)
-admin.site.register(Usuario, UsuarioAdmin)
 admin.site.register(Glossario, GlossarioAdmin)
 admin.site.register(Sinal, SinalAdmin)
 admin.site.register(GrupoCM, GrupoCMAdmin)

@@ -12,7 +12,9 @@
 </head>
 <body>
 	{% block Corpo %}
-	
+
+	{% include 'modaisFormSinais.html' %}
+
 <!-- VÍDEOS -->
 
 	<div class="center">
@@ -125,7 +127,7 @@
 		<div class="col s12 m6">
 			<div class="card blue darken-4 z-depth-5 cardSinalMao">
 				<div class="card-content white-text">
-					<span class="card-title">Mão esquerda</span>
+					<span class="card-title center">Mão esquerda</span>
 					<div class="mao">
 						Grupo de configuração de mão:
 						<div class="center imgMao">
@@ -150,7 +152,7 @@
 		<div class="col s12 m6">
 			<div class="card blue darken-4 z-depth-5 cardSinalMao">
 				<div class="card-content white-text">
-					<span class="card-title">Mão direita</span>
+					<span class="card-title center">Mão direita</span>
 					<div class="mao">
 						Grupo de configuração de mão:
 						<div class="center imgMao">
@@ -191,7 +193,7 @@
 		</div>
 	</div>
 
-	<script type="text/javascript" src='{% static "js/sinal.js" %}'></script>
+	<!-- <script type="text/javascript" src='{% static "js/sinal.js" %}'></script> -->
 
 	{% endblock %}
 </body>

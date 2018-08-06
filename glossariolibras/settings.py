@@ -36,8 +36,6 @@ INSTALLED_APPS = (
     'glossario'
 )
 
-AUTH_USER_MODEL = 'glossario.Usuario'
-
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -82,11 +80,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 PROJECT_ROOT = os.path.dirname(os.path.dirname(__file__))
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
-
-#TEMPLATES_DIRS = (
-#    os.path.join(os.path.abspath(os.path.dirname(__file__)), 'templates'),
-#    )
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'glossario/static')
 
 TEMPLATES = [
     {
@@ -106,4 +100,4 @@ TEMPLATES = [
     },
 ]
 
-# SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True

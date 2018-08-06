@@ -1,22 +1,9 @@
 # -*- coding: utf-8 -*-
-from glossario.models import Usuario, Glossario, Sinal, GrupoCM, CM, Localizacao
+from django.forms.models import ModelChoiceField
+from glossario.models import Glossario, Sinal, GrupoCM, CM, Localizacao
+from django.conf import settings
+from glossario.widgets import ImageSelect
 from django import forms
-
-class UsuarioForm(forms.ModelForm):
-
-	class Meta:
-		model = Usuario
-		widgets = {
-		'password': forms.PasswordInput(),
-		}
-		fields = ['username', 'password', 'nome', 'latte', 'foto', 'email', 'is_staff', 'groups']
-		
-	def  save(self, commit=True):
-		user = super(UsuarioForm, self).save(commit=False)
-		user.set_password(self.cleaned_data["password"])
-		if commit:
-			user.save()
-		return user
 
 class GlossarioForm(forms.ModelForm):
 
@@ -25,7 +12,7 @@ class GlossarioForm(forms.ModelForm):
 		exclude = ['link','dataCriacao']
 
 class SinalForm(forms.ModelForm):
-
+	
 	class Meta:
 		model = Sinal
 		fields = ['tema', 'glossario', 'traducaoP', 'traducaoI', 'descricao', 'bsw', 'grupoCMe', 'cmE', 'grupoCMd',
@@ -38,11 +25,50 @@ class EnviarSinaisForm(forms.ModelForm):
 		model = Sinal
 		fields = ['traducaoP', 'traducaoI', 'descricao', 'localizacao', 'grupoCMe', 'cmE', 'grupoCMd', 'cmD',
 		'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras']
+		widgets =	{
+					'localizacao': ImageSelect(),
+					'grupoCMe': ImageSelect(),
+					'cmE': ImageSelect(),
+					'grupoCMd': ImageSelect(),
+					'cmD': ImageSelect()
+					}
 
 	def __init__(self, *args, **kwargs):
 		super(EnviarSinaisForm, self).__init__(*args, **kwargs)
-		for fields in self.fields:
-			self.fields[fields].empty_label = 'Selecione um item'
+		for field in self.fields:
+			self.fields[field].widget.field_img = list()
+			self.fields[field].empty_label = 'Selecionar'
+			for option in xrange(0, 20):
+			# trocar 20 do xrange para length do select que tiver mais options
+				if type(self.fields[field]) is ModelChoiceField:
+					if len(self.fields[field].queryset) >= option + 1:
+						self.fields[field].widget.field_img.append(self.fields[field].queryset[option].imagem.url)
+
+class PesquisaSinaisForm(forms.ModelForm):
+
+	class Meta:
+		model = Sinal
+		fields = ['localizacao', 'grupoCMe', 'cmE']
+		 # 'grupoCMd', 'cmD'
+		widgets =	{
+					'localizacao': ImageSelect(),
+					'grupoCMe': ImageSelect(),
+					'cmE': ImageSelect()
+					}
+					# 'grupoCMd': ImageSelect(),
+					# 'cmD': ImageSelect()
+
+	def __init__(self, *args, **kwargs):
+		super(PesquisaSinaisForm, self).__init__(*args, **kwargs)
+		for field in self.fields:
+			self.fields[field].widget.field_img = list()
+			self.fields[field].empty_label = 'Selecionar'
+			self.fields[field].required = False
+			for option in xrange(0, 20):
+			# trocar 20 do xrange para length do select que tiver mais options
+				if type(self.fields[field]) is ModelChoiceField:
+					if len(self.fields[field].queryset) >= option + 1:
+						self.fields[field].widget.field_img.append(self.fields[field].queryset[option].imagem.url)
 
 class GrupoCMForm(forms.ModelForm):
 
@@ -63,20 +89,22 @@ class LocalizacaoForm(forms.ModelForm):
 		fields = ['nome', 'imagem', 'bsw', 'areaClicavel']
 
 class PesquisaForm(forms.Form):
-	busca = forms.CharField(label="", widget=forms.TextInput(attrs={'id': 'search', 'type': 'search'}))
+	busca = forms.CharField(required=False, label="", widget=forms.TextInput(attrs={'id': 'search', 'type': 'search'}))
 
 class PesquisaCheckboxForm(forms.Form):
 	checkboxPort = forms.BooleanField(label='Português', widget=forms.CheckboxInput(attrs={
 		'type': 'checkbox', 'class': 'filled-in checkboxAzul',
 		'id': 'checkboxPort', 'name': 'checkboxPort',
-		'checked': '{{checkboxPortSession}}'
-		}))
+	}))
 	checkboxIng = forms.BooleanField(label='Inglês', widget=forms.CheckboxInput(attrs={
 		'type': 'checkbox', 'class': 'filled-in checkboxAzul',
 		'id': 'checkboxIng', 'name': 'checkboxIng',
-		'checked': '{{checkboxIngSession}}'
-		}))
+	}))
 
+	def __init__(self, *args, **kwargs):
+		super(PesquisaCheckboxForm, self).__init__(*args, **kwargs)
+		for field in self.fields:
+			self.fields[field].required = False
 
 #	def clean_nome(self):
 #		palavra = self.cleaned_data['nome']

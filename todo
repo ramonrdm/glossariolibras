@@ -1,0 +1,3 @@
+- Tratar envio de aquivos que não são vídeos no enviar sinais;
+- Tratar quando um usuário seleciona um vídeo mas apaga o caminho e o vídeo é enviado mesmo assim;
+- Rever as opções de conversão do FFMPEG para conseguir a melhor relação qualidade/tempo;

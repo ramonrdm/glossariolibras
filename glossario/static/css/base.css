@@ -1,9 +1,15 @@
-/*============= CLASSES REFATORADAS =============*/
+ /* ================= COMUM ================= */
 
-/* === BASE === */
+/* Retira o deslocamento da página causado pela sidenav fixa */
+body {
+	padding-left: 0;
+	background-color: #f7f7f7;
+}
 
-.waves-effect.waves-blue .waves-ripple {
-	background-color: rgba(0, 0, 112, 0.65);
+.iconePortalLibras {
+	width: 40px;
+	padding-top: 5px;
+	padding-right: 5px;
 }
 
 /* Cor do underline do campo de texto de formulários */
@@ -17,92 +23,15 @@ ul.dropdown-content.select-dropdown li span {
     color: black;
 }
 
-body {
-	padding-left: 300px;
-	background-color: #f7f7f7;
+/* Cor padrão da aplicação para os material icons */
+.icone {
+	color: #003a99;
 }
 
-@media only screen and (max-width : 992px) {
-	body {
-		padding-left: 0;
-	}
+/* Para as imagens na sidenav mobile não mudarem de cor no hover */
+nav ul a:hover {
+   background-color: white;
 }
-
-.logoGlossario {
-	width: 280px;
-}
-
-.iconePortalLibras {
-	width: 40px;
-	padding-top: 5px;
-	padding-right: 5px;
-}
-
-.logoUFSC {
-	margin-top: 75%;
-	width: 220px;
-}
-
-.logoUFSCMobile {
-	margin-top: 60%;
-	width: 220px;
-}
-
-.logoUFSCSearch {
-	margin-top: 34%;
-	width: 220px;
-}
-
-.logoUFSCSearchMobile {
-	margin-top: 10%;
-	width: 220px;
-}
-
-.glossarioSearch {
-	width: 90%;
-	margin-top: 10%;
-	margin-left: 5%;
-	margin-right: 5%;
-}
-
-.glossarioSearchMobile {
-	width: 90%;
-	margin-top: 130px;
-	margin-left: 5%;
-	margin-right: 5%;
-}
-
-.sideNavSearchMobileLinks {
-	margin-top: 25%;
-}
-
-.sideNavLinks {
-	margin-top: 15%;
-}
-
-.sideNavMobileLinks {
-	margin-top: 50%;
-}
-
-.linkContainer {
-	margin-top: 25%;
-}
-
-.checkboxAzul[type="checkbox"].filled-in:checked + label:after{
-     border: 2px solid #003a99;
-     background-color: #003a99;
-}
-
-.footer{
-	position: fixed; 
-	bottom: 0px;
-	min-width: 100%;
-	margin-bottom:-6px;
-	text-align: center;
-	z-index: 1;
-}
-
-/* === INDEX === */
 
 .imgIndex {
 	width: 160px;
@@ -113,213 +42,156 @@ body {
 	color: #003a99;
 }
 
+/* Estrutura dos glossários no index */
 .blockContainer {
 	margin-top: 5%;
 }
 
+/* Glossários no index */
 .block {
 	width: 200px;
 	display: inline-block;
 	margin-top: 2%;
 }
 
-/* === GLOSSÁRIO === */
-
-.imgGlossario {
-	width: 120px;
-	height: 120px;
-	margin-top: 5%;
+/* Footer da sidenav */
+.borda {
+	position: absolute;
+	bottom: 0;
+	z-index: -1;
 }
-
-.imgGlossarioMobile {
-	width: 120px;
-	height: 120px;
-	margin-top: 50%;
-}
-
-.checkboxes {
-	margin-top: 3%;
-}
-
-.videoGlossario {
-	margin-top: 2%;
-	width: 800px;
-}
-
-.videoOff {
-	margin-top: 15%;
-}
-
-.icone {
-	color: #003a99;
-}
-
-/*@media only screen and (max-width: 992px) {
-	 === RESPONSIVIDADE VIDEO === 
-	.videoGlossario {
-		width: 80%;
-	}
-}
-*/
-
-/* === HISTORIA ===*/
 
 .divisor {
 	margin-right: 5%;
 	margin-left: 5%;
 }
 
-/* === EQUIPE === */
-
-.cardTexto {
-	text-align: justify;
-}
-
-/* === ENVIAR SINAIS */
-
-.formEnviarSinais {
-	padding-top: 5%;
-}
-
-.botaoEnviarSinal, .botaoEnviarSinal:focus {
+.checkboxAzul[type="checkbox"].filled-in:checked + label:after {
+	border: 2px solid #003a99;
 	background-color: #003a99;
 }
 
-.botaoEnviarSinal:hover {
-	background-color: #0060ff;
+.checkboxes {
+	text-align: center;
+	line-height: 50px;
+	max-height: 25px;
 }
 
-/*===============================================*/
-
-
-#top {
-	display: table;
-	width: 100%;
-	max-height: 380px;
-	/* min-width: 550px;*/
+.formSinais {
+	zoom: 0.5;
 }
 
-.esquerda {
-	float:left;
-	width: 30%;
-	min-width: 375px;
+/* Esconde o modelo do avatar da localização e corrige um deslocamento do highlight com a imagem */
+.map {
+	display: none;
+	line-height: 2.5;
 }
 
-.direita {
-	width: 12%;
-	float: right;
-	max-height: 132px;
-
+/* Define as dimensões do avatar */
+img#modeloImg {
+	width: 650px;
+	height: 650px;
 }
 
-.centro {
-
-/*SUBSTITUIDO PELAS CLASSES BLOCK E BLOCKCONTAINER*/
-
-	width: 60%;
-	min-width: 550px;
-	margin-right: 100px;
-	margin-left: 410px;
-	/* float:center;
-	width:30%; */
-}
-/*fim index */
-
-/* IMAGENS */
-
-/* MENU SUPERIOR */
-
-#menuS{
-	margin-top: 40px;
-	border-radius: 10px;
-	height:55px;
-	/*Position: absolute;*/
+/* Esconde as options que não estão selecionadas ao construir a página */
+div.thumbnail:not(.selected) {
+	display: none;
 }
 
-#menuS ul{
-	padding: 10px 10px;
-	list-style: none;
-	margin:10px 10px 10px 10px;
-	min-width: 550px;
+.thumbnailModal div.thumbnail:not(.selected) {
+	display: inline-block !important;
 }
 
-#menuS ul li{
-	border-width: medium;
-	border-style: ridge;
-	border-radius: 10px;
-	border-color: #005696;
-	padding:2px 5px 5px 2px;
-	margin:10px;
-	background-color:#005696;
-	display: inline;
+/* Arredonda thumbnail do imagepicker */
+.thumbnail {
+	border-radius: 5px;
 }
 
-#menuS ul li a{
-    color: white;
-    text-decoration: none;
-    font-family: helvetica;
-    font-weight: bold;
-    margin-left: 2px;
-    margin-right: 2px;
-}
-/* Fim Menu Superior */
-
-/* Side navbar desktop */
-
-
-
-/* Fim da side navbar desktop */
-
-/* classe horizontal */
-
-.horiz{
-
-/*SUBSTITUIDO PELAS CLASSES BLOCK E BLOCKCONTAINER*/
-
-	margin-left: 25%;
-	margin-right: 25%;
-	text-align: center;	
+/* Tamanho e cor das imagens do imagepicker */
+.thumbnails li img {
+	background-color: white;
+	width: 100px;
 }
 
-/* exibindo glossarios */
-
-.linha1{
-
-/*SUBSTITUIDO PELAS CLASSES BLOCK E BLOCKCONTAINER*/
-
-	margin-left: 10px;
-	width: 200px;
-	display: inline-block;
+.formSinais .thumbnails li img {
+	width: 50px;
 }
 
-/* imagem no rodapé */
-
-#borda {
-	width:100%;
-	max-height: 100px;
-	margin:0px;
-	/* position: static; */
+.formSinais .thumbnail {
+	height: 90px;
+	width: 50px;
 }
 
-#baixo{
+/* Correções nos thumbnails na sidenav */
+.row.formSinais .col {
+	padding: 0;
+}
 
-	/*===Substituído por .footer===*/
+.row.formSinais p {
+	font-size: 10px;
+}
 
-	position: fixed; 
-	bottom: 0px;
-	min-width: 100%;
-	margin-bottom:-6px;
+div#id_localizacao.col.s12.m4 {
+	max-height: 131px;
+}
+
+ul.thumbnails.image_picker_selector {
+	overflow: initial;
+	box-sizing: initial;
+}
+
+/* =================================== */
+
+/* Define o texto das thumbnails como preto quando não está selecionado */
+div.thumbnail.hoverable:not(.selected) p{
+	color: black;
+}
+
+/* Centralizar a descrição da option */
+.thumbnails li p {
+	color: white;
 	text-align: center;
 }
 
-
-/* decoration */
-.decore{
-	font-family: helvetica;
+ul.thumbnails.image_picker_selector {
+	padding: 15px !important;
 }
 
-.decore a {
-	text-decoration: none;
+ul.thumbnails.image_picker_selector li .thumbnail {
+	padding: 0 !important;
+}
+
+.imgGlossario {
+	width: 100px;
+	/*height: 120px;*/
+}
+
+.glossarioSearch {
+	width: 90%;
+	margin-top: 0;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+.videoSinal {
+	display: inline;
+}
+
+.botaoEnviarSinal, .botaoEnviarSinal:focus, .botaoPesquisar, .botaoPesquisar:focus {
+	background-color: #003a99;
+}
+
+.botaoEnviarSinal {
+	margin-top: 20px;
+}
+
+.botaoEnviarSinal:hover, .botaoPesquisar:hover {
+	background-color: #0060ff;
+}
+
+/* Corrige centralização vertical do ícone no botão */
+.botaoPesquisar i.material-icons {
+	line-height: 36px;
 }
 
 .titulo {
@@ -351,254 +223,353 @@ body {
 	text-align: justify;
 }
 
-
 .rodape {
 	text-align: center;
 	white-space: pre-line;
 	margin-bottom: 10%;
 }
 
+/* =============== FIM COMUM =============== */
 
-/* fim paginas contato,equip,hist */
+/* =============== IPHONE 4 =============== */
 
-/* tamanho glossario selecionado */
+@media screen and (max-height: 480px) {
 
-.selecionada{
+	.logoGlossario {
+		width: 200px;
+		margin-left: 50px;
+	}
+	
+	.logoGlossarioSearch {
+		width: 200px;
+	}
 
-/* SUBSTITUÍDA PELA CLASSE imgGlossario */
+	.logoUFSC {
+		width: 220px;
+		position: absolute;
+		margin-left: 20px;
+		margin-top: 3%;
+	}
 
-	margin-top: 25%;
-}
+	.logoUFSCSearch {
+		display: none;
+	}
 
-.formulario {
-	margin-left: 35%;
-	margin-right: 10%;
-}
+	.logoUFSCSmall {
+		width: 50px;
+		position: absolute;
+		right: 20px;
+	}
 
-/*.row{
-	min-height: 100vh;
-}*/
+	.logosPositionFix {
+		padding: 0 !important;
+		margin-bottom: 2px;
+	}
 
+	.sideNavLinks {
+		margin-top: 3%;
+	}
 
-/*.glossarioselec ul{
-	padding: 10px 10px;
-	list-style: none;
-	margin:10px 10px 10px 10px;
-	display: block;
-}
-.glossarioselec ul li{
-	display: table-cell;
-}
-*/
+	.sideNavSearchLinks {
+		margin-top: 12%;
+	}
 
-/*menubusca*/
-#menubusca{
-	float: left;
-	list-style: none;
-	height: 100%;
-	display: inline-table;
-}
+	.linkHeightFix {
+		height: 43px !important;
+	}
 
-#menubusca ul{
-	margin:0px;
-	height: 580px;
-	list-style: none;
-	background-image: url('/static/img/chanfrado.png');
-}
-
-#menubusca li{
-	padding:2px;
-	border: 1px;
-	margin-bottom: 30%;
-	width:200px;
-}
-
-#menubusca ul li a{
-	text-decoration: none;
-}
-/* fim menu busca */
-.busca{
-	width: 100%;
-	min-width: 964px;
-	height: 580px;
-	display: table;
-}
-
-#results{
-	margin-top: 5%;
-}
-/*pagina de equipe */
-.equipe{
-	text-align: center;
-}
-.linha2{
-	text-align: center;
-	height: 20%;
-	width: 100%;
-}
-.equipa{
-	display: inline-block;
-	height: 259px;
-	width: 180px;
-	margin:0px;
-}
-.equipa a{
-	text-decoration: none;
-}
-
-/* EXIBIÇÃO SINAL */
-#descr{
-	text-align: center;
+	.imgIndex {
+		width: 80px;
+		height: 80px;
+	}
 
 }
-#palavratrad{
-	margin-left: 20%;
-	min-width: 450px;
-	max-width: 800px;
-	height: 70px;
-	text-align: center;
-	border-style: ridge;
-	border-radius:20px;
-	background-color: rgba(180,180,180,.2);
-}
-#palavratrad b{
-	margin-right:30px;
-}
-#palavratrad big{
-	margin-left:40px;
-}
-#CMD{
-	float: left;
-	background-color: rgba(180,180,180,.2);
-	border-style: ridge;
-	border-radius:20px;
-	margin-left: 10%;
-	margin-bottom: 10%;
-}
-#CME{
 
-	float: right;
-	background-color: rgba(180,180,180,.2);
-	border-style: ridge;
-	border-radius:20px;
-	margin-right: 10%;
-	margin-bottom: 10%;
-}
+/* ============== FIM IPHONE 4 ============== */
 
-.tabberlive .tabbertabhide {
- display:none;
-}
+/* ============== IPHONE 5 + ============== */
 
-.tabber {
-}
-.tabberlive {
- margin-top:1em;
-}
+@media screen and (min-height: 481px) {
 
-/*--------------------------------------------------
-  ul.tabbernav = the tab navigation list
-  li.tabberactive = the active tab
-  --------------------------------------------------*/
-ul.tabbernav
-{
- text-align: center;
- margin:50px;
- padding: 2px;
- border-bottom: 2px;
- font: bold 12px Verdana, sans-serif;
-}
+	.logoGlossario {
+		width: 280px;
+		margin-left: 10px;
+	}
 
-ul.tabbernav li
-{
- padding: 10px; 
- background-color:#005696;
- border-style: ridge;
- border-radius: 20px;
- border-width: medium;
- list-style: none;
- margin: 50px;
- display: inline;
+	a.logoGlossarioPaddingFix {
+		padding: 0;
+	}
+
+	.logoGlossarioSearch {
+		width: 250px;
+	}
+
+	.logoUFSCSmall {
+		display: none;
+	}
+
+	.logoUFSC {
+		width: 220px;
+		position: absolute;
+		margin-left: 25px;
+		bottom: 8%;
+	}
+
+	.logoUFSCSearch {
+		width: 220px;
+		position: absolute;
+		margin-left: 40px;
+		bottom: 7%
+	}
+
+	.glossarioSearch {
+		margin-top: 2%;
+	}
+
+	div.row.logosPositionFix {
+		margin-bottom: 0;
+	}
+
+	.sideNavLinks {
+		margin-top: 11%;
+	}
+
+	.sideNavSearchLinks {
+		margin-top: 14%;
+	}
+
+	.linkHeightFix {
+		height: 44px !important;
+	}
+
+	.imgIndex {
+		width: 80px;
+		height: 80px;
+	}
+
+
 }
 
-ul.tabbernav li a
-{
- padding: 10px;
- margin-left: 3px;
- border: 1px ;
- border-bottom: none;
- background: none;
- text-decoration: none;
+/* ============ FIM IPHONE 5 + ============= */
+
+/* ============ IPHONE 6S + ============= */
+
+@media screen and (min-height: 581px) {
+
+	.linkHeightFix {
+		height: 48px !important;
+	}
+
+	.sideNavSearchLinks {
+		margin-top: 23%;
+	}
+
+	.glossarioSearch {
+		margin-top: 8%;
+	}
+
+	.checkboxes {
+		text-align: center;
+		line-height: 70px;
+		max-height: 25px;
+	}
+
+	.imgIndex {
+		width: 100px;
+		height: 100px;
+	}
+
 }
 
-ul.tabbernav li a:link { color: white; }
-ul.tabbernav li a:visited { color: white; }
+/* ============ FIM IPHONE 6S + ============= */
 
-ul.tabbernav li a:hover
-{
- padding: 10px;
- border-radius: 10px;
- border-width: medium;
- background: none;
- color: white;
- background:#005D97;
-}
+/* ================= TABLET ================= */
 
-ul.tabbernav li.tabberactive a
-{
- border-width: medium; 
- border-radius: 10px;
- background-color:#005D97;
- color:white;
-}
+@media screen and (min-width: 768px) {
 
-ul.tabbernav li.tabberactive a:hover
-{
- color: white;
-}
+	/* Desloca a página para a direita por causa da sidenav fixa */
+	body {
+		padding-left: 300px;
+		background-color: #f7f7f7;
+	}
 
-/*--------------------------------------------------
-  .tabbertab = the tab content
-  Add style only after the tabber interface is set up (.tabberlive)
-  --------------------------------------------------*/
-.tabberlive .tabbertab {
- padding:5px;
- max-width: 670px;
- max-height: 370;
- margin-left: 23%;
- /* If you don't want the tab size changing whenever a tab is changed
-    you can set a fixed height */
+	.logoGlossario {
+		width: 280px;
+	}
 
- /* height:200px; */
+	.logoUFSC {
+		width: 220px;
+		position: absolute;
+		bottom: 7%;
+	}
 
- /* If you set a fix height set overflow to auto and you will get a
-    scrollbar when necessary */
+	.sideNavLinks {
+		margin-top: 15%;
+	}
 
- /* overflow:auto; */
+	.imgIndex {
+		width: 140px;
+		height: 140px;
+	}
+
 }
 
-/* If desired, hide the heading since a heading is provided by the tab */
-.tabberlive .tabbertab h2 {
- display:none;
-}
-.tabberlive .tabbertab h3 {
- display:none;
+/* =============== FIM TABLET =============== */
+
+/* ================= DESKTOP ================= */
+
+@media screen and (min-width: 992px, min-height: 769px) {
+
+	/* Desloca a página para a direita por causa da sidenav fixa */
+	body {
+		padding-left: 300px;
+		background-color: #f7f7f7;
+	}
+
+	.logoGlossario, .logoGlossarioSearch {
+		width: 280px;
+	}
+
+	.logoUFSC {
+		position: absolute;
+		margin-left: 40px;
+		bottom: 7%;
+		width: 220px;
+	}
+
+	.logoUFSCSearch {
+		margin-top: 34%;
+		width: 220px;
+	}
+
+	.sideNavLinks {
+		margin-top: 15%;
+	}
+
+	.linkContainer {
+		margin-top: 25%;
+	}
+
+	.footer{
+		position: fixed; 
+		bottom: 0px;
+		min-width: 100%;
+		margin-bottom:-6px;
+		text-align: center;
+		z-index: 1;
+	}
+
+	.imgGlossario {
+		width: 120px;
+		height: 120px;
+		margin-top: 5%;
+	}
+
+	.videoGlossario {
+		margin-top: 2%;
+		width: 800px;
+	}
+
+	.videoOff {
+		margin-top: 15%;
+	}
+
+	.cardTexto {
+		text-align: justify;
+	}
+
+	.formEnviarSinais {
+		padding-top: 5%;
+	}
+
+	.titulo {
+		margin-top: 5%;
+		text-align: center;
+	}
+
+	.historia-titulo {
+		margin-top: 5%;
+		margin-left: 5%;
+	}
+
+	.historia {
+		margin-left: 10%;
+		margin-right: 10%;
+		text-align: justify;
+		white-space: pre-line;
+	}
+
+	.definicao-titulo {
+		margin-top: 5%;
+		margin-left: 5%;
+	}
+
+	.definicao {
+		margin-top: 5%;
+		margin-left: 10%;
+		margin-right: 10%;
+		text-align: justify;
+	}
+
+	.rodape {
+		text-align: center;
+		white-space: pre-line;
+		margin-bottom: 10%;
+	}
+
 }
 
-/* Example of using an ID to set different styles for the tabs on the page */
-.tabberlive#tab1 {
+/* =============== FIM DESKTOP =============== */
+
+/* =============== NADA DE MAIS... =============== */
+
+@-webkit-keyframes nadaDeMais {
+    0%   { color  : red;    }
+    10%  { color  : orange; }
+    20%  { color  : yellow; }
+    40%  { color  : purple  }
+    50%  { color  : blue;   }
+    30%  { color  : green;  }
+    60%  { color  : pink;   }
+    70%  { color  : red;    }
+    80%  { color  : orange; }
+    90%  { color  : yellow; }
+    100% { color  : black;  }
 }
-.tabberlive#tab2 {
+
+@-moz-keyframes nadaDeMais {
+    0%   { color  : red;    }
+    10%  { color  : orange; }
+    20%  { color  : yellow; }
+    40%  { color  : purple  }
+    50%  { color  : blue;   }
+    30%  { color  : green;  }
+    60%  { color  : pink;   }
+    70%  { color  : red;    }
+    80%  { color  : orange; }
+    90%  { color  : yellow; }
+    100% { color  : black;  }
 }
-.tabberlive#tab2 .tabbertab {
- height:200px;
- overflow:auto;
+
+@keyframes nadaDeMais {
+    0%   { color  : red;    }
+    10%  { color  : orange; }
+    20%  { color  : yellow; }
+    40%  { color  : purple  }
+    50%  { color  : blue;   }
+    30%  { color  : green;  }
+    60%  { color  : pink;   }
+    70%  { color  : red;    }
+    80%  { color  : orange; }
+    90%  { color  : yellow; }
+    100% { color  : black;  }
 }
-.videos{
- max-width: 648px;
- max-height: 345px;
+
+
+.nadaDeMais {
+    -webkit-animation: nadaDeMais 0.1s linear infinite;
+    -moz-animation: nadaDeMais 0.1s linear infinite;
+    animation: nadaDeMais 0.1s linear infinite;
 }
-html, body{
-	margin: 0px;
-	height: 100%;
-	min-height: 100%;
-}
+
+/* ============= FIM NADA DE MAIS... ============= */

@@ -9,12 +9,16 @@
     <meta name="keywords" content="glossario, libras, ufsc, glossário, glossários, letras libras, dicionario"/>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" /> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
     <link type="text/css" rel="stylesheet" href='{% static "css/material-icons.css" %}'  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href='{% static "css/materialize.min.css" %}'  media="screen,projection"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'image-picker/image-picker/image-picker.css' %}"/>
+    <script type="text/javascript" src="{% static 'image-picker/image-picker/image-picker.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.imagemapster.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/baseSearchNav.js' %}"></script>
     <link rel="stylesheet" type="text/css" href='{% static "css/base.css" %}'/>
-    <link href='{% static "css/style.css" %}' type="text/css" rel="stylesheet" media="screen,projection"/>
+
 
     <title>{% block title %}{% endblock %}</title>
 
@@ -26,37 +30,65 @@
         
     <ul class="side-nav fixed">
         <div class="nav-wrapper center">
-            <a href="/" class="brand-logo"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a>
+            <a href="/" class="brand-logo"><img class="logoGlossarioSearch" src='{% static "img/marca_glossario.png" %}'></a>
         </div>
-<!--         <div class="center">
-            {% if glossario.imagem %}
-                <a href="/{{glossario.link}}"><img class="circle z-depth-4 imgGlossario" src="{{ glossario.imagem.url }}"/></a>
-            {% else %}
-                <a href="/{{glossario.link}}"><i class="large material-icons icone imgGlossario">cloud_off</i></a>
-            {% endif %}
-            <div><span>{{ glossario.nome }}</span></div>
-        </div> -->
         <nav class="glossarioSearch">
             <div class="nav-wrapper white">
                 <form method="post">
                     {% csrf_token %}
                     <div class="input-field">
-                        {{ formulario }}
+                        {{ formPesquisa }}
                         <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
                         <i class="material-icons">close</i>
                     </div>
                     <div class="center">
-                        <!-- {{ formCheckbox }} -->
-                        <input type="checkbox" class="filled-in checkboxAzul" id="checkboxPort" name="checkboxPort" checked="checked"/>
+                        {{ formCheckbox }}
+<!--                         <input type="checkbox" class="filled-in checkboxAzul" id="checkboxPort" name="checkboxPort" checked="checked"/>
                         <label for="checkboxPort">Português</label>
                         <input type="checkbox" class="filled-in checkboxAzul" id="checkboxIng" name="checkboxIng" />
-                        <label for="checkboxIng">Inglês</label>
+                        <label for="checkboxIng">Inglês</label> -->
+                    </div>
+                    <div class="row formSinais">
+                        {% for field in formSinais %}
+                            {% if field.auto_id == 'id_localizacao' %}
+                                <div class="col s12 m4" id="{{field.auto_id}}">
+                                    <a class="modal-trigger" href="#modalLocalizacao">
+                                        <!-- {{ field.errors }} -->
+                                        <!-- {{ field.label_tag }} -->
+                                        {{ field }}
+                                    </a>
+                                </div>
+                            {% elif field.auto_id == 'id_grupoCMe' %}
+                                <div class="col s12 m4" id="{{field.auto_id}}">
+                                    <a class="modal-trigger" href="#modalGrupoCMe">
+                                        <!-- {{ field.errors }} -->
+                                        <!-- {{ field.label_tag }} -->
+                                        {{ field }}
+                                    </a>
+                                </div>
+                            {% elif field.auto_id == 'id_cmE' %}
+                                <div class="col s12 m4" id="{{field.auto_id}}">
+                                    <a class="modal-trigger" href="#modalCMe">
+                                        <!-- {{ field.errors }} -->
+                                        <!-- {{ field.label_tag }} -->
+                                        {{ field }}
+                                    </a>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        <div class="center">
+                            <button class="btn waves-effect waves-light botaoPesquisar" type="submit" name="botaoPesquisar">
+                                Pesquisar
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div>
         </nav>
-        <div class="linkContainer">
+<!--         <div class="linkContainer">
             <div class="sideNavLinks">
+<<<<<<< HEAD
                 
                 <li><a class="waves-effect waves-blue" href="/enviarsinais"><i class="material-icons">send</i>Enviar sinais</a></li>
                 <li><a class="waves-effect waves-blue" href="/historia"><i class="material-icons">library_books</i>História</a></li>
@@ -64,9 +96,18 @@
                 <li><a class="waves-effect waves-blue" href="/contato"><i class="material-icons">call</i>Contato</a></li>
                 <li><a class="waves-effect waves-blue" href="/admin"><i class="material-icons">https</i>Admin</a></li>
                 <li><a class="waves-effect waves-blue" href="https://libras.ufsc.br/"><i class="material-icons"><img class="iconePortalLibras" src='{% static "img/marca_portal_libras2.png" %}'></i>Portal Libras</a></li>
+=======
+                <li><a class="waves-effect waves-blue" href="{% url 'enviarsinais' %}"><i class="material-icons">send</i>Enviar sinais</a></li>
+                <li><a class="waves-effect waves-blue" href="{% url 'historia' %}"><i class="material-icons">library_books</i>História</a></li>
+                <li><a class="waves-effect waves-blue" href="{% url 'equipe' %}"><i class="material-icons">supervisor_account</i>Equipe</a></li>
+                <li><a class="waves-effect waves-blue" href="{% url 'contato' %}"><i class="material-icons">call</i>Contato</a></li>
+                <li><a class="waves-effect waves-blue" href="https://libras.ufsc.br/"><i class="material-icons"><img class="iconePortalLibras" src='{% static "img/marca_portal_libras2.png" %}'></i>Portal Libras</a></li>
+                <li><a class="waves-effect waves-blue" href="{% url 'admin:index' %}"><i class="material-icons">https</i>Admin</a></li>
+>>>>>>> 2dab68e2e83bdaf99ec1f274e4cdca63a4c4b207
             </div>
-        </div>
-        <div class="nav-wrapper center"><a href="http://ufsc.br" class="brand-logo"><img class="logoUFSCSearch" src='{% static "img/marca_ufsc.svg" %}'></a></div>
+        </div> -->
+        <div class="nav-wrapper"><a href="http://ufsc.br"><img class="logoUFSCSearch" src='{% static "img/marca_ufsc.svg" %}'></a></div>
+        <div class="nav-wrapper"><img class="borda" src='{% static "img/borda2.png" %}'></div>
     </ul>
 
 <!-- NAVBAR MOBILE -->
@@ -74,38 +115,36 @@
     <div class="navbar hide-on-large-only">
         <nav class="blue darken-4" role="navigation">
             <ul id="nav-mobile" class="side-nav">
-                <!-- <li onclick="$('.button-collapse').sideNav('show')"></li> -->
                 <li>
-                    <div class="userView">
-                        <a href="/" class="brand-logo"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a>
+                    <div class="row logosPositionFix">
+                        <div class="logosPositionFix col s6">
+                            <a href="{% url 'index' %}" class="logosPositionFix"><img class="logoGlossarioSearch" src='{% static "img/marca_glossario.png" %}'></a>
+                        </div>
+                        <div class="logosPositionFix col s6">
+                            <a href="http://ufsc.br" class="logosPositionFix"><img class="logoUFSCSmall" src='{% static "img/marca_ufsc2.svg" %}'></a>
+                        </div>
                     </div>
                 </li>
-<!--                 <div class="center">
-                    {% if glossario.imagem %}
-                        <a href="/{{glossario.link}}"><img class="circle z-depth-4 imgGlossarioMobile" src="{{ glossario.imagem.url }}"/></a>
-                    {% else %}
-                        <a href="/{{glossario.link}}"><i class="large material-icons icone imgGlossarioMobile">cloud_off</i></a>
-                    {% endif %}
-                    <span class="black-text">{{ glossario.nome }}</span>
-                </div> -->
-                <nav class="glossarioSearchMobile">
+                <nav class="glossarioSearch">
                     <div class="nav-wrapper white">
                         <form method="post">
                             {% csrf_token %}
                             <div class="input-field">
-                                {{ formulario }}
+                                {{ formPesquisa }}
                                 <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
                                 <i class="material-icons">close</i>
                             </div>
-                            <div class="center">
-                                <input type="checkbox" class="filled-in checkboxAzul" id="checkboxPort" name="checkboxPort" checked="checked"/>
+                            <div class="checkboxes">
+                                {{ formCheckbox }}
+<!--                                 <input type="checkbox" class="filled-in checkboxAzul" id="checkboxPort" name="checkboxPort" checked="checked"/>
                                 <label for="checkboxPort">Português</label>
                                 <input type="checkbox" class="filled-in checkboxAzul" id="checkboxIng" name="checkboxIng"/>
-                                <label for="checkboxIng">Inglês</label>
+                                <label for="checkboxIng">Inglês</label> -->
                             </div>
                         </form>
                     </div>
                 </nav>
+<<<<<<< HEAD
                 <div class="sideNavSearchMobileLinks">
                     <li>
                         <a class="waves-effect waves-blue" href="/enviarsinais">
@@ -118,11 +157,21 @@
                     <li><a class="waves-effect waves-blue" href="/contato"><i class="material-icons">call</i>Contato</a></li>
                     <li><a class="waves-effect waves-blue" href="/admin"><i class="material-icons">https</i>Admin</a></li>
                     <li><a class="waves-effect waves-blue" href="https://libras.ufsc.br/"><i class="material-icons"><img class="iconePortalLibras" src='{% static "img/marca_portal_libras2.png" %}'></i>Portal Libras</a></li>
+=======
+                <div class="sideNavSearchLinks">
+                    <li><a class="linkHeightFix waves-effect waves-blue" href="{% url 'enviarsinais' %}"><i class="material-icons">send</i>Enviar sinais</a></li>
+                    <li><a class="linkHeightFix waves-effect waves-blue" href="{% url 'historia' %}"><i class="material-icons">library_books</i>História</a></li>
+                    <li><a class="linkHeightFix waves-effect waves-blue" href="{% url 'equipe' %}"><i class="material-icons">supervisor_account</i>Equipe</a></li>
+                    <li><a class="linkHeightFix waves-effect waves-blue" href="{% url 'contato' %}"><i class="material-icons">call</i>Contato</a></li>
+                    <li><a class="linkHeightFix waves-effect waves-blue" href="https://libras.ufsc.br/"><i class="material-icons"><img class="iconePortalLibras" src='{% static "img/marca_portal_libras2.png" %}'></i>Portal Libras</a></li>
+                    <li><a class="waves-effect waves-blue" href="{% url 'admin:index' %}"><i class="material-icons">https</i>Admin</a></li>
+>>>>>>> 2dab68e2e83bdaf99ec1f274e4cdca63a4c4b207
                 </div>
                 <li>
-                    <div class="userView">
-                        <a href="http://ufsc.br" class="brand-logo"><img class="logoUFSCSearchMobile" src='{% static "img/marca_ufsc.svg" %}'></a>
-                    </div>
+                    <img class="logoUFSCSearch" src='{% static "img/marca_ufsc.svg" %}'>
+                </li>
+                <li>
+                    <img class="borda" src='{% static "img/borda2.png" %}'>
                 </li>
             </ul>
             <a data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -131,14 +180,14 @@
 
 <!-- FOOTER -->
 
-    <!-- <div class="footer"><img id="borda" src='{% static "img/borda.png" %}'></div> -->
+    <!-- <div class="footer"><img class="borda" src='{% static "img/borda.png" %}'></div> -->
 
     {% block Corpo %}
     {% endblock %}
 
 <!-- ABRIR SIDENAV MOBILE -->
 
-    <script type="text/javascript"> //Verificar necessidade desta tag script
+    <script type="text/javascript">
         $(".button-collapse").sideNav();
         $('.button-collapse').sideNav('hide');
     </script>

@@ -6,16 +6,31 @@
 <body>
     {% block Corpo %}
 
-    <div class="center blockContainer">
-        <div class="center block">
-            <a href="/temas"><img class="circle z-depth-2 hoverable imgIndex" src="{% static 'img/arvore_banyan_havai.png' %}"><span class="flow-text textoIndex">Temas</span></a>
+    <div class="row center blockContainer">
+        <div class="block col s4 m3">
+            <a href="{% url 'temas' %}">
+                <img class="circle z-depth-2 hoverable imgIndex" src="{% static 'img/arvore_banyan_havai.png' %}">
+                <div>
+                    <span class="flow-text textoIndex">Temas</span>
+                </div>
+            </a>
         </div>
         {% for glossario in glossarios %}
-            <div class="center block">
+            <div class="block col s4 m3">
                 {% if glossario.imagem %}
-                    <a href="/{{glossario.link}}"><img class="circle z-depth-2 hoverable imgIndex" src="{{glossario.imagem.url}}"><span class="flow-text textoIndex">{{glossario.nome}}</span></a>
+                    <a href="/{{glossario.link}}">
+                        <img class="circle z-depth-2 hoverable imgIndex" src="{{glossario.imagem.url}}">
+                        <div>
+                            <span class="flow-text textoIndex">{{glossario.nome}}</span>
+                        </div>
+                    </a>
                 {% else %}
-                    <a href="/{{glossario.link}}"><i class="large material-icons icone imgIndex">cloud_off</i><span class="flow-text textoIndex">{{glossario.nome}}</span></a>
+                    <a href="/{{glossario.link}}">
+                        <i class="large material-icons icone imgIndex">cloud_off</i>
+                        <div>
+                            <span class="flow-text textoIndex">{{glossario.nome}}</span>
+                        </div>
+                    </a>
                 {% endif %}
             </div>
         {% endfor %}
@@ -23,26 +38,3 @@
 
     {% endblock %}
 </body>
-
-<!--
-
-JAVASCRIPT 'CAROUSEL'
-
-<div class="carousel">
-    <a class="carousel-item" href="/temas"><img src="{% static 'img/arvore_banyan_havai.png' %}"/></a>
-    {% for g in glossarios %}
-        {% if g.imagem %}
-            <a class="carousel-item" href="/{{g.link}}"><img src="{{g.imagem.url}}"></a>
-        {% else %}
-            <a href="/{{g.link}}"><i class="large material-icons">cloud_off</i></a>
-        {% endif%}
-    {% endfor %}
-</div>
-
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('.carousel').carousel();
-    });
-</script>
-
--->

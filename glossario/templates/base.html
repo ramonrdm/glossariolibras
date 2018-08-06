@@ -9,12 +9,11 @@
     <meta name="keywords" content="glossario, libras, ufsc, glossário, glossários, letras libras, dicionario"/>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" /> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
     <link type="text/css" rel="stylesheet" href='{% static "css/material-icons.css" %}'  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href='{% static "css/materialize.min.css" %}'  media="screen,projection"/>
     <link rel="stylesheet" type="text/css" href='{% static "css/base.css" %}'/>
-    <link href='{% static "css/style.css" %}' type="text/css" rel="stylesheet" media="screen,projection"/>
 
     {% endblock %}
 
@@ -25,16 +24,17 @@
 <!-- SIDENAV FIXA -->
 
     <ul class="side-nav fixed">
-        <div class="nav-wrapper center"><a href="/" class="brand-logo"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a></div>
+        <div class="nav-wrapper center"><a href="/"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a></div>
         <div class="sideNavLinks">
-            <li><a class="waves-effect waves-blue" href="/enviarsinais"><i class="material-icons">send</i>Enviar sinais</a></li>
-            <li><a class="waves-effect waves-blue" href="/historia"><i class="material-icons">library_books</i>História</a></li>
-            <li><a class="waves-effect waves-blue" href="/equipe"><i class="material-icons">supervisor_account</i>Equipe</a></li>
-            <li><a class="waves-effect waves-blue" href="/contato"><i class="material-icons">call</i>Contato</a></li>
+            <li><a class="waves-effect waves-blue" href="{% url 'enviarsinais' %}"><i class="material-icons">send</i>Enviar sinais</a></li>
+            <li><a class="waves-effect waves-blue" href="{% url 'historia' %}"><i class="material-icons">library_books</i>História</a></li>
+            <li><a class="waves-effect waves-blue" href="{% url 'equipe' %}"><i class="material-icons">supervisor_account</i>Equipe</a></li>
+            <li><a class="waves-effect waves-blue" href="{% url 'contato' %}"><i class="material-icons">call</i>Contato</a></li>
             <li><a class="waves-effect waves-blue" href="https://libras.ufsc.br/"><i class="material-icons"><img class="iconePortalLibras" src='{% static "img/marca_portal_libras2.png" %}'></i>Portal Libras</a></li>
-            <li><a class="waves-effect waves-blue" href="/admin"><i class="material-icons">https</i>Admin</a></li>
+            <li><a class="waves-effect waves-blue" href="{% url 'admin:index' %}"><i class="material-icons">https</i>Admin</a></li>
         </div>
-        <div class="nav-wrapper center"><a href="http://ufsc.br" class="brand-logo"><img class="logoUFSC" src='{% static "img/marca_ufsc.svg" %}'></a></div>
+        <div class="nav-wrapper"><a href="http://ufsc.br"><img class="logoUFSC" src='{% static "img/marca_ufsc.svg" %}'></a></div>
+        <div class="nav-wrapper"><img class="borda" src='{% static "img/borda2.png" %}'></div>
     </ul>
 
 <!-- SIDENAV MOBILE -->
@@ -42,12 +42,12 @@
     <div class="navbar hide-on-large-only">
         <nav class="blue darken-4" role="navigation">
             <ul id="nav-mobile" class="side-nav">
-                <!-- <li onclick="$('.button-collapse').sideNav('show')"></li> -->
                 <li>
-                    <div class="userView">
-                        <a href="/" class="brand-logo"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a>
+                    <div class="logoGlossarioWrapper">
+                        <a href="/" class="logosPositionFix logoGlossarioPaddingFix"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a>
                     </div>
                 </li>
+<<<<<<< HEAD
                 <div class="sideNavMobileLinks">
                     
                     <li><a class="waves-effect waves-blue" href="/enviarsinais"><i class="material-icons">send</i>Enviar sinais</a></li>
@@ -56,12 +56,22 @@
                     <li><a class="waves-effect waves-blue" href="/contato"><i class="material-icons">call</i>Contato</a></li>
                     <li><a class="waves-effect waves-blue" href="/admin"><i class="material-icons">https</i>Admin</a></li>
                     <li><a class="waves-effect waves-blue" href="https://libras.ufsc.br/"><i class="material-icons"><img class="iconePortalLibras" src='{% static "img/marca_portal_libras2.png" %}'></i>Portal Libras</a></li>
+=======
+                <div class="sideNavLinks">
+                    <li><a class="waves-effect waves-blue" href="{% url 'enviarsinais' %}"><i class="material-icons">send</i>Enviar sinais</a></li>
+                    <li><a class="waves-effect waves-blue" href="{% url 'historia' %}"><i class="material-icons">library_books</i>História</a></li>
+                    <li><a class="waves-effect waves-blue" href="{% url 'equipe' %}"><i class="material-icons">supervisor_account</i>Equipe</a></li>
+                    <li><a class="waves-effect waves-blue" href="{% url 'contato' %}"><i class="material-icons">call</i>Contato</a></li>
+                    <li><a class="waves-effect waves-blue" href="https://libras.ufsc.br/"><i class="material-icons"><img class="iconePortalLibras" src='{% static "img/marca_portal_libras2.png" %}'></i>Portal Libras</a></li>
+                    <li><a class="waves-effect waves-blue" href="{% url 'admin:index' %}"><i class="material-icons">https</i>Admin</a></li>
+>>>>>>> 2dab68e2e83bdaf99ec1f274e4cdca63a4c4b207
                 </div>
                 <li>
-                    <div class="userView">
-                        <a href="http://ufsc.br" class="brand-logo"><img class="logoUFSCMobile" src='{% static "img/marca_ufsc.svg" %}'></a>
+                    <div class="logoUFSCWrapper">
+                        <a href="http://ufsc.br"><img class="logoUFSC" src='{% static "img/marca_ufsc.svg" %}'></a>
                     </div>
                 </li>
+                <img class="borda" src='{% static "img/borda2.png" %}'>
             </ul>
             <a data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
         </nav>
@@ -69,14 +79,14 @@
 
 <!-- FOOTER -->
 
-    <!-- <div class="footer"><img id="borda" src='{% static "img/borda.png" %}'></div> -->
+    <!-- <div class="footer"><img class="borda" src='{% static "img/borda.png" %}'></div> -->
 
     {% block Corpo %}
     {% endblock %}
 
 <!-- ABRIR SIDENAV MOBILE -->
 
-    <script type="text/javascript"> //Verificar necessidade desta tag script e o que tem dentro
+    <script type="text/javascript">
         $(".button-collapse").sideNav();
         $('.button-collapse').sideNav('hide');
     </script>

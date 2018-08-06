@@ -2,47 +2,31 @@
 from django.db import models
 from django.db.models import FileField
 from django.core.files import File
-from django.contrib.auth.models import AbstractUser, BaseUserManager, User
+from django.contrib.auth.models import User
 from django.contrib.auth import hashers
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
+from django.conf import settings
 import datetime
+import subprocess
 
-class UsuarioManager(BaseUserManager):
-	use_in_migrations = True
+def profile_upload_path(instance, filename):
+	# o arquivo será salvo em MEDIA_ROOT/profile_images/<username>
+	return 'profile_images/{0}'.format(instance.user.username)
 
-	def _create_user(self, username, email, password, **extra_fields):
-		if not username:
-			raise ValueError('Este campo é obrigatório')
-		email = self.normalize_email(email)
-		user = self.model(username=username, email=email, **extra_fields)
-		user.set_password(password)
-		user.save(using=self._db)
-		return user
+class Profile(models.Model):
+	user = models.OneToOneField(User, on_delete=models.CASCADE)
+	lattes = models.CharField('Currículo Lattes', max_length=200, blank=True)
+	foto = models.ImageField(upload_to=profile_upload_path, blank=True)
 
-	def create_user(self, username, email=None, password=None, **extra_fields):
-		extra_fields.setdefault('is_staff', True)
-		extra_fields.setdefault('is_superuser', False)
-		return self._create_user(username, email, password, **extra_fields)
+	def __unicode__(self):
+		return self.user.username
 
-	def create_superuser(self, username, email, password, **extra_fields):
-		extra_fields.setdefault('is_staff', True)
-		extra_fields.setdefault('is_superuser', True)
-
-		if extra_fields.get('is_staff') is not True:
-			raise ValueError('Não é membro da equipe.')
-		if extra_fields.get('is_superuser') is not True:
-			raise ValueError('Não é superusuario.')
-
-		return self._create_user(username, email, password, **extra_fields)
-
-class Usuario(AbstractUser):
-
-	nome = models.CharField('Nome', max_length=200)
-	latte = models.CharField('Currículo Latte', max_length=300)
-	foto = models.ImageField('Foto', blank=True)
-
-	objects = UsuarioManager()
+@receiver(post_save, sender=User)
+def create_or_update_user_profile(sender, instance, created, **kwargs):
+	if created:
+		Profile.objects.create(user=instance)
+	instance.profile.save()
 
 class Localizacao(models.Model):
 	class Meta:
@@ -55,7 +39,7 @@ class Localizacao(models.Model):
 
 	def image_tag(self):
 		if self.imagem:
-			return u'<img src="%s" width="50" heigth="50"/>' % self.imagem.url
+			return u'<img src="%s" width="50" height="50"/>' % self.imagem.url
 		else:
 			return 'Sem imagem'
 	image_tag.short_description = 'Imagem'
@@ -73,8 +57,8 @@ class Glossario(models.Model):
 		verbose_name='glossário'
 
 	nome = models.CharField('Nome do Glossário', max_length=100)
-	responsavel = models.ManyToManyField(Usuario, verbose_name = 'responsável')
-	membros = models.ManyToManyField(Usuario, related_name='glossario_membros', verbose_name='membros', blank=True)
+	responsavel = models.ManyToManyField(User, verbose_name = 'responsável')
+	membros = models.ManyToManyField(User, related_name='glossario_membros', verbose_name='membros', blank=True)
 	descricao = models.TextField("descrição", default='')
 	imagem = models.ImageField('Imagem', blank=True)
 	link = models.CharField('Link', max_length=20)
@@ -83,7 +67,7 @@ class Glossario(models.Model):
 
 	def image_tag(self):
 		if self.imagem:
-			return u'<img src="%s" width="50" heigth="50"/>' % self.imagem.url
+			return u'<img src="%s" width="50" height="50"/>' % self.imagem.url
 		else:
 			return 'Sem imagem'
 	image_tag.short_description = 'Imagem'
@@ -101,7 +85,7 @@ class GrupoCM (models.Model):
 
 	def image_tag(self):
 		if self.imagem:
-			return u'<img src="%s" width="50" heigth="50"/>' % self.imagem.url
+			return u'<img src="%s" width="50" height="50"/>' % self.imagem.url
 		else:
 			return 'Sem imagem'
 	image_tag.short_description = 'Imagem'
@@ -120,14 +104,15 @@ class CM (models.Model):
 
 	def image_tag(self):
 		if self.imagem:
-			return u'<img src="%s" width="50" heigth="50"/>' % self.imagem.url
+			return u'<img src="%s" width="50" height="50"/>' % self.imagem.url
 		else:
 			return 'Sem imagem'
 	image_tag.short_description = 'Imagem'
 	image_tag.allow_tags = True
 
 	def __str__(self):
-		return str(self.id)+" - "+str(self.grupo)
+		# return str(self.id)+" - "+str(self.grupo)
+		return str(self.id)
 
 class Tema(models.Model):
 	nome = models.CharField('Nome', max_length=30)
@@ -139,9 +124,13 @@ class Tema(models.Model):
 	def __unicode__(self):
 		return self.nome
 
+def sinal_upload_path(instance, filename):
+	# o arquivo será salvo em MEDIA_ROOT/sinal_videos/originais/<filename>
+	return 'sinal_videos/originais/{0}'.format(filename)
+
 class Sinal(models.Model):
 	class Meta:
-		verbose_name_plural='sinais'
+		verbose_name_plural = 'sinais'
 		unique_together = ('traducaoP', 'traducaoI', 'grupoCMe', 'cmE', 'grupoCMd', 'cmD', 'localizacao')
 
 	glossario = models.ForeignKey(Glossario, verbose_name='glossário', null=True)
@@ -153,19 +142,19 @@ class Sinal(models.Model):
 	cmE = models.ForeignKey(CM, related_name='C_M_Esquerda', verbose_name='configuração da mão esquerda')
 	grupoCMd = models.ForeignKey(GrupoCM, related_name='Grupo_M_Direita', verbose_name='grupo da mão direita')
 	cmD = models.ForeignKey(CM, related_name='C_M_Direita', verbose_name='configuração da mão direita')
-	localizacao = models.ForeignKey(Localizacao,null=True, blank=True, verbose_name='localização')
+	localizacao = models.ForeignKey(Localizacao, null=True, blank=True, verbose_name='localização')
 	dataPost = models.DateField('data de criação', null=True)
-	postador = models.ForeignKey(Usuario, null=True)
+	postador = models.ForeignKey(User, null=True)
 	publicado = models.BooleanField(default=False)
-	sinalLibras = Video('Vídeo do Sinal',null=True, blank=True)
-	descLibras = Video('Vídeo da Descrição',null=True, blank=True)
-	exemploLibras = Video('Vídeo do Exemplo',null=True, blank=True)
-	varicLibras = Video('Vídeo da Variação',null=True, blank=True)
+	sinalLibras = Video('Vídeo do sinal', upload_to=sinal_upload_path, null=True, blank=True)
+	descLibras = Video('Vídeo da descrição', upload_to=sinal_upload_path, null=True, blank=True)
+	exemploLibras = Video('Vídeo do exemplo', upload_to=sinal_upload_path, null=True, blank=True)
+	varicLibras = Video('Vídeo da variação', upload_to=sinal_upload_path, null=True, blank=True)
 	tema = models.ForeignKey(Tema, null=True)
 
 	def image_tag_cmE(self):
 		if self.cmE.imagem:
-			return u'<img src="%s" width="50" heigth="50"/>' % self.cmE.imagem.url
+			return u'<img src="%s" width="50" height="50"/>' % self.cmE.imagem.url
 		else:
 			return 'Sem imagem'
 	image_tag_cmE.short_description = 'esquerda'
@@ -173,7 +162,7 @@ class Sinal(models.Model):
 
 	def image_tag_cmD(self):
 		if self.cmD.imagem:
-			return u'<img src="%s" width="50" heigth="50"/>' % self.cmD.imagem.url
+			return u'<img src="%s" width="50" height="50"/>' % self.cmD.imagem.url
 		else:
 			return 'Sem imagem'
 	image_tag_cmD.short_description = 'direita'
@@ -182,7 +171,7 @@ class Sinal(models.Model):
 	def image_tag_localizacao(self):
 		if self.localizacao:
 			if self.localizacao.imagem:
-				return u'<img src="%s" width="50" heigth="50"/>' % self.localizacao.imagem.url
+				return u'<img src="%s" width="50" height="50"/>' % self.localizacao.imagem.url
 		return 'Sem imagem'
 
 	image_tag_localizacao.short_description = 'localização'
@@ -190,3 +179,27 @@ class Sinal(models.Model):
 
 	def __unicode__(self):
 		return self.traducaoP
+
+@receiver(post_save, sender=Sinal)
+def update_upload_path(sender, instance, created, **kwargs):
+	# o arquivo será salvo em MEDIA_ROOT/sinal_videos/convertidos/<id>-<tag>-<YYYY>-<MM>-<DD>-<HH><MM><SS>
+
+	originais = '{0}/sinal_videos/originais'.format(settings.MEDIA_ROOT)
+	convertidos = '{0}/sinal_videos/convertidos'.format(settings.MEDIA_ROOT)
+
+	videoFields = [instance.sinalLibras, instance.descLibras, instance.exemploLibras, instance.varicLibras]
+	tags = ['sinal', 'descricao', 'exemplo', 'variacao']
+
+	for index, field in enumerate(videoFields):
+		if field:
+			subprocess.call('ffmpeg -i {0}/{1} -c:v libx264 -crf 19 -movflags faststart -threads 0 -preset slow -c:a aac -strict -2 {2}/{3}-{4}-%s.mp4'
+				.format(
+					originais,
+					str(field).split('/')[2],
+					convertidos,
+					instance.id,
+					tags[index]
+					)
+					% datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'),
+					shell=True
+					)
