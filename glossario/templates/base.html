@@ -17,14 +17,16 @@
 
     {% endblock %}
 
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}Glossário Libras{% endblock %}</title>
 </head>
 <body>
 
 <!-- SIDENAV FIXA -->
 
     <ul class="side-nav fixed">
-        <div class="nav-wrapper center"><a href="/"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a></div>
+        <div class="nav-wrapper center">
+            <a href="/"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a>
+        </div>
         <div class="sideNavLinks">
             <li><a class="waves-effect waves-blue" href="{% url 'enviarsinais' %}"><i class="material-icons">send</i>Enviar sinais</a></li>
             <li><a class="waves-effect waves-blue" href="{% url 'historia' %}"><i class="material-icons">library_books</i>História</a></li>
@@ -47,7 +49,7 @@
                         <a href="/" class="logosPositionFix logoGlossarioPaddingFix"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a>
                     </div>
                 </li>
-<<<<<<< HEAD
+
                 <div class="sideNavMobileLinks">
                     
                     <li><a class="waves-effect waves-blue" href="/enviarsinais"><i class="material-icons">send</i>Enviar sinais</a></li>
@@ -56,7 +58,7 @@
                     <li><a class="waves-effect waves-blue" href="/contato"><i class="material-icons">call</i>Contato</a></li>
                     <li><a class="waves-effect waves-blue" href="/admin"><i class="material-icons">https</i>Admin</a></li>
                     <li><a class="waves-effect waves-blue" href="https://libras.ufsc.br/"><i class="material-icons"><img class="iconePortalLibras" src='{% static "img/marca_portal_libras2.png" %}'></i>Portal Libras</a></li>
-=======
+</div>
                 <div class="sideNavLinks">
                     <li><a class="waves-effect waves-blue" href="{% url 'enviarsinais' %}"><i class="material-icons">send</i>Enviar sinais</a></li>
                     <li><a class="waves-effect waves-blue" href="{% url 'historia' %}"><i class="material-icons">library_books</i>História</a></li>
@@ -64,7 +66,7 @@
                     <li><a class="waves-effect waves-blue" href="{% url 'contato' %}"><i class="material-icons">call</i>Contato</a></li>
                     <li><a class="waves-effect waves-blue" href="https://libras.ufsc.br/"><i class="material-icons"><img class="iconePortalLibras" src='{% static "img/marca_portal_libras2.png" %}'></i>Portal Libras</a></li>
                     <li><a class="waves-effect waves-blue" href="{% url 'admin:index' %}"><i class="material-icons">https</i>Admin</a></li>
->>>>>>> 2dab68e2e83bdaf99ec1f274e4cdca63a4c4b207
+
                 </div>
                 <li>
                     <div class="logoUFSCWrapper">
@@ -72,6 +74,7 @@
                     </div>
                 </li>
                 <img class="borda" src='{% static "img/borda2.png" %}'>
+            
             </ul>
             <a data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
         </nav>

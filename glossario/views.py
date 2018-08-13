@@ -9,8 +9,6 @@ from django.template import RequestContext
 import json
 import datetime
 
-##################### VIEWS #####################
-
 def index(request, glossario=None):
 	glossarios = Glossario.objects.all()
 	return render(request, "index.html", {'glossarios': glossarios})

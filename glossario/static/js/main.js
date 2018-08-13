@@ -37,8 +37,8 @@
       },
 
 resize: function(){
-       canvas.width = $(window).width()
-        canvas.height = .75* $(window).height()
+       canvas.width = .78* $(window).width()
+        canvas.height = .80* $(window).height()
        particleSystem.screenSize(canvas.width, canvas.height) 
         _vignette = null
         that.redraw()

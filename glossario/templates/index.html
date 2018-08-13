@@ -1,10 +1,7 @@
-<head>
-    {% extends 'base.html' %}
-    {% load staticfiles %}
-    <title>{% block title %}Glossários de Libras - Glossário Letras Libras{% endblock %}</title>
-</head>
-<body>
-    {% block Corpo %}
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Glossários de Libras - Glossário Letras Libras{% endblock %}
+{% block Corpo %}
 
     <div class="row center blockContainer">
         <div class="block col s4 m3">
@@ -35,6 +32,4 @@
             </div>
         {% endfor %}
     </div>
-
-    {% endblock %}
-</body>
+{% endblock %}
