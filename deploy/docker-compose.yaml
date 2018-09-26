@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  glossario:
+    image: ramonufsc/glossario:0.1.0
+
+    ports:
+      - 8000:8000
+      
