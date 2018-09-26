@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  glossario:
+    build: .
+    volumes:
+      - .:/code
+    ports:
+      - 8000:8000
