@@ -4,13 +4,15 @@ from django.conf.urls.static import static
 from django.conf import settings
 from glossario import views
 from django.views.static import serve
+from django.urls import path
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^admin', admin.site.urls),
+    path('admin/', admin.site.urls),
     url(r'^equipe', views.equipe, name='equipe'),
     url(r'^contato', views.contato, name='contato'),
     url(r'^historia', views.historia, name='historia'),
+    url(r'^registration', views.registration, name='registration'),
     url(r'^temas$', views.temas, name='temas'),
     url(r'^temasjson', views.temasjson, name='temasjson'),
     url(r'^sinal/(\d+)$', views.sinal, name='sinal'),

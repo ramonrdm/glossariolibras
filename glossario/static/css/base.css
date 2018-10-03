@@ -572,4 +572,24 @@ ul.thumbnails.image_picker_selector li .thumbnail {
     animation: nadaDeMais 0.1s linear infinite;
 }
 
+.unidades {
+    margin: 0 auto;
+    padding: 0,7%;
+    width: 700px;
+    background-color:white;
+    text-shadow: 3px 3px 3px rgba(0,2,0,0.2);
+    box-shadow: 3px 3px 3px rgba(0,0,0,0.3);
+    margin: 0 auto;
+
+
+}
+
+h3{
+	font-size: 24px;
+	text-indent: 30px;
+	font-weight: bold;
+	color: #01579b;
+	list-style: none;
+}
+
 /* ============= FIM NADA DE MAIS... ============= */
