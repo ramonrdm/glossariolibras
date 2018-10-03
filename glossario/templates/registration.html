@@ -1,0 +1,16 @@
+<head>
+	{% extends 'base.html' %}
+	<title>{% block title %}Contato - Glossário Letras Libras{% endblock %}</title>
+</head>
+<body>
+	{% block Corpo %}
+
+        <h2> Sing in</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Registrar</button>
+        </form>
+
+	{% endblock %}
+</body>

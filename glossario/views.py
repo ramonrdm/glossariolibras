@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, render_to_response, redirect
 from glossario.models import Glossario, Sinal, Tema, GrupoCM
 from django.contrib.auth.models import User
 from glossario.forms import PesquisaForm, PesquisaCheckboxForm, EnviarSinaisForm, PesquisaSinaisForm
@@ -8,6 +8,8 @@ from django.db.models import Q
 from django.template import RequestContext
 import json
 import datetime
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login, authenticate
 
 def index(request, glossario=None):
 	glossarios = Glossario.objects.all()
@@ -223,3 +225,20 @@ def filterSinaisIng(formSinais, sinaisGlossario, resultadoTraducao):
 				Q(cmE=formSinais.cleaned_data['cmE']) |
 				Q(cmD=formSinais.cleaned_data['cmE'])
 			).distinct()
+
+
+def registration(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user =  form.save()
+            user.is_staff = True
+            user.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('index')
+    else:
+        form = UserCreationForm()
+    return render( request, 'registration.html', {'form': form})
