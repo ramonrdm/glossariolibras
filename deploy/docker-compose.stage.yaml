@@ -1,9 +1,7 @@
-version: '3'
+version: "3.1"
 
 services:
   glossario:
-    image: ramonufsc/glossario:0.1.0
-
+    image: ramonufsc/glossario:latest
     ports:
-      - 8000:8000
-      
+    - 40110:8000
