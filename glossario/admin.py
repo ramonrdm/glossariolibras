@@ -8,6 +8,7 @@ from django.db import models
 from django.db.models import Q
 from .models import *
 from django.contrib.contenttypes.models import ContentType
+from django.utils.html import format_html
 
 class ProfileInline(admin.StackedInline):
     model = Profile
@@ -78,18 +79,17 @@ class GlossarioAdmin(admin.ModelAdmin):
         obj.link = gLink
         obj.save()  
 
+    def image_tag(self, obj):
+        return format_html('<img src="{}" width="50" height="50"/>'.format(obj.imagem.url))
+    image_tag.short_description = 'Imagem'
+
+
 class SinalAdmin(admin.ModelAdmin):
 
     form = SinalForm
     list_display = ('traducaoP', 'traducaoI', 'tema', 'glossario', 'image_tag_cmE', 'image_tag_cmD', 'image_tag_localizacao', 'publicado')
     list_filter = ('tema', 'glossario', 'localizacao', 'dataPost', 'publicado')
     actions = ['publicar_sinal',]
-
-    def get_queryset(self, request):
-        qs = super(SinalAdmin, self).get_queryset(request)
-        if request.user.is_superuser:
-            return qs
-        return qs.filter(Q(glossario__responsavel=request.user) | Q(glossario__membros=request.user)).distinct()
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == "glossario":
@@ -119,20 +119,52 @@ class SinalAdmin(admin.ModelAdmin):
         queryset.update(publicado=True)
     publicar_sinal.short_description = 'Publicar sinais selecionados'
 
+    def image_tag_cmE(self, obj):
+        return format_html('<img src="{}" width="50" height="50" />'.format(obj.cmE.imagem.url))
+    image_tag_cmE.short_description = "Esquerda"
+
+    def image_tag_cmD(self, obj):
+        return format_html('<img src="{}" width="50" height="50" />'.format(obj.cmD.imagem.url))
+    image_tag_cmD.short_description = 'direita'
+
+    def image_tag_localizacao(self, obj):
+        return format_html('<img src="{}" width="50" height="50" />'.format(obj.localizacao.imagem.url))
+    image_tag_localizacao.short_description = 'localização'
+
+    def get_queryset(self, request):
+        qs = super(SinalAdmin, self).get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+        return qs.filter(Q(glossario__responsavel=request.user) | Q(glossario__membros=request.user)).distinct()
+
+
 class GrupoCMAdmin(admin.ModelAdmin):
 
     form = GrupoCMForm
     list_display = ('__str__', 'image_tag', 'bsw')
 
-class CMAdmin(admin.ModelAdmin):
+    def image_tag(self, obj):
+        return format_html('<img src="{}" width="50" height="50"/>'.format(obj.imagem.url))
+    image_tag.short_description = 'Imagem'
+    image_tag.allow_tags = True
 
+class CMAdmin(admin.ModelAdmin):
     form = CMForm
     list_display = ('__str__', 'image_tag', 'bsw')
 
-class LocalizacaoAdmin(admin.ModelAdmin):
+    def image_tag(self, obj):
+        return format_html('<img src="{}" width="50" height="50"/>'.format(obj.imagem.url))
+    image_tag.short_description = 'Imagem'
+    image_tag.allow_tags = True
 
+class LocalizacaoAdmin(admin.ModelAdmin):
     form = LocalizacaoForm
     list_display = ('nome', 'image_tag', 'bsw')
+
+    def image_tag(self, obj):
+        return format_html('<img src="{}" width="50" height="50"/>'.format(obj.imagem.url))
+    image_tag.short_description = 'Imagem'
+    image_tag.allow_tags = True
 
 admin.site.unregister(User)
 admin.site.register(User, CustomUserAdmin)
