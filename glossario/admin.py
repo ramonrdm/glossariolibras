@@ -8,6 +8,7 @@ from django.db import models
 from django.db.models import Q
 from .models import *
 from django.contrib.contenttypes.models import ContentType
+from django.utils.html import format_html
 
 from django import forms
 from django.contrib import admin
@@ -18,55 +19,55 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from .models import UserGlossario
 
 
-class UserCreationForm(forms.ModelForm):
-    """A form for creating new users. Includes all the required
-    fields, plus a repeated password."""
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
-
-    class Meta:
-        model = UserGlossario
-        fields = ('email', 'date_of_birth')
-
-    def clean_password2(self):
-        # Check that the two password entries match
-        password1 = self.cleaned_data.get("password1")
-        password2 = self.cleaned_data.get("password2")
-        if password1 and password2 and password1 != password2:
-            raise forms.ValidationError("Passwords don't match")
-        return password2
-
-    def save(self, commit=True):
-        # Save the provided password in hashed format
-        user = super().save(commit=False)
-        user.set_password(self.cleaned_data["password1"])
-        if commit:
-            user.save()
-        return user
-
-
-class UserChangeForm(forms.ModelForm):
-    """A form for updating users. Includes all the fields on
-    the user, but replaces the password field with admin's
-    password hash display field.
-    """
-    password = ReadOnlyPasswordHashField()
-
-    class Meta:
-        model = UserGlossario
-        fields = ('email', 'password', 'date_of_birth', 'is_active', 'is_admin')
-
-    def clean_password(self):
-        # Regardless of what the user provides, return the initial value.
-        # This is done here, rather than on the field, because the
-        # field does not have access to the initial value
-        return self.initial["password"]
+# class UserCreationForm(forms.ModelForm):
+#     """A form for creating new users. Includes all the required
+#     fields, plus a repeated password."""
+#     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
+#     password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
+#
+#     class Meta:
+#         model = UserGlossario
+#         fields = ('email', 'date_of_birth')
+#
+#     def clean_password2(self):
+#         # Check that the two password entries match
+#         password1 = self.cleaned_data.get("password1")
+#         password2 = self.cleaned_data.get("password2")
+#         if password1 and password2 and password1 != password2:
+#             raise forms.ValidationError("Passwords don't match")
+#         return password2
+#
+#     def save(self, commit=True):
+#         # Save the provided password in hashed format
+#         user = super().save(commit=False)
+#         user.set_password(self.cleaned_data["password1"])
+#         if commit:
+#             user.save()
+#         return user
 
 
-class UserAdmin(BaseUserAdmin):
+# class UserChangeForm(forms.ModelForm):
+#     """A form for updating users. Includes all the fields on
+#     the user, but replaces the password field with admin's
+#     password hash display field.
+#     """
+#     password = ReadOnlyPasswordHashField()
+#
+#     class Meta:
+#         model = UserGlossario
+#         fields = ('email', 'password', 'date_of_birth', 'is_active', 'is_admin')
+#
+#     def clean_password(self):
+#         # Regardless of what the user provides, return the initial value.
+#         # This is done here, rather than on the field, because the
+#         # field does not have access to the initial value
+#         return self.initial["password"]
+
+
+class UserGlossarioAdmin(BaseUserAdmin):
     # The forms to add and change user instances
-    form = UserChangeForm
-    add_form = UserCreationForm
+    # form = UserChangeForm
+    # add_form = UserCreationForm
 
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
@@ -89,12 +90,6 @@ class UserAdmin(BaseUserAdmin):
     search_fields = ('email',)
     ordering = ('email',)
     filter_horizontal = ()
-
-# Now register the new UserAdmin...
-admin.site.register(UserGlossario, UserAdmin)
-# ... and, since we're not using Django's built-in permissions,
-# unregister the Group model from admin.
-admin.site.unregister(Group)
 
 
 class GlossarioAdmin(admin.ModelAdmin):
@@ -138,18 +133,17 @@ class GlossarioAdmin(admin.ModelAdmin):
         obj.link = gLink
         obj.save()  
 
+    def image_tag(self, obj):
+        return format_html('<img src="{}" width="50" height="50"/>'.format(obj.imagem.url))
+    image_tag.short_description = 'Imagem'
+
+
 class SinalAdmin(admin.ModelAdmin):
 
     form = SinalForm
     list_display = ('traducaoP', 'traducaoI', 'tema', 'glossario', 'image_tag_cmE', 'image_tag_cmD', 'image_tag_localizacao', 'publicado')
     list_filter = ('tema', 'glossario', 'localizacao', 'dataPost', 'publicado')
     actions = ['publicar_sinal',]
-
-    def get_queryset(self, request):
-        qs = super(SinalAdmin, self).get_queryset(request)
-        if request.user.is_superuser:
-            return qs
-        return qs.filter(Q(glossario__responsavel=request.user) | Q(glossario__membros=request.user)).distinct()
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == "glossario":
@@ -179,23 +173,54 @@ class SinalAdmin(admin.ModelAdmin):
         queryset.update(publicado=True)
     publicar_sinal.short_description = 'Publicar sinais selecionados'
 
+    def image_tag_cmE(self, obj):
+        return format_html('<img src="{}" width="50" height="50" />'.format(obj.cmE.imagem.url))
+    image_tag_cmE.short_description = "Esquerda"
+
+    def image_tag_cmD(self, obj):
+        return format_html('<img src="{}" width="50" height="50" />'.format(obj.cmD.imagem.url))
+    image_tag_cmD.short_description = 'direita'
+
+    def image_tag_localizacao(self, obj):
+        return format_html('<img src="{}" width="50" height="50" />'.format(obj.localizacao.imagem.url))
+    image_tag_localizacao.short_description = 'localização'
+
+    def get_queryset(self, request):
+        qs = super(SinalAdmin, self).get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+        return qs.filter(Q(glossario__responsavel=request.user) | Q(glossario__membros=request.user)).distinct()
+
+
 class GrupoCMAdmin(admin.ModelAdmin):
 
     form = GrupoCMForm
     list_display = ('__str__', 'image_tag', 'bsw')
 
-class CMAdmin(admin.ModelAdmin):
+    def image_tag(self, obj):
+        return format_html('<img src="{}" width="50" height="50"/>'.format(obj.imagem.url))
+    image_tag.short_description = 'Imagem'
+    image_tag.allow_tags = True
 
+class CMAdmin(admin.ModelAdmin):
     form = CMForm
     list_display = ('__str__', 'image_tag', 'bsw')
 
-class LocalizacaoAdmin(admin.ModelAdmin):
+    def image_tag(self, obj):
+        return format_html('<img src="{}" width="50" height="50"/>'.format(obj.imagem.url))
+    image_tag.short_description = 'Imagem'
+    image_tag.allow_tags = True
 
+class LocalizacaoAdmin(admin.ModelAdmin):
     form = LocalizacaoForm
     list_display = ('nome', 'image_tag', 'bsw')
 
-# admin.site.unregister(User)
-# admin.site.register(User, CustomUserAdmin)
+    def image_tag(self, obj):
+        return format_html('<img src="{}" width="50" height="50"/>'.format(obj.imagem.url))
+    image_tag.short_description = 'Imagem'
+    image_tag.allow_tags = True
+
+admin.site.register(UserGlossario, UserGlossarioAdmin)
 admin.site.register(Tema)
 admin.site.register(Glossario, GlossarioAdmin)
 admin.site.register(Sinal, SinalAdmin)
