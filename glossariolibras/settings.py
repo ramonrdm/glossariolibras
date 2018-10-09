@@ -33,7 +33,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'glossario'
+    'glossario',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -111,3 +111,5 @@ TEMPLATES = [
 ]
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+AUTH_USER_MODEL = 'glossario.MyUser'
