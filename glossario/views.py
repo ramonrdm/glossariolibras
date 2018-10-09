@@ -231,7 +231,7 @@ def registration(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            user =  form.save()
+            user = form.save()
             user.is_staff = True
             user.save()
             username = form.cleaned_data.get('username')
