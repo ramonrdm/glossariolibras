@@ -152,7 +152,7 @@ class Sinal(models.Model):
 	sinalLibras = Video('Vídeo do sinal', upload_to=sinal_upload_path, null=True, blank=True)
 	descLibras = Video('Vídeo da descrição', upload_to=sinal_upload_path, null=True, blank=True)
 	exemploLibras = Video('Vídeo do exemplo', upload_to=sinal_upload_path, null=True, blank=True)
-	varicLibras = Video('Vídeo da variação', upload_to=sinal_upload_path, null=True, blank=True)
+	varicLibras = Video('Vídeo da variante', upload_to=sinal_upload_path, null=True, blank=True)
 	tema = models.ForeignKey(Tema, null=True, on_delete=models.CASCADE)
 
 	def image_tag_cmE(self):

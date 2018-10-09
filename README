@@ -1,25 +1,37 @@
-Glossário Letras UFSC
-by ramon.rdm
+Glossário Letras Libras UFSC
+
+Requisitos:
+
+$ pip install -r requirements.txt
+$ sudo apt install ffmpeg
+
+Popular o banco de dados local (sqlite3): chamar o comando:
+$ ./manage.py loaddata data_dump.json
+
+Desenvolvedor Ramon Dutra Miranda
+
 Professores responseveis pela pesquisa:
 Janine Soares de Oliveira
 Marianne Rossi Stumpf
+
 Bolsistas: 
-Sabrina Hanich
-Thiago Brezinski
+Cleberton de Souza Oliveira 
 
 Equipe antiga:
 João Pedro Gutierrez Kieling Villegas
+Sabrina Hanich
+Thiago Brezinski
 
 Apoio institucional:
-UFSC
+Universidade Federal de Santa Catarina - UFSC
 Letras Libras UFSC
-NALS
+NALS - UFSC
 
 Este projeto inicia a nova fase do glossario.libras.ufsc.br
 Fique a vontade para compartilhar o conhecimento!
 :)
 
-Estamos usando Django 1.10.x e Python 2.7
+Estamos usando Django 2.1.x e Python 3.x
 
 Plataforma de Glossários Libras
 Um glossário que reunie glossários de varias areas do conhecimento humano.
@@ -30,20 +42,10 @@ Um glossário que reunie glossários de varias areas do conhecimento humano.
   - Temas
 	- Vinculados diretamente ao sinal
 
-
 1.0 a versão interna do moodle, considerada pre-histórica
 
 2.0 a versão glossário LETRAS Libras, que foi meu tcc focando o curso Letras Libras somente.
 
 3.0 a versão que virou multi-glossarios, a atual em php e com mais de uma area do conhecimento.
 
-4.0 a versão que revolucionou tudo! python, html5, multiareas, multitemas, pesquisas diversas e tudo que suas mentes conseguirem imaginar!
-
-Requisitos:
-
-$ pip install Pillow (se houver erro, tentar dar upgrade na biblioteca zlib).
-$ sudo apt install ffmpeg (se a distro do linux utilizada não for Mint, substituir apt pelo gerenciador de pacotes da tal versão).
-
-Procedimentos:
-
-Popular o banco de dados local (sqlite3): chamar o comando ./manage.py loaddata data_dump.json.
+4.0 Utilizando Python e Django, html5, multi-glossarios, multiareas, multitemas, pesquisas, mais moderno e dinamico para criar glossários e sinais.
