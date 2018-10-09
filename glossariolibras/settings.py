@@ -112,4 +112,4 @@ TEMPLATES = [
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
-AUTH_USER_MODEL = 'glossario.MyUser'
+AUTH_USER_MODEL = 'glossario.UserGlossario'

@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from django.forms.models import ModelChoiceField
-from glossario.models import Glossario, Sinal, GrupoCM, CM, Localizacao
+from glossario.models import Glossario, Sinal, GrupoCM, CM, Localizacao, UserGlossario
 from django.conf import settings
 from glossario.widgets import ImageSelect
 from django import forms
+
 
 class GlossarioForm(forms.ModelForm):
 
