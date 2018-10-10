@@ -5,7 +5,53 @@ from django.conf import settings
 from glossario.widgets import ImageSelect
 from django import forms
 
+# --------------------------------------- RegistrationForm ----------------------------------------------------------------
 
+from django.contrib.auth.forms import UserCreationForm
+from glossario.models import UserGlossario
+from django.core.exceptions import ValidationError
+
+
+class CustomUserCreationForm(forms.Form):
+    email = forms.EmailField(label='Email')
+    nome_completo = forms.CharField(label="Nome Completo")
+    password = forms.CharField(label='Senha', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Confirmar Senha', widget=forms.PasswordInput)
+
+
+
+    def clean_email(self):
+        email = self.cleaned_data['email'].lower()
+        r = UserGlossario.objects.filter(email=email)
+        if r.count():
+            raise ValidationError("Email already exists")
+        return email
+
+    def clean_nome_completo(self):
+        nome_completo = self.cleaned_data['nome_completo'].lower()
+        r = UserGlossario.objects.filter(nome_completo=nome_completo)
+        if r.count():
+            raise ValidationError("Username already exists")
+        return nome_completo
+
+    def clean_password2(self):
+        password = self.cleaned_data.get('password')
+        password2 = self.cleaned_data.get('password2')
+
+        if password and password2 and password != password2:
+            raise ValidationError("Senhas não correspondem")
+
+        return password2
+
+    def save(self, commit=True):
+        user = UserGlossario.objects.create_user(
+            self.cleaned_data['email'],
+            self.cleaned_data['nome_completo'],
+            self.cleaned_data['password']
+        )
+        return user
+
+#--------------------------------------------------------------------------------------------------------------------------
 class GlossarioForm(forms.ModelForm):
 
 	class Meta:

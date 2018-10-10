@@ -13,13 +13,12 @@ import subprocess
 # -----------------------------------------Criação de Usuario-------------------------------------------------------------------
 
 from django.contrib.auth.models import (
-    BaseUserManager, AbstractBaseUser
+    BaseUserManager, AbstractBaseUser, PermissionsMixin
 )
 
 
-
-class MyUserManager(BaseUserManager):
-    def create_user(self, email, date_of_birth, password=None):
+class UserManagerGlossario(BaseUserManager):
+    def create_user(self, email, nome_completo, password=None):
         """
         Creates and saves a User with the given email, date of
         birth and password.
@@ -29,14 +28,14 @@ class MyUserManager(BaseUserManager):
 
         user = self.model(
             email=self.normalize_email(email),
-            date_of_birth=date_of_birth,
+            nome_completo=nome_completo,
         )
 
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, date_of_birth, password):
+    def create_superuser(self, email, nome_completo, password):
         """
         Creates and saves a superuser with the given email, date of
         birth and password.
@@ -44,27 +43,34 @@ class MyUserManager(BaseUserManager):
         user = self.create_user(
             email,
             password=password,
-            date_of_birth=date_of_birth,
+            nome_completo=nome_completo,
         )
+        user.is_admin = True
         user.is_superuser = True
         user.save(using=self._db)
         return user
 
+    def get_full_name(self):
+        return self.fullname
 
-class UserGlossario(AbstractBaseUser):
+    def get_short_name(self):
+        return self.shortname
+
+
+class UserGlossario(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
         unique=True,
     )
-    date_of_birth = models.DateField()
+    nome_completo = models.CharField(max_length=255, null=False)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
-    objects = MyUserManager()
+    objects = UserManagerGlossario()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['date_of_birth']
+    REQUIRED_FIELDS = ['nome_completo']
 
     def __str__(self):
         return self.email
@@ -81,12 +87,9 @@ class UserGlossario(AbstractBaseUser):
 
     @property
     def is_staff(self):
-        "Is the user a member of staff?"
-        # Simplest possible answer: All admins are staff
         return self.is_admin
 
-
- # ---------------------------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------------
 
 class Localizacao(models.Model):
     class Meta:

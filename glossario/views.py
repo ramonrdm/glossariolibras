@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, render_to_response, redirect
-from glossario.models import Glossario, Sinal, Tema, GrupoCM
+from glossario.models import Glossario, Sinal, Tema, UserGlossario
 from django.contrib.auth.models import User
-from glossario.forms import PesquisaForm, PesquisaCheckboxForm, EnviarSinaisForm, PesquisaSinaisForm
+from glossario.forms import PesquisaForm, PesquisaCheckboxForm, EnviarSinaisForm, PesquisaSinaisForm, CustomUserCreationForm
 from django.http import JsonResponse
 from django.db.models import Q
 from django.template import RequestContext
@@ -111,7 +111,7 @@ def historia(request):
 	return render(request, "historia.html")
 
 def equipe(request):
-	usuarios = User.objects.all()
+	usuarios = UserGlossario.objects.all()
 	return render(request, "equipe.html", {'usuarios': usuarios})
 
 def contato(request):
@@ -229,16 +229,11 @@ def filterSinaisIng(formSinais, sinaisGlossario, resultadoTraducao):
 
 def registration(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            user.is_staff = True
-            user.save()
-            email = form.cleaned_data.get('email')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(email=email, password=raw_password)
-            login(request, user)
+            form.save()
             return redirect('index')
     else:
-        form = UserCreationForm()
-    return render( request, 'registration.html', {'form': form})
+        form = CustomUserCreationForm()
+    return render(request, 'registration.html', {'form': form})
+
