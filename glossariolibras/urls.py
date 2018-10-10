@@ -5,10 +5,14 @@ from django.conf import settings
 from glossario import views
 from django.views.static import serve
 from django.urls import path
+from glossario.views import sair
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     path('admin/', admin.site.urls),
+    path('login/', auth_views.LoginView, name='login'),
+    path('logout/', sair, name='logout'),
     url(r'^equipe', views.equipe, name='equipe'),
     url(r'^contato', views.contato, name='contato'),
     url(r'^historia', views.historia, name='historia'),

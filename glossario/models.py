@@ -18,43 +18,41 @@ from django.contrib.auth.models import (
 
 
 class UserManagerGlossario(BaseUserManager):
-    def create_user(self, email, nome_completo, password=None):
-        """
-        Creates and saves a User with the given email, date of
-        birth and password.
-        """
+    def _create_user(self, email, password, **extra_fields):
+
         if not email:
             raise ValueError('Users must have an email address')
 
-        user = self.model(
-            email=self.normalize_email(email),
-            nome_completo=nome_completo,
-        )
-
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
         user.set_password(password)
-        user.save(using=self._db)
-        return user
+        user.save(using = self._db)
 
-    def create_superuser(self, email, nome_completo, password):
-        """
-        Creates and saves a superuser with the given email, date of
-        birth and password.
-        """
-        user = self.create_user(
-            email,
-            password=password,
-            nome_completo=nome_completo,
-        )
-        user.is_admin = True
-        user.is_superuser = True
-        user.save(using=self._db)
-        return user
 
-    def get_full_name(self):
-        return self.fullname
 
-    def get_short_name(self):
-        return self.shortname
+    def create_user(self, email, password=None, **extra_fields):
+
+        if not email:
+            raise ValueError('Users must have an email address')
+
+
+        extra_fields.setdefault('is_superuser', False)
+        extra_fields.setdefault('is_staff', True)
+        return self._create_user(email, password, **extra_fields)
+
+    def create_superuser(self, email, password, **extra_fields):
+
+        extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('is_staff', True)
+
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError('Superuser must have is_staff=True')
+
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError('Superuser must have is_superuser=True')
+
+        return self._create_user(email, password, **extra_fields)
+
 
 
 class UserGlossario(AbstractBaseUser, PermissionsMixin):
@@ -64,9 +62,8 @@ class UserGlossario(AbstractBaseUser, PermissionsMixin):
         unique=True,
     )
     nome_completo = models.CharField(max_length=255, null=False)
+    is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=False)
-
     objects = UserManagerGlossario()
 
     USERNAME_FIELD = 'email'
@@ -75,21 +72,7 @@ class UserGlossario(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 
-    def has_perm(self, perm, obj=None):
-        "Does the user have a specific permission?"
-        # Simplest possible answer: Yes, always
-        return True
-
-    def has_module_perms(self, app_label):
-        "Does the user have permissions to view the app `app_label`?"
-        # Simplest possible answer: Yes, always
-        return True
-
-    @property
-    def is_staff(self):
-        return self.is_admin
-
-# ---------------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------
 
 class Localizacao(models.Model):
     class Meta:

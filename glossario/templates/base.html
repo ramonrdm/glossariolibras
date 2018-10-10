@@ -28,7 +28,16 @@
             <a href="/"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a>
         </div>
         <div class="sideNavLinks">
-            
+            {%  if user.is_authenticated  %}
+            <li><a class="waves-effect waves-blue" href="{% url 'admin:index' %}"><i class="material-icons">account_circle</i>Nome Usuario <a class="waves-effect waves-blue" href="{% url 'logout' %}"></i>Sair</a></a></li>
+            <li><a class="waves-effect waves-blue" href="{% url 'historia' %}"><i class="material-icons">library_books</i>História</a></li>
+            <li><a class="waves-effect waves-blue" href="{% url 'equipe' %}"><i class="material-icons">supervisor_account</i>Equipe</a></li>
+            <li><a class="waves-effect waves-blue" href="{% url 'contato' %}"><i class="material-icons">call</i>Contato</a></li>
+            <li><a class="waves-effect waves-blue" href="https://libras.ufsc.br/"><i class="material-icons"><img class="iconePortalLibras" src='{% static "img/marca_portal_libras2.png" %}'></i>Portal Libras</a></li>
+            <li><a class="waves-effect waves-blue" href="{% url 'enviarsinais' %}"><i class="material-icons">send</i>Enviar sinais</a></li>
+            <li><a class="waves-effect waves-blue" href="{% url 'admin:index' %}"><i class="material-icons">https</i>Admin</a></li>
+
+            {% else %}
             <li><a class="waves-effect waves-blue" href="{% url 'historia' %}"><i class="material-icons">library_books</i>História</a></li>
             <li><a class="waves-effect waves-blue" href="{% url 'equipe' %}"><i class="material-icons">supervisor_account</i>Equipe</a></li>
             <li><a class="waves-effect waves-blue" href="{% url 'contato' %}"><i class="material-icons">call</i>Contato</a></li>
@@ -36,6 +45,9 @@
             <li><a class="waves-effect waves-blue" href="{% url 'enviarsinais' %}"><i class="material-icons">send</i>Enviar sinais</a></li>
             <li><a class="waves-effect waves-blue" href="{% url 'registration' %}"><i class="material-icons">account_circle</i>Criar Usuario</a></li>
             <li><a class="waves-effect waves-blue" href="{% url 'admin:index' %}"><i class="material-icons">https</i>Admin</a></li>
+
+            {% endif %}
+
         </div>
         <div class="nav-wrapper"><a href="http://ufsc.br"><img class="logoUFSC" src='{% static "img/marca_ufsc.svg" %}'></a></div>
         <div class="nav-wrapper"><img class="borda" src='{% static "img/borda2.png" %}'></div>

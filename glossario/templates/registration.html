@@ -4,14 +4,14 @@
 </head>
 
     {% block Corpo %}
-        <br></br><br></br>
-        <div class="row container center unidades" >
-	        <div class="col l10 push-l1 ">
-                <h3> Crie sua Conta </h3>
+        <div class="container">
+		<h2 class="thin center">Registrar</h2>
+		<div class="divider"></div>
+
                 <form method="post">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <button class="waves-effect waves-light btn color light-blue darken-4" value='Registrar' type="submit" name="Registrar">Registrar</button>
+                    <center><button class="waves-effect waves-light btn-large color light-blue darken-4" value='Registrar' type="submit" name="Registrar">Registrar</button></center>
                 </form>
             </div>
         </div>

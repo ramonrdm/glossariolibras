@@ -11,6 +11,9 @@ import datetime
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
 
+from django.contrib.auth import logout
+
+
 def index(request, glossario=None):
 	glossarios = Glossario.objects.all()
 	return render(request, "index.html", {'glossarios': glossarios})
@@ -237,3 +240,11 @@ def registration(request):
         form = CustomUserCreationForm()
     return render(request, 'registration.html', {'form': form})
 
+def sair(request):
+    logout(request)
+    return render(request, 'index.html')
+
+
+def login(request):
+    login(request)
+    return render(request, 'index.html')
