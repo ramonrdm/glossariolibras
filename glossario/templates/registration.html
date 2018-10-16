@@ -1,18 +1,19 @@
 <head>
 	{% extends 'base.html' %}
-	<title>{% block title %}Contato - Glossário Letras Libras{% endblock %}</title>
 </head>
+<body>
 
     {% block Corpo %}
         <div class="container">
-		<h2 class="thin center">Registrar</h2>
-		<div class="divider"></div>
-
-                <form method="post">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <center><button class="waves-effect waves-light btn-large color light-blue darken-4" value='Registrar' type="submit" name="Registrar">Registrar</button></center>
-                </form>
+		    <h2 class="thin center">Registrar</h2>
+		    <div class="divider"></div>
+                <div class="file-field ">
+                    <form method="post">
+                        {{ form.as_p }}
+                        {% csrf_token %}
+                        <button class="btn waves-effect botaoEnviarSinal center" value='Registrar' type="submit" name="Registrar">Registrar </button>
+                    </form>
+                </div>
             </div>
         </div>
 	{% endblock %}

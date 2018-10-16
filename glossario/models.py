@@ -16,6 +16,10 @@ from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser, PermissionsMixin
 )
 
+from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
 
 class UserManagerGlossario(BaseUserManager):
     def _create_user(self, email, password, **extra_fields):
@@ -34,7 +38,6 @@ class UserManagerGlossario(BaseUserManager):
 
         if not email:
             raise ValueError('Users must have an email address')
-
 
         extra_fields.setdefault('is_superuser', False)
         extra_fields.setdefault('is_staff', True)
@@ -62,12 +65,20 @@ class UserGlossario(AbstractBaseUser, PermissionsMixin):
         unique=True,
     )
     nome_completo = models.CharField(max_length=255, null=False)
+    email_confirmed = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     objects = UserManagerGlossario()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['nome_completo']
+
+
+    def update_user_profile(sender, instance, created, **kwargs):
+        if created:
+            UserGlossario.objects.create(user=instance)
+            is_active = models.BooleanField(default=True)
+        instance.profile.save()
 
     def __str__(self):
         return self.email

@@ -114,7 +114,4 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 AUTH_USER_MODEL = 'glossario.UserGlossario'
 
-
-LOGIN_URL = '/login/'
-
-LOGIN_REDIRECT_URL = 'index'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

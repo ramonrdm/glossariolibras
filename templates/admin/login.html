@@ -1,0 +1,29 @@
+
+<head>
+	{% extends 'base.html' %}
+</head>
+
+    {% block Corpo %}
+            <div class="row container" id="{{field.auto_id}}">
+                <div class="col l5 push-l3"><br></br><br></br><br></br>
+                    <div class="divider"></div>
+                        <form method="post" class="formEnviarSinais" enctype="multipart/form-data">
+                        <h2 class="thin center">Login</h2>
+
+                            <form method="post">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <a  class=" waves-effect waves-light left" href="novaSenha">Esqueci a senha</a>
+                                <button type="submit" class="btn waves-effect waves-light botaoEnviarSinal col l4 push-l4">login</button>
+                            </form>
+
+                    </div>
+                </div>
+            </div>
+	{% endblock %}
+</body>
+
+
+
+
+
