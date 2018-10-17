@@ -5,6 +5,7 @@ from django.core.files import File
 from django.contrib.auth import hashers
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
+from django.core.mail import send_mail
 from django.conf import settings
 import datetime
 import subprocess
@@ -15,6 +16,7 @@ import subprocess
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser, PermissionsMixin
 )
+
 
 from django.db import models
 from django.db.models.signals import post_save
@@ -39,14 +41,18 @@ class UserManagerGlossario(BaseUserManager):
         if not email:
             raise ValueError('Users must have an email address')
 
+
+        extra_fields.setdefault('is_active', True)
         extra_fields.setdefault('is_superuser', False)
         extra_fields.setdefault('is_staff', True)
+
         return self._create_user(email, password, **extra_fields)
 
     def create_superuser(self, email, password, **extra_fields):
-
+        extra_fields.setdefault('is_active', True)
         extra_fields.setdefault('is_superuser', True)
         extra_fields.setdefault('is_staff', True)
+
 
         if extra_fields.get('is_staff') is not True:
             raise ValueError('Superuser must have is_staff=True')
@@ -70,15 +76,18 @@ class UserGlossario(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=False)
     objects = UserManagerGlossario()
 
+
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['nome_completo']
 
+    def email_user(self, subject, message, from_email=None, **kwargs):
+        """Send an email to this user."""
+        send_mail(subject, message, from_email, [self.email], **kwargs)
 
-    def update_user_profile(sender, instance, created, **kwargs):
+    def update_user_profile(sender, instance, created, **extra_fields):
         if created:
-            UserGlossario.objects.create(user=instance)
-            is_active = models.BooleanField(default=True)
-        instance.profile.save()
+            UserGlossario.objects.create_user(user=instance)
+        instance.save()
 
     def __str__(self):
         return self.email

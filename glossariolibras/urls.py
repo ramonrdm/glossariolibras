@@ -30,6 +30,6 @@ urlpatterns = [
     url(r'^enviarsinais', views.enviarSinais, name='enviarsinais'),
     url(r'^(?P<glossario>[-\w]+)$', views.glossarioSelecionado, name='glossarios'),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
-    url(r'^account_activation_sent/$', core_views.account_activation_sent, name='account_activation_sent'),
-    url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',core_views.activate, name='activate'),
+    url(r'^account_activation_sent/$', views.account_activation_sent, name='account_activation_sent'),
+    url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',views.activate, name='activate'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

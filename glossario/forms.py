@@ -8,15 +8,18 @@ from django import forms
 # --------------------------------------- RegistrationForm ----------------------------------------------------------------
 
 from django.contrib.auth.forms import UserCreationForm
-from glossario.models import UserGlossario
 from django.core.exceptions import ValidationError
 
 
-class CustomUserCreationForm(forms.Form):
+class CustomUserCreationForm(forms.ModelForm):
     email = forms.EmailField(label='Email', help_text='Required. Inform a valid email address.')
     password = forms.CharField(label='Senha', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Confirmar Senha', widget=forms.PasswordInput)
 
+    class Meta:
+        model = UserGlossario
+        fields = ('email',)
+        # field = {'email': email}
 
 
     def clean_email(self):
@@ -33,18 +36,31 @@ class CustomUserCreationForm(forms.Form):
         if password and password2 and password != password2:
             raise ValidationError("Senhas não correspondem")
 
-        return password2
+        return password
+
+    # return user
+    #
+    # def save(self, commit=True):
+    #     print(self.cleaned_data['email'])
+    #     print(self.cleaned_data['password'])
+    #     user = UserGlossario.objects.create_user(
+	# 		self.cleaned_data['email'],
+	# 		self.cleaned_data['password']
+	# 	)
+    #
+    #     return user
+
 
 
     def save(self, commit=True):
-        user = UserGlossario.objects.create_user(
-			self.cleaned_data['email'],
-			self.cleaned_data['password']
-		)
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data["password"])
         if commit:
             user.save()
-        return user
 
+        print("User")
+        print(user)
+        return user
 #--------------------------------------------------------------------------------------------------------------------------
 class GlossarioForm(forms.ModelForm):
 

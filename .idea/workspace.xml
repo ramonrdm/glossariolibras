@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/glossario/models.py" line="84" />
+    <bookmark url="file://$PROJECT_DIR$/glossario/models.py" line="93" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f45aa700-e5fc-4f90-8c12-27191d98bfab" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/admin/account_activation_email.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/account_activation_invalid.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/account_activation_sent.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/glossario/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/glossario/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/glossario/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/tokens.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/glossario/migrations/__init__.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/glossario/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/glossario/static/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/static/css/base.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/glossario/templates/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/templates/registration.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/glossario/tokens.py" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/tokens.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/glossario/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/glossariolibras/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/glossariolibras/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/glossariolibras/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/glossariolibras/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/account_activation_email.html" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/templates/account_activation_email.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/account_activation_invalid.html" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/templates/account_activation_invalid.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/account_activation_sent.html" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/templates/account_activation_sent.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,82 +27,100 @@
     <session id="419288044">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="8" />
-          <entry key="project.open.time.1" value="1" />
+          <entry key="project.closed" value="9" />
+          <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.17" value="1" />
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.20" value="3" />
           <entry key="project.open.time.23" value="1" />
-          <entry key="project.opened" value="9" />
+          <entry key="project.opened" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="5" />
-          <entry key="html" value="37" />
+          <entry key="html" value="42" />
           <entry key="json" value="2" />
-          <entry key="py" value="121" />
+          <entry key="py" value="142" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="5" />
-          <entry key="HTML" value="37" />
+          <entry key="HTML" value="42" />
           <entry key="JSON" value="2" />
-          <entry key="Python" value="121" />
+          <entry key="Python" value="142" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="37" />
-          <entry key="html" value="764" />
-          <entry key="py" value="3026" />
+          <entry key="html" value="850" />
+          <entry key="py" value="3670" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="37" />
-          <entry key="HTML" value="764" />
-          <entry key="Python" value="3026" />
+          <entry key="HTML" value="850" />
+          <entry key="Python" value="3670" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/glossario/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="253" column="25" selection-start-line="253" selection-start-column="25" selection-end-line="253" selection-end-column="25" />
+            <state relative-caret-position="286">
+              <caret line="282" column="28" selection-start-line="282" selection-start-column="13" selection-end-line="282" selection-end-column="28" />
               <folding>
                 <element signature="e#24#89#0" expanded="true" />
-                <marker date="1539721388328" expanded="true" signature="10055:10056" ph="..." />
+                <marker date="1539809867800" expanded="true" signature="10055:10056" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/glossario/forms.py">
+        <entry file="file://$PROJECT_DIR$/glossario/templates/account_activation_invalid.html">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/glossario/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="461">
-              <caret line="43" column="18" lean-forward="true" selection-start-line="43" selection-start-column="18" selection-end-line="43" selection-end-column="18" />
+            <state relative-caret-position="170">
+              <caret line="86" column="36" selection-start-line="86" selection-start-column="36" selection-end-line="86" selection-end-column="36" />
+              <folding>
+                <element signature="e#24#52#0" expanded="true" />
+                <marker date="1539815876110" expanded="true" signature="713:715" ph="..." />
+                <marker date="1539815876110" expanded="true" signature="820:1088" ph="..." />
+                <marker date="1539815876110" expanded="true" signature="1148:1158" ph="..." />
+                <marker date="1539815876110" expanded="true" signature="3499:3500" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/glossario/admin.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/glossario/templates/account_activation_email.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="38" column="41" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="41" />
-              <folding>
-                <element signature="e#24#114#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="60">
+              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/glossario/templates/account_activation_sent.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret lean-forward="true" />
             </state>
           </provider>
         </entry>
@@ -132,18 +147,22 @@
         <option value="$PROJECT_DIR$/glossario/templates/base.html" />
         <option value="$PROJECT_DIR$/glossario/templates/enviarsinais.html" />
         <option value="$PROJECT_DIR$/glossario/static/css/base.css" />
-        <option value="$PROJECT_DIR$/glossario/tokens.py" />
         <option value="$PROJECT_DIR$/templates/admin/account_activation_invalid.html" />
         <option value="$PROJECT_DIR$/glossario/templates/registration.html" />
         <option value="$PROJECT_DIR$/templates/admin/login.html" />
         <option value="$PROJECT_DIR$/glossariolibras/settings.py" />
         <option value="$PROJECT_DIR$/templates/admin/account_activation_sent.html" />
-        <option value="$PROJECT_DIR$/glossariolibras/urls.py" />
         <option value="$PROJECT_DIR$/templates/admin/account_activation_email.html" />
-        <option value="$PROJECT_DIR$/glossario/models.py" />
-        <option value="$PROJECT_DIR$/glossario/views.py" />
-        <option value="$PROJECT_DIR$/glossario/forms.py" />
         <option value="$PROJECT_DIR$/glossario/admin.py" />
+        <option value="$PROJECT_DIR$/glossario/tokens.py" />
+        <option value="$PROJECT_DIR$/glossario/forms.py" />
+        <option value="$PROJECT_DIR$/glossariolibras/urls.py" />
+        <option value="$PROJECT_DIR$/glossario/views.py" />
+        <option value="$PROJECT_DIR$/templates/account_activation_sent.html" />
+        <option value="$PROJECT_DIR$/templates/account_activation_invalid.html" />
+        <option value="$PROJECT_DIR$/glossario/templates/account_activation_invalid.html" />
+        <option value="$PROJECT_DIR$/glossario/templates/account_activation_sent.html" />
+        <option value="$PROJECT_DIR$/glossario/models.py" />
       </list>
     </option>
   </component>
@@ -174,18 +193,13 @@
             <path>
               <item name="glossariolibras" type="b2602c69:ProjectViewProjectNode" />
               <item name="glossariolibras" type="462c0819:PsiDirectoryNode" />
-              <item name="glossariolibras" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="glossariolibras" type="b2602c69:ProjectViewProjectNode" />
-              <item name="glossariolibras" type="462c0819:PsiDirectoryNode" />
+              <item name="glossario" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="glossariolibras" type="b2602c69:ProjectViewProjectNode" />
               <item name="glossariolibras" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -198,6 +212,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/glossario/templates" />
+      <recent name="$PROJECT_DIR$/templates" />
       <recent name="$PROJECT_DIR$/templates/admin" />
     </key>
   </component>
@@ -251,9 +267,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1602" height="873" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.115409" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20608751" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -272,7 +287,7 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14901713" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.115409" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -295,24 +310,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/glossario/templates/contato.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="15" lean-forward="true" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/glossario/static/css/pesquisa.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/glossario/templates/signup.html" />
-    <entry file="file:///usr/lib/python3.5/importlib/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="125" selection-start-line="125" selection-end-line="125" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../env/lib/python3.5/site-packages/django/contrib/auth/forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3690">
@@ -379,31 +376,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../env/lib/python3.5/site-packages/django/template/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4901">
-          <caret line="936" selection-start-line="936" selection-end-line="936" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python3.5/dist-packages/django/contrib/auth/base_user.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="582">
           <caret line="52" column="4" selection-start-line="52" selection-start-column="4" selection-end-line="52" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/django/contrib/auth/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1230">
-          <caret line="93" column="6" selection-start-line="93" selection-start-column="6" selection-end-line="93" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/django/contrib/auth/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="63" column="6" selection-start-line="63" selection-start-column="6" selection-end-line="63" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -462,13 +438,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1247971764/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12000">
-          <caret line="800" column="8" selection-start-line="800" selection-start-column="8" selection-end-line="800" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../env/lib/python3.5/site-packages/django/db/models/base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-955">
@@ -490,13 +459,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/glossario/templates/registration.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="7" lean-forward="true" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python3.5/dist-packages/django/core/exceptions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
@@ -514,37 +476,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/glossario/tokens.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="16" lean-forward="true" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#66#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/account_activation_invalid.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/account_activation_sent.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="14" lean-forward="true" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/account_activation_email.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/glossariolibras/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -556,16 +487,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="91">
           <caret line="319" column="40" lean-forward="true" selection-start-line="319" selection-start-column="40" selection-end-line="319" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/glossariolibras/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="49" lean-forward="true" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -590,13 +511,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../env/lib/python3.5/site-packages/django/forms/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="265" selection-start-line="265" selection-end-line="265" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../env/lib/python3.5/site-packages/django/core/handlers/base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1315">
@@ -604,44 +518,147 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../env/lib/python3.5/site-packages/django/forms/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2420">
+          <caret line="242" selection-start-line="242" selection-end-line="242" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/glossario/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="33" column="61" selection-start-line="33" selection-start-column="61" selection-end-line="33" selection-end-column="61" />
+          <folding>
+            <element signature="e#24#114#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/django/contrib/auth/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="220" column="30" lean-forward="true" selection-start-line="219" selection-start-column="5" selection-end-line="220" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/glossario/tokens.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="60" selection-start-line="6" selection-start-column="60" selection-end-line="6" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../env/lib/python3.5/site-packages/django/template/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2800">
+          <caret line="903" selection-start-line="903" selection-end-line="903" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../env/lib/python3.5/site-packages/django/template/defaulttags.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="441" selection-start-line="441" selection-end-line="441" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/glossariolibras/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1">
+          <caret line="6" column="28" lean-forward="true" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../env/lib/python3.5/site-packages/django/urls/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="89" selection-start-line="89" selection-end-line="89" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../env/lib/python3.5/site-packages/django/urls/resolvers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6121">
+          <caret line="621" selection-start-line="621" selection-end-line="621" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/django/contrib/auth/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/glossario/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="56" column="18" lean-forward="true" selection-start-line="56" selection-start-column="18" selection-end-line="56" selection-end-column="18" />
+          <folding>
+            <element signature="e#24#72#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/glossario/templates/pesquisa.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1247971764/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-35">
+          <caret line="2811" column="8" selection-start-line="2811" selection-start-column="8" selection-end-line="2811" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/glossario/templates/account_activation_invalid.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/glossario/templates/account_activation_sent.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/glossario/templates/account_activation_email.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/glossario/templates/registration.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/glossario/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="79" column="21" selection-start-line="79" selection-start-column="12" selection-end-line="79" selection-end-column="21" />
+        <state relative-caret-position="170">
+          <caret line="86" column="36" selection-start-line="86" selection-start-column="36" selection-end-line="86" selection-end-column="36" />
           <folding>
             <element signature="e#24#52#0" expanded="true" />
-            <marker date="1539719658775" expanded="true" signature="673:675" ph="..." />
-            <marker date="1539719658775" expanded="true" signature="780:1048" ph="..." />
-            <marker date="1539719658775" expanded="true" signature="1108:1118" ph="..." />
-            <marker date="1539719658775" expanded="true" signature="3224:3225" ph="..." />
+            <marker date="1539815876110" expanded="true" signature="713:715" ph="..." />
+            <marker date="1539815876110" expanded="true" signature="820:1088" ph="..." />
+            <marker date="1539815876110" expanded="true" signature="1148:1158" ph="..." />
+            <marker date="1539815876110" expanded="true" signature="3499:3500" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/glossario/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="253" column="25" selection-start-line="253" selection-start-column="25" selection-end-line="253" selection-end-column="25" />
+        <state relative-caret-position="286">
+          <caret line="282" column="28" selection-start-line="282" selection-start-column="13" selection-end-line="282" selection-end-column="28" />
           <folding>
             <element signature="e#24#89#0" expanded="true" />
-            <marker date="1539721388328" expanded="true" signature="10055:10056" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/glossario/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="43" column="18" lean-forward="true" selection-start-line="43" selection-start-column="18" selection-end-line="43" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/glossario/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="38" column="41" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="41" />
-          <folding>
-            <element signature="e#24#114#0" expanded="true" />
+            <marker date="1539809867800" expanded="true" signature="10055:10056" ph="..." />
           </folding>
         </state>
       </provider>
