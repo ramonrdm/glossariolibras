@@ -46,6 +46,25 @@
           <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
         </div>
       </div>
-    {% else %}
+    {% elif modalConfirmeEmailErro %}
+        <div id="confirmeEmailErro" class="modal">
+        <div class="modal-content">
+          <h5>Erro confimação de e-mail!</h5>
+          <p>Confirmação de e-mail invalida, possivelmente por já ter sido usada</p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
+        </div>
+      </div>
+    {% elif modalLogin %}
+        <div id="login" class="modal">
+        <div class="modal-content">
+          <h5>Registrado com Sucesso!</h5>
+          <p>Confirmação de e-mail valida, usuario cadastrado com sucesso.</p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
+        </div>
+      </div>
     {% endif %}
 {% endblock %}

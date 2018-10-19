@@ -1,5 +1,7 @@
 $(document).ready(function(){
-    $('#confirmeEmail').modal();
+    $('.modal').modal();
     $('#confirmeEmail').modal('open');
+    $('#confirmeEmailErro').modal('open');
+    $('#login').modal('open');
 
 });

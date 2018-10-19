@@ -275,9 +275,11 @@ def activate(request, uidb64, token):
         user.email_confirmed = True
         user.save()
         login(request, user)
-        return redirect('index')
+        modalLogin = True
+        return render(request, 'index.html', {'modalLogin': modalLogin})
     else:
-        return render(request, 'account_activation_invalid.html')
+        modalConfirmeEmailErro = True
+        return render(request, 'index.html', {'modalConfirmeEmailErro': modalConfirmeEmailErro})
 
 def account_activation_sent(request):
     modalConfirmeEmail = True
