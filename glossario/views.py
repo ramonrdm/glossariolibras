@@ -9,10 +9,16 @@ from django.template import RequestContext
 import json
 import datetime
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login, authenticate
-
+from django.contrib.auth import login
 from django.contrib.auth import logout
-
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
+from django.template.loader import render_to_string
+from .tokens import account_activation_token
+from django.shortcuts import render, redirect
+from django.utils.encoding import force_text
+from django.utils.http import urlsafe_base64_decode
 
 def index(request, glossario=None):
 	glossarios = Glossario.objects.all()
@@ -229,23 +235,7 @@ def filterSinaisIng(formSinais, sinaisGlossario, resultadoTraducao):
 				Q(cmD=formSinais.cleaned_data['cmE'])
 			).distinct()
 
-
-
-
-
-from django.contrib.sites.shortcuts import get_current_site
-from django.shortcuts import render, redirect
-from django.utils.encoding import force_bytes
-from django.utils.http import urlsafe_base64_encode
-from django.template.loader import render_to_string
-from .tokens import account_activation_token
-
-
-from django.contrib.auth import login
-from django.shortcuts import render, redirect
-from django.utils.encoding import force_text
-from django.utils.http import urlsafe_base64_decode
-
+# -----------------------------------------Registro de Usuario-------------------------------------------------------------------
 
 def registration(request):
     if request.method == 'POST':
@@ -280,6 +270,8 @@ def activate(request, uidb64, token):
         user = None
 
     if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.is_staff = True
         user.email_confirmed = True
         user.save()
         login(request, user)
@@ -289,3 +281,5 @@ def activate(request, uidb64, token):
 
 def account_activation_sent(request):
     return render(request, 'account_activation_sent.html')
+
+# -------------------------------------------------------------------------------------------------------------------------

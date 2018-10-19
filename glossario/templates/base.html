@@ -29,7 +29,8 @@
         </div>
         <div class="sideNavLinks">
             {%  if user.is_authenticated  %}
-            <li><a class="waves-effect waves-blue" href="{% url 'admin:index' %}"><i class="material-icons">account_circle</i>Nome Usuario <a class="waves-effect waves-blue" href="{% url 'logout' %}"></i>Sair</a></a></li>
+            <li><a class="waves-effect waves-blue left" href="{% url 'admin:index' %}"><i class="material-icons">account_circle</i>{{ user.nome_completo }}</a></li>
+             <li><a class="waves-effect waves-blue color" href="{% url 'logout' %}"><i class="material-icons">close</i></a></li>
             <li><a class="waves-effect waves-blue" href="{% url 'historia' %}"><i class="material-icons">library_books</i>História</a></li>
             <li><a class="waves-effect waves-blue" href="{% url 'equipe' %}"><i class="material-icons">supervisor_account</i>Equipe</a></li>
             <li><a class="waves-effect waves-blue" href="{% url 'contato' %}"><i class="material-icons">call</i>Contato</a></li>

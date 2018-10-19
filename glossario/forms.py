@@ -4,22 +4,19 @@ from glossario.models import Glossario, Sinal, GrupoCM, CM, Localizacao, UserGlo
 from django.conf import settings
 from glossario.widgets import ImageSelect
 from django import forms
+from django.core.exceptions import ValidationError
 
 # --------------------------------------- RegistrationForm ----------------------------------------------------------------
 
-from django.contrib.auth.forms import UserCreationForm
-from django.core.exceptions import ValidationError
-
-
 class CustomUserCreationForm(forms.ModelForm):
     email = forms.EmailField(label='Email', help_text='Required. Inform a valid email address.')
+    nome_completo = forms.CharField(label='Nome Completo')
     password = forms.CharField(label='Senha', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Confirmar Senha', widget=forms.PasswordInput)
 
     class Meta:
         model = UserGlossario
         fields = ('email',)
-        # field = {'email': email}
 
 
     def clean_email(self):
@@ -28,6 +25,10 @@ class CustomUserCreationForm(forms.ModelForm):
         if r.count():
             raise ValidationError("Email already exists")
         return email
+
+    def clean_nome_completo(self):
+        nome_completo = self.cleaned_data['nome_completo']
+        return nome_completo
 
     def clean_password2(self):
         password = self.cleaned_data.get('password')
@@ -38,28 +39,13 @@ class CustomUserCreationForm(forms.ModelForm):
 
         return password
 
-    # return user
-    #
-    # def save(self, commit=True):
-    #     print(self.cleaned_data['email'])
-    #     print(self.cleaned_data['password'])
-    #     user = UserGlossario.objects.create_user(
-	# 		self.cleaned_data['email'],
-	# 		self.cleaned_data['password']
-	# 	)
-    #
-    #     return user
-
-
-
     def save(self, commit=True):
         user = super().save(commit=False)
+        user.nome_completo = self.cleaned_data["nome_completo"]
         user.set_password(self.cleaned_data["password"])
         if commit:
             user.save()
 
-        print("User")
-        print(user)
         return user
 #--------------------------------------------------------------------------------------------------------------------------
 class GlossarioForm(forms.ModelForm):
