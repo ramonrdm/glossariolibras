@@ -19,6 +19,7 @@ from .tokens import account_activation_token
 from django.shortcuts import render, redirect
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
+from django.conf import settings
 
 def index(request, glossario=None):
 	glossarios = Glossario.objects.all()
@@ -124,7 +125,8 @@ def equipe(request):
 	return render(request, "equipe.html", {'usuarios': usuarios})
 
 def contato(request):
-	return render(request, "contato.html")
+
+	return render(request, "contato.html", {'test': settings.TESTE_USER_DB})
 
 def temas(request, temas=None):
 	global queryTemas
