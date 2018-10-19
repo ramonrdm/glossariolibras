@@ -1,20 +1,24 @@
-<head>
-	{% extends 'base.html' %}
-</head>
-<body>
-
-    {% block Corpo %}
-        <div class="container">
-		    <h2 class="thin center">Registrar</h2>
-		    <div class="divider"></div>
-                <div class="file-field ">
-                    <form method="post">
-                        {{ form.as_p }}
-                        {% csrf_token %}
-                        <button class="btn waves-effect botaoEnviarSinal center" value='Registrar' type="submit" name="Registrar">Registrar </button>
-                    </form>
+{% extends 'base.html' %}
+{% block Head %}
+	{{ block.super }}
+    {% load staticfiles %}
+     <script type="text/javascript" src="{% static 'js/registration.js' %}"></script>
+{% endblock %}
+{% block Corpo %}
+    <div class="container">
+        <h2 class="thin center">Registrar</h2>
+        <div class="divider"></div>
+            <div class="file-field ">
+                <form method="post">
+                    {{ form.as_p }}
+                    {% csrf_token %}
+                    <button  class="btn waves-effect botaoEnviarSinal center" value='Registrar' type="submit" name="Registrar">Registrar </button>
+                    <div class="col l7 push-l5 s17 push-s5 ">
                 </div>
+                </form>
             </div>
         </div>
-	{% endblock %}
-</body>
+    </div>
+{% endblock %}
+
+  <!-- Modal Structure -->

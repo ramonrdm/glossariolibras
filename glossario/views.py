@@ -280,6 +280,7 @@ def activate(request, uidb64, token):
         return render(request, 'account_activation_invalid.html')
 
 def account_activation_sent(request):
-    return render(request, 'account_activation_sent.html')
+    modalConfirmeEmail = True
+    return render(request, 'index.html', {'modalConfirmeEmail':modalConfirmeEmail})
 
 # -------------------------------------------------------------------------------------------------------------------------

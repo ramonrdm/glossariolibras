@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+
 	// INICIALIZA O IMAGEPICKER
 	$('select').imagepicker({
 		show_label: true

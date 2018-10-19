@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
-{% load staticfiles %}
+{% block Head %}
+	{{ block.super }}
+    {% load staticfiles %}
+     <script type="text/javascript" src="{% static 'js/registration.js' %}"></script>
+{% endblock %}
 {% block title %}Glossários de Libras - Glossário Letras Libras{% endblock %}
 {% block Corpo %}
-
     <div class="row center blockContainer">
         <div class="block col s4 m3">
             <a href="{% url 'temas' %}">
@@ -32,4 +35,17 @@
             </div>
         {% endfor %}
     </div>
+
+    {% if modalConfirmeEmail %}
+      <div id="confirmeEmail" class="modal">
+        <div class="modal-content">
+          <h5>Obrigado por se Cadastrar</h5>
+          <p>Por favor confirme seu endereço de email para completar o registro</p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
+        </div>
+      </div>
+    {% else %}
+    {% endif %}
 {% endblock %}
