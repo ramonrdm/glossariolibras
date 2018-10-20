@@ -1,7 +1,13 @@
 version: "3.1"
 
+secrets:
+  test:
+    external: true
+
 services:
   glossario:
     image: ramonufsc/glossario:latest
+    secrets:
+      - test
     ports:
     - 40110:8000
