@@ -22,6 +22,8 @@ class UserManagerGlossario(BaseUserManager):
         if not email:
             raise ValueError('Users must have an email address')
 
+
+
         email = self.normalize_email(email)
         user = self.model(email=email, nome_completo=nome_completo, **extra_fields)
         user.set_password(password)
