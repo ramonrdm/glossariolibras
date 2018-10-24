@@ -9,15 +9,11 @@ from glossario.views import sair
 from django.conf.urls import url
 
 from django.conf.urls import url, include
-
-
-
 from glossario import views as core_views
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-
     path('admin/', admin.site.urls),
     path('logout/', sair, name='logout'),
     url(r'^equipe', views.equipe, name='equipe'),
@@ -32,4 +28,5 @@ urlpatterns = [
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
     url(r'^account_activation_sent/$', views.account_activation_sent, name='account_activation_sent'),
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',views.activate, name='activate'),
+    url('^', include('django.contrib.auth.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
