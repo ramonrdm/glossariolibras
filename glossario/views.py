@@ -8,7 +8,6 @@ from django.db.models import Q
 from django.template import RequestContext
 import json
 import datetime
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.contrib.sites.shortcuts import get_current_site
@@ -19,7 +18,7 @@ from .tokens import account_activation_token
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
 from django.conf import settings
-
+from django.contrib.auth.decorators import login_required
 def index(request, glossario=None):
 	glossarios = Glossario.objects.all()
 	return render(request, "index.html", {'glossarios': glossarios})
@@ -137,6 +136,8 @@ def temas(request, temas=None):
 		raiz = None
 	return render(request, "temas.html", dict(raiz=raiz))
 
+
+@login_required
 def enviarSinais(request):
 	if request.method == 'POST':
 		form = EnviarSinaisForm(request.POST, request.FILES)
