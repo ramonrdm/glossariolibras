@@ -142,8 +142,13 @@ class GlossarioAdmin(admin.ModelAdmin):
         obj.save()  
 
     def image_tag(self, obj):
-        return format_html('<img src="{}" width="50" height="50"/>'.format(obj.imagem.url))
-    image_tag.short_description = 'Imagem'
+        if obj.imagem:
+            return format_html('<img src="{}" width="50" height="50"/>'.format(obj.imagem.url))
+            format_html('<img src="{}" width="50" height="50"/>')
+        else:
+            return format_html('<i class="large material-icons">cloud_off</i>')
+            format_html('<i class="large material-icons">cloud_off</i>')
+
 
 
 class SinalAdmin(admin.ModelAdmin):

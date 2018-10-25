@@ -8,6 +8,8 @@ from django.urls import path
 from glossario.views import sair
 from django.conf.urls import url
 
+
+
 from django.conf.urls import url, include
 from glossario import views as core_views
 from django.contrib.auth import views as auth_views

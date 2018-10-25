@@ -111,7 +111,7 @@ class Glossario(models.Model):
     responsavel = models.ManyToManyField(UserGlossario, verbose_name = 'responsável')
     membros = models.ManyToManyField(UserGlossario, related_name='glossario_membros', verbose_name='membros', blank=True)
     descricao = models.TextField("descrição", default='')
-    imagem = models.ImageField('Imagem', blank=True)
+    imagem = models.ImageField('Imagem', blank =True)
     link = models.CharField('Link', max_length=20)
     dataCriacao = models.DateField('data de criação', auto_now_add=True)
     videoGlossario = Video('Vídeo', blank=True)
@@ -205,4 +205,3 @@ def update_upload_path(sender, instance, created, **kwargs):
                     % datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'),
                     shell=True
                     )
-
