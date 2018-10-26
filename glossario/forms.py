@@ -84,14 +84,14 @@ class SinalForm(forms.ModelForm):
 	class Meta:
 		model = Sinal
 		fields = ['tema', 'glossario', 'traducaoP', 'traducaoI', 'descricao', 'bsw', 'grupoCMe', 'cmE', 'grupoCMd',
-		'cmD', 'localizacao', 'dataPost', 'postador', 'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras',
+		'cmD', 'localizacao', 'movimentacao', 'dataPost', 'postador', 'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras',
 		'publicado']
 
 class EnviarSinaisForm(forms.ModelForm):
 
 	class Meta:
 		model = Sinal
-		fields = ['traducaoP', 'traducaoI', 'descricao', 'localizacao', 'grupoCMe', 'cmE', 'grupoCMd', 'cmD',
+		fields = ['traducaoP', 'traducaoI', 'descricao', 'localizacao', 'movimentacao', 'grupoCMe', 'cmE', 'grupoCMd', 'cmD',
 		'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras']
 		widgets =	{
 					'localizacao': ImageSelect(),

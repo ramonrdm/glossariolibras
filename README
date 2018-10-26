@@ -1,5 +1,8 @@
 Glossário Letras Libras UFSC
 
+user: admin@admin.com
+senha: admin
+
 Requisitos:
 
 $ pip install -r requirements.txt
