@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/base.js' %}"></script>
     <link type="text/css" rel="stylesheet" href='{% static "css/material-icons.css" %}'  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href='{% static "css/materialize.min.css" %}'  media="screen,projection"/>
     <link rel="stylesheet" type="text/css" href='{% static "css/base.css" %}'/>
@@ -22,7 +23,30 @@
 <body>
 
 <!-- SIDENAV FIXA -->
+    <ul id="dropdown1" class="dropdown-content">
+  <li><a href="#!">one</a></li>
+  <li><a href="#!">two</a></li>
+  <li class="divider"></li>
+  <li><a href="#!">three</a></li>
+</ul>
+  <nav>
+      <div class="nav-wrapper l8">
+          <form>
+            <div class="input-field">
+              <input id="search" type="search" required>
+              <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+              <i class="material-icons">close</i>
+            </div>
+          </form>
+      </div>
+    <div class="nav-wrapper grey lighten-0 l2">
+          <ul class="nav-wrapper">
+              <li><a href="badges.html">Components</a></li>
+              <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
+          </ul>
+    </div>
 
+  </nav>
     <ul class="side-nav fixed">
         <div class="nav-wrapper center">
             <a href="/"><img class="logoGlossario" src='{% static "img/marca_glossario.png" %}'></a>
@@ -30,7 +54,7 @@
         <div class="sideNavLinks">
             {%  if user.is_authenticated  %}
             <li><a class="waves-effect waves-blue left" href="{% url 'admin:index' %}"><i class="material-icons">account_circle</i>{{ user.nome_completo }}</a></li>
-             <li><a class="waves-effect waves-blue color" href="{% url 'logout' %}"><i class="material-icons">close</i></a></li>
+            <li><a class="waves-effect waves-blue color" href="{% url 'logout' %}"><i class="material-icons">close</i></a></li>
             <li><a class="waves-effect waves-blue" href="{% url 'historia' %}"><i class="material-icons">library_books</i>História</a></li>
             <li><a class="waves-effect waves-blue" href="{% url 'equipe' %}"><i class="material-icons">supervisor_account</i>Equipe</a></li>
             <li><a class="waves-effect waves-blue" href="{% url 'contato' %}"><i class="material-icons">call</i>Contato</a></li>
