@@ -146,8 +146,7 @@ class GlossarioAdmin(admin.ModelAdmin):
             return format_html('<img src="{}" width="50" height="50"/>'.format(obj.imagem.url))
             format_html('<img src="{}" width="50" height="50"/>')
         else:
-            return format_html('<i class="large material-icons">cloud_off</i>')
-            format_html('<i class="large material-icons">cloud_off</i>')
+            return format_html('<p>Sem imagem</p>')
 
 
 
@@ -187,16 +186,25 @@ class SinalAdmin(admin.ModelAdmin):
     publicar_sinal.short_description = 'Publicar sinais selecionados'
 
     def image_tag_cmE(self, obj):
-        return format_html('<img src="{}" width="50" height="50" />'.format(obj.cmE.imagem.url))
-    image_tag_cmE.short_description = "Esquerda"
+        if obj.cmE.imagem:
+            return format_html('<img src="{}" width="50" height="50" />'.format(obj.cmE.imagem.url))
+        else:
+            return format_html('<p>Sem Imagem</p>')
+        image_tag_cmE.short_description = "Esquerda"
 
     def image_tag_cmD(self, obj):
-        return format_html('<img src="{}" width="50" height="50" />'.format(obj.cmD.imagem.url))
-    image_tag_cmD.short_description = 'direita'
+        if obj.cmD.imagem:
+            return format_html('<img src="{}" width="50" height="50" />'.format(obj.cmD.imagem.url))
+        else:
+            return format_html('<p>Sem Imagem</p>')
+        image_tag_cmD.short_description = 'direita'
 
     def image_tag_localizacao(self, obj):
-        return format_html('<img src="{}" width="50" height="50" />'.format(obj.localizacao.imagem.url))
-    image_tag_localizacao.short_description = 'localização'
+        if obj.localizacao.imagem:
+            return format_html('<img src="{}" width="50" height="50" />'.format(obj.localizacao.imagem.url))
+        else:
+            return format_html('<p>Sem Imagem</p>')
+        image_tag_localizacao.short_description = 'localização'
 
     def get_queryset(self, request):
         qs = super(SinalAdmin, self).get_queryset(request)
@@ -211,7 +219,10 @@ class GrupoCMAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'image_tag', 'bsw')
 
     def image_tag(self, obj):
-        return format_html('<img src="{}" width="50" height="50"/>'.format(obj.imagem.url))
+        if obj.imagem:
+            return format_html('<img src="{}" width="50" height="50"/>'.format(obj.imagem.url))
+        else:
+            return format_html('<p>Sem imagem</p>')
     image_tag.short_description = 'Imagem'
     image_tag.allow_tags = True
 
@@ -220,20 +231,26 @@ class CMAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'image_tag', 'bsw')
 
     def image_tag(self, obj):
-        return format_html('<img src="{}" width="50" height="50"/>'.format(obj.imagem.url))
-    image_tag.short_description = 'Imagem'
-    image_tag.allow_tags = True
+        if obj.imagem:
+            return format_html('<img src="{}" width="50" height="50"/>'.format(obj.imagem.url))
+        else:
+            return format_html('<p>Sem Imagem</p>')
+        image_tag.short_description = 'Imagem'
+        image_tag.allow_tags = True
 
 class LocalizacaoAdmin(admin.ModelAdmin):
     form = LocalizacaoForm
     list_display = ('nome', 'image_tag', 'bsw')
 
     def image_tag(self, obj):
-        return format_html('<img src="{}" width="50" height="50"/>'.format(obj.imagem.url))
-    image_tag.short_description = 'Imagem'
-    image_tag.allow_tags = True
+        if obj.imagem:
+            return format_html('<img src="{}" width="50" height="50"/>'.format(obj.imagem.url))
+        else:
+            return format_html('<p>Sem imagem</p>')
+        image_tag.short_description = 'Imagem'
+        image_tag.allow_tags = True
 
-# admin.site.register(UserGlossario, UserGlossarioAdmin)
+
 admin.site.register(Tema)
 admin.site.register(Glossario, GlossarioAdmin)
 admin.site.register(Sinal, SinalAdmin)

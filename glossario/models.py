@@ -145,7 +145,7 @@ class Tema(models.Model):
     nome = models.CharField('Nome', max_length=30)
     descricao = models.CharField('Descrição', max_length=100, null=True)
     video = Video('Vídeo', null=True, blank=True)
-    imagem = models.ImageField('Imagem', blank=True, null=True)
+    imagem = models.ImageField('Imagem', blank=False, null=True)
     temaPai = models.ForeignKey('self',null=True, blank = True, verbose_name = 'Tema Pai', on_delete=models.CASCADE)
 
     def __str__(self):
