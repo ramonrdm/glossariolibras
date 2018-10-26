@@ -136,7 +136,11 @@ class PesquisaSinaisForm(forms.ModelForm):
 			# trocar 20 do xrange para length do select que tiver mais options
 				if type(self.fields[field]) is ModelChoiceField:
 					if len(self.fields[field].queryset) >= option + 1:
-						self.fields[field].widget.field_img.append(self.fields[field].queryset[option].imagem.url)
+						if self.fields[field].queryset[option].imagem:
+							self.fields[field].widget.field_img.append(self.fields[field].queryset[option].imagem.url)
+						else:
+							self.fields[field].widget.field_img.append("/static/img/cinema/")
+
 
 class GrupoCMForm(forms.ModelForm):
 
@@ -160,14 +164,16 @@ class PesquisaForm(forms.Form):
 	busca = forms.CharField(required=False, label="", widget=forms.TextInput(attrs={'id': 'search', 'type': 'search'}))
 
 class PesquisaCheckboxForm(forms.Form):
-	checkboxPort = forms.BooleanField(label='Português', widget=forms.CheckboxInput(attrs={
-		'type': 'checkbox', 'class': 'filled-in checkboxAzul',
-		'id': 'checkboxPort', 'name': 'checkboxPort',
-	}))
+
 	checkboxIng = forms.BooleanField(label='Inglês', widget=forms.CheckboxInput(attrs={
 		'type': 'checkbox', 'class': 'filled-in checkboxAzul',
 		'id': 'checkboxIng', 'name': 'checkboxIng',
 	}))
+	checkboxPort = forms.BooleanField(label='Português', widget=forms.CheckboxInput(attrs={
+		'type': 'checkbox', 'class': 'filled-in checkboxAzul',
+		'id': 'checkboxPort', 'name': 'checkboxPort',
+	}))
+
 
 	def __init__(self, *args, **kwargs):
 		super(PesquisaCheckboxForm, self).__init__(*args, **kwargs)
