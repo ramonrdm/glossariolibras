@@ -17,34 +17,25 @@ from django.contrib.auth.models import (
 
 
 class UserManagerGlossario(BaseUserManager):
+    
     def _create_user(self, email, nome_completo, password, **extra_fields):
-
         if not email:
             raise ValueError('Users must have an email address')
-
-
-
         email = self.normalize_email(email)
         user = self.model(email=email, nome_completo=nome_completo, **extra_fields)
         user.set_password(password)
         user.save(using = self._db)
 
-
     def create_user(self, email, nome_completo, password=None, **extra_fields):
-
         if not email:
             raise ValueError('Users must have an email address')
-
         extra_fields.setdefault('is_superuser', False)
-
-
         return self._create_user(email, nome_completo, password, **extra_fields)
 
     def create_superuser(self, email, password, nome_completo, **extra_fields):
         extra_fields.setdefault('is_active', True)
         extra_fields.setdefault('is_superuser', True)
         extra_fields.setdefault('is_staff', True)
-
 
         if extra_fields.get('is_staff') is not True:
             raise ValueError('Superuser must have is_staff=True')
@@ -53,8 +44,6 @@ class UserManagerGlossario(BaseUserManager):
             raise ValueError('Superuser must have is_superuser=True')
 
         return self._create_user(email, nome_completo, password, **extra_fields)
-
-
 
 class UserGlossario(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(
@@ -67,7 +56,6 @@ class UserGlossario(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
     objects = UserManagerGlossario()
-
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['nome_completo']
@@ -93,7 +81,7 @@ class Video(FileField):
 class Glossario(models.Model):
 
     class Meta:
-        verbose_name='glossário'
+        verbose_name='Glossário'
 
     nome = models.CharField('Nome do Glossário', max_length=100)
     responsavel = models.ManyToManyField(UserGlossario, verbose_name = 'responsável')
@@ -129,18 +117,6 @@ class CM (models.Model):
         # return str(self.id)+" - "+str(self.grupo)
         return str(self.id)
 
-class Localizacao(models.Model):
-    class Meta:
-        verbose_name_plural='localizações'
-
-    nome = models.CharField('Nome', max_length=30)
-    bsw = models.TextField('BSW')
-    imagem = models.ImageField('Imagem', blank=True)
-    areaClicavel = models.TextField()
-
-    def __str__(self):
-        return self.nome
-
 class Tema(models.Model):
     nome = models.CharField('Nome', max_length=30)
     descricao = models.CharField('Descrição', max_length=100, null=True)
@@ -169,7 +145,11 @@ class Sinal(models.Model):
     cmE = models.ForeignKey(CM, related_name='C_M_Esquerda', verbose_name='configuração da mão esquerda', on_delete=models.CASCADE)
     grupoCMd = models.ForeignKey(GrupoCM, related_name='Grupo_M_Direita', verbose_name='grupo da mão direita', on_delete=models.CASCADE)
     cmD = models.ForeignKey(CM, related_name='C_M_Direita', verbose_name='configuração da mão direita', on_delete=models.CASCADE)
-    localizacao = models.ForeignKey(Localizacao, null=True, blank=True, verbose_name='localização', on_delete=models.CASCADE)
+    localizacoes = (('1','Cabeça'),('2','Ombros'),('3','Braços'),('4','Nariz'),('5','Bochechas'),
+                        ('6','Boca'),('7','Tronco'),('8','Espaço Neutro'),('9','Olhos'),('10','Orelhas'),
+                        ('11','Pescoço'),('12','Queixo'),('13','Testa')
+                    )
+    localizacao = models.CharField(max_length=2, choices=localizacoes,default=8)
     movimentacoes = (('sem', 'Sem Movimentação'),('parede', 'Parede'), ('chao', 'Chão'), ('circular', 'Circular'), ('contato', 'Contato'))
     movimentacao = models.CharField(max_length=10, choices=movimentacoes,default='sem')
     dataPost = models.DateField('data de criação', null=True)

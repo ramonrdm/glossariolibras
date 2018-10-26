@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from glossario.forms import GlossarioForm, SinalForm, GrupoCMForm, CMForm, LocalizacaoForm
+from glossario.forms import GlossarioForm, SinalForm, GrupoCMForm, CMForm
 from unicodedata import normalize
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
@@ -235,25 +235,11 @@ class CMAdmin(admin.ModelAdmin):
         image_tag.short_description = 'Imagem'
         image_tag.allow_tags = True
 
-class LocalizacaoAdmin(admin.ModelAdmin):
-    form = LocalizacaoForm
-    list_display = ('nome', 'image_tag', 'bsw')
-
-    def image_tag(self, obj):
-        if obj.imagem:
-            return format_html('<img src="{}" width="50" height="50"/>'.format(obj.imagem.url))
-        else:
-            return format_html('<p>Sem imagem</p>')
-        image_tag.short_description = 'Imagem'
-        image_tag.allow_tags = True
-
-
 admin.site.register(Tema)
 admin.site.register(Glossario, GlossarioAdmin)
 admin.site.register(Sinal, SinalAdmin)
 admin.site.register(GrupoCM, GrupoCMAdmin)
 admin.site.register(CM, CMAdmin)
-admin.site.register(Localizacao, LocalizacaoAdmin)
 
 
 

@@ -2,7 +2,7 @@
 
 from django import forms
 from django.forms.models import ModelChoiceField
-from glossario.models import Glossario, Sinal, GrupoCM, CM, Localizacao, UserGlossario
+from glossario.models import Glossario, Sinal, GrupoCM, CM, UserGlossario
 from django.conf import settings
 from glossario.widgets import ImageSelect
 from django.core.exceptions import ValidationError
@@ -83,9 +83,14 @@ class SinalForm(forms.ModelForm):
 	
 	class Meta:
 		model = Sinal
-		fields = ['tema', 'glossario', 'traducaoP', 'traducaoI', 'descricao', 'bsw', 'grupoCMe', 'cmE', 'grupoCMd',
-		'cmD', 'localizacao', 'movimentacao', 'dataPost', 'postador', 'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras',
+		fields = ['glossario', 'traducaoP', 'traducaoI', 'descricao', 'bsw', 'grupoCMe', 'cmE', 'grupoCMd',
+		'cmD', 'localizacao', 'movimentacao', 'tema', 'dataPost', 'postador', 'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras',
 		'publicado']
+
+	def __init__(self, *args, **kwargs):
+		super(SinalForm, self).__init__(*args, **kwargs)
+		self.fields['bsw'].help_text = "<b><a target='_blank' href='http://glossario.libras.ufsc.br/swis/signmaker.php'>Criar codigo aqui</a></b>"
+		self.fields['bsw'].widget = forms.TextInput(attrs={})
 
 class EnviarSinaisForm(forms.ModelForm):
 
@@ -153,12 +158,6 @@ class CMForm(forms.ModelForm):
 	class Meta:
 		model = CM
 		fields = ['bsw', 'imagem', 'grupo']
-
-class LocalizacaoForm(forms.ModelForm):
-
-	class Meta:
-		model = Localizacao
-		fields = ['nome', 'imagem', 'bsw', 'areaClicavel']
 
 class PesquisaForm(forms.Form):
 	busca = forms.CharField(required=False, label="", widget=forms.TextInput(attrs={'id': 'search', 'type': 'search'}))
