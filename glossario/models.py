@@ -86,18 +86,6 @@ class UserGlossario(AbstractBaseUser, PermissionsMixin):
 
 # -------------------------------------------------------------------------------------------------------------------------
 
-class Localizacao(models.Model):
-    class Meta:
-        verbose_name_plural='localizações'
-
-    nome = models.CharField('Nome', max_length=30)
-    bsw = models.TextField('BSW')
-    imagem = models.ImageField('Imagem', blank=True)
-    areaClicavel = models.TextField()
-
-    def __str__(self):
-        return self.nome
-
 class Video(FileField):
     capa = models.ImageField(blank=True)
     videoMp4 = models.FileField()
@@ -141,6 +129,18 @@ class CM (models.Model):
         # return str(self.id)+" - "+str(self.grupo)
         return str(self.id)
 
+class Localizacao(models.Model):
+    class Meta:
+        verbose_name_plural='localizações'
+
+    nome = models.CharField('Nome', max_length=30)
+    bsw = models.TextField('BSW')
+    imagem = models.ImageField('Imagem', blank=True)
+    areaClicavel = models.TextField()
+
+    def __str__(self):
+        return self.nome
+
 class Tema(models.Model):
     nome = models.CharField('Nome', max_length=30)
     descricao = models.CharField('Descrição', max_length=100, null=True)
@@ -170,6 +170,8 @@ class Sinal(models.Model):
     grupoCMd = models.ForeignKey(GrupoCM, related_name='Grupo_M_Direita', verbose_name='grupo da mão direita', on_delete=models.CASCADE)
     cmD = models.ForeignKey(CM, related_name='C_M_Direita', verbose_name='configuração da mão direita', on_delete=models.CASCADE)
     localizacao = models.ForeignKey(Localizacao, null=True, blank=True, verbose_name='localização', on_delete=models.CASCADE)
+    movimentacoes = (('sem', 'Sem Movimentação'),('parede', 'Parede'), ('chao', 'Chão'), ('circular', 'Circular'), ('contato', 'Contato'))
+    movimentacao = models.CharField(max_length=10, choices=movimentacoes,default='sem')
     dataPost = models.DateField('data de criação', null=True)
     postador = models.ForeignKey(UserGlossario, null=True, on_delete=models.CASCADE)
     publicado = models.BooleanField(default=False)
