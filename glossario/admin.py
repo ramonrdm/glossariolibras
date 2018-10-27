@@ -197,8 +197,12 @@ class SinalAdmin(admin.ModelAdmin):
         image_tag_cmD.short_description = 'direita'
 
     def image_tag_localizacao(self, obj):
-        if obj.localizacao.imagem:
-            return format_html('<img src="{}" width="50" height="50" />'.format(obj.localizacao.imagem.url))
+        if obj.localizacao:
+            localizacoes = dict([('1','localizacaoCabeca.png'),('2','localizacaoOmbros.png'),('3','localizacaoBracos.png'),
+                                ('4','localizacaoNariz.png'),('5','localizacaoBochechas.png'),('6','localizacaoBoca.png'),
+                                ('7','localizacaoTronco.png'),('8','localizacaoNeutro.png'),('9','localizacaoOlhos.png'),('10','localizacaoOrelhas.png'),
+                                ('11','localizacaoPescoco.png'),('12','localizacaoQueixo.png'),('13','localizacaoTesta.png')])
+            return format_html('<img src="/static/img/{}" width="50" height="50" />'.format(localizacoes[obj.localizacao]))
         else:
             return format_html('<p>Sem Imagem</p>')
         image_tag_localizacao.short_description = 'localização'
