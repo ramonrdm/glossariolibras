@@ -105,7 +105,7 @@ def sinal(request, sinal=None, glossario=None):
 			'formPesquisa': formPesquisa, 'sinais': sinais, 'sinaisP': sinaisP, 'sinaisI': sinaisI, 'sinaisGlossario':
 			sinaisGlossario, 'resultado': resultado, 'resultadoP': resultadoP, 'resultadoI': resultadoI, 'glossario':
 			glossario, 'checkboxPort': checkboxPort,'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox,
-			'formSinais': formSinais
+			'formSinais': formSinais,
 			})
 	else:
 		formPesquisa = PesquisaForm()

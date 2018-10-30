@@ -1,5 +1,5 @@
 <head>
-	{% extends 'baseSearchNav.html' %}
+	{% extends 'base.html' %}
 	{% load staticfiles %}
 	{% block Head %}
 		{{block.super}}
@@ -11,6 +11,7 @@
 </head>
 <body>
 	{% block Corpo %}
+	{% include 'navSearch.html' %}
 
 	{% include 'modaisFormSinais.html' %}
 

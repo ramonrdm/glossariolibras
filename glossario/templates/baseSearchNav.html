@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/base.js' %}"></script>
     <link type="text/css" rel="stylesheet" href='{% static "css/material-icons.css" %}'  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href='{% static "css/materialize.min.css" %}'  media="screen,projection"/>
     <link rel="stylesheet" type="text/css" href="{% static 'image-picker/image-picker/image-picker.css' %}"/>
@@ -38,7 +39,7 @@
                     {% csrf_token %}
                     <div class="input-field">
                         {{ formPesquisa }}
-                        <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
+                        <label class="label-icon" for="search"><i class="material-icons ">search</i></label>
                         <i class="material-icons">close</i>
                     </div>
                     <div class="center">

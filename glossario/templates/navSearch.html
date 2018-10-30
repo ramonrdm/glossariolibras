@@ -1,0 +1,52 @@
+
+<nav class="row ">
+    <div class="col s7 nav-wrapper blue darken-4">
+        <form method="post">
+            {% csrf_token %}
+            <div class="input-field">
+                {{ formPesquisa }}
+                <label class="label-icon" for="search"><i class="material-icons ">search</i></label>
+                <i class="material-icons">close</i>
+            </div>
+    </div>
+            <div class="col s5 nav-wrapper  blue darken-4 ">
+            <ul class="nav-wrapper ">
+                <!--<li><button class="btn waves-effect waves-light botaoPesquisar" type="submit" name="botaoPesquisar">Pesquisar<i class="material-icons right">send</i></button></li>-->
+                {{ formCheckbox }}
+            </ul>
+            </div>
+            <div class="row formSinais">
+                {% for field in formSinais %}
+                    {% if field.auto_id == 'id_localizacao' %}
+                        <div class="col s12 m4" id="{{field.auto_id}}">
+                            <a class="modal-trigger" href="#modalLocalizacao">
+                                <!-- {{ field.errors }} -->
+                                <!-- {{ field.label_tag }} -->
+                                {{ field }}
+                            </a>
+                        </div>
+                    {% elif field.auto_id == 'id_grupoCMe' %}
+                        <div class="col s12 m4" id="{{field.auto_id}}">
+                            <a class="modal-trigger" href="#modalGrupoCMe">
+                                <!-- {{ field.errors }} -->
+                                <!-- {{ field.label_tag }} -->
+                                {{ field }}
+                            </a>
+                        </div>
+                    {% elif field.auto_id == 'id_cmE' %}
+                        <div class="col s12 m4" id="{{field.auto_id}}">
+                            <a class="modal-trigger" href="#modalCMe">
+                                <!-- {{ field.errors }} -->
+                                <!-- {{ field.label_tag }} -->
+                                {{ field }}
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                <div class="center">
+
+                </div>
+            </div>
+        </form>
+    </div>
+</nav>

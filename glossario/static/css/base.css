@@ -1,6 +1,8 @@
  /* ================= COMUM ================= */
 
 /* Retira o deslocamento da página causado pela sidenav fixa */
+
+
 body {
 	padding-left: 0;
 	background-color: #f7f7f7;
