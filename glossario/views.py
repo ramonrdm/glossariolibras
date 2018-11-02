@@ -66,6 +66,7 @@ def glossarioSelecionado(request, glossario):
 		formSinais = PesquisaSinaisForm(request.session['sinaisCheckboxes']) if request.session.get('sinaisCheckboxes') else PesquisaSinaisForm()
 		# formSinais = PesquisaSinaisForm()
 		formPesquisa = PesquisaForm()
+
 		return render(request, 'glossario.html', {'glossario': glossario, 'formPesquisa': formPesquisa, 'checkboxPort': checkboxPort,
 			'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox, 'formSinais': formSinais
 			})
@@ -105,15 +106,13 @@ def sinal(request, sinal=None, glossario=None):
 			'formPesquisa': formPesquisa, 'sinais': sinais, 'sinaisP': sinaisP, 'sinaisI': sinaisI, 'sinaisGlossario':
 			sinaisGlossario, 'resultado': resultado, 'resultadoP': resultadoP, 'resultadoI': resultadoI, 'glossario':
 			glossario, 'checkboxPort': checkboxPort,'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox,
-			'formSinais': formSinais,
-			})
+			'formSinais': formSinais, })
 	else:
 		formPesquisa = PesquisaForm()
 		formCheckbox = PesquisaCheckboxForm(request.session['sinaisCheckboxes'])
 		formSinais = PesquisaSinaisForm(request.session['sinaisCheckboxes'])
 		return render(request, "sinal.html", {'sinal': sinal, 'glossario': glossario, 'formPesquisa': formPesquisa,
-			'formCheckbox': formCheckbox, 'formSinais': formSinais
-			})
+			'formCheckbox': formCheckbox, 'formSinais': formSinais })
 
 def historia(request):
 	return render(request, "historia.html")

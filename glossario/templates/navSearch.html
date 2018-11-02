@@ -1,35 +1,35 @@
-<nav class="row  ">
+ <nav class="row">
     <form method="post">
 
-      <div class="pesquisaTexto">
-          <div class="col s7 nav-wrapper white">
-              {% csrf_token %}
-              <div class="input-field">
-                  {{ formPesquisa }}
-                  <label class="label-icon" for="search" ><i class="material-icons grey-text">search</i></label>
-                  <i class="material-icons">close</i>
-              </div>
-          </div>
-          <div class="col s5 nav-wrapper white">
-           <ul>
+        <!--Pesquisa de Texto -->
+        <div class="nav-wrapper white" id="Texto">
+            {% csrf_token %}
+            <div class="input-field col s8">
+                {{ formPesquisa }}
+                <label class="label-icon" for="search"><i class="material-icons grey-text ">search</i></label>
+                <i class="material-icons">close</i>
+            </div>
+            <ul class="col s4">
                 {{ formCheckbox }}
-               <a id="pesquisaTexto" class="btn">Pesquisar em Libras<i class="material-icons right">arrow_forward</i></a>
-           </ul>
+                <li><a title="Pesquisar em Libras!"  class="btn-floating btn-large halfway-fab waves-effect waves-light teal" id="pesquisaTexto"><i class="material-icons right">pan_tool</i></a></li>
+            </ul>
         </div>
-      </div>
 
-        <div class="pesquisaLibras">
-            <div class="col s12 nav-wrapper white">
-                <ul>
-                    <li> <a id="pesquisaLibras" class="btn">Pesquisar com Texto<i class="material-icons left">arrow_back</i></a></li>
-
+        <!--Pesquisa de Texto -->
+         <div class="nav-wrapper white" id="Libras">
+            <ul>
+                <div class="col s8 push-s1">
                 {% for field in formSinais %}
-                    <li>{% if field.auto_id == 'id_localizacao' %}<div id="{{field.auto_id}}"><a class="btn-floating  grey lighten-1 lighten-1 waves-effect waves-light  modal-trigger" title="Localização!" href="#modalLocalizacao"><i class="material-icons">accessibility</i></a></div>{{ errors }}{{ label_tag }}{{ field }}</li>
-                    <li>{% elif field.auto_id == 'id_grupoCMe' %}<div id="{{field.auto_id}}"><a class="btn-floating  grey lighten-1 waves-effect waves-light  modal-trigger" title="Grupo de configuração de mão!"  href="#modalGrupoCMe"><i class="material-icons">group_add</i></a></div>{{ errors }}{{ label_tag }}{{ field }}</li>
-                    <li>{% elif field.auto_id == 'id_cmE' %}<div id="{{field.auto_id}}"><a class="btn-floating  grey lighten-1 waves-effect waves-light  modal-trigger" title="Configuração de mão!" href="#modalCMe"><i class="material-icons">pan_tool</i></a></div>{{ errors }}{{ label_tag }}{{ field }}</li>
+                    <li>{% if field.auto_id == 'id_localizacao' %}<div id="{{field.auto_id}}"><a class="btn-floating  btn-large grey lighten-1 lighten-1 waves-effect waves-light  modal-trigger" title="Localização!" href="#modalLocalizacao"><i class="material-icons">accessibility</i></a></div>{{ errors }}{{ label_tag }}{{ field }}</li>
+                    <li>{% elif field.auto_id == 'id_grupoCMe' %}<div id="{{field.auto_id}}"><a class="btn-floating btn-large grey lighten-1 waves-effect waves-light  modal-trigger" title="Grupo de configuração de mão!"  href="#modalGrupoCMe"><i class="material-icons">group_add</i></a></div>{{ errors }}{{ label_tag }}{{ field }}</li>
+                    <li>{% elif field.auto_id == 'id_cmE' %}<div id="{{field.auto_id}}"><a class="btn-floating btn-large grey lighten-1 waves-effect waves-light  modal-trigger" title="Configuração de mão!" href="#modalCMe"><i class="material-icons">pan_tool</i></a></div>{{ errors }}{{ label_tag }}{{ field }}</li>
                     {% endif %}
                 {% endfor %}
-                    <button class="btn waves-effect waves-light botaoPesquisar" type="submit" name="botaoPesquisar">Pesquisar<i class="material-icons right">send</i></button>
+                </div>
+                <div class="col s4">
+                    <li><button class="btn waves-effect waves-light botaoPesquisar" type="submit" name="botaoPesquisar">Pesquisar<i class="material-icons right">send</i></button></li>
+                    <li><a title="Pesquisar com texto!" id="pesquisaLibras" class="btn-floating btn-large halfway-fab waves-effect waves-light teal"><i class="material-icons">sort_by_alpha</i></a></li>
+                </div>
             </ul>
         </div>
     </form>

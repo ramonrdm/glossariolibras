@@ -54,17 +54,17 @@ $(document).ready(function() {
 	// INICIALIZA MODAL DO MATERIALIZE
 	$('.modal').modal();
 
-	// for(let i = 0; i < select_refs.length; i++){
-	// 	let selectedOption = $(".formSinais select" + select_refs[i] + " option[selected='selected']");
-	// 	$(selectedOption).parent().prepend(selectedOption);
-	// }
+	 for(let i = 0; i < select_refs.length; i++){
+	 	let selectedOption = $(".formSinais select" + select_refs[i] + " option[selected='selected']");
+	 	$(selectedOption).parent().prepend(selectedOption);
+	 }
 
-	// for(let i = 0; i < select_refs.length; i++){
-	// 	$('select' + select_refs[i]).imagepicker({
-	// 		show_label: true
-	// 	});
-	// }
-	// $('.thumbnail').addClass('hoverable');
+	 for(let i = 0; i < select_refs.length; i++){
+	 	$('select' + select_refs[i]).imagepicker({
+	 		show_label: true
+	 	});
+	 }
+	 $('.thumbnail').addClass('hoverable');
 
 	// INICIALIZA A FUNÇÃO PARA ATUALIZAR THUMBNAIL NA SIDENAV
 	sideNavThumbnailRefresh();

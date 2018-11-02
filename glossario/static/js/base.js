@@ -5,19 +5,18 @@ $(document).ready(function() {
     }
   });
 
-         $('.pesquisaTexto').hide();
+         $('#Texto').hide();
 
         $('#pesquisaTexto').click(function(){
-        $('.pesquisaLibras').show()
-        $('.pesquisaTexto').hide()
+        $('#Libras').show()
+        $('#Texto').hide()
 
         });
 
       $('#pesquisaLibras').click(function(){
-        $('.pesquisaTexto').show()
-         $('.pesquisaLibras').hide()
+        $('#Texto').show()
+         $('#Libras').hide()
         });
-
 
 
 });
