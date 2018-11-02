@@ -4,4 +4,21 @@ $(document).ready(function() {
       $(this).after('<label for="'+this.id+'"></label>')
     }
   });
+
+         $('.pesquisaTexto').hide();
+
+        $('#pesquisaTexto').click(function(){
+        $('.pesquisaLibras').show()
+        $('.pesquisaTexto').hide()
+
+        });
+
+      $('#pesquisaLibras').click(function(){
+        $('.pesquisaTexto').show()
+         $('.pesquisaLibras').hide()
+        });
+
+
+
 });
+

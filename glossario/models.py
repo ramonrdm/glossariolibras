@@ -187,3 +187,9 @@ def update_upload_path(sender, instance, created, **kwargs):
                     % datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'),
                     shell=True
                     )
+
+
+class BarraPesquisa(models.Model):
+    barraPesquisaLibras = models.BooleanField(default=True)
+
+

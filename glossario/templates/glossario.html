@@ -2,9 +2,9 @@
 {% load staticfiles %}
 <title>{% block title %}{{ glossario.nome }} - Glossário Letras Libras{% endblock %}</title>
 
-<body>
 	{% block Corpo %}
-	{% include 'navSearch.html' %}
+
+	{% include 'navSearch.html'%}
 	{% include 'modaisFormSinais.html' %}
 
 	<div class="section container">
@@ -38,4 +38,14 @@
 	{% endif %}
 
 	{% endblock %}
-</body>
+
+
+  <!-- Scaled in -->
+  <a id="scale-demo" href="#!" class="btn-floating btn-large scale-transition">
+    <i class="material-icons">add</i>
+  </a>
+
+  <!-- Scaled out -->
+  <a id="scale-demo" href="#!" class="btn-floating btn-large scale-transition scale-out">
+    <i class="material-icons">add</i>
+  </a>

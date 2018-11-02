@@ -4,21 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/glossario/admin.py" line="115" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e0c9503-7214-497a-ab05-775fada2eea5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/glossario/context_processors.py" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/context_processors.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/glossario/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/glossario/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/templates/navSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/glossario/static/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/static/css/base.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/glossario/static/js/base.js" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/static/js/base.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/glossario/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/glossario/templates/baseSearchNav.html" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/templates/baseSearchNav.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/glossario/templates/glossario.html" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/templates/glossario.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/glossario/templates/pesquisa.html" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/templates/pesquisa.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/glossario/templates/sinal.html" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/templates/sinal.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/glossario/tokens.py" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/tokens.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/glossario/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="5e0c9503-7214-497a-ab05-775fada2eea5" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,13 +15,13 @@
     <session id="437550871">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.0" value="1" />
-          <entry key="project.open.time.22" value="1" />
+          <entry key="project.open.time.22" value="2" />
           <entry key="project.open.time.23" value="2" />
           <entry key="project.open.time.26" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="6" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -82,41 +68,7 @@
     <favorites_list name="glossariolibras" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/glossario/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1873">
-              <caret line="170" column="16" selection-start-line="170" selection-start-column="4" selection-end-line="170" selection-end-column="16" />
-              <folding>
-                <marker date="1540927627359" expanded="true" signature="5884:5885" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/glossario/templates/base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="79" selection-start-line="19" selection-start-column="76" selection-end-line="19" selection-end-column="79" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/glossario/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="533">
-              <caret line="107" column="37" selection-start-line="107" selection-start-column="37" selection-end-line="107" selection-end-column="37" />
-              <folding>
-                <element signature="e#24#89#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -158,16 +110,15 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1573" />
-    <option name="width" value="1914" />
-    <option name="height" value="536" />
+    <option name="x" value="1439" />
+    <option name="width" value="1922" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -222,10 +173,11 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="settings.editor.selected.configurable" value="terminal" />
   </component>
   <component name="RecentsManager">
@@ -284,7 +236,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1439" y="0" width="1922" height="1080" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="1" sideWeight="0.5005225" side_tool="true" weight="0.24986821" />
@@ -297,7 +248,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3291536" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3291536" />
-      <window_info anchor="bottom" x="0" y="25" width="1440" height="410" id="Terminal" order="8" type="WINDOWED" visible="true" weight="0.2831766" />
+      <window_info anchor="bottom" x="0" y="25" width="1440" height="410" id="Terminal" order="8" type="WINDOWED" weight="0.2831766" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32857144" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -478,21 +429,12 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/glossario/widgets.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/glossario/tokens.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="13" selection-start-line="13" selection-end-line="13" />
-          <folding>
-            <element signature="e#0#66#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -527,16 +469,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/glossario/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="533">
-          <caret line="107" column="37" selection-start-line="107" selection-start-column="37" selection-end-line="107" selection-end-column="37" />
-          <folding>
-            <element signature="e#24#89#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/glossario/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="293">
@@ -554,20 +486,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/glossario/forms.py">
+    <entry file="file://$PROJECT_DIR$/glossario/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1873">
-          <caret line="170" column="16" selection-start-line="170" selection-start-column="4" selection-end-line="170" selection-end-column="16" />
-          <folding>
-            <marker date="1540927627359" expanded="true" signature="5884:5885" ph="..." />
-          </folding>
+        <state relative-caret-position="585">
+          <caret line="40" column="121" selection-start-line="40" selection-start-column="121" selection-end-line="40" selection-end-column="121" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/glossario/templates/base.html">
+    <entry file="file://$PROJECT_DIR$/glossario/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="79" selection-start-line="19" selection-start-column="76" selection-end-line="19" selection-end-column="79" />
+        <state relative-caret-position="877">
+          <caret line="176" column="16" selection-start-line="176" selection-start-column="16" selection-end-line="176" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/glossario/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="533">
+          <caret line="107" column="37" selection-start-line="107" selection-start-column="37" selection-end-line="107" selection-end-column="37" />
+          <folding>
+            <element signature="e#24#89#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
