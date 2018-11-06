@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/base.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/base.js' %}"></script>
     <link type="text/css" rel="stylesheet" href='{% static "css/material-icons.css" %}'  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href='{% static "css/materialize.min.css" %}'  media="screen,projection"/>
     <link rel="stylesheet" type="text/css" href="{% static 'image-picker/image-picker/image-picker.css' %}"/>
@@ -48,33 +48,7 @@
 
                     </div>
                     <div class="row formSinais">
-                        {% for field in formSinais %}
-                            {% if field.auto_id == 'id_localizacao' %}
-                                <div class="col s12 m4" id="{{field.auto_id}}">
-                                    <a class="modal-trigger" href="#modalLocalizacao">
-                                        <!-- {{ field.errors }} -->
-                                        <!-- {{ field.label_tag }} -->
-                                        {{ field }}
-                                    </a>
-                                </div>
-                            {% elif field.auto_id == 'id_grupoCMe' %}
-                                <div class="col s12 m4" id="{{field.auto_id}}">
-                                    <a class="modal-trigger" href="#modalGrupoCMe">
-                                        <!-- {{ field.errors }} -->
-                                        <!-- {{ field.label_tag }} -->
-                                        {{ field }}
-                                    </a>
-                                </div>
-                            {% elif field.auto_id == 'id_cmE' %}
-                                <div class="col s12 m4" id="{{field.auto_id}}">
-                                    <a class="modal-trigger" href="#modalCMe">
-                                        <!-- {{ field.errors }} -->
-                                        <!-- {{ field.label_tag }} -->
-                                        {{ field }}
-                                    </a>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
+
                         <div class="center">
                             <button class="btn waves-effect waves-light botaoPesquisar" type="submit" name="botaoPesquisar">
                                 Pesquisar
@@ -150,7 +124,7 @@
 
 <!-- FOOTER -->
 
-    <!-- <div class="footer"><img class="borda" src='{% static "img/borda.png" %}'></div> -->
+     <div class="footer"><img class="borda" src='{% static "img/borda.png" %}'></div>
 
     {% block Corpo %}
     {% endblock %}

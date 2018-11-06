@@ -1,7 +1,36 @@
  /* ================= COMUM ================= */
 
-/* Retira o deslocamento da página causado pela sidenav fixa */
+:root{
+    --primary: white;
+    --secondary:black;
+}
 
+nav {
+    height: 100px;
+    line-height: 100px;
+
+    padding: 4 30px 20 10px;
+    background-color: var(--primary);
+}
+
+nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
+    height: 100px;
+    line-height: 100px;
+}
+
+nav .brand-logo {
+    font-size: 9.0rem;
+}
+
+@media only screen and (min-width: 1000px){
+    nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+        height: 100px;
+        line-height: 100px;
+    }
+}
+
+
+/* Retira o deslocamento da página causado pela sidenav fixa */
 
 body {
 	padding-left: 0;

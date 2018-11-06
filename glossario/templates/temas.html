@@ -7,13 +7,14 @@
 	{% block Corpo %}
 
     <canvas id="viewport" width="400" height="700"></canvas>
-    <!-- <canvas id="viewTeste" width="1200" height="700"></canvas> -->
+	<canvas id="viewTeste" width="1200" height="700"></canvas>
 
 	<script src='{% static "js/arbor.js" %}'></script>  
 	<script src='{% static "js/graphics.js" %}'></script>
 	<script src='{% static "js/main.js" %}'></script>
 
-<!--     <script>
+     <script>
+
         var sys = arbor.ParticleSystem(1000, 400, 1, true);
         sys.renderer = Renderer('#viewport');
 
@@ -28,7 +29,7 @@
         };
 
         sys.graft(data);
-    </script> -->
+    </script>
 
 	{% endblock %}
 </body>

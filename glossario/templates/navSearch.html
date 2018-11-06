@@ -1,8 +1,8 @@
- <nav class="row">
+<nav class="row">
     <form method="post">
 
         <!--Pesquisa de Texto -->
-        <div class="nav-wrapper white" id="Texto">
+        <div class="nav-wrapper " id="Texto">
             {% csrf_token %}
             <div class="input-field col s8">
                 {{ formPesquisa }}
@@ -19,11 +19,35 @@
          <div class="nav-wrapper white" id="Libras">
             <ul>
                 <div class="col s8 push-s1">
-                {% for field in formSinais %}
-                    <li>{% if field.auto_id == 'id_localizacao' %}<div id="{{field.auto_id}}"><a class="btn-floating  btn-large grey lighten-1 lighten-1 waves-effect waves-light  modal-trigger" title="Localização!" href="#modalLocalizacao"><i class="material-icons">accessibility</i></a></div>{{ errors }}{{ label_tag }}{{ field }}</li>
-                    <li>{% elif field.auto_id == 'id_grupoCMe' %}<div id="{{field.auto_id}}"><a class="btn-floating btn-large grey lighten-1 waves-effect waves-light  modal-trigger" title="Grupo de configuração de mão!"  href="#modalGrupoCMe"><i class="material-icons">group_add</i></a></div>{{ errors }}{{ label_tag }}{{ field }}</li>
-                    <li>{% elif field.auto_id == 'id_cmE' %}<div id="{{field.auto_id}}"><a class="btn-floating btn-large grey lighten-1 waves-effect waves-light  modal-trigger" title="Configuração de mão!" href="#modalCMe"><i class="material-icons">pan_tool</i></a></div>{{ errors }}{{ label_tag }}{{ field }}</li>
-                    {% endif %}
+                    {% for field in formSinais %}
+                            <li>{% if field.auto_id == 'id_localizacao' %}
+                                <div class="col s12 m4" id="{{field.auto_id}}">
+                                    <a class="modal-trigger" href="#modalLocalizacao">
+                                        {{ field.errors }}
+                                        {{ field.label_tag }}
+                                        {{ field }}
+
+
+                                    </a>
+                                </div></li>
+                            <li>{% elif field.auto_id == 'id_grupoCMe' %}
+                                <div class="col s12 m4" id="{{field.auto_id}}">
+                                    <a class="modal-trigger" href="#modalGrupoCMe">
+                                        {{ field.errors }}
+                                        {{ field.label_tag }}
+                                        {{ field }}
+                                    </a>
+                                </div></li>
+                            <li>{% elif field.auto_id == 'id_cmE' %}
+                                <div class="col s12 m4" id="{{field.auto_id}}">
+                                    <a class="modal-trigger" href="#modalCMe">
+                                        {{ field.errors }}
+                                        {{ field.label_tag }}
+                                        {{ field }}
+                                    </a>
+                                </div>
+                            {% endif %}</li>
+
                 {% endfor %}
                 </div>
                 <div class="col s4">

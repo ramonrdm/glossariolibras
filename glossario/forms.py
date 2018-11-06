@@ -122,14 +122,15 @@ class PesquisaSinaisForm(forms.ModelForm):
 	class Meta:
 		model = Sinal
 		fields = ['localizacao', 'grupoCMe', 'cmE']
-		 # 'grupoCMd', 'cmD'
+		'grupoCMd', 'cmD'
 		widgets =	{
 					'localizacao': ImageSelect(),
 					'grupoCMe': ImageSelect(),
-					'cmE': ImageSelect()
+					'cmE': ImageSelect(),
+					'grupoCMd': ImageSelect(),
+					'cmD': ImageSelect()
 					}
-					# 'grupoCMd': ImageSelect(),
-					# 'cmD': ImageSelect()
+
 
 	def __init__(self, *args, **kwargs):
 		super(PesquisaSinaisForm, self).__init__(*args, **kwargs)
