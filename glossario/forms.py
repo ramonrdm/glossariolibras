@@ -118,6 +118,7 @@ class EnviarSinaisForm(forms.ModelForm):
 						self.fields[field].widget.field_img.append(self.fields[field].queryset[option].imagem.url)
 
 class PesquisaSinaisForm(forms.ModelForm):
+	print('pppppppppppppp passou pelo form')
 
 	class Meta:
 		model = Sinal

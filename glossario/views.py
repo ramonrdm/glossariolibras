@@ -24,6 +24,8 @@ def index(request, glossario=None):
 	return render(request, "index.html", {'glossarios': glossarios})
 
 def glossarioSelecionado(request, glossario):
+	print('pppppppppppppppppppppppppppppppppppppppppppppppppppppp passou aqui')
+
 	try:
 		glossario = Glossario.objects.get(link=glossario)
 	except Glossario.DoesNotExist:

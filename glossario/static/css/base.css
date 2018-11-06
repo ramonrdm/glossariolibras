@@ -6,16 +6,16 @@
 }
 
 nav {
-    height: 100px;
-    line-height: 100px;
+    height: 120px;
+    line-height: 120px;
 
     padding: 4 30px 20 10px;
     background-color: var(--primary);
 }
 
 nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
-    height: 100px;
-    line-height: 100px;
+    height: 120px;
+    line-height: 120px;
 }
 
 nav .brand-logo {
@@ -24,8 +24,8 @@ nav .brand-logo {
 
 @media only screen and (min-width: 1000px){
     nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
-        height: 100px;
-        line-height: 100px;
+        height: 120px;
+        line-height: 120px;
     }
 }
 

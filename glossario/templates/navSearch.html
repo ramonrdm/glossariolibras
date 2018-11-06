@@ -22,13 +22,10 @@
                     {% for field in formSinais %}
                             <li>{% if field.auto_id == 'id_localizacao' %}
                                 <div class="col s12 m4" id="{{field.auto_id}}">
-                                    <a class="modal-trigger" href="#modalLocalizacao">
-                                        {{ field.errors }}
+                                    {{ field.errors }}
                                         {{ field.label_tag }}
                                         {{ field }}
 
-
-                                    </a>
                                 </div></li>
                             <li>{% elif field.auto_id == 'id_grupoCMe' %}
                                 <div class="col s12 m4" id="{{field.auto_id}}">
