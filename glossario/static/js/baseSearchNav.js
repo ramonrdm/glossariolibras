@@ -55,7 +55,7 @@ $(document).ready(function() {
 	$('.modal').modal();
 
 	 for(let i = 0; i < select_refs.length; i++){
-	 	let selectedOption = $(".formSinais select" + select_refs[i] + " option[selected='selected']");
+	 	let selectedOption = $(".formSinais select" + select_refs[i] + "option[selected='selected']");
 	 	$(selectedOption).parent().prepend(selectedOption);
 	 }
 

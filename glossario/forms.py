@@ -4,10 +4,11 @@ from django import forms
 from django.forms.models import ModelChoiceField
 from glossario.models import Glossario, Sinal, GrupoCM, CM, UserGlossario
 from django.conf import settings
-from glossario.widgets import ImageSelect
+from glossario.widgets import ImageSelectLocalizacao, ImageSelectMao
 from django.core.exceptions import ValidationError
 from django.contrib.auth import password_validation
 import re
+
 
 # --------------------------------------- RegistrationForm ----------------------------------------------------------------
 
@@ -99,11 +100,11 @@ class EnviarSinaisForm(forms.ModelForm):
 		fields = ['traducaoP', 'traducaoI', 'descricao', 'localizacao', 'movimentacao', 'grupoCMe', 'cmE', 'grupoCMd', 'cmD',
 		'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras']
 		widgets =	{
-					'localizacao': ImageSelect(),
-					'grupoCMe': ImageSelect(),
-					'cmE': ImageSelect(),
-					'grupoCMd': ImageSelect(),
-					'cmD': ImageSelect()
+					'localizacao': ImageSelectLocalizacao(),
+					'grupoCMe': ImageSelectMao(),
+					'cmE': ImageSelectMao(),
+					'grupoCMd': ImageSelectMao(),
+					'cmD': ImageSelectMao()
 					}
 
 	def __init__(self, *args, **kwargs):
@@ -125,11 +126,11 @@ class PesquisaSinaisForm(forms.ModelForm):
 		fields = ['localizacao', 'grupoCMe', 'cmE']
 		'grupoCMd', 'cmD'
 		widgets =	{
-					'localizacao': ImageSelect(),
-					'grupoCMe': ImageSelect(),
-					'cmE': ImageSelect(),
-					'grupoCMd': ImageSelect(),
-					'cmD': ImageSelect()
+					'localizacao': ImageSelectLocalizacao(),
+					'grupoCMe': ImageSelectMao(),
+					'cmE': ImageSelectMao(),
+					'grupoCMd': ImageSelectMao(),
+					'cmD': ImageSelectMao()
 					}
 
 
