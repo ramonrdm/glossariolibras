@@ -64,7 +64,6 @@ class ImageSelectMao(Select):
 
 
     def create_option(self, name, value, label, selected, index, subindex=None, attrs=None):
-
         index = str(index) if subindex is None else "%s_%s" % (index, subindex)
         if attrs is None:
             attrs = {}
@@ -75,6 +74,11 @@ class ImageSelectMao(Select):
             option_attrs['id'] = self.id_for_label(option_attrs['id'], index)
 
 
+        if value == '':
+            option_attrs['data-img-src'] = '/static/img/X.svg'
+        else:
+
+            option_attrs['data-img-src'] = self.field_img[value - 1]
 
 
         return {
@@ -87,5 +91,6 @@ class ImageSelectMao(Select):
             'type': self.input_type,
             'template_name': self.option_template_name,
             'wrap_label': True,
+
         }
 
