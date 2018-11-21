@@ -24,7 +24,7 @@ nav .brand-logo {
 
 @media only screen and (min-width: 1000px){
     nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
-        height: 120px;
+        height: 130px;
         line-height: 120px;
     }
 }
@@ -270,7 +270,7 @@ ul.thumbnails.image_picker_selector li .thumbnail {
 		width: 200px;
 		margin-left: 50px;
 	}
-	
+
 	.logoGlossarioSearch {
 		width: 200px;
 	}
@@ -482,7 +482,7 @@ ul.thumbnails.image_picker_selector li .thumbnail {
 	}
 
 	.footer{
-		position: fixed; 
+		position: fixed;
 		bottom: 0px;
 		min-width: 100%;
 		margin-bottom:-6px;

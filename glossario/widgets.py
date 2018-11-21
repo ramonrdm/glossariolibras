@@ -74,12 +74,12 @@ class ImageSelectMao(Select):
             option_attrs['id'] = self.id_for_label(option_attrs['id'], index)
 
 
-        if value == '':
-            option_attrs['data-img-src'] = '/static/img/X.svg'
+        i = None
+        if value != '':
+            i = int(value) - 1
+            option_attrs['data-img-src'] = self.field_img[i]
         else:
-
-            option_attrs['data-img-src'] = self.field_img[value - 1]
-
+            option_attrs['data-img-src'] = '/static/img/X.svg'
 
         return {
             'name': name,

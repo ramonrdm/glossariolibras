@@ -17,15 +17,12 @@ function sideNavThumbnailRefresh() {
 			let attrValue = $(this).find('p').html() === 'Selecionar' ? '' : $(this).find('p').html();
 
 			// REMOVE ATRIBUTO 'SELECTED' DA OPTION QUE JÁ ESTAVA SELECIONADA
-			$(".formSinais select" + select_refs[i] + " option[selected='selected']").removeAttr('selected');
+			$("select" + select_refs[i] + " option[selected='selected']").removeAttr('selected');
 
-			let selectedOption = $(".formSinais select" + select_refs[i] + " option[value='" + attrValue + "']");
+			let selectedOption = $("select" + select_refs[i] + " option[value='" + attrValue + "']");
 
 			// ADICIONA ATRIBUTO 'SELECTED' À OPTION CLICADA
 			selectedOption.attr('selected', 'selected');
-
-			// MOVE A OPTION SELECIONADA PARA O COMEÇO DO SELECT PARA NÃO SER DESLOCADA
-			selectedOption.parent().prepend(selectedOption);
 
 			// RECONSTRÓI O IMAGEPICKER PARA ATUALIZAR THUMBNAIL EXIBIDO
 			$('select' + select_refs[i]).imagepicker({
@@ -134,7 +131,7 @@ $(document).ready(function() {
 				key: "14",
 				toolTip: "Mãos"
 			}
-			
+
 		]
 	});
 

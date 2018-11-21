@@ -119,7 +119,7 @@ class EnviarSinaisForm(forms.ModelForm):
 						self.fields[field].widget.field_img.append(self.fields[field].queryset[option].imagem.url)
 
 class PesquisaSinaisForm(forms.ModelForm):
-	print('pppppppppppppp passou pelo form')
+
 
 	class Meta:
 		model = Sinal
@@ -185,6 +185,7 @@ class PesquisaCheckboxForm(forms.Form):
 	def __init__(self, *args, **kwargs):
 		super(PesquisaCheckboxForm, self).__init__(*args, **kwargs)
 		for field in self.fields:
+			self.fields['checkboxPort'].initial = True
 			self.fields[field].required = False
 
 #	def clean_nome(self):
