@@ -18,10 +18,10 @@
         <!--Pesquisa de Texto -->
          <div class="nav-wrapper white" id="Libras">
             <ul>
-                <div class="col s8 push-s1">
-                    {% for field in formSinais %}
+               <div class="">
+                {% for field in formSinais %}
                         {% if field.auto_id == 'id_localizacao' %}
-                            <div class="col s12 m4" id="{{field.auto_id}}">
+                            <div class="col s12 m1 offset-m3 " id="{{auto.id}}">
                                 <a class="modal-trigger" href="#modalLocalizacao">
                                     <!-- {{ field.errors }} -->
                                     <!-- {{ field.label_tag }} -->
@@ -29,31 +29,40 @@
                                 </a>
                             </div>
                         {% elif field.auto_id == 'id_grupoCMe' %}
-                            <div class="col s12 m4" id="{{field.auto_id}}">
+                            <div class="col s12 m1" id="{{auto.id}">
                                 <a class="modal-trigger" href="#modalGrupoCMe">
                                     <!-- {{ field.errors }} -->
                                     <!-- {{ field.label_tag }} -->
                                     {{ field }}
-
                                 </a>
                             </div>
                         {% elif field.auto_id == 'id_cmE' %}
-                            <div class="col s12 m4" id="{{field.auto_id}}">
+                            <div class="col s12 m1" id="{{auto.id}}">
                                 <a class="modal-trigger" href="#modalCMe">
                                     <!-- {{ field.errors }} -->
                                     <!-- {{ field.label_tag }} -->
                                     {{ field }}
                                 </a>
                             </div>
+                         {% elif field.auto_id == 'id_movimentacao' %}
+                            <div class="col s12 m1" id="{{auto.id}}">
+                                <a class="modal-trigger" href="#modalMovimentacao">
+                                    <!-- {{ field.errors }} -->
+                                    <!-- {{ field.label_tag }} -->
+                                    {{ field }}
+                                </a>
+                            </div>
+                   </div>
                         {% endif %}
                     {% endfor %}
-                        </div>
-
-                <div class="col s4">
+                <div class="col s12 m2 push-m2"
                     <li><button class="btn waves-effect waves-light botaoPesquisar" type="submit" name="botaoPesquisar">Pesquisar<i class="material-icons right">send</i></button></li>
+                </div>
+                <div class="col s4">
                     <li><a title="Pesquisar com texto!" id="pesquisaLibras" class="btn-floating btn-large halfway-fab waves-effect waves-light teal"><i class="material-icons">sort_by_alpha</i></a></li>
                 </div>
             </ul>
         </div>
     </form>
 </nav>
+

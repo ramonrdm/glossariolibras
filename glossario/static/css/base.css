@@ -5,6 +5,17 @@
     --secondary:black;
 }
 
+
+.unidades {
+
+    padding: 1%;
+    width: 1000px;
+    background-color:blue;
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.1);
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+}
+
+
 nav {
     height: 120px;
     line-height: 120px;

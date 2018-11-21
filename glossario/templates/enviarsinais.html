@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {{ form.media }}
-{% block Head %}
+{% block Head %}'label': label,
 	{{ block.super }}
 	{% load staticfiles %}
 	<link rel="stylesheet" type="text/css" href="{% static 'image-picker/image-picker/image-picker.css' %}"/>
@@ -32,7 +32,7 @@
 					</div>
 				</div>
 			</div>
-			{% elif field.auto_id == 'id_traducaoP' or field.auto_id == 'id_traducaoI' or field.auto_id == 'id_descricao' %}
+			{% elif field.auto_id == 'id_traducaoP' or field.auto_id == 'id_traducaoI' or field.auto_id == 'id_descricao' == 'id_movimentacao' %}
 			<div class="input-field col s12 m4">
 				<div class="fieldWrapper">
 					{{ field.errors }}
@@ -40,6 +40,7 @@
 					{{ field }}
 				</div>
 			</div>
+
 			{% elif field.auto_id == 'id_localizacao' %}
 			<div class="col s12" id="{{field.auto_id}}">
 				{{ field.errors }}

@@ -15,14 +15,16 @@ $(document).ready(function() {
 		{id: '#id_grupoCMe .thumbnail', opened: false},
 		{id: '#id_grupoCMd .thumbnail', opened: false},
 		{id: '#id_cmE .thumbnail', opened: false},
-		{id: '#id_cmD .thumbnail', opened:false}
+		{id: '#id_cmD .thumbnail', opened:false},
+		{id: '#id_movimentacao .thumbnail', opened:false}
 	];
 
 	let thumbnail_not_refs = [
 		'#id_grupoCMe .thumbnail:not(.selected)',
 		'#id_grupoCMd .thumbnail:not(.selected)',
 		'#id_cmE .thumbnail:not(.selected)',
-		'#id_cmD .thumbnail:not(.selected)'
+		'#id_cmD .thumbnail:not(.selected)',
+		'#id_movimentacao .thumbnail:not(.selected)'
 	];
 
 	let thumbnail_localizacao_ref = {id: '#id_localizacao .thumbnail', opened: false};

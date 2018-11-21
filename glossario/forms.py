@@ -4,7 +4,7 @@ from django import forms
 from django.forms.models import ModelChoiceField
 from glossario.models import Glossario, Sinal, GrupoCM, CM, UserGlossario
 from django.conf import settings
-from glossario.widgets import ImageSelectLocalizacao, ImageSelectMao
+from glossario.widgets import ImageSelectLocalizacao, ImageSelectMao, ImageSelectMovimentacao
 from django.core.exceptions import ValidationError
 from django.contrib.auth import password_validation
 import re
@@ -123,14 +123,15 @@ class PesquisaSinaisForm(forms.ModelForm):
 
 	class Meta:
 		model = Sinal
-		fields = ['localizacao', 'grupoCMe', 'cmE']
+		fields = ['localizacao', 'grupoCMe', 'cmE', 'movimentacao']
 		'grupoCMd', 'cmD'
 		widgets =	{
 					'localizacao': ImageSelectLocalizacao(),
 					'grupoCMe': ImageSelectMao(),
 					'cmE': ImageSelectMao(),
 					'grupoCMd': ImageSelectMao(),
-					'cmD': ImageSelectMao()
+					'cmD': ImageSelectMao(),
+					'movimentacao' : ImageSelectMovimentacao()
 					}
 
 

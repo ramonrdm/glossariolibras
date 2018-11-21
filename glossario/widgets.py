@@ -5,6 +5,8 @@ from django.utils.encoding import force_text
 from django.utils.html import format_html
 from django.conf import settings
 
+
+
 class ImageSelectLocalizacao(Select):
 
     def __init__(self, attrs=None, choices=(), field_img=None):
@@ -18,6 +20,7 @@ class ImageSelectLocalizacao(Select):
                          ('10', 'localizacaoOrelhas.png'),
                          ('11', 'localizacaoPescoco.png'), ('12', 'localizacaoQueixo.png'),
                          ('13', 'localizacaoTesta.png')])
+
 
     def create_option(self, name, value, label, selected, index, subindex=None, attrs=None):
 
@@ -37,6 +40,50 @@ class ImageSelectLocalizacao(Select):
             option_attrs['data-img-src'] = '/static/img/X.svg'
         else:
             option_attrs['data-img-src'] = '/static/img/' + self.localizacoes[str(value)]
+
+
+
+
+        return {
+            'name': name,
+            'value': value,
+            'label': label,
+            'selected': selected,
+            'index': index,
+            'attrs': option_attrs,
+            'type': self.input_type,
+            'template_name': self.option_template_name,
+            'wrap_label': True,
+        }
+
+
+class ImageSelectMovimentacao(Select):
+
+    def __init__(self, attrs=None, choices=(), field_img=None):
+        super(ImageSelectMovimentacao, self).__init__(attrs)
+        self.choices = list(choices)
+        self.field_img = field_img
+
+    movimentacoes = dict([('1', 'X.svg'),('2', 'parede.png'), ('3', 'chao.png'), ('4', 'circular.png'), ('5', 'chao.png')])
+
+    def create_option(self, name, value, label, selected, index, subindex=None, attrs=None):
+
+        index = str(index) if subindex is None else "%s_%s" % (index, subindex)
+        if attrs is None:
+            attrs = {}
+        option_attrs = self.build_attrs(self.attrs, attrs) if self.option_inherits_attrs else {}
+        if selected:
+            option_attrs.update(self.checked_attribute)
+        if 'id' in option_attrs:
+            option_attrs['id'] = self.id_for_label(option_attrs['id'], index)
+
+
+
+        print(value)
+        if value == '':
+            option_attrs['data-img-src'] = '/static/img/X.svg'
+        else:
+            option_attrs['data-img-src'] = '/static/img/' + self.movimentacoes[str(value)]
 
 
 
