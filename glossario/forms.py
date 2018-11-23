@@ -80,6 +80,7 @@ class GlossarioForm(forms.ModelForm):
 		model = Glossario
 		exclude = ['link','dataCriacao']
 
+
 class SinalForm(forms.ModelForm):
 	
 	class Meta:
@@ -87,11 +88,29 @@ class SinalForm(forms.ModelForm):
 		fields = ['glossario', 'traducaoP', 'traducaoI', 'descricao', 'bsw', 'grupoCMe', 'cmE', 'grupoCMd',
 		'cmD', 'localizacao', 'movimentacao', 'tema', 'dataPost', 'postador', 'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras',
 		'publicado']
+		widgets = {
+					'localizacao': ImageSelectLocalizacao(),
+					'grupoCMe': ImageSelectMao(),
+					'cmE': ImageSelectMao(),
+					'grupoCMd': ImageSelectMao(),
+					'cmD': ImageSelectMao(),
+					'movimentacao': ImageSelectMovimentacao()
+		}
+
+
 
 	def __init__(self, *args, **kwargs):
 		super(SinalForm, self).__init__(*args, **kwargs)
 		self.fields['bsw'].help_text = "<b><a target='_blank' href='http://glossario.libras.ufsc.br/swis/signmaker.php'>Criar codigo aqui</a></b>"
 		self.fields['bsw'].widget = forms.TextInput(attrs={})
+		for field in self.fields:
+			self.fields[field].widget.field_img = list()
+			self.fields[field].empty_label = 'Selecionar'
+			for option in range(0, 20):
+			# trocar 20 do xrange para length do select que tiver mais options
+				if type(self.fields[field]) is ModelChoiceField:
+					if len(self.fields[field].queryset) >= option + 1:
+						self.fields[field].widget.field_img.append(self.fields[field].queryset[option].imagem.url)
 
 class EnviarSinaisForm(forms.ModelForm):
 
@@ -104,7 +123,8 @@ class EnviarSinaisForm(forms.ModelForm):
 					'grupoCMe': ImageSelectMao(),
 					'cmE': ImageSelectMao(),
 					'grupoCMd': ImageSelectMao(),
-					'cmD': ImageSelectMao()
+					'cmD': ImageSelectMao(),
+					'movimentacao': ImageSelectMovimentacao()
 					}
 
 	def __init__(self, *args, **kwargs):

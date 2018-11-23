@@ -17,8 +17,7 @@ class ImageSelectLocalizacao(Select):
     localizacoes = dict([('1', 'localizacaoCabeca.png'), ('2', 'localizacaoOmbros.png'), ('3', 'localizacaoBracos.png'),
                          ('4', 'localizacaoNariz.png'), ('5', 'localizacaoBochechas.png'), ('6', 'localizacaoBoca.png'),
                          ('7', 'localizacaoTronco.png'), ('8', 'localizacaoNeutro.png'), ('9', 'localizacaoOlhos.png'),
-                         ('10', 'localizacaoOrelhas.png'),
-                         ('11', 'localizacaoPescoco.png'), ('12', 'localizacaoQueixo.png'),
+                         ('10', 'localizacaoOrelhas.png'), ('11', 'localizacaoPescoco.png'), ('12', 'localizacaoQueixo.png'),
                          ('13', 'localizacaoTesta.png')])
 
 
@@ -64,7 +63,7 @@ class ImageSelectMovimentacao(Select):
         self.choices = list(choices)
         self.field_img = field_img
 
-    movimentacoes = dict([('1', 'X.svg'),('2', 'parede.png'), ('3', 'chao.png'), ('4', 'circular.png'), ('5', 'chao.png')])
+    movimentacoes = dict([('1', 'X.svg'), ('2', 'parede.png'), ('3', 'chao.png'), ('4', 'circular.png'), ('5', 'chao.png')])
 
     def create_option(self, name, value, label, selected, index, subindex=None, attrs=None):
 
