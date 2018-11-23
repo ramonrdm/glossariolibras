@@ -151,7 +151,7 @@ class GlossarioAdmin(admin.ModelAdmin):
 class SinalAdmin(admin.ModelAdmin):
     form = SinalForm
     list_display = ('traducaoP', 'traducaoI', 'tema', 'glossario', 'image_tag_cmE', 'image_tag_cmD', 'image_tag_localizacao', 'publicado')
-    list_filter = ('tema', 'glossario', 'localizacao', 'dataPost', 'publicado')
+    list_filter = ('tema', 'glossario', 'localizacao', 'movimentacao', 'dataPost', 'publicado')
     actions = ['publicar_sinal',]
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
@@ -206,6 +206,16 @@ class SinalAdmin(admin.ModelAdmin):
         else:
             return format_html('<p>Sem Imagem</p>')
         image_tag_localizacao.short_description = 'localização'
+
+    def image_tag_movimentacao(self, obj):
+        if obj.movimentacao:
+            movimentacoes = dict(
+                [('1', 'X.svg'), ('2', 'parede.png'), ('3', 'chao.png'), ('4', 'circular.png'), ('5', 'chao.png')])
+            return format_html(
+                '<img src="/static/img/{}" width="50" height="50" />'.format(movimentacoes[obj.movimentacao]))
+        else:
+            return format_html('<p>Sem Imagem</p>')
+        image_tag_movimentacao.short_description = 'movimentacao'
 
     def get_queryset(self, request):
         qs = super(SinalAdmin, self).get_queryset(request)

@@ -90,10 +90,10 @@ class SinalForm(forms.ModelForm):
 		'publicado']
 		widgets = {
 					'localizacao': ImageSelectLocalizacao(),
-					'grupoCMe': ImageSelectMao(),
-					'cmE': ImageSelectMao(),
-					'grupoCMd': ImageSelectMao(),
-					'cmD': ImageSelectMao(),
+					# 'grupoCMe': ImageSelectMao(field_img=('/media/1_xFV5N9L.png', '/media/2_oKcgLJc.png')),
+					# 'cmE': ImageSelectMao(),
+					# 'grupoCMd': ImageSelectMao(),
+					# 'cmD': ImageSelectMao(),
 					'movimentacao': ImageSelectMovimentacao()
 		}
 
@@ -104,13 +104,21 @@ class SinalForm(forms.ModelForm):
 		self.fields['bsw'].help_text = "<b><a target='_blank' href='http://glossario.libras.ufsc.br/swis/signmaker.php'>Criar codigo aqui</a></b>"
 		self.fields['bsw'].widget = forms.TextInput(attrs={})
 		for field in self.fields:
+			if field in ['grupoCMd', 'cmD', 'cmE', 'grupoCMe']:
+				self.fields[field].widget = ImageSelectMao(choices=self.fields[field].choices, attrs={})
 			self.fields[field].widget.field_img = list()
 			self.fields[field].empty_label = 'Selecionar'
+
 			for option in range(0, 20):
 			# trocar 20 do xrange para length do select que tiver mais options
 				if type(self.fields[field]) is ModelChoiceField:
 					if len(self.fields[field].queryset) >= option + 1:
 						self.fields[field].widget.field_img.append(self.fields[field].queryset[option].imagem.url)
+						print(self.fields[field])
+						print(self.fields[field].queryset[option].imagem.url)
+			print("lista da " + field)
+			print(self.fields[field].widget.field_img)
+
 
 class EnviarSinaisForm(forms.ModelForm):
 
@@ -140,18 +148,16 @@ class EnviarSinaisForm(forms.ModelForm):
 
 class PesquisaSinaisForm(forms.ModelForm):
 
-
 	class Meta:
 		model = Sinal
 		fields = ['localizacao', 'grupoCMe', 'cmE', 'movimentacao']
-		'grupoCMd', 'cmD'
 		widgets =	{
 					'localizacao': ImageSelectLocalizacao(),
 					'grupoCMe': ImageSelectMao(),
 					'cmE': ImageSelectMao(),
 					'grupoCMd': ImageSelectMao(),
 					'cmD': ImageSelectMao(),
-					'movimentacao' : ImageSelectMovimentacao()
+					'movimentacao': ImageSelectMovimentacao()
 					}
 
 

@@ -76,9 +76,6 @@ class ImageSelectMovimentacao(Select):
         if 'id' in option_attrs:
             option_attrs['id'] = self.id_for_label(option_attrs['id'], index)
 
-
-
-        print(value)
         if value == '':
             option_attrs['data-img-src'] = '/static/img/X.svg'
         else:
@@ -123,7 +120,15 @@ class ImageSelectMao(Select):
         i = None
         if value != '':
             i = int(value) - 1
-            option_attrs['data-img-src'] = self.field_img[i]
+            try:
+                option_attrs['data-img-src'] = self.field_img[i]
+                print(self.field_img)
+            except Exception as e:
+                print("erro em " + name)
+                print("valor de i " + str(i))
+                print(self.field_img)
+                # print(name)
+                # print(e)
         else:
             option_attrs['data-img-src'] = '/static/img/X.svg'
 
