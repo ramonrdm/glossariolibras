@@ -6,13 +6,14 @@ from django.utils.html import format_html
 from django.conf import settings
 
 
-
 class ImageSelectLocalizacao(Select):
+    template_name = 'importacaoPesquisa.html'
 
     def __init__(self, attrs=None, choices=(), field_img=None):
         super(ImageSelectLocalizacao, self).__init__(attrs)
         self.choices = list(choices)
         self.field_img = field_img
+
 
     localizacoes = dict([('1', 'localizacaoCabeca.png'), ('2', 'localizacaoOmbros.png'), ('3', 'localizacaoBracos.png'),
                          ('4', 'localizacaoNariz.png'), ('5', 'localizacaoBochechas.png'), ('6', 'localizacaoBoca.png'),
@@ -43,7 +44,8 @@ class ImageSelectLocalizacao(Select):
 
 
 
-        return {
+        context  = {
+
             'name': name,
             'value': value,
             'label': label,
@@ -57,6 +59,8 @@ class ImageSelectLocalizacao(Select):
 
 
 class ImageSelectMovimentacao(Select):
+
+
 
     def __init__(self, attrs=None, choices=(), field_img=None):
         super(ImageSelectMovimentacao, self).__init__(attrs)
@@ -120,15 +124,8 @@ class ImageSelectMao(Select):
         i = None
         if value != '':
             i = int(value) - 1
-            try:
-                option_attrs['data-img-src'] = self.field_img[i]
-                print(self.field_img)
-            except Exception as e:
-                print("erro em " + name)
-                print("valor de i " + str(i))
-                print(self.field_img)
-                # print(name)
-                # print(e)
+            option_attrs['data-img-src'] = self.field_img[i]
+
         else:
             option_attrs['data-img-src'] = '/static/img/X.svg'
 

@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {{ form.media }}
-{% block Head %}'label': label,
+{% block Head %}
 	{{ block.super }}
 	{% load staticfiles %}
 	<link rel="stylesheet" type="text/css" href="{% static 'image-picker/image-picker/image-picker.css' %}"/>

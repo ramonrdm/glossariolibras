@@ -82,7 +82,8 @@ class GlossarioForm(forms.ModelForm):
 
 
 class SinalForm(forms.ModelForm):
-	
+
+
 	class Meta:
 		model = Sinal
 		fields = ['glossario', 'traducaoP', 'traducaoI', 'descricao', 'bsw', 'grupoCMe', 'cmE', 'grupoCMd',
@@ -114,10 +115,7 @@ class SinalForm(forms.ModelForm):
 				if type(self.fields[field]) is ModelChoiceField:
 					if len(self.fields[field].queryset) >= option + 1:
 						self.fields[field].widget.field_img.append(self.fields[field].queryset[option].imagem.url)
-						print(self.fields[field])
-						print(self.fields[field].queryset[option].imagem.url)
-			print("lista da " + field)
-			print(self.fields[field].widget.field_img)
+
 
 
 class EnviarSinaisForm(forms.ModelForm):
@@ -147,7 +145,6 @@ class EnviarSinaisForm(forms.ModelForm):
 						self.fields[field].widget.field_img.append(self.fields[field].queryset[option].imagem.url)
 
 class PesquisaSinaisForm(forms.ModelForm):
-
 	class Meta:
 		model = Sinal
 		fields = ['localizacao', 'grupoCMe', 'cmE', 'movimentacao']
