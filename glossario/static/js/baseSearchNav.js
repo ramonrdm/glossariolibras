@@ -13,6 +13,7 @@ let select_refs = [
 
 // ATUALIZA THUMBNAIL EXIBIDO NA SIDENAV QUANDO ALGUM É SELECIONADO NO MODAL
 function sideNavThumbnailRefresh() {
+
 	for(let i = 0; i < modal_refs.length; i++){
 		$(modal_refs[i] + ' .thumbnail').unbind('click', sideNavThumbnailRefresh);
 		$(modal_refs[i] + ' .thumbnail').click(function() {
@@ -162,25 +163,5 @@ $(document).ready(function() {
 	});
 
 
-		// GERENCIA EVENTOS RELACIONADOS AO CLIQUE EM UMA ÁREA
-	$('area').click(function() {
-
-		// VINCULA A ÁREA CLICADA À OPTION DA SUA LOCALIZAÇÃO
-		let attrValue = $(this).attr('data-key');
-		$("#id_movimentacao option[selected='selected']").removeAttr('selected');
-		$("#id_movimentacao option[value='" + attrValue + "']").attr('selected', 'selected');
-
-		// CORRIGE DESLOCAMENTO DO IMAGEPICKER
-		$('#id_movimentacao option').parent().prepend($('#id_movimentacao option[selected="selected"]'));
-
-		// RECONSTRÓI O IMAGEPICKER PARA ATUALIZAR THUMBNAIL EXIBIDO
-		$('select#id_movimentacao').imagepicker({
-			show_label: true
-		});
-
-		// ADICIONA EFEITO DE HOVER AOS THUMBNAILS NOVAMENTE APOS RECONSTRUÇÃO DO IMAGEPICKER
-		$('.thumbnail').addClass('hoverable');
-
-	});
 
 });
