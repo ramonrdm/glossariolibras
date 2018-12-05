@@ -70,7 +70,7 @@ def glossarioSelecionado(request, glossario):
 		formPesquisa = PesquisaForm()
 
 		return render(request, 'glossario.html', {'glossario': glossario, 'formPesquisa': formPesquisa, 'checkboxPort': checkboxPort,
-			'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox, 'formSinais': formSinais
+			'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox, 'formSinais': formSinais, 'form': EnviarSinaisForm(request.POST, request.FILES)
 			})
 
 def sinal(request, sinal=None, glossario=None):

@@ -1,6 +1,5 @@
 $(document).ready(function() {
 
-
 	// INICIALIZA O IMAGEPICKER
 	$('select').imagepicker({
 		show_label: true
@@ -41,7 +40,7 @@ $(document).ready(function() {
 		});
 	}
 
-	for(let i = 0; i < thumbnail_refs.length; i++){	
+	for(let i = 0; i < thumbnail_refs.length; i++){
 		$(thumbnail_refs[i].id).click(function() {
 			if(thumbnail_refs[i].opened){
 				thumbnail_refs[i].opened = false;
@@ -50,13 +49,13 @@ $(document).ready(function() {
 					$(this).parent().prepend($(thumbnail_refs[i].id.split('.')[0] + 'li:contains("Selecionar")'));
 					$(this).parent().prepend(this);
 				});
-			} else {	
+			} else {
 				thumbnail_refs[i].opened = true;
 				$(thumbnail_not_refs[i]).show();
 			}
 		});
 	}
-	
+
 	// INICIALIZA A FUNÇÃO PARA MOSTRAR O AVATAR
 	showAvatar();
 
@@ -125,7 +124,7 @@ $(document).ready(function() {
 				key: "14",
 				toolTip: "Mãos"
 			}
-			
+
 		]
 	});
 
