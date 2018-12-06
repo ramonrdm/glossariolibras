@@ -1,15 +1,6 @@
-{% extends 'base.html' %}
 {{ form.media }}
-{% block Head %}
-	{{ block.super }}
-	{% load staticfiles %}
-
-	<title>{% block title %}Pesquisa - Glossário Letras Libras{% endblock %}</title>
-{% endblock %}
-{% block Corpo %}
 <nav class="row">
     <form method="post">
-
         <!--Pesquisa de Texto -->
         <div class="nav-wrapper " id="Texto">
             {% csrf_token %}

@@ -1,14 +1,13 @@
 {% extends 'base.html' %}
-{{ form.media }}
 {% block Head %}
 	{{ block.super }}
 	{% load staticfiles %}
-
-	<script type="text/javascript" src="{% static 'js/enviarsinais.js' %}"></script>
 	<title>{% block title %}Enviar sinais - Glossário Letras Libras{% endblock %}</title>
+	{{ form.media }}
 {% endblock %}
-<body>
-	{% block Corpo %}
+
+{% block Corpo %}
+	<h1>vermelho</h1>
 	<div class="container">
 		<h2 class="thin center">Enviar sinais</h2>
 		<div class="divider"></div>
@@ -95,6 +94,4 @@
 		Materialize.toast('Ops! Parece que este sinal já existe', 5000)
 	</script>
 	{% endif %}
-
-	{% endblock %}
-</body>
+{% endblock %}

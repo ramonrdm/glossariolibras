@@ -7,15 +7,12 @@ from django.conf import settings
 
 
 class ImageSelectLocalizacao(Select):
-<<<<<<< HEAD
-    template_name = 'importacaoPesquisa.html'
-=======
     class Media:
+        extend = False
         css = {
-            'all': ('/static/css/base.css', '/static/image-picker/image-picker/image-picker.css',)
+            'all': ('/static/selectSinal/select.css', '/static/css/base.css', '/static/image-picker/image-picker/image-picker.css', '/static/css/materialize.css',)
         }
-        js = ('/static/js/jquery-3.2.1.min.js',  '/static/js/enviarsinais.js',  '/static/js/baseSearchNav.js', '/static/image-picker/image-picker/image-picker.js',  '/static/js/jquery.imagemapster.min.js',)
->>>>>>> corrrecao
+        js = ('/static/js/jquery-3.2.1.min.js','/static/js/materialize.js','/static/image-picker/image-picker/image-picker.js', '/static/js/jquery.imagemapster.min.js','/static/js/enviarsinais.js', '/static/js/baseSearchNav.js',)
 
     def __init__(self, attrs=None, choices=(), field_img=None):
         super(ImageSelectLocalizacao, self).__init__(attrs)
@@ -52,7 +49,7 @@ class ImageSelectLocalizacao(Select):
 
 
 
-        context  = {
+        return {
 
             'name': name,
             'value': value,

@@ -10,6 +10,7 @@ let select_refs = [
 	'#id_movimentacao',
 	'#id_cmE'
 ];
+alert('passei pelo baseSearchNav.js');
 // ATUALIZA THUMBNAIL EXIBIDO NA SIDENAV QUANDO ALGUM É SELECIONADO NO MODAL
 function sideNavThumbnailRefresh() {
 

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+    alert('passei pelo enviarsinal.js');
 	// INICIALIZA O IMAGEPICKER
 	$('select').imagepicker({
 		show_label: true
