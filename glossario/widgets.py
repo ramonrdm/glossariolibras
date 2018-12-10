@@ -5,12 +5,11 @@ from django.utils.encoding import force_text
 from django.utils.html import format_html
 from django.conf import settings
 
-
 class ImageSelectLocalizacao(Select):
     class Media:
-        extend = False
+        #extend = False
         css = {
-            'all': ('/static/selectSinal/select.css','/static/image-picker/image-picker/image-picker.css',)
+            'all': ('/static/image-picker/image-picker/image-picker.css',)
         }
         js = ('/static/image-picker/image-picker/image-picker.js', '/static/js/jquery.imagemapster.min.js', '/static/js/enviarsinais.js',)
 
@@ -38,16 +37,10 @@ class ImageSelectLocalizacao(Select):
         if 'id' in option_attrs:
             option_attrs['id'] = self.id_for_label(option_attrs['id'], index)
 
-
-
-
         if value == '':
             option_attrs['data-img-src'] = '/static/img/X.svg'
         else:
             option_attrs['data-img-src'] = '/static/img/' + self.localizacoes[str(value)]
-
-
-
 
         return {
 
@@ -62,11 +55,7 @@ class ImageSelectLocalizacao(Select):
             'wrap_label': True,
         }
 
-
-
 class ImageSelectMovimentacao(Select):
-
-
 
     def __init__(self, attrs=None, choices=(), field_img=None):
         super(ImageSelectMovimentacao, self).__init__(attrs)
@@ -90,9 +79,6 @@ class ImageSelectMovimentacao(Select):
             option_attrs['data-img-src'] = '/static/img/X.svg'
         else:
             option_attrs['data-img-src'] = '/static/img/' + self.movimentacoes[str(value)]
-
-
-
 
         return {
             'name': name,

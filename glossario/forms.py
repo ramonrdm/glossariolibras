@@ -113,6 +113,7 @@ class SinalForm(forms.ModelForm):
 			for option in range(0, 20):
 			# trocar 20 do xrange para length do select que tiver mais options
 				if type(self.fields[field]) is ModelChoiceField:
+					print(self.fields[field])
 					if len(self.fields[field].queryset) >= option + 1:
 						self.fields[field].widget.field_img.append(self.fields[field].queryset[option].imagem.url)
 
