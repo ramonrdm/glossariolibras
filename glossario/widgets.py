@@ -10,7 +10,7 @@ class ImageSelectLocalizacao(Select):
     class Media:
         extend = False
         css = {
-            'all': ('/static/selectSinal/select.css', '/static/image-picker/image-picker/image-picker.css',)
+            'all': ('/static/selectSinal/select.css','/static/image-picker/image-picker/image-picker.css',)
         }
         js = ('/static/image-picker/image-picker/image-picker.js', '/static/js/jquery.imagemapster.min.js', '/static/js/enviarsinais.js',)
 

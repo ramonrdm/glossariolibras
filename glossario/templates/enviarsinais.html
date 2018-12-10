@@ -5,9 +5,9 @@
 	<title>{% block title %}Enviar sinais - Glossário Letras Libras{% endblock %}</title>
 	{{ form.media }}
 {% endblock %}
-
 {% block Corpo %}
-	<h1>vermelho</h1>
+    {% include "navSearch.html" %}
+    {% include "modaisFormSinais.html" %}
 	<div class="container">
 		<h2 class="thin center">Enviar sinais</h2>
 		<div class="divider"></div>

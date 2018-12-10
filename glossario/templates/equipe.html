@@ -1,16 +1,10 @@
-<html>
-<head>
-	{% extends 'base.html' %}
+{% extends 'base.html' %}
 	{% load staticfiles %}
 	<title>{% block title %}Equipe - Glossário Letras Libras{% endblock %}</title>
-</head>
-<body>
-	{% block Corpo %}
 
+{% block Corpo %}
 <!-- COLABORADORES -->
-
 	<div class="equipe">
-
     <h2 class="thin">Colaboradores</h2>
     <div class="divider divisor"></div> </br>
 
@@ -340,8 +334,4 @@
 	</br>
 	</div>
 	</div>
-
-	{% endblock %}
-</body>
-</html>
-
+{% endblock %}

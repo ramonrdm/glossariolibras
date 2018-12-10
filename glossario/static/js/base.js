@@ -6,7 +6,7 @@ $(document).ready(function() {
     }
   });
 
-         $('#Texto').hide();
+        $('#Texto').hide();
 
         $('#pesquisaTexto').click(function(){
         $('#Libras').show()

@@ -2,7 +2,7 @@
 {% load staticfiles %}
 <title>{% block title %}{{ glossario.nome }} - Glossário Letras Libras{% endblock %}</title>
 
-	{% block Corpo %}
+{% block Corpo %}
 
 	{% include 'navSearch.html'%}
 	{% include 'modaisFormSinais.html' %}
@@ -36,8 +36,7 @@
 			<i class="large material-icons icone videoOff">videocam_off</i>
 		</div>
 	{% endif %}
-
-	{% endblock %}
+{% endblock %}
 
 
   <!-- Scaled in -->

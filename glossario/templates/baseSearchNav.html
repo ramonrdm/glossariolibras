@@ -1,7 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    {% block Head %}
+{% block Head %}
     {% load staticfiles %}
     <meta name="author" content="Ramon Dutra Miranda"/>
     <meta name="description" content="Glossario libras, ufsc, dicionario, letras libras, glossario cinema"/>
@@ -20,10 +17,7 @@
     <link rel="stylesheet" type="text/css" href='{% static "css/base.css" %}'/>
 
     <title>{% block title %}{% endblock %}</title>
-
-    {% endblock %}
-</head>
-<body>
+{% endblock %}
 
 <!-- SIDENAV FIXA -->
         
@@ -124,8 +118,8 @@
 
      <div class="footer"><img class="borda" src='{% static "img/borda.png" %}'></div>
 
-    {% block Corpo %}
-    {% endblock %}
+{% block Corpo %}
+{% endblock %}
 
 <!-- ABRIR SIDENAV MOBILE -->
 
@@ -134,5 +128,3 @@
         $('.button-collapse').sideNav('hide');
     </script>
 
-</body>
-</html>

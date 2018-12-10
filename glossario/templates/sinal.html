@@ -1,18 +1,12 @@
-<head>
-	{% extends 'base.html' %}
+{% extends 'base.html' %}
 	{% load staticfiles %}
 	{% block Head %}
 		{{block.super}}
-
-	<script type="text/javascript" src='{% static "js/sinal.js" %}'></script>
-	<link rel="stylesheet" type="text/css" href='{% static "css/sinal.css" %}'/>
-	<title>{% block title %}Sinal - Glossário Letras Libras{% endblock %}</title>
-
-	{% endblock %}
-</head>
-<body>
-	{% block Corpo %}
-
+		<script type="text/javascript" src='{% static "js/sinal.js" %}'></script>
+		<link rel="stylesheet" type="text/css" href='{% static "css/sinal.css" %}'/>
+		<title>{% block title %}Sinal - Glossário Letras Libras{% endblock %}</title>
+{% endblock %}
+{% block Corpo %}
 	{% include 'modaisFormSinais.html' %}
 
 <!-- VÍDEOS -->
@@ -192,6 +186,4 @@
 	</div>
 
 	 <script type="text/javascript" src='{% static "js/sinal.js" %}'></script>
-
-	{% endblock %}
-</body>
+{% endblock %}

@@ -1,0 +1,72 @@
+
+/* Esconde o modelo do avatar da localização e corrige um deslocamento do highlight com a imagem */
+.map {
+	display: none;
+	line-height: 2.5;
+}
+
+/* Define as dimensões do avatar */
+img#modeloImg {
+	width: 650px;
+	height: 650px;
+}
+
+/* Esconde as options que não estão selecionadas ao construir a página */
+div.thumbnail:not(.selected) {
+	display: none;
+}
+
+.thumbnailModal div.thumbnail:not(.selected) {
+	display: inline-block !important;
+}
+
+/* Arredonda thumbnail do imagepicker */
+.thumbnail {
+	border-radius: 5px;
+}
+
+/* Tamanho e cor das imagens do imagepicker */
+.thumbnails li img {
+	background-color: white;
+	width: 100px;
+}
+
+.formSinais .thumbnails li img {
+	width: 50px;
+}
+
+.formSinais .thumbnail {
+	height: 90px;
+	width: 50px;
+}
+
+/* Correções nos thumbnails na sidenav */
+.row.formSinais .col {
+	padding: 0;
+}
+
+.row.formSinais p {
+	font-size: 10px;
+}
+
+div#id_localizacao.col.s12.m4 {
+	max-height: 131px;
+}
+
+ul.thumbnails.image_picker_selector {
+	overflow: initial;
+	box-sizing: initial;
+}
+
+/* =================================== */
+
+/* Define o texto das thumbnails como preto quando não está selecionado */
+div.thumbnail.hoverable:not(.selected) p{
+	color: black;
+}
+
+/* Centralizar a descrição da option */
+.thumbnails li p {
+	color: white;
+	text-align: center;
+}

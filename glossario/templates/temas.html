@@ -1,9 +1,6 @@
-<head>
-	{% extends 'base.html' %}
+{% extends 'base.html' %}
 	{% load staticfiles %}
 	<title>{% block title %} Temas - Glossário Letras Libras {% endblock %}</title>
-</head>
-<body>
 	{% block Corpo %}
 
     <canvas id="viewport" width="400" height="700"></canvas>
@@ -12,7 +9,6 @@
 	<script src='{% static "js/arbor.js" %}'></script>  
 	<script src='{% static "js/graphics.js" %}'></script>
 	<script src='{% static "js/main.js" %}'></script>
-
      <script>
 
         var sys = arbor.ParticleSystem(1000, 400, 1, true);
@@ -30,6 +26,4 @@
 
         sys.graft(data);
     </script>
-
-	{% endblock %}
-</body>
+{% endblock %}
