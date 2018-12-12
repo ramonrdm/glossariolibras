@@ -150,7 +150,7 @@ class Sinal(models.Model):
                         ('11','Pescoço'),('12','Queixo'),('13','Testa')
                     )
     localizacao = models.CharField(max_length=2, choices=localizacoes,default=8)
-    movimentacoes = (('1', 'Parede'), ('2', 'Chão'), ('3', 'Circular'), ('4', 'Contato'))
+    movimentacoes = (('1', 'Sem Movimentação'),('2', 'Parede'), ('3', 'Chão'), ('4', 'Circular'), ('5', 'Contato'))
     movimentacao = models.CharField(max_length=10, choices=movimentacoes,default='sem')
     dataPost = models.DateField('data de criação', null=True)
     postador = models.ForeignKey(UserGlossario, null=True, on_delete=models.CASCADE)
