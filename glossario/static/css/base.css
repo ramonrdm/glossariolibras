@@ -1,42 +1,33 @@
- /* ================= COMUM ================= */
 
+ /* ================= COMUM ================= */
 :root{
     --primary: white;
     --secondary:black;
 }
 
 
-.unidades {
-
-    padding: 1%;
-    width: 1000px;
-    background-color:blue;
-    text-shadow: 2px 2px 2px rgba(0,0,0,0.1);
-    box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
-}
-
-
 nav {
-    height: 120px;
-    line-height: 120px;
+    height: 150px;
+    line-height: 300px;
 
-    padding: 4 30px 20 10px;
+    margin: 0 !important;
+    padding: 0 12px 0 15px;
     background-color: var(--primary);
 }
 
 nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
-    height: 120px;
-    line-height: 120px;
+    height: 3000px;
+    line-height: 3000px;
 }
 
 nav .brand-logo {
-    font-size: 9.0rem;
+    font-size: 12.0rem;
 }
 
 @media only screen and (min-width: 1000px){
     nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
         height: 130px;
-        line-height: 120px;
+        line-height: 100px;
     }
 }
 
@@ -204,8 +195,15 @@ ul.thumbnails.image_picker_selector li .thumbnail {
 }
 
 .imgGlossario {
-	width: 100px;
-	/*height: 120px;*/
+	width: 170px;
+    border: white Solid 80px;
+    border-width: 8px;
+    position: absolute;
+    top: 145px;
+    left: 350px;
+
+
+
 }
 
 .glossarioSearch {
@@ -501,15 +499,13 @@ ul.thumbnails.image_picker_selector li .thumbnail {
 		z-index: 1;
 	}
 
-	.imgGlossario {
-		width: 120px;
-		height: 120px;
-		margin-top: 5%;
 	}
 
-	.videoGlossario {
-		margin-top: 2%;
-		width: 800px;
+    #videoGlossario {
+        height:500px;
+        position: absolute;
+        top:40%;
+        left: 37%;
 	}
 
 	.videoOff {

@@ -1,14 +1,34 @@
-passei aqui
 {{ form.media }}
     {% load staticfiles %}
         <script type="text/javascript" src="{% static 'js/baseSearchNav.js' %}"></script>
-                {% for field in form %}
+
+<nav class="row">
+    <form method="post">
+        <!--Pesquisa de Texto -->
+        <div class="nav-wrapper " id="Texto">
+            {% csrf_token %}
+            <div class="input-field col s8">
+                {{ formPesquisa }}
+                <label class="label-icon" for="search"><i class="material-icons grey-text ">search</i></label>
+                <i class="material-icons">close</i>
+            </div>
+            <ul class="col s4">
+                {{ formCheckbox }}
+                <li><a title="Pesquisar em Libras!"  class="btn-floating btn-large halfway-fab waves-effect waves-light teal" id="pesquisaTexto"><i class="material-icons right">pan_tool</i></a></li>
+            </ul>
+        </div>
+
+        <!--Pesquisa de Texto -->
+         <div class="nav-wrapper white" id="Libras">
+            <ul>
+               <div class="">
+                {% for field in formSinais %}
                         {% if field.auto_id == 'id_localizacao' %}
                             <div class="col s12 m1 offset-m3 " id="{{auto.id}}">
                                 <a class="modal-trigger" href="#modalLocalizacao">
                                     <!-- {{ field.errors }} -->
                                     <!-- {{ field.label_tag }} -->
-                                    {{ field }}
+                                    <!--{{ field }}-->
                                 </a>
                             </div>
                         {% elif field.auto_id == 'id_grupoCMe' %}
@@ -16,7 +36,7 @@ passei aqui
                                 <a class="modal-trigger" href="#modalGrupoCMe">
                                     <!-- {{ field.errors }} -->
                                     <!-- {{ field.label_tag }} -->
-                                    {{ field }}
+                                    <!--{{ field }}-->
                                 </a>
                             </div>
                         {% elif field.auto_id == 'id_cmE' %}
@@ -24,23 +44,7 @@ passei aqui
                                 <a class="modal-trigger" href="#modalCMe">
                                     <!-- {{ field.errors }} -->
                                     <!-- {{ field.label_tag }} -->
-                                    {{ field }}
-                                </a>
-                            </div>
-                         {% elif field.auto_id == 'id_grupoCMd' %}
-                            <div class="col s12 m1" id="{{auto.id}">
-                                <a class="modal-trigger" href="#modalGrupoCMe">
-                                    <!-- {{ field.errors }} -->
-                                    <!-- {{ field.label_tag }} -->
-                                    {{ field }}
-                                </a>
-                            </div>
-                        {% elif field.auto_id == 'id_cmD' %}
-                            <div class="col s12 m1" id="{{auto.id}}">
-                                <a class="modal-trigger" href="#modalCMe">
-                                    <!-- {{ field.errors }} -->
-                                    <!-- {{ field.label_tag }} -->
-                                    {{ field }}
+                                    <!--{{ field }}-->
                                 </a>
                             </div>
                          {% elif field.auto_id == 'id_movimentacao' %}
@@ -48,9 +52,19 @@ passei aqui
                                 <a class="modal-trigger" href="#modalMovimentacao">
                                     <!-- {{ field.errors }} -->
                                     <!-- {{ field.label_tag }} -->
-                                    {{ field }}
+                                    <!--{{ field }}-->
                                 </a>
                             </div>
                    </div>
                         {% endif %}
                     {% endfor %}
+                <div class="col s12 m2 push-m2"
+                    <li><button class="btn waves-effect waves-light botaoPesquisar" type="submit" name="botaoPesquisar">Pesquisar<i class="material-icons right">send</i></button></li>
+                </div>
+                <div class="col s4">
+                    <li><a title="Pesquisar com texto!" id="pesquisaLibras" class="btn-floating btn-large halfway-fab waves-effect waves-light teal"><i class="material-icons">sort_by_alpha</i></a></li>
+                </div>
+            </ul>
+        </div>
+    </form>
+</nav>
