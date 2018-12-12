@@ -5,6 +5,7 @@ from django.conf import settings
 from glossario import views
 from django.views.static import serve
 from django.urls import path
+from django.views.generic import RedirectView
 
 
 
@@ -24,6 +25,7 @@ urlpatterns = [
     path('temasjson', views.temasjson, name='temasjson'),
     path('sinal/<int:sinal>', views.sinal, name='sinal'),
     path('enviarsinais', views.enviarSinais, name='enviarsinais'),
+    url(r'^favicon\.ico$',RedirectView.as_view(url='/static/img/marca_glossario2.png')),
     path('<slug:glossario>/', views.glossarioSelecionado, name='glossarios'),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
     url(r'^account_activation_sent/$', views.account_activation_sent, name='account_activation_sent'),
