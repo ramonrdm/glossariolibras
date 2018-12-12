@@ -21,11 +21,50 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 def index(request, glossario=None):
     glossarios = Glossario.objects.all()
-    return render(request, "index.html", {'glossarios': glossarios})
+
+    checkboxPort = request.POST.get('checkboxPort', False)
+    checkboxIng = request.POST.get('checkboxIng', False)
+
+    request.session['sinaisCheckboxes'] = []
+
+    if request.method == 'POST':
+        sinais = sinaisP = sinaisI = sinaisGlossario = formPesquisa = None
+        formPesquisa = PesquisaForm(request.POST)
+        request.session['sinaisCheckboxes'] = request.POST.copy()
+        formCheckbox = PesquisaCheckboxForm(request.session['sinaisCheckboxes'])
+        formSinais = PesquisaSinaisForm(request.session['sinaisCheckboxes'])
+        # formSinais = PesquisaSinaisForm(request.POST)
+        if formPesquisa.is_valid() and formSinais.is_valid():
+            sinaisGlossario = Sinal.objects.filter(publicado=True)
+            resultadoTraducao = formPesquisa.cleaned_data['busca'] or []
+            if checkboxPort and checkboxIng:
+                sinaisP = filterSinaisPort(formSinais, sinaisGlossario, resultadoTraducao)
+                sinaisI = filterSinaisIng(formSinais, sinaisGlossario, resultadoTraducao)
+            elif checkboxPort and not checkboxIng:
+                sinais = filterSinaisPort(formSinais, sinaisGlossario, resultadoTraducao)
+            elif checkboxIng and not checkboxPort:
+                sinais = filterSinaisIng(formSinais, sinaisGlossario, resultadoTraducao)
+        formPesquisa = PesquisaForm()
+        resultado = len(sinais) if sinais else None
+        resultadoP = len(sinaisP) if sinaisP else None
+        resultadoI = len(sinaisI) if sinaisI else None
+        return render(request, 'pesquisa.html', {
+            'formPesquisa': formPesquisa, 'sinais': sinais, 'sinaisP': sinaisP, 'sinaisI': sinaisI,'sinaisGlossario':
+            sinaisGlossario, 'resultado': resultado, 'resultadoP': resultadoP, 'resultadoI': resultadoI, 'glossario':
+            glossario, 'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox,
+            'formSinais': formSinais})
+
+    else:
+        formCheckbox = PesquisaCheckboxForm(request.session['sinaisCheckboxes']) if request.session.get('sinaisCheckboxes')	else PesquisaCheckboxForm()
+        formSinais = PesquisaSinaisForm(request.session['sinaisCheckboxes']) if request.session.get('sinaisCheckboxes') else PesquisaSinaisForm()
+        # formSinais = PesquisaSinaisForm()
+        formPesquisa = PesquisaForm()
+
+    return render(request, 'index.html', {'glossarios': glossarios, 'glossario': glossario, 'formPesquisa': formPesquisa, 'checkboxPort': checkboxPort,
+        'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox, 'formSinais': formSinais, 'form': EnviarSinaisForm(request.POST, request.FILES)
+        })
 
 def glossarioSelecionado(request, glossario):
-    print('pppppppppppppppppppppppppppppppppppppppppppppppppppppp passou aqui')
-
     try:
         glossario = Glossario.objects.get(link=glossario)
     except Glossario.DoesNotExist:
