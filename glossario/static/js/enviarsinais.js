@@ -4,6 +4,7 @@ function inicia(){
     $('select').imagepicker({
         show_label: true
     });
+    $('#id_grupoCMe').hide();
 
     // ADICIONA CLASSE HOVERABLE AOS THUMBNAILS
     $('.thumbnail').addClass('hoverable');
@@ -159,12 +160,7 @@ function inicia(){
 }
 
 
-(function($) {
-    $(document).ready(function() {
-        alert("off ready");
-        inicia()
-    });
-})(django.jQuery);
+
 
 $(document).ready(function() {
     inicia();
