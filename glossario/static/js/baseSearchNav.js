@@ -1,50 +1,45 @@
 // USA SOMENTE CM E GRUPOCM ESQUERDA POIS TANTO FAZ PARA A PESQUISA
 let modal_refs = [
 	'#modalGrupoCMe',
-    '#modalMovimentacao'
 	'#modalCMe'
 ];
 
 let select_refs = [
 	'#id_grupoCMe',
-	'#id_movimentacao',
 	'#id_cmE'
 ];
 
 // ATUALIZA THUMBNAIL EXIBIDO NA SIDENAV QUANDO ALGUM É SELECIONADO NO MODAL
 function sideNavThumbnailRefresh() {
-
-	for(let i = 0; i < modal_refs.length; i++){
+ 	for(let i = 0; i < modal_refs.length; i++){
 		$(modal_refs[i] + ' .thumbnail').unbind('click', sideNavThumbnailRefresh);
 		$(modal_refs[i] + ' .thumbnail').click(function() {
 			let attrValue = $(this).find('p').html() === 'Selecionar' ? '' : $(this).find('p').html();
-
-			// REMOVE ATRIBUTO 'SELECTED' DA OPTION QUE JÁ ESTAVA SELECIONADA
+ 			// REMOVE ATRIBUTO 'SELECTED' DA OPTION QUE JÁ ESTAVA SELECIONADA
 			$("select" + select_refs[i] + " option[selected='selected']").removeAttr('selected');
-
-			let selectedOption = $("select" + select_refs[i] + " option[value='" + attrValue + "']");
-
-			// ADICIONA ATRIBUTO 'SELECTED' À OPTION CLICADA
+ 			let selectedOption = $("select" + select_refs[i] + " option[value='" + attrValue + "']");
+ 			// ADICIONA ATRIBUTO 'SELECTED' À OPTION CLICADA
 			selectedOption.attr('selected', 'selected');
-
-			// RECONSTRÓI O IMAGEPICKER PARA ATUALIZAR THUMBNAIL EXIBIDO
+ 			// RECONSTRÓI O IMAGEPICKER PARA ATUALIZAR THUMBNAIL EXIBIDO
 			$('select' + select_refs[i]).imagepicker({
 				show_label: true
 			});
-
-			// ADICIONA EFEITO DE HOVER AOS THUMBNAILS NOVAMENTE APOS RECONSTRUÇÃO DO IMAGEPICKER
+ 			// ADICIONA EFEITO DE HOVER AOS THUMBNAILS NOVAMENTE APOS RECONSTRUÇÃO DO IMAGEPICKER
 			$('.thumbnail').addClass('hoverable');
-
-			// VINCULA A THUMBNAIL DA SIDENAV AO EVENTO DE CLIQUE NOVAMENTE
+ 			// VINCULA A THUMBNAIL DA SIDENAV AO EVENTO DE CLIQUE NOVAMENTE
 			sideNavThumbnailRefresh();
 		});
 	}
 }
 
+
+
+
+
 $(document).ready(function() {
 
 	// INICIALIZA O IMAGEPICKER
-	$('.formSinais').imagepicker({
+	$('select').imagepicker({
 		show_label: true
 	});
 
@@ -55,7 +50,7 @@ $(document).ready(function() {
 	$('.modal').modal();
 
 	 for(let i = 0; i < select_refs.length; i++){
-	 	let selectedOption = $(".formSinais select" + select_refs[i] + "option[selected='selected']");
+	 	let selectedOption = $("select" + select_refs[i] + "option[selected='selected']");
 	 	$(selectedOption).parent().prepend(selectedOption);
 	 }
 
@@ -162,5 +157,20 @@ $(document).ready(function() {
 
 	});
 
+
+		$('#modalMovimentacao' + ' .thumbnail').click(function() {
+			let attrValue = $(this).find('p').html() === 'Selecionar' ? '' : $(this).find('p').html();
+ 			// REMOVE ATRIBUTO 'SELECTED' DA OPTION QUE JÁ ESTAVA SELECIONADA
+			$("#id_movimentacao" + " option[selected='selected']").removeAttr('selected');
+ 			let selectedOption = $("#id_movimentacao" + " option[value='" + attrValue + "']");
+ 			// ADICIONA ATRIBUTO 'SELECTED' À OPTION CLICADA
+			selectedOption.attr('selected', 'selected');
+ 			// RECONSTRÓI O IMAGEPICKER PARA ATUALIZAR THUMBNAIL EXIBIDO
+			$('#id_movimentacao').imagepicker({
+				show_label: true
+			});
+ 			// ADICIONA EFEITO DE HOVER AOS THUMBNAILS NOVAMENTE APOS RECONSTRUÇÃO DO IMAGEPICKER
+			$('.thumbnail').addClass('hoverable');
+		});
 
 });

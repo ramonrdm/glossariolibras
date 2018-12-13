@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
-{% load staticfiles %}
-<title>{% block title %}{{ glossario.nome }} - Glossário Letras Libras{% endblock %}</title>
-
+{% block Head %}
+	{{ block.super }}
+	{% load staticfiles %}
+	<title>{% block title %}{{ glossario.nome }} - Glossário Letras Libras{% endblock %}</title>
+{% endblock %}
 {% block Corpo %}
 	    {% include 'navSearch.html' %}
     	{% include 'modaisFormSinais.html' %}
@@ -12,8 +14,8 @@
 		{% endif %}
 		<div class="container">
 				<h2 class="thin center">{{glossario.nome}}</h2>
-				 <p class="divider divisor"></p>
-				 <p class="definicao">{{glossario.descricao}}</p>
+				<p class="divider divisor"></p>
+				<p class="definicao">{{glossario.descricao}}</p>
 
 		</div>
 
@@ -26,9 +28,7 @@
 		<div class="videoGlossario">
 			<i class="large material-icons icone videoOff">videocam_off</i>
 		</div>
-
 	{% endif %}
-
 {% endblock %}
 
 

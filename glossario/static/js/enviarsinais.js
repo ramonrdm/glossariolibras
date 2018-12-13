@@ -1,5 +1,5 @@
 function inicia(){
-    alert("ENTROU");
+
     // INICIALIZA O IMAGEPICKER
     $('select').imagepicker({
         show_label: true

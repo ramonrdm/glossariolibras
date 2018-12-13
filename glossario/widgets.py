@@ -11,7 +11,7 @@ class ImageSelectLocalizacao(Select):
         css = {
             'all': ('/static/image-picker/image-picker/image-picker.css',)
         }
-        js = ('/static/image-picker/image-picker/image-picker.js', '/static/js/jquery.imagemapster.min.js', '/static/js/enviarsinais.js',)
+        js = ('/static/image-picker/image-picker/image-picker.js', '/static/js/jquery.imagemapster.min.js', '/static/js/baseSearchNav.js', )
 
     def __init__(self, attrs=None, choices=(), field_img=None):
         super(ImageSelectLocalizacao, self).__init__(attrs)
@@ -55,6 +55,7 @@ class ImageSelectLocalizacao(Select):
             'wrap_label': True,
         }
 
+
 class ImageSelectMovimentacao(Select):
 
     def __init__(self, attrs=None, choices=(), field_img=None):
@@ -79,18 +80,20 @@ class ImageSelectMovimentacao(Select):
             option_attrs['data-img-src'] = '/static/img/X.svg'
         else:
             option_attrs['data-img-src'] = '/static/img/' + self.movimentacoes[str(value)]
-
         return {
             'name': name,
             'value': value,
-            'label': label,
+            'label': value,
             'selected': selected,
             'index': index,
             'attrs': option_attrs,
             'type': self.input_type,
             'template_name': self.option_template_name,
             'wrap_label': True,
+
         }
+
+
 
 
 

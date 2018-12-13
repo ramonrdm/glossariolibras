@@ -1,15 +1,18 @@
 {% extends 'base.html' %}
-{% load staticfiles %}
 {% block Head %}
-	{{block.super}}
-<link rel="stylesheet" type="text/css" href='{% static "css/pesquisa.css" %}'/>
-<title>{% block title %}Pesquisa {{ glossario.nome }} - Glossário Letras Libras {% endblock %}</title>
-
+	{{ block.super }}
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href='{% static "css/pesquisa.css" %}'/>
+    <script type="text/javascript" src="{% static 'js/jqeury-3.2.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/image-picker.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/imagemapster.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/baseSearchNav.js' %}"></script>
+	<title>{% block title %}Pesquisa {{ glossario.nome }} - Glossário Letras Libras {% endblock %}</title>
 {% endblock %}
-
 {% block Corpo %}
-{% include 'navSearch.html' %}
-{% include 'modaisFormSinais.html' %}
+	    {% include 'navSearch.html' %}
+    	{% include 'modaisFormSinais.html' %}
+
 		{% if glossario.imagem %}
 			<a href="/{{glossario.link}}"><img class="circle imgGlossario" src="{{ glossario.imagem.url }}"/></a>
 		{% else %}
@@ -17,8 +20,6 @@
 		{% endif %}
 		<div class="container">
 				<h2 class="thin center">{{glossario.nome}}</h2>
-
-
 		</div>
 
 <div class="container divider"></div>

@@ -151,7 +151,7 @@ class Sinal(models.Model):
                     )
     localizacao = models.CharField(max_length=2, choices=localizacoes,default=8)
     movimentacoes = (('1', 'Sem Movimentação'),('2', 'Parede'), ('3', 'Chão'), ('4', 'Circular'), ('5', 'Contato'))
-    movimentacao = models.CharField(max_length=10, choices=movimentacoes,default='sem')
+    movimentacao = models.CharField(max_length=10, choices=movimentacoes, default=1)
     dataPost = models.DateField('data de criação', null=True)
     postador = models.ForeignKey(UserGlossario, null=True, on_delete=models.CASCADE)
     publicado = models.BooleanField(default=False)

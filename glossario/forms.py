@@ -148,7 +148,7 @@ class EnviarSinaisForm(forms.ModelForm):
 class PesquisaSinaisForm(forms.ModelForm):
 	class Meta:
 		model = Sinal
-		fields = ['localizacao', 'grupoCMe', 'cmE', 'movimentacao']
+		fields = ['localizacao', 'grupoCMe', 'cmE', 'movimentacao', ]
 		widgets =	{
 					'localizacao': ImageSelectLocalizacao(),
 					'grupoCMe': ImageSelectMao(),
