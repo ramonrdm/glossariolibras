@@ -1,7 +1,7 @@
 // USA SOMENTE CM E GRUPOCM ESQUERDA POIS TANTO FAZ PARA A PESQUISA
 let modal_refs = [
 	'#modalGrupoCMe',
-	'#modalMovimentacao',
+    '#modalMovimentacao'
 	'#modalCMe'
 ];
 
@@ -40,40 +40,11 @@ function sideNavThumbnailRefresh() {
 		});
 	}
 }
-function sideNavThumbnailRefresh() {
-
-	for(let i = 0; i < modal_refs.length; i++){
-		$(modal_refs[i] + ' .thumbnail').unbind('click', sideNavThumbnailRefresh);
-		$(modal_refs[i] + ' .thumbnail').click(function() {
-			let attrValue = $(this).find('p').html() === 'Selecionar' ? '' : $(this).find('p').html();
-
-			// REMOVE ATRIBUTO 'SELECTED' DA OPTION QUE JÁ ESTAVA SELECIONADA
-			$("select" + select_refs[i] + " option[selected='selected']").removeAttr('selected');
-
-			let selectedOption = $("select" + select_refs[i] + " option[value='" + attrValue + "']");
-
-			// ADICIONA ATRIBUTO 'SELECTED' À OPTION CLICADA
-			selectedOption.attr('selected', 'selected');
-
-			// RECONSTRÓI O IMAGEPICKER PARA ATUALIZAR THUMBNAIL EXIBIDO
-			$('select' + select_refs[i]).imagepicker({
-				show_label: true
-			});
-
-			// ADICIONA EFEITO DE HOVER AOS THUMBNAILS NOVAMENTE APOS RECONSTRUÇÃO DO IMAGEPICKER
-			$('.thumbnail').addClass('hoverable');
-
-			// VINCULA A THUMBNAIL DA SIDENAV AO EVENTO DE CLIQUE NOVAMENTE
-			sideNavThumbnailRefresh();
-		});
-	}
-}
-
 
 $(document).ready(function() {
 
 	// INICIALIZA O IMAGEPICKER
-	$('select').imagepicker({
+	$('.formSinais').imagepicker({
 		show_label: true
 	});
 
@@ -190,7 +161,6 @@ $(document).ready(function() {
 		$('.thumbnail').addClass('hoverable');
 
 	});
-
 
 
 });
