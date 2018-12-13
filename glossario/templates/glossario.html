@@ -3,8 +3,8 @@
 <title>{% block title %}{{ glossario.nome }} - Glossário Letras Libras{% endblock %}</title>
 
 {% block Corpo %}
-{% include 'navSearch.html' %}
-{% include 'modaisFormSinais.html' %}
+	    {% include 'navSearch.html' %}
+    	{% include 'modaisFormSinais.html' %}
 		{% if glossario.imagem %}
 			<a href="/{{glossario.link}}"><img class="circle imgGlossario" src="{{ glossario.imagem.url }}"/></a>
 		{% else %}

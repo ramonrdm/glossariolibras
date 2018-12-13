@@ -62,7 +62,7 @@ class ImageSelectMovimentacao(Select):
         self.choices = list(choices)
         self.field_img = field_img
 
-    movimentacoes = dict([('1', 'X.svg'), ('2', 'parede.png'), ('3', 'chao.png'), ('4', 'circular.png'), ('5', 'chao.png')])
+    movimentacoes = dict([('1', 'parede.png'), ('2', 'chao.png'), ('3', 'circular.png'), ('4', 'chao.png')])
 
     def create_option(self, name, value, label, selected, index, subindex=None, attrs=None):
 
@@ -75,10 +75,10 @@ class ImageSelectMovimentacao(Select):
         if 'id' in option_attrs:
             option_attrs['id'] = self.id_for_label(option_attrs['id'], index)
 
-        if value == '':
-            option_attrs['data-img-src'] = '/static/img/X.svg'
-        else:
+        if value != '':
             option_attrs['data-img-src'] = '/static/img/' + self.movimentacoes[str(value)]
+        else:
+            option_attrs['data-img-src'] = '/static/img/X.svg'
 
         return {
             'name': name,
@@ -112,8 +112,6 @@ class ImageSelectMao(Select):
         if 'id' in option_attrs:
             option_attrs['id'] = self.id_for_label(option_attrs['id'], index)
 
-
-        i = None
         if value != '':
             i = int(value) - 1
             option_attrs['data-img-src'] = self.field_img[i]

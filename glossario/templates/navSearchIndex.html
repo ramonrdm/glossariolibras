@@ -26,35 +26,39 @@
                         {% if field.auto_id == 'id_localizacao' %}
                             <div class="col s2  offset-m1 " id="{{auto.id}}">
                                 <a class="modal-trigger" href="#modalLocalizacao">
+
                                     {{ field }}
                                 </a>
                             </div>
                         {% elif field.auto_id == 'id_grupoCMe' %}
                             <div class="col s2 " id="{{auto.id}">
                                 <a class="modal-trigger" href="#modalGrupoCMe">
-                                    {{ formSinais.grupoCMe }}
+
+                                    {{ field }}
                                 </a>
                             </div>
                         {% elif field.auto_id == 'id_cmE' %}
                             <div class="col s2" id="{{auto.id}}">
                                 <a class="modal-trigger" href="#modalCMe">
+
                                     {{ field }}
                                 </a>
                             </div>
                          {% elif field.auto_id == 'id_movimentacao' %}
                             <div class="col s2" id="{{auto.id}}">
                                 <a class="modal-trigger" href="#modalMovimentacao">
-                                    {{ field  }}
+
+                                    {{ field }}
                                 </a>
                             </div>
                    </div>
                         {% endif %}
                     {% endfor %}
-                <div class="col s12 m2"
+                <div class="col s12 m2 "
                     <li><button class="btn waves-effect waves-light botaoPesquisar" type="submit" name="botaoPesquisar">Pesquisar<i class="material-icons right">send</i></button></li>
                 </div>
                 <div class="col s4">
-                    <li><a title="Pesquisar com texto!" id="pesquisaLibras" class="btn-floating btn-large halfway-fab waves-effect waves-light teal material-icons  grey darken-1"><i class="material-icons">sort_by_alpha</i></a></li>
+                    <li><a title="Pesquisar com texto!" id="pesquisaLibras" class="btn-floating btn-large halfway-fab waves-effect waves-light teal  material-icons grey darken-1"><i class="material-icons">sort_by_alpha</i></a></li>
                 </div>
             </ul>
         </div>
