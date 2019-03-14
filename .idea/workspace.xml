@@ -6,18 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="5e0c9503-7214-497a-ab05-775fada2eea5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/glossario/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/glossario/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/glossario/static/js/baseSearchNav.js" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/static/js/baseSearchNav.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/glossario/static/js/enviarsinais.js" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/static/js/enviarsinais.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/glossario/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/glossario/templates/glossario.html" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/templates/glossario.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/glossario/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/glossario/templates/navSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/templates/navSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/glossario/templates/navSearchIndex.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/glossario/templates/pesquisa.html" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/templates/pesquisa.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/glossario/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/glossario/widgets.py" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/widgets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/glossariolibras/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/glossariolibras/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/registration/password_reset_done.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/password_reset_done.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/registration/password_reset_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/password_reset_form.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,44 +21,47 @@
     <session id="437550871">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="10" />
+          <entry key="project.closed" value="13" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.21" value="1" />
           <entry key="project.open.time.22" value="2" />
           <entry key="project.open.time.23" value="2" />
           <entry key="project.open.time.24" value="1" />
+          <entry key="project.open.time.25" value="1" />
           <entry key="project.open.time.26" value="1" />
-          <entry key="project.open.time.27" value="2" />
+          <entry key="project.open.time.27" value="4" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="12" />
+          <entry key="project.opened" value="15" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="20" />
-          <entry key="html" value="160" />
-          <entry key="js" value="84" />
-          <entry key="py" value="109" />
+          <entry key="html" value="173" />
+          <entry key="js" value="90" />
+          <entry key="py" value="120" />
           <entry key="rnc" value="1" />
+          <entry key="txt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="20" />
-          <entry key="HTML" value="160" />
-          <entry key="JavaScript" value="84" />
-          <entry key="Python" value="109" />
+          <entry key="HTML" value="173" />
+          <entry key="JavaScript" value="90" />
+          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="Python" value="120" />
           <entry key="RNG Compact" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="1023" />
-          <entry key="HTML" value="3252" />
-          <entry key="JavaScript" value="475" />
+          <entry key="HTML" value="3272" />
+          <entry key="JavaScript" value="491" />
           <entry key="PLAIN_TEXT" value="37" />
-          <entry key="Python" value="1883" />
+          <entry key="Python" value="1901" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -74,9 +69,9 @@
         <counts>
           <entry key="Python Console" value="30" />
           <entry key="css" value="1023" />
-          <entry key="html" value="3252" />
-          <entry key="js" value="475" />
-          <entry key="py" value="1853" />
+          <entry key="html" value="3272" />
+          <entry key="js" value="491" />
+          <entry key="py" value="1871" />
           <entry key="txt" value="37" />
         </counts>
       </usages-collector>
@@ -88,86 +83,40 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/glossario/widgets.py">
+        <entry file="file://$PROJECT_DIR$/templates/registration/password_reset_form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="67" column="46" selection-start-line="67" selection-start-column="41" selection-end-line="67" selection-end-column="46" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
+            <state>
+              <caret column="25" selection-start-column="25" selection-end-column="25" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/glossario/static/js/baseSearchNav.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="161" column="102" lean-forward="true" selection-start-line="161" selection-start-column="102" selection-end-line="161" selection-end-column="102" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/glossario/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="189" lean-forward="true" selection-start-line="189" selection-end-line="195" />
-              <folding>
-                <element signature="e#24#52#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/glossario/templates/modaisFormSinais.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="531">
-              <caret line="53" column="25" selection-start-line="53" selection-start-column="15" selection-end-line="53" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/glossario/templates/navSearch.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="44" column="44" selection-start-line="44" selection-start-column="39" selection-end-line="44" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/glossario/tests.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/glossario/tokens.py">
+        <entry file="file://$PROJECT_DIR$/templates/registration/password_reset_done.html">
           <provider selected="true" editor-type-id="text-editor">
             <state>
+              <caret column="25" selection-start-column="25" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../env/lib/python3.5/site-packages/django/template/loader_tags.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="230">
+              <caret line="204" selection-start-line="204" selection-end-line="204" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/glossariolibras/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
               <folding>
-                <element signature="e#0#66#0" expanded="true" />
+                <element signature="e#1#33#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/glossario/static/image-picker/image-picker/image-picker.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="15" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/glossario/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="157" column="61" lean-forward="true" selection-start-line="157" selection-start-column="61" selection-end-line="157" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -235,14 +184,12 @@
         <option value="$PROJECT_DIR$/glossario/templates/temas2.html" />
         <option value="$PROJECT_DIR$/templates/admin/base_site.html" />
         <option value="$PROJECT_DIR$/glossario/static/css/base.css" />
-        <option value="$PROJECT_DIR$/glossario/templates/enviarsinais.html" />
         <option value="$PROJECT_DIR$/glossario/admin.py" />
         <option value="$PROJECT_DIR$/templates/admin/change_form.html" />
         <option value="$PROJECT_DIR$/glossario/templates/navSearchIndex.html" />
         <option value="$PROJECT_DIR$/glossario/templates/modaisFormSinais.html" />
         <option value="$PROJECT_DIR$/glossario/templates/index.html" />
         <option value="$PROJECT_DIR$/glossario/static/js/enviarsinais.js" />
-        <option value="$PROJECT_DIR$/glossario/templates/base.html" />
         <option value="$PROJECT_DIR$/glossario/models.py" />
         <option value="$PROJECT_DIR$/glossario/templates/navSearch.html" />
         <option value="$PROJECT_DIR$/glossario/templates/glossario.html" />
@@ -252,13 +199,19 @@
         <option value="$PROJECT_DIR$/glossario/forms.py" />
         <option value="$PROJECT_DIR$/glossario/widgets.py" />
         <option value="$PROJECT_DIR$/glossario/static/js/baseSearchNav.js" />
+        <option value="$PROJECT_DIR$/templates/admin/login.html" />
+        <option value="$PROJECT_DIR$/glossario/templates/enviarsinais.html" />
+        <option value="$PROJECT_DIR$/glossario/templates/base.html" />
+        <option value="$PROJECT_DIR$/glossariolibras/urls.py" />
+        <option value="$PROJECT_DIR$/templates/registration/password_reset_form.html" />
+        <option value="$PROJECT_DIR$/templates/registration/password_reset_done.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="1439" />
     <option name="width" value="1922" />
-    <option name="height" value="540" />
+    <option name="height" value="1053" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -281,40 +234,12 @@
               <item name="glossariolibras" type="b2602c69:ProjectViewProjectNode" />
               <item name="glossariolibras" type="462c0819:PsiDirectoryNode" />
               <item name="glossario" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="glossariolibras" type="b2602c69:ProjectViewProjectNode" />
-              <item name="glossariolibras" type="462c0819:PsiDirectoryNode" />
-              <item name="glossario" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="image-picker" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="glossariolibras" type="b2602c69:ProjectViewProjectNode" />
-              <item name="glossariolibras" type="462c0819:PsiDirectoryNode" />
-              <item name="glossario" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="image-picker" type="462c0819:PsiDirectoryNode" />
-              <item name="image-picker" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="glossariolibras" type="b2602c69:ProjectViewProjectNode" />
-              <item name="glossariolibras" type="462c0819:PsiDirectoryNode" />
-              <item name="glossario" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="glossariolibras" type="b2602c69:ProjectViewProjectNode" />
-              <item name="glossariolibras" type="462c0819:PsiDirectoryNode" />
-              <item name="glossario" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="glossariolibras" type="b2602c69:ProjectViewProjectNode" />
               <item name="glossariolibras" type="462c0819:PsiDirectoryNode" />
-              <item name="media" type="462c0819:PsiDirectoryNode" />
+              <item name="glossariolibras" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="glossariolibras" type="b2602c69:ProjectViewProjectNode" />
@@ -326,6 +251,12 @@
               <item name="glossariolibras" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="glossariolibras" type="b2602c69:ProjectViewProjectNode" />
+              <item name="glossariolibras" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="registration" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -394,7 +325,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1439" y="0" width="1922" height="1080" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="1" sideWeight="0.5005225" side_tool="true" weight="0.24986821" />
@@ -423,62 +353,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="admin glossario aceita imagem vazia" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/registration/password_reset_form.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/glossariolibras/urls.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/sinal.html" />
-    <entry file="file://$PROJECT_DIR$/glossariolibras/wsgi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/glossario/static/js/jquery.imagemapster.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="24" column="63" selection-start-line="24" selection-start-column="63" selection-end-line="24" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/glossario/static/js/jquery.imagemapster.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/glossario/static/image-picker/image-picker/image-picker.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/glossario/static/js/jquery-3.2.1.min.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/glossario/static/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="40" column="47" lean-forward="true" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/glossario/static/css/baseAdmin.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="71" column="1" selection-start-line="71" selection-start-column="1" selection-end-line="71" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/glossariolibras/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="37" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/glossario/templates/importacaoPesquisa.html" />
     <entry file="file://$PROJECT_DIR$/../env/lib/python3.5/site-packages/django/template/base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
@@ -524,13 +398,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/glossario/templates/contato.html">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -549,13 +416,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="945">
           <caret line="121" selection-start-line="121" selection-end-line="121" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/glossario/templates/enviarsinais.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -591,20 +451,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/change_form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="10" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/glossario/templates/navSearchIndex.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="44" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/change_form.html" />
+    <entry file="file://$PROJECT_DIR$/glossario/templates/navSearchIndex.html" />
     <entry file="file://$PROJECT_DIR$/glossario/static/js/sinal.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -616,27 +464,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/glossario/static/js/materialize.js">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/glossario/static/js/base.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/glossario/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" selection-start-line="12" selection-end-line="12" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/glossario/static/js/enviarsinais.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="18" lean-forward="true" selection-start-column="18" selection-end-column="18" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/glossario/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -659,46 +486,92 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/glossario/widgets.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="81" column="90" selection-start-line="81" selection-start-column="90" selection-end-line="81" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/glossario/models.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2655">
+          <caret line="189" selection-start-line="189" selection-end-line="195" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/glossario/templates/modaisFormSinais.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="795">
+          <caret line="53" column="25" selection-start-line="53" selection-start-column="15" selection-end-line="53" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/glossario/templates/navSearch.html">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
-          <caret line="189" lean-forward="true" selection-start-line="189" selection-end-line="195" />
-          <folding>
-            <element signature="e#24#52#0" expanded="true" />
-          </folding>
+          <caret line="44" column="44" selection-start-line="44" selection-start-column="39" selection-end-line="44" selection-end-column="44" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/glossario/tests.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/glossario/tokens.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#66#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/glossario/static/js/graphics.js">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/glossario/views.py">
+    <entry file="file://$PROJECT_DIR$/glossario/static/js/baseSearchNav.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="262" column="24" selection-start-line="262" selection-start-column="18" selection-end-line="262" selection-end-column="24" />
-          <folding>
-            <element signature="e#24#89#0" expanded="true" />
-            <marker date="1544730677015" expanded="true" signature="9274:9276" ph="..." />
-          </folding>
+        <state relative-caret-position="-1125">
+          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/glossario/static/image-picker/image-picker/image-picker.min.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/glossario/static/js/enviarsinais.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="18" selection-start-column="18" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/glossario/static/js/base.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/python2.7/importlib/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python2.7/dist-packages/django/urls/resolvers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="305" selection-start-line="305" selection-end-line="305" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/glossario/tokens.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/glossario/static/image-picker/image-picker/image-picker.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="15" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="15" />
+        <state relative-caret-position="435">
+          <caret line="300" column="31" selection-start-line="300" selection-start-column="25" selection-end-line="300" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/glossario/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-485">
+          <caret line="262" column="24" selection-start-line="262" selection-start-column="18" selection-end-line="262" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -709,34 +582,82 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/glossario/widgets.py">
+    <entry file="file://$PROJECT_DIR$/glossariolibras/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="67" column="46" selection-start-line="67" selection-start-column="41" selection-end-line="67" selection-end-column="46" />
+        <state relative-caret-position="291">
+          <caret line="110" column="61" lean-forward="true" selection-start-line="110" selection-start-column="61" selection-end-line="110" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/registration/password_reset_complete.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="7" lean-forward="true" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/registration/password_reset_email.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/registration/password_reset_subject.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/glossario/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="15" lean-forward="true" selection-start-column="15" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/glossario/templates/enviarsinais.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="36" lean-forward="true" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/registration/password_reset_confirm.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/registration/password_reset_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="25" selection-start-column="25" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/glossariolibras/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
           <folding>
-            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#1#33#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/glossario/templates/navSearch.html">
+    <entry file="file://$PROJECT_DIR$/../env/lib/python3.5/site-packages/django/template/loader_tags.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="44" column="44" selection-start-line="44" selection-start-column="39" selection-end-line="44" selection-end-column="44" />
+        <state relative-caret-position="230">
+          <caret line="204" selection-start-line="204" selection-end-line="204" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/glossario/templates/modaisFormSinais.html">
+    <entry file="file://$PROJECT_DIR$/templates/registration/password_reset_done.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="531">
-          <caret line="53" column="25" selection-start-line="53" selection-start-column="15" selection-end-line="53" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/glossario/static/js/baseSearchNav.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="161" column="102" lean-forward="true" selection-start-line="161" selection-start-column="102" selection-end-line="161" selection-end-column="102" />
+        <state>
+          <caret column="25" selection-start-column="25" selection-end-column="25" />
         </state>
       </provider>
     </entry>

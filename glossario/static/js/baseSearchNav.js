@@ -9,6 +9,9 @@ let select_refs = [
 	'#id_cmE'
 ];
 
+
+
+
 // ATUALIZA THUMBNAIL EXIBIDO NA SIDENAV QUANDO ALGUM É SELECIONADO NO MODAL
 function sideNavThumbnailRefresh() {
  	for(let i = 0; i < modal_refs.length; i++){
@@ -37,7 +40,6 @@ function sideNavThumbnailRefresh() {
 
 
 $(document).ready(function() {
-
 	// INICIALIZA O IMAGEPICKER
 	$('select').imagepicker({
 		show_label: true
@@ -155,6 +157,8 @@ $(document).ready(function() {
 		// ADICIONA EFEITO DE HOVER AOS THUMBNAILS NOVAMENTE APOS RECONSTRUÇÃO DO IMAGEPICKER
 		$('.thumbnail').addClass('hoverable');
 
+
+
 	});
 
 
@@ -171,6 +175,10 @@ $(document).ready(function() {
 			});
  			// ADICIONA EFEITO DE HOVER AOS THUMBNAILS NOVAMENTE APOS RECONSTRUÇÃO DO IMAGEPICKER
 			$('.thumbnail').addClass('hoverable');
+
+
 		});
+
+
 
 });
