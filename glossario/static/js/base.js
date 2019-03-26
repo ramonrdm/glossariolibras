@@ -19,6 +19,5 @@ $(document).ready(function() {
          $('#Libras').hide()
         });
 
-
 });
 

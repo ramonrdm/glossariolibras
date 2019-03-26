@@ -18,7 +18,7 @@
 
         <!--Pesquisa de Texto -->
          <div class="nav-wrapper white" id="Libras">
-            <ul>
+            <br>
                <div class="">
                 {% for field in formSinais %}
                         {% if field.auto_id == 'id_localizacao' %}
@@ -49,6 +49,7 @@
                         {% endif %}
                     {% endfor %}
                 <div class="col s12 m2"
+
                     <li><button class="btn waves-effect waves-light botaoPesquisar" type="submit" name="botaoPesquisar">Pesquisar<i class="material-icons right">send</i></button></li>
                 </div>
                 <div class="col s4">

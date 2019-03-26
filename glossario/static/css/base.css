@@ -7,11 +7,9 @@
 
 
 nav {
-    height: 150px;
-    line-height: 300px;
 
-    margin: 0 !important;
-    padding: 0 12px 0 15px;
+    margin: 12 !important;
+    padding: 0 50px 0 15px;
     background-color: var(--primary);
 }
 
@@ -27,8 +25,12 @@ nav .brand-logo {
 @media only screen and (min-width: 1000px){
     nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
         height: 130px;
-        line-height: 100px;
+        line-height: 12px;
+
+nav  botaoPesquisar {
+       line-height : 50px;
     }
+}
 }
 
 
@@ -620,3 +622,4 @@ h3{
 }
 
 /* ============= FIM NADA DE MAIS... ============= */
+
