@@ -6,6 +6,9 @@
 }
 
 
+
+/* ================= NAVBAR ================= */
+
 nav {
 
     margin: 12 !important;
@@ -27,8 +30,9 @@ nav .brand-logo {
         height: 130px;
         line-height: 12px;
 
-nav  botaoPesquisar {
+    .botaoPesquisar {
        line-height : 50px;
+       color: red;
     }
 }
 }

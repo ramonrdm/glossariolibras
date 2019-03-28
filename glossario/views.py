@@ -181,7 +181,7 @@ def temas(request, temas=None):
 def enviarSinais(request):
     if request.method == 'POST':
         form = EnviarSinaisForm(request.POST, request.FILES)
-
+        formPesquisa = PesquisaForm()
         toastSucesso = True
         try:
             if form.is_valid():

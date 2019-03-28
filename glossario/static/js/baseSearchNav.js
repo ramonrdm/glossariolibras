@@ -171,7 +171,6 @@ $(document).ready(function() {
 			selectedOption.attr('selected', 'selected');
  			// RECONSTRÓI O IMAGEPICKER PARA ATUALIZAR THUMBNAIL EXIBIDO
 			$('#id_movimentacao').imagepicker({
-
 			});
  			// ADICIONA EFEITO DE HOVER AOS THUMBNAILS NOVAMENTE APOS RECONSTRUÇÃO DO IMAGEPICKER
 			$('.thumbnail').addClass('hoverable');

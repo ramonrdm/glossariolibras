@@ -83,7 +83,6 @@ class GlossarioForm(forms.ModelForm):
 
 class SinalForm(forms.ModelForm):
 
-
 	class Meta:
 		model = Sinal
 		fields = ['glossario', 'traducaoP', 'traducaoI', 'descricao', 'bsw', 'grupoCMe', 'cmE', 'grupoCMd',
@@ -91,10 +90,10 @@ class SinalForm(forms.ModelForm):
 		'publicado']
 		widgets = {
 					'localizacao': ImageSelectLocalizacao(),
-					# 'grupoCMe': ImageSelectMao(field_img=('/media/1_xFV5N9L.png', '/media/2_oKcgLJc.png')),
-					# 'cmE': ImageSelectMao(),
-					# 'grupoCMd': ImageSelectMao(),
-					# 'cmD': ImageSelectMao(),
+					'grupoCMe': ImageSelectMao(field_img=('/media/1_xFV5N9L.png', '/media/2_oKcgLJc.png')),
+					'cmE': ImageSelectMao(),
+					'grupoCMd': ImageSelectMao(),
+					'cmD': ImageSelectMao(),
 					'movimentacao': ImageSelectMovimentacao()
 		}
 
@@ -120,7 +119,6 @@ class SinalForm(forms.ModelForm):
 
 
 class EnviarSinaisForm(forms.ModelForm):
-
 	class Meta:
 		model = Sinal
 		fields = ['traducaoP', 'traducaoI', 'descricao', 'localizacao', 'movimentacao', 'grupoCMe', 'cmE', 'grupoCMd', 'cmD',
