@@ -19,6 +19,7 @@ from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+
 def index(request, glossario=None):
     glossarios = Glossario.objects.all()
 
@@ -117,6 +118,12 @@ def sinal(request, sinal=None, glossario=None):
         try:
             sinal = Sinal.objects.get(id=sinal)
             glossario = sinal.glossario
+            localizacoes = dict([('1','localizacaoCabeca.png'),('2','localizacaoOmbros.png'),('3','localizacaoBracos.png'),
+                                ('4','localizacaoNariz.png'),('5','localizacaoBochechas.png'),('6','localizacaoBoca.png'),
+                                ('7','localizacaoTronco.png'),('8','localizacaoNeutro.png'),('9','localizacaoOlhos.png'),('10','localizacaoOrelhas.png'),
+                                ('11','localizacaoPescoco.png'),('12','localizacaoQueixo.png'),('13','localizacaoTesta.png')])
+            sinal.localizacao = "/static/img/"+localizacoes[sinal.localizacao]
+
         except Sinal.DoesNotExist:
             sinal = None
 

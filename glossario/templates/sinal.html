@@ -23,10 +23,7 @@
 		</div>
 		<div id="tabSinal" class="col s12">
 			<div class="center" id="videoSinal">
-				<div class="container">
-					<h2 class="thin">{{sinal.bsw}}</h2>
-					<div class="divider"></div>
-				</div>
+
 				{% if sinal.sinalLibras %}
 					<video class="responsive-video z-depth-5 videoSinal" controls preload="metadata">
 						<source src="{{sinal.sinalLibras.url}}">
@@ -39,10 +36,6 @@
 		</div>
 		<div id="tabDescricao" class="col s12">
 			<div class="center" id="videoDescricao">
-				<div class="container">
-					<h2 class="thin">{{sinal.bsw}}</h2>
-					<div class="divider"></div>
-				</div>
 				{% if sinal.descLibras %}
 					<video class="responsive-video z-depth-5 videoSinal" controls preload="metadata">
 						<source src="{{sinal.descLibras.url}}">
@@ -55,10 +48,6 @@
 		</div>
 		<div id="tabExemplo" class="col s12">
 			<div class="center" id="videoExemplo">
-				<div class="container">
-					<h2 class="thin">{{sinal.bsw}}</h2>
-					<div class="divider"></div>
-				</div>
 				{% if sinal.exemploLibras %}
 					<video class="responsive-video z-depth-5 videoSinal" controls preload="metadata">
 						<source src="{{sinal.exemploLibras.url}}">
@@ -71,10 +60,6 @@
 		</div>
 		<div id="tabVariacao" class="col s12">
 			<div class="center" id="videoVariacao">
-				<div class="container">
-					<h2 class="thin">{{sinal.bsw}}</h2>
-					<div class="divider"></div>
-				</div>
 				{% if sinal.varicLibras %}
 					<video class="responsive-video z-depth-5 videoSinal" controls preload="metadata">
 						<source src="{{sinal.varicLibras.url}}">
@@ -99,6 +84,11 @@
 					</div>
 					<div>
 						Inglês: {{sinal.traducaoI}}
+					</div>
+
+					<div class="container">
+						SignWrite:<br>
+					<img src="http://glossario.libras.ufsc.br/swis/column.php?size=1&colorize=1&fill=FFFFFF&back=FFFFFF&spacing=10&offset=50&bsw={{sinal.bsw}}">
 					</div>
 				</div>
 			</div>
@@ -174,8 +164,8 @@
 				<div class="card-content white-text">
 					<span class="card-title center">Localização</span>
 					<div class="center imgMao">
-						{% if sinal.localizacao.imagem %}
-							<img class="circle imgSinal" src="{{sinal.localizacao.imagem.url}}">
+						{% if sinal.localizacao %}
+							<img class="circle imgSinal" src="{{sinal.localizacao}}">
 						{% else %}
 							<i class="large material-icons white-text imgSinal">cloud_off</i>
 						{% endif %}
