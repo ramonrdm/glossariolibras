@@ -52,15 +52,15 @@ tabberObj.prototype.init = function(e)
 {
 
   var
-  childNodes, 
-  i, i2, 
-  t, 
-  defaultTab=0, 
-  DOM_ul, 
-  DOM_li, 
-  DOM_a, 
-  aId, 
-  headingElement; 
+  childNodes,
+  i, i2,
+  t,
+  defaultTab=0,
+  DOM_ul,
+  DOM_li,
+  DOM_a,
+  aId,
+  headingElement;
 
   if (!document.getElementsByTagName) { return false; }
 
@@ -164,13 +164,13 @@ tabberObj.prototype.init = function(e)
 
 tabberObj.prototype.navClick = function(event)
 {
- 
+
   var
-  rVal, 
-  a, 
-  self, 
-  tabberIndex, 
-  onClickArgs; 
+  rVal,
+  a,
+  self,
+  tabberIndex,
+  onClickArgs;
 
   a = this;
   if (!a.tabber) { return false; }
@@ -198,7 +198,7 @@ tabberObj.prototype.navClick = function(event)
 
 tabberObj.prototype.tabHideAll = function()
 {
-  var i; 
+  var i;
 
   for (i = 0; i < this.tabs.length; i++) {
     this.tabHide(i);
@@ -264,9 +264,9 @@ tabberObj.prototype.navClearActive = function(tabberIndex)
 function tabberAutomatic(tabberArgs)
 {
   var
-    tempObj, 
-    divs, 
-    i; 
+    tempObj,
+    divs,
+    i;
 
   if (!tabberArgs) { tabberArgs = {}; }
 
@@ -282,7 +282,7 @@ function tabberAutomatic(tabberArgs)
       divs[i].tabber = new tabberObj(tabberArgs);
     }
   }
-  
+
   return this;
 }
 

@@ -63,7 +63,7 @@ class ImageSelectMovimentacao(Select):
         self.choices = list(choices)
         self.field_img = field_img
 
-    movimentacoes = dict([('1', 'X.svg'), ('2', 'parede.png'), ('3', 'chao.png'), ('4', 'circular.png'), ('5', 'chao.png')])
+    movimentacoes = dict([('1', 'X.svg'), ('2', 'parede.png'), ('3', 'chao.png'), ('4', 'circular.png'), ('5', 'contato.png')])
 
     def create_option(self, name, value, label, selected, index, subindex=None, attrs=None):
 

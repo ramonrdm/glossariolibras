@@ -4,7 +4,6 @@
 	{{ form.media }}
     {% load staticfiles %}
 	<title>{% block title %}Enviar sinais - Glossário Letras Libras{% endblock %}</title>
-	{{ form.media }}
 {% endblock %}
 {% block Corpo %}
 	{% include 'modaisFormSinais.html' %}
@@ -59,7 +58,7 @@
 
                             {% elif field.auto_id == 'id_grupoCMd' %}
                            <div class="col s4" id="{{auto.id}}">
-                               <a class="modal-trigger" href="#modalGrupoCMe">
+                               <a class="modal-trigger" href="#modalGrupoCMd">
                                     {{ field.errors }}
                                     {{ field.label_tag }}
                                     {{ field }}
@@ -77,7 +76,7 @@
 
                             {% elif field.auto_id == 'id_cmD' %}
                            <div class="col s4" id="{{auto.id}}">
-                               <a class="modal-trigger" href="#modalCMe">
+                               <a class="modal-trigger" href="#modalCMd">
                                     {{ field.errors }}
                                     {{ field.label_tag }}
                                     {{ field }}
