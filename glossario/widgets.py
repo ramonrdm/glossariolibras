@@ -11,7 +11,7 @@ class ImageSelectLocalizacao(Select):
         css = {
             'all': ('/static/image-picker/image-picker/image-picker.css',)
         }
-        js = ('/static/image-picker/image-picker/image-picker.js', '/static/js/jquery.imagemapster.min.js', '/static/js/baseSearchNav.js', )
+        js = ('/static/image-picker/image-picker/image-picker.js', '/static/js/jquery.imagemapster.js', '/static/js/baseSearchNav.js', )
 
     def __init__(self, attrs=None, choices=(), field_img=None):
         super(ImageSelectLocalizacao, self).__init__(attrs)

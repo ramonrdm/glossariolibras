@@ -3,14 +3,16 @@ let modal_refs = [
 	'#modalGrupoCMe',
 	'#modalCMe',
 	'#modalGrupoCMd',
-	'#modalCMd'
+	'#modalCMd',
+	'#modalMovimentacao'
 ];
 
 let select_refs = [
 	'#id_grupoCMe',
 	'#id_cmE',
 	'#id_grupoCMd',
-	'#id_cmD'
+	'#id_cmD',
+	'#id_movimentacao'
 ];
 
 

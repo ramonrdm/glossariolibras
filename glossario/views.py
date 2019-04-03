@@ -188,7 +188,7 @@ def temas(request, temas=None):
 def enviarSinais(request):
     if request.method == 'POST':
         form = EnviarSinaisForm(request.POST, request.FILES)
-        formPesquisa = PesquisaForm()
+
         toastSucesso = True
         try:
             if form.is_valid():
@@ -211,7 +211,7 @@ def enviarSinais(request):
             return render(request, 'enviarsinais.html', {'form': form, 'toastRepetido': toastRepetido})
     else:
         form = EnviarSinaisForm()
-        return render(request, 'enviarsinais.html', {'form': form})
+        return render(request, 'enviarsinais.html', {'form': form, 'formSinais': EnviarSinaisForm(request.POST, request.FILES)})
 
 def criaNodo(nodoPai):
     filhosPai = queryTemas.filter(temaPai=nodoPai)
