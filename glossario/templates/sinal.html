@@ -86,10 +86,10 @@
 						Inglês: {{sinal.traducaoI}}
 					</div>
 
-					<div class="container">
-						SignWrite:<br>
-					<img src="http://glossario.libras.ufsc.br/swis/column.php?size=1&colorize=1&fill=FFFFFF&back=FFFFFF&spacing=10&offset=50&bsw={{sinal.bsw}}">
-					</div>
+					<!--<div class="container">-->
+						<!--SignWrite:<br>-->
+					<!--<img src="http://glossario.libras.ufsc.br/swis/column.php?size=1&colorize=1&fill=FFFFFF&back=FFFFFF&spacing=10&offset=50&bsw={{sinal.bsw}}">-->
+					<!--</div>-->
 				</div>
 			</div>
 		</div>
@@ -159,13 +159,29 @@
 	</div>
 
 	<div class="row">
-		<div class="col s12">
+		<div class="col s6 m6">
 			<div class="card blue darken-4 z-depth-5 cardSinal">
 				<div class="card-content white-text">
 					<span class="card-title center">Localização</span>
 					<div class="center imgMao">
 						{% if sinal.localizacao %}
 							<img class="circle imgSinal" src="{{sinal.localizacao}}">
+						{% else %}
+							<i class="large material-icons white-text imgSinal">cloud_off</i>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="col s6 m6">
+			<div class="card blue darken-4 z-depth-5 cardSinal">
+				<div class="card-content white-text">
+					<span class="card-title center">Movimentação</span>
+					<div class="center imgMao">
+						{% if sinal.movimentacao %}
+							<img class="circle imgSinal" src="{{sinal.movimentacao}}">
 						{% else %}
 							<i class="large material-icons white-text imgSinal">cloud_off</i>
 						{% endif %}

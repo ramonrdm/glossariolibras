@@ -124,6 +124,9 @@ def sinal(request, sinal=None, glossario=None):
                                 ('11','localizacaoPescoco.png'),('12','localizacaoQueixo.png'),('13','localizacaoTesta.png')])
             sinal.localizacao = "/static/img/"+localizacoes[sinal.localizacao]
 
+            movimentacoes = dict([('0', 'X.svg'), ('1', 'parede.png'), ('2', 'chao.png'), ('3', 'circular.png'), ('4', 'contato.png')])
+            sinal.movimentacao = "/static/img/" + movimentacoes[sinal.movimentacao]
+
         except Sinal.DoesNotExist:
             sinal = None
 
@@ -264,29 +267,42 @@ def temasjson(request):
 #################### MÉTODOS ####################
 
 def filterSinaisPort(formSinais, sinaisGlossario, resultadoTraducao):
-    return sinaisGlossario.filter(
-        # grupoCMe e cmE estão repetidos pois o form pesquisa só por um grupoCM e CM
-                Q(traducaoP__icontains=resultadoTraducao) |
-                Q(localizacao=formSinais.cleaned_data['localizacao']) |
-                Q(movimentacao=formSinais.cleaned_data['movimentacao']) |
-                Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) |
-                Q(grupoCMd=formSinais.cleaned_data['grupoCMe']) |
-                Q(cmE=formSinais.cleaned_data['cmE']) |
-                Q(cmD=formSinais.cleaned_data['cmE'])
-            ).distinct()
+
+
+     if resultadoTraducao == []:
+         return sinaisGlossario.filter(
+             Q(localizacao=formSinais.cleaned_data['localizacao']) &
+             Q(movimentacao=formSinais.cleaned_data['movimentacao']) &
+             Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) &
+             Q(grupoCMd=formSinais.cleaned_data['grupoCMe']) &
+             Q(cmE=formSinais.cleaned_data['cmE']) &
+             Q(cmD=formSinais.cleaned_data['cmE'])
+         ).distinct()
+
+     else:
+         return sinaisGlossario.filter(
+             Q(traducaoP__icontains=resultadoTraducao)
+         ).distinct()
+
+
+
+
 
 def filterSinaisIng(formSinais, sinaisGlossario, resultadoTraducao):
-    return sinaisGlossario.filter(
-        # grupoCMe e cmE estão repetidos pois o form pesquisa só por um grupoCM e CM
-                Q(traducaoI__icontains=resultadoTraducao) |
-                Q(localizacao=formSinais.cleaned_data['localizacao']) |
-                Q(movimentacao=formSinais.cleaned_data['movimentacao']) |
-                Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) |
-                Q(grupoCMd=formSinais.cleaned_data['grupoCMe']) |
-                Q(cmE=formSinais.cleaned_data['cmE']) |
-                Q(cmD=formSinais.cleaned_data['cmE'])
-            ).distinct()
+    if resultadoTraducao == []:
+        return sinaisGlossario.filter(
+            Q(localizacao=formSinais.cleaned_data['localizacao']) &
+            Q(movimentacao=formSinais.cleaned_data['movimentacao']) &
+            Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) &
+            Q(grupoCMd=formSinais.cleaned_data['grupoCMe']) &
+            Q(cmE=formSinais.cleaned_data['cmE']) &
+            Q(cmD=formSinais.cleaned_data['cmE'])
+        ).distinct()
 
+    else:
+        return sinaisGlossario.filter(
+            Q(traducaoI__icontains=resultadoTraducao)
+        ).distinct()
 # -----------------------------------------Registro de Usuario-------------------------------------------------------------------
 
 def registration(request):

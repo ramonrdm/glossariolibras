@@ -145,13 +145,13 @@ class Sinal(models.Model):
     cmE = models.ForeignKey(CM, related_name='C_M_Esquerda', verbose_name='configuração da mão esquerda', on_delete=models.CASCADE)
     grupoCMd = models.ForeignKey(GrupoCM, related_name='Grupo_M_Direita', verbose_name='grupo da mão direita', on_delete=models.CASCADE)
     cmD = models.ForeignKey(CM, related_name='C_M_Direita', verbose_name='configuração da mão direita', on_delete=models.CASCADE)
-    localizacoes = (('1','Cabeça'),('2','Ombros'),('3','Braços'),('4','Nariz'),('5','Bochechas'),
+    localizacoes = (('0','Nunhuma'),('1','Cabeça'),('2','Ombros'),('3','Braços'),('4','Nariz'),('5','Bochechas'),
                         ('6','Boca'),('7','Tronco'),('8','Espaço Neutro'),('9','Olhos'),('10','Orelhas'),
                         ('11','Pescoço'),('12','Queixo'),('13','Testa')
                     )
-    localizacao = models.CharField(max_length=2, choices=localizacoes,default=8)
-    movimentacoes = (('1', 'Sem Movimentação'),('2', 'Parede'), ('3', 'Chão'), ('4', 'Circular'), ('5', 'Contato'))
-    movimentacao = models.CharField(max_length=10, choices=movimentacoes, default=1)
+    localizacao = models.CharField(max_length=2, choices=localizacoes,default=0)
+    movimentacoes = (('0', 'Sem Movimentação'),('1', 'Parede'), ('2', 'Chão'), ('3', 'Circular'), ('4', 'Contato'))
+    movimentacao = models.CharField(max_length=10, choices=movimentacoes, default=0)
     dataPost = models.DateField('data de criação', null=True)
     postador = models.ForeignKey(UserGlossario, null=True, on_delete=models.CASCADE)
     publicado = models.BooleanField(default=False)
