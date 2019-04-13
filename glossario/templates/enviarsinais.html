@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block Head %}
 	{{ block.super }}
-	{{ form.media }}
+	{{ formSinais.media }}
     {% load staticfiles %}
 	<title>{% block title %}Enviar sinais - Glossário Letras Libras{% endblock %}</title>
 {% endblock %}
@@ -12,11 +12,11 @@
 		<h2 class="thin center">Enviar sinais</h2>
 		<div class="divider"></div>
 
-        <form method="post" class="formEnviarSinais" enctype="multipart/form-data">
+        <form method="post" class="formEnviarSinais" enctype="multipart/formSinais-data">
             {% csrf_token %}
 
             <div class="row">
-                {% for field in form %}
+                {% for field in formSinais %}
                 {% if field.auto_id == 'id_sinalLibras' or field.auto_id == 'id_varicLibras' or field.auto_id == 'id_descLibras' or field.auto_id == 'id_exemploLibras' %}
 
 

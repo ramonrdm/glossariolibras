@@ -1,4 +1,4 @@
-{{ form.media }}
+{{ formSinais.media }}
     {% load staticfiles %}
 <nav class="row">
     <form method="post">
@@ -30,7 +30,7 @@
                         {% elif field.auto_id == 'id_grupoCMe' %}
                             <div class="col s2 " id="{{auto.id}">
                                 <a class="modal-trigger" href="#modalGrupoCMe">
-                                    {{ formSinais.grupoCMe }}
+                                    {{ field }}
                                 </a>
                             </div>
                         {% elif field.auto_id == 'id_cmE' %}

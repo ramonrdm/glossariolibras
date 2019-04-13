@@ -134,7 +134,7 @@ def sinal_upload_path(instance, filename):
 class Sinal(models.Model):
     class Meta:
         verbose_name_plural = 'sinais'
-        unique_together = ('traducaoP', 'traducaoI', 'grupoCMe', 'cmE', 'grupoCMd', 'cmD', 'localizacao')
+        unique_together = ('traducaoP', 'traducaoI', 'grupoCMe', 'cmE', 'grupoCMd', 'cmD', 'localizacao', 'movimentacao')
 
     glossario = models.ForeignKey(Glossario, verbose_name='glossário', null=True, on_delete=models.CASCADE)
     traducaoP = models.CharField('palavra', max_length=30)

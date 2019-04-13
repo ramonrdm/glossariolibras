@@ -82,6 +82,10 @@ $(document).ready(function() {
 		showToolTip: true,
 		areas: [
 			{
+				key: "0",
+				toolTip: "Sem Localização",
+			},
+			{
 				key: "1",
 				toolTip: "Cabeça",
 			},

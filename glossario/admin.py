@@ -150,7 +150,7 @@ class GlossarioAdmin(admin.ModelAdmin):
 
 class SinalAdmin(admin.ModelAdmin):
     form = SinalForm
-    list_display = ('traducaoP', 'traducaoI', 'tema', 'glossario', 'image_tag_cmE', 'image_tag_cmD', 'image_tag_localizacao', 'publicado')
+    list_display = ('traducaoP', 'traducaoI', 'tema', 'glossario', 'image_tag_cmE', 'image_tag_cmD', 'image_tag_localizacao', 'image_tag_movimentacao' , 'publicado')
     list_filter = ('tema', 'glossario', 'localizacao', 'movimentacao', 'dataPost', 'publicado')
     actions = ['publicar_sinal',]
 
@@ -198,7 +198,7 @@ class SinalAdmin(admin.ModelAdmin):
 
     def image_tag_localizacao(self, obj):
         if obj.localizacao:
-            localizacoes = dict([('1','localizacaoCabeca.png'),('2','localizacaoOmbros.png'),('3','localizacaoBracos.png'),
+            localizacoes = dict([('0','X.svg'), ('1','localizacaoCabeca.png'),('2','localizacaoOmbros.png'),('3','localizacaoBracos.png'),
                                 ('4','localizacaoNariz.png'),('5','localizacaoBochechas.png'),('6','localizacaoBoca.png'),
                                 ('7','localizacaoTronco.png'),('8','localizacaoNeutro.png'),('9','localizacaoOlhos.png'),('10','localizacaoOrelhas.png'),
                                 ('11','localizacaoPescoco.png'),('12','localizacaoQueixo.png'),('13','localizacaoTesta.png')])
@@ -210,7 +210,7 @@ class SinalAdmin(admin.ModelAdmin):
     def image_tag_movimentacao(self, obj):
         if obj.movimentacao:
             movimentacoes = dict(
-                [('1', 'X.svg'), ('2', 'parede.png'), ('3', 'chao.png'), ('4', 'circular.png'), ('5', 'chao.png')])
+                [('0', 'X.svg'), ('1', 'parede.png'), ('2', 'chao.png'), ('3', 'circular.png'), ('4', 'chao.png')])
             return format_html(
                 '<img src="/static/img/{}" width="50" height="50" />'.format(movimentacoes[obj.movimentacao]))
         else:

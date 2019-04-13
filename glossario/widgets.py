@@ -4,14 +4,17 @@ from django.utils.safestring import mark_safe
 from django.utils.encoding import force_text
 from django.utils.html import format_html
 from django.conf import settings
+from django.template.loader import render_to_string
 
 class ImageSelectLocalizacao(Select):
+
     class Media:
         #extend = False
         css = {
             'all': ('/static/image-picker/image-picker/image-picker.css',)
         }
         js = ('/static/image-picker/image-picker/image-picker.js', '/static/js/jquery.imagemapster.js', '/static/js/baseSearchNav.js', )
+
 
     def __init__(self, attrs=None, choices=(), field_img=None):
         super(ImageSelectLocalizacao, self).__init__(attrs)

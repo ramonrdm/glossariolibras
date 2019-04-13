@@ -53,7 +53,7 @@ def index(request, glossario=None):
             'formPesquisa': formPesquisa, 'sinais': sinais, 'sinaisP': sinaisP, 'sinaisI': sinaisI,'sinaisGlossario':
             sinaisGlossario, 'resultado': resultado, 'resultadoP': resultadoP, 'resultadoI': resultadoI, 'glossario':
             glossario, 'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox,
-            'formSinais': formSinais})
+            'formSinais': formSinais, 'form': EnviarSinaisForm(request.POST, request.FILES)})
 
     else:
         formCheckbox = PesquisaCheckboxForm(request.session['sinaisCheckboxes']) if request.session.get('sinaisCheckboxes')	else PesquisaCheckboxForm()
@@ -189,13 +189,12 @@ def temas(request, temas=None):
 
 @login_required
 def enviarSinais(request):
+    formSinais = EnviarSinaisForm
     if request.method == 'POST':
-        form = EnviarSinaisForm(request.POST, request.FILES)
-
         toastSucesso = True
         try:
-            if form.is_valid():
-                dados = form.save(commit=False)
+            if formSinais.is_valid():
+                dados = formSinais.save(commit=False)
                 dados.glossario = Glossario.objects.get(nome='Sugestões')
                 dados.dataPost = datetime.date.today()
                 if request.FILES.get('sinalLibras'):
@@ -207,14 +206,13 @@ def enviarSinais(request):
                 if request.FILES.get('varicLibras'):
                     dados.varicLibras = request.FILES['varicLibras']
                 dados.save()
-                form = EnviarSinaisForm()
-                return render(request, 'enviarsinais.html', {'form': form, 'toastSucesso': toastSucesso})
+                formSinais = EnviarSinaisForm()
+                return render(request, 'enviarsinais.html', {'formSinais': formSinais, 'toastSucesso': toastSucesso})
         except ValueError:
             toastRepetido = True
-            return render(request, 'enviarsinais.html', {'form': form, 'toastRepetido': toastRepetido})
+            return render(request, 'enviarsinais.html', {'formSinais': formSinais, 'toastRepetido': toastRepetido})
     else:
-        form = EnviarSinaisForm()
-        return render(request, 'enviarsinais.html', {'form': form, 'formSinais': EnviarSinaisForm(request.POST, request.FILES)})
+        return render(request, 'enviarsinais.html', {'formSinais': formSinais })
 
 def criaNodo(nodoPai):
     filhosPai = queryTemas.filter(temaPai=nodoPai)
@@ -271,12 +269,13 @@ def filterSinaisPort(formSinais, sinaisGlossario, resultadoTraducao):
 
      if resultadoTraducao == []:
          return sinaisGlossario.filter(
-             Q(localizacao=formSinais.cleaned_data['localizacao']) &
-             Q(movimentacao=formSinais.cleaned_data['movimentacao']) &
              Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) &
              Q(grupoCMd=formSinais.cleaned_data['grupoCMe']) &
              Q(cmE=formSinais.cleaned_data['cmE']) &
-             Q(cmD=formSinais.cleaned_data['cmE'])
+             Q(cmD=formSinais.cleaned_data['cmE']) &
+             Q(localizacao=formSinais.cleaned_data['localizacao']) &
+             Q(movimentacao=formSinais.cleaned_data['movimentacao'])
+
          ).distinct()
 
      else:
@@ -289,6 +288,7 @@ def filterSinaisPort(formSinais, sinaisGlossario, resultadoTraducao):
 
 
 def filterSinaisIng(formSinais, sinaisGlossario, resultadoTraducao):
+
     if resultadoTraducao == []:
         return sinaisGlossario.filter(
             Q(localizacao=formSinais.cleaned_data['localizacao']) &
@@ -351,5 +351,7 @@ def activate(request, uidb64, token):
 def account_activation_sent(request):
     modalConfirmeEmail = True
     return render(request, 'index.html', {'modalConfirmeEmail':modalConfirmeEmail})
+
+
 
 # -------------------------------------------------------------------------------------------------------------------------

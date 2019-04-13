@@ -90,7 +90,7 @@ class SinalForm(forms.ModelForm):
 		'publicado']
 		widgets = {
 					'localizacao': ImageSelectLocalizacao(),
-					'grupoCMe': ImageSelectMao(field_img=('/media/1_xFV5N9L.png', '/media/2_oKcgLJc.png')),
+					'grupoCMe': ImageSelectMao(),
 					'cmE': ImageSelectMao(),
 					'grupoCMd': ImageSelectMao(),
 					'cmD': ImageSelectMao(),
@@ -151,8 +151,6 @@ class PesquisaSinaisForm(forms.ModelForm):
 					'localizacao': ImageSelectLocalizacao(),
 					'grupoCMe': ImageSelectMao(),
 					'cmE': ImageSelectMao(),
-					'grupoCMd': ImageSelectMao(),
-					'cmD': ImageSelectMao(),
 					'movimentacao': ImageSelectMovimentacao()
 					}
 

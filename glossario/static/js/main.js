@@ -2,7 +2,7 @@
 //  main.js
 //
 //  A project template for using arbor.js
-//  
+//
 
 (function($){
 
@@ -27,11 +27,11 @@
         // inform the system of the screen dimensions so it can map coords for us.
         // if the canvas is ever resized, screenSize should be called again with
         // the new dimensions
-        particleSystem.screenSize(canvas.width, canvas.height) 
+        particleSystem.screenSize(canvas.width, canvas.height)
         particleSystem.screenPadding(80) // leave an extra 80px of whitespace per side
 	$(window).resize(that.resize)
 	that.resize()
-        
+
         // set up some event handlers to allow for node-dragging
         that.initMouseHandling()
       },
@@ -39,18 +39,18 @@
 resize: function(){
        canvas.width = .78* $(window).width()
         canvas.height = .80* $(window).height()
-       particleSystem.screenSize(canvas.width, canvas.height) 
+       particleSystem.screenSize(canvas.width, canvas.height)
         _vignette = null
         that.redraw()
 },
-      
+
       redraw:function(){
         gfx.clear()
         particleSystem.eachEdge(function(edge, p1, p2){
           if (edge.source.data.alpha * edge.target.data.alpha == 0) return
           gfx.line(p1, p2, {stroke:"#b2b19d", width:4, alpha:edge.target.data.alpha})
         })
-        // 
+        //
         // redraw will be called repeatedly during the run whenever the node positions
         // change. the new positions for the nodes can be accessed by looking at the
         // .p attribute of a given node. however the p.x & p.y values are in the coordinates
@@ -58,7 +58,7 @@ resize: function(){
         // the screen yourself, or use the convenience iterators .eachNode (and .eachEdge)
         // which allow you to step through the actual node objects but also pass an
         // x,y point in the screen's coordinate system
-        // 
+        //
 
         particleSystem.eachNode(function(node, pt){
           var w = Math.max(20, 20+gfx.textWidth(node.name) )
@@ -75,7 +75,7 @@ resize: function(){
         })
         that._drawVignette()
       },
-      
+
       _drawVignette:function(){
         var w = canvas.width
         var h = canvas.height
@@ -92,7 +92,7 @@ resize: function(){
 
           _vignette = {top:top, bot:bot}
         }
-        
+
         // top
         ctx.fillStyle = _vignette.top
         ctx.fillRect(0,0, w,r)
@@ -101,7 +101,7 @@ resize: function(){
         ctx.fillStyle = _vignette.bot
         ctx.fillRect(0,h-r, w,r)
       },
-      
+
       initMouseHandling:function(){
         // no-nonsense drag and drop (thanks springy.js)
         var dragged = null;
@@ -147,15 +147,15 @@ resize: function(){
             return false
           }
         }
-        
+
         // start listening
         $(canvas).mousedown(handler.clicked);
 
       },
-      
+
     }
     return that
-  }    
+  }
 
   $(document).ready(function(){
     var sys = arbor.ParticleSystem(1000, 600, 0.5) // create the system with sensible repulsion/stiffness/friction
