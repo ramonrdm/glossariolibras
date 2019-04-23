@@ -10,8 +10,6 @@ let modal_refs = [
 let select_refs = [
 	'#id_grupoCMe',
 	'#id_cmE',
-	'#id_grupoCMd',
-	'#id_cmD',
 	'#id_movimentacao'
 ];
 
