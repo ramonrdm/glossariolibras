@@ -36,18 +36,37 @@ def index(request, glossario=None):
         if formPesquisa.is_valid() and formSinais.is_valid():
 
             parametros = {"publicado": True}
+            resultadoTraducao = formPesquisa.cleaned_data['busca']
 
-            if formPesquisa.cleaned_data['busca'] != []:
+            if resultadoTraducao != '':
+                print('passeia aqui')
                 if checkboxIng:
-                    parametros["traducaoI__icontains"] = formPesquisa.cleaned_data['busca']
+                    parametros["traducaoI__icontains"] = resultadoTraducao
                 else:
-                    parametros["traducaoP__icontains"] = formPesquisa.cleaned_data['busca']
+                    parametros["traducaoP__icontains"] = resultadoTraducao
 
             else:
-                if formPesquisa.cleaned_data['localizacao'] != 0:
-                    parametros['localizacao'] = formPesquisa.cleaned_data['localizacao']
-                if formPesquisa.cleaned_data['grupoCMe'] != 0:
-                    parametros['grupoCMe'] = formPesquisa.cleaned_data['grupoCMe']
+                localizacao = int(formSinais.cleaned_data['localizacao'])
+                movimentacao = int(formSinais.cleaned_data['movimentacao'])
+                grupo = formSinais.cleaned_data['grupoCMe']
+                mao = formSinais.cleaned_data['cmE']
+
+                if grupo == None:
+                    grupo = 0
+                if mao == None:
+                    mao = 0
+
+                if localizacao != 0:
+                    parametros['localizacao'] = localizacao
+                if movimentacao !=  0:
+                    parametros['movimentacao'] = movimentacao
+                if grupo != 0:
+                    parametros['grupoCMe'] = grupo
+                if mao !=  0:
+                    parametros['cmE'] = mao
+   
+            
+          
 
             sinais = Sinal.objects.filter(**parametros)
 
