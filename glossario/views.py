@@ -22,64 +22,21 @@ from django.contrib.auth.decorators import login_required
 
 def index(request, glossario=None):
     glossarios = Glossario.objects.all()
-    checkboxPort = request.POST.get('checkboxPort', False)
-    checkboxIng = request.POST.get('checkboxIng', False)
-    request.session['sinaisCheckboxes'] = []
 
     if request.method == 'POST':
-        sinais = sinaisP = sinaisI = sinaisGlossario = formPesquisa = None
+        sinais = None
         formPesquisa = PesquisaForm(request.POST)
-        request.session['sinaisCheckboxes'] = request.POST.copy()
-        formCheckbox = PesquisaCheckboxForm(request.session['sinaisCheckboxes'])
-        formSinais = PesquisaSinaisForm(request.session['sinaisCheckboxes'])
+        formSinais = PesquisaSinaisForm(request.POST)
         # formSinais = PesquisaSinaisForm(request.POST)
+        sinaisGlossario = Sinal.objects.filter(publicado=True)
         if formPesquisa.is_valid() and formSinais.is_valid():
+            sinais = busca(formSinais, formPesquisa)
 
-            parametros = {"publicado": True}
-            resultadoTraducao = formPesquisa.cleaned_data['busca']
-
-            if resultadoTraducao != '':
-                print('passeia aqui')
-                if checkboxIng:
-                    parametros["traducaoI__icontains"] = resultadoTraducao
-                else:
-                    parametros["traducaoP__icontains"] = resultadoTraducao
-
-            else:
-                localizacao = int(formSinais.cleaned_data['localizacao'])
-                movimentacao = int(formSinais.cleaned_data['movimentacao'])
-                grupo = formSinais.cleaned_data['grupoCMe']
-                mao = formSinais.cleaned_data['cmE']
-
-                if localizacao != 0:
-                    parametros['localizacao'] = localizacao
-                if movimentacao !=  0:
-                    parametros['movimentacao'] = movimentacao
-
-            sinais = Sinal.objects.filter(**parametros)
-            if grupo:
-                sinais = sinais.filter(Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) | Q(grupoCMd=formSinais.cleaned_data['grupoCMe']))
-            if mao:
-                sinais = sinais.filter(Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
-
-
-            #sinaisGlossario = Sinal.objects.filter(publicado=True)
-            # resultadoTraducao = formPesquisa.cleaned_data['busca'] or []
-            # if checkboxPort and checkboxIng:
-            #     sinaisP = filterSinaisPort(formSinais, sinaisGlossario, resultadoTraducao)
-            #     sinaisI = filterSinaisIng(formSinais, sinaisGlossario, resultadoTraducao)
-            # elif checkboxPort and not checkboxIng:
-            #     sinais = filterSinaisPort(formSinais, sinaisGlossario, resultadoTraducao)
-            # elif checkboxIng and not checkboxPort:
-            #     sinais = filterSinaisIng(formSinais, sinaisGlossario, resultadoTraducao)
         formPesquisa = PesquisaForm()
         resultado = len(sinais) if sinais else None
-        resultadoP = len(sinaisP) if sinaisP else None
-        resultadoI = len(sinaisI) if sinaisI else None
         return render(request, 'pesquisa.html', {
-            'formPesquisa': formPesquisa, 'sinais': sinais, 'sinaisP': sinaisP, 'sinaisI': sinaisI,'sinaisGlossario':
-            sinaisGlossario, 'resultado': resultado, 'resultadoP': resultadoP, 'resultadoI': resultadoI, 'glossario':
-            glossario, 'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox,
+            'formPesquisa': formPesquisa, 'sinais': sinais,  'resultado': resultado, 'glossario':
+            glossario,'sinaisGlossario' :sinaisGlossario,
             'formSinais': formSinais, 'form': EnviarSinaisForm(request.POST, request.FILES)})
 
     else:
@@ -88,8 +45,8 @@ def index(request, glossario=None):
         # formSinais = PesquisaSinaisForm()
         formPesquisa = PesquisaForm()
 
-    return render(request, 'index.html', {'glossarios': glossarios, 'glossario': glossario, 'formPesquisa': formPesquisa, 'checkboxPort': checkboxPort,
-        'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox, 'formSinais': formSinais, 'form': EnviarSinaisForm(request.POST, request.FILES)
+    return render(request, 'index.html', {'glossarios': glossarios, 'glossario': glossario, 'formPesquisa': formPesquisa,
+        'formCheckbox': formCheckbox, 'formSinais': formSinais, 'form': EnviarSinaisForm(request.POST, request.FILES)
         })
 
 def glossarioSelecionado(request, glossario):
@@ -291,155 +248,184 @@ def temasjson(request):
 
 #################### MÉTODOS ####################
 
-def filterSinaisPort(formSinais, sinaisGlossario, resultadoTraducao):
-
-     if resultadoTraducao == []:
-         localizacao = int(formSinais.cleaned_data['localizacao'])
-         movimentacao = int(formSinais.cleaned_data['movimentacao'])
-         grupo = formSinais.cleaned_data['grupoCMe']
-         mao = formSinais.cleaned_data['cmE']
-         if grupo == None:
-             grupo = 0
-         if mao == None:
-             mao = 0
-
-         print(localizacao)
-         print(movimentacao)
-         print(grupo)
-         print(mao)
-
-         if localizacao == 0 and movimentacao == 0 and grupo == 0 and mao == 0:
-            print('PASSEI vazio')
-            return None
-
-         elif localizacao != 0 and movimentacao == 0 and grupo == 0 and mao == 0:
-             print('PASSEI loc')
-             return sinaisGlossario.filter(
-                 Q(localizacao=formSinais.cleaned_data['localizacao'])
-             ).distinct()
-
-         elif localizacao != 0 and movimentacao != 0 and grupo == 0 and mao == 0:
-             print('PASSEI loca + movi')
-             return sinaisGlossario.filter(
-                 Q(localizacao=formSinais.cleaned_data['localizacao']) &
-                 Q(movimentacao=formSinais.cleaned_data['movimentacao'])
-             ).distinct()
-
-         elif localizacao != 0 and movimentacao != 0 and grupo != 0 and mao == 0:
-             print('PASSEI loca + movi + grupo')
-             return sinaisGlossario.filter(
-                 Q(localizacao=formSinais.cleaned_data['localizacao']) &
-                 Q(movimentacao=formSinais.cleaned_data['movimentacao']) &
-                 (Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) | Q(grupoCMd=formSinais.cleaned_data['grupoCMe']))
-             ).distinct()
-
-         elif localizacao != 0 and movimentacao != 0 and grupo != 0 and mao != 0:
-             print('PASSEI TODOS')
-             return sinaisGlossario.filter(
-                 Q(localizacao=formSinais.cleaned_data['localizacao']) &
-                 Q(movimentacao=formSinais.cleaned_data['movimentacao']) &
-                 (Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) | Q(grupoCMd=formSinais.cleaned_data['grupoCMe'])) &
-                 (Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
-             ).distinct()
-
-         elif localizacao == 0 and movimentacao != 0 and grupo == 0 and mao == 0:
-             print('PASSEI  movi')
-             return sinaisGlossario.filter(
-                 Q(movimentacao=formSinais.cleaned_data['movimentacao'])
-             ).distinct()
-
-         elif localizacao == 0 and movimentacao != 0 and grupo != 0 and mao == 0:
-             print('PASSEI  movi + grupo')
-             return sinaisGlossario.filter(
-                 Q(movimentacao=formSinais.cleaned_data['movimentacao']) &
-                 (Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) | Q(grupoCMd=formSinais.cleaned_data['grupoCMe']))
-             ).distinct()
-
-         elif localizacao == 0 and movimentacao != 0 and grupo != 0 and mao != 0:
-             print('PASSEI  movi + grupo + mao')
-             return sinaisGlossario.filter(
-                 Q(movimentacao=formSinais.cleaned_data['movimentacao']) &
-                 (Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) | Q(grupoCMd=formSinais.cleaned_data['grupoCMe'])) &
-                 (Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
-             ).distinct()
-
-         elif localizacao == 0 and movimentacao == 0 and grupo != 0 and mao == 0:
-             print('PASSEI grupo')
-             return sinaisGlossario.filter(
-                 (Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) | Q(grupoCMd=formSinais.cleaned_data['grupoCMe']))
-             ).distinct()
-
-         elif localizacao == 0 and movimentacao == 0 and grupo != 0 and mao != 0:
-             print('PASSEI  grupo + mao')
-             return sinaisGlossario.filter(
-                 (Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) | Q(grupoCMd=formSinais.cleaned_data['grupoCMe'])) &
-                 (Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
-             ).distinct()
-
-         elif localizacao == 0 and movimentacao == 0 and grupo == 0 and mao != 0:
-             print('PASSEI  mao')
-             return sinaisGlossario.filter(
-                 (Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
-             ).distinct()
-
-         elif localizacao != 0 and movimentacao == 0 and grupo != 0 and mao == 0:
-             print('PASSEI  loca + grupo')
-             return sinaisGlossario.filter(
-                 Q(localizacao=formSinais.cleaned_data['localizacao']) &
-                 (Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) | Q(grupoCMd=formSinais.cleaned_data['grupoCMe']))
-             ).distinct()
-
-         elif localizacao != 0 and movimentacao == 0 and grupo == 0 and mao != 0:
-             print('PASSEI  loca + mao')
-             return sinaisGlossario.filter(
-                 Q(localizacao=formSinais.cleaned_data['localizacao']) &
-                 (Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
-             ).distinct()
-
-         elif localizacao != 0 and movimentacao == 0 and grupo != 0 and mao != 0:
-             print('PASSEI  loca + grupo + mao')
-             return sinaisGlossario.filter(
-                 Q(localizacao=formSinais.cleaned_data['localizacao']) &
-                 (Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) | Q(grupoCMd=formSinais.cleaned_data['grupoCMe'])) &
-                 (Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
-             ).distinct()
-
-         elif localizacao != 0 and movimentacao != 0 and grupo == 0 and mao != 0:
-             print('PASSEI  loca + movi + grupo')
-             return sinaisGlossario.filter(
-                 Q(localizacao=formSinais.cleaned_data['localizacao']) &
-                 Q(movimentacao=formSinais.cleaned_data['movimentacao']) &
-                 (Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
-
-             ).distinct()
-
-         elif localizacao != 0 and movimentacao != 0 and grupo == 0 and mao != 0:
-             print('PASSEI  loca + movi + mao')
-             return sinaisGlossario.filter(
-                 Q(movimentacao=formSinais.cleaned_data['movimentacao']) &
-                 (Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
-             ).distinct()
-     else:
-         return sinaisGlossario.filter(
-             Q(traducaoP__icontains=resultadoTraducao)
-         ).distinct()
-
-def filterSinaisIng(formSinais, sinaisGlossario, resultadoTraducao):
-
-    if resultadoTraducao == []:
-        return sinaisGlossario.filter(
-            Q(localizacao=formSinais.cleaned_data['localizacao']) and
-            Q(movimentacao=formSinais.cleaned_data['movimentacao']) and
-            Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) and
-            Q(grupoCMd=formSinais.cleaned_data['grupoCMe']) and
-            Q(cmE=formSinais.cleaned_data['cmE']) and
-            Q(cmD=formSinais.cleaned_data['cmE'])
-        ).distinct()
+def busca(formSinais, formPesquisa):
+    parametros = {"publicado": True}
+    resultadoTraducao = formPesquisa.cleaned_data['busca']
+    localizacao = int(formSinais.cleaned_data['localizacao'])
+    movimentacao = int(formSinais.cleaned_data['movimentacao'])
+    grupo = formSinais.cleaned_data['grupoCMe']
+    mao = formSinais.cleaned_data['cmE']
+    if resultadoTraducao != '':
+        sinais = Sinal.objects.filter(Q(traducaoI__icontains=resultadoTraducao) | Q(traducaoP__icontains=resultadoTraducao))
 
     else:
-        return sinaisGlossario.filter(
-            Q(traducaoI__icontains=resultadoTraducao)
-        ).distinct()
+        if localizacao != 0:
+            parametros['localizacao'] = localizacao
+        if movimentacao != 0:
+            parametros['movimentacao'] = movimentacao
+
+        sinais = Sinal.objects.filter(**parametros)
+
+        if grupo:
+            sinais = sinais.filter(
+                Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) | Q(grupoCMd=formSinais.cleaned_data['grupoCMe']))
+        if mao:
+            sinais = sinais.filter(Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
+
+
+    return sinais
+
+
+#
+# def filterSinaisPort(formSinais, sinaisGlossario, resultadoTraducao):
+#
+#      if resultadoTraducao == []:
+#          localizacao = int(formSinais.cleaned_data['localizacao'])
+#          movimentacao = int(formSinais.cleaned_data['movimentacao'])
+#          grupo = formSinais.cleaned_data['grupoCMe']
+#          mao = formSinais.cleaned_data['cmE']
+#          if grupo == None:
+#              grupo = 0
+#          if mao == None:
+#              mao = 0
+#
+#          print(localizacao)
+#          print(movimentacao)
+#          print(grupo)
+#          print(mao)
+#
+#          if localizacao == 0 and movimentacao == 0 and grupo == 0 and mao == 0:
+#             print('PASSEI vazio')
+#             return None
+#
+#          elif localizacao != 0 and movimentacao == 0 and grupo == 0 and mao == 0:
+#              print('PASSEI loc')
+#              return sinaisGlossario.filter(
+#                  Q(localizacao=formSinais.cleaned_data['localizacao'])
+#              ).distinct()
+#
+#          elif localizacao != 0 and movimentacao != 0 and grupo == 0 and mao == 0:
+#              print('PASSEI loca + movi')
+#              return sinaisGlossario.filter(
+#                  Q(localizacao=formSinais.cleaned_data['localizacao']) &
+#                  Q(movimentacao=formSinais.cleaned_data['movimentacao'])
+#              ).distinct()
+#
+#          elif localizacao != 0 and movimentacao != 0 and grupo != 0 and mao == 0:
+#              print('PASSEI loca + movi + grupo')
+#              return sinaisGlossario.filter(
+#                  Q(localizacao=formSinais.cleaned_data['localizacao']) &
+#                  Q(movimentacao=formSinais.cleaned_data['movimentacao']) &
+#                  (Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) | Q(grupoCMd=formSinais.cleaned_data['grupoCMe']))
+#              ).distinct()
+#
+#          elif localizacao != 0 and movimentacao != 0 and grupo != 0 and mao != 0:
+#              print('PASSEI TODOS')
+#              return sinaisGlossario.filter(
+#                  Q(localizacao=formSinais.cleaned_data['localizacao']) &
+#                  Q(movimentacao=formSinais.cleaned_data['movimentacao']) &
+#                  (Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) | Q(grupoCMd=formSinais.cleaned_data['grupoCMe'])) &
+#                  (Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
+#              ).distinct()
+#
+#          elif localizacao == 0 and movimentacao != 0 and grupo == 0 and mao == 0:
+#              print('PASSEI  movi')
+#              return sinaisGlossario.filter(
+#                  Q(movimentacao=formSinais.cleaned_data['movimentacao'])
+#              ).distinct()
+#
+#          elif localizacao == 0 and movimentacao != 0 and grupo != 0 and mao == 0:
+#              print('PASSEI  movi + grupo')
+#              return sinaisGlossario.filter(
+#                  Q(movimentacao=formSinais.cleaned_data['movimentacao']) &
+#                  (Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) | Q(grupoCMd=formSinais.cleaned_data['grupoCMe']))
+#              ).distinct()
+#
+#          elif localizacao == 0 and movimentacao != 0 and grupo != 0 and mao != 0:
+#              print('PASSEI  movi + grupo + mao')
+#              return sinaisGlossario.filter(
+#                  Q(movimentacao=formSinais.cleaned_data['movimentacao']) &
+#                  (Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) | Q(grupoCMd=formSinais.cleaned_data['grupoCMe'])) &
+#                  (Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
+#              ).distinct()
+#
+#          elif localizacao == 0 and movimentacao == 0 and grupo != 0 and mao == 0:
+#              print('PASSEI grupo')
+#              return sinaisGlossario.filter(
+#                  (Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) | Q(grupoCMd=formSinais.cleaned_data['grupoCMe']))
+#              ).distinct()
+#
+#          elif localizacao == 0 and movimentacao == 0 and grupo != 0 and mao != 0:
+#              print('PASSEI  grupo + mao')
+#              return sinaisGlossario.filter(
+#                  (Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) | Q(grupoCMd=formSinais.cleaned_data['grupoCMe'])) &
+#                  (Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
+#              ).distinct()
+#
+#          elif localizacao == 0 and movimentacao == 0 and grupo == 0 and mao != 0:
+#              print('PASSEI  mao')
+#              return sinaisGlossario.filter(
+#                  (Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
+#              ).distinct()
+#
+#          elif localizacao != 0 and movimentacao == 0 and grupo != 0 and mao == 0:
+#              print('PASSEI  loca + grupo')
+#              return sinaisGlossario.filter(
+#                  Q(localizacao=formSinais.cleaned_data['localizacao']) &
+#                  (Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) | Q(grupoCMd=formSinais.cleaned_data['grupoCMe']))
+#              ).distinct()
+#
+#          elif localizacao != 0 and movimentacao == 0 and grupo == 0 and mao != 0:
+#              print('PASSEI  loca + mao')
+#              return sinaisGlossario.filter(
+#                  Q(localizacao=formSinais.cleaned_data['localizacao']) &
+#                  (Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
+#              ).distinct()
+#
+#          elif localizacao != 0 and movimentacao == 0 and grupo != 0 and mao != 0:
+#              print('PASSEI  loca + grupo + mao')
+#              return sinaisGlossario.filter(
+#                  Q(localizacao=formSinais.cleaned_data['localizacao']) &
+#                  (Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) | Q(grupoCMd=formSinais.cleaned_data['grupoCMe'])) &
+#                  (Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
+#              ).distinct()
+#
+#          elif localizacao != 0 and movimentacao != 0 and grupo == 0 and mao != 0:
+#              print('PASSEI  loca + movi + grupo')
+#              return sinaisGlossario.filter(
+#                  Q(localizacao=formSinais.cleaned_data['localizacao']) &
+#                  Q(movimentacao=formSinais.cleaned_data['movimentacao']) &
+#                  (Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
+#
+#              ).distinct()
+#
+#          elif localizacao != 0 and movimentacao != 0 and grupo == 0 and mao != 0:
+#              print('PASSEI  loca + movi + mao')
+#              return sinaisGlossario.filter(
+#                  Q(movimentacao=formSinais.cleaned_data['movimentacao']) &
+#                  (Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
+#              ).distinct()
+#      else:
+#          return sinaisGlossario.filter(
+#              Q(traducaoP__icontains=resultadoTraducao)
+#          ).distinct()
+#
+# def filterSinaisIng(formSinais, sinaisGlossario, resultadoTraducao):
+#
+#     if resultadoTraducao == []:
+#         return sinaisGlossario.filter(
+#             Q(localizacao=formSinais.cleaned_data['localizacao']) and
+#             Q(movimentacao=formSinais.cleaned_data['movimentacao']) and
+#             Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) and
+#             Q(grupoCMd=formSinais.cleaned_data['grupoCMe']) and
+#             Q(cmE=formSinais.cleaned_data['cmE']) and
+#             Q(cmD=formSinais.cleaned_data['cmE'])
+#         ).distinct()
+#
+#     else:
+#         return sinaisGlossario.filter(
+#             Q(traducaoI__icontains=resultadoTraducao)
+#         ).distinct()
 # -----------------------------------------Registro de Usuario-------------------------------------------------------------------
 
 def registration(request):
