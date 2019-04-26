@@ -50,25 +50,17 @@ def index(request, glossario=None):
                 movimentacao = int(formSinais.cleaned_data['movimentacao'])
                 grupo = formSinais.cleaned_data['grupoCMe']
                 mao = formSinais.cleaned_data['cmE']
-                ou = None
-                if grupo == None:
-                    grupo = 0
-                if mao == None:
-                    mao = 0
 
                 if localizacao != 0:
                     parametros['localizacao'] = localizacao
                 if movimentacao !=  0:
                     parametros['movimentacao'] = movimentacao
-                if grupo != 0:
-                    #parametros['grupoCMe'] = grupo
-                    ou = (Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) | Q(grupoCMd=formSinais.cleaned_data['grupoCMe']))
-                if mao !=  0:
-                    parametros['cmE'] = mao
 
             sinais = Sinal.objects.filter(**parametros)
-            if ou:
-                sinais = sinais.filter(ou)
+            if grupo:
+                sinais = sinais.filter(Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) | Q(grupoCMd=formSinais.cleaned_data['grupoCMe']))
+            if mao:
+                sinais = sinais.filter(Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
 
 
             #sinaisGlossario = Sinal.objects.filter(publicado=True)
