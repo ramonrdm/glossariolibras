@@ -68,7 +68,7 @@ def index(request, glossario=None):
 
             sinais = Sinal.objects.filter(**parametros)
             if ou:
-                sinais.filter(ou)
+                sinais = sinais.filter(ou)
 
 
             #sinaisGlossario = Sinal.objects.filter(publicado=True)
