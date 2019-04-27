@@ -5,255 +5,69 @@
 	{% load staticfiles %}
 	<title>{% block title %}Pesquisa {{ glossario.nome }} - Glossário Letras Libras {% endblock %}</title>
 {% endblock %}
+
+
 {% block Corpo %}
 	    {% include 'navSearch.html' %}
     	{% include 'modaisFormSinais.html' %}
-
 		{% if glossario.imagem %}
 			<a href="/{{glossario.link}}"><img class="circle imgGlossario" src="{{ glossario.imagem.url }}"/></a>
-		{% else %}
-			<a href="/{{glossario.link}}"><i class="large material-icons icone imgGlossario">cloud_off</i></a>
 		{% endif %}
 		<div class="container">
-				<h2 class="thin center">{{glossario.nome}}</h2>
+			<h2 class="thin center">{{glossario.nome}}</h2>
 		</div>
+		<div class="container divider"></div>
+		<div class="container">
+			<div class="center">
+				{% if sinais %}
 
-<div class="container divider"></div>
+					<p class="flow-text">Encontrado {{resultado}} resultado(s):</p>
+						<table class="table-responsive highlight centered">
+							<thead>
+								<tr>
+									<th>Português</th>
+									<th>Inglês</th>
+									<th>Grupo esquerda</th>
+									<th>Configuração esquerda</th>
+									<th>Grupo direita</th>
+									<th>Configuração direita</th>
+								</tr>
+							</thead>
+							<tbody>
+							{% for s in sinais %}
+								<tr onclick="window.location='/sinal/{{s.id}}';">
 
-<div class="container">
-	<div class="center">
+									<td>{{s.traducaoP}}</td>
 
-		{% if sinais %}
+									<td>{{s.traducaoI}}</td>
 
-			<p class="flow-text">Encontrado {{resultado}} resultado(s):</p>
-				<table class="table-responsive highlight centered">
-					<thead>
-						<tr>
-							{% if checkboxPort %}
-							<th>Português</th>
-							{% elif checkboxIng %}
-							<th>Inglês</th>
-							{% endif %}
-							<th>Grupo esquerda</th>
-							<th>Configuração esquerda</th>
-							<th>Grupo direita</th>
-							<th>Configuração direita</th>
-						</tr>
-					</thead>
-					<tbody>
-					{% for s in sinais %}
-						<tr onclick="window.location='/sinal/{{s.id}}';">
-							{% if checkboxPort %}
-								<td>{{s.traducaoP}}</td>
-							{% elif checkboxIng %}
-								<td>{{s.traducaoI}}</td>
-							{% endif %}
-							{% if s.grupoCMe.imagem %}
-								<td><img src="{{s.grupoCMe.imagem.url}}" width="50" class="circle"></td>
-							{% else %}
-								<td></td>
-							{% endif %}
-							{% if s.cmE.imagem %}
-								<td><img src="{{s.cmE.imagem.url}}" width="50" class="circle"></td>
-							{% else %}
-								<td></td>
-							{% endif %}
-							{% if s.grupoCMd.imagem %}
-								<td><img src="{{s.grupoCMd.imagem.url}}" width="50" class="circle"></td>
-							{% else %}
-								<td></td>
-							{% endif %}
-							{% if s.cmD.imagem %}
-								<td><img src="{{s.cmD.imagem.url}}" width="50" class="circle"></td>
-							{% else %}
-								<td></td>
-							{% endif %}
-						</tr>
-					{% endfor %}
-					</tbody>
-				</table>
+									{% if s.grupoCMe.imagem %}
+										<td><img src="{{s.grupoCMe.imagem.url}}" width="50" class="circle"></td>
+									{% else %}
+										<td></td>
+									{% endif %}
+									{% if s.cmE.imagem %}
+										<td><img src="{{s.cmE.imagem.url}}" width="50" class="circle"></td>
+									{% else %}
+										<td></td>
+									{% endif %}
+									{% if s.grupoCMd.imagem %}
+										<td><img src="{{s.grupoCMd.imagem.url}}" width="50" class="circle"></td>
+									{% else %}
+										<td></td>
+									{% endif %}
+									{% if s.cmD.imagem %}
+										<td><img src="{{s.cmD.imagem.url}}" width="50" class="circle"></td>
+									{% else %}
+										<td></td>
+									{% endif %}
+								</tr>
+							{% endfor %}
+							</tbody>
+						</table>
 
-		{% elif sinaisP and sinaisI %}
-
-			<p class="flow-text">Encontrado {{resultadoP}} resultado(s) em português:</p>
-			<table class="table-responsive highlight centered">
-				<thead>
-					<tr>
-						<th>Português</th>
-						<th>Grupo esquerda</th>
-						<th>Configuração esquerda</th>
-						<th>Grupo direita</th>
-						<th>Configuração direita</th>
-					</tr>
-				</thead>
-				<tbody>
-				{% for s in sinaisP %}
-					<tr onclick="window.location='/sinal/{{s.id}}';">
-						<td>{{s.traducaoP}}</td>
-						{% if s.grupoCMe.imagem %}
-							<td><img src="{{s.grupoCMe.imagem.url}}" width="50" class="circle"></td>
-						{% else %}
-							<td></td>
-						{% endif %}
-						{% if s.cmE.imagem %}
-							<td><img src="{{s.cmE.imagem.url}}" width="50" class="circle"></td>
-						{% else %}
-							<td></td>
-						{% endif %}
-						{% if s.grupoCMd.imagem %}
-							<td><img src="{{s.grupoCMd.imagem.url}}" width="50" class="circle"></td>
-						{% else %}
-							<td></td>
-						{% endif %}
-						{% if s.cmD.imagem %}
-							<td><img src="{{s.cmD.imagem.url}}" width="50" class="circle"></td>
-						{% else %}
-							<td></td>
-						{% endif %}
-					</tr>
-				{% endfor %}
-				</tbody>
-			</table>
-
-			<p class="flow-text">Encontrado {{resultadoI}} resultado(s) em inglês:</p>
-			<table class="table-responsive highlight centered">
-				<thead>
-					<tr>
-						<th>Inglês</th>
-						<th>Grupo esquerda</th>
-						<th>Configuração esquerda</th>
-						<th>Grupo direita</th>
-						<th>Configuração direita</th>
-					</tr>
-				</thead>
-				<tbody>
-				{% for s in sinaisI %}
-					<tr onclick="window.location='/sinal/{{s.id}}';">
-						<td>{{s.traducaoI}}</td>
-						{% if s.grupoCMe.imagem %}
-							<td><img src="{{s.grupoCMe.imagem.url}}" width="50" class="circle"></td>
-						{% else %}
-							<td></td>
-						{% endif %}
-						{% if s.cmE.imagem %}
-							<td><img src="{{s.cmE.imagem.url}}" width="50" class="circle"></td>
-						{% else %}
-							<td></td>
-						{% endif %}
-						{% if s.grupoCMd.imagem %}
-							<td><img src="{{s.grupoCMd.imagem.url}}" width="50" class="circle"></td>
-						{% else %}
-							<td></td>
-						{% endif %}
-						{% if s.cmD.imagem %}
-							<td><img src="{{s.cmD.imagem.url}}" width="50" class="circle"></td>
-						{% else %}
-							<td></td>
-						{% endif %}
-					</tr>
-				{% endfor %}
-				</tbody>
-			</table>
-
-		{% elif sinaisP and not sinaisI %}
-
-
-			<p class="flow-text">Encontrado {{resultadoP}} resultado(s) em português:</p>
-			<table class="table-responsive highlight centered">
-				<thead>
-					<tr>
-						<th>Português</th>
-						<th>Grupo esquerda</th>
-						<th>Configuração esquerda</th>
-						<th>Grupo direita</th>
-						<th>Configuração direita</th>
-					</tr>
-				</thead>
-				<tbody>
-				{% for s in sinaisP %}
-					<tr onclick="window.location='/sinal/{{s.id}}';">
-						<td>{{s.traducaoP}}</td>
-						{% if s.grupoCMe.imagem %}
-							<td><img src="{{s.grupoCMe.imagem.url}}" width="50" class="circle"></td>
-						{% else %}
-							<td></td>
-						{% endif %}
-						{% if s.cmE.imagem %}
-							<td><img src="{{s.cmE.imagem.url}}" width="50" class="circle"></td>
-						{% else %}
-							<td></td>
-						{% endif %}
-						{% if s.grupoCMd.imagem %}
-							<td><img src="{{s.grupoCMd.imagem.url}}" width="50" class="circle"></td>
-						{% else %}
-							<td></td>
-						{% endif %}
-						{% if s.cmD.imagem %}
-							<td><img src="{{s.cmD.imagem.url}}" width="50" class="circle"></td>
-						{% else %}
-							<td></td>
-						{% endif %}
-					</tr>
-				{% endfor %}
-				</tbody>
-			</table>
-
-			<p class="flow-text">Nenhum resultado encontrado em inglês.</p>
-
-		{% elif not sinaisP and sinaisI %}
-
-			<p class="flow-text">Encontrado {{resultadoI}} resultado(s) em inglês:</p>
-			<table class="table-responsive highlight centered">
-				<thead>
-					<tr>
-						<th>Inglês</th>
-						<th>Grupo esquerda</th>
-						<th>Configuração esquerda</th>
-						<th>Grupo direita</th>
-						<th>Configuração direita</th>
-					</tr>
-				</thead>
-				<tbody>
-				{% for s in sinaisI %}
-					<tr onclick="window.location='/sinal/{{s.id}}';">
-						<td>{{s.traducaoI}}</td>
-						{% if s.grupoCMe.imagem %}
-							<td><img src="{{s.grupoCMe.imagem.url}}" width="50" class="circle"></td>
-						{% else %}
-							<td></td>
-						{% endif %}
-						{% if s.cmE.imagem %}
-							<td><img src="{{s.cmE.imagem.url}}" width="50" class="circle"></td>
-						{% else %}
-							<td></td>
-						{% endif %}
-						{% if s.grupoCMd.imagem %}
-							<td><img src="{{s.grupoCMd.imagem.url}}" width="50" class="circle"></td>
-						{% else %}
-							<td></td>
-						{% endif %}
-						{% if s.cmD.imagem %}
-							<td><img src="{{s.cmD.imagem.url}}" width="50" class="circle"></td>
-						{% else %}
-							<td></td>
-						{% endif %}
-					</tr>
-				{% endfor %}
-				</tbody>
-			</table>
-
-			<p class="flow-text">Nenhum resultado encontrado em português.</p>
-
-		{% elif not checkboxPort and not checkboxIng %}
-
-			<p class="flow-text">Por favor, selecione ao menos um filtro de idioma.</p>
-
-		{% else %}
-
-			<p class="flow-text">Nenhum resultado encontrado.</p>
-
-		{% endif %}
-	</div>
-</div>
-
+				{% else %}
+					<p class="flow-text">Nenhum sinal encontrado</p>
+				{% endif %}
+		</div>
 {% endblock %}
