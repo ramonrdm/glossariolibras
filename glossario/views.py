@@ -22,31 +22,40 @@ from django.contrib.auth.decorators import login_required
 
 def index(request, glossario=None):
     glossarios = Glossario.objects.all()
-
     if request.method == 'POST':
         sinais = None
+
         formPesquisa = PesquisaForm(request.POST)
         formSinais = PesquisaSinaisForm(request.POST)
-        # formSinais = PesquisaSinaisForm(request.POST)
-        sinaisGlossario = Sinal.objects.filter(publicado=True)
         if formPesquisa.is_valid() and formSinais.is_valid():
             sinais = busca(formSinais, formPesquisa)
-
         formPesquisa = PesquisaForm()
         resultado = len(sinais) if sinais else None
+        localizacoes = dict(
+            [('1', 'localizacaoCabeca.png'), ('2', 'localizacaoOmbros.png'), ('3', 'localizacaoBracos.png'),
+             ('4', 'localizacaoNariz.png'), ('5', 'localizacaoBochechas.png'), ('6', 'localizacaoBoca.png'),
+             ('7', 'localizacaoTronco.png'), ('8', 'localizacaoNeutro.png'), ('9', 'localizacaoOlhos.png'),
+             ('10', 'localizacaoOrelhas.png'),
+             ('11', 'localizacaoPescoco.png'), ('12', 'localizacaoQueixo.png'), ('13', 'localizacaoTesta.png')])
+
+
+        movimentacoes = dict(
+            [('0', 'X.svg'), ('1', 'parede.png'), ('2', 'chao.png'), ('3', 'circular.png'), ('4', 'contato.png')])
+
+        for sinal in sinais:
+            sinal.localizacao = "/static/img/" + localizacoes[sinal.localizacao]
+            sinal.movimentacao = "/static/img/" + movimentacoes[sinal.movimentacao]
         return render(request, 'pesquisa.html', {
-            'formPesquisa': formPesquisa, 'sinais': sinais,  'resultado': resultado, 'glossario':
-            glossario,'sinaisGlossario' :sinaisGlossario,
+            'formPesquisa': formPesquisa, 'sinais': sinais, 'resultado': resultado,
             'formSinais': formSinais, 'form': EnviarSinaisForm(request.POST, request.FILES)})
 
     else:
-        formCheckbox = PesquisaCheckboxForm(request.session['sinaisCheckboxes']) if request.session.get('sinaisCheckboxes')	else PesquisaCheckboxForm()
-        formSinais = PesquisaSinaisForm(request.session['sinaisCheckboxes']) if request.session.get('sinaisCheckboxes') else PesquisaSinaisForm()
-        # formSinais = PesquisaSinaisForm()
+
+        formSinais = PesquisaSinaisForm(request.session) if request.session.get('sinaisCheckboxes') else PesquisaSinaisForm()
         formPesquisa = PesquisaForm()
 
     return render(request, 'index.html', {'glossarios': glossarios, 'glossario': glossario, 'formPesquisa': formPesquisa,
-        'formCheckbox': formCheckbox, 'formSinais': formSinais, 'form': EnviarSinaisForm(request.POST, request.FILES)
+         'formSinais': formSinais, 'form': EnviarSinaisForm(request.POST, request.FILES)
         })
 
 def glossarioSelecionado(request, glossario):
@@ -55,46 +64,43 @@ def glossarioSelecionado(request, glossario):
     except Glossario.DoesNotExist:
         glossario = None
 
-    checkboxPort = request.POST.get('checkboxPort', False)
-    checkboxIng = request.POST.get('checkboxIng', False)
-
-    request.session['sinaisCheckboxes'] = []
-
     if request.method == 'POST':
-        sinais = sinaisP = sinaisI = sinaisGlossario = formPesquisa = None
+        sinais = None
         formPesquisa = PesquisaForm(request.POST)
-        request.session['sinaisCheckboxes'] = request.POST.copy()
-        formCheckbox = PesquisaCheckboxForm(request.session['sinaisCheckboxes'])
-        formSinais = PesquisaSinaisForm(request.session['sinaisCheckboxes'])
-        # formSinais = PesquisaSinaisForm(request.POST)
+        formSinais = PesquisaSinaisForm(request.POST)
+
         if formPesquisa.is_valid() and formSinais.is_valid():
-            sinaisGlossario = Sinal.objects.filter(glossario=glossario).filter(publicado=True)
-            resultadoTraducao = formPesquisa.cleaned_data['busca'] or []
-            if checkboxPort and checkboxIng:
-                sinaisP = filterSinaisPort(formSinais, sinaisGlossario, resultadoTraducao)
-                sinaisI = filterSinaisIng(formSinais, sinaisGlossario, resultadoTraducao)
-            elif checkboxPort and not checkboxIng:
-                sinais = filterSinaisPort(formSinais, sinaisGlossario, resultadoTraducao)
-            elif checkboxIng and not checkboxPort:
-                sinais = filterSinaisIng(formSinais, sinaisGlossario, resultadoTraducao)
+            sinais = busca(formSinais, formPesquisa).filter(glossario=glossario)
+
         formPesquisa = PesquisaForm()
         resultado = len(sinais) if sinais else None
-        resultadoP = len(sinaisP) if sinaisP else None
-        resultadoI = len(sinaisI) if sinaisI else None
+        localizacoes = dict(
+            [('1', 'localizacaoCabeca.png'), ('2', 'localizacaoOmbros.png'), ('3', 'localizacaoBracos.png'),
+             ('4', 'localizacaoNariz.png'), ('5', 'localizacaoBochechas.png'), ('6', 'localizacaoBoca.png'),
+             ('7', 'localizacaoTronco.png'), ('8', 'localizacaoNeutro.png'), ('9', 'localizacaoOlhos.png'),
+             ('10', 'localizacaoOrelhas.png'),
+             ('11', 'localizacaoPescoco.png'), ('12', 'localizacaoQueixo.png'), ('13', 'localizacaoTesta.png')])
+
+        movimentacoes = dict(
+            [('0', 'X.svg'), ('1', 'parede.png'), ('2', 'chao.png'), ('3', 'circular.png'), ('4', 'contato.png')])
+
+        for sinal in sinais:
+            sinal.localizacao = "/static/img/" + localizacoes[sinal.localizacao]
+            sinal.movimentacao = "/static/img/" + movimentacoes[sinal.movimentacao]
+
+
         return render(request, 'pesquisa.html', {
-            'formPesquisa': formPesquisa, 'sinais': sinais, 'sinaisP': sinaisP, 'sinaisI': sinaisI,'sinaisGlossario':
-            sinaisGlossario, 'resultado': resultado, 'resultadoP': resultadoP, 'resultadoI': resultadoI, 'glossario':
-            glossario, 'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox,
+            'formPesquisa': formPesquisa, 'sinais': sinais, 'resultado': resultado, 'glossario':
+            glossario,
             'formSinais': formSinais
             })
     else:
-        formCheckbox = PesquisaCheckboxForm(request.session['sinaisCheckboxes']) if request.session.get('sinaisCheckboxes')	else PesquisaCheckboxForm()
-        formSinais = PesquisaSinaisForm(request.session['sinaisCheckboxes']) if request.session.get('sinaisCheckboxes') else PesquisaSinaisForm()
+
+        formSinais = PesquisaSinaisForm(request.session) if request.session.get('sinaisCheckboxes') else PesquisaSinaisForm()
         # formSinais = PesquisaSinaisForm()
         formPesquisa = PesquisaForm()
 
-        return render(request, 'glossario.html', {'glossario': glossario, 'formPesquisa': formPesquisa, 'checkboxPort': checkboxPort,
-            'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox, 'formSinais': formSinais, 'form': EnviarSinaisForm(request.POST, request.FILES)
+        return render(request, 'glossario.html', {'glossario': glossario, 'formPesquisa': formPesquisa, 'formSinais': formSinais, 'form': EnviarSinaisForm(request.POST, request.FILES)
             })
 
 def sinal(request, sinal=None, glossario=None):
@@ -114,25 +120,17 @@ def sinal(request, sinal=None, glossario=None):
         except Sinal.DoesNotExist:
             sinal = None
 
-    checkboxPort = request.POST.get('checkboxPort', False)
-    checkboxIng = request.POST.get('checkboxIng', False)
-
     if request.method == 'POST':
-        sinais = sinaisGlossario = formPesquisa = None
+        sinais = sinaisGlossario = None
         formPesquisa = PesquisaForm(request.POST)
         request.session['sinaisCheckboxes'] = request.POST.copy()
-        formCheckbox = PesquisaCheckboxForm(request.session['sinaisCheckboxes'])
-        formSinais = PesquisaSinaisForm(request.session['sinaisCheckboxes'])
+        formSinais = PesquisaSinaisForm(request.session)
         if formPesquisa.is_valid() and formSinais.is_valid():
             sinaisGlossario = Sinal.objects.filter(glossario=glossario).filter(publicado=True)
-
         formPesquisa = PesquisaForm()
         resultado = len(sinais) if sinais else None
-        return render(request, 'pesquisa.html', {
-            'formPesquisa': formPesquisa, 'sinais': sinais, 'sinaisGlossario':
-            sinaisGlossario, 'resultado': resultado, 'glossario':
-            glossario, 'checkboxPort': checkboxPort,'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox,
-            'formSinais': formSinais, })
+        return render(request, 'pesquisa.html', {'formPesquisa': formPesquisa, 'sinais': sinais, 'sinaisGlossario': sinaisGlossario, 'resultado': resultado, 'glossario':
+            glossario, 'formSinais': formSinais, })
     else:
         formPesquisa = PesquisaForm()
         formSinais = PesquisaSinaisForm()
@@ -240,17 +238,17 @@ def temasjson(request):
 def busca(formSinais, formPesquisa):
     parametros = {"publicado": True}
     resultadoTraducao = formPesquisa.cleaned_data['busca']
-    localizacao = int(formSinais.cleaned_data['localizacao'])
-    movimentacao = int(formSinais.cleaned_data['movimentacao'])
+    localizacao = formSinais.cleaned_data['localizacao']
+    movimentacao = formSinais.cleaned_data['movimentacao']
     grupo = formSinais.cleaned_data['grupoCMe']
     mao = formSinais.cleaned_data['cmE']
     if resultadoTraducao != '':
         sinais = Sinal.objects.filter(Q(traducaoI__icontains=resultadoTraducao) | Q(traducaoP__icontains=resultadoTraducao))
 
     else:
-        if localizacao != 0:
+        if localizacao != '0':
             parametros['localizacao'] = localizacao
-        if movimentacao != 0:
+        if movimentacao != '0':
             parametros['movimentacao'] = movimentacao
 
         sinais = Sinal.objects.filter(**parametros)
@@ -264,157 +262,6 @@ def busca(formSinais, formPesquisa):
 
     return sinais
 
-
-#
-# def filterSinaisPort(formSinais, sinaisGlossario, resultadoTraducao):
-#
-#      if resultadoTraducao == []:
-#          localizacao = int(formSinais.cleaned_data['localizacao'])
-#          movimentacao = int(formSinais.cleaned_data['movimentacao'])
-#          grupo = formSinais.cleaned_data['grupoCMe']
-#          mao = formSinais.cleaned_data['cmE']
-#          if grupo == None:
-#              grupo = 0
-#          if mao == None:
-#              mao = 0
-#
-#          print(localizacao)
-#          print(movimentacao)
-#          print(grupo)
-#          print(mao)
-#
-#          if localizacao == 0 and movimentacao == 0 and grupo == 0 and mao == 0:
-#             print('PASSEI vazio')
-#             return None
-#
-#          elif localizacao != 0 and movimentacao == 0 and grupo == 0 and mao == 0:
-#              print('PASSEI loc')
-#              return sinaisGlossario.filter(
-#                  Q(localizacao=formSinais.cleaned_data['localizacao'])
-#              ).distinct()
-#
-#          elif localizacao != 0 and movimentacao != 0 and grupo == 0 and mao == 0:
-#              print('PASSEI loca + movi')
-#              return sinaisGlossario.filter(
-#                  Q(localizacao=formSinais.cleaned_data['localizacao']) &
-#                  Q(movimentacao=formSinais.cleaned_data['movimentacao'])
-#              ).distinct()
-#
-#          elif localizacao != 0 and movimentacao != 0 and grupo != 0 and mao == 0:
-#              print('PASSEI loca + movi + grupo')
-#              return sinaisGlossario.filter(
-#                  Q(localizacao=formSinais.cleaned_data['localizacao']) &
-#                  Q(movimentacao=formSinais.cleaned_data['movimentacao']) &
-#                  (Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) | Q(grupoCMd=formSinais.cleaned_data['grupoCMe']))
-#              ).distinct()
-#
-#          elif localizacao != 0 and movimentacao != 0 and grupo != 0 and mao != 0:
-#              print('PASSEI TODOS')
-#              return sinaisGlossario.filter(
-#                  Q(localizacao=formSinais.cleaned_data['localizacao']) &
-#                  Q(movimentacao=formSinais.cleaned_data['movimentacao']) &
-#                  (Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) | Q(grupoCMd=formSinais.cleaned_data['grupoCMe'])) &
-#                  (Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
-#              ).distinct()
-#
-#          elif localizacao == 0 and movimentacao != 0 and grupo == 0 and mao == 0:
-#              print('PASSEI  movi')
-#              return sinaisGlossario.filter(
-#                  Q(movimentacao=formSinais.cleaned_data['movimentacao'])
-#              ).distinct()
-#
-#          elif localizacao == 0 and movimentacao != 0 and grupo != 0 and mao == 0:
-#              print('PASSEI  movi + grupo')
-#              return sinaisGlossario.filter(
-#                  Q(movimentacao=formSinais.cleaned_data['movimentacao']) &
-#                  (Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) | Q(grupoCMd=formSinais.cleaned_data['grupoCMe']))
-#              ).distinct()
-#
-#          elif localizacao == 0 and movimentacao != 0 and grupo != 0 and mao != 0:
-#              print('PASSEI  movi + grupo + mao')
-#              return sinaisGlossario.filter(
-#                  Q(movimentacao=formSinais.cleaned_data['movimentacao']) &
-#                  (Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) | Q(grupoCMd=formSinais.cleaned_data['grupoCMe'])) &
-#                  (Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
-#              ).distinct()
-#
-#          elif localizacao == 0 and movimentacao == 0 and grupo != 0 and mao == 0:
-#              print('PASSEI grupo')
-#              return sinaisGlossario.filter(
-#                  (Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) | Q(grupoCMd=formSinais.cleaned_data['grupoCMe']))
-#              ).distinct()
-#
-#          elif localizacao == 0 and movimentacao == 0 and grupo != 0 and mao != 0:
-#              print('PASSEI  grupo + mao')
-#              return sinaisGlossario.filter(
-#                  (Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) | Q(grupoCMd=formSinais.cleaned_data['grupoCMe'])) &
-#                  (Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
-#              ).distinct()
-#
-#          elif localizacao == 0 and movimentacao == 0 and grupo == 0 and mao != 0:
-#              print('PASSEI  mao')
-#              return sinaisGlossario.filter(
-#                  (Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
-#              ).distinct()
-#
-#          elif localizacao != 0 and movimentacao == 0 and grupo != 0 and mao == 0:
-#              print('PASSEI  loca + grupo')
-#              return sinaisGlossario.filter(
-#                  Q(localizacao=formSinais.cleaned_data['localizacao']) &
-#                  (Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) | Q(grupoCMd=formSinais.cleaned_data['grupoCMe']))
-#              ).distinct()
-#
-#          elif localizacao != 0 and movimentacao == 0 and grupo == 0 and mao != 0:
-#              print('PASSEI  loca + mao')
-#              return sinaisGlossario.filter(
-#                  Q(localizacao=formSinais.cleaned_data['localizacao']) &
-#                  (Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
-#              ).distinct()
-#
-#          elif localizacao != 0 and movimentacao == 0 and grupo != 0 and mao != 0:
-#              print('PASSEI  loca + grupo + mao')
-#              return sinaisGlossario.filter(
-#                  Q(localizacao=formSinais.cleaned_data['localizacao']) &
-#                  (Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) | Q(grupoCMd=formSinais.cleaned_data['grupoCMe'])) &
-#                  (Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
-#              ).distinct()
-#
-#          elif localizacao != 0 and movimentacao != 0 and grupo == 0 and mao != 0:
-#              print('PASSEI  loca + movi + grupo')
-#              return sinaisGlossario.filter(
-#                  Q(localizacao=formSinais.cleaned_data['localizacao']) &
-#                  Q(movimentacao=formSinais.cleaned_data['movimentacao']) &
-#                  (Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
-#
-#              ).distinct()
-#
-#          elif localizacao != 0 and movimentacao != 0 and grupo == 0 and mao != 0:
-#              print('PASSEI  loca + movi + mao')
-#              return sinaisGlossario.filter(
-#                  Q(movimentacao=formSinais.cleaned_data['movimentacao']) &
-#                  (Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
-#              ).distinct()
-#      else:
-#          return sinaisGlossario.filter(
-#              Q(traducaoP__icontains=resultadoTraducao)
-#          ).distinct()
-#
-# def filterSinaisIng(formSinais, sinaisGlossario, resultadoTraducao):
-#
-#     if resultadoTraducao == []:
-#         return sinaisGlossario.filter(
-#             Q(localizacao=formSinais.cleaned_data['localizacao']) and
-#             Q(movimentacao=formSinais.cleaned_data['movimentacao']) and
-#             Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) and
-#             Q(grupoCMd=formSinais.cleaned_data['grupoCMe']) and
-#             Q(cmE=formSinais.cleaned_data['cmE']) and
-#             Q(cmD=formSinais.cleaned_data['cmE'])
-#         ).distinct()
-#
-#     else:
-#         return sinaisGlossario.filter(
-#             Q(traducaoI__icontains=resultadoTraducao)
-#         ).distinct()
 # -----------------------------------------Registro de Usuario-------------------------------------------------------------------
 
 def registration(request):

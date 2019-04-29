@@ -31,6 +31,8 @@
 									<th>Configuração esquerda</th>
 									<th>Grupo direita</th>
 									<th>Configuração direita</th>
+									<th>Localização</th>
+									<th>Movimentação</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -61,6 +63,13 @@
 									{% else %}
 										<td></td>
 									{% endif %}
+									{% if s.localizacao %}
+										<td><img src="{{s.localizacao}}" width="50" class="circle"></td>
+									{% endif %}
+									{% if s.movimentacao %}
+										<td><img src="{{ s.movimentacao}}" width="50" class="circle"></td>
+									{% endif %}
+
 								</tr>
 							{% endfor %}
 							</tbody>
