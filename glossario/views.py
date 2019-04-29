@@ -118,36 +118,25 @@ def sinal(request, sinal=None, glossario=None):
     checkboxIng = request.POST.get('checkboxIng', False)
 
     if request.method == 'POST':
-        sinais = sinaisP = sinaisI = sinaisGlossario = formPesquisa = None
+        sinais = sinaisGlossario = formPesquisa = None
         formPesquisa = PesquisaForm(request.POST)
         request.session['sinaisCheckboxes'] = request.POST.copy()
         formCheckbox = PesquisaCheckboxForm(request.session['sinaisCheckboxes'])
         formSinais = PesquisaSinaisForm(request.session['sinaisCheckboxes'])
         if formPesquisa.is_valid() and formSinais.is_valid():
             sinaisGlossario = Sinal.objects.filter(glossario=glossario).filter(publicado=True)
-            resultadoTraducao = formPesquisa.cleaned_data['busca'] or []
-            if checkboxPort and checkboxIng:
-                sinaisP = filterSinaisPort(formSinais, sinaisGlossario, resultadoTraducao)
-                sinaisI = filterSinaisIng(formSinais, sinaisGlossario, resultadoTraducao)
-            elif checkboxPort and not checkboxIng:
-                sinais = filterSinaisPort(formSinais, sinaisGlossario, resultadoTraducao)
-            elif checkboxIng and not checkboxPort:
-                sinais = filterSinaisIng(formSinais, sinaisGlossario, resultadoTraducao)
+
         formPesquisa = PesquisaForm()
         resultado = len(sinais) if sinais else None
-        resultadoP = len(sinaisP) if sinaisP else None
-        resultadoI = len(sinaisI) if sinaisI else None
         return render(request, 'pesquisa.html', {
-            'formPesquisa': formPesquisa, 'sinais': sinais, 'sinaisP': sinaisP, 'sinaisI': sinaisI, 'sinaisGlossario':
-            sinaisGlossario, 'resultado': resultado, 'resultadoP': resultadoP, 'resultadoI': resultadoI, 'glossario':
+            'formPesquisa': formPesquisa, 'sinais': sinais, 'sinaisGlossario':
+            sinaisGlossario, 'resultado': resultado, 'glossario':
             glossario, 'checkboxPort': checkboxPort,'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox,
             'formSinais': formSinais, })
     else:
         formPesquisa = PesquisaForm()
-        formCheckbox = PesquisaCheckboxForm(request.session['sinaisCheckboxes'])
-        formSinais = PesquisaSinaisForm(request.session['sinaisCheckboxes'])
-        return render(request, "sinal.html", {'sinal': sinal, 'glossario': glossario, 'formPesquisa': formPesquisa,
-            'formCheckbox': formCheckbox, 'formSinais': formSinais })
+        formSinais = PesquisaSinaisForm()
+        return render(request, "sinal.html", {'sinal': sinal, 'glossario': glossario, 'formPesquisa': formPesquisa,'formSinais': formSinais })
 
 def historia(request):
     return render(request, "historia.html")

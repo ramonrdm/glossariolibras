@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5e0c9503-7214-497a-ab05-775fada2eea5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/glossario/templates/navSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/templates/navSearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/glossario/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -127,13 +127,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="2" />
-          <entry key="py" value="372" />
+          <entry key="py" value="375" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="2" />
-          <entry key="Python" value="372" />
+          <entry key="Python" value="375" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -148,6 +148,13 @@
           <entry key="Python" value="2" />
         </counts>
       </usages-collector>
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.51" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
     </session>
   </component>
   <component name="FavoritesManager">
@@ -158,10 +165,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/glossario/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="38" column="57" selection-start-line="38" selection-start-column="57" selection-end-line="38" selection-end-column="57" />
+            <state relative-caret-position="210">
+              <caret line="120" column="24" selection-start-line="120" selection-start-column="17" selection-end-line="120" selection-end-column="24" />
               <folding>
-                <marker date="1556314850198" expanded="true" signature="12305:13325" ph="..." />
+                <marker date="1556560147741" expanded="true" signature="12146:13166" ph="..." />
               </folding>
             </state>
           </provider>
@@ -170,17 +177,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/glossario/templates/sinal.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1298">
+            <state relative-caret-position="2405">
               <caret line="183" column="76" selection-start-line="183" selection-start-column="76" selection-end-line="183" selection-end-column="76" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../env/lib/python3.5/site-packages/django/forms/widgets.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="653" selection-start-line="653" selection-end-line="653" />
             </state>
           </provider>
         </entry>
@@ -451,7 +449,7 @@
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="1" sideWeight="0.5005225" side_tool="true" weight="0.24986821" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" sideWeight="0.49947754" visible="true" weight="0.151729" />
+      <window_info content_ui="combo" id="Project" order="2" sideWeight="0.49947754" visible="true" weight="0.151729" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3291536" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -460,7 +458,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3291536" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3291536" />
-      <window_info anchor="bottom" x="0" y="25" width="1440" height="410" id="Terminal" order="8" visible="true" weight="0.208" />
+      <window_info active="true" anchor="bottom" x="0" y="25" width="1440" height="410" id="Terminal" order="8" visible="true" weight="0.208" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32857144" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -752,15 +750,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/glossario/templates/modaisFormSinais.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/../env/lib/python3.5/site-packages/django/forms/widgets.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
+        <state relative-caret-position="1081">
           <caret line="653" selection-start-line="653" selection-end-line="653" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/glossario/templates/modaisFormSinais.html">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/glossario/templates/navSearch.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -771,17 +769,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/glossario/templates/sinal.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1298">
+        <state relative-caret-position="2405">
           <caret line="183" column="76" selection-start-line="183" selection-start-column="76" selection-end-line="183" selection-end-column="76" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/glossario/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="38" column="57" selection-start-line="38" selection-start-column="57" selection-end-line="38" selection-end-column="57" />
+        <state relative-caret-position="210">
+          <caret line="120" column="24" selection-start-line="120" selection-start-column="17" selection-end-line="120" selection-end-column="24" />
           <folding>
-            <marker date="1556314850198" expanded="true" signature="12305:13325" ph="..." />
+            <marker date="1556560147741" expanded="true" signature="12146:13166" ph="..." />
           </folding>
         </state>
       </provider>
