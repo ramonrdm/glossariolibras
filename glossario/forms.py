@@ -114,7 +114,7 @@ class SinalForm(forms.ModelForm):
 				if type(self.fields[field]) is ModelChoiceField:
 					print(self.fields[field])
 					if len(self.fields[field].queryset) >= option + 1:
-						self.fields[field].widget.field_img.append(self.fields[field].queryset[option].imagem.url)
+						self.fields[field].widget.field_img.append(self.fields[field].queryset[option].imagem)
 
 
 
