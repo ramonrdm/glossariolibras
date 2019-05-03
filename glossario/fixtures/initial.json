@@ -1,0 +1,640 @@
+[
+{
+    "model": "sessions.session",
+    "pk": "bkcbhz8eijx7rx3rlrmsrcb2ojkcmzue",
+    "fields": {
+        "session_data": "YzI5ODVjN2MwM2MxMDRmNjJmN2U5YTM5YmM0OGMxMzBiOTIxNmI3Njp7InNpbmFpc0NoZWNrYm94ZXMiOltdLCJfYXV0aF91c2VyX2lkIjoiMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiYmE0YzUxOTNiNWM5ZDcyNzE1NTg4MjBkMmExYzQ0OTFjNmUxNzhkZiJ9",
+        "expire_date": "2019-05-14T20:02:49.764Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "istaxsfzgtrqovw6pxk3u1r622xh8tue",
+    "fields": {
+        "session_data": "MDg2NDJlODc5Y2YzMTM4ZmQ3ZGZjNTgzM2RlMWE0ZTk2M2JmOTA1Yzp7InNpbmFpc0NoZWNrYm94ZXMiOltdfQ==",
+        "expire_date": "2019-05-07T20:01:15.779Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "ojr9uae1j9fhgkxrm3hsjnv8c1io1z1f",
+    "fields": {
+        "session_data": "YzI5ODVjN2MwM2MxMDRmNjJmN2U5YTM5YmM0OGMxMzBiOTIxNmI3Njp7InNpbmFpc0NoZWNrYm94ZXMiOltdLCJfYXV0aF91c2VyX2lkIjoiMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiYmE0YzUxOTNiNWM5ZDcyNzE1NTg4MjBkMmExYzQ0OTFjNmUxNzhkZiJ9",
+        "expire_date": "2019-04-26T22:47:43.509Z"
+    }
+},
+{
+    "model": "glossario.userglossario",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$120000$nofNiagar00B$zE1sdeD2rwfJUpCaOvItBEUzgYtP9+sMt1g6PBqY7IE=",
+        "last_login": "2019-04-30T20:02:49.683Z",
+        "is_superuser": true,
+        "email": "admin@admin.com",
+        "nome_completo": "admin",
+        "email_confirmed": false,
+        "is_staff": true,
+        "is_active": true,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "glossario.glossario",
+    "pk": 1,
+    "fields": {
+        "nome": "Letras Libras",
+        "descricao": "l",
+        "imagem": "",
+        "link": "letras-libras",
+        "dataCriacao": "2019-04-12",
+        "videoGlossario": "",
+        "responsavel": [
+            1
+        ],
+        "membros": [
+            1
+        ]
+    }
+},
+{
+    "model": "glossario.grupocm",
+    "pk": 1,
+    "fields": {
+        "imagem": "100_iMUHYLC_7vtoUnG_0CloSrb_qacpB9g_GhTrSAe_Qbyv0pd.png",
+        "bsw": "010101"
+    }
+},
+{
+    "model": "glossario.grupocm",
+    "pk": 2,
+    "fields": {
+        "imagem": "10e.png",
+        "bsw": "10e"
+    }
+},
+{
+    "model": "glossario.grupocm",
+    "pk": 3,
+    "fields": {
+        "imagem": "11e_lyuLIje.png",
+        "bsw": "11e"
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 1,
+    "fields": {
+        "bsw": "01010",
+        "imagem": "100_iMUHYLC_7vtoUnG_0CloSrb_qacpB9g_GhTrSAe_1pr27C2.png",
+        "grupo": 1
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 2,
+    "fields": {
+        "bsw": "",
+        "imagem": "101.png",
+        "grupo": 1
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 3,
+    "fields": {
+        "bsw": "",
+        "imagem": "102.png",
+        "grupo": 1
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 4,
+    "fields": {
+        "bsw": "",
+        "imagem": "103.png",
+        "grupo": 1
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 5,
+    "fields": {
+        "bsw": "",
+        "imagem": "104.png",
+        "grupo": 1
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 6,
+    "fields": {
+        "bsw": "",
+        "imagem": "105.png",
+        "grupo": 1
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 7,
+    "fields": {
+        "bsw": "",
+        "imagem": "106.png",
+        "grupo": 1
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 8,
+    "fields": {
+        "bsw": "",
+        "imagem": "10e_dFQzHPq.png",
+        "grupo": 2
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 9,
+    "fields": {
+        "bsw": "",
+        "imagem": "10f.png",
+        "grupo": 2
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 10,
+    "fields": {
+        "bsw": "",
+        "imagem": "110.png",
+        "grupo": 2
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 11,
+    "fields": {
+        "bsw": "",
+        "imagem": "111.png",
+        "grupo": 2
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 12,
+    "fields": {
+        "bsw": "",
+        "imagem": "112.png",
+        "grupo": 2
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 13,
+    "fields": {
+        "bsw": "",
+        "imagem": "11e_xcS0PHu.png",
+        "grupo": 3
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 14,
+    "fields": {
+        "bsw": "",
+        "imagem": "11f.png",
+        "grupo": 3
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 15,
+    "fields": {
+        "bsw": "",
+        "imagem": "120.png",
+        "grupo": 3
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 16,
+    "fields": {
+        "bsw": "",
+        "imagem": "121.png",
+        "grupo": 3
+    }
+},
+{
+    "model": "glossario.tema",
+    "pk": 1,
+    "fields": {
+        "nome": "libras",
+        "descricao": "libras",
+        "video": "",
+        "imagem": "11e_viPkzLX_9yutoy4.png",
+        "temaPai": null
+    }
+},
+{
+    "model": "glossario.sinal",
+    "pk": 1,
+    "fields": {
+        "glossario": 1,
+        "traducaoP": "cachorro",
+        "traducaoI": "dog",
+        "bsw": "01010",
+        "descricao": "animal",
+        "grupoCMe": 1,
+        "cmE": 1,
+        "grupoCMd": 1,
+        "cmD": 1,
+        "localizacao": "1",
+        "movimentacao": "1",
+        "dataPost": "2019-04-30",
+        "postador": 1,
+        "publicado": true,
+        "sinalLibras": "sinal_videos/originais/v-562-11-23-13-40-24_QjCiIxo.mp4",
+        "descLibras": "",
+        "exemploLibras": "",
+        "varicLibras": "",
+        "tema": 1
+    }
+},
+{
+    "model": "glossario.sinal",
+    "pk": 2,
+    "fields": {
+        "glossario": 1,
+        "traducaoP": "Software",
+        "traducaoI": "Software",
+        "bsw": "",
+        "descricao": "Programa para computador",
+        "grupoCMe": 1,
+        "cmE": 2,
+        "grupoCMd": 3,
+        "cmD": 16,
+        "localizacao": "8",
+        "movimentacao": "0",
+        "dataPost": "2019-04-30",
+        "postador": 1,
+        "publicado": true,
+        "sinalLibras": "sinal_videos/originais/520-07-03-15-11-56.ogv",
+        "descLibras": "sinal_videos/originais/d-520-07-03-15-11-58.ogv",
+        "exemploLibras": "sinal_videos/originais/e-520-07-03-15-12-05.ogv",
+        "varicLibras": "",
+        "tema": 1
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2019-04-12T22:22:22.893Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "1",
+        "object_repr": "Letras Libras",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2019-04-30T20:10:42.086Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "1",
+        "object_repr": "1",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2019-04-30T20:10:59.010Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "1",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2019-04-30T20:11:52.344Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "1",
+        "object_repr": "libras",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2019-04-30T20:11:57.636Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "1",
+        "object_repr": "cachorro",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2019-04-30T20:13:48.114Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "1",
+        "object_repr": "cachorro",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"publicado\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2019-04-30T20:14:13.968Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "1",
+        "object_repr": "cachorro",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"sinalLibras\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2019-04-30T20:36:20.561Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "2",
+        "object_repr": "2",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2019-04-30T20:36:36.588Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "3",
+        "object_repr": "3",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2019-04-30T20:36:42.391Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "4",
+        "object_repr": "4",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2019-04-30T20:36:48.170Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "5",
+        "object_repr": "5",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2019-04-30T20:37:27.923Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "6",
+        "object_repr": "6",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+        "action_time": "2019-04-30T20:37:43.366Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "7",
+        "object_repr": "7",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+        "action_time": "2019-04-30T20:38:14.940Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "2",
+        "object_repr": "2",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+        "action_time": "2019-04-30T20:38:26.682Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "8",
+        "object_repr": "8",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+        "action_time": "2019-04-30T20:38:57.673Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "9",
+        "object_repr": "9",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+        "action_time": "2019-04-30T20:39:30.756Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "10",
+        "object_repr": "10",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+        "action_time": "2019-04-30T20:39:55.937Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "11",
+        "object_repr": "11",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 19,
+    "fields": {
+        "action_time": "2019-04-30T20:40:04.773Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "12",
+        "object_repr": "12",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 20,
+    "fields": {
+        "action_time": "2019-04-30T20:40:47.040Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "3",
+        "object_repr": "3",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 21,
+    "fields": {
+        "action_time": "2019-04-30T20:41:20.524Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "13",
+        "object_repr": "13",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 22,
+    "fields": {
+        "action_time": "2019-04-30T20:41:39.640Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "14",
+        "object_repr": "14",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 23,
+    "fields": {
+        "action_time": "2019-04-30T20:42:08.412Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "15",
+        "object_repr": "15",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 24,
+    "fields": {
+        "action_time": "2019-04-30T20:42:21.906Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "16",
+        "object_repr": "16",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 25,
+    "fields": {
+        "action_time": "2019-04-30T20:46:43.536Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "2",
+        "object_repr": "Software",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 26,
+    "fields": {
+        "action_time": "2019-04-30T20:47:09.923Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "2",
+        "object_repr": "Software",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"sinalLibras\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 27,
+    "fields": {
+        "action_time": "2019-04-30T20:47:22.356Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "2",
+        "object_repr": "Software",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"descLibras\", \"exemploLibras\"]}}]"
+    }
+}
+]
