@@ -95,15 +95,7 @@ class Glossario(models.Model):
     def __str__(self):
         return self.nome
 
-class GrupoCM (models.Model):
-    class Meta:
-        verbose_name_plural='Grupos de configuração de mão'
-        
-    imagem = models.ImageField(blank=True)
-    bsw = models.TextField('BSW')
 
-    def __str__(self):
-        return str(self.id)
 
 class CM (models.Model):
     class Meta:
@@ -111,10 +103,10 @@ class CM (models.Model):
 
     bsw = models.TextField('BSW', blank=True, default='')
     imagem = models.ImageField(blank=True)
-    grupo = models.ForeignKey(GrupoCM, verbose_name = 'Grupo de Configuração de Mão', on_delete=models.CASCADE)
+
 
     def __str__(self):
-        # return str(self.id)+" - "+str(self.grupo)
+
         return str(self.id)
 
 class Tema(models.Model):
@@ -134,16 +126,14 @@ def sinal_upload_path(instance, filename):
 class Sinal(models.Model):
     class Meta:
         verbose_name_plural = 'sinais'
-        unique_together = ('traducaoP', 'traducaoI', 'grupoCMe', 'cmE', 'grupoCMd', 'cmD', 'localizacao', 'movimentacao')
+        unique_together = ('traducaoP', 'traducaoI', 'cmE','cmD', 'localizacao', 'movimentacao')
 
     glossario = models.ForeignKey(Glossario, verbose_name='glossário', null=True, on_delete=models.CASCADE)
     traducaoP = models.CharField('palavra', max_length=30)
     traducaoI = models.CharField('word', max_length=30)
     bsw = models.TextField(null=True, blank=True)
     descricao = models.TextField('descrição',  null=True)
-    grupoCMe = models.ForeignKey(GrupoCM, related_name='Grupo_M_Esquerda', verbose_name='grupo da mão esquerda', on_delete=models.CASCADE)
     cmE = models.ForeignKey(CM, related_name='C_M_Esquerda', verbose_name='configuração da mão esquerda', on_delete=models.CASCADE)
-    grupoCMd = models.ForeignKey(GrupoCM, related_name='Grupo_M_Direita', verbose_name='grupo da mão direita', on_delete=models.CASCADE)
     cmD = models.ForeignKey(CM, related_name='C_M_Direita', verbose_name='configuração da mão direita', on_delete=models.CASCADE)
     localizacoes = (('0','Nunhuma'),('1','Cabeça'),('2','Ombros'),('3','Braços'),('4','Nariz'),('5','Bochechas'),
                         ('6','Boca'),('7','Tronco'),('8','Espaço Neutro'),('9','Olhos'),('10','Orelhas'),

@@ -27,9 +27,7 @@
 								<tr>
 									<th>Português</th>
 									<th>Inglês</th>
-									<th>Grupo esquerda</th>
 									<th>Configuração esquerda</th>
-									<th>Grupo direita</th>
 									<th>Configuração direita</th>
 									<th>Localização</th>
 									<th>Movimentação</th>
@@ -43,19 +41,12 @@
 
 									<td>{{s.traducaoI}}</td>
 
-									{% if s.grupoCMe.imagem %}
-										<td><img src="{{s.grupoCMe.imagem.url}}" width="50" class="circle"></td>
-									{% else %}
-										<td></td>
-									{% endif %}
+
+
 									{% if s.cmE.imagem %}
 										<td><img src="{{s.cmE.imagem.url}}" width="50" class="circle"></td>
 									{% else %}
-										<td></td>
-									{% endif %}
-									{% if s.grupoCMd.imagem %}
-										<td><img src="{{s.grupoCMd.imagem.url}}" width="50" class="circle"></td>
-									{% else %}
+
 										<td></td>
 									{% endif %}
 									{% if s.cmD.imagem %}

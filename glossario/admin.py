@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from glossario.forms import GlossarioForm, SinalForm, GrupoCMForm, CMForm
+from glossario.forms import GlossarioForm, SinalForm, CMForm
 from unicodedata import normalize
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
@@ -224,18 +224,6 @@ class SinalAdmin(admin.ModelAdmin):
         return qs.filter(Q(glossario__responsavel=request.user) | Q(glossario__membros=request.user)).distinct()
 
 
-class GrupoCMAdmin(admin.ModelAdmin):
-
-    form = GrupoCMForm
-    list_display = ('__str__', 'image_tag', 'bsw')
-
-    def image_tag(self, obj):
-        if obj.imagem:
-            return format_html('<img src="{}" width="50" height="50"/>'.format(obj.imagem.url))
-        else:
-            return format_html('<p>Sem imagem</p>')
-    image_tag.short_description = 'Imagem'
-    image_tag.allow_tags = True
 
 class CMAdmin(admin.ModelAdmin):
     form = CMForm
@@ -252,7 +240,6 @@ class CMAdmin(admin.ModelAdmin):
 admin.site.register(Tema)
 admin.site.register(Glossario, GlossarioAdmin)
 admin.site.register(Sinal, SinalAdmin)
-admin.site.register(GrupoCM, GrupoCMAdmin)
 admin.site.register(CM, CMAdmin)
 
 

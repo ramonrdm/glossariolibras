@@ -2,7 +2,7 @@
 
 from django import forms
 from django.forms.models import ModelChoiceField
-from glossario.models import Glossario, Sinal, GrupoCM, CM, UserGlossario
+from glossario.models import Glossario, Sinal, CM, UserGlossario
 from django.conf import settings
 from glossario.widgets import ImageSelectLocalizacao, ImageSelectMao, ImageSelectMovimentacao
 from django.core.exceptions import ValidationError
@@ -85,14 +85,12 @@ class SinalForm(forms.ModelForm):
 
 	class Meta:
 		model = Sinal
-		fields = ['glossario', 'traducaoP', 'traducaoI', 'descricao', 'bsw', 'grupoCMe', 'cmE', 'grupoCMd',
+		fields = ['glossario', 'traducaoP', 'traducaoI', 'descricao', 'bsw', 'cmE',
 		'cmD', 'localizacao', 'movimentacao', 'tema', 'dataPost', 'postador', 'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras',
 		'publicado']
 		widgets = {
 					'localizacao': ImageSelectLocalizacao(),
-					'grupoCMe': ImageSelectMao(),
 					'cmE': ImageSelectMao(),
-					'grupoCMd': ImageSelectMao(),
 					'cmD': ImageSelectMao(),
 					'movimentacao': ImageSelectMovimentacao()
 		}
@@ -104,7 +102,7 @@ class SinalForm(forms.ModelForm):
 		self.fields['bsw'].help_text = "<b><a target='_blank' href='http://glossario.libras.ufsc.br/swis/signmaker.php'>Criar codigo aqui</a></b>"
 		self.fields['bsw'].widget = forms.TextInput(attrs={})
 		for field in self.fields:
-			if field in ['grupoCMd', 'cmD', 'cmE', 'grupoCMe']:
+			if field in [ 'cmD', 'cmE']:
 				self.fields[field].widget = ImageSelectMao(choices=self.fields[field].choices, attrs={})
 			self.fields[field].widget.field_img = list()
 			self.fields[field].empty_label = 'Selecionar'
@@ -121,13 +119,11 @@ class SinalForm(forms.ModelForm):
 class EnviarSinaisForm(forms.ModelForm):
 	class Meta:
 		model = Sinal
-		fields = ['traducaoP', 'traducaoI', 'descricao', 'localizacao', 'movimentacao', 'grupoCMe', 'cmE', 'grupoCMd', 'cmD',
+		fields = ['traducaoP', 'traducaoI', 'descricao', 'localizacao', 'movimentacao', 'cmE', 'cmD',
 		'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras']
 		widgets =	{
 					'localizacao': ImageSelectLocalizacao(),
-					'grupoCMe': ImageSelectMao(),
 					'cmE': ImageSelectMao(),
-					'grupoCMd': ImageSelectMao(),
 					'cmD': ImageSelectMao(),
 					'movimentacao': ImageSelectMovimentacao()
 					}
@@ -146,10 +142,9 @@ class EnviarSinaisForm(forms.ModelForm):
 class PesquisaSinaisForm(forms.ModelForm):
 	class Meta:
 		model = Sinal
-		fields = ['localizacao', 'grupoCMe', 'cmE', 'movimentacao', ]
+		fields = ['localizacao', 'cmE', 'movimentacao', ]
 		widgets ={
 					'localizacao': ImageSelectLocalizacao(),
-					'grupoCMe': ImageSelectMao(),
 					'cmE': ImageSelectMao(),
 					'movimentacao': ImageSelectMovimentacao()
 					}
@@ -170,17 +165,12 @@ class PesquisaSinaisForm(forms.ModelForm):
 							self.fields[field].widget.field_img.append("/static/img/cinema/")
 
 
-class GrupoCMForm(forms.ModelForm):
-
-	class Meta:
-		model = GrupoCM
-		fields = ['imagem', 'bsw']
 
 class CMForm(forms.ModelForm):
 
 	class Meta:
 		model = CM
-		fields = ['bsw', 'imagem', 'grupo']
+		fields = ['bsw', 'imagem']
 
 class PesquisaForm(forms.Form):
 	busca = forms.CharField(required=False, label="", widget=forms.TextInput(attrs={'id': 'search', 'type': 'search'}))

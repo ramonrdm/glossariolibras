@@ -1,14 +1,11 @@
 // USA SOMENTE CM E GRUPOCM ESQUERDA POIS TANTO FAZ PARA A PESQUISA
 let modal_refs = [
-	'#modalGrupoCMe',
 	'#modalCMe',
-	'#modalGrupoCMd',
 	'#modalCMd',
 	'#modalMovimentacao'
 ];
 
 let select_refs = [
-	'#id_grupoCMe',
 	'#id_cmE',
 	'#id_movimentacao'
 ];
