@@ -9,7 +9,7 @@ $ pip install -r requirements.txt
 $ sudo apt install ffmpeg
 
 para fazer o dumpdata:
-./manage.py dumpdata --indent 2 --exclude auth.permission --exclude contenttypes > glossario/fixtures/initial.json
+./manage.py dumpdata --indent 4 --natural-foreign --natural-primary -e auth.permission -e contenttypes -e sessions -e admin  > glossario/fixtures/initial.json
 
 Popular o banco de dados local (sqlite3): chamar o comando:
 $ ./manage.py loaddata glossario/fixtures/initial.json

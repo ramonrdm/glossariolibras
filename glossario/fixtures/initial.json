@@ -1,34 +1,9 @@
 [
 {
-    "model": "sessions.session",
-    "pk": "bkcbhz8eijx7rx3rlrmsrcb2ojkcmzue",
-    "fields": {
-        "session_data": "YzI5ODVjN2MwM2MxMDRmNjJmN2U5YTM5YmM0OGMxMzBiOTIxNmI3Njp7InNpbmFpc0NoZWNrYm94ZXMiOltdLCJfYXV0aF91c2VyX2lkIjoiMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiYmE0YzUxOTNiNWM5ZDcyNzE1NTg4MjBkMmExYzQ0OTFjNmUxNzhkZiJ9",
-        "expire_date": "2019-05-14T20:02:49.764Z"
-    }
-},
-{
-    "model": "sessions.session",
-    "pk": "istaxsfzgtrqovw6pxk3u1r622xh8tue",
-    "fields": {
-        "session_data": "MDg2NDJlODc5Y2YzMTM4ZmQ3ZGZjNTgzM2RlMWE0ZTk2M2JmOTA1Yzp7InNpbmFpc0NoZWNrYm94ZXMiOltdfQ==",
-        "expire_date": "2019-05-07T20:01:15.779Z"
-    }
-},
-{
-    "model": "sessions.session",
-    "pk": "ojr9uae1j9fhgkxrm3hsjnv8c1io1z1f",
-    "fields": {
-        "session_data": "YzI5ODVjN2MwM2MxMDRmNjJmN2U5YTM5YmM0OGMxMzBiOTIxNmI3Njp7InNpbmFpc0NoZWNrYm94ZXMiOltdLCJfYXV0aF91c2VyX2lkIjoiMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiYmE0YzUxOTNiNWM5ZDcyNzE1NTg4MjBkMmExYzQ0OTFjNmUxNzhkZiJ9",
-        "expire_date": "2019-04-26T22:47:43.509Z"
-    }
-},
-{
     "model": "glossario.userglossario",
-    "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$120000$nofNiagar00B$zE1sdeD2rwfJUpCaOvItBEUzgYtP9+sMt1g6PBqY7IE=",
-        "last_login": "2019-04-30T20:02:49.683Z",
+        "last_login": "2019-05-07T22:20:58.124Z",
         "is_superuser": true,
         "email": "admin@admin.com",
         "nome_completo": "admin",
@@ -45,15 +20,41 @@
     "fields": {
         "nome": "Letras Libras",
         "descricao": "l",
-        "imagem": "",
+        "imagem": "marca_portal_libras2_CpDcRnI.png",
         "link": "letras-libras",
         "dataCriacao": "2019-04-12",
         "videoGlossario": "",
         "responsavel": [
-            1
+            [
+                "admin@admin.com"
+            ]
         ],
         "membros": [
-            1
+            [
+                "admin@admin.com"
+            ]
+        ]
+    }
+},
+{
+    "model": "glossario.glossario",
+    "pk": 2,
+    "fields": {
+        "nome": "Animais",
+        "descricao": "Reino Animal",
+        "imagem": "1552647712484_9HzUZTQ.jpg",
+        "link": "animais",
+        "dataCriacao": "2019-05-07",
+        "videoGlossario": "520-07-03-15-11-56.ogv",
+        "responsavel": [
+            [
+                "admin@admin.com"
+            ]
+        ],
+        "membros": [
+            [
+                "admin@admin.com"
+            ]
         ]
     }
 },
@@ -193,6 +194,28 @@
         "descricao": "libras",
         "video": "",
         "imagem": "11e_viPkzLX_9yutoy4.png",
+        "temaPai": 3
+    }
+},
+{
+    "model": "glossario.tema",
+    "pk": 2,
+    "fields": {
+        "nome": "Animais",
+        "descricao": "reino dos animais",
+        "video": "",
+        "imagem": "1552647712484_cm1D4fW.jpg",
+        "temaPai": 3
+    }
+},
+{
+    "model": "glossario.tema",
+    "pk": 3,
+    "fields": {
+        "nome": "Conhecimento",
+        "descricao": "area do conhecimento",
+        "video": "",
+        "imagem": "logo_valido.jpg",
         "temaPai": null
     }
 },
@@ -210,7 +233,9 @@
         "localizacao": "1",
         "movimentacao": "1",
         "dataPost": "2019-04-30",
-        "postador": 1,
+        "postador": [
+            "admin@admin.com"
+        ],
         "publicado": true,
         "sinalLibras": "sinal_videos/originais/v-562-11-23-13-40-24_QjCiIxo.mp4",
         "descLibras": "",
@@ -233,7 +258,9 @@
         "localizacao": "8",
         "movimentacao": "0",
         "dataPost": "2019-04-30",
-        "postador": 1,
+        "postador": [
+            "admin@admin.com"
+        ],
         "publicado": true,
         "sinalLibras": "sinal_videos/originais/520-07-03-15-11-56.ogv",
         "descLibras": "sinal_videos/originais/d-520-07-03-15-11-58.ogv",
