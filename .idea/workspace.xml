@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5e0c9503-7214-497a-ab05-775fada2eea5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/glossario/context_processors.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/glossario/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/glossario/static/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/static/css/base.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/glossario/static/img/colaboradores/cleberton.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/static/img/colaboradores/cleberton.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/glossario/templates/equipe.html" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/templates/equipe.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/glossario/templates/navSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/templates/navSearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/glossario/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/glossario/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/glossario/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/glossario/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/glossariolibras/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/glossariolibras/settings.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,10 +68,10 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="1041" />
-          <entry key="HTML" value="4303" />
+          <entry key="HTML" value="4305" />
           <entry key="JavaScript" value="515" />
           <entry key="PLAIN_TEXT" value="37" />
-          <entry key="Python" value="4068" />
+          <entry key="Python" value="4070" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -79,9 +79,9 @@
         <counts>
           <entry key="Python Console" value="30" />
           <entry key="css" value="1041" />
-          <entry key="html" value="4303" />
+          <entry key="html" value="4305" />
           <entry key="js" value="515" />
-          <entry key="py" value="4038" />
+          <entry key="py" value="4040" />
           <entry key="txt" value="37" />
         </counts>
       </usages-collector>
@@ -175,8 +175,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/glossario/templates/navSearch.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="40" column="32" selection-start-line="40" selection-start-column="32" selection-end-line="40" selection-end-column="32" />
+            <state relative-caret-position="273">
+              <caret line="40" column="67" selection-start-line="40" selection-start-column="67" selection-end-line="40" selection-end-column="67" />
             </state>
           </provider>
         </entry>
@@ -184,8 +184,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/glossario/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="175" column="54" selection-start-line="175" selection-start-column="54" selection-end-line="175" selection-end-column="54" />
+            <state relative-caret-position="489">
+              <caret line="157" lean-forward="true" selection-start-line="157" selection-end-line="157" />
+              <folding>
+                <element signature="e#24#48#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -194,7 +197,7 @@
         <entry file="file://$PROJECT_DIR$/glossario/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="506">
-              <caret line="179" lean-forward="true" selection-start-line="179" selection-end-line="179" />
+              <caret line="174" lean-forward="true" selection-start-line="174" selection-end-line="174" />
             </state>
           </provider>
         </entry>
@@ -448,7 +451,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3291536" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3291536" />
-      <window_info active="true" anchor="bottom" x="0" y="25" width="1440" height="410" id="Terminal" order="8" visible="true" weight="0.32933334" />
+      <window_info active="true" anchor="bottom" x="0" y="25" width="1440" height="410" id="Terminal" order="8" visible="true" weight="0.14133333" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32857144" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -726,21 +729,24 @@
     <entry file="file://$PROJECT_DIR$/glossario/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="506">
-          <caret line="179" lean-forward="true" selection-start-line="179" selection-end-line="179" />
+          <caret line="174" lean-forward="true" selection-start-line="174" selection-end-line="174" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/glossario/templates/navSearch.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="40" column="32" selection-start-line="40" selection-start-column="32" selection-end-line="40" selection-end-column="32" />
+        <state relative-caret-position="273">
+          <caret line="40" column="67" selection-start-line="40" selection-start-column="67" selection-end-line="40" selection-end-column="67" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/glossario/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="175" column="54" selection-start-line="175" selection-start-column="54" selection-end-line="175" selection-end-column="54" />
+        <state relative-caret-position="489">
+          <caret line="157" lean-forward="true" selection-start-line="157" selection-end-line="157" />
+          <folding>
+            <element signature="e#24#48#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

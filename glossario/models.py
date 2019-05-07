@@ -13,9 +13,6 @@ from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser, PermissionsMixin
 )
 
-# -----------------------------------------Criação de Usuario-------------------------------------------------------------------
-
-
 class UserManagerGlossario(BaseUserManager):
     
     def _create_user(self, email, nome_completo, password, **extra_fields):
@@ -46,6 +43,10 @@ class UserManagerGlossario(BaseUserManager):
         return self._create_user(email, nome_completo, password, **extra_fields)
 
 class UserGlossario(AbstractBaseUser, PermissionsMixin):
+    
+    class Meta:
+        verbose_name = "Usuário"
+
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
@@ -72,8 +73,6 @@ class UserGlossario(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 
-# -------------------------------------------------------------------------------------------------------------------------
-
 class Video(FileField):
     capa = models.ImageField(blank=True)
     videoMp4 = models.FileField()
@@ -95,8 +94,6 @@ class Glossario(models.Model):
     def __str__(self):
         return self.nome
 
-
-
 class CM (models.Model):
     class Meta:
         verbose_name_plural='configurações de mão'
@@ -104,9 +101,7 @@ class CM (models.Model):
     bsw = models.TextField('BSW', blank=True, default='')
     imagem = models.ImageField(blank=True)
 
-
     def __str__(self):
-
         return str(self.id)
 
 class Tema(models.Model):
@@ -177,9 +172,3 @@ def update_upload_path(sender, instance, created, **kwargs):
                     % datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'),
                     shell=True
                     )
-
-
-class BarraPesquisa(models.Model):
-    barraPesquisaLibras = models.BooleanField(default=True)
-
-
