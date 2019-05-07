@@ -2,7 +2,7 @@
 from django.shortcuts import render, render_to_response, redirect
 from glossario.models import Glossario, Sinal, Tema, UserGlossario
 from django.contrib.auth.models import User
-from glossario.forms import PesquisaForm, PesquisaCheckboxForm, EnviarSinaisForm, PesquisaSinaisForm, CustomUserCreationForm
+from glossario.forms import PesquisaForm, EnviarSinaisForm, PesquisaSinaisForm, CustomUserCreationForm
 from django.http import JsonResponse
 from django.db.models import Q
 from django.template import RequestContext
@@ -24,7 +24,6 @@ def index(request, glossario=None):
     glossarios = Glossario.objects.all()
     if request.method == 'POST':
         sinais = None
-
         formPesquisa = PesquisaForm(request.POST)
         formSinais = PesquisaSinaisForm(request.POST)
         if formPesquisa.is_valid() and formSinais.is_valid():
@@ -38,7 +37,6 @@ def index(request, glossario=None):
              ('10', 'localizacaoOrelhas.png'),
              ('11', 'localizacaoPescoco.png'), ('12', 'localizacaoQueixo.png'), ('13', 'localizacaoTesta.png')])
 
-
         movimentacoes = dict(
             [('0', 'X.svg'), ('1', 'parede.png'), ('2', 'chao.png'), ('3', 'circular.png'), ('4', 'contato.png')])
 
@@ -48,9 +46,7 @@ def index(request, glossario=None):
         return render(request, 'pesquisa.html', {
             'formPesquisa': formPesquisa, 'sinais': sinais, 'resultado': resultado,
             'formSinais': formSinais, 'form': EnviarSinaisForm(request.POST, request.FILES)})
-
     else:
-
         formSinais = PesquisaSinaisForm(request.session) if request.session.get('sinaisCheckboxes') else PesquisaSinaisForm()
         formPesquisa = PesquisaForm()
 
@@ -88,14 +84,12 @@ def glossarioSelecionado(request, glossario):
             sinal.localizacao = "/static/img/" + localizacoes[sinal.localizacao]
             sinal.movimentacao = "/static/img/" + movimentacoes[sinal.movimentacao]
 
-
         return render(request, 'pesquisa.html', {
             'formPesquisa': formPesquisa, 'sinais': sinais, 'resultado': resultado, 'glossario':
             glossario,
             'formSinais': formSinais
             })
     else:
-
         formSinais = PesquisaSinaisForm(request.session) if request.session.get('sinaisCheckboxes') else PesquisaSinaisForm()
         # formSinais = PesquisaSinaisForm()
         formPesquisa = PesquisaForm()
@@ -156,7 +150,6 @@ def temas(request, temas=None):
     except Tema.DoesNotExist:
         raiz = None
     return render(request, "temas.html", dict(raiz=raiz))
-
 
 @login_required
 def enviarSinais(request):
@@ -233,8 +226,6 @@ def temasjson(request):
     print (jsonTemas)
     return JsonResponse(jsonTemas)
 
-#################### MÉTODOS ####################
-
 def busca(formSinais, formPesquisa):
     parametros = {"publicado": True}
     resultadoTraducao = formPesquisa.cleaned_data['busca']
@@ -256,8 +247,6 @@ def busca(formSinais, formPesquisa):
 
 
     return sinais
-
-# -----------------------------------------Registro de Usuario-------------------------------------------------------------------
 
 def registration(request):
     if request.method == 'POST':
@@ -305,7 +294,3 @@ def activate(request, uidb64, token):
 def account_activation_sent(request):
     modalConfirmeEmail = True
     return render(request, 'index.html', {'modalConfirmeEmail':modalConfirmeEmail})
-
-
-
-# -------------------------------------------------------------------------------------------------------------------------

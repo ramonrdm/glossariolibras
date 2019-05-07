@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 from django import forms
 from django.forms.models import ModelChoiceField
 from glossario.models import Glossario, Sinal, CM, UserGlossario
@@ -9,20 +8,15 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth import password_validation
 import re
 
-
-# --------------------------------------- RegistrationForm ----------------------------------------------------------------
-
 class CustomUserCreationForm(forms.ModelForm):
     email = forms.EmailField(label='Email')
     nome_completo = forms.CharField(label='Nome Completo')
     password = forms.CharField(widget=forms.PasswordInput, label='Senha')
     password2 = forms.CharField(widget=forms.PasswordInput, label='Confirmar Senha')
 
-
     class Meta:
         model = UserGlossario
         fields = ('email',)
-
 
     def clean_email(self):
         email = self.cleaned_data['email'].lower()
@@ -41,7 +35,6 @@ class CustomUserCreationForm(forms.ModelForm):
 
         if password and password2 and password != password2:
             raise ValidationError("Senhas não correspondem")
-
 
         minimal_number = 1
         minimal_upper_char = 1
@@ -62,8 +55,6 @@ class CustomUserCreationForm(forms.ModelForm):
 
         return password
 
-
-
     def save(self, commit=True):
         user = super().save(commit=False)
         user.nome_completo = self.cleaned_data["nome_completo"]
@@ -73,16 +64,13 @@ class CustomUserCreationForm(forms.ModelForm):
             user.save()
 
         return user
-#--------------------------------------------------------------------------------------------------------------------------
-class GlossarioForm(forms.ModelForm):
 
+class GlossarioForm(forms.ModelForm):
 	class Meta:
 		model = Glossario
 		exclude = ['link','dataCriacao']
 
-
 class SinalForm(forms.ModelForm):
-
 	class Meta:
 		model = Sinal
 		fields = ['glossario', 'traducaoP', 'traducaoI', 'descricao', 'bsw', 'cmE',
@@ -94,8 +82,6 @@ class SinalForm(forms.ModelForm):
 					'cmD': ImageSelectMao(),
 					'movimentacao': ImageSelectMovimentacao()
 		}
-
-
 
 	def __init__(self, *args, **kwargs):
 		super(SinalForm, self).__init__(*args, **kwargs)
@@ -110,11 +96,9 @@ class SinalForm(forms.ModelForm):
 			for option in range(0, 20):
 			# trocar 20 do xrange para length do select que tiver mais options
 				if type(self.fields[field]) is ModelChoiceField:
-					print(self.fields[field])
+					#print(self.fields[field])
 					if len(self.fields[field].queryset) >= option + 1:
 						self.fields[field].widget.field_img.append(self.fields[field].queryset[option].imagem)
-
-
 
 class EnviarSinaisForm(forms.ModelForm):
 	class Meta:
@@ -164,46 +148,10 @@ class PesquisaSinaisForm(forms.ModelForm):
 						else:
 							self.fields[field].widget.field_img.append("/static/img/cinema/")
 
-
-
 class CMForm(forms.ModelForm):
-
 	class Meta:
 		model = CM
 		fields = ['bsw', 'imagem']
 
 class PesquisaForm(forms.Form):
 	busca = forms.CharField(required=False, label="", widget=forms.TextInput(attrs={'id': 'search', 'type': 'search'}))
-
-class PesquisaCheckboxForm(forms.Form):
-
-
-	checkboxPort = forms.BooleanField(label='Português', widget=forms.CheckboxInput(attrs={
-		'type': 'checkbox', 'class': 'filled-in checkboxAzul',
-		'id': 'checkboxPort', 'name': 'checkboxPort',
-	}))
-
-
-
-	checkboxIng = forms.BooleanField(label='Inglês', widget=forms.CheckboxInput(attrs={
-		'type': 'checkbox', 'class': 'filled-in checkboxAzul',
-		'id': 'checkboxIng', 'name': 'checkboxIng',
-	}))
-
-
-
-	def __init__(self, *args, **kwargs):
-		super(PesquisaCheckboxForm, self).__init__(*args, **kwargs)
-		for field in self.fields:
-			self.fields['checkboxPort'].initial = True
-			self.fields[field].required = False
-
-#	def clean_nome(self):
-#		palavra = self.cleaned_data['nome']
-		#tudo para minusculo
-		#tirar espacos
-		#tirar acentos
-		
-#		self.exclude.append('link')
-
-#		return self.cleaned_data['nome']
