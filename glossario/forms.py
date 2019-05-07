@@ -173,7 +173,7 @@ class CMForm(forms.ModelForm):
 		fields = ['bsw', 'imagem']
 
 class PesquisaForm(forms.Form):
-	busca = forms.CharField(required=False, label="", widget=forms.TextInput(attrs={'id': 'search', 'type': 'search'}))
+	busca = forms.CharField(required=False, label="", help_text="Digite aqui...", widget=forms.TextInput(attrs={'id': 'search', 'type': 'search'}))
 
 class PesquisaCheckboxForm(forms.Form):
 

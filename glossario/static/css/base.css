@@ -11,13 +11,11 @@
 
 nav {
 
-    margin: 12 !important;
-    padding: 0 50px 0 15px;
     background-color: var(--primary);
 }
 
 nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
-    height: 3000px;
+
     line-height: 3000px;
 }
 
@@ -28,12 +26,8 @@ nav .brand-logo {
 @media only screen and (min-width: 1000px){
     nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
         height: 130px;
-        line-height: 12px;
+        line-height: 130px;
 
-    .botaoPesquisar {
-       line-height : 50px;
-       color: red;
-    }
 }
 }
 
