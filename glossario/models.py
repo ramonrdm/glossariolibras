@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from django.db.models import FileField
+from django.db.models import FileField, DateTimeField
 from django.core.files import File
 from django.contrib.auth import hashers
 from django.db.models.signals import post_save, pre_save
@@ -26,7 +26,10 @@ class UserManagerGlossario(BaseUserManager):
     def create_user(self, email, nome_completo, password=None, **extra_fields):
         if not email:
             raise ValueError('Users must have an email address')
+        extra_fields.setdefault('is_active', True)
         extra_fields.setdefault('is_superuser', False)
+        extra_fields.setdefault('is_staff', True)
+
         return self._create_user(email, nome_completo, password, **extra_fields)
 
     def create_superuser(self, email, password, nome_completo, **extra_fields):
@@ -54,8 +57,8 @@ class UserGlossario(AbstractBaseUser, PermissionsMixin):
     )
     nome_completo = models.CharField(max_length=255, null=False)
     email_confirmed = models.BooleanField(default=False)
-    is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
     objects = UserManagerGlossario()
 
     USERNAME_FIELD = 'email'
@@ -137,10 +140,14 @@ class Sinal(models.Model):
     localizacao = models.CharField(max_length=2, choices=localizacoes,default=0)
     movimentacoes = (('0', 'Sem Movimentação'),('1', 'Parede'), ('2', 'Chão'), ('3', 'Circular'), ('4', 'Contato'))
     movimentacao = models.CharField(max_length=10, choices=movimentacoes, default=0)
-    dataPost = models.DateField('data de criação', null=True)
+    create_data = models.DateTimeField(auto_now_add=True)
     postador = models.ForeignKey(UserGlossario, null=True, on_delete=models.CASCADE)
     publicado = models.BooleanField(default=False)
     sinalLibras = Video('Vídeo do sinal', upload_to=sinal_upload_path, null=True, blank=True)
+    # clip = sinalLibras.VideoFileClip(os.path.join(models, "video.mp4"))
+    # for i in range(3):
+    #     thumbnail = os.path.join(models, "thumbnail_%s.png" % i)
+    #     clip.save_frame(thumbnail, t=random.uniform(0.1, clip.duration))
     descLibras = Video('Vídeo da descrição', upload_to=sinal_upload_path, null=True, blank=True)
     exemploLibras = Video('Vídeo do exemplo', upload_to=sinal_upload_path, null=True, blank=True)
     varicLibras = Video('Vídeo da variante', upload_to=sinal_upload_path, null=True, blank=True)

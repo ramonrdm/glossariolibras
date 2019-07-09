@@ -94,7 +94,7 @@ class UserAdmin(BaseUserAdmin):
 admin.site.register(UserGlossario, UserAdmin)
 # ... and, since we're not using Django's built-in permissions,
 # unregister the Group model from admin.
-admin.site.unregister(Group)
+# admin.site.unregister(Group)
 
 
 
@@ -150,8 +150,9 @@ class GlossarioAdmin(admin.ModelAdmin):
 
 class SinalAdmin(admin.ModelAdmin):
     form = SinalForm
+    readonly_fields=('create_data',)
     list_display = ('traducaoP', 'traducaoI', 'tema', 'glossario', 'image_tag_cmE', 'image_tag_cmD', 'image_tag_localizacao', 'image_tag_movimentacao' , 'publicado')
-    list_filter = ('tema', 'glossario', 'localizacao', 'movimentacao', 'dataPost', 'publicado')
+    list_filter = ('tema', 'glossario', 'localizacao', 'movimentacao', 'publicado')
     actions = ['publicar_sinal',]
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
@@ -163,19 +164,19 @@ class SinalAdmin(admin.ModelAdmin):
         return super(SinalAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
     def save_model(self, request, obj, form, change):
-        obj.dataPost = datetime.date.today()
         obj.postador = request.user
         obj.save()
 
     def get_form(self, request, obj=None, **kwargs):
-        self.exclude = ['postador','dataPost']
-        qs = super(SinalAdmin, self).get_queryset(request)
-        qsResp = qs.filter(glossario__responsavel=request.user)
-        # responsaveis = Glossario.objects.filter(responsavel=request.user)
+        self.exclude = ['postador','create_data']
         if not request.user.is_superuser:
-            if obj not in qsResp:
-                # self.exclude.append('publicado')
-                self.exclude = ['postador','dataPost', 'publicado']
+            if obj != None:
+                responsaveis = obj.glossario.responsavel.all()
+                if not request.user in responsaveis:
+                    self.exclude.append('publicado')
+            else:
+                self.exclude.append('publicado')
+
         return super(SinalAdmin, self).get_form(request, obj, **kwargs)
 
     def publicar_sinal(self, request, queryset):

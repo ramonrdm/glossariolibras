@@ -1,0 +1,30 @@
+<div class="col l3 m12 s12 card" onclick="window.location='/sinal/{{s.id}}';">
+
+	<div class="card-image">
+		<video id="videoPesquisa" controls>
+			<source src="{{s.sinalLibras.url}}" type="video/mp4">
+		</video>
+	</div>
+
+	<div class="card-content row">
+		<span class="sinalPortugues">{{s.traducaoP}}  </span>
+		<span class="sinalPortugues">  .  </span>
+		<span class="sinalIngles">   {{s.traducaoI}}</span>
+	</div>
+	<div class="center">
+				{% if s.cmE.imagem %}
+					<img src="{{s.cmE.imagem.url}}" width="21%" class="circle">
+				{% endif %}
+				{% if s.cmD.imagem %}
+					<img  src="{{s.cmD.imagem.url}}" width="21%" class="circle">
+				{% endif %}
+
+				{% if s.localizacao %}
+					<img  src="{{s.localizacao}}" width="21%" class="circle">
+				{% endif %}
+
+				{% if s.movimentacao %}
+					<img  src="{{ s.movimentacao}}" width="21%" class="circle">
+				{% endif %}
+	 </div>
+</div>

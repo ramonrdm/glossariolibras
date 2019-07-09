@@ -3,7 +3,7 @@
     <title>{% block title %}Equipe - Glossário Letras Libras{% endblock %}</title>
 
 {% block Corpo %}
-
+<div class="row center blockContainer">
     <div class="equipe">
         <center><h2 class="thin">Equipe</h2></center>
 <!-- Equipe Atual -->
@@ -141,7 +141,7 @@
 
           <div class="card medium col s12 m3 hoverable">
             <div class="card-image waves-effect waves-block waves-light">
-              <i class="activator large material-icons">perm_identity</i>
+                <img class="activator" src="{% static 'img/colaboradores/Fernanda-Machado.jpg' %}">
             </div>
             <div class="card-content">
               <span class="card-title activator grey-text text-darken-4">Fernanda Machado<i class="material-icons right">more_vert</i></span>
@@ -186,7 +186,7 @@
 
           <div class="card medium col s12 m3 hoverable">
             <div class="card-image waves-effect waves-block waves-light">
-              <i class="large material-icons">perm_identity</i>
+              <img class="activator" src="{% static 'img/colaboradores/Heloise-Gripp.jpg' %}">
             </div>
             <div class="card-content">
               <span class="card-title activator grey-text text-darken-4">Heloíse Gripp<i class="material-icons right">more_vert</i></span>
@@ -265,7 +265,7 @@
 
           <div class="card medium col s12 m3 hoverable">
             <div class="card-image waves-effect waves-block waves-light">
-              <i class="large material-icons activator">perm_identity</i>
+               <img class="activator" src="{% static 'img/colaboradores/Rimar-Segala.jpg' %}">
             </div>
             <div class="card-content">
               <span class="card-title activator grey-text text-darken-4">Rimar Ramalho Segala<i class="material-icons right">more_vert</i></span>
@@ -362,4 +362,6 @@
     </br>
     </div>
     </div>
+
+</div>
 {% endblock %}

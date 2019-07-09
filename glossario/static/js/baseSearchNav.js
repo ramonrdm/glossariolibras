@@ -10,9 +10,6 @@ let select_refs = [
 	'#id_movimentacao'
 ];
 
-
-
-
 // ATUALIZA THUMBNAIL EXIBIDO NA SIDENAV QUANDO ALGUM É SELECIONADO NO MODAL
 function sideNavThumbnailRefresh() {
  	for(let i = 0; i < modal_refs.length; i++){

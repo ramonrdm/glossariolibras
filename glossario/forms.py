@@ -74,7 +74,7 @@ class SinalForm(forms.ModelForm):
 	class Meta:
 		model = Sinal
 		fields = ['glossario', 'traducaoP', 'traducaoI', 'descricao', 'bsw', 'cmE',
-		'cmD', 'localizacao', 'movimentacao', 'tema', 'dataPost', 'postador', 'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras',
+		'cmD', 'localizacao', 'movimentacao', 'tema', 'postador', 'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras',
 		'publicado']
 		widgets = {
 					'localizacao': ImageSelectLocalizacao(),
@@ -154,5 +154,5 @@ class CMForm(forms.ModelForm):
 		fields = ['bsw', 'imagem']
 
 class PesquisaForm(forms.Form):
-	busca = forms.CharField(required=False, label="", help_text="Digite aqui...", widget=forms.TextInput(attrs={'id': 'search', 'type': 'search'}))
+	busca = forms.CharField(required=False, label="",  widget=forms.TextInput(attrs={'id': 'search', 'type': 'search', 'placeholder': 'Pesquisar em glossário'}))
 

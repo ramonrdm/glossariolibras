@@ -160,7 +160,7 @@ def enviarSinais(request):
             if formSinais.is_valid():
                 dados = formSinais.save(commit=False)
                 dados.glossario = Glossario.objects.get(nome='Sugestões')
-                dados.dataPost = datetime.date.today()
+                dados.create_data = datetime.date.today()
                 if request.FILES.get('sinalLibras'):
                     dados.sinalLibras = request.FILES['sinalLibras']
                 if request.FILES.get('descLibras'):
@@ -258,7 +258,7 @@ def registration(request):
             message = render_to_string('account_activation_email.html', {
                 'user': user,
                 'domain': current_site.domain,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode(),
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': account_activation_token.make_token(user),
             })
             user.email_user(subject, message)

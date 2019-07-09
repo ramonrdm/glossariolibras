@@ -5,31 +5,136 @@
     --secondary:black;
 }
 
+.nav-wrapper{
+    background-color: white;
+ }
+
+.sidenav {
+    z-index: -1 ;
+    position: absolute;
+    padding-top: 120px;
+}
 
 
-/* ================= NAVBAR ================= */
+/* nav {
+    height: 80px;
+    line-height: 110px;
+    z-index: 2;
 
-nav {
+} */
 
-    background-color: var(--primary);
+.sinalPortugues{
+    font-style: normal;
+    font-size: 200%;
+    color: #01579b;
+    font-weight: bold;
+
+}
+
+.sinalIngles{
+    font-style: italic;
+    font-size: 140%;
+    color: #0288d1;
 }
 
 nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
-
-    line-height: 3000px;
+    height: 200%;
+    line-height: 230%;
+    color: grey ;
 }
+
+nav .button-collapse i {
+    height: 30px;
+    line-height: 30px;
+}
+
 
 nav .brand-logo {
-    font-size: 12.0rem;
+  position: relative;
+  color: #fff;
+  display: inline-block;
+  font-size: 2.1rem;
+  padding: 18px;
+  max-width: 235px;
+
 }
 
-@media only screen and (min-width: 1000px){
+nav.nav-extended {
+  height: 100px;
+}
+
+
+nav .brand-logo.center {
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+
+@media only screen and (min-width: 601px){
     nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
-        height: 130px;
-        line-height: 130px;
+        height: 100px;
+        line-height: 100px;
+
+
+
+    }
+}
+
+.btn-floating.btn-large.halfway-fab {
+  bottom: 15px;
+}
+
+
+.blockContainer {
+    padding-left: 6%;
+    position: relative;
+    margin-top: 4%;
+    transition-duration: 0.4s;
 
 }
+
+
+.container {
+    padding-left: 1%;
+    position: relative;
+    margin-top: 4%;
+    transition-duration: 0.4s;
 }
+
+
+.sidenav {
+    width: 79px;
+    position: fixed;
+    transition-duration: 0.4s;
+
+}
+
+.sidenav:hover{
+    transition-duration: 0.4s;
+    width: 250px !important ;
+}
+
+
+
+
+#videoGlossario {
+	position: relative;
+	margin-left: 40px;
+	width: 85%;
+	padding-left: 4%;
+	margin-top: 10%;
+
+}
+
+#videoPesquisa {
+	position: relative;
+	width: 100%;
+
+}
+
+/* ================= NAVBAR ================= */
+
 
 
 /* Retira o deslocamento da página causado pela sidenav fixa */
@@ -40,9 +145,7 @@ body {
 }
 
 .iconePortalLibras {
-	width: 40px;
-	padding-top: 5px;
-	padding-right: 5px;
+	width: 130%;
 }
 
 /* Cor do underline do campo de texto de formulários */
@@ -62,12 +165,10 @@ ul.dropdown-content.select-dropdown li span {
 }
 
 /* Para as imagens na sidenav mobile não mudarem de cor no hover */
-nav ul a:hover {
-   background-color: white;
-}
+
 
 .imgIndex {
-	width: 160px;
+	width: 120px;
 	height: 160px;
 }
 
@@ -76,9 +177,7 @@ nav ul a:hover {
 }
 
 /* Estrutura dos glossários no index */
-.blockContainer {
-	margin-top: 5%;
-}
+
 
 /* Glossários no index */
 .block {
@@ -88,26 +187,9 @@ nav ul a:hover {
 }
 
 /* Footer da sidenav */
-.borda {
-	position: absolute;
-	bottom: 0;
-	z-index: -1;
-}
 
-.divisor {
-	margin-right: 5%;
-	margin-left: 5%;
-}
-
-.checkboxAzul[type="checkbox"].filled-in:checked + label:after {
-	border: 2px solid #003a99;
-	background-color: #003a99;
-}
-
-.checkboxes {
-	text-align: center;
-	line-height: 50px;
-	max-height: 25px;
+.imagemGlossario{
+  width: 140px;
 }
 
 .formSinais {
@@ -122,8 +204,8 @@ nav ul a:hover {
 
 /* Define as dimensões do avatar */
 img#modeloImg {
-	width: 650px;
-	height: 650px;
+	width: 600%;
+	height: 600%;
 }
 
 /* Esconde as options que não estão selecionadas ao construir a página */
@@ -135,43 +217,34 @@ div.thumbnail:not(.selected) {
 	display: inline-block !important;
 }
 
-/* Arredonda thumbnail do imagepicker */
-.thumbnail {
-	border-radius: 5px;
+.sinais{
+	background-color: white !important;
+    height:90px  !important;
+    padding: 2px  !important;
+    border-radius: 45px 45px 45px 45px  !important;
+    border-style: outset  !important;
+    border-bottom-width: 2px  !important;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.1)  !important;
+    margin-top: 3%  !important;
 }
 
-/* Tamanho e cor das imagens do imagepicker */
-.thumbnails li img {
+
+.sinaisMobile{
 	background-color: white;
-	width: 100px;
-}
+    height:85px;
+    padding: -1px;
+    border-radius: 45px 45px 45px 45px;
+    border-style: outset;
+    border-bottom-width: 3px;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.1);
+    margin-left: 50%;
+	margin-right: 50%;
+    margin-top: 10%;
 
-.formSinais .thumbnails li img {
-	width: 50px;
-}
-
-.formSinais .thumbnail {
-	height: 90px;
-	width: 50px;
 }
 
 /* Correções nos thumbnails na sidenav */
-.row.formSinais .col {
-	padding: 0;
-}
 
-.row.formSinais p {
-	font-size: 10px;
-}
-
-div#id_localizacao.col.s12.m4 {
-	max-height: 131px;
-}
-
-ul.thumbnails.image_picker_selector {
-	overflow: initial;
-	box-sizing: initial;
-}
 
 /* =================================== */
 
@@ -186,13 +259,6 @@ div.thumbnail.hoverable:not(.selected) p{
 	text-align: center;
 }
 
-ul.thumbnails.image_picker_selector {
-	padding: 15px !important;
-}
-
-ul.thumbnails.image_picker_selector li .thumbnail {
-	padding: 0 !important;
-}
 
 .imgGlossario {
 	width: 170px;
@@ -201,8 +267,15 @@ ul.thumbnails.image_picker_selector li .thumbnail {
     position: absolute;
     top: 145px;
     left: 350px;
+}
 
 
+.logoGlossarioMobile {
+   	max-width: 50%;
+	height: auto !important;
+	margin-left: 10%;
+	margin-right: 10%;
+    margin-top: 5%;
 
 }
 
@@ -276,8 +349,9 @@ ul.thumbnails.image_picker_selector li .thumbnail {
 @media screen and (max-height: 480px) {
 
 	.logoGlossario {
-		width: 200px;
-		margin-left: 50px;
+	    width="320"
+	    height="205"
+		margin-left: 10%;
 	}
 
 	.logoGlossarioSearch {
@@ -425,9 +499,10 @@ ul.thumbnails.image_picker_selector li .thumbnail {
 
 /* ================= TABLET ================= */
 
+/*
 @media screen and (min-width: 768px) {
 
-	/* Desloca a página para a direita por causa da sidenav fixa */
+	 Desloca a página para a direita por causa da sidenav fixa
 	body {
 		padding-left: 300px;
 		background-color: #f7f7f7;
@@ -453,6 +528,7 @@ ul.thumbnails.image_picker_selector li .thumbnail {
 	}
 
 }
+*/
 
 /* =============== FIM TABLET =============== */
 
@@ -501,12 +577,6 @@ ul.thumbnails.image_picker_selector li .thumbnail {
 
 	}
 
-    #videoGlossario {
-        height:500px;
-        position: absolute;
-        top:40%;
-        left: 37%;
-	}
 
 	.videoOff {
 		margin-top: 15%;
