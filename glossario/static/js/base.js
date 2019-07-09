@@ -81,6 +81,10 @@ $('#mobileSearchEscrita').hide();
      });
 
 
+  $(document).ready(function(){
+    $('.tabs').tabs();
+  });
+
 
 });
 

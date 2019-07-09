@@ -10,17 +10,29 @@
 	{% include 'modaisFormSinais.html' %}
 
 <!-- VÍDEOS -->
-<div class="row container">
-	<div class="center">
-		<div class="col s12">
-			<ul class="tabs blue darken-4">
-				<div class="indicator light-blue lighten-4" style="z-index: 1"></div>
+
+<div class="row containerTabs hide-on-small-only">
+		<ul class="tabs blue darken-4 containerTabs">
+			<div class="" style="z-index: 1"></div>
+			<li class="tab col s3"><a class="white-text" href="#tabSinal">Sinal</a></li>
+			<li class="tab col s3"><a class="white-text" href="#tabDescricao">Descrição</a></li>
+			<li class="tab col s3"><a class="white-text" href="#tabExemplo">Exemplo</a></li>
+			<li class="tab col s3"><a class="white-text" href="#tabVariacao">Variante</a></li>
+		</ul>
+</div>
+
+<div class="row hide-on-large-only">
+			<ul class="tabs blue darken-4 ">
+				<div class="" style="z-index: 1"></div>
 				<li class="tab col s3"><a class="white-text" href="#tabSinal">Sinal</a></li>
 				<li class="tab col s3"><a class="white-text" href="#tabDescricao">Descrição</a></li>
 				<li class="tab col s3"><a class="white-text" href="#tabExemplo">Exemplo</a></li>
 				<li class="tab col s3"><a class="white-text" href="#tabVariacao">Variante</a></li>
 			</ul>
-		</div>
+</div>
+
+<div class="row blockContainer">
+	<div class="center">
 		<div id="tabSinal" class="col s12">
 			<div class="center" id="videoSinal">
 
