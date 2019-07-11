@@ -17,9 +17,9 @@ and open the template in the editor.
      position: relative;
      margin: 0px;
      padding: 0px;
-     width: 70px; /* sil */
-     height: 60px; /* sil */
-     border: 1px solid #999999;
+     width: 100px; /* sil */
+     height: 100px; /* sil */
+
 
      -webkit-border-radius: 3px;
      -moz-border-radius: 3px;
@@ -32,9 +32,9 @@ and open the template in the editor.
      position: relative;
      margin: 0px;
      padding: 0px;
-     width: 70px; /* sil */
-     height: 60px; /* sil */
-     border: 1px solid #000000;
+     width: 100px; /* sil */
+     height: 100px; /* sil */
+
      background-color: #FFFFFF;
 
      -webkit-border-radius: 3px;
@@ -60,9 +60,7 @@ and open the template in the editor.
  }
 
  .icon-select .component-icon{
-     position: absolute;
-     bottom:5px;
-     right:4px;
+     display : none;
  }
 
  .icon-select .box {

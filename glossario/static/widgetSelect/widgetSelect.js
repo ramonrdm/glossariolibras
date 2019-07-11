@@ -14,12 +14,12 @@ window.onload = function(){
 
     var icons = [];
 
-    icons.push({'iconFilePath':'/static/img/X.svg', 'iconValue':'0'});
+    icons.push({'iconFilePath':'/static/img/X.svg', 'valur':'0'});
     icons.push({'iconFilePath':'/static/img/parede.png', 'iconValue':'1'});
     icons.push({'iconFilePath':'/static/img/chao.png', 'iconValue':'2'});
     icons.push({'iconFilePath':'/static/img/circular.png', 'iconValue':'3'});
     icons.push({'iconFilePath':'/static/img/contato.png', 'iconValue':'4'});
 
     iconSelect.refresh(icons);
-    alert('passeirrr');
+
 };
