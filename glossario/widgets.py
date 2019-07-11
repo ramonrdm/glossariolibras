@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 from django.forms.widgets import Select
+from django import forms
 from django.utils.safestring import mark_safe
 from django.utils.encoding import force_text
 from django.utils.html import format_html
@@ -8,12 +9,12 @@ from django.template.loader import render_to_string
 
 class ImageSelectLocalizacao(Select):
 
-    class Media:
-        #extend = False
-        css = {
-            'all': ('/static/image-picker/image-picker/image-picker.css',)
-        }
-        js = ('/static/image-picker/image-picker/image-picker.js', '/static/js/jquery.imagemapster.js', '/static/js/baseSearchNav.js', )
+    # class Media:
+    #     #extend = False
+    #     css = {
+    #         'all': ('/static/image-picker/image-picker/image-picker.css',)
+    #     }
+    #     js = ('/static/image-picker/image-picker/image-picker.js', '/static/js/jquery.imagemapster.js', '/static/js/baseSearchNav.js', )
 
 
     def __init__(self, attrs=None, choices=(), field_img=None):
@@ -58,44 +59,14 @@ class ImageSelectLocalizacao(Select):
             'wrap_label': True,
         }
 
-class ImageSelectMovimentacao(Select):
-
-    def __init__(self, attrs=None, choices=(), field_img=None):
-        super(ImageSelectMovimentacao, self).__init__(attrs)
-        self.choices = list(choices)
-        self.field_img = field_img
-
-    movimentacoes = dict([('0', 'X.svg'), ('1', 'parede.png'), ('2', 'chao.png'), ('3', 'circular.png'), ('4', 'contato.png')])
-
-    def create_option(self, name, value, label, selected, index, subindex=None, attrs=None):
-
-        index = str(index) if subindex is None else "%s_%s" % (index, subindex)
-        if attrs is None:
-            attrs = {}
-        option_attrs = self.build_attrs(self.attrs, attrs) if self.option_inherits_attrs else {}
-        if selected:
-            option_attrs.update(self.checked_attribute)
-        if 'id' in option_attrs:
-            option_attrs['id'] = self.id_for_label(option_attrs['id'], index)
-
-        if value == '':
-            option_attrs['data-img-src'] = '/static/img/X.svg'
-        else:
-            option_attrs['data-img-src'] = '/static/img/' + self.movimentacoes[str(value)]
-        return {
-            'name': name,
-            'value': value,
-            'label': value,
-            'selected': selected,
-            'index': index,
-            'attrs': option_attrs,
-            'type': self.input_type,
-            'template_name': self.option_template_name,
-            'wrap_label': True,
-
+class ImageSelectMovimentacao(forms.Widget):
+    template_name = 'widget_movimentacao.html'
+    class Media:
+        #extend = False
+        css = {
+            'all': ('/static/widgetSelect/iconselect.css',)
         }
-
-
+        js = ('/static/widgetSelect/iconselect.js', '/static/widgetSelect/iscroll.js', '/static/widgetSelect/widgetSelect.js', )
 
 
 
