@@ -3,8 +3,8 @@ var selectedText;
 
 window.onload = function(){
 
-    selectedText = document.getElementById('selected-text');
-    document.getElementById('my-icon-select').addEventListener('changed', function(e){
+    selectedText = document.getElementById('id_movimentacao');
+    document.getElementById('movimentacao-widget').addEventListener('changed', function(e){
        selectedText.value = iconSelect.getSelectedValue();
     });
 
