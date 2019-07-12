@@ -65,7 +65,7 @@ and open the template in the editor.
 
  .icon-select .box {
 
-     position: absolute;
+     position: fixed;
      top:100px;
      left:0px;
      margin: 0px;

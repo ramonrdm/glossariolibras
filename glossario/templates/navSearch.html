@@ -13,8 +13,14 @@
                         <div class=" col l3">
                              <a href="/"><img class="brand-logo left" src='{% static "img/marca_glossario.png" %}'></a>
                         </div>
-                           <ul class="input-field">
+                           <ul>
                                 {% for field in formSinais %}
+<select name="localizacao" id="id_localizacao" style="display: none;">
+<option value="0" selected="" data-img-src="/static/img/X.svg">Nunhuma</option>
+</select>
+<select name="cmE" id="id_cmE" style="display: none;">
+<option value="" selected="" data-img-src="/static/img/X.svg">Selecionar</option>
+</select>
                                     <div class="col l0">
                                     {% if field.auto_id == 'id_localizacao' %}
                                                     <img class="sinaisMobile" src='{% static "img/localizacaoTesta.png" %}'>
@@ -22,8 +28,6 @@
                                                      <img class="sinaisMobile" src='{% static "img/1a4.png" %}'>
                                      {% elif field.auto_id == 'id_movimentacao' %}
                                             {{ field }}
-
-
                                     {% endif %}
                                     </div>
                                {% endfor %}
