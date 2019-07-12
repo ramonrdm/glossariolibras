@@ -13,7 +13,7 @@
                         <div class=" col l3">
                              <a href="/"><img class="brand-logo left" src='{% static "img/marca_glossario.png" %}'></a>
                         </div>
-                           <ul>
+                           <div>
                                 {% for field in formSinais %}
                                     <div class="col l0">
                                     {% if field.auto_id == 'id_localizacao' %}
@@ -22,13 +22,15 @@
                                                      <img class="sinaisMobile" src='{% static "img/1a4.png" %}'>
                                      {% elif field.auto_id == 'id_movimentacao' %}
                                             {{ field }}
+
+
                                     {% endif %}
                                     </div>
                                {% endfor %}
                                <div class=" col l1 right">
                                    <li><button class="btn waves-effect waves-light botaoPesquisar" type="submit" id="botaoPesquisar" name="botaoPesquisar">Pesquisar<i class="material-icons right">send</i></button></li>
                                </div>
-                           </ul>
+                           </div>
                         <div class=" col l3 right nav-wrapper">
                             <div class="input-field right">
                                 {% csrf_token %}

@@ -12,8 +12,8 @@ window.onload = function(){
         {'selectedIconWidth':90,
         'selectedIconHeight':90,
         'selectedBoxPadding':0,
-        'iconsWidth':50,
-        'iconsHeight':50,
+        'iconsWidth':97,
+        'iconsHeight':97,
         'boxIconSpace':0,
         'vectoralIconNumber':1,
         'horizontalIconNumber':2});

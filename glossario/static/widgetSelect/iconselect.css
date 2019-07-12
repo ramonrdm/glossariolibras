@@ -66,12 +66,12 @@ and open the template in the editor.
  .icon-select .box {
 
      position: absolute;
-     top:0px;
-     left:71px;
+     top:100px;
+     left:0px;
      margin: 0px;
      padding: 0px;
-     width: 170px; /* sil */
-     height: 170px; /* sil */
+     width: 110px; /* sil */
+     height: 550px; /* sil */
      border: 1px solid #EEEEEE;
      background-color: #EEEEEE;
 
@@ -91,8 +91,8 @@ and open the template in the editor.
      position: relative;
      margin: 5px 0px 0px 5px;
      padding: 0px;
-     width: 48px; /* sil */
-     height: 48px; /* sil */
+     width: 100px; /* sil */
+     height: 100px; /* sil */
      border: 1px solid #CCCCCC;
      background-color: #FFFFFF;
 
@@ -112,8 +112,8 @@ and open the template in the editor.
      position: relative;
      margin: 5px 0px 0px 5px;
      padding: 0px;
-     width: 48px; /* sil */
-     height: 48px; /* sil */
+     width: 100px; /* sil */
+     height: 100px; /* sil */
      border: 1px solid #EEEEEE;
      background-color: #EEEEEE;
 
