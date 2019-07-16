@@ -9,14 +9,11 @@ window.onload = function(){
     });
 
     iconSelect = new IconSelect("movimentacao-widget",
-        {'selectedIconWidth':90,
-        'selectedIconHeight':90,
-        'selectedBoxPadding':0,
-        'iconsWidth':97,
-        'iconsHeight':97,
-        'boxIconSpace':0,
-        'vectoralIconNumber':1,
-        'horizontalIconNumber':2});
+        {'selectedIconWidth':85,
+        'selectedIconHeight':85,
+        'iconsWidth':85,
+        'iconsHeight':85
+        });
 
     var icons = [];
 

@@ -241,7 +241,7 @@ div.thumbnail:not(.selected) {
     box-shadow: 5px 5px 5px rgba(0,0,0,0.1);
     margin-left: 50%;
 	margin-right: 50%;
-    margin-top: 10%;
+    margin-top: 10px;
 
 }
 

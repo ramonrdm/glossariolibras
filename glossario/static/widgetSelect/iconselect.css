@@ -13,7 +13,7 @@ and open the template in the editor.
  }
 
  .icon-select .selected-box {
-
+     margin-top: 4px !important;
      position: relative;
      margin: 0px;
      padding: 0px;
@@ -32,8 +32,8 @@ and open the template in the editor.
      position: relative;
      margin: 0px;
      padding: 0px;
-     width: 100px; /* sil */
-     height: 100px; /* sil */
+     width: 85px; /* sil */
+     height: 85px; /* sil */
 
      background-color: #FFFFFF;
 
@@ -64,14 +64,14 @@ and open the template in the editor.
  }
 
  .icon-select .box {
-
-     position: fixed;
+     z-index: 2;
+     position: absolute;
      top:100px;
      left:0px;
      margin: 0px;
      padding: 0px;
-     width: 110px; /* sil */
-     height: 550px; /* sil */
+     width: 100px; /* sil */
+     height: 490px; /* sil */
      border: 1px solid #EEEEEE;
      background-color: #EEEEEE;
 
@@ -79,8 +79,7 @@ and open the template in the editor.
      -moz-border-radius: 3px;
      border-radius: 3px;
      
-     
-     overflow:auto;
+
      /*
      -webkit-overflow-scrolling: touch;
      */
@@ -91,8 +90,8 @@ and open the template in the editor.
      position: relative;
      margin: 5px 0px 0px 5px;
      padding: 0px;
-     width: 100px; /* sil */
-     height: 100px; /* sil */
+     width: 87px; /* sil */
+     height: 87px; /* sil */
      border: 1px solid #CCCCCC;
      background-color: #FFFFFF;
 
@@ -125,3 +124,10 @@ and open the template in the editor.
      float: left;
  }
 
+#id_movimentacao{
+    display: none;
+}
+
+.field-movimentacao{
+    overflow: visible !important;
+}
