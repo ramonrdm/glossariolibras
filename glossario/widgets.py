@@ -64,47 +64,23 @@ class ImageSelectMovimentacao(forms.Widget):
     class Media:
         #extend = False
         css = {
-            'all': ('/static/widgetSelect/iconselect.css',)
+            'all': ('/static/widgetSelectMovimentacao/selectMovimentacao.css',)
         }
-        js = ('/static/widgetSelect/iconselect.js', '/static/widgetSelect/iscroll.js', '/static/widgetSelect/widgetSelect.js', )
+        js = ('/static/widgetSelectMovimentacao/selectMovimentacao.js', '/static/js/iscroll.js', '/static/widgetSelectMovimentacao/widgetMovimentacao.js', )
 
 
 
-class ImageSelectMao(Select):
+class ImageSelectMao(forms.Widget):
+    template_name = 'widget_mao.html'
 
-    def __init__(self, attrs=None, choices=(), field_img=None):
-        super(ImageSelectMao, self).__init__(attrs)
-        self.choices = list(choices)
-        self.field_img = field_img
-
-
-    def create_option(self, name, value, label, selected, index, subindex=None, attrs=None):
-        index = str(index) if subindex is None else "%s_%s" % (index, subindex)
-        if attrs is None:
-            attrs = {}
-        option_attrs = self.build_attrs(self.attrs, attrs) if self.option_inherits_attrs else {}
-        if selected:
-            option_attrs.update(self.checked_attribute)
-        if 'id' in option_attrs:
-            option_attrs['id'] = self.id_for_label(option_attrs['id'], index)
-
-        if value != '':
-            i = int(value) - 1
-            option_attrs['data-img-src'] = self.field_img[i]
-
-        else:
-            option_attrs['data-img-src'] = '/static/img/X.svg'
-
-        return {
-            'name': name,
-            'value': value,
-            'label': label,
-            'selected': selected,
-            'index': index,
-            'attrs': option_attrs,
-            'type': self.input_type,
-            'template_name': self.option_template_name,
-            'wrap_label': True,
-
+    class Media:
+        #extend = False
+        css = {
+            'all': ('/static/widgetSelectMao/selectMao.css',)
         }
+        js = ('/static/widgetSelectMao/selectMao.js', '/static/js/iscroll.js', '/static/widgetSelectMao/widgetMao.js', )
+
+
+
+
 

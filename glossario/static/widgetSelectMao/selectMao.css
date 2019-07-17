@@ -122,12 +122,12 @@ and open the template in the editor.
 
      overflow:hidden;
      float: left;
- }
+}
 
-#id_movimentacao{
+#id_cmE{
     display: none;
 }
 
-.field-movimentacao{
+.field-cmE{
     overflow: visible !important;
 }

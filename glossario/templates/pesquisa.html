@@ -17,6 +17,7 @@
 						<table class="table-responsive highlight centered">
 							<thead>
 								<tr>
+									<th>Preview</th>
 									<th>Português</th>
 									<th>Inglês</th>
 									<th>Configuração esquerda</th>
@@ -28,6 +29,7 @@
 							<tbody>
 							{% for s in sinais %}
 								<tr onclick="window.location='/sinal/{{s.id}}';">
+									<td><img src="/static/img/arvore_banyan_havai.png" width="70" ></td>
 									<td>{{s.traducaoP}}</td>
 									<td>{{s.traducaoI}}</td>
 									{% if s.cmE.imagem %}

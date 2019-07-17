@@ -144,10 +144,7 @@ class Sinal(models.Model):
     postador = models.ForeignKey(UserGlossario, null=True, on_delete=models.CASCADE)
     publicado = models.BooleanField(default=False)
     sinalLibras = Video('Vídeo do sinal', upload_to=sinal_upload_path, null=True, blank=True)
-    # clip = sinalLibras.VideoFileClip(os.path.join(models, "video.mp4"))
-    # for i in range(3):
-    #     thumbnail = os.path.join(models, "thumbnail_%s.png" % i)
-    #     clip.save_frame(thumbnail, t=random.uniform(0.1, clip.duration))
+    preview = models.ImageField('Preview do Video de sinal', null=True)
     descLibras = Video('Vídeo da descrição', upload_to=sinal_upload_path, null=True, blank=True)
     exemploLibras = Video('Vídeo do exemplo', upload_to=sinal_upload_path, null=True, blank=True)
     varicLibras = Video('Vídeo da variante', upload_to=sinal_upload_path, null=True, blank=True)
