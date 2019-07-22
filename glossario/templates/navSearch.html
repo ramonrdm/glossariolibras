@@ -1,6 +1,5 @@
 {{ formSinais.media }}
 {% load staticfiles %}
-
 <div class="navbar-fixed" id="telaWeb">
             {% if formPesquisa %}
                 <nav class="row white">
@@ -15,12 +14,7 @@
                         </div>
                            <ul>
                                 {% for field in formSinais %}
-<select name="localizacao" id="id_localizacao" style="display: none;">
-<option value="0" selected="" data-img-src="/static/img/X.svg">Nunhuma</option>
-</select>
-<select name="cmE" id="id_cmE" style="display: none;">
-<option value="" selected="" data-img-src="/static/img/X.svg">Selecionar</option>
-</select>
+
                                     <div class="col l0">
                                     {% if field.auto_id == 'id_localizacao' %}
                                                     <img class="sinaisMobile" src='{% static "img/localizacaoTesta.png" %}'>

@@ -1,4 +1,5 @@
 
+
 /**
  *
  * Created with NetBeans IDE
@@ -15,25 +16,25 @@
  *
  */
 
-IconSelect.DEFAULT = {};
-IconSelect.DEFAULT.SELECTED_ICON_WIDTH = 48;
-IconSelect.DEFAULT.SELECTED_ICON_HEIGHT = 48;
-IconSelect.DEFAULT.SELECTED_BOX_PADDING = 1;
-IconSelect.DEFAULT.SELECTED_BOX_PADDING_RIGHT = 12;
-IconSelect.DEFAULT.ICONS_WIDTH = 32;
-IconSelect.DEFAULT.ICONS_HEIGHT = 32;
-IconSelect.DEFAULT.BOX_ICON_SPACE = 1;
-IconSelect.DEFAULT.HORIZONTAL_ICON_NUMBER = 3;
-IconSelect.DEFAULT.VECTORAL_ICON_NUMBER = 3;
+iconSelectMao.DEFAULT = {};
+iconSelectMao.DEFAULT.SELECTED_ICON_WIDTH = 48;
+iconSelectMao.DEFAULT.SELECTED_ICON_HEIGHT = 48;
+iconSelectMao.DEFAULT.SELECTED_BOX_PADDING = 1;
+iconSelectMao.DEFAULT.SELECTED_BOX_PADDING_RIGHT = 12;
+iconSelectMao.DEFAULT.ICONS_WIDTH = 32;
+iconSelectMao.DEFAULT.ICONS_HEIGHT = 32;
+iconSelectMao.DEFAULT.BOX_ICON_SPACE = 1;
+iconSelectMao.DEFAULT.HORIZONTAL_ICON_NUMBER = 3;
+iconSelectMao.DEFAULT.VECTORAL_ICON_NUMBER = 3;
 
 
-function IconSelect($$elementID, $$parameters) {
+function iconSelectMao($$elementID, $$parameters) {
     
     var _icons = [];
     var _selectedIndex = -1;
     var _boxScroll;
     
-    var _default = IconSelect.DEFAULT;
+    var _default = iconSelectMao.DEFAULT;
 
     function _init() {
         
@@ -213,7 +214,7 @@ function IconSelect($$elementID, $$parameters) {
         componentIconElement.setAttribute('class', 'component-icon');
         
         var componentIconImgElement = document.createElement('img');
-        componentIconImgElement.setAttribute('src', IconSelect.COMPONENT_ICON_FILE_PATH );
+        componentIconImgElement.setAttribute('src', iconSelectMao.COMPONENT_ICON_FILE_PATH );
         componentIconElement.appendChild(componentIconImgElement);
         
         _View.boxScrollElement = document.createElement('div');

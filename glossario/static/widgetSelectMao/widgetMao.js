@@ -1,14 +1,14 @@
-var iconSelect;
-var selectedText;
+var iconSelectMao;
+var selectedTextMao;
 
 window.onload = function(){
 
-    selectedText = document.getElementById('id_cmE');
+    selectedTextMao = document.getElementById('id_cmE');
     document.getElementById('cmE-widget').addEventListener('changed', function(e){
-       selectedText.value = iconSelect.getSelectedValue();
+       selectedTextMao.value = iconSelectMao.getSelectedValue();
     });
 
-    iconSelect = new IconSelect("cmE-widget",
+    iconSelectMao = new iconSelectMao("cmE-widget",
         {'selectedIconWidth':85,
         'selectedIconHeight':85,
         'iconsWidth':85,
@@ -23,6 +23,6 @@ window.onload = function(){
     icons.push({'iconFilePath':'/static/img/circular.png', 'iconValue':'3'});
     icons.push({'iconFilePath':'/static/img/contato.png', 'iconValue':'4'});
 
-    iconSelect.refresh(icons);
+    iconSelectMao.refresh(icons);
 
 };

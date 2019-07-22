@@ -124,10 +124,10 @@ and open the template in the editor.
      float: left;
 }
 
-#id_cmE{
-    display: none;
-}
+/*#id_cmE{*/
+    /*display: none;*/
+/*}*/
 
-.field-cmE{
-    overflow: visible !important;
-}
+/*.field-cmE{*/
+    /*overflow: visible !important;*/
+/*}*/
