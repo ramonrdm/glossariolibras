@@ -61,24 +61,6 @@ class ImageSelectLocalizacao(Select):
 
 class ImageSelectMovimentacao(forms.Widget):
 
-
-    template_name = 'widget_mao.html'
-
-    class Media:
-        #extend = False
-        css = {
-            'all': ('/static/widgetSelectMao/selectMao.css',)
-        }
-        js = ('/static/widgetSelectMao/selectMao.js', '/static/js/iscroll.js', '/static/widgetSelectMao/widgetMao.js', )
-
-
-
-
-
-
-
-
-class ImageSelectMao(forms.Widget):
     template_name = 'widget_movimentacao.html'
 
     class Media:
@@ -88,4 +70,16 @@ class ImageSelectMao(forms.Widget):
         }
         js = ('/static/widgetSelectMovimentacao/selectMovimentacao.js', '/static/js/iscroll.js',
               '/static/widgetSelectMovimentacao/widgetMovimentacao.js',)
+
+
+class ImageSelectMao(forms.Widget):
+
+    template_name = 'widget_mao.html'
+
+    class Media:
+        # extend = False
+        css = {
+            'all': ('/static/widgetSelectMao/selectMao.css',)
+        }
+        js = ('/static/widgetSelectMao/selectMao.js', '/static/js/iscroll.js', '/static/widgetSelectMao/widgetMao.js',)
 

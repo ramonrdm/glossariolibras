@@ -31,6 +31,114 @@
 			</ul>
 </div>
 
+
+
+
+<div class="row">
+
+
+
+<div class="col s6 blockContainer">
+			<h4 class="mao">{{sinal.traducaoP}}</h4>
+			<h6>{{sinal.traducaoI}}</h6>
+
+
+			<!---->
+<!--&lt;!&ndash; IDENTIFICAÇÃO DO SINAL &ndash;&gt;-->
+
+
+
+
+		<!--</div>-->
+		<!--<div class="col s12 m6">-->
+			<!--<div class="card blue darken-4 z-depth-5 cardSinal">-->
+				<!--<div class="card-content white-text">-->
+					<!--<span class="card-title center">Descrição</span>-->
+					<!--<div class="mao">-->
+							<!--{{sinal.descricao}}-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+	<!--</div>-->
+
+	<!--<div class="row">-->
+		<!--<div class="col s12 m6">-->
+			<!--<div class="card blue darken-4 z-depth-5 cardSinalMao">-->
+				<!--<div class="card-content white-text">-->
+					<!--<span class="card-title center">Mão esquerda</span>-->
+					<!--<div class="mao">-->
+
+						<!--Configuração de mão:-->
+						<!--<div class="center imgMao">-->
+							<!--{% if sinal.cmE.imagem %}-->
+								<!--<img class="circle imgSinal" src="{{sinal.cmE.imagem.url}}">-->
+							<!--{% else %}-->
+								<!--<i class="large material-icons white-text imgSinal">cloud_off</i>-->
+							<!--{% endif %}-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+		<!--<div class="col s12 m6">-->
+			<!--<div class="card blue darken-4 z-depth-5 cardSinalMao">-->
+				<!--<div class="card-content white-text">-->
+					<!--<span class="card-title center">Mão direita</span>-->
+					<!--<div class="mao">-->
+
+						<!--Configuração de mão:-->
+						<!--<div class="center imgMao">-->
+							<!--{% if sinal.cmD.imagem %}-->
+								<!--<img class="circle imgSinal" src="{{sinal.cmD.imagem.url}}">-->
+							<!--{% else %}-->
+								<!--<i class="large material-icons white-text imgSinal">cloud_off</i>-->
+							<!--{% endif %}-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+	<!--</div>-->
+
+	<!--<div class="row">-->
+		<!--<div class="col s6 m6">-->
+			<!--<div class="card blue darken-4 z-depth-5 cardSinal">-->
+				<!--<div class="card-content white-text">-->
+					<!--<span class="card-title center">Localização</span>-->
+					<!--<div class="center imgMao">-->
+						<!--{% if sinal.localizacao %}-->
+							<!--<img class="circle imgSinal" src="{{sinal.localizacao}}">-->
+						<!--{% else %}-->
+							<!--<i class="large material-icons white-text imgSinal">cloud_off</i>-->
+						<!--{% endif %}-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+
+
+		<!--<div class="col s6 m6">-->
+			<!--<div class="card blue darken-4 z-depth-5 cardSinal">-->
+				<!--<div class="card-content white-text">-->
+					<!--<span class="card-title center">Movimentação</span>-->
+					<!--<div class="center imgMao">-->
+						<!--{% if sinal.movimentacao %}-->
+							<!--<img class="circle imgSinal" src="{{sinal.movimentacao}}">-->
+						<!--{% else %}-->
+							<!--<i class="large material-icons white-text imgSinal">cloud_off</i>-->
+						<!--{% endif %}-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+	<!--</div>-->
+<!--</div>-->
+	 <!--<script type="text/javascript" src='{% static "js/sinal.js" %}'></script>-->
+
+</div>
+
+<div class="col s6">
 <div class="row blockContainer">
 	<div class="center">
 		<div id="tabSinal" class="col s12">
@@ -83,107 +191,9 @@
 			</div>
 		</div>
 	</div>
-
-<!-- IDENTIFICAÇÃO DO SINAL -->
-
-	<div class="row">
-		<div class="col s12 m6">
-			<div class="card blue darken-4 z-depth-5 cardSinal">
-				<div class="card-content white-text">
-					<span class="card-title center">Tradução</span>
-					<div class="mao">
-						Português: {{sinal.traducaoP}}
-					</div>
-					<div>
-						Inglês: {{sinal.traducaoI}}
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col s12 m6">
-			<div class="card blue darken-4 z-depth-5 cardSinal">
-				<div class="card-content white-text">
-					<span class="card-title center">Descrição</span>
-					<div class="mao">
-							{{sinal.descricao}}
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col s12 m6">
-			<div class="card blue darken-4 z-depth-5 cardSinalMao">
-				<div class="card-content white-text">
-					<span class="card-title center">Mão esquerda</span>
-					<div class="mao">
-
-						Configuração de mão:
-						<div class="center imgMao">
-							{% if sinal.cmE.imagem %}
-								<img class="circle imgSinal" src="{{sinal.cmE.imagem.url}}">
-							{% else %}
-								<i class="large material-icons white-text imgSinal">cloud_off</i>
-							{% endif %}
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col s12 m6">
-			<div class="card blue darken-4 z-depth-5 cardSinalMao">
-				<div class="card-content white-text">
-					<span class="card-title center">Mão direita</span>
-					<div class="mao">
-
-						Configuração de mão:
-						<div class="center imgMao">
-							{% if sinal.cmD.imagem %}
-								<img class="circle imgSinal" src="{{sinal.cmD.imagem.url}}">
-							{% else %}
-								<i class="large material-icons white-text imgSinal">cloud_off</i>
-							{% endif %}
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col s6 m6">
-			<div class="card blue darken-4 z-depth-5 cardSinal">
-				<div class="card-content white-text">
-					<span class="card-title center">Localização</span>
-					<div class="center imgMao">
-						{% if sinal.localizacao %}
-							<img class="circle imgSinal" src="{{sinal.localizacao}}">
-						{% else %}
-							<i class="large material-icons white-text imgSinal">cloud_off</i>
-						{% endif %}
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-		<div class="col s6 m6">
-			<div class="card blue darken-4 z-depth-5 cardSinal">
-				<div class="card-content white-text">
-					<span class="card-title center">Movimentação</span>
-					<div class="center imgMao">
-						{% if sinal.movimentacao %}
-							<img class="circle imgSinal" src="{{sinal.movimentacao}}">
-						{% else %}
-							<i class="large material-icons white-text imgSinal">cloud_off</i>
-						{% endif %}
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 </div>
-	 <script type="text/javascript" src='{% static "js/sinal.js" %}'></script>
+
+
+</div>
 
 {% endblock %}
