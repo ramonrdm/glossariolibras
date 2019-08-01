@@ -71,7 +71,7 @@ and open the template in the editor.
      margin: 0px;
      padding: 0px;
      width: 100px; /* sil */
-     height: 490px; /* sil */
+     height: 990px; /* sil */
      border: 1px solid #EEEEEE;
      background-color: #EEEEEE;
 
@@ -124,10 +124,10 @@ and open the template in the editor.
      float: left;
 }
 
-/*#id_cmE{*/
-    /*display: none;*/
-/*}*/
+#id_cmE{
+    display: none;
+}
 
-/*.field-cmE{*/
-    /*overflow: visible !important;*/
-/*}*/
+.field-cmE{
+    overflow: visible !important;
+}

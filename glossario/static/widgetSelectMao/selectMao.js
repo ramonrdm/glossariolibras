@@ -80,9 +80,19 @@ function iconSelectMao($$elementID, $$parameters) {
         
         for(var i = 0; i < $icons.length; i++){
             $icons[i].element = _View.createIcon($icons[i].iconFilePath, $icons[i].iconValue, i, $$parameters);
-            $icons[i].element.onclick = function(){
-                setSelectedIndex(this.childNodes[0].getAttribute('icon-index'));
-                
+            $icons[i].element.onmouseover = function(){
+                 _View.showBox()
+                if(iconValue == 1){
+
+                }
+
+
+
+
+
+                // setSelectedIndex(this.childNodes[0].getAttribute('icon-index'));
+
+
             };
             _icons.push($icons[i]);
             
