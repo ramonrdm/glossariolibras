@@ -1,4 +1,4 @@
-<div class="col l3 m12 s12 card" onclick="window.location='/sinal/{{s.id}}';">
+<div class="col l3 m12 s12 card z-depth-1 grey lighten-4 " onclick="window.location='/sinal/{{s.id}}';">
 
 	<div class="card-image">
 		<video id="videoPesquisa" controls>
@@ -11,7 +11,7 @@
 		<span class="sinalPortugues">  .  </span>
 		<span class="sinalIngles">   {{s.traducaoI}}</span>
 	</div>
-	<div class="center card-content grey lighten-4">
+	<div class="center card-content">
 				{% if s.cmE.imagem %}
 					<img src="{{s.cmE.imagem.url}}" width="21%" class="circle">
 				{% endif %}
@@ -28,3 +28,4 @@
 				{% endif %}
 	 </div>
 </div>
+

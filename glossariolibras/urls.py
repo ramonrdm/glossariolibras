@@ -12,7 +12,6 @@ from django.shortcuts import redirect
 from django.conf.urls import url, include
 urlpatterns = [
     path('', views.index, name='index'),
-    # path('admin/$',RedirectView.as_view(url="admin/glossario/sinal/")),
     path('admin/', lambda _: redirect(to="glossario/sinal/")),
     path('admin/', admin.site.urls),
     path('logout/', views.sair, name='logout'),
