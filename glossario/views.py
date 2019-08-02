@@ -245,9 +245,6 @@ def busca(formSinais, formPesquisa):
         if mao:
             sinais = sinais.filter(Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
 
-    sinais.filter(glossario__visivel=True)
-    print("ramon")
-
     return sinais
 
 def registration(request):
