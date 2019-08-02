@@ -21,13 +21,13 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 
 def index(request, glossario=None):
-    glossarios = Glossario.objects.all()
+    glossarios = Glossario.objects.filter(visivel=True)
     if request.method == 'POST':
         sinais = None
         formPesquisa = PesquisaForm(request.POST)
         formSinais = PesquisaSinaisForm(request.POST)
         if formPesquisa.is_valid() and formSinais.is_valid():
-            sinais = busca(formSinais, formPesquisa)
+            sinais = busca(formSinais, formPesquisa).filter(glossario__visivel=True)
         formPesquisa = PesquisaForm()
         resultado = len(sinais) if sinais else None
         localizacoes = dict(
@@ -66,7 +66,7 @@ def glossarioSelecionado(request, glossario):
         formSinais = PesquisaSinaisForm(request.POST)
 
         if formPesquisa.is_valid() and formSinais.is_valid():
-            sinais = busca(formSinais, formPesquisa).filter(glossario=glossario)
+            sinais = busca(formSinais, formPesquisa).filter(glossario=glossario, glossario__visivel=True)
 
         formPesquisa = PesquisaForm()
         resultado = len(sinais) if sinais else None
@@ -245,6 +245,8 @@ def busca(formSinais, formPesquisa):
         if mao:
             sinais = sinais.filter(Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
 
+    sinais.filter(glossario__visivel=True)
+    print("ramon")
 
     return sinais
 

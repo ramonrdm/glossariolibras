@@ -93,6 +93,7 @@ class Glossario(models.Model):
     link = models.CharField('Link', max_length=20)
     dataCriacao = models.DateField('data de criação', auto_now_add=True)
     videoGlossario = Video('Vídeo', blank=True)
+    visivel = models.BooleanField("Visivel", default=True)
 
     def __str__(self):
         return self.nome
