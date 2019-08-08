@@ -232,6 +232,8 @@ def busca(formSinais, formPesquisa):
     localizacao = formSinais.cleaned_data['localizacao']
     movimentacao = formSinais.cleaned_data['movimentacao']
     mao = formSinais.cleaned_data['cmE']
+    print(mao)
+
     if resultadoTraducao != '':
         sinais = Sinal.objects.filter(Q(traducaoI__icontains=resultadoTraducao) | Q(traducaoP__icontains=resultadoTraducao))
 
@@ -243,7 +245,7 @@ def busca(formSinais, formPesquisa):
 
         sinais = Sinal.objects.filter(**parametros)
         if mao:
-            sinais = sinais.filter(Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
+            sinais = sinais.filter(Q(cmE=mao) | Q(cmD=mao))
             print("passei aqui 2")
 
     return sinais
