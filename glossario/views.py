@@ -40,9 +40,10 @@ def index(request, glossario=None):
         movimentacoes = dict(
             [('0', 'X.svg'), ('1', 'parede.png'), ('2', 'chao.png'), ('3', 'circular.png'), ('4', 'contato.png')])
 
-        for sinal in sinais:
-            sinal.localizacao = "/static/img/" + localizacoes[sinal.localizacao]
-            sinal.movimentacao = "/static/img/" + movimentacoes[sinal.movimentacao]
+        if sinais:
+            for sinal in sinais:
+                sinal.localizacao = "/static/img/" + localizacoes[sinal.localizacao]
+                sinal.movimentacao = "/static/img/" + movimentacoes[sinal.movimentacao]
         return render(request, 'pesquisa.html', {
             'formPesquisa': formPesquisa, 'sinais': sinais, 'resultado': resultado,
             'formSinais': formSinais, 'form': EnviarSinaisForm(request.POST, request.FILES)})
@@ -245,7 +246,8 @@ def busca(formSinais, formPesquisa):
 
         sinais = Sinal.objects.filter(**parametros)
         if mao:
-            sinais = sinais.filter(Q(cmE=mao) | Q(cmD=mao))
+            print(mao)
+            sinais = sinais.filter(Q(cmE__bsw__icontains=mao) | Q(cmD__bsw__icontains=mao))
             print("passei aqui 2")
 
     return sinais

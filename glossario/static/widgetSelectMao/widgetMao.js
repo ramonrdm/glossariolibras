@@ -18,7 +18,7 @@ window.onload = function(){
     var iconsMao = [];
 
     iconsMao.push({'iconFilePath':'/static/img/X.svg','iconValue':''});
-    iconsMao.push({'iconFilePath':'/static/img/configuracoes_de_mao/100/100.png', 'iconValue':'10'});
+    iconsMao.push({'iconFilePath':'/static/img/configuracoes_de_mao/100/100.png', 'iconValue':'100'});
     iconsMao.push({'iconFilePath':'/static/img/configuracoes_de_mao/10e/10e.png', 'iconValue':'10e'});
     iconsMao.push({'iconFilePath':'/static/img/configuracoes_de_mao/11e/11e.png', 'iconValue':'3'});
     iconsMao.push({'iconFilePath':'/static/img/configuracoes_de_mao/144/144.png', 'iconValue':'4'});
