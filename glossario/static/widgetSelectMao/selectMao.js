@@ -28,6 +28,9 @@ iconSelectMao.DEFAULT.HORIZONTAL_ICON_NUMBER = 3;
 iconSelectMao.DEFAULT.VECTORAL_ICON_NUMBER = 3;
 
 
+
+
+
 function iconSelectMao($$elementID, $$parameters) {
     
     var _icons = [];
@@ -77,21 +80,13 @@ function iconSelectMao($$elementID, $$parameters) {
         _icons = [];
         
         var setSelectedIndex = this.setSelectedIndex;
+        var setOpenCM = this.setOpenCM
         
         for(var i = 0; i < $icons.length; i++){
             $icons[i].element = _View.createIcon($icons[i].iconFilePath, $icons[i].iconValue, i, $$parameters);
             $icons[i].element.onmouseover = function(){
-                 _View.showBox()
-                if(iconValue == 1){
-
-                }
-
-
-
-
-
-                // setSelectedIndex(this.childNodes[0].getAttribute('icon-index'));
-
+//                _View.showBox()
+                setSelectedIndex(this.childNodes[0].getAttribute('icon-index'));
 
             };
             _icons.push($icons[i]);
@@ -130,6 +125,28 @@ function iconSelectMao($$elementID, $$parameters) {
         //_View.showBox(false);
         
     };
+
+//       this.setOpenCM = function($index){
+//
+//        var icon;
+//
+//        if(_icons.length > $index)
+//            icon = _icons[$index];
+//
+//        if(icon){
+//            //eski icondan seçilme özelliğini kaldır.
+//            if(_selectedIndex != -1) _icons[_selectedIndex].element.setAttribute('class','icon');
+//            _selectedIndex = $index;
+//            _View.selectedIconImgElement.setAttribute('src', icon.iconFilePath);
+//            if(_selectedIndex != -1) _icons[_selectedIndex].element.setAttribute('class','icon selected');
+//        }
+//
+//        _View.iconSelectElement.dispatchEvent(new Event('changed'));
+//
+//        //_View.showBox(false);
+//
+//    };
+
     
     this.getSelectedIndex = function(){ return _selectedIndex; };
     this.getSelectedValue = function(){ return _icons[_selectedIndex].iconValue };

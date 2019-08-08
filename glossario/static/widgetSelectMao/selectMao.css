@@ -70,7 +70,7 @@ and open the template in the editor.
      left:0px;
      margin: 0px;
      padding: 0px;
-     width: 100px; /* sil */
+     width: 100%; /* sil */
      height: 990px; /* sil */
      border: 1px solid #EEEEEE;
      background-color: #EEEEEE;
@@ -90,8 +90,8 @@ and open the template in the editor.
      position: relative;
      margin: 5px 0px 0px 5px;
      padding: 0px;
-     width: 87px; /* sil */
-     height: 87px; /* sil */
+     width: 75px; /* sil */
+     height: 75px; /* sil */
      border: 1px solid #CCCCCC;
      background-color: #FFFFFF;
 
@@ -111,8 +111,8 @@ and open the template in the editor.
      position: relative;
      margin: 5px 0px 0px 5px;
      padding: 0px;
-     width: 100px; /* sil */
-     height: 100px; /* sil */
+     width: 75px; /* sil */
+     height: 75px; /* sil */
      border: 1px solid #EEEEEE;
      background-color: #EEEEEE;
 

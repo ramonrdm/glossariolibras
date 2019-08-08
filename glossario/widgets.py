@@ -63,7 +63,6 @@ class ImageSelectMovimentacao(forms.Widget):
     template_name = 'widget_movimentacao.html'
 
     # class Media:
-    #     # extend = False
     #     css = {
     #         'all': ('/static/widgetSelectMovimentacao/selectMovimentacao.css',)
     #     }
@@ -75,7 +74,6 @@ class ImageSelectMao(forms.Widget):
     template_name = 'widget_mao.html'
 
     class Media:
-        # extend = False
         css = {
             'all': ('/static/widgetSelectMao/selectMao.css',)
         }

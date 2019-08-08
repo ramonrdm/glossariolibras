@@ -244,7 +244,7 @@ def busca(formSinais, formPesquisa):
         sinais = Sinal.objects.filter(**parametros)
         if mao:
             sinais = sinais.filter(Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
-
+            print("passei aqui 2")
 
     return sinais
 

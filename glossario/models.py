@@ -101,7 +101,7 @@ class CM (models.Model):
     class Meta:
         verbose_name_plural='configurações de mão'
 
-    bsw = models.TextField('BSW', blank=True, default='')
+    bsw = models.TextField('BSW', blank=True, default='0')
     imagem = models.ImageField(blank=True)
 
     def __str__(self):

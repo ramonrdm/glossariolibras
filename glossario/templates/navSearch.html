@@ -15,13 +15,21 @@
                            <ul>
                                 {% for field in formSinais %}
 
+<select name="localizacao" id="id_localizacao" style="display: none;">
+<option value="0" selected="" data-img-src="/static/img/x.svg">Nenhuma</option>
+</select>
+<select name="movimentacao" id="id_movimentacao" style="display: none;">
+<option value="0" selected="" data-img-src="/static/img/x.svg">Nenhuma</option>
+</select>
+
+
                                     <div class="col l0">
                                     {% if field.auto_id == 'id_localizacao' %}
                                                     <img class="sinaisMobile" src='{% static "img/localizacaoTesta.png" %}'>
                                     {% elif field.auto_id == 'id_cmE' %}
                                             {{ field }}
                                      {% elif field.auto_id == 'id_movimentacao' %}
-                                            {{ field }}
+                                             <img class="sinaisMobile" src='{% static "img/localizacaoTesta.png" %}'>
                                     {% endif %}
                                     </div>
                                {% endfor %}
