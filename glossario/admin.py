@@ -151,7 +151,7 @@ class GlossarioAdmin(admin.ModelAdmin):
 class SinalAdmin(admin.ModelAdmin):
     form = SinalForm
     readonly_fields=('create_data',)
-    list_display = ('traducaoP', 'traducaoI', 'tema', 'glossario', 'image_tag_cmE', 'image_tag_cmD', 'image_tag_localizacao', 'image_tag_movimentacao' , 'publicado')
+    list_display = ('traducaoP', 'video_tag_sinal', 'traducaoI', 'tema', 'glossario', 'image_tag_cmE', 'image_tag_cmD', 'image_tag_localizacao', 'image_tag_movimentacao' , 'publicado')
     list_filter = ('tema', 'glossario', 'localizacao', 'movimentacao', 'publicado')
     actions = ['publicar_sinal',]
 
@@ -182,6 +182,12 @@ class SinalAdmin(admin.ModelAdmin):
     def publicar_sinal(self, request, queryset):
         queryset.update(publicado=True)
     publicar_sinal.short_description = 'Publicar sinais selecionados'
+
+    def video_tag_sinal(self, obj):
+        if obj.sinalLibras:
+            return format_html('<video autoplay loop src="/media/{}" height="70" />'.format(obj.sinalLibras))
+        else:
+            return format_html('<p>Sem Imagem</p>')
 
     def image_tag_cmE(self, obj):
         if obj.cmE.imagem:
@@ -229,6 +235,7 @@ class SinalAdmin(admin.ModelAdmin):
 class CMAdmin(admin.ModelAdmin):
     form = CMForm
     list_display = ('__str__', 'image_tag', 'bsw')
+    readonly_fields = ["image_tag"]
 
     def image_tag(self, obj):
         if obj.imagem:

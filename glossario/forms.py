@@ -89,7 +89,7 @@ class SinalForm(forms.ModelForm):
 		self.fields['bsw'].widget = forms.TextInput(attrs={})
 		for field in self.fields:
 			if field in ['cmD', 'cmE']:
-				self.fields[field].widget = ImageSelectMao(choices=self.fields[field].choices, attrs={})
+				self.fields[field].widget = ImageSelectMao()#choices=self.fields[field].choices, attrs={})
 			self.fields[field].widget.field_img = list()
 			self.fields[field].empty_label = 'Selecionar'
 
