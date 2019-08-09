@@ -185,14 +185,14 @@ class SinalAdmin(admin.ModelAdmin):
 
     def image_tag_cmE(self, obj):
         if obj.cmE.imagem:
-            return format_html('<img src="{}" width="50" height="50" />'.format(obj.cmE.imagem))
+            return format_html('<img src="/static/img/configuracoes_de_mao/{}" width="50" height="50" />'.format(obj.cmE.imagem()))
         else:
             return format_html('<p>Sem Imagem</p>')
         image_tag_cmE.short_description = "Esquerda"
 
     def image_tag_cmD(self, obj):
         if obj.cmD.imagem:
-            return format_html('<img src="{}" width="50" height="50" />'.format(obj.cmD.imagem))
+            return format_html('<img src="/static/img/configuracoes_de_mao/{}" width="50" height="50" />'.format(obj.cmD.imagem()))
         else:
             return format_html('<p>Sem Imagem</p>')
         image_tag_cmD.short_description = 'direita'
@@ -232,7 +232,7 @@ class CMAdmin(admin.ModelAdmin):
 
     def image_tag(self, obj):
         if obj.imagem:
-            return format_html('<img src="/static/img/configuracao_de_mao/{}" width="50" height="50"/>'.format(obj.imagem))
+            return format_html('<img src="/static/img/configuracoes_de_mao/{}" width="50" height="50"/>'.format(obj.imagem()))
         else:
             return format_html('<p>Sem Imagem</p>')
         image_tag.short_description = 'Imagem'

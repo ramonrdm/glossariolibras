@@ -107,7 +107,7 @@ class CM (models.Model):
     group = models.TextField('Grupo', default='')
 
     def imagem(self):
-        return str(group+"/"+bsw+".png")
+        return str(""+str(self.group)+"/"+self.bsw+".png")
 
     def __str__(self):
         return str(self.id)

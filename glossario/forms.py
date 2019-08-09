@@ -121,7 +121,7 @@ class EnviarSinaisForm(forms.ModelForm):
 			# trocar 20 do xrange para length do select que tiver mais options
 				if type(self.fields[field]) is ModelChoiceField:
 					if len(self.fields[field].queryset) >= option + 1:
-						self.fields[field].widget.field_img.append(self.fields[field].queryset[option].imagem.url)
+						self.fields[field].widget.field_img.append(self.fields[field].queryset[option].imagem)
 
 class PesquisaSinaisForm(forms.ModelForm):
 	class Meta:
@@ -144,14 +144,14 @@ class PesquisaSinaisForm(forms.ModelForm):
 				if type(self.fields[field]) is ModelChoiceField:
 					if len(self.fields[field].queryset) >= option + 1:
 						if self.fields[field].queryset[option].imagem:
-							self.fields[field].widget.field_img.append(self.fields[field].queryset[option].imagem.url)
+							self.fields[field].widget.field_img.append(self.fields[field].queryset[option].imagem)
 						else:
 							self.fields[field].widget.field_img.append("/static/img/cinema/")
 
 class CMForm(forms.ModelForm):
 	class Meta:
 		model = CM
-		fields = ['bsw', 'name']
+		fields = ['bsw', 'name', 'group']
 
 class PesquisaForm(forms.Form):
 	busca = forms.CharField(required=False, label="",  widget=forms.TextInput(attrs={'id': 'search', 'type': 'search', 'placeholder': 'Pesquisar em glossário'}))
