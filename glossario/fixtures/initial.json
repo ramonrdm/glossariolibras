@@ -1,0 +1,272 @@
+[
+{
+    "model": "glossario.userglossario",
+    "fields": {
+        "password": "pbkdf2_sha256$120000$nofNiagar00B$zE1sdeD2rwfJUpCaOvItBEUzgYtP9+sMt1g6PBqY7IE=",
+        "last_login": "2019-05-07T22:20:58.124Z",
+        "is_superuser": true,
+        "email": "admin@admin.com",
+        "nome_completo": "admin",
+        "email_confirmed": false,
+        "is_staff": true,
+        "is_active": true,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "glossario.glossario",
+    "pk": 1,
+    "fields": {
+        "nome": "Letras Libras",
+        "descricao": "l",
+        "imagem": "marca_portal_libras2_CpDcRnI.png",
+        "link": "letras-libras",
+        "dataCriacao": "2019-04-12",
+        "videoGlossario": "",
+        "responsavel": [
+            [
+                "admin@admin.com"
+            ]
+        ],
+        "membros": [
+            [
+                "admin@admin.com"
+            ]
+        ]
+    }
+},
+{
+    "model": "glossario.glossario",
+    "pk": 2,
+    "fields": {
+        "nome": "Animais",
+        "descricao": "Reino Animal",
+        "imagem": "1552647712484_9HzUZTQ.jpg",
+        "link": "animais",
+        "dataCriacao": "2019-05-07",
+        "videoGlossario": "520-07-03-15-11-56.ogv",
+        "responsavel": [
+            [
+                "admin@admin.com"
+            ]
+        ],
+        "membros": [
+            [
+                "admin@admin.com"
+            ]
+        ]
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 1,
+    "fields": {
+        "bsw": "01010",
+        "imagem": "100_iMUHYLC_7vtoUnG_0CloSrb_qacpB9g_GhTrSAe_1pr27C2.png"
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 2,
+    "fields": {
+        "bsw": "",
+        "imagem": "101.png"
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 3,
+    "fields": {
+        "bsw": "",
+        "imagem": "102.png"
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 4,
+    "fields": {
+        "bsw": "",
+        "imagem": "103.png"
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 5,
+    "fields": {
+        "bsw": "",
+        "imagem": "104.png"
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 6,
+    "fields": {
+        "bsw": "",
+        "imagem": "105.png"
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 7,
+    "fields": {
+        "bsw": "",
+        "imagem": "106.png"
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 8,
+    "fields": {
+        "bsw": "",
+        "imagem": "10e_dFQzHPq.png"
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 9,
+    "fields": {
+        "bsw": "",
+        "imagem": "10f.png"
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 10,
+    "fields": {
+        "bsw": "",
+        "imagem": "110.png"
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 11,
+    "fields": {
+        "bsw": "",
+        "imagem": "111.png"
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 12,
+    "fields": {
+        "bsw": "",
+        "imagem": "112.png"
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 13,
+    "fields": {
+        "bsw": "",
+        "imagem": "11e_xcS0PHu.png"
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 14,
+    "fields": {
+        "bsw": "",
+        "imagem": "11f.png"
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 15,
+    "fields": {
+        "bsw": "",
+        "imagem": "120.png"
+    }
+},
+{
+    "model": "glossario.cm",
+    "pk": 16,
+    "fields": {
+        "bsw": "",
+        "imagem": "121.png"
+    }
+},
+{
+    "model": "glossario.tema",
+    "pk": 1,
+    "fields": {
+        "nome": "libras",
+        "descricao": "libras",
+        "video": "",
+        "imagem": "11e_viPkzLX_9yutoy4.png",
+        "temaPai": 3
+    }
+},
+{
+    "model": "glossario.tema",
+    "pk": 2,
+    "fields": {
+        "nome": "Animais",
+        "descricao": "reino dos animais",
+        "video": "",
+        "imagem": "1552647712484_cm1D4fW.jpg",
+        "temaPai": 3
+    }
+},
+{
+    "model": "glossario.tema",
+    "pk": 3,
+    "fields": {
+        "nome": "Conhecimento",
+        "descricao": "area do conhecimento",
+        "video": "",
+        "imagem": "logo_valido.jpg",
+        "temaPai": null
+    }
+},
+{
+    "model": "glossario.sinal",
+    "pk": 1,
+    "fields": {
+        "glossario": 1,
+        "traducaoP": "cachorro",
+        "traducaoI": "dog",
+        "bsw": "01010",
+        "descricao": "animal",
+        "cmE": 1,
+        "cmD": 1,
+        "localizacao": "1",
+        "movimentacao": "1",
+        "dataPost": "2019-04-30",
+        "postador": [
+            "admin@admin.com"
+        ],
+        "publicado": true,
+        "sinalLibras": "sinal_videos/originais/v-562-11-23-13-40-24_QjCiIxo.mp4",
+        "descLibras": "",
+        "exemploLibras": "",
+        "varicLibras": "",
+        "tema": 1
+    }
+},
+{
+    "model": "glossario.sinal",
+    "pk": 2,
+    "fields": {
+        "glossario": 1,
+        "traducaoP": "Software",
+        "traducaoI": "Software",
+        "bsw": "",
+        "descricao": "Programa para computador",
+        "cmE": 2,
+        "cmD": 16,
+        "localizacao": "8",
+        "movimentacao": "0",
+        "dataPost": "2019-04-30",
+        "postador": [
+            "admin@admin.com"
+        ],
+        "publicado": true,
+        "sinalLibras": "sinal_videos/originais/520-07-03-15-11-56.ogv",
+        "descLibras": "sinal_videos/originais/d-520-07-03-15-11-58.ogv",
+        "exemploLibras": "sinal_videos/originais/e-520-07-03-15-12-05.ogv",
+        "varicLibras": "",
+        "tema": 1
+    }
+}
+]
