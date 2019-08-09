@@ -151,7 +151,7 @@ class PesquisaSinaisForm(forms.ModelForm):
 class CMForm(forms.ModelForm):
 	class Meta:
 		model = CM
-		fields = ['bsw', 'imagem']
+		fields = ['bsw', 'name']
 
 class PesquisaForm(forms.Form):
 	busca = forms.CharField(required=False, label="",  widget=forms.TextInput(attrs={'id': 'search', 'type': 'search', 'placeholder': 'Pesquisar em glossário'}))

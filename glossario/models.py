@@ -98,11 +98,16 @@ class Glossario(models.Model):
         return self.nome
 
 class CM (models.Model):
+    "total de 261 configurações de mão divididas em 10 grupos."
     class Meta:
-        verbose_name_plural='configurações de mão'
+        verbose_name_plural='Configurações de mão'
 
     bsw = models.TextField('BSW', blank=True, default='0')
-    imagem = models.ImageField(blank=True)
+    name = models.TextField('name', default='')
+    group = models.TextField('Grupo', default='')
+
+    def imagem(self):
+        return str(group+"/"+bsw+".png")
 
     def __str__(self):
         return str(self.id)
