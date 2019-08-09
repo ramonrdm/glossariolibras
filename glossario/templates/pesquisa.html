@@ -29,18 +29,18 @@
 							<tbody>
 							{% for s in sinais %}
 								<tr onclick="window.location='/sinal/{{s.id}}';">
-									<td><img src="/static/img/arvore_banyan_havai.png" width="70" ></td>
+									{% if s.sinalLibras %}
+										<td class="field-video_tag_sinal"><video autoplay="" loop="" src="{{s.sinalLibras.url}}" height="70"></video></td>
+									{% else %}
+										<td><img src="/static/img/X.svg" width="50" class="circle"></td>
+									{% endif %}
 									<td>{{s.traducaoP}}</td>
 									<td>{{s.traducaoI}}</td>
 									{% if s.cmE.imagem %}
 										<td><img src="/static/img/configuracoes_de_mao/{{s.cmE.imagem}}" width="50" class="circle"></td>
-									{% else %}
-										<td></td>
 									{% endif %}
 									{% if s.cmD.imagem %}
 										<td><img src="/static/img/configuracoes_de_mao/{{s.cmD.imagem}}" width="50" class="circle"></td>
-									{% else %}
-										<td></td>
 									{% endif %}
 									{% if s.localizacao %}
 										<td><img src="{{s.localizacao}}" width="50" class="circle"></td>
