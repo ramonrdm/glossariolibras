@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        {% block Head %}
+        {% block head %}
             {% load staticfiles %}
             <meta name="author" content="Ramon Dutra Miranda"/>
             <meta name="description" content="Glossario libras, ufsc, dicionario, letras libras, glossario cinema"/>
@@ -19,8 +19,8 @@
         <title>{% block title %}Glossário Libras{% endblock %}</title>
     </head>
     <body>
-        {% include 'navSearch.html' %}
-        {% block Corpo %}
+        {% include 'search_bar.html' %}
+        {% block body %}
         {% endblock %}
     </body>
 </html>

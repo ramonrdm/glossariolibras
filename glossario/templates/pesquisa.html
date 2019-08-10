@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
-{% block Head %}
+{% block head %}
 	{{ block.super }}
     {{ formSinais.media }}
 	{% load staticfiles %}
 	<title>{% block title %}Pesquisa {{ glossario.nome }} - Glossário Letras Libras {% endblock %}</title>
 {% endblock %}
-{% block Corpo %}
+{% block body %}
 <div class="hide-on-small-only blockContainer">
 	<div class="pesquisaViewList">
 		<a id="buttonViewModule" class="btn-floating btn-large waves-effect waves-light blue right"><i class="material-icons">view_module</i></a>

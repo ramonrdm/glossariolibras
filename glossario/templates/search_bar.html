@@ -1,0 +1,214 @@
+{{ formSinais.media }}
+{% load staticfiles %}
+<div class="navbar-fixed" id="telaWeb">
+{% if formPesquisa %}
+    <nav class="row white">
+        <form method="post">
+            <ul class=" col l0 left">
+                <li>
+                    <a id="abrirSidenav" class="btn-floating btn-flat waves-effect waves-light white">
+                        <i class="material-icons">dehaze</i>
+                    </a>
+                </li>
+                <li>
+                    <a id="fecharSidenav" class="btn-floating btn-flat waves-effect waves-light white">
+                        <i class="material-icons">dehaze</i>
+                    </a>
+                </li>
+            </ul>
+            <div class=" col l3">
+                <a href="/">
+                    <img class="brand-logo left" src='{% static "img/marca_glossario.png" %}'>
+                </a>
+            </div>
+            <ul>
+            {% for field in formSinais %}
+                <select name="localizacao" id="id_localizacao" style="display: none;">
+                    <option value="0" selected="" data-img-src="/static/img/x.svg">Nenhuma</option>
+                </select>
+                <select name="movimentacao" id="id_movimentacao" style="display: none;">
+                    <option value="0" selected="" data-img-src="/static/img/x.svg">Nenhuma</option>
+                </select>
+
+                <div class="col l0">
+                {% if field.auto_id == 'id_localizacao' %}
+                    <img class="sinaisMobile" src='{% static "img/localizacaoTesta.png" %}'>
+                {% elif field.auto_id == 'id_cmE' %}
+                {{ field }}
+                {% elif field.auto_id == 'id_movimentacao' %}
+                    <img class="sinaisMobile" src='{% static "img/localizacaoTesta.png" %}'>
+                {% endif %}
+                </div>
+                
+            {% endfor %}
+                <div class=" col l1 right">
+                    <li>
+                        <button class="btn waves-effect waves-light botaoPesquisar" type="submit" id="botaoPesquisar" name="botaoPesquisar">
+                            Pesquisar
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </li>
+                </div>
+            </ul>
+            <div class=" col l3 right nav-wrapper">
+                <div class="input-field right">
+                {% csrf_token %}
+                {{ formPesquisa }}
+                    <label class="label-icon" for="search">
+                        <i class="material-icons grey-text">search</i>
+                    </label>
+                    <i class="material-icons">close</i>
+                </div>
+            </div>
+        </form>
+    </nav>
+{% else %}
+    <nav class="row white">
+        <ul class=" col l5 left">
+            <li>
+                <a id="abrirSidenav" class="btn-floating btn-flat waves-effect waves-light white">
+                    <i class="material-icons">dehaze</i>
+                </a>
+            </li>
+            <li>
+                <a id="fecharSidenav" class="btn-floating btn-flat waves-effect waves-light white">
+                    <i class="material-icons">dehaze</i>
+                </a>
+            </li>
+        </ul>
+        <div class=" col l2 center">
+            <a href="/">
+                <img class="brand-logo" src='{% static "img/marca_glossario.png" %}'>
+            </a>
+        </div>
+    </nav>
+{% endif %}
+    <ul id="mostrarSidenav" class="sidenav sidenav-fixed">
+        <div id="" class="sideNavLinks">
+        {%  if user.is_authenticated  %}
+            <li>
+                <a class="waves-effect waves-blue left" href="{% url 'admin:index' %}">
+                    <i class="material-icons">account_circle</i>
+                        {{ user.nome_completo }}
+                </a>
+            </li>
+            <li>
+                <a class="waves-effect waves-blue color" href="{% url 'logout' %}">
+                    <i class="material-icons">close</i>
+                </a>
+            </li>
+            <li>
+                <a class="waves-effect waves-blue" href="{% url 'enviarsinais' %}">
+                    <i class="material-icons">send</i>
+                    Sugerir um Sinal
+                </a>
+            </li>
+        {% else %}
+            <li>
+                <a class="waves-effect waves-blue" href="{% url 'registration' %}">
+                    <i class="material-icons">account_circle</i>
+                    Criar Usuario
+                </a>
+            </li>
+            <li>
+                <a class="waves-effect waves-blue" href="{% url 'admin:index'  %}">
+                    <i class="material-icons">https</i>
+                    Admin
+                </a>
+            </li>
+        {% endif %}
+            <li>
+                <a class="waves-effect waves-blue" href="{% url 'historia' %}">
+                    <i class="material-icons">library_books</i>
+                    História
+                </a>
+            </li>
+            <li>
+                <a class="waves-effect waves-blue" href="{% url 'equipe' %}">
+                    <i class="material-icons">supervisor_account</i>
+                    Equipe
+                </a>
+            </li>
+            <li>
+                <a class="waves-effect waves-blue" href="{% url 'contato' %}">
+                    <i class="material-icons">call</i>
+                    Contato
+                </a>
+            </li>
+            <li>
+                <a class="waves-effect waves-blue" href="https://libras.ufsc.br/">
+                    <i class="material-icons">
+                        <img class="iconePortalLibras" src='{% static "img/marca_portal_libras2.png" %}'>
+                    </i>
+                    Portal Libras
+                </a>
+            </li>
+            <div class="nav-wrapper">
+                <a href="http://ufsc.br">
+                    <img class="logoUFSC" src='{% static "img/marca_ufsc.png" %}'>
+                </a>
+            </div>
+        </div>
+    </ul>
+
+</div>
+
+<div id="telaMobile">
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger left"><i class="material-icons">menu</i></a>
+                <a href="/"><img class="logoGlossarioMobile" src='{% static "img/mobile_glossario.png" %}'></a>
+            </div>
+                {% if formPesquisa %}
+                <nav id="mobileSearchLibras" class="row nav-extended grey lighten-4">
+                <ul>
+                    {% for field in formSinais %}
+                    <div class="col l4 center">
+                    {% if field.auto_id == 'id_localizacao' %}
+                                  <img class="sinaisMobile" src='{% static "img/localizacaoTesta.png" %}'>
+                    {% elif field.auto_id == 'id_cmE' %}
+                                <img class="sinaisMobile" src='{% static "img/1a4.png" %}'>
+                    {% elif field.auto_id == 'id_movimentacao' %}
+                         <img class="sinaisMobile" src='{% static "img/1a4.png" %}'>
+                    {% endif %}
+                    </div>
+                {% endfor %}
+                </ul>
+                 <a id="abrirNavSearchMobile" class="btn-floating btn-large halfway-fab waves-effect waves-light indigo darken-4"><i class="material-icons white-text">text_format</i></a></nav>
+        </nav>
+        <nav id="mobileSearchEscrita">
+            <div class="nav-wrapper grey lighten-4">
+                <form method="post">
+                    <ul class=" input-field">
+                        {% csrf_token %}
+                        {{ formPesquisa }}
+                        <label class="label-icon" for="search"><i class="material-icons grey-text">search</i></label>
+                        <i class="material-icons">close</i>
+                    </ul>
+                </form>
+            </div>
+            <a id="fecharNavSearchMobile" class="btn-floating btn-large halfway-fab waves-effect waves-light indigo darken-4"><i class="material-icons white-text">pan_tool</i></a>
+        </nav>
+    {% else %}
+    {% endif %}
+  <ul class="sidenav" id="mobile-demo">
+    {%  if user.is_authenticated  %}
+        <li><a class="waves-effect waves-blue left" href="{% url 'admin:index' %}"><i class="material-icons">account_circle</i>{{ user.nome_completo }}</a></li>
+        <li><a class="waves-effect waves-blue color" href="{% url 'logout' %}"><i class="material-icons">close</i></a></li>
+        <li><a class="waves-effect waves-blue" href="{% url 'historia' %}"><i class="material-icons">library_books</i>História</a></li>
+        <li><a class="waves-effect waves-blue" href="{% url 'equipe' %}"><i class="material-icons">supervisor_account</i>Equipe</a></li>
+        <li><a class="waves-effect waves-blue" href="{% url 'contato' %}"><i class="material-icons">call</i>Contato</a></li>
+        <li><a class="waves-effect waves-blue" href="https://libras.ufsc.br/"><i class="material-icons"><img class="iconePortalLibras" src='{% static "img/marca_portal_libras2.png" %}'></i>Portal Libras</a></li>
+        <li><a class="waves-effect waves-blue" href="{% url 'enviarsinais' %}"><i class="material-icons">send</i>Sugerir um Sinal</a></li>
+        <li><a class="waves-effect waves-blue" href="{% url 'admin:index' %}"><i class="material-icons">https</i>Admin</a></li>
+        {% else %}
+        <li><a class="waves-effect waves-blue" href="{% url 'historia' %}"><i class="material-icons">library_books</i>História</a></li>
+        <li><a class="waves-effect waves-blue" href="{% url 'equipe' %}"><i class="material-icons">supervisor_account</i>Equipe</a></li>
+        <li><a class="waves-effect waves-blue" href="{% url 'contato' %}"><i class="material-icons">call</i>Contato</a></li>
+        <li><a class="waves-effect waves-blue" href="https://libras.ufsc.br/"><i class="material-icons"><img class="iconePortalLibras" src='{% static "img/marca_portal_libras2.png" %}'></i>Portal Libras</a></li>
+        <li><a class="waves-effect waves-blue" href="{% url 'registration' %}"><i class="material-icons">account_circle</i>Criar Usuario</a></li>
+        <li><a class="waves-effect waves-blue" href="{% url 'admin:index'  %}"><i class="material-icons">https</i>Admin</a></li>
+        {% endif %}
+  </ul>
+</div>
+
