@@ -23,7 +23,7 @@
                 </a>
             </div>
             <ul>
-            
+            {{formSinais}}
             {% for field in formSinais %}
                 <!--
                 <select name="localizacao" id="id_localizacao" style="display: none;">
@@ -38,9 +38,9 @@
                 {% if field.auto_id == 'id_localizacao' %}
                     {{ field }}
                 {% elif field.auto_id == 'id_cmE' %}
-                
+                    {{ field }}
                 {% elif field.auto_id == 'id_movimentacao' %}
-                    
+                    {{ field }}
                 {% endif %}
                 </div>
 

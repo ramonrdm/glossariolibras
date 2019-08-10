@@ -98,7 +98,7 @@ class Glossario(models.Model):
         return self.nome
 
 class CM (models.Model):
-    "total de 261 configurações de mão divididas em 10 grupos."
+    """Total de 261 configurações de mão divididas em 10 grupos."""
     class Meta:
         verbose_name_plural='Configurações de mão'
 
@@ -110,15 +110,21 @@ class CM (models.Model):
         return str(""+str(self.group)+"/"+self.bsw+".png")
 
     def __str__(self):
-        return str(self.id)
+        return str(str(self.id)+" "+self.bsw)
+
 class Localizacao(models.Model):
-    """docstring for Localizacao"""
     class Meta:
-        static = True
-    def __init__(self, arg):
-        super(Localizacao, self).__init__()
-        self.arg = arg
+        abstract = True
+    localizacoes = (('0','Nunhuma'),('1','Cabeça'),('2','Ombros'),('3','Braços'),('4','Nariz'),('5','Bochechas'),
+                    ('6','Boca'),('7','Tronco'),('8','Espaço Neutro'),('9','Olhos'),('10','Orelhas'),
+                    ('11','Pescoço'),('12','Queixo'),('13','Testa')
+                )
         
+class Movimentacao(models.Model):
+    class Meta:
+        abstract = True
+
+    movimentacoes = (('0', 'Sem Movimentação'),('1', 'Parede'), ('2', 'Chão'), ('3', 'Circular'), ('4', 'Contato'))
 
 class Tema(models.Model):
     nome = models.CharField('Nome', max_length=30)
@@ -146,13 +152,8 @@ class Sinal(models.Model):
     descricao = models.TextField('descrição',  null=True)
     cmE = models.ForeignKey(CM, related_name='C_M_Esquerda', verbose_name='configuração da mão esquerda', on_delete=models.CASCADE)
     cmD = models.ForeignKey(CM, related_name='C_M_Direita', verbose_name='configuração da mão direita', on_delete=models.CASCADE)
-    localizacoes = (('0','Nunhuma'),('1','Cabeça'),('2','Ombros'),('3','Braços'),('4','Nariz'),('5','Bochechas'),
-                        ('6','Boca'),('7','Tronco'),('8','Espaço Neutro'),('9','Olhos'),('10','Orelhas'),
-                        ('11','Pescoço'),('12','Queixo'),('13','Testa')
-                    )
-    localizacao = models.CharField(max_length=2, choices=localizacoes,default=0)
-    movimentacoes = (('0', 'Sem Movimentação'),('1', 'Parede'), ('2', 'Chão'), ('3', 'Circular'), ('4', 'Contato'))
-    movimentacao = models.CharField(max_length=10, choices=movimentacoes, default=0)
+    localizacao = models.CharField(max_length=2, choices=Localizacao.localizacoes, default=0)
+    movimentacao = models.CharField(max_length=10, choices=Movimentacao.movimentacoes, default=0)
     create_data = models.DateTimeField(auto_now_add=True)
     postador = models.ForeignKey(UserGlossario, null=True, on_delete=models.CASCADE)
     publicado = models.BooleanField(default=False)
