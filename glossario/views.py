@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, render_to_response, redirect
-from glossario.models import Glossario, Sinal, Tema, UserGlossario
+from glossario.models import Glossario, Sinal, Tema, UserGlossario, Localizacao
 from django.contrib.auth.models import User
 from glossario.forms import PesquisaForm, EnviarSinaisForm, PesquisaSinaisForm, CustomUserCreationForm
 from django.http import JsonResponse
@@ -30,19 +30,13 @@ def index(request, glossario=None):
             sinais = busca(formSinais, formPesquisa)
         formPesquisa = PesquisaForm()
         resultado = len(sinais) if sinais else None
-        localizacoes = dict(
-            [('1', 'localizacaoCabeca.png'), ('2', 'localizacaoOmbros.png'), ('3', 'localizacaoBracos.png'),
-             ('4', 'localizacaoNariz.png'), ('5', 'localizacaoBochechas.png'), ('6', 'localizacaoBoca.png'),
-             ('7', 'localizacaoTronco.png'), ('8', 'localizacaoNeutro.png'), ('9', 'localizacaoOlhos.png'),
-             ('10', 'localizacaoOrelhas.png'),
-             ('11', 'localizacaoPescoco.png'), ('12', 'localizacaoQueixo.png'), ('13', 'localizacaoTesta.png')])
 
         movimentacoes = dict(
             [('0', 'X.svg'), ('1', 'parede.png'), ('2', 'chao.png'), ('3', 'circular.png'), ('4', 'contato.png')])
 
         if sinais:
             for sinal in sinais:
-                sinal.localizacao = "/static/img/" + localizacoes[sinal.localizacao]
+                sinal.localizacao = "/static/img/" + Localizacao.localizacoes_imagens[sinal.localizacao]
                 sinal.movimentacao = "/static/img/" + movimentacoes[sinal.movimentacao]
         return render(request, 'pesquisa.html', {
             'formPesquisa': formPesquisa, 'sinais': sinais, 'resultado': resultado,
@@ -71,18 +65,11 @@ def glossarioSelecionado(request, glossario):
 
         formPesquisa = PesquisaForm()
         resultado = len(sinais) if sinais else None
-        localizacoes = dict(
-            [('1', 'localizacaoCabeca.png'), ('2', 'localizacaoOmbros.png'), ('3', 'localizacaoBracos.png'),
-             ('4', 'localizacaoNariz.png'), ('5', 'localizacaoBochechas.png'), ('6', 'localizacaoBoca.png'),
-             ('7', 'localizacaoTronco.png'), ('8', 'localizacaoNeutro.png'), ('9', 'localizacaoOlhos.png'),
-             ('10', 'localizacaoOrelhas.png'),
-             ('11', 'localizacaoPescoco.png'), ('12', 'localizacaoQueixo.png'), ('13', 'localizacaoTesta.png')])
-
         movimentacoes = dict(
             [('0', 'X.svg'), ('1', 'parede.png'), ('2', 'chao.png'), ('3', 'circular.png'), ('4', 'contato.png')])
 
         for sinal in sinais:
-            sinal.localizacao = "/static/img/" + localizacoes[sinal.localizacao]
+            sinal.localizacao = "/static/img/" + Localizacao.localizacoes_imagens[sinal.localizacao]
             sinal.movimentacao = "/static/img/" + movimentacoes[sinal.movimentacao]
 
         return render(request, 'pesquisa.html', {
@@ -103,11 +90,7 @@ def sinal(request, sinal=None, glossario=None):
         try:
             sinal = Sinal.objects.get(id=sinal)
             glossario = sinal.glossario
-            localizacoes = dict([('1','localizacaoCabeca.png'),('2','localizacaoOmbros.png'),('3','localizacaoBracos.png'),
-                                ('4','localizacaoNariz.png'),('5','localizacaoBochechas.png'),('6','localizacaoBoca.png'),
-                                ('7','localizacaoTronco.png'),('8','localizacaoNeutro.png'),('9','localizacaoOlhos.png'),('10','localizacaoOrelhas.png'),
-                                ('11','localizacaoPescoco.png'),('12','localizacaoQueixo.png'),('13','localizacaoTesta.png')])
-            sinal.localizacao = "/static/img/"+localizacoes[sinal.localizacao]
+            sinal.localizacao = "/static/img/"+Localizacao.localizacoes_imagens[sinal.localizacao]
 
             movimentacoes = dict([('0', 'X.svg'), ('1', 'parede.png'), ('2', 'chao.png'), ('3', 'circular.png'), ('4', 'contato.png')])
             sinal.movimentacao = "/static/img/" + movimentacoes[sinal.movimentacao]
@@ -233,7 +216,6 @@ def busca(formSinais, formPesquisa):
     localizacao = formSinais.cleaned_data['localizacao']
     movimentacao = formSinais.cleaned_data['movimentacao']
     mao = formSinais.cleaned_data['cmE']
-    print(mao)
 
     if resultadoTraducao != '':
         sinais = Sinal.objects.filter(Q(traducaoI__icontains=resultadoTraducao) | Q(traducaoP__icontains=resultadoTraducao))

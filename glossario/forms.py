@@ -58,11 +58,12 @@ class PesquisaSinaisForm(forms.ModelForm):
     class Meta:
         model = Sinal
         fields = ['localizacao', 'cmE', 'movimentacao', ]
-        # widgets ={
-        #             'localizacao': ImageSelectLocalizacao(),
+
+        widgets ={
+                     'localizacao': ImageSelectLocalizacao()
         #             'cmE': ImageSelectMao(),
         #             'movimentacao': ImageSelectMovimentacao()
-        #             }
+                     }
 
 class CMForm(forms.ModelForm):
     class Meta:

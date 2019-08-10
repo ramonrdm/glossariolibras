@@ -23,29 +23,12 @@
                 </a>
             </div>
             <ul>
-            {{formSinais}}
             {% for field in formSinais %}
-                <!--
-                <select name="localizacao" id="id_localizacao" style="display: none;">
-                    <option value="0" selected="" data-img-src="/static/img/x.svg">Nenhuma</option>
-                </select>
-
-                <select name="movimentacao" id="id_movimentacao" style="display: none;">
-                    <option value="0" selected="" data-img-src="/static/img/x.svg">Nenhuma</option>
-                </select>
-                -->
-                <div class="col l3">
-                {% if field.auto_id == 'id_localizacao' %}
-                    {{ field }}
-                {% elif field.auto_id == 'id_cmE' %}
-                    {{ field }}
-                {% elif field.auto_id == 'id_movimentacao' %}
-                    {{ field }}
-                {% endif %}
+                <div class="col l4 center">
+                {{field}}
                 </div>
-
             {% endfor %}
-                <div class=" col l1 right">
+                <div class="col l1 right">
                     <li>
                         <button class="btn waves-effect waves-light botaoPesquisar" type="submit" id="botaoPesquisar" name="botaoPesquisar">
                             Pesquisar

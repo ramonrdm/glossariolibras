@@ -115,10 +115,18 @@ class CM (models.Model):
 class Localizacao(models.Model):
     class Meta:
         abstract = True
+    
     localizacoes = (('0','Nunhuma'),('1','Cabeça'),('2','Ombros'),('3','Braços'),('4','Nariz'),('5','Bochechas'),
                     ('6','Boca'),('7','Tronco'),('8','Espaço Neutro'),('9','Olhos'),('10','Orelhas'),
                     ('11','Pescoço'),('12','Queixo'),('13','Testa')
                 )
+    localizacoes_imagens = dict(
+            [('1', 'localizacaoCabeca.png'), ('2', 'localizacaoOmbros.png'), ('3', 'localizacaoBracos.png'),
+             ('4', 'localizacaoNariz.png'), ('5', 'localizacaoBochechas.png'), ('6', 'localizacaoBoca.png'),
+             ('7', 'localizacaoTronco.png'), ('8', 'localizacaoNeutro.png'), ('9', 'localizacaoOlhos.png'),
+             ('10', 'localizacaoOrelhas.png'),
+             ('11', 'localizacaoPescoco.png'), ('12', 'localizacaoQueixo.png'), ('13', 'localizacaoTesta.png')])
+
         
 class Movimentacao(models.Model):
     class Meta:

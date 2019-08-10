@@ -10,14 +10,10 @@ from django.template.loader import render_to_string
 class ImageSelectLocalizacao(forms.Widget):
     template_name = 'widget_localizacao.html'
 
-    # class Media:
-        
-        # css = {
-        #     'all': ('/static/image-picker/image-picker/image-picker.css',)
-        # }
-        # js = ('/static/image-picker/image-picker/image-picker.js', '/static/js/jquery.imagemapster.js', '/static/js/baseSearchNav.js', )
-
-
+    class Media:
+        css = {'all': ('/static/css/widget_localizacao.css',)}
+        js = ('/static/js/widget_localizacao.js', )
+    
     # def __init__(self, attrs=None, choices=(), field_img=None):
     #     super(ImageSelectLocalizacao, self).__init__(attrs)
     #     self.choices = list(choices)
