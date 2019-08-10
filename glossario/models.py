@@ -111,6 +111,14 @@ class CM (models.Model):
 
     def __str__(self):
         return str(self.id)
+class Localizacao(models.Model):
+    """docstring for Localizacao"""
+    class Meta:
+        static = True
+    def __init__(self, arg):
+        super(Localizacao, self).__init__()
+        self.arg = arg
+        
 
 class Tema(models.Model):
     nome = models.CharField('Nome', max_length=30)

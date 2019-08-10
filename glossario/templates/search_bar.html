@@ -16,30 +16,34 @@
                     </a>
                 </li>
             </ul>
+
             <div class=" col l3">
                 <a href="/">
                     <img class="brand-logo left" src='{% static "img/marca_glossario.png" %}'>
                 </a>
             </div>
             <ul>
+            
             {% for field in formSinais %}
+                <!--
                 <select name="localizacao" id="id_localizacao" style="display: none;">
                     <option value="0" selected="" data-img-src="/static/img/x.svg">Nenhuma</option>
                 </select>
+
                 <select name="movimentacao" id="id_movimentacao" style="display: none;">
                     <option value="0" selected="" data-img-src="/static/img/x.svg">Nenhuma</option>
                 </select>
-
-                <div class="col l0">
+                -->
+                <div class="col l3">
                 {% if field.auto_id == 'id_localizacao' %}
-                    <img class="sinaisMobile" src='{% static "img/localizacaoTesta.png" %}'>
+                    {{ field }}
                 {% elif field.auto_id == 'id_cmE' %}
-                {{ field }}
+                
                 {% elif field.auto_id == 'id_movimentacao' %}
-                    <img class="sinaisMobile" src='{% static "img/localizacaoTesta.png" %}'>
+                    
                 {% endif %}
                 </div>
-                
+
             {% endfor %}
                 <div class=" col l1 right">
                     <li>
@@ -153,6 +157,7 @@
 
 </div>
 
+<!--
 <div id="telaMobile">
         <nav>
             <div class="nav-wrapper">
@@ -212,3 +217,4 @@
   </ul>
 </div>
 
+-->

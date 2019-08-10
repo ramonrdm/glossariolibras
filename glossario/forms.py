@@ -66,93 +66,93 @@ class CustomUserCreationForm(forms.ModelForm):
         return user
 
 class GlossarioForm(forms.ModelForm):
-	class Meta:
-		model = Glossario
-		exclude = ['link','dataCriacao']
+    class Meta:
+        model = Glossario
+        exclude = ['link','dataCriacao']
 
 class SinalForm(forms.ModelForm):
-	class Meta:
-		model = Sinal
-		fields = ['glossario', 'traducaoP', 'traducaoI', 'descricao', 'bsw', 'cmE',
-		'cmD', 'localizacao', 'movimentacao', 'tema', 'postador', 'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras',
-		'publicado']
-		widgets = {
-					'localizacao': ImageSelectLocalizacao(),
-					'cmE': ImageSelectMao(),
-					'cmD': ImageSelectMao(),
-					'movimentacao': ImageSelectMovimentacao()
-		}
+    class Meta:
+        model = Sinal
+        fields = ['glossario', 'traducaoP', 'traducaoI', 'descricao', 'bsw', 'cmE',
+        'cmD', 'localizacao', 'movimentacao', 'tema', 'postador', 'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras',
+        'publicado']
+        widgets = {
+                    'localizacao': ImageSelectLocalizacao(),
+                    'cmE': ImageSelectMao(),
+                    'cmD': ImageSelectMao(),
+                    'movimentacao': ImageSelectMovimentacao()
+        }
 
-	def __init__(self, *args, **kwargs):
-		super(SinalForm, self).__init__(*args, **kwargs)
-		self.fields['bsw'].help_text = "<b><a target='_blank' href='http://glossario.libras.ufsc.br/swis/signmaker.php'>Criar codigo aqui</a></b>"
-		self.fields['bsw'].widget = forms.TextInput(attrs={})
-		for field in self.fields:
-			if field in ['cmD', 'cmE']:
-				self.fields[field].widget = ImageSelectMao()#choices=self.fields[field].choices, attrs={})
-			self.fields[field].widget.field_img = list()
-			self.fields[field].empty_label = 'Selecionar'
+    def __init__(self, *args, **kwargs):
+        super(SinalForm, self).__init__(*args, **kwargs)
+        self.fields['bsw'].help_text = "<b><a target='_blank' href='http://glossario.libras.ufsc.br/swis/signmaker.php'>Criar codigo aqui</a></b>"
+        self.fields['bsw'].widget = forms.TextInput(attrs={})
+        for field in self.fields:
+            if field in ['cmD', 'cmE']:
+                self.fields[field].widget = ImageSelectMao()#choices=self.fields[field].choices, attrs={})
+            self.fields[field].widget.field_img = list()
+            self.fields[field].empty_label = 'Selecionar'
 
-			for option in range(0, 20):
-			# trocar 20 do xrange para length do select que tiver mais options
-				if type(self.fields[field]) is ModelChoiceField:
-					#print(self.fields[field])
-					if len(self.fields[field].queryset) >= option + 1:
-						self.fields[field].widget.field_img.append(self.fields[field].queryset[option].imagem)
+            for option in range(0, 20):
+            # trocar 20 do xrange para length do select que tiver mais options
+                if type(self.fields[field]) is ModelChoiceField:
+                    #print(self.fields[field])
+                    if len(self.fields[field].queryset) >= option + 1:
+                        self.fields[field].widget.field_img.append(self.fields[field].queryset[option].imagem)
 
 class EnviarSinaisForm(forms.ModelForm):
-	class Meta:
-		model = Sinal
-		fields = ['traducaoP', 'traducaoI', 'descricao', 'localizacao', 'movimentacao', 'cmE', 'cmD',
-		'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras']
-		widgets =	{
-					'localizacao': ImageSelectLocalizacao(),
-					'cmE': ImageSelectMao(),
-					'cmD': ImageSelectMao(),
-					'movimentacao': ImageSelectMovimentacao()
-					}
+    class Meta:
+        model = Sinal
+        fields = ['traducaoP', 'traducaoI', 'descricao', 'localizacao', 'movimentacao', 'cmE', 'cmD',
+        'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras']
+        widgets =   {
+                    'localizacao': ImageSelectLocalizacao(),
+                    'cmE': ImageSelectMao(),
+                    'cmD': ImageSelectMao(),
+                    'movimentacao': ImageSelectMovimentacao()
+                    }
 
-	def __init__(self, *args, **kwargs):
-		super(EnviarSinaisForm, self).__init__(*args, **kwargs)
-		for field in self.fields:
-			self.fields[field].widget.field_img = list()
-			self.fields[field].empty_label = 'Selecionar'
-			for option in range(0, 20):
-			# trocar 20 do xrange para length do select que tiver mais options
-				if type(self.fields[field]) is ModelChoiceField:
-					if len(self.fields[field].queryset) >= option + 1:
-						self.fields[field].widget.field_img.append(self.fields[field].queryset[option].imagem)
+    def __init__(self, *args, **kwargs):
+        super(EnviarSinaisForm, self).__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].widget.field_img = list()
+            self.fields[field].empty_label = 'Selecionar'
+            for option in range(0, 20):
+            # trocar 20 do xrange para length do select que tiver mais options
+                if type(self.fields[field]) is ModelChoiceField:
+                    if len(self.fields[field].queryset) >= option + 1:
+                        self.fields[field].widget.field_img.append(self.fields[field].queryset[option].imagem)
 
 class PesquisaSinaisForm(forms.ModelForm):
-	class Meta:
-		model = Sinal
-		fields = ['localizacao', 'cmE', 'movimentacao', ]
-		widgets ={
-					'localizacao': ImageSelectLocalizacao(),
-					'cmE': ImageSelectMao(),
-					'movimentacao': ImageSelectMovimentacao()
-					}
+    class Meta:
+        model = Sinal
+        fields = ['localizacao', 'cmE', 'movimentacao', ]
+        widgets ={
+                    'localizacao': ImageSelectLocalizacao(),
+                    'cmE': ImageSelectMao(),
+                    'movimentacao': ImageSelectMovimentacao()
+                    }
 
-	def __init__(self, *args, **kwargs):
-		super(PesquisaSinaisForm, self).__init__(*args, **kwargs)
-		for field in self.fields:
-			self.fields[field].widget.field_img = list()
-			self.fields[field].empty_label = 'Selecionar'
-			self.fields[field].required = False
-			for option in range(0, 20):
-			# trocar 20 do xrange para length do select que tiver mais options
-				if type(self.fields[field]) is ModelChoiceField:
-					if len(self.fields[field].queryset) >= option + 1:
-						if self.fields[field].queryset[option].imagem:
-							self.fields[field].widget.field_img.append(self.fields[field].queryset[option].imagem)
-						else:
-							self.fields[field].widget.field_img.append("/static/img/cinema/")
+    def __init__(self, *args, **kwargs):
+        super(PesquisaSinaisForm, self).__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].widget.field_img = list()
+            self.fields[field].empty_label = 'Selecionar'
+            self.fields[field].required = False
+            for option in range(0, 20):
+            # trocar 20 do xrange para length do select que tiver mais options
+                if type(self.fields[field]) is ModelChoiceField:
+                    if len(self.fields[field].queryset) >= option + 1:
+                        if self.fields[field].queryset[option].imagem:
+                            self.fields[field].widget.field_img.append(self.fields[field].queryset[option].imagem)
+                        else:
+                            self.fields[field].widget.field_img.append("/static/img/cinema/")
 
 class CMForm(forms.ModelForm):
-	class Meta:
-		model = CM
-		fields = ['bsw', 'name', 'group']
+    class Meta:
+        model = CM
+        fields = ['bsw', 'name', 'group']
 
 class PesquisaForm(forms.Form):
-	busca = forms.CharField(required=False, label="",  widget=forms.TextInput(attrs={'id': 'search', 'type': 'search', 'placeholder': 'Pesquisar em glossário'}))
+    busca = forms.CharField(required=False, label="",  widget=forms.TextInput(attrs={'id': 'search', 'type': 'search', 'placeholder': 'Pesquisar em glossário'}))
 
