@@ -11,8 +11,8 @@ class ImageSelectLocalizacao(forms.Widget):
     template_name = 'widget_localizacao.html'
 
     class Media:
-        css = {'all': ('/static/css/widget_localizacao.css',)}
-        js = ('/static/js/widget_localizacao.js', )
+        css = {'all': ('/static/widgetSelectLocalizacao/widget_localizacao.css',)}
+        js = ('/static/widgetSelectLocalizacao/widget_localizacao.js', )
     
     # def __init__(self, attrs=None, choices=(), field_img=None):
     #     super(ImageSelectLocalizacao, self).__init__(attrs)
@@ -30,21 +30,21 @@ class ImageSelectLocalizacao(forms.Widget):
 class ImageSelectMovimentacao(forms.Widget):
     template_name = 'widget_movimentacao.html'
 
-    # class Media:
-    #     css = {
-    #         'all': ('/static/widgetSelectMovimentacao/selectMovimentacao.css',)
-    #     }
-    #     js = ('/static/widgetSelectMovimentacao/selectMovimentacao.js', '/static/js/iscroll.js',
-    #           '/static/widgetSelectMovimentacao/widgetMovimentacao.js',)
-    #
+    class Media:
+        css = {
+            'all': ('/static/widgetSelectMovimentacao/selectMovimentacao.css', '/static/widgetSelectMao/selectMao.css',)
+        }
+        js = ('/static/widgetSelectMovimentacao/selectMovimentacao.js', '/static/js/iscroll.js',
+              '/static/widgetSelectMovimentacao/widgetMovimentacao.js', '/static/widgetSelectMao/selectMao.js', '/static/js/iscroll.js', '/static/widgetSelectMao/widgetMao.js',)
+
 
 class ImageSelectMao(forms.Widget):
     template_name = 'widget_mao.html'
-
-    class Media:
-        css = {
-            'all': ('/static/widgetSelectMao/selectMao.css',)
-        }
-        js = ('/static/widgetSelectMao/selectMao.js', '/static/js/iscroll.js', '/static/widgetSelectMao/widgetMao.js',)
-
+    #
+    # class Media:
+    #     css = {
+    #         'all': ('/static/widgetSelectMao/selectMao.css',)
+    #     }
+    #     js = ('/static/widgetSelectMao/selectMao.js', '/static/js/iscroll.js', '/static/widgetSelectMao/widgetMao.js',)
+    #
 

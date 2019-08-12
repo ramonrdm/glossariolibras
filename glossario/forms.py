@@ -60,9 +60,9 @@ class PesquisaSinaisForm(forms.ModelForm):
         fields = ['localizacao', 'cmE', 'movimentacao', ]
 
         widgets ={
-                     'localizacao': ImageSelectLocalizacao()
-        #             'cmE': ImageSelectMao(),
-        #             'movimentacao': ImageSelectMovimentacao()
+                    # 'localizacao': ImageSelectLocalizacao(),
+                    'cmE': ImageSelectMao(),
+                    'movimentacao': ImageSelectMovimentacao()
                      }
 
 class CMForm(forms.ModelForm):

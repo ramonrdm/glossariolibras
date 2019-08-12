@@ -8,11 +8,11 @@ and open the template in the editor.
     Author     : bugraozden
 */
 
-.icon-select{
+.icon-selectMao{
     width:0px;
  }
 
- .icon-select .selected-box {
+ .icon-selectMao .selected-boxMao {
      margin-top: 4px !important;
      position: relative;
      margin: 0px;
@@ -27,7 +27,7 @@ and open the template in the editor.
 
  }
 
- .icon-select .selected-box:hover {
+ .icon-selectMao .selected-boxMao:hover {
 
      position: relative;
      margin: 0px;
@@ -43,7 +43,7 @@ and open the template in the editor.
 
  }
 
- .icon-select .selected-icon {
+ .icon-selectMao .selected-iconMao {
 
      position: absolute;
      margin: 0px;
@@ -59,11 +59,11 @@ and open the template in the editor.
 
  }
 
- .icon-select .component-icon{
+ .icon-selectMao .component-iconMao{
      display : none;
  }
 
- .icon-select .box {
+ .icon-selectMao .boxMao {
      z-index: 2;
      position: absolute;
      top:100px;
@@ -86,7 +86,7 @@ and open the template in the editor.
 
  }
 
- .icon-select .icon {
+ .icon-selectMao .iconMao {
      position: relative;
      margin: 5px 0px 0px 5px;
      padding: 0px;
@@ -103,11 +103,11 @@ and open the template in the editor.
      float: left;
  }
 
- .icon-select .icon:hover {
+ .icon-selectMao .iconMao:hover {
      border: 1px solid #000000;
  }
 
- .icon-select .icon.selected {
+ .icon-selectMao .iconMao.selected {
      position: relative;
      margin: 5px 0px 0px 5px;
      padding: 0px;
