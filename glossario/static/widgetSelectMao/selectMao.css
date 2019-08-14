@@ -107,7 +107,7 @@ and open the template in the editor.
      border: 1px solid #000000;
  }
 
- .icon-selectMao .iconMao.selected {
+ .icon-selectMao .iconMao.selectedMao {
      position: relative;
      margin: 5px 0px 0px 5px;
      padding: 0px;
