@@ -1,9 +1,10 @@
+
 /*
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
-/* 
+/*
     Created on : Nov 28, 2013, 7:09:35 AM
     Author     : bugraozden
 */
@@ -12,7 +13,7 @@ and open the template in the editor.
     width:0px;
  }
 
- .icon-selectMao .selected-boxMao {
+ .icon-select .selected-box {
      margin-top: 4px !important;
      position: relative;
      margin: 0px;
@@ -27,7 +28,7 @@ and open the template in the editor.
 
  }
 
- .icon-selectMao .selected-boxMao:hover {
+ .icon-select .selected-box:hover {
 
      position: relative;
      margin: 0px;
@@ -43,7 +44,7 @@ and open the template in the editor.
 
  }
 
- .icon-selectMao .selected-iconMao {
+ .icon-select .selected-icon {
 
      position: absolute;
      margin: 0px;
@@ -63,7 +64,7 @@ and open the template in the editor.
      display : none;
  }
 
- .icon-selectMao .boxMao {
+ .icon-select .box {
      z-index: 2;
      position: absolute;
      top:100px;
@@ -78,7 +79,7 @@ and open the template in the editor.
      -webkit-border-radius: 3px;
      -moz-border-radius: 3px;
      border-radius: 3px;
-     
+
 
      /*
      -webkit-overflow-scrolling: touch;
@@ -86,7 +87,7 @@ and open the template in the editor.
 
  }
 
- .icon-selectMao .iconMao {
+ .icon-select .icon {
      position: relative;
      margin: 5px 0px 0px 5px;
      padding: 0px;
@@ -103,11 +104,11 @@ and open the template in the editor.
      float: left;
  }
 
- .icon-selectMao .iconMao:hover {
+ .icon-select .icon:hover {
      border: 1px solid #000000;
  }
 
- .icon-selectMao .iconMao.selectedMao {
+ .icon-select .icon.selected {
      position: relative;
      margin: 5px 0px 0px 5px;
      padding: 0px;

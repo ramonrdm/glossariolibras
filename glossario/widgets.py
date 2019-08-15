@@ -40,7 +40,8 @@ class ImageSelectMovimentacao(forms.Widget):
 
 class ImageSelectMao(forms.Widget):
     template_name = 'widget_mao.html'
-
+    # field_descricao = TransacaoForm.base_fields["descricao"]
+    # descricao.widget.attrs["class"] = "minha_classe_CSS"]
     class Media:
         css = {
             'all': ('/static/widgetSelectMao/selectMao.css',)

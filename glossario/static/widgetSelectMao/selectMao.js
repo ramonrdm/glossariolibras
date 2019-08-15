@@ -1,5 +1,4 @@
 
-
 /**
  *
  * Created with NetBeans IDE
@@ -16,25 +15,25 @@
  *
  */
 
-iconSelectMao.DEFAULT = {};
-iconSelectMao.DEFAULT.SELECTED_ICON_WIDTH = 48;
-iconSelectMao.DEFAULT.SELECTED_ICON_HEIGHT = 48;
-iconSelectMao.DEFAULT.SELECTED_BOX_PADDING = 1;
-iconSelectMao.DEFAULT.SELECTED_BOX_PADDING_RIGHT = 12;
-iconSelectMao.DEFAULT.ICONS_WIDTH = 32;
-iconSelectMao.DEFAULT.ICONS_HEIGHT = 32;
-iconSelectMao.DEFAULT.BOX_ICON_SPACE = 1;
-iconSelectMao.DEFAULT.HORIZONTAL_ICON_NUMBER = 3;
-iconSelectMao.DEFAULT.VECTORAL_ICON_NUMBER = 3;
+IconSelect.DEFAULT = {};
+IconSelect.DEFAULT.SELECTED_ICON_WIDTH = 48;
+IconSelect.DEFAULT.SELECTED_ICON_HEIGHT = 48;
+IconSelect.DEFAULT.SELECTED_BOX_PADDING = 1;
+IconSelect.DEFAULT.SELECTED_BOX_PADDING_RIGHT = 12;
+IconSelect.DEFAULT.ICONS_WIDTH = 32;
+IconSelect.DEFAULT.ICONS_HEIGHT = 32;
+IconSelect.DEFAULT.BOX_ICON_SPACE = 1;
+IconSelect.DEFAULT.HORIZONTAL_ICON_NUMBER = 3;
+IconSelect.DEFAULT.VECTORAL_ICON_NUMBER = 3;
 
-selectedMao
-function iconSelectMao($$elementID, $$parameters) {
+
+function IconSelect($$elementID, $$parameters) {
 
     var _icons = [];
     var _selectedIndex = -1;
     var _boxScroll;
 
-    var _default = iconSelectMao.DEFAULT;
+    var _default = IconSelect.DEFAULT;
 
     function _init() {
 
@@ -77,12 +76,10 @@ function iconSelectMao($$elementID, $$parameters) {
         _icons = [];
 
         var setSelectedIndex = this.setSelectedIndex;
-        var setOpenCM = this.setOpenCM
 
         for(var i = 0; i < $icons.length; i++){
-            $icons[i].element = _View.createIcon($icons[i].iconFilePathMao, $icons[i].iconValueMao, i, $$parameters);
-            $icons[i].element.onmouseover = function(){
-//                _View.showBox()
+            $icons[i].element = _View.createIcon($icons[i].iconFilePath, $icons[i].iconValue, i, $$parameters);
+            $icons[i].element.onclick = function(){
                 setSelectedIndex(this.childNodes[0].getAttribute('icon-index'));
 
             };
@@ -104,50 +101,28 @@ function iconSelectMao($$elementID, $$parameters) {
     //iconu seçili hale gelir.
     this.setSelectedIndex = function($index){
 
-        var iconMao;
+        var icon;
 
         if(_icons.length > $index)
-            iconMao = _icons[$index];
+            icon = _icons[$index];
 
-        if(iconMao){
+        if(icon){
             //eski icondan seçilme özelliğini kaldır.
-            if(_selectedIndex != -1) _icons[_selectedIndex].element.setAttribute('class','iconMao');
+            if(_selectedIndex != -1) _icons[_selectedIndex].element.setAttribute('class','icon');
             _selectedIndex = $index;
-            _View.selectedIconImgElement.setAttribute('src', icon.iconFilePathMao);
-            if(_selectedIndex != -1) _icons[_selectedIndex].element.setAttribute('class','iconMao selectedMao');
+            _View.selectedIconImgElement.setAttribute('src', icon.iconFilePath);
+            if(_selectedIndex != -1) _icons[_selectedIndex].element.setAttribute('class','icon selected');
         }
 
-        _View.iconSelectElement.dispatchEvent(new Event('changedmao'));
+        _View.iconSelectElement.dispatchEvent(new Event('changed'));
 
         //_View.showBox(false);
 
     };
 
-//       this.setOpenCM = function($index){
-//
-//        var icon;
-//
-//        if(_icons.length > $index)
-//            icon = _icons[$index];
-//
-//        if(icon){
-//            //eski icondan seçilme özelliğini kaldır.
-//            if(_selectedIndex != -1) _icons[_selectedIndex].element.setAttribute('class','icon');
-//            _selectedIndex = $index;
-//            _View.selectedIconImgElement.setAttribute('src', icon.iconFilePath);
-//            if(_selectedIndex != -1) _icons[_selectedIndex].element.setAttribute('class','icon selected');
-//        }
-//
-//        _View.iconSelectElement.dispatchEvent(new Event('changed'));
-//
-//        //_View.showBox(false);
-//
-//    };
-
-
     this.getSelectedIndex = function(){ return _selectedIndex; };
-    this.getSelectedValue = function(){ return _icons[changedmao].iconValueMao };
-    this.getSelectedFilePath = function(){ return _icons[_selectedIndex].iconFilePathMao };
+    this.getSelectedValue = function(){ return _icons[_selectedIndex].iconValue };
+    this.getSelectedFilePath = function(){ return _icons[_selectedIndex].iconFilePath };
 
 
 
@@ -222,28 +197,28 @@ function iconSelectMao($$elementID, $$parameters) {
 
         _View.clearUI();
 
-        _View.iconSelectElement.setAttribute('class', 'icon-selectMao');
+        _View.iconSelectElement.setAttribute('class', 'icon-select');
 
         var selectedBoxElement = document.createElement('div');
-        selectedBoxElement.setAttribute('class' ,'selected-boxMao');
+        selectedBoxElement.setAttribute('class' ,'selected-box');
 
         var selectedIconElement = document.createElement('div');
-        selectedIconElement.setAttribute('class' ,'selected-iconMao');
+        selectedIconElement.setAttribute('class' ,'selected-icon');
 
         _View.selectedIconImgElement = document.createElement('img');
         _View.selectedIconImgElement.setAttribute('src', '');
         selectedIconElement.appendChild(_View.selectedIconImgElement);
 
         var componentIconElement = document.createElement('div');
-        componentIconElement.setAttribute('class', 'component-iconMao');
+        componentIconElement.setAttribute('class', 'component-icon');
 
         var componentIconImgElement = document.createElement('img');
-        componentIconImgElement.setAttribute('src', iconSelectMao.COMPONENT_ICON_FILE_PATH );
+        componentIconImgElement.setAttribute('src', IconSelect.COMPONENT_ICON_FILE_PATH );
         componentIconElement.appendChild(componentIconImgElement);
 
         _View.boxScrollElement = document.createElement('div');
         _View.boxScrollElement.setAttribute('id',$$elementID + "-box-scroll");
-        _View.boxScrollElement.setAttribute('class', 'boxMao');
+        _View.boxScrollElement.setAttribute('class', 'box');
 
         _View.boxElement = document.createElement('div');
 
@@ -291,7 +266,7 @@ function iconSelectMao($$elementID, $$parameters) {
 
     };
 
-    _View.createIcon = function($iconFilePathMao, $iconValueMao, $index, $parameters){
+    _View.createIcon = function($iconFilePath, $iconValue, $index, $parameters){
 
         /* HTML MODEL
 
@@ -307,8 +282,8 @@ function iconSelectMao($$elementID, $$parameters) {
         iconElement.style.marginTop = $parameters.boxIconSpace;
 
         var iconImgElement = document.createElement('img');
-        iconImgElement.setAttribute('src', $iconFilePathMao);
-        iconImgElement.setAttribute('icon-value', $iconValueMao);
+        iconImgElement.setAttribute('src', $iconFilePath);
+        iconImgElement.setAttribute('icon-value', $iconValue);
         iconImgElement.setAttribute('icon-index', $index);
         iconImgElement.setAttribute('width', $parameters.iconsWidth);
         iconImgElement.setAttribute('height', $parameters.iconsHeight);
