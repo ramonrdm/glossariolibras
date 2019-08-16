@@ -21,15 +21,9 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 
 def index(request, glossario=None):
-<<<<<<< HEAD
+
     glossarios = Glossario.objects.filter(visivel=True)
-=======
-    glossarios = Glossario.objects.all()
-    # cm = CM.objects.all()
-    # cmGrupos = [c.group for c in cm]
-    # cmGrupos = list(dict.fromkeys(cmGrupos))
-    print(cmGrupos)
->>>>>>> WidgetCM
+
     if request.method == 'POST':
         sinais = None
         formPesquisa = PesquisaForm(request.POST)
@@ -53,7 +47,7 @@ def index(request, glossario=None):
         formSinais = PesquisaSinaisForm(request.session) if request.session.get('sinaisCheckboxes') else PesquisaSinaisForm()
         formPesquisa = PesquisaForm()
 
-    return render(request, 'index.html', {'CM': cmGrupos, 'glossarios': glossarios, 'glossario': glossario, 'formPesquisa': formPesquisa,
+    return render(request, 'index.html', {'glossarios': glossarios, 'glossario': glossario, 'formPesquisa': formPesquisa,
          'formSinais': formSinais, 'form': EnviarSinaisForm(request.POST, request.FILES)
         })
 
@@ -239,14 +233,7 @@ def busca(formSinais, formPesquisa):
 
         sinais = Sinal.objects.filter(**parametros)
         if mao:
-<<<<<<< HEAD
-            sinais = sinais.filter(Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
-=======
-            print(mao)
             sinais = sinais.filter(Q(cmE__bsw__icontains=mao) | Q(cmD__bsw__icontains=mao))
-            print("passei aqui 2")
->>>>>>> WidgetCM
-
     return sinais
 
 def registration(request):
