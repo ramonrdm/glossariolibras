@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, render_to_response, redirect
-from glossario.models import Glossario, Sinal, Tema, UserGlossario, Localizacao, CM
+from glossario.models import Glossario, Sinal, Tema, UserGlossario, Localizacao
 from django.contrib.auth.models import User
 from glossario.forms import PesquisaForm, EnviarSinaisForm, PesquisaSinaisForm, CustomUserCreationForm
 from django.http import JsonResponse
@@ -138,9 +138,6 @@ def temas(request, temas=None):
 @login_required
 def enviarSinais(request):
     formSinais = EnviarSinaisForm
-    cm = CM.objects.all()
-    cmGrupos = [c.group for c in cm]
-    print( cmGrupos)
     if request.method == 'POST':
         toastSucesso = True
         try:
@@ -163,7 +160,7 @@ def enviarSinais(request):
             toastRepetido = True
             return render(request, 'enviarsinais.html', {'formSinais': formSinais, 'toastRepetido': toastRepetido})
     else:
-        return render(request, 'enviarsinais.html', {'formSinais': formSinais, 'CM': cmGrupos,})
+        return render(request, 'enviarsinais.html', {'formSinais': formSinais,})
 
 def criaNodo(nodoPai):
     filhosPai = queryTemas.filter(temaPai=nodoPai)

@@ -41,6 +41,18 @@
                 <div class="input-field right">
                 {% csrf_token %}
                 {{ formPesquisa }}
+                <a class="waves-effect waves-light btn modal-trigger" href="#modalCM">Modal</a>
+                  <div id="modalCM"class="modal">
+                    <div class="modal-content">
+                        <h4 class="black-text" >Configuração de mão</h4>
+                        {% for field in formPesquisa %}
+                            <img src="/static/img/configuracoes_de_mao/{{ field. }}/{{ cm.bsw }}.png"class="modal-action modal-close thumbnailModal">
+                        {% endfor %}
+                    </div>
+                </div>
+
+
+
                     <label class="label-icon" for="search">
                         <i class="material-icons grey-text">search</i>
                     </label>

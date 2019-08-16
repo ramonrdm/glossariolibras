@@ -20,10 +20,10 @@ class SinalForm(forms.ModelForm):
         'cmD', 'localizacao', 'movimentacao', 'tema', 'postador', 'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras',
         'publicado']
         widgets = {
-                    #'localizacao': ImageSelectLocalizacao(),
-                    #'cmE': ImageSelectMao(),
-                    #'cmD': ImageSelectMao()
-                    #'movimentacao': ImageSelectMovimentacao()
+                    # 'localizacao': ImageSelectLocalizacao(),
+                    # 'cmE': ImageSelectMao(),
+                    # 'cmD': ImageSelectMao()
+                    # 'movimentacao': ImageSelectMovimentacao()
         }
 
     def __init__(self, *args, **kwargs):
