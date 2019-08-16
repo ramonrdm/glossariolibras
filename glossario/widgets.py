@@ -30,22 +30,29 @@ class ImageSelectLocalizacao(forms.Widget):
 class ImageSelectMovimentacao(forms.Widget):
     template_name = 'widget_movimentacao.html'
 
-    class Media:
-        css = {
-            'all': ('/static/widgetSelectMovimentacao/selectMovimentacao.css',)
-        }
-        js = ('/static/widgetSelectMovimentacao/selectMovimentacao.js', '/static/js/iscroll.js',
-              '/static/widgetSelectMovimentacao/widgetMovimentacao.js',)
-
+    # class Media:
+    #     css = {
+    #         'all': ('/static/widgetSelectMovimentacao/selectMovimentacao.css',)
+    #     }
+    #     js = ('/static/widgetSelectMovimentacao/selectMovimentacao.js', '/static/js/iscroll.js',
+    #           '/static/widgetSelectMovimentacao/widgetMovimentacao.js',)
+    #
 
 class ImageSelectMao(forms.Widget):
     template_name = 'widget_mao.html'
+    class cmDs(model.Model):
+        cm = CM.objects.all()
+        cmGrupos = [c.group for c in cm]
+        cmGrupos = list(dict.fromkeys(cmGrupos)
+
+        return cmGrupos
+
     # field_descricao = TransacaoForm.base_fields["descricao"]
     # descricao.widget.attrs["class"] = "minha_classe_CSS"]
-    class Media:
-        css = {
-            'all': ('/static/widgetSelectMao/selectMao.css',)
-        }
-        js = ('/static/widgetSelectMao/selectMao.js', '/static/js/iscroll.js', '/static/widgetSelectMao/widgetMao.js',)
-
+    # class Media:
+    #     css = {
+    #         'all': ('/static/widgetSelectMao/selectMao.css',)
+    #     }
+    #     js = ('/static/widgetSelectMao/selectMao.js', '/static/js/iscroll.js', '/static/widgetSelectMao/widgetMao.js',)
+    #
 

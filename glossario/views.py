@@ -22,10 +22,6 @@ from django.contrib.auth.decorators import login_required
 
 def index(request, glossario=None):
     glossarios = Glossario.objects.all()
-    # cm = CM.objects.all()
-    # cmGrupos = [c.group for c in cm]
-    # cmGrupos = list(dict.fromkeys(cmGrupos))
-    print(cmGrupos)
     if request.method == 'POST':
         sinais = None
         formPesquisa = PesquisaForm(request.POST)
@@ -43,13 +39,13 @@ def index(request, glossario=None):
                 sinal.localizacao = "/static/img/" + Localizacao.localizacoes_imagens[sinal.localizacao]
                 sinal.movimentacao = "/static/img/" + movimentacoes[sinal.movimentacao]
         return render(request, 'pesquisa.html', {
-             'formPesquisa': formPesquisa, 'sinais': sinais, 'resultado': resultado,
+            'sinais': sinais, 'resultado': resultado,
             'formSinais': formSinais, 'form': EnviarSinaisForm(request.POST, request.FILES)})
     else:
         formSinais = PesquisaSinaisForm(request.session) if request.session.get('sinaisCheckboxes') else PesquisaSinaisForm()
         formPesquisa = PesquisaForm()
 
-    return render(request, 'index.html', {'CM': cmGrupos, 'glossarios': glossarios, 'glossario': glossario, 'formPesquisa': formPesquisa,
+    return render(request, 'index.html', {'glossarios': glossarios, 'glossario': glossario, 'formPesquisa': formPesquisa,
          'formSinais': formSinais, 'form': EnviarSinaisForm(request.POST, request.FILES)
         })
 
