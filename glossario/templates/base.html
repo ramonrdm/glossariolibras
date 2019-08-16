@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        {% block Head %}
+        {% block head %}
             {% load staticfiles %}
             <meta name="author" content="Ramon Dutra Miranda"/>
             <meta name="description" content="Glossario libras, ufsc, dicionario, letras libras, glossario cinema"/>
@@ -11,6 +11,7 @@
             <script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
             <script type="text/javascript" src="{% static 'js/materialize.js' %}"></script>
             <script type="text/javascript" src="{% static 'js/base.js' %}"></script>
+            
             <link type="text/css" rel="stylesheet" href='{% static "css/materialize.css" %}'  media="screen,projection"/>
             <link type="text/css" rel="stylesheet" href='{% static "css/material-icons.css" %}'  media="screen,projection"/>
             <link rel="stylesheet" type="text/css" href='{% static "css/base.css" %}'/>
@@ -19,8 +20,8 @@
         <title>{% block title %}Glossário Libras{% endblock %}</title>
     </head>
     <body>
-        {% include 'navSearch.html' %}
-        {% block Corpo %}
+        {% include 'search_bar.html' %}
+        {% block body %}
         {% endblock %}
     </body>
 </html>

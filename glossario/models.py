@@ -99,14 +99,41 @@ class Glossario(models.Model):
         return self.nome
 
 class CM (models.Model):
+    """Total de 261 configurações de mão divididas em 10 grupos."""
     class Meta:
-        verbose_name_plural='configurações de mão'
+        verbose_name_plural='Configurações de mão'
 
-    bsw = models.TextField('BSW', blank=True, default='')
-    imagem = models.ImageField(blank=True)
+    bsw = models.TextField('BSW', blank=True, default='0')
+    name = models.TextField('name', default='')
+    group = models.TextField('Grupo', default='')
+
+    def imagem(self):
+        return str(""+str(self.group)+"/"+self.bsw+".png")
 
     def __str__(self):
-        return str(self.id)
+        return str(str(self.id)+" "+self.bsw)
+
+class Localizacao(models.Model):
+    class Meta:
+        abstract = True
+    
+    localizacoes = (('0','Nunhuma'),('1','Cabeça'),('2','Ombros'),('3','Braços'),('4','Nariz'),('5','Bochechas'),
+                    ('6','Boca'),('7','Tronco'),('8','Espaço Neutro'),('9','Olhos'),('10','Orelhas'),
+                    ('11','Pescoço'),('12','Queixo'),('13','Testa')
+                )
+    localizacoes_imagens = dict(
+            [('1', 'localizacaoCabeca.png'), ('2', 'localizacaoOmbros.png'), ('3', 'localizacaoBracos.png'),
+             ('4', 'localizacaoNariz.png'), ('5', 'localizacaoBochechas.png'), ('6', 'localizacaoBoca.png'),
+             ('7', 'localizacaoTronco.png'), ('8', 'localizacaoNeutro.png'), ('9', 'localizacaoOlhos.png'),
+             ('10', 'localizacaoOrelhas.png'),
+             ('11', 'localizacaoPescoco.png'), ('12', 'localizacaoQueixo.png'), ('13', 'localizacaoTesta.png')])
+
+        
+class Movimentacao(models.Model):
+    class Meta:
+        abstract = True
+
+    movimentacoes = (('0', 'Sem Movimentação'),('1', 'Parede'), ('2', 'Chão'), ('3', 'Circular'), ('4', 'Contato'))
 
 class Tema(models.Model):
     nome = models.CharField('Nome', max_length=30)
@@ -134,13 +161,8 @@ class Sinal(models.Model):
     descricao = models.TextField('descrição',  null=True)
     cmE = models.ForeignKey(CM, related_name='C_M_Esquerda', verbose_name='configuração da mão esquerda', on_delete=models.CASCADE)
     cmD = models.ForeignKey(CM, related_name='C_M_Direita', verbose_name='configuração da mão direita', on_delete=models.CASCADE)
-    localizacoes = (('0','Nunhuma'),('1','Cabeça'),('2','Ombros'),('3','Braços'),('4','Nariz'),('5','Bochechas'),
-                        ('6','Boca'),('7','Tronco'),('8','Espaço Neutro'),('9','Olhos'),('10','Orelhas'),
-                        ('11','Pescoço'),('12','Queixo'),('13','Testa')
-                    )
-    localizacao = models.CharField(max_length=2, choices=localizacoes,default=0)
-    movimentacoes = (('0', 'Sem Movimentação'),('1', 'Parede'), ('2', 'Chão'), ('3', 'Circular'), ('4', 'Contato'))
-    movimentacao = models.CharField(max_length=10, choices=movimentacoes, default=0)
+    localizacao = models.CharField(max_length=2, choices=Localizacao.localizacoes, default=0)
+    movimentacao = models.CharField(max_length=10, choices=Movimentacao.movimentacoes, default=0)
     create_data = models.DateTimeField(auto_now_add=True)
     postador = models.ForeignKey(UserGlossario, null=True, on_delete=models.CASCADE)
     publicado = models.BooleanField(default=False)

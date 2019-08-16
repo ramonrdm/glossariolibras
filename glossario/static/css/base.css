@@ -497,44 +497,6 @@ div.thumbnail.hoverable:not(.selected) p{
 
 }
 
-/* ============ FIM IPHONE 6S + ============= */
-
-/* ================= TABLET ================= */
-
-/*
-@media screen and (min-width: 768px) {
-
-	 Desloca a página para a direita por causa da sidenav fixa
-	body {
-		padding-left: 300px;
-		background-color: #f7f7f7;
-	}
-
-	.logoGlossario {
-		width: 280px;
-	}
-
-	.logoUFSC {
-		width: 220px;
-		position: absolute;
-		bottom: 7%;
-	}
-
-	.sideNavLinks {
-		margin-top: 15%;
-	}
-
-	.imgIndex {
-		width: 140px;
-		height: 140px;
-	}
-
-}
-*/
-
-/* =============== FIM TABLET =============== */
-
-/* ================= DESKTOP ================= */
 
 @media screen and (min-width: 992px, min-height: 769px) {
 

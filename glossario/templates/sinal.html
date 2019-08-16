@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 	{% load staticfiles %}
-	{% block Head %}
+	{% block head %}
 		{{block.super}}
 		<script type="text/javascript" src='{% static "js/sinal.js" %}'></script>
 		<link rel="stylesheet" type="text/css" href='{% static "css/sinal.css" %}'/>
 		<title>{% block title %}Sinal - Glossário Letras Libras{% endblock %}</title>
 {% endblock %}
-{% block Corpo %}
+{% block body %}
 
 
 <!------------------------- TABS ------------------------------->
@@ -97,7 +97,7 @@
 						<span  id="movimentacao" class="card-title center">Esquerda</span>
 						<div class="center imgMao">
 							{% if sinal.cmE.imagem %}
-								<img class="circle imgSinal" src="{{sinal.cmE.imagem.url}}">
+								<img class="circle imgSinal" src="/static/img/configuracoes_de_mao/{{sinal.cmE.imagem}}">
 							{% else %}
 								<i class="large material-icons white-text imgSinal">cloud_off</i>
 							{% endif %}
@@ -112,7 +112,7 @@
 						<span  id="movimentacao"  class="card-title center">Direita</span>
 						<div class="center imgMao">
 							{% if sinal.cmD.imagem %}
-								<img class="circle imgSinal" src="{{sinal.cmD.imagem.url}}">
+								<img class="circle imgSinal" src="/static/img/configuracoes_de_mao/{{sinal.cmD.imagem}}">
 							{% else %}
 								<i class="large material-icons white-text imgSinal">cloud_off</i>
 							{% endif %}

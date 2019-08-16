@@ -1,0 +1,10 @@
+#id_localizacao {
+	display: none;
+}
+#imagem_localizacao {
+	width: 60px;
+}
+img#modeloImg {
+	width: 650px;
+	height: 650px;
+}

@@ -1,4 +1,15 @@
-.icon-select{
+
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Created on : Nov 28, 2013, 7:09:35 AM
+    Author     : bugraozden
+*/
+
+.icon-selectMao{
     width:0px;
  }
 
@@ -49,7 +60,7 @@
 
  }
 
- .icon-select .component-icon{
+ .icon-selectMao .component-iconMao{
      display : none;
  }
 
@@ -60,15 +71,15 @@
      left:0px;
      margin: 0px;
      padding: 0px;
-     width: 100px; /* sil */
-     height: 490px; /* sil */
+     width: 100%; /* sil */
+     height: 990px; /* sil */
      border: 1px solid #EEEEEE;
      background-color: #EEEEEE;
 
      -webkit-border-radius: 3px;
      -moz-border-radius: 3px;
      border-radius: 3px;
-     
+
 
      /*
      -webkit-overflow-scrolling: touch;
@@ -80,8 +91,8 @@
      position: relative;
      margin: 5px 0px 0px 5px;
      padding: 0px;
-     width: 87px; /* sil */
-     height: 87px; /* sil */
+     width: 75px; /* sil */
+     height: 75px; /* sil */
      border: 1px solid #CCCCCC;
      background-color: #FFFFFF;
 
@@ -101,8 +112,8 @@
      position: relative;
      margin: 5px 0px 0px 5px;
      padding: 0px;
-     width: 100px; /* sil */
-     height: 100px; /* sil */
+     width: 75px; /* sil */
+     height: 75px; /* sil */
      border: 1px solid #EEEEEE;
      background-color: #EEEEEE;
 
@@ -114,10 +125,10 @@
      float: left;
 }
 
-#id_movimentacao{
+#id_cmE{
     display: none;
 }
 
-.field-movimentacao{
+.field-cmE{
     overflow: visible !important;
 }

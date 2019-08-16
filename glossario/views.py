@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, render_to_response, redirect
-from glossario.models import Glossario, Sinal, Tema, UserGlossario
+from glossario.models import Glossario, Sinal, Tema, UserGlossario, Localizacao, CM
 from django.contrib.auth.models import User
 from glossario.forms import PesquisaForm, EnviarSinaisForm, PesquisaSinaisForm, CustomUserCreationForm
 from django.http import JsonResponse
@@ -21,7 +21,15 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 
 def index(request, glossario=None):
+<<<<<<< HEAD
     glossarios = Glossario.objects.filter(visivel=True)
+=======
+    glossarios = Glossario.objects.all()
+    # cm = CM.objects.all()
+    # cmGrupos = [c.group for c in cm]
+    # cmGrupos = list(dict.fromkeys(cmGrupos))
+    print(cmGrupos)
+>>>>>>> WidgetCM
     if request.method == 'POST':
         sinais = None
         formPesquisa = PesquisaForm(request.POST)
@@ -30,27 +38,22 @@ def index(request, glossario=None):
             sinais = busca(formSinais, formPesquisa).filter(glossario__visivel=True)
         formPesquisa = PesquisaForm()
         resultado = len(sinais) if sinais else None
-        localizacoes = dict(
-            [('1', 'localizacaoCabeca.png'), ('2', 'localizacaoOmbros.png'), ('3', 'localizacaoBracos.png'),
-             ('4', 'localizacaoNariz.png'), ('5', 'localizacaoBochechas.png'), ('6', 'localizacaoBoca.png'),
-             ('7', 'localizacaoTronco.png'), ('8', 'localizacaoNeutro.png'), ('9', 'localizacaoOlhos.png'),
-             ('10', 'localizacaoOrelhas.png'),
-             ('11', 'localizacaoPescoco.png'), ('12', 'localizacaoQueixo.png'), ('13', 'localizacaoTesta.png')])
 
         movimentacoes = dict(
             [('0', 'X.svg'), ('1', 'parede.png'), ('2', 'chao.png'), ('3', 'circular.png'), ('4', 'contato.png')])
 
-        for sinal in sinais:
-            sinal.localizacao = "/static/img/" + localizacoes[sinal.localizacao]
-            sinal.movimentacao = "/static/img/" + movimentacoes[sinal.movimentacao]
+        if sinais:
+            for sinal in sinais:
+                sinal.localizacao = "/static/img/" + Localizacao.localizacoes_imagens[sinal.localizacao]
+                sinal.movimentacao = "/static/img/" + movimentacoes[sinal.movimentacao]
         return render(request, 'pesquisa.html', {
-            'formPesquisa': formPesquisa, 'sinais': sinais, 'resultado': resultado,
+             'formPesquisa': formPesquisa, 'sinais': sinais, 'resultado': resultado,
             'formSinais': formSinais, 'form': EnviarSinaisForm(request.POST, request.FILES)})
     else:
         formSinais = PesquisaSinaisForm(request.session) if request.session.get('sinaisCheckboxes') else PesquisaSinaisForm()
         formPesquisa = PesquisaForm()
 
-    return render(request, 'index.html', {'glossarios': glossarios, 'glossario': glossario, 'formPesquisa': formPesquisa,
+    return render(request, 'index.html', {'CM': cmGrupos, 'glossarios': glossarios, 'glossario': glossario, 'formPesquisa': formPesquisa,
          'formSinais': formSinais, 'form': EnviarSinaisForm(request.POST, request.FILES)
         })
 
@@ -70,18 +73,11 @@ def glossarioSelecionado(request, glossario):
 
         formPesquisa = PesquisaForm()
         resultado = len(sinais) if sinais else None
-        localizacoes = dict(
-            [('1', 'localizacaoCabeca.png'), ('2', 'localizacaoOmbros.png'), ('3', 'localizacaoBracos.png'),
-             ('4', 'localizacaoNariz.png'), ('5', 'localizacaoBochechas.png'), ('6', 'localizacaoBoca.png'),
-             ('7', 'localizacaoTronco.png'), ('8', 'localizacaoNeutro.png'), ('9', 'localizacaoOlhos.png'),
-             ('10', 'localizacaoOrelhas.png'),
-             ('11', 'localizacaoPescoco.png'), ('12', 'localizacaoQueixo.png'), ('13', 'localizacaoTesta.png')])
-
         movimentacoes = dict(
             [('0', 'X.svg'), ('1', 'parede.png'), ('2', 'chao.png'), ('3', 'circular.png'), ('4', 'contato.png')])
 
         for sinal in sinais:
-            sinal.localizacao = "/static/img/" + localizacoes[sinal.localizacao]
+            sinal.localizacao = "/static/img/" + Localizacao.localizacoes_imagens[sinal.localizacao]
             sinal.movimentacao = "/static/img/" + movimentacoes[sinal.movimentacao]
 
         return render(request, 'pesquisa.html', {
@@ -102,11 +98,7 @@ def sinal(request, sinal=None, glossario=None):
         try:
             sinal = Sinal.objects.get(id=sinal)
             glossario = sinal.glossario
-            localizacoes = dict([('1','localizacaoCabeca.png'),('2','localizacaoOmbros.png'),('3','localizacaoBracos.png'),
-                                ('4','localizacaoNariz.png'),('5','localizacaoBochechas.png'),('6','localizacaoBoca.png'),
-                                ('7','localizacaoTronco.png'),('8','localizacaoNeutro.png'),('9','localizacaoOlhos.png'),('10','localizacaoOrelhas.png'),
-                                ('11','localizacaoPescoco.png'),('12','localizacaoQueixo.png'),('13','localizacaoTesta.png')])
-            sinal.localizacao = "/static/img/"+localizacoes[sinal.localizacao]
+            sinal.localizacao = "/static/img/"+Localizacao.localizacoes_imagens[sinal.localizacao]
 
             movimentacoes = dict([('0', 'X.svg'), ('1', 'parede.png'), ('2', 'chao.png'), ('3', 'circular.png'), ('4', 'contato.png')])
             sinal.movimentacao = "/static/img/" + movimentacoes[sinal.movimentacao]
@@ -154,6 +146,9 @@ def temas(request, temas=None):
 @login_required
 def enviarSinais(request):
     formSinais = EnviarSinaisForm
+    cm = CM.objects.all()
+    cmGrupos = [c.group for c in cm]
+    print( cmGrupos)
     if request.method == 'POST':
         toastSucesso = True
         try:
@@ -176,7 +171,7 @@ def enviarSinais(request):
             toastRepetido = True
             return render(request, 'enviarsinais.html', {'formSinais': formSinais, 'toastRepetido': toastRepetido})
     else:
-        return render(request, 'enviarsinais.html', {'formSinais': formSinais })
+        return render(request, 'enviarsinais.html', {'formSinais': formSinais, 'CM': cmGrupos,})
 
 def criaNodo(nodoPai):
     filhosPai = queryTemas.filter(temaPai=nodoPai)
@@ -232,6 +227,7 @@ def busca(formSinais, formPesquisa):
     localizacao = formSinais.cleaned_data['localizacao']
     movimentacao = formSinais.cleaned_data['movimentacao']
     mao = formSinais.cleaned_data['cmE']
+
     if resultadoTraducao != '':
         sinais = Sinal.objects.filter(Q(traducaoI__icontains=resultadoTraducao) | Q(traducaoP__icontains=resultadoTraducao))
 
@@ -243,7 +239,13 @@ def busca(formSinais, formPesquisa):
 
         sinais = Sinal.objects.filter(**parametros)
         if mao:
+<<<<<<< HEAD
             sinais = sinais.filter(Q(cmE=formSinais.cleaned_data['cmE']) | Q(cmD=formSinais.cleaned_data['cmE']))
+=======
+            print(mao)
+            sinais = sinais.filter(Q(cmE__bsw__icontains=mao) | Q(cmD__bsw__icontains=mao))
+            print("passei aqui 2")
+>>>>>>> WidgetCM
 
     return sinais
 

@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
-{% block Head %}
+{% block head %}
 	{{ block.super }}
 	{% load staticfiles %}
 	<title>{% block title %}{{ glossario.nome }} - Glossário Letras Libras{% endblock %}</title>
 {% endblock %}
-{% block Corpo %}
+{% block body %}
  <div class="row center blockContainer">
 		<div class="col s12 m6 center">
 			{% if glossario.videoGlossario %}

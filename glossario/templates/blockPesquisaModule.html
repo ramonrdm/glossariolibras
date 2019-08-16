@@ -1,9 +1,9 @@
 <div class="col l3 m12 s12 card z-depth-1 grey lighten-4 " onclick="window.location='/sinal/{{s.id}}';">
 
 	<div class="card-image">
-		<video id="videoPesquisa" controls>
-			<source src="{{s.sinalLibras.url}}" type="video/mp4">
-		</video>
+
+			<td class="field-video_tag_sinal"><video autoplay="" loop="" src="{{s.sinalLibras.url}}" height="325"></video></td>
+
 	</div>
 
 	<div class="card-content row">
@@ -13,10 +13,10 @@
 	</div>
 	<div class="center card-content">
 				{% if s.cmE.imagem %}
-					<img src="{{s.cmE.imagem.url}}" width="21%" class="circle">
+					<img src="/static/img/configuracoes_de_mao/{{s.cmE.imagem}}" width="21%" class="circle">
 				{% endif %}
 				{% if s.cmD.imagem %}
-					<img  src="{{s.cmD.imagem.url}}" width="21%" class="circle">
+					<img  src="/static/img/configuracoes_de_mao/{{s.cmD.imagem}}" width="21%" class="circle">
 				{% endif %}
 
 				{% if s.localizacao %}

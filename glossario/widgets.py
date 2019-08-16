@@ -7,22 +7,18 @@ from django.utils.html import format_html
 from django.conf import settings
 from django.template.loader import render_to_string
 
-class ImageSelectLocalizacao(Select):
+class ImageSelectLocalizacao(forms.Widget):
+    template_name = 'widget_localizacao.html'
 
-    # class Media:
-    #     #extend = False
-    #     css = {
-    #         'all': ('/static/image-picker/image-picker/image-picker.css',)
-    #     }
-    #     js = ('/static/image-picker/image-picker/image-picker.js', '/static/js/jquery.imagemapster.js', '/static/js/baseSearchNav.js', )
-
-
-    def __init__(self, attrs=None, choices=(), field_img=None):
-        super(ImageSelectLocalizacao, self).__init__(attrs)
-        self.choices = list(choices)
-        self.field_img = field_img
-
-
+    class Media:
+        css = {'all': ('/static/widgetSelectLocalizacao/widget_localizacao.css',)}
+        js = ('/static/widgetSelectLocalizacao/widget_localizacao.js', )
+    
+    # def __init__(self, attrs=None, choices=(), field_img=None):
+    #     super(ImageSelectLocalizacao, self).__init__(attrs)
+    #     self.choices = list(choices)
+    #     self.field_img = field_img
+    
     localizacoes = dict([('0', 'X.svg'),('1', 'localizacaoCabeca.png'), ('2', 'localizacaoOmbros.png'), ('3', 'localizacaoBracos.png'),
                          ('4', 'localizacaoNariz.png'), ('5', 'localizacaoBochechas.png'), ('6', 'localizacaoBoca.png'),
                          ('7', 'localizacaoTronco.png'), ('8', 'localizacaoNeutro.png'), ('9', 'localizacaoOlhos.png'),
@@ -30,6 +26,7 @@ class ImageSelectLocalizacao(Select):
                          ('13', 'localizacaoTesta.png')])
 
 
+<<<<<<< HEAD
     def create_option(self, name, value, label, selected, index, subindex=None, attrs=None):
 
         index = str(index) if subindex is None else "%s_%s" % (index, subindex)
@@ -64,11 +61,19 @@ class ImageSelectMovimentacao(forms.Widget):
 
     class Media:
         # extend = False
+=======
+
+class ImageSelectMovimentacao(forms.Widget):
+    template_name = 'widget_movimentacao.html'
+
+    class Media:
+>>>>>>> WidgetCM
         css = {
             'all': ('/static/widgetSelectMovimentacao/selectMovimentacao.css',)
         }
         js = ('/static/widgetSelectMovimentacao/selectMovimentacao.js', '/static/js/iscroll.js',
               '/static/widgetSelectMovimentacao/widgetMovimentacao.js',)
+<<<<<<< HEAD
 
 
 class ImageSelectMao(Select):
@@ -92,10 +97,13 @@ class ImageSelectMao(Select):
         if value != '':
             i = int(value) - 1
             option_attrs['data-img-src'] = self.field_img[i]
+=======
+>>>>>>> WidgetCM
 
         else:
             option_attrs['data-img-src'] = '/static/img/X.svg'
 
+<<<<<<< HEAD
         return {
             'name': name,
             'value': value,
@@ -106,6 +114,17 @@ class ImageSelectMao(Select):
             'type': self.input_type,
             'template_name': self.option_template_name,
             'wrap_label': True,
+=======
+class ImageSelectMao(forms.Widget):
+    template_name = 'widget_mao.html'
+    # field_descricao = TransacaoForm.base_fields["descricao"]
+    # descricao.widget.attrs["class"] = "minha_classe_CSS"]
+    class Media:
+        css = {
+            'all': ('/static/widgetSelectMao/selectMao.css',)
+        }
+        js = ('/static/widgetSelectMao/selectMao.js', '/static/js/iscroll.js', '/static/widgetSelectMao/widgetMao.js',)
+>>>>>>> WidgetCM
 
 
         }

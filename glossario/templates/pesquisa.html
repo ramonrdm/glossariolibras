@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
-{% block Head %}
+{% block head %}
 	{{ block.super }}
     {{ formSinais.media }}
 	{% load staticfiles %}
 	<title>{% block title %}Pesquisa {{ glossario.nome }} - Glossário Letras Libras {% endblock %}</title>
 {% endblock %}
-{% block Corpo %}
+{% block body %}
 <div class="hide-on-small-only blockContainer">
 	<div class="pesquisaViewList">
 		<a id="buttonViewModule" class="btn-floating btn-large waves-effect waves-light blue right"><i class="material-icons">view_module</i></a>
@@ -29,18 +29,18 @@
 							<tbody>
 							{% for s in sinais %}
 								<tr onclick="window.location='/sinal/{{s.id}}';">
-									<td><img src="/static/img/arvore_banyan_havai.png" width="70" ></td>
+									{% if s.sinalLibras %}
+										<td class="field-video_tag_sinal"><video autoplay="" loop="" src="{{s.sinalLibras.url}}" height="70"></video></td>
+									{% else %}
+										<td><img src="/static/img/X.svg" width="50" class="circle"></td>
+									{% endif %}
 									<td>{{s.traducaoP}}</td>
 									<td>{{s.traducaoI}}</td>
 									{% if s.cmE.imagem %}
-										<td><img src="{{s.cmE.imagem.url}}" width="50" class="circle"></td>
-									{% else %}
-										<td></td>
+										<td><img src="/static/img/configuracoes_de_mao/{{s.cmE.imagem}}" width="50" class="circle"></td>
 									{% endif %}
 									{% if s.cmD.imagem %}
-										<td><img src="{{s.cmD.imagem.url}}" width="50" class="circle"></td>
-									{% else %}
-										<td></td>
+										<td><img src="/static/img/configuracoes_de_mao/{{s.cmD.imagem}}" width="50" class="circle"></td>
 									{% endif %}
 									{% if s.localizacao %}
 										<td><img src="{{s.localizacao}}" width="50" class="circle"></td>
@@ -88,10 +88,10 @@
 									<tr onclick="window.location='/sinal/{{s.id}}';">
 										<td>{{s.traducaoP}}</td>
 										{% if s.cmE.imagem %}
-											<td><img src="{{s.cmE.imagem.url}}" width="50" class="circle"></td>
+											<td><img src="/static/img/configuracoes_de_mao/{{s.cmE.imagem}}" width="50" class="circle"></td>
 										{% endif %}
 										{% if s.cmD.imagem %}
-											<td><img src="{{s.cmD.imagem.url}}" width="50" class="circle"></td>
+											<td><img src="/static/img/configuracoes_de_mao/{{s.cmD.imagem}}" width="50" class="circle"></td>
 										{% endif %}
 										{% if s.localizacao %}
 											<td><img src="{{s.localizacao}}" width="50" class="circle"></td>
