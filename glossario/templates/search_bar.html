@@ -23,11 +23,38 @@
                 </a>
             </div>
             <ul>
-            {% for field in formSinais %}
-                <div class="col l1 center">
-                {{field}}
-                </div>
-            {% endfor %}
+{#            {% for field in formSinais %}#}
+{#                <div class="col l1 center">#}
+{#                {{field}}#}
+{#                </div>#}
+{#            {% endfor %}#}
+
+
+                <a class="waves-effect waves-light btn modal-trigger" href="#modalGrupos">Configuração de mão</a>
+                   {% for grupo in cmGrupos %}
+                    <div id="modalGrupos"class="modal">
+                        <div class="modal-content">
+                            <h4 class="black-text" >Grupos</h4>
+                                <img id={{ grupo }} src="/static/img/configuracoes_de_mao/{{ grupo }}/{{ grupo }}.png"class="modal-action modal-close thumbnailModal  waves-effect waves-light btn modal-trigger" href="#modalCM">
+
+
+                        </div>
+                    </div>
+                    <div id="modalCM"class="modal">
+                        <div class="modal-content">
+                            <h4 class="black-text" >Configuração de Mão</h4>
+                            {% for cu in cm %}
+                                {% if cu.group == grupo %}
+                                    <img src="/static/img/configuracoes_de_mao/{{ cu.group }}/{{ cu.bsw }}.png"class="modal-action modal-close thumbnailModal" href="#modalCM">
+                                    <input type="text" id='id_cmE'  name="cmE" value="{{ cu.bsw }}" style="none";></input>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+
+
+
                 <div class="col l1 right">
                     <li>
                         <button class="btn waves-effect waves-light botaoPesquisar" type="submit" id="botaoPesquisar" name="botaoPesquisar">
@@ -41,15 +68,7 @@
                 <div class="input-field right">
                 {% csrf_token %}
                 {{ formPesquisa }}
-                <a class="waves-effect waves-light btn modal-trigger" href="#modalCM">Modal</a>
-                  <div id="modalCM"class="modal">
-                    <div class="modal-content">
-                        <h4 class="black-text" >Configuração de mão</h4>
-                        {% for field in formPesquisa %}
-                            <img src="/static/img/configuracoes_de_mao/{{ field. }}/{{ cm.bsw }}.png"class="modal-action modal-close thumbnailModal">
-                        {% endfor %}
-                    </div>
-                </div>
+
 
 
 
