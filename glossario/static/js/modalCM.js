@@ -3,7 +3,6 @@
     $('#modalGrupos').modal();
     $('.botao').click(function(){
         var grupo = $(this).attr('id');
-        alert(grupo);
     });
 
 

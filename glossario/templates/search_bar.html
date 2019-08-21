@@ -40,9 +40,9 @@
                     <div id="modalCM"class="modal">
                         <div class="modal-content">
                             <h4 class="black-text" >Configuração de Mão</h4>
-                            {% for cu in cm %}
-                                {% if cu.group == grupo %}
-                                    <img src="/static/img/configuracoes_de_mao/{{ cu.group }}/{{ cu.bsw }}.png"class="modal-action modal-close thumbnailModal" href="#modalCM">
+                            {% for cm in cm %}
+                                {% if cm.group == grupo2 %}
+                                    <img src="/static/img/configuracoes_de_mao/{{ cm.group }}/{{ cm.bsw }}.png"class="modal-action modal-close thumbnailModal" href="#modalCM">
                                 {% endif %}
                             {% endfor %}
 
