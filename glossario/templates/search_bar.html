@@ -26,14 +26,14 @@
 
 
               <div class=" col l2">
-                <a   class="waves-effect waves-light btn modal-trigger" href="#modalGrupos">Configuração de mão</a>
+                 <img src="/static/img/X.svg" class="waves-effect waves-light modal-trigger" href="#modalGrupos">
                 <!--<input type="text" id='id_cmE'  name="cmE" value="" style="none";></input>-->/
               </div>
                     <div id="modalGrupos"class="modal">
                         <div class="modal-content">
                             <h4 class="black-text" >Grupos</h4>
                             {% for grupo in cmGrupos %}
-                            <img  id="{{ grupo }}"  src="/static/img/configuracoes_de_mao/{{ grupo }}/{{ grupo }}.png" class="botao modal-action modal-close thumbnailModal  waves-effect waves-light btn modal-trigger" href="#modalCM">
+                                <img  id="{{ grupo }}"  src="/static/img/configuracoes_de_mao/{{ grupo }}/{{ grupo }}.png" class=" escolhaGrupo modal-action modal-close thumbnailModal  waves-effect waves-light modal-trigger" href="#modalCM">
                             {% endfor %}
                         </div>
                     </div>
@@ -41,8 +41,8 @@
                         <div class="modal-content">
                             <h4 class="black-text" >Configuração de Mão</h4>
                             {% for cm in cm %}
-                                {% if cm.group == grupo2 %}
-                                    <img src="/static/img/configuracoes_de_mao/{{ cm.group }}/{{ cm.bsw }}.png"class="modal-action modal-close thumbnailModal" href="#modalCM">
+                                {% if cm.group == '100' %}
+                                     <img id="{{ cm.bsw }}" src="/static/img/configuracoes_de_mao/{{ cm.group }}/{{ cm.bsw }}.png" class=" escolhaCM modal-action modal-close thumbnailModal" href="#modalCM">
                                 {% endif %}
                             {% endfor %}
 
@@ -173,17 +173,7 @@
                 {% if formPesquisa %}
                 <nav id="mobileSearchLibras" class="row nav-extended grey lighten-4">
                 <ul>
-                    {% for field in formSinais %}
-                    <div class="col l4 center">
-                    {% if field.auto_id == 'id_localizacao' %}
-                                  <img class="sinaisMobile" src='{% static "img/localizacaoTesta.png" %}'>
-                    {% elif field.auto_id == 'id_cmE' %}
-                                <img class="sinaisMobile" src='{% static "img/1a4.png" %}'>
-                    {% elif field.auto_id == 'id_movimentacao' %}
-                         <img class="sinaisMobile" src='{% static "img/1a4.png" %}'>
-                    {% endif %}
-                    </div>
-                {% endfor %}
+
                 </ul>
                  <a id="abrirNavSearchMobile" class="btn-floating btn-large halfway-fab waves-effect waves-light indigo darken-4"><i class="material-icons white-text">text_format</i></a></nav>
         </nav>

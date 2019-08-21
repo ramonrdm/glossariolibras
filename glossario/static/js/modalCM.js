@@ -1,8 +1,15 @@
   $(document).ready(function(){
-    $('#modalCM').modal();
-    $('#modalGrupos').modal();
-    $('.botao').click(function(){
-        var grupo = $(this).attr('id');
+    $('.modalCM').modal();
+    $('.modalGrupos').modal();
+
+    $('.escolhaGrupo').click(function(){
+        var escolhaGrupo = $(this).attr('id');
+
+    });
+
+   $('.escolhaCM').click(function(){
+        var escolhaCM = $(this).attr('id');
+
     });
 
 
