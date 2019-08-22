@@ -1,4 +1,26 @@
-<!--{# <div id="cmE-widget"></div>#}-->
-<!--{##}-->
-{#<!--{# <input type="text" id='id_cmE'  name="cmE" value="" style="none";></input>-->#}
 
+
+<img src="/static/img/X.svg" class="sinais waves-effect waves-light modal-trigger" href="#modalGrupos">
+
+<!--<img src="/static/img/X.svg" class="testeBotaoMobile btn sinais" >-->
+<!--<input type="text" id='id_cmE'  name="cmE" value="" style="none";></input>-->/
+
+<div id="modalGrupos"class="modal modalGrupos">
+    <div class="modal-content">
+        <h4 class="black-text center" >Grupos</h4>
+        {% for grupo in cmGrupos %}
+            <img  id="{{ grupo }}"  src="/static/img/configuracoes_de_mao/{{ grupo }}/{{ grupo }}.png" class=" sinais escolhaGrupo modal-action modal-close thumbnailModal  waves-effect waves-light modal-trigger" href="#modalCM">
+        {% endfor %}
+    </div>
+</div>
+<div id="modalCM"class="modal">
+    <div class="modal-content">
+        <h4 class="black-text center" >Configuração de Mão</h4>
+        {% for cm in cm %}
+            {% if cm.group ==  {{ }} %}
+                 <img id="{{ cm.bsw }}" src="/static/img/configuracoes_de_mao/{{ cm.group }}/{{ cm.bsw }}.png" class="sinais escolhaCM modal-action modal-close thumbnailModal" href="#modalCM">
+            {% endif %}
+        {% endfor %}
+
+    </div>
+</div>

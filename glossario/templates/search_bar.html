@@ -23,32 +23,11 @@
                 </a>
             </div>
             <ul>
-
-
-              <div class=" col l2">
-                 <img src="/static/img/X.svg" class=" sinais waves-effect waves-light modal-trigger" href="#modalGrupos">
-                <!--<input type="text" id='id_cmE'  name="cmE" value="" style="none";></input>-->/
-              </div>
-                    <div id="modalGrupos"class="modal modalGrupos">
-                        <div class="modal-content">
-                            <h4 class="black-text center" >Grupos</h4>
-                            {% for grupo in cmGrupos %}
-                                <img  id="{{ grupo }}"  src="/static/img/configuracoes_de_mao/{{ grupo }}/{{ grupo }}.png" class=" sinais escolhaGrupo modal-action modal-close thumbnailModal  waves-effect waves-light modal-trigger" href="#modalCM">
-                            {% endfor %}
-                        </div>
-                    </div>
-                    <div id="modalCM"class="modal">
-                        <div class="modal-content">
-                            <h4 class="black-text center" >Configuração de Mão</h4>
-                            {% for cm in cm %}
-                                {% if cm.group == '100' %}
-                                     <img id="{{ cm.bsw }}" src="/static/img/configuracoes_de_mao/{{ cm.group }}/{{ cm.bsw }}.png" class="sinais escolhaCM modal-action modal-close thumbnailModal" href="#modalCM">
-                                {% endif %}
-                            {% endfor %}
-
-                        </div>
-                    </div>
-
+            {% for field in formSinais %}
+                <div class="col l1 center">
+                {{field}}
+                </div>
+            {% endfor %}
                 <div class="col l1 right">
                     <li>
                         <button class="btn waves-effect waves-light botaoPesquisar" type="submit" id="botaoPesquisar" name="botaoPesquisar">
@@ -62,10 +41,6 @@
                 <div class="input-field right">
                 {% csrf_token %}
                 {{ formPesquisa }}
-
-
-
-
                     <label class="label-icon" for="search">
                         <i class="material-icons grey-text">search</i>
                     </label>
@@ -164,6 +139,8 @@
     </ul>
 
 </div>
+
+
 <div id="telaMobile">
         <nav>
             <div class="nav-wrapper">
@@ -173,17 +150,19 @@
                 {% if formPesquisa %}
                 <nav id="mobileSearchLibras" class="row nav-extended grey lighten-4">
                 <ul>
-                    {% for field in formSinais %}
-                        <div class="col l4 center">
-                        {% if field.auto_id == 'id_localizacao' %}
-                                      <img class="sinaisMobile" src='{% static "img/localizacaoTesta.png" %}'>
-                        {% elif field.auto_id == 'id_cmE' %}
-                                    <img class="sinaisMobile" src='{% static "img/1a4.png" %}'>
-                        {% elif field.auto_id == 'id_movimentacao' %}
-                             <img class="sinaisMobile" src='{% static "img/1a4.png" %}'>
-                        {% endif %}
-                        </div>
-                    {% endfor %}
+
+                 {% for field in formSinais %}
+                    <div class="col l3 center">
+                    {{field}}
+                    </div>
+                {% endfor %}
+                    <div class="col l3 right">
+                        <li>
+                            <button class="btn waves-effect waves-light botaoPesquisar" type="submit" id="botaoPesquisar" name="botaoPesquisar">
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </li>
+                    </div>
                 </ul>
                  <a id="abrirNavSearchMobile" class="btn-floating btn-large halfway-fab waves-effect waves-light indigo darken-4"><i class="material-icons white-text">text_format</i></a></nav>
         </nav>

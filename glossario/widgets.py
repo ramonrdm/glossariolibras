@@ -2,6 +2,13 @@ from __future__ import unicode_literals
 from django.forms.widgets import Select
 from django import forms
 from django.utils.safestring import mark_safe
+
+from django.template import loader
+from django.utils.safestring import mark_safe
+
+from glossario.models import CM
+
+
 from django.utils.encoding import force_text
 from django.utils.html import format_html
 from django.conf import settings
@@ -30,35 +37,31 @@ class ImageSelectLocalizacao(forms.Widget):
 class ImageSelectMovimentacao(forms.Widget):
     template_name = 'widget_movimentacao.html'
 
-    # class Media:
-    #     css = {
-    #         'all': ('/static/widgetSelectMovimentacao/selectMovimentacao.css',)
-    #     }
-    #     js = ('/static/widgetSelectMovimentacao/selectMovimentacao.js', '/static/js/iscroll.js',
-    #           '/static/widgetSelectMovimentacao/widgetMovimentacao.js',)
-    #
+    class Media:
+        css = {
+            'all': ('/static/widgetSelectMovimentacao/selectMovimentacao.css',)
+        }
+        js = ('/static/widgetSelectMovimentacao/selectMovimentacao.js', '/static/js/iscroll.js',
+              '/static/widgetSelectMovimentacao/widgetMovimentacao.js',)
+
 
 class ImageSelectMao(forms.Widget):
-    template_name = 'widget_mao.html'
-    # class cmDs(model.Model):
-    #     cm = CM.objects.all()
-    #     cmGrupos = [c.group for c in cm]
-    #     cmGrupos = list(dict.fromkeys(cmGrupos)
-    #
-    #     return cmGrupos
-
-    # field_descricao = TransacaoForm.base_fields["descricao"]
-    # descricao.widget.attrs["class"] = "minha_classe_CSS"]
-    # class Media:
-    #     css = {
-    #         'all': ('/static/widgetSelectMao/selectMao.css',)
-    #     }
-    #     js = ('/static/widgetSelectMao/selectMao.js', '/static/js/iscroll.js', '/static/widgetSelectMao/widgetMao.js',)
 
     class Media:
         # css = {
         #     'all': ('/static/widgetSelectMao/selectMao.css',)
         # }
         js = ('/static/js/modalCM.js',)
+
+    template_name = 'widget_mao.html'
+
+    def render(self, name, value, attrs=None, renderer=None):
+        cm = CM.objects.all()
+        cmGrupos = [c.group for c in cm]
+        cmGrupos = list(dict.fromkeys(cmGrupos))
+        template = loader.get_template(self.template_name).render({'cm' : cm, 'cmGrupos' : cmGrupos,})
+        return mark_safe(template)
+
+
 
 
