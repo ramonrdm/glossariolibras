@@ -7,7 +7,6 @@ $('#mobileSearchEscrita').hide();
 
 
     if ((window.screen.availWidth < 800)){
-    alert('passei aqui');
         $('#telaWeb').hide();
         $('#telaMobile').show();
         $('.sidenav').css({ 'z-index' : "1000"});
@@ -87,4 +86,3 @@ $('#mobileSearchEscrita').hide();
   })
 
 });
-

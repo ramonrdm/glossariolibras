@@ -46,14 +46,10 @@ class ImageSelectMovimentacao(forms.Widget):
 
 
 class ImageSelectMao(forms.Widget):
+    template_name = 'widget_mao.html'
 
     class Media:
-        # css = {
-        #     'all': ('/static/widgetSelectMao/selectMao.css',)
-        # }
         js = ('/static/js/modalCM.js',)
-
-    template_name = 'widget_mao.html'
 
     def render(self, name, value, attrs=None, renderer=None):
         cm = CM.objects.all()
