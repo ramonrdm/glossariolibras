@@ -9,18 +9,16 @@
     <div class="modal-content">
         <h4 class="black-text center" >Grupos</h4>
         {% for grupo in cmGrupos %}
-            <img  id="{{ grupo }}"  src="/static/img/configuracoes_de_mao/{{ grupo }}/{{ grupo }}.png" class=" sinais escolhaGrupo modal-action modal-close thumbnailModal  waves-effect waves-light modal-trigger" href="#modalCM">
+            <img  id="{{ grupo }}"  src="/static/img/configuracoes_de_mao/{{ grupo }}/{{ grupo }}.png" class=" sinais escolhaGrupo modal-action modal-close thumbnailModal  waves-effect waves-light  modal-trigger" href="#{{ grupo }}">
         {% endfor %}
     </div>
 </div>
-<div id="modalCM"class="modal">
+
+{% for grupo in cm. %}
+<div id="{{ grupo }}"class="modal">
     <div class="modal-content">
         <h4 class="black-text center" >Configuração de Mão</h4>
-        {% for cm in cm %}
-            {% if cm.group ==  {{ }} %}
-                 <img id="{{ cm.bsw }}" src="/static/img/configuracoes_de_mao/{{ cm.group }}/{{ cm.bsw }}.png" class="sinais escolhaCM modal-action modal-close thumbnailModal" href="#modalCM">
-            {% endif %}
-        {% endfor %}
-
+        <img id="{{ cm.bsw }}" src="/static/img/configuracoes_de_mao/{{ cm.group }}/{{ cm.bsw }}.png" class="sinais escolhaCM modal-action modal-close thumbnailModal" href="#modalCM">
     </div>
 </div>
+{% endfor %}
