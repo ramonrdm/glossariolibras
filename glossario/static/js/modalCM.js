@@ -1,21 +1,13 @@
 $(document).ready(function(){
     $('.modal').modal();
 
-//     $('.escolhaGrupo').click(function(){
-//         var escolhaGrupo = $(this).attr('id');
-//         alert(escolhaGrupo);;
-//
-//     });
-//
-//    $('.escolhaCM').click(function(){
-//         var escolhaCM = $(this).attr('id');
-//          alert(escolhaCM);;
-//
-//     });
+    $('.escolhaCM').click(function(){
+         var escolhaCM = $(this).attr('id');
+          alert(escolhaCM);;
 
-    $('.testeBotaoMobile').click(function(){
-        alert('fui apertado');
-    });
+     });
+
+
 
 });
 
