@@ -1,6 +1,5 @@
 $(document).ready(function(){
-    $('.modalGrupos').modal();
-    $('.modalCM').modal();
+    $('.modal').modal();
 
 //     $('.escolhaGrupo').click(function(){
 //         var escolhaGrupo = $(this).attr('id');
