@@ -3,7 +3,8 @@ $(document).ready(function(){
 
     $('.escolhaCM').click(function(){
          var escolhaCM = $(this).attr('id');
-          alert(escolhaCM);;
+         $('#id_cmE').val(escolhaCM);
+         $('#image_cm').attr('src', $(this).attr('src'));
 
      });
 

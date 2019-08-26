@@ -1,7 +1,7 @@
 
 
-<img src="/static/img/X.svg" class="sinais waves-effect waves-light modal-trigger" href="#modalGrupos">
-<!--<input type="text" id='id_cmE'  name="cmE" value="" style="none";></input>-->/
+<img id="image_cm" src="/static/img/X.svg" class="sinais waves-effect waves-light modal-trigger" href="#modalGrupos">
+<input type="text" id='id_cmE'  name="cmE" style="display:none"/>
 
 <div id="modalGrupos" class="modal">
     <div class="modal-content">
@@ -19,7 +19,7 @@
         <h4 class="black-text center" >Configuração de Mão</h4>
         {% for cm in cm %}
             {% if cm.group == grupo %}
-            <img id="{{ cm.bsw }}" src="/static/img/configuracoes_de_mao/{{ cm.group }}/{{ cm.bsw }}.png" class="sinais escolhaCM modal-action modal-close thumbnailModal" href="#modalCM">
+            <img  id="{{ cm.id }}"  src="/static/img/configuracoes_de_mao/{{ cm.group }}/{{ cm.bsw }}.png" class="sinais escolhaCM modal-action modal-close thumbnailModal" href="#modalCM">
             {% endif %}
         {% endfor %}
     </div>

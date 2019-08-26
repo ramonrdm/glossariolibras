@@ -41,20 +41,19 @@ class ImageSelectMovimentacao(forms.Widget):
         css = {
             'all': ('/static/widgetSelectMovimentacao/selectMovimentacao.css',)
         }
-        js = ('/static/widgetSelectMovimentacao/selectMovimentacao.js', '/static/js/iscroll.js',
-              '/static/widgetSelectMovimentacao/widgetMovimentacao.js',)
+        js = ('/static/widgetSelectMovimentacao/selectMovimentacao.js',   '/static/widgetSelectMovimentacao/widgetMovimentacao.js',)
 
 
 class ImageSelectMao(forms.Widget):
     template_name = 'widget_mao.html'
 
     class Media:
-        js = ('/static/js/modalCM.js',)
+        js = ('/static/js/widgetSelectMao/modalCM.js',)
 
     def render(self, name, value, attrs=None, renderer=None):
         cm = CM.objects.all()
         cmGrupos = [c.group for c in cm]
-        cmGrupos = list(dict.fromkeys(cmGrupos))
+        cmGrupos = sorted(list(dict.fromkeys(cmGrupos)))
         template = loader.get_template(self.template_name).render({'cm' : cm, 'cmGrupos' : cmGrupos,})
         return mark_safe(template)
 
