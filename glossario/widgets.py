@@ -48,7 +48,7 @@ class ImageSelectMao(forms.Widget):
     template_name = 'widget_mao.html'
 
     class Media:
-        js = ('/static/js/widgetSelectMao/modalCM.js',)
+        js = ('/static/widgetSelectMao/modalCM.js',)
 
     def render(self, name, value, attrs=None, renderer=None):
         cm = CM.objects.all()
