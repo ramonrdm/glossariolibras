@@ -6,7 +6,7 @@ from django.utils.safestring import mark_safe
 from django.template import loader
 from django.utils.safestring import mark_safe
 
-from glossario.models import CM
+from glossario.models import CM, Movimentacao
 
 
 from django.utils.encoding import force_text
@@ -38,10 +38,12 @@ class ImageSelectMovimentacao(forms.Widget):
     template_name = 'widget_movimentacao.html'
 
     class Media:
-        css = {
-            'all': ('/static/widgetSelectMovimentacao/selectMovimentacao.css',)
-        }
-        js = ('/static/widgetSelectMovimentacao/selectMovimentacao.js',   '/static/widgetSelectMovimentacao/widgetMovimentacao.js',)
+        js = ('/static/widgetSelectMovimentacao/modalMovimentacao.js',)
+
+    def render(self, name, value, attrs=None, renderer=None):
+        movimentacao = Movimentacao.movimentacoes_imagens
+        template = loader.get_template(self.template_name).render({'movimentacao': movimentacao,})
+        return mark_safe(template)
 
 
 class ImageSelectMao(forms.Widget):
@@ -54,7 +56,7 @@ class ImageSelectMao(forms.Widget):
         cm = CM.objects.all()
         cmGrupos = [c.group for c in cm]
         cmGrupos = sorted(list(dict.fromkeys(cmGrupos)))
-        template = loader.get_template(self.template_name).render({'cm' : cm, 'cmGrupos' : cmGrupos,})
+        template = loader.get_template(self.template_name).render({'cm': cm, 'cmGrupos': cmGrupos, })
         return mark_safe(template)
 
 

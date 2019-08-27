@@ -1,5 +1,3 @@
-
-
 <img id="image_cm" src="/static/img/X.svg" class="sinais waves-effect waves-light modal-trigger" href="#modalGrupos">
 <input type="text" id='id_cmE'  name="cmE" style="display:none"/>
 
@@ -7,7 +5,6 @@
     <div class="modal-content">
         <h4 class="black-text center">Grupos</h4>
         {% for grupo in cmGrupos %}
-            <!--<img  id="{{ grupo }}"  src="/static/img/configuracoes_de_mao/{{ grupo }}/{{ grupo }}.png" class=" sinais waves-effect waves-light modal-trigger modal-close" href="#100">-->
              <img src="/static/img/configuracoes_de_mao/{{ grupo }}/{{ grupo }}.png"  class="sinais waves-effect waves-light modal-trigger modal-close" href="#{{ grupo }}">
         {% endfor %}
     </div>
