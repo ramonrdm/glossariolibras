@@ -12,7 +12,7 @@ class ImageSelectLocalizacao(forms.Widget):
 
     class Media:
         css = {'all': ('/static/widgetSelectLocalizacao/widget_localizacao.css',)}
-        js = ('/static/widgetSelectLocalizacao/widget_localizacao.js', )
+        js = ('js/jquery.imagemapster.js', '/static/widgetSelectLocalizacao/widget_localizacao.js', )
     
     # def __init__(self, attrs=None, choices=(), field_img=None):
     #     super(ImageSelectLocalizacao, self).__init__(attrs)
