@@ -1,11 +1,6 @@
 $(document).ready(function(){
 	//$("#imagem_localizacao").hide();
-	$('.modal').modal();
 	$('#modeloImg').parent().css({"margin":"0 auto"});
-
-
-
-
 		// INICIALIZA O IMAGEMAPSTER
 	$('#modeloImg').mapster( {
 		fillColor: '000000',

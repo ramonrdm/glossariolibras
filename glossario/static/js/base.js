@@ -1,14 +1,12 @@
 $(document).ready(function(){
-
-$('.sidenav').sidenav();
-$('#telaMobile').show();
-$('.pesquisaViewModule').hide();
-$('#mobileSearchEscrita').hide();
-
+    $('.sidenav').sidenav();
+    $('#telaMobile').show();
+    $('.pesquisaViewModule').hide();
+    $('#mobileSearchEscrita').hide();
+    $('.tabs').tabs();
 
     if ((window.screen.availWidth < 800)){
-        $('#telaWeb').hide();
-        $('#telaMobile').show();
+        $('.telaWeb').html('');
         $('.sidenav').css({ 'z-index' : "1000"});
         $('.sidenav').css({ 'padding-top' : "0%"});
         $('.blockContainer').css({ 'padding-left': "0%"});
@@ -16,10 +14,9 @@ $('#mobileSearchEscrita').hide();
         $('.sidenav').css({ width: "80%"});
 
    }else{
-        $('#telaMobile').hide();
-        $('#telaWeb').show();
-   }
+        $('.telaMobile').html('');
 
+   }
     $('.modal').modal();
     $('#confirmeEmail').modal('open');
     $('#confirmeEmailErro').modal('open');
@@ -42,47 +39,28 @@ $('#mobileSearchEscrita').hide();
            $('.sidenav').css({ width: "79px"});
      });
 
-
     $('#buttonViewModule').click(function(){
            $('.pesquisaViewList').hide();
            $('.pesquisaViewModule').show();
     });
-
     $('#buttonViewList').click(function(){
            $('.pesquisaViewList').show();
            $('.pesquisaViewModule').hide();
-     });
-
-
-
+    });
     $('#buttonViewModuleMobile').click(function(){
            $('.pesquisaViewList').hide();
            $('.pesquisaViewModule').show();
     });
-
     $('#buttonViewListMobile').click(function(){
            $('.pesquisaViewList').show();
            $('.pesquisaViewModule').hide();
-     });
-
-
-
-
+    });
     $('#abrirNavSearchMobile').click(function(){
            $('#mobileSearchLibras').hide();
            $('#mobileSearchEscrita').show();
-
     });
-
     $('#fecharNavSearchMobile').click(function(){
            $('#mobileSearchLibras').show();
            $('#mobileSearchEscrita').hide();
-
-     });
-
-
-  $(document).ready(function(){
-    $('.tabs').tabs();
-  })
-
+    });
 });
