@@ -3,7 +3,6 @@ $(document).ready(function(){
     $('.modal').modal();
     $('#modeloImg').parent().css({"margin":"0 auto"});
 
-
     $('#modeloImg').mapster( {
         fillColor: '000000',
         mapKey: 'data-key',
@@ -72,14 +71,11 @@ $(document).ready(function(){
         ]
 });
 $('#modeloImg').parent().css({"margin":"0 auto"});
-alert("chegou aqui");
+
 $('area').click(function() {
-
-        alert("clicou LOCALIZAÇÃO");
-        // VINCULA A ÁREA CLICADA À OPTION DA SUA LOCALIZAÇÃO
-        let attrValue = $(this).attr('data-key');
-
-
+    let attrValue = $(this).attr('data-key');
+    $('#id_cmE').val(attrValue);
+    $('#imagem_localizacao').attr('src', 'static/img/'+loc_js[attrValue]);
 });
 
 });
