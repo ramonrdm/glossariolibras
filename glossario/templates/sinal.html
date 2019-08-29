@@ -1,26 +1,42 @@
 {% extends 'base.html' %}
 	{% load staticfiles %}
-	{% block Head %}
+	{% block head %}
 		{{block.super}}
 		<script type="text/javascript" src='{% static "js/sinal.js" %}'></script>
 		<link rel="stylesheet" type="text/css" href='{% static "css/sinal.css" %}'/>
 		<title>{% block title %}Sinal - Glossário Letras Libras{% endblock %}</title>
 {% endblock %}
-{% block Corpo %}
-	{% include 'modaisFormSinais.html' %}
+{% block body %}
 
-<!-- VÍDEOS -->
 
-	<div class="center">
-		<div class="col s12">
-			<ul class="tabs blue darken-4">
-				<div class="indicator light-blue lighten-4" style="z-index: 1"></div>
-				<li class="tab col s3"><a class="white-text" href="#tabSinal">Sinal</a></li>
-				<li class="tab col s3"><a class="white-text" href="#tabDescricao">Descrição</a></li>
-				<li class="tab col s3"><a class="white-text" href="#tabExemplo">Exemplo</a></li>
-				<li class="tab col s3"><a class="white-text" href="#tabVariacao">Variante</a></li>
-			</ul>
-		</div>
+<!------------------------- TABS ------------------------------->
+
+	<div class="row containerTabs hide-on-small-only">
+		<ul class="tabs blue darken-4 containerTabs">
+			<div class="" style="z-index: 1"></div>
+			<li class="tab col s3"><a class="white-text" href="#tabSinal">Sinal</a></li>
+			<li class="tab col s3"><a class="white-text" href="#tabDescricao">Descrição</a></li>
+			<li class="tab col s3"><a class="white-text" href="#tabExemplo">Exemplo</a></li>
+			<li class="tab col s3"><a class="white-text" href="#tabVariacao">Variante</a></li>
+		</ul>
+	</div>
+	<div class="row hide-on-large-only">
+		<ul class="tabs blue darken-4 ">
+			<div class="" style="z-index: 1"></div>
+			<li class="tab col s3"><a class="white-text" href="#tabSinal">Sinal</a></li>
+			<li class="tab col s3"><a class="white-text" href="#tabDescricao">Descrição</a></li>
+			<li class="tab col s3"><a class="white-text" href="#tabExemplo">Exemplo</a></li>
+			<li class="tab col s3"><a class="white-text" href="#tabVariacao">Variante</a></li>
+		</ul>
+	</div>
+
+<!------------------------------ Conteudo pagina  ------------------------------------->
+
+<div class="row blockContainer">
+
+	<!------------------------------ Video  ------------------------------------->
+
+	<div class="col s12 m5 l5 center">
 		<div id="tabSinal" class="col s12">
 			<div class="center" id="videoSinal">
 
@@ -72,97 +88,43 @@
 		</div>
 	</div>
 
-<!-- IDENTIFICAÇÃO DO SINAL -->
+	<!------------------------------ Descrição  ------------------------------------->
 
-	<div class="row">
-		<div class="col s12 m6">
-			<div class="card blue darken-4 z-depth-5 cardSinal">
+	<div class="col s12 m7 l7">
+		<div class="col m3">
+			<div class="card blue darken-4  cardSinalMao z-depth-0">
 				<div class="card-content white-text">
-					<span class="card-title center">Tradução</span>
-					<div class="mao">
-						Português: {{sinal.traducaoP}}
-					</div>
-					<div>
-						Inglês: {{sinal.traducaoI}}
-					</div>
-
-					<div class="container">
-						SignWrite:<br>
-					<img src="http://glossario.libras.ufsc.br/swis/column.php?size=1&colorize=1&fill=FFFFFF&back=FFFFFF&spacing=10&offset=50&bsw={{sinal.bsw}}">
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col s12 m6">
-			<div class="card blue darken-4 z-depth-5 cardSinal">
-				<div class="card-content white-text">
-					<span class="card-title center">Descrição</span>
-					<div class="mao">
-							{{sinal.descricao}}
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col s12 m6">
-			<div class="card blue darken-4 z-depth-5 cardSinalMao">
-				<div class="card-content white-text">
-					<span class="card-title center">Mão esquerda</span>
-					<div class="mao">
-						Grupo de configuração de mão:
-						<div class="center imgMao">
-							{% if sinal.grupoCMe.imagem %}
-								<img class="circle imgSinal" src="{{sinal.grupoCMe.imagem.url}}">
-							{% else %}
-								<i class="large material-icons white-text imgSinal">cloud_off</i>
-							{% endif %}
-						</div>
-						Configuração de mão:
+						<span  id="movimentacao" class="card-title center">Esquerda</span>
 						<div class="center imgMao">
 							{% if sinal.cmE.imagem %}
-								<img class="circle imgSinal" src="{{sinal.cmE.imagem.url}}">
+								<img class="circle imgSinal" src="/static/img/configuracoes_de_mao/{{sinal.cmE.imagem}}">
 							{% else %}
 								<i class="large material-icons white-text imgSinal">cloud_off</i>
 							{% endif %}
 						</div>
-					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col s12 m6">
-			<div class="card blue darken-4 z-depth-5 cardSinalMao">
+		<div class="col m3">
+			<div class="card blue darken-4  cardSinalMao z-depth-0">
 				<div class="card-content white-text">
-					<span class="card-title center">Mão direita</span>
-					<div class="mao">
-						Grupo de configuração de mão:
-						<div class="center imgMao">
-							{% if sinal.grupoCMd.imagem %}
-								<img class="circle imgSinal" src="{{sinal.grupoCMd.imagem.url}}">
-							{% else %}
-								<i class="large material-icons white-text imgSinal">cloud_off</i>
-							{% endif %}
-						</div>
-						Configuração de mão:
+
+						<span  id="movimentacao"  class="card-title center">Direita</span>
 						<div class="center imgMao">
 							{% if sinal.cmD.imagem %}
-								<img class="circle imgSinal" src="{{sinal.cmD.imagem.url}}">
+								<img class="circle imgSinal" src="/static/img/configuracoes_de_mao/{{sinal.cmD.imagem}}">
 							{% else %}
 								<i class="large material-icons white-text imgSinal">cloud_off</i>
 							{% endif %}
 						</div>
-					</div>
+
 				</div>
 			</div>
 		</div>
-	</div>
-
-	<div class="row">
-		<div class="col s12">
-			<div class="card blue darken-4 z-depth-5 cardSinal">
+		<div class="col m3">
+			<div class="card blue darken-4 cardSinal z-depth-0">
 				<div class="card-content white-text">
-					<span class="card-title center">Localização</span>
+					<span id="movimentacao" class="card-title center">Localização</span>
 					<div class="center imgMao">
 						{% if sinal.localizacao %}
 							<img class="circle imgSinal" src="{{sinal.localizacao}}">
@@ -173,7 +135,44 @@
 				</div>
 			</div>
 		</div>
-	</div>
+		<div class="col m3">
+			<div class="card blue darken-4  cardSinal z-depth-0">
+				<div class="card-content white-text">
+					<span id="movimentacao"  class="card-title center">Movimentação</span>
+					<div class="center imgMao">
+						{% if sinal.movimentacao %}
+							<img class="circle imgSinal" src="{{sinal.movimentacao}}">
+						{% else %}
+							<i class="large material-icons white-text imgSinal">cloud_off</i>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<li id="definicao" class="divider divisor col s12 m12 l12"></li>
+
+		<div class="card-panel teal col s12 m6 l6 grey lighten-5 z-depth-0">
+			<h4 class="sinalPortugues">{{sinal.traducaoP}}</h4>
+			<h6 class="sinalIngles">{{sinal.traducaoI}}</h6>
+		</div>
+
+		<div class="col s12 m6 l6">
+					<li id="definicao" class="divider divisor col s12 m12 l12"></li>
+					<h5>SignWrite:</h5><br>
+					<img src="http://glossario.libras.ufsc.br/swis/column.php?size=1&colorize=1&fill=FFFFFF&back=FFFFFF&spacing=10&offset=50&bsw={{sinal.bsw}}">
+					</div>
+		<li id="definicao" class="divider divisor col s12 m12 l12"></li>
+
+		<div id="textoDescricao" class="card-panel teal grey lighten-5 col m12 z-depth-0">
+			<h6>{{sinal.descricao}}</h6>
+		</div>
+
+
 
 	 <script type="text/javascript" src='{% static "js/sinal.js" %}'></script>
+	</div>
+</div>
+
+
 {% endblock %}

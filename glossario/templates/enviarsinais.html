@@ -1,23 +1,22 @@
 {% extends 'base.html' %}
-{% block Head %}
+{% block head %}
 	{{ block.super }}
-	{{ form.media }}
+	{{ formSinais.media }}
     {% load staticfiles %}
 	<title>{% block title %}Enviar sinais - Glossário Letras Libras{% endblock %}</title>
-	{{ form.media }}
 {% endblock %}
-{% block Corpo %}
-	{% include 'modaisFormSinais.html' %}
+{% block body %}
+
 
     <div class="container">
 		<h2 class="thin center">Enviar sinais</h2>
 		<div class="divider"></div>
 
-        <form method="post" class="formEnviarSinais" enctype="multipart/form-data">
+        <form method="post" class="formEnviarSinais" enctype="multipart/formSinais-data">
             {% csrf_token %}
 
             <div class="row">
-                {% for field in form %}
+                {% for field in formSinais %}
                 {% if field.auto_id == 'id_sinalLibras' or field.auto_id == 'id_varicLibras' or field.auto_id == 'id_descLibras' or field.auto_id == 'id_exemploLibras' %}
 
 
@@ -37,10 +36,8 @@
                     </div>
                 </div>
 
-
-
                             {% elif field.auto_id == 'id_localizacao' %}
-                           <div class="col s4" id="{{auto.id}}">
+                           <div class="col s3" id="{{auto.id}}">
                                <a class="modal-trigger" href="#modalLocalizacao">
                                     {{ field.errors }}
                                     {{ field.label_tag }}
@@ -48,26 +45,8 @@
                                </a>
                            </div>
 
-                            {% elif field.auto_id == 'id_grupoCMe' %}
-                           <div class="col s4" id="{{auto.id}}">
-                               <a class="modal-trigger" href="#modalGrupoCMe">
-                                    {{ field.errors }}
-                                    {{ field.label_tag }}
-                                    {{ field }}
-                               </a>
-                           </div>
-
-                            {% elif field.auto_id == 'id_grupoCMd' %}
-                           <div class="col s4" id="{{auto.id}}">
-                               <a class="modal-trigger" href="#modalGrupoCMe">
-                                    {{ field.errors }}
-                                    {{ field.label_tag }}
-                                    {{ field }}
-                               </a>
-                           </div>
-
-                                   {% elif field.auto_id == 'id_cmE' %}
-                           <div class="col s4" id="{{auto.id}}">
+                            {% elif field.auto_id == 'id_cmE' %}
+                           <div class="col s3" id="{{auto.id}}">
                                <a class="modal-trigger" href="#modalCMe">
                                     {{ field.errors }}
                                     {{ field.label_tag }}
@@ -76,8 +55,8 @@
                            </div>
 
                             {% elif field.auto_id == 'id_cmD' %}
-                           <div class="col s4" id="{{auto.id}}">
-                               <a class="modal-trigger" href="#modalCMe">
+                           <div class="col s3" id="{{auto.id}}">
+                               <a class="modal-trigger" href="#modalCMd">
                                     {{ field.errors }}
                                     {{ field.label_tag }}
                                     {{ field }}
@@ -85,7 +64,7 @@
                            </div>
 
                             {% elif field.auto_id == 'id_movimentacao' %}
-                           <div class="col s4" id="{{auto.id}}">
+                           <div class="col s3" id="{{auto.id}}">
                                <a class="modal-trigger" href="#modalMovimentacao">
                                     {{ field.errors }}
                                     {{ field.label_tag }}

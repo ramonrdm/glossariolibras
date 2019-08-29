@@ -1,4 +1,3 @@
-
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
@@ -6,13 +5,14 @@ from glossario import views
 from django.views.static import serve
 from django.urls import path
 from django.views.generic import RedirectView
-
-
+from django.urls import reverse
+from django.shortcuts import redirect
 
 
 from django.conf.urls import url, include
 urlpatterns = [
     path('', views.index, name='index'),
+    path('admin/', lambda _: redirect(to="glossario/sinal/")),
     path('admin/', admin.site.urls),
     path('logout/', views.sair, name='logout'),
     path('equipe', views.equipe, name='equipe'),

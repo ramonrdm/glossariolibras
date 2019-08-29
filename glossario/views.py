@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, render_to_response, redirect
-from glossario.models import Glossario, Sinal, Tema, UserGlossario
+from glossario.models import Glossario, Sinal, Tema, UserGlossario, Localizacao, CM
 from django.contrib.auth.models import User
-from glossario.forms import PesquisaForm, PesquisaCheckboxForm, EnviarSinaisForm, PesquisaSinaisForm, CustomUserCreationForm
+from glossario.forms import PesquisaForm, EnviarSinaisForm, PesquisaSinaisForm, CustomUserCreationForm
 from django.http import JsonResponse
 from django.db.models import Q
 from django.template import RequestContext
@@ -21,48 +21,34 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 
 def index(request, glossario=None):
-    glossarios = Glossario.objects.all()
 
-    checkboxPort = request.POST.get('checkboxPort', False)
-    checkboxIng = request.POST.get('checkboxIng', False)
-
-    request.session['sinaisCheckboxes'] = []
+    glossarios = Glossario.objects.filter(visivel=True)
 
     if request.method == 'POST':
-        sinais = sinaisP = sinaisI = sinaisGlossario = formPesquisa = None
+        sinais = None
         formPesquisa = PesquisaForm(request.POST)
-        request.session['sinaisCheckboxes'] = request.POST.copy()
-        formCheckbox = PesquisaCheckboxForm(request.session['sinaisCheckboxes'])
-        formSinais = PesquisaSinaisForm(request.session['sinaisCheckboxes'])
-        # formSinais = PesquisaSinaisForm(request.POST)
+        formSinais = PesquisaSinaisForm(request.POST)
         if formPesquisa.is_valid() and formSinais.is_valid():
-            sinaisGlossario = Sinal.objects.filter(publicado=True)
-            resultadoTraducao = formPesquisa.cleaned_data['busca'] or []
-            if checkboxPort and checkboxIng:
-                sinaisP = filterSinaisPort(formSinais, sinaisGlossario, resultadoTraducao)
-                sinaisI = filterSinaisIng(formSinais, sinaisGlossario, resultadoTraducao)
-            elif checkboxPort and not checkboxIng:
-                sinais = filterSinaisPort(formSinais, sinaisGlossario, resultadoTraducao)
-            elif checkboxIng and not checkboxPort:
-                sinais = filterSinaisIng(formSinais, sinaisGlossario, resultadoTraducao)
+            sinais = busca(formSinais, formPesquisa).filter(glossario__visivel=True)
         formPesquisa = PesquisaForm()
         resultado = len(sinais) if sinais else None
-        resultadoP = len(sinaisP) if sinaisP else None
-        resultadoI = len(sinaisI) if sinaisI else None
-        return render(request, 'pesquisa.html', {
-            'formPesquisa': formPesquisa, 'sinais': sinais, 'sinaisP': sinaisP, 'sinaisI': sinaisI,'sinaisGlossario':
-            sinaisGlossario, 'resultado': resultado, 'resultadoP': resultadoP, 'resultadoI': resultadoI, 'glossario':
-            glossario, 'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox,
-            'formSinais': formSinais})
 
+        movimentacoes = dict(
+            [('0', 'X.svg'), ('1', 'parede.png'), ('2', 'chao.png'), ('3', 'circular.png'), ('4', 'contato.png')])
+
+        if sinais:
+            for sinal in sinais:
+                sinal.localizacao = "/static/img/" + Localizacao.localizacoes_imagens[sinal.localizacao]
+                sinal.movimentacao = "/static/img/" + movimentacoes[sinal.movimentacao]
+        return render(request, 'pesquisa.html', {
+             'formPesquisa': formPesquisa, 'sinais': sinais, 'resultado': resultado,
+            'formSinais': formSinais, 'form': EnviarSinaisForm(request.POST, request.FILES)})
     else:
-        formCheckbox = PesquisaCheckboxForm(request.session['sinaisCheckboxes']) if request.session.get('sinaisCheckboxes')	else PesquisaCheckboxForm()
-        formSinais = PesquisaSinaisForm(request.session['sinaisCheckboxes']) if request.session.get('sinaisCheckboxes') else PesquisaSinaisForm()
-        # formSinais = PesquisaSinaisForm()
+        formSinais = PesquisaSinaisForm(request.session) if request.session.get('sinaisCheckboxes') else PesquisaSinaisForm()
         formPesquisa = PesquisaForm()
 
-    return render(request, 'index.html', {'glossarios': glossarios, 'glossario': glossario, 'formPesquisa': formPesquisa, 'checkboxPort': checkboxPort,
-        'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox, 'formSinais': formSinais, 'form': EnviarSinaisForm(request.POST, request.FILES)
+    return render(request, 'index.html', {'glossarios': glossarios, 'glossario': glossario, 'formPesquisa': formPesquisa,
+         'formSinais': formSinais, 'form': EnviarSinaisForm(request.POST, request.FILES)
         })
 
 def glossarioSelecionado(request, glossario):
@@ -71,46 +57,34 @@ def glossarioSelecionado(request, glossario):
     except Glossario.DoesNotExist:
         glossario = None
 
-    checkboxPort = request.POST.get('checkboxPort', False)
-    checkboxIng = request.POST.get('checkboxIng', False)
-
-    request.session['sinaisCheckboxes'] = []
-
     if request.method == 'POST':
-        sinais = sinaisP = sinaisI = sinaisGlossario = formPesquisa = None
+        sinais = None
         formPesquisa = PesquisaForm(request.POST)
-        request.session['sinaisCheckboxes'] = request.POST.copy()
-        formCheckbox = PesquisaCheckboxForm(request.session['sinaisCheckboxes'])
-        formSinais = PesquisaSinaisForm(request.session['sinaisCheckboxes'])
-        # formSinais = PesquisaSinaisForm(request.POST)
+        formSinais = PesquisaSinaisForm(request.POST)
+
         if formPesquisa.is_valid() and formSinais.is_valid():
-            sinaisGlossario = Sinal.objects.filter(glossario=glossario).filter(publicado=True)
-            resultadoTraducao = formPesquisa.cleaned_data['busca'] or []
-            if checkboxPort and checkboxIng:
-                sinaisP = filterSinaisPort(formSinais, sinaisGlossario, resultadoTraducao)
-                sinaisI = filterSinaisIng(formSinais, sinaisGlossario, resultadoTraducao)
-            elif checkboxPort and not checkboxIng:
-                sinais = filterSinaisPort(formSinais, sinaisGlossario, resultadoTraducao)
-            elif checkboxIng and not checkboxPort:
-                sinais = filterSinaisIng(formSinais, sinaisGlossario, resultadoTraducao)
+            sinais = busca(formSinais, formPesquisa).filter(glossario=glossario, glossario__visivel=True)
+
         formPesquisa = PesquisaForm()
         resultado = len(sinais) if sinais else None
-        resultadoP = len(sinaisP) if sinaisP else None
-        resultadoI = len(sinaisI) if sinaisI else None
+        movimentacoes = dict(
+            [('0', 'X.svg'), ('1', 'parede.png'), ('2', 'chao.png'), ('3', 'circular.png'), ('4', 'contato.png')])
+
+        for sinal in sinais:
+            sinal.localizacao = "/static/img/" + Localizacao.localizacoes_imagens[sinal.localizacao]
+            sinal.movimentacao = "/static/img/" + movimentacoes[sinal.movimentacao]
+
         return render(request, 'pesquisa.html', {
-            'formPesquisa': formPesquisa, 'sinais': sinais, 'sinaisP': sinaisP, 'sinaisI': sinaisI,'sinaisGlossario':
-            sinaisGlossario, 'resultado': resultado, 'resultadoP': resultadoP, 'resultadoI': resultadoI, 'glossario':
-            glossario, 'checkboxPort': checkboxPort, 'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox,
+            'formPesquisa': formPesquisa, 'sinais': sinais, 'resultado': resultado, 'glossario':
+            glossario,
             'formSinais': formSinais
             })
     else:
-        formCheckbox = PesquisaCheckboxForm(request.session['sinaisCheckboxes']) if request.session.get('sinaisCheckboxes')	else PesquisaCheckboxForm()
-        formSinais = PesquisaSinaisForm(request.session['sinaisCheckboxes']) if request.session.get('sinaisCheckboxes') else PesquisaSinaisForm()
+        formSinais = PesquisaSinaisForm(request.session) if request.session.get('sinaisCheckboxes') else PesquisaSinaisForm()
         # formSinais = PesquisaSinaisForm()
         formPesquisa = PesquisaForm()
 
-        return render(request, 'glossario.html', {'glossario': glossario, 'formPesquisa': formPesquisa, 'checkboxPort': checkboxPort,
-            'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox, 'formSinais': formSinais, 'form': EnviarSinaisForm(request.POST, request.FILES)
+        return render(request, 'glossario.html', {'glossario': glossario, 'formPesquisa': formPesquisa, 'formSinais': formSinais, 'form': EnviarSinaisForm(request.POST, request.FILES)
             })
 
 def sinal(request, sinal=None, glossario=None):
@@ -118,49 +92,29 @@ def sinal(request, sinal=None, glossario=None):
         try:
             sinal = Sinal.objects.get(id=sinal)
             glossario = sinal.glossario
-            localizacoes = dict([('1','localizacaoCabeca.png'),('2','localizacaoOmbros.png'),('3','localizacaoBracos.png'),
-                                ('4','localizacaoNariz.png'),('5','localizacaoBochechas.png'),('6','localizacaoBoca.png'),
-                                ('7','localizacaoTronco.png'),('8','localizacaoNeutro.png'),('9','localizacaoOlhos.png'),('10','localizacaoOrelhas.png'),
-                                ('11','localizacaoPescoco.png'),('12','localizacaoQueixo.png'),('13','localizacaoTesta.png')])
-            sinal.localizacao = "/static/img/"+localizacoes[sinal.localizacao]
+            sinal.localizacao = "/static/img/"+Localizacao.localizacoes_imagens[sinal.localizacao]
+
+            movimentacoes = dict([('0', 'X.svg'), ('1', 'parede.png'), ('2', 'chao.png'), ('3', 'circular.png'), ('4', 'contato.png')])
+            sinal.movimentacao = "/static/img/" + movimentacoes[sinal.movimentacao]
 
         except Sinal.DoesNotExist:
             sinal = None
 
-    checkboxPort = request.POST.get('checkboxPort', False)
-    checkboxIng = request.POST.get('checkboxIng', False)
-
     if request.method == 'POST':
-        sinais = sinaisP = sinaisI = sinaisGlossario = formPesquisa = None
+        sinais = sinaisGlossario = None
         formPesquisa = PesquisaForm(request.POST)
         request.session['sinaisCheckboxes'] = request.POST.copy()
-        formCheckbox = PesquisaCheckboxForm(request.session['sinaisCheckboxes'])
-        formSinais = PesquisaSinaisForm(request.session['sinaisCheckboxes'])
+        formSinais = PesquisaSinaisForm(request.session)
         if formPesquisa.is_valid() and formSinais.is_valid():
             sinaisGlossario = Sinal.objects.filter(glossario=glossario).filter(publicado=True)
-            resultadoTraducao = formPesquisa.cleaned_data['busca'] or []
-            if checkboxPort and checkboxIng:
-                sinaisP = filterSinaisPort(formSinais, sinaisGlossario, resultadoTraducao)
-                sinaisI = filterSinaisIng(formSinais, sinaisGlossario, resultadoTraducao)
-            elif checkboxPort and not checkboxIng:
-                sinais = filterSinaisPort(formSinais, sinaisGlossario, resultadoTraducao)
-            elif checkboxIng and not checkboxPort:
-                sinais = filterSinaisIng(formSinais, sinaisGlossario, resultadoTraducao)
         formPesquisa = PesquisaForm()
         resultado = len(sinais) if sinais else None
-        resultadoP = len(sinaisP) if sinaisP else None
-        resultadoI = len(sinaisI) if sinaisI else None
-        return render(request, 'pesquisa.html', {
-            'formPesquisa': formPesquisa, 'sinais': sinais, 'sinaisP': sinaisP, 'sinaisI': sinaisI, 'sinaisGlossario':
-            sinaisGlossario, 'resultado': resultado, 'resultadoP': resultadoP, 'resultadoI': resultadoI, 'glossario':
-            glossario, 'checkboxPort': checkboxPort,'checkboxIng': checkboxIng, 'formCheckbox': formCheckbox,
-            'formSinais': formSinais, })
+        return render(request, 'pesquisa.html', {'formPesquisa': formPesquisa, 'sinais': sinais, 'sinaisGlossario': sinaisGlossario, 'resultado': resultado, 'glossario':
+            glossario, 'formSinais': formSinais, })
     else:
         formPesquisa = PesquisaForm()
-        formCheckbox = PesquisaCheckboxForm(request.session['sinaisCheckboxes'])
-        formSinais = PesquisaSinaisForm(request.session['sinaisCheckboxes'])
-        return render(request, "sinal.html", {'sinal': sinal, 'glossario': glossario, 'formPesquisa': formPesquisa,
-            'formCheckbox': formCheckbox, 'formSinais': formSinais })
+        formSinais = PesquisaSinaisForm()
+        return render(request, "sinal.html", {'sinal': sinal, 'glossario': glossario, 'formPesquisa': formPesquisa,'formSinais': formSinais })
 
 def historia(request):
     return render(request, "historia.html")
@@ -183,18 +137,19 @@ def temas(request, temas=None):
         raiz = None
     return render(request, "temas.html", dict(raiz=raiz))
 
-
 @login_required
 def enviarSinais(request):
+    formSinais = EnviarSinaisForm
+    cm = CM.objects.all()
+    cmGrupos = [c.group for c in cm]
+    print( cmGrupos)
     if request.method == 'POST':
-        form = EnviarSinaisForm(request.POST, request.FILES)
-        formPesquisa = PesquisaForm()
         toastSucesso = True
         try:
-            if form.is_valid():
-                dados = form.save(commit=False)
+            if formSinais.is_valid():
+                dados = formSinais.save(commit=False)
                 dados.glossario = Glossario.objects.get(nome='Sugestões')
-                dados.dataPost = datetime.date.today()
+                dados.create_data = datetime.date.today()
                 if request.FILES.get('sinalLibras'):
                     dados.sinalLibras = request.FILES['sinalLibras']
                 if request.FILES.get('descLibras'):
@@ -204,14 +159,13 @@ def enviarSinais(request):
                 if request.FILES.get('varicLibras'):
                     dados.varicLibras = request.FILES['varicLibras']
                 dados.save()
-                form = EnviarSinaisForm()
-                return render(request, 'enviarsinais.html', {'form': form, 'toastSucesso': toastSucesso})
+                formSinais = EnviarSinaisForm()
+                return render(request, 'enviarsinais.html', {'formSinais': formSinais, 'toastSucesso': toastSucesso})
         except ValueError:
             toastRepetido = True
-            return render(request, 'enviarsinais.html', {'form': form, 'toastRepetido': toastRepetido})
+            return render(request, 'enviarsinais.html', {'formSinais': formSinais, 'toastRepetido': toastRepetido})
     else:
-        form = EnviarSinaisForm()
-        return render(request, 'enviarsinais.html', {'form': form})
+        return render(request, 'enviarsinais.html', {'formSinais': formSinais, 'CM': cmGrupos,})
 
 def criaNodo(nodoPai):
     filhosPai = queryTemas.filter(temaPai=nodoPai)
@@ -261,33 +215,26 @@ def temasjson(request):
     print (jsonTemas)
     return JsonResponse(jsonTemas)
 
-#################### MÉTODOS ####################
+def busca(formSinais, formPesquisa):
+    parametros = {"publicado": True}
+    resultadoTraducao = formPesquisa.cleaned_data['busca']
+    localizacao = formSinais.cleaned_data['localizacao']
+    movimentacao = formSinais.cleaned_data['movimentacao']
+    mao = formSinais.cleaned_data['cmE']
 
-def filterSinaisPort(formSinais, sinaisGlossario, resultadoTraducao):
-    return sinaisGlossario.filter(
-        # grupoCMe e cmE estão repetidos pois o form pesquisa só por um grupoCM e CM
-                Q(traducaoP__icontains=resultadoTraducao) |
-                Q(localizacao=formSinais.cleaned_data['localizacao']) |
-                Q(movimentacao=formSinais.cleaned_data['movimentacao']) |
-                Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) |
-                Q(grupoCMd=formSinais.cleaned_data['grupoCMe']) |
-                Q(cmE=formSinais.cleaned_data['cmE']) |
-                Q(cmD=formSinais.cleaned_data['cmE'])
-            ).distinct()
+    if resultadoTraducao != '':
+        sinais = Sinal.objects.filter(Q(traducaoI__icontains=resultadoTraducao) | Q(traducaoP__icontains=resultadoTraducao))
 
-def filterSinaisIng(formSinais, sinaisGlossario, resultadoTraducao):
-    return sinaisGlossario.filter(
-        # grupoCMe e cmE estão repetidos pois o form pesquisa só por um grupoCM e CM
-                Q(traducaoI__icontains=resultadoTraducao) |
-                Q(localizacao=formSinais.cleaned_data['localizacao']) |
-                Q(movimentacao=formSinais.cleaned_data['movimentacao']) |
-                Q(grupoCMe=formSinais.cleaned_data['grupoCMe']) |
-                Q(grupoCMd=formSinais.cleaned_data['grupoCMe']) |
-                Q(cmE=formSinais.cleaned_data['cmE']) |
-                Q(cmD=formSinais.cleaned_data['cmE'])
-            ).distinct()
+    else:
+        if localizacao != '0':
+            parametros['localizacao'] = localizacao
+        if movimentacao != '0':
+            parametros['movimentacao'] = movimentacao
 
-# -----------------------------------------Registro de Usuario-------------------------------------------------------------------
+        sinais = Sinal.objects.filter(**parametros)
+        if mao:
+            sinais = sinais.filter(Q(cmE__bsw__icontains=mao) | Q(cmD__bsw__icontains=mao))
+    return sinais
 
 def registration(request):
     if request.method == 'POST':
@@ -299,7 +246,7 @@ def registration(request):
             message = render_to_string('account_activation_email.html', {
                 'user': user,
                 'domain': current_site.domain,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode(),
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': account_activation_token.make_token(user),
             })
             user.email_user(subject, message)
@@ -335,5 +282,3 @@ def activate(request, uidb64, token):
 def account_activation_sent(request):
     modalConfirmeEmail = True
     return render(request, 'index.html', {'modalConfirmeEmail':modalConfirmeEmail})
-
-# -------------------------------------------------------------------------------------------------------------------------

@@ -1,34 +1,43 @@
 {% extends 'base.html' %}
-{% block Head %}
+{% block head %}
 	{{ block.super }}
 	{% load staticfiles %}
 	<title>{% block title %}{{ glossario.nome }} - Glossário Letras Libras{% endblock %}</title>
 {% endblock %}
-{% block Corpo %}
-	    {% include 'navSearch.html' %}
-    	{% include 'modaisFormSinais.html' %}
-		{% if glossario.imagem %}
-			<a href="/{{glossario.link}}"><img class="circle imgGlossario" src="{{ glossario.imagem.url }}"/></a>
-		{% else %}
-			<a href="/{{glossario.link}}"><i class="large material-icons icone imgGlossario">cloud_off</i></a>
-		{% endif %}
-		<div class="container">
-				<h2 class="thin center">{{glossario.nome}}</h2>
-				<p class="divider divisor"></p>
-				<p class="definicao">{{glossario.descricao}}</p>
-
+{% block body %}
+ <div class="row center blockContainer">
+		<div class="col s12 m6 center">
+			{% if glossario.videoGlossario %}
+				 <video class="hide-on-small-only" id="videoGlossario" controls>
+						<source src="{{glossario.videoGlossario.url}}" type="video/mp4">
+				 </video>
+				<video class="hide-on-large-only"  controls>
+						<source src="{{glossario.videoGlossario.url}}" type="video/mp4">
+				 </video>
+			{% else %}
+				<div class="videoGlossario">
+					<i class="large material-icons icone videoOff">videocam_off</i>
+				</div>
+			{% endif %}
 		</div>
-
-	{% if glossario.videoGlossario %}
-			<video id="videoGlossario" controls preload="metadata">
-				<source src="{{glossario.videoGlossario.url}}">
-				Seu navegador não suporta vídeo html5, por favor atualize seu navegador.
-			</video>
-	{% else %}
-		<div class="videoGlossario">
-			<i class="large material-icons icone videoOff">videocam_off</i>
+		<div class="block col s12  m6">
+			<div class="block col m3 s3">
+				{% if glossario.imagem %}
+					<a href="/{{glossario.link}}"><img class="circle responsive-img imagemGlossario" src="{{ glossario.imagem.url }}"/></a>
+				{% else %}
+					<a href="/{{glossario.link}}"><i class="large material-icons icone">cloud_off</i></a>
+				{% endif %}
+			</div>
+			 <div class="block col m3">
+				 <div class="titulo center hide-on-small-only"><h2 class="thin">{{glossario.nome}}</h2></div>
+				 <div class="historia-titulo center hide-on-large-only "><h4>{{glossario.nome}}</h4></div>
+			 </div>
+				<ul class="col s12 m12 ">
+				<li id="definicao" class="divider divisor"></li>
+				<li class="definicao">{{glossario.descricao}}</li>
+			</ul>
 		</div>
-	{% endif %}
+ </div>
 {% endblock %}
 
 

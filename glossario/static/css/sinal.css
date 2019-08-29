@@ -14,29 +14,25 @@
 }
 
 .cardSinalMao {
-	min-height: 150px;
-	max-height: 650px;
+	min-height: 200px;
+	max-height: 200px;
 }
 
 @media only screen and (max-width : 992px) {
 	.cardSinalMao {
-		min-height: 450px;
+		min-height: 200px;
 	}
 }
 
 .cardSinal {
-	min-height: 150px;
-	max-height: 650px;
+	min-height: 200px;
+	max-height: 200px;
 }
 
-.imgMao {
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
 
 .imgSinal {
-	width: 100px;
-	height: 100px;
+	width: 120px;
+	height: 120px;
 }
 
 .textoTraducoes {
@@ -48,4 +44,13 @@
 	a.white-text {
 		padding: 0 !important;
 	}
+}
+
+#textoDescricao {
+  background-size: cover;
+  height: 190px;
+}
+
+#movimentacao{
+    font-size: 143%;
 }

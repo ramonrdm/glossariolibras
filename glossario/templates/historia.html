@@ -1,11 +1,10 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block title %}História - Glossário Letras Libras{% endblock %}
-
-	{% block Corpo %}
-
-	<div class="titulo hide-on-small-only"><h2 class="thin">Glossário Libras</h2></div>
-	<div class="titulo hide-on-med-and-up"><h3 class="thin">Glossário Libras</h3></div>
+{% block body %}
+	<div class="row center blockContainer">
+	<div class="titulo center hide-on-small-only"><h2 class="thin">Glossário Libras</h2></div>
+	<div class="titulo hide-on-large-only"><h3 class="thin">Glossário Libras</h3></div>
 	<div class="divider divisor"></div>
 	<div class="definicao-titulo"><h4 class="thin">Definição</h4></div>
 	<div class="definicao">
@@ -39,4 +38,6 @@
 		<a href="https://github.com/ramonrdm/glossariolibras">Site do software</a>
 		<a href="">Confira os grupos das configurações de mão</a>
 	</div>
+</div>
+
 {% endblock %}

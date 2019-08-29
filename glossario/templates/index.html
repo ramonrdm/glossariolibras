@@ -1,24 +1,23 @@
 {% extends 'base.html' %}
-{% block Head %}
+{% block head %}
 	{{ block.super }}
     {% load staticfiles %}
-     <script type="text/javascript" src="{% static 'js/registration.js' %}"></script>
 {% endblock %}
-{% block title %}Glossários de Libras - Glossário Letras Libras{% endblock %}
-{% block Corpo %}
-    {% include 'navSearch.html' %}
-    {% include 'modaisFormSinais.html' %}
+{% block title %}
+  Glossários de Libras - Glossário Letras Libras
+{% endblock %}
+{% block body %}
     <div class="row center blockContainer">
-        <div class="block col s4 m3">
+        <div class="block col s6 m2">
             <a href="{% url 'temas' %}">
                 <img class="circle z-depth-2 hoverable imgIndex" src="{% static 'img/arvore_banyan_havai.png' %}">
                 <div>
-                    <span class="flow-text textoIndex">Temas</span>
+                    <span class="flow-text textoIndex">Explorar</span>
                 </div>
             </a>
         </div>
         {% for glossario in glossarios %}
-            <div class="block col s4 m3">
+            <div class="block col s6 m2">
                 {% if glossario.imagem %}
                     <a href="/{{glossario.link}}">
                         <img class="circle z-depth-2 hoverable imgIndex" src="{{glossario.imagem.url}}">
@@ -69,7 +68,5 @@
         </div>
       </div>
     {% endif %}
-
-
 
 {% endblock %}

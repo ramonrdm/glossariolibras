@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from django.db.models import FileField
+from django.db.models import FileField, DateTimeField
 from django.core.files import File
 from django.contrib.auth import hashers
 from django.db.models.signals import post_save, pre_save
@@ -12,9 +12,6 @@ import subprocess
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser, PermissionsMixin
 )
-
-# -----------------------------------------Criação de Usuario-------------------------------------------------------------------
-
 
 class UserManagerGlossario(BaseUserManager):
     
@@ -29,7 +26,10 @@ class UserManagerGlossario(BaseUserManager):
     def create_user(self, email, nome_completo, password=None, **extra_fields):
         if not email:
             raise ValueError('Users must have an email address')
+        extra_fields.setdefault('is_active', True)
         extra_fields.setdefault('is_superuser', False)
+        extra_fields.setdefault('is_staff', True)
+
         return self._create_user(email, nome_completo, password, **extra_fields)
 
     def create_superuser(self, email, password, nome_completo, **extra_fields):
@@ -46,6 +46,10 @@ class UserManagerGlossario(BaseUserManager):
         return self._create_user(email, nome_completo, password, **extra_fields)
 
 class UserGlossario(AbstractBaseUser, PermissionsMixin):
+    
+    class Meta:
+        verbose_name = "Usuário"
+
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
@@ -53,8 +57,8 @@ class UserGlossario(AbstractBaseUser, PermissionsMixin):
     )
     nome_completo = models.CharField(max_length=255, null=False)
     email_confirmed = models.BooleanField(default=False)
-    is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
     objects = UserManagerGlossario()
 
     USERNAME_FIELD = 'email'
@@ -71,8 +75,6 @@ class UserGlossario(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
-
-# -------------------------------------------------------------------------------------------------------------------------
 
 class Video(FileField):
     capa = models.ImageField(blank=True)
@@ -91,31 +93,47 @@ class Glossario(models.Model):
     link = models.CharField('Link', max_length=20)
     dataCriacao = models.DateField('data de criação', auto_now_add=True)
     videoGlossario = Video('Vídeo', blank=True)
+    visivel = models.BooleanField("Visivel", default=True)
 
     def __str__(self):
         return self.nome
 
-class GrupoCM (models.Model):
-    class Meta:
-        verbose_name_plural='Grupos de configuração de mão'
-        
-    imagem = models.ImageField(blank=True)
-    bsw = models.TextField('BSW')
-
-    def __str__(self):
-        return str(self.id)
-
 class CM (models.Model):
+    """Total de 261 configurações de mão divididas em 10 grupos."""
     class Meta:
-        verbose_name_plural='configurações de mão'
+        verbose_name_plural='Configurações de mão'
 
-    bsw = models.TextField('BSW', blank=True, default='')
-    imagem = models.ImageField(blank=True)
-    grupo = models.ForeignKey(GrupoCM, verbose_name = 'Grupo de Configuração de Mão', on_delete=models.CASCADE)
+    bsw = models.TextField('BSW', blank=True, default='0')
+    name = models.TextField('name', default='')
+    group = models.TextField('Grupo', default='')
+
+    def imagem(self):
+        return str(""+str(self.group)+"/"+self.bsw+".png")
 
     def __str__(self):
-        # return str(self.id)+" - "+str(self.grupo)
-        return str(self.id)
+        return str(str(self.id)+" "+self.bsw)
+
+class Localizacao(models.Model):
+    class Meta:
+        abstract = True
+    
+    localizacoes = (('0','Nunhuma'),('1','Cabeça'),('2','Ombros'),('3','Braços'),('4','Nariz'),('5','Bochechas'),
+                    ('6','Boca'),('7','Tronco'),('8','Espaço Neutro'),('9','Olhos'),('10','Orelhas'),
+                    ('11','Pescoço'),('12','Queixo'),('13','Testa')
+                )
+    localizacoes_imagens = dict(
+            [('1', 'localizacaoCabeca.png'), ('2', 'localizacaoOmbros.png'), ('3', 'localizacaoBracos.png'),
+             ('4', 'localizacaoNariz.png'), ('5', 'localizacaoBochechas.png'), ('6', 'localizacaoBoca.png'),
+             ('7', 'localizacaoTronco.png'), ('8', 'localizacaoNeutro.png'), ('9', 'localizacaoOlhos.png'),
+             ('10', 'localizacaoOrelhas.png'),
+             ('11', 'localizacaoPescoco.png'), ('12', 'localizacaoQueixo.png'), ('13', 'localizacaoTesta.png')])
+
+        
+class Movimentacao(models.Model):
+    class Meta:
+        abstract = True
+
+    movimentacoes = (('0', 'Sem Movimentação'),('1', 'Parede'), ('2', 'Chão'), ('3', 'Circular'), ('4', 'Contato'))
 
 class Tema(models.Model):
     nome = models.CharField('Nome', max_length=30)
@@ -134,28 +152,22 @@ def sinal_upload_path(instance, filename):
 class Sinal(models.Model):
     class Meta:
         verbose_name_plural = 'sinais'
-        unique_together = ('traducaoP', 'traducaoI', 'grupoCMe', 'cmE', 'grupoCMd', 'cmD', 'localizacao')
+        unique_together = ('traducaoP', 'traducaoI', 'cmE','cmD', 'localizacao', 'movimentacao')
 
     glossario = models.ForeignKey(Glossario, verbose_name='glossário', null=True, on_delete=models.CASCADE)
     traducaoP = models.CharField('palavra', max_length=30)
     traducaoI = models.CharField('word', max_length=30)
     bsw = models.TextField(null=True, blank=True)
     descricao = models.TextField('descrição',  null=True)
-    grupoCMe = models.ForeignKey(GrupoCM, related_name='Grupo_M_Esquerda', verbose_name='grupo da mão esquerda', on_delete=models.CASCADE)
     cmE = models.ForeignKey(CM, related_name='C_M_Esquerda', verbose_name='configuração da mão esquerda', on_delete=models.CASCADE)
-    grupoCMd = models.ForeignKey(GrupoCM, related_name='Grupo_M_Direita', verbose_name='grupo da mão direita', on_delete=models.CASCADE)
     cmD = models.ForeignKey(CM, related_name='C_M_Direita', verbose_name='configuração da mão direita', on_delete=models.CASCADE)
-    localizacoes = (('1','Cabeça'),('2','Ombros'),('3','Braços'),('4','Nariz'),('5','Bochechas'),
-                        ('6','Boca'),('7','Tronco'),('8','Espaço Neutro'),('9','Olhos'),('10','Orelhas'),
-                        ('11','Pescoço'),('12','Queixo'),('13','Testa')
-                    )
-    localizacao = models.CharField(max_length=2, choices=localizacoes,default=8)
-    movimentacoes = (('1', 'Sem Movimentação'),('2', 'Parede'), ('3', 'Chão'), ('4', 'Circular'), ('5', 'Contato'))
-    movimentacao = models.CharField(max_length=10, choices=movimentacoes, default=1)
-    dataPost = models.DateField('data de criação', null=True)
+    localizacao = models.CharField(max_length=2, choices=Localizacao.localizacoes, default=0)
+    movimentacao = models.CharField(max_length=10, choices=Movimentacao.movimentacoes, default=0)
+    create_data = models.DateTimeField(auto_now_add=True)
     postador = models.ForeignKey(UserGlossario, null=True, on_delete=models.CASCADE)
     publicado = models.BooleanField(default=False)
     sinalLibras = Video('Vídeo do sinal', upload_to=sinal_upload_path, null=True, blank=True)
+    preview = models.ImageField('Preview do Video de sinal', null=True)
     descLibras = Video('Vídeo da descrição', upload_to=sinal_upload_path, null=True, blank=True)
     exemploLibras = Video('Vídeo do exemplo', upload_to=sinal_upload_path, null=True, blank=True)
     varicLibras = Video('Vídeo da variante', upload_to=sinal_upload_path, null=True, blank=True)
@@ -187,9 +199,3 @@ def update_upload_path(sender, instance, created, **kwargs):
                     % datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'),
                     shell=True
                     )
-
-
-class BarraPesquisa(models.Model):
-    barraPesquisaLibras = models.BooleanField(default=True)
-
-
