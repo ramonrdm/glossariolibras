@@ -86,4 +86,3 @@ $('#mobileSearchEscrita').hide();
   })
 
 });
-

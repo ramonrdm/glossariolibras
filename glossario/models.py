@@ -134,6 +134,7 @@ class Movimentacao(models.Model):
         abstract = True
 
     movimentacoes = (('0', 'Sem Movimentação'),('1', 'Parede'), ('2', 'Chão'), ('3', 'Circular'), ('4', 'Contato'))
+    movimentacoes_imagens = (( '0X.svg'), ('1parede.png'), ('2chao.png'), ('3circular.png'), ('4contato.png'))
 
 class Tema(models.Model):
     nome = models.CharField('Nome', max_length=30)
