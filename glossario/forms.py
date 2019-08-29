@@ -22,7 +22,7 @@ class SinalForm(forms.ModelForm):
         widgets = {
                     # 'localizacao': ImageSelectLocalizacao(),
                     # 'cmE': ImageSelectMao(),
-                    # 'cmD': ImageSelectMao()
+                    # 'cmD': ImageSelectMao(),
                     # 'movimentacao': ImageSelectMovimentacao()
         }
 
@@ -64,6 +64,12 @@ class PesquisaSinaisForm(forms.ModelForm):
                     'cmE': ImageSelectMao(),
                     'movimentacao': ImageSelectMovimentacao()
                      }
+
+    def __init__(self, *args, **kwargs):
+        super(PesquisaSinaisForm, self).__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].required = False
+
 
 class CMForm(forms.ModelForm):
     class Meta:

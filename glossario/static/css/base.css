@@ -229,8 +229,9 @@ div.thumbnail:not(.selected) {
     border-radius: 45px 45px 45px 45px  !important;
     border-style: outset  !important;
     border-bottom-width: 2px  !important;
-    box-shadow: 5px 5px 5px rgba(0,0,0,0.1)  !important;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.1)   !important;
     margin-top: 3%  !important;
+
 }
 
 

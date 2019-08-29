@@ -40,7 +40,7 @@ class ImageSelectMovimentacao(forms.Widget):
         js = ('/static/widgetSelectMovimentacao/modalMovimentacao.js',)
 
     def render(self, name, value, attrs=None, renderer=None):
-        movimentacao = Movimentacao.movimentacoes_imagens
+        movimentacao = Movimentacao.movimentacoes_busca
         template = loader.get_template(self.template_name).render({'movimentacao': movimentacao,})
         return mark_safe(template)
 
