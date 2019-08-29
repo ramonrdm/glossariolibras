@@ -76,6 +76,8 @@ $('area').click(function() {
     let attrValue = $(this).attr('data-key');
     $('#id_cmE').val(attrValue);
     $('#imagem_localizacao').attr('src', 'static/img/'+loc_js[attrValue]);
+    $('#imagem_localizacao_mobile').attr('src', 'static/img/'+loc_js[attrValue]);
+    
 });
 
 });
