@@ -79,3 +79,4 @@ $('area').click(function() {
 });
 
 });
+
