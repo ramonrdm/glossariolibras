@@ -14,17 +14,25 @@ class GlossarioForm(forms.ModelForm):
         exclude = ['link','dataCriacao']
 
 class SinalForm(forms.ModelForm):
+
+    class Media:
+        css = {'all': ('/static/css/materialize.css',)}
+        js = ('/static/js/materialize.js',)
+
     class Meta:
         model = Sinal
         fields = ['glossario', 'traducaoP', 'traducaoI', 'descricao', 'bsw', 'cmE',
         'cmD', 'localizacao', 'movimentacao', 'tema', 'postador', 'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras',
         'publicado']
         widgets = {
-                    # 'localizacao': ImageSelectLocalizacao(),
-                    # 'cmE': ImageSelectMao(),
-                    # 'cmD': ImageSelectMao(),
-                    # 'movimentacao': ImageSelectMovimentacao()
+                    'localizacao': ImageSelectLocalizacao(),
+                    'cmE': ImageSelectMao(),
+                    'cmD': ImageSelectMao(),
+                    'movimentacao': ImageSelectMovimentacao()
         }
+
+
+
 
     def __init__(self, *args, **kwargs):
         super(SinalForm, self).__init__(*args, **kwargs)
@@ -36,12 +44,12 @@ class EnviarSinaisForm(forms.ModelForm):
         model = Sinal
         fields = ['traducaoP', 'traducaoI', 'descricao', 'localizacao', 'movimentacao', 'cmE', 'cmD',
         'sinalLibras', 'descLibras', 'exemploLibras', 'varicLibras']
-        widgets =   {
-                    'localizacao': ImageSelectLocalizacao(),
-                    'cmE': ImageSelectMao(),
-                    'cmD': ImageSelectMao(),
-                    'movimentacao': ImageSelectMovimentacao()
-                    }
+        widgets ={
+                'localizacao': ImageSelectLocalizacao(),
+                'cmE': ImageSelectMao(),
+                'cmD': ImageSelectMao(),
+                'movimentacao': ImageSelectMovimentacao()
+                }
 
     def __init__(self, *args, **kwargs):
         super(EnviarSinaisForm, self).__init__(*args, **kwargs)
@@ -60,10 +68,10 @@ class PesquisaSinaisForm(forms.ModelForm):
         fields = ['localizacao', 'cmE', 'movimentacao', ]
 
         widgets ={
-                    'localizacao': ImageSelectLocalizacao(),
-                    'cmE': ImageSelectMao(),
-                    'movimentacao': ImageSelectMovimentacao()
-                     }
+                'localizacao': ImageSelectLocalizacao(),
+                'cmE': ImageSelectMao(),
+                'movimentacao': ImageSelectMovimentacao()
+                 }
 
     def __init__(self, *args, **kwargs):
         super(PesquisaSinaisForm, self).__init__(*args, **kwargs)

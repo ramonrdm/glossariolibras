@@ -1,12 +1,9 @@
 $(document).ready(function(){
-    $('.sidenav').sidenav();
-    $('#telaMobile').show();
-    $('.pesquisaViewModule').hide();
-    $('#mobileSearchEscrita').hide();
-    $('.tabs').tabs();
+
 
     if ((window.screen.availWidth < 800)){
         $('.telaWeb').html('');
+//        $('.telaWeb').attr('src', $(this).attr('src'));
         $('.sidenav').css({ 'z-index' : "1000"});
         $('.sidenav').css({ 'padding-top' : "0%"});
         $('.blockContainer').css({ 'padding-left': "0%"});
@@ -15,8 +12,20 @@ $(document).ready(function(){
 
    }else{
         $('.telaMobile').html('');
+//                $('.telaWeb').attr('src', $(this).attr('src'))
+//display: block;
 
    }
+
+
+
+    $('.sidenav').sidenav();
+    $('#telaMobile').show();
+    $('.pesquisaViewModule').hide();
+    $('#mobileSearchEscrita').hide();
+    $('.tabs').tabs();
+
+
     $('.modal').modal();
     $('#confirmeEmail').modal('open');
     $('#confirmeEmailErro').modal('open');

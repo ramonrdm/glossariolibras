@@ -1,20 +1,16 @@
 from __future__ import unicode_literals
-from django.forms.widgets import Select
 from django import forms
 from django.utils.safestring import mark_safe
 from django.template import loader
 from glossario.models import CM, Movimentacao
-from django.utils.encoding import force_text
-from django.utils.html import format_html
-from django.conf import settings
-from django.template.loader import render_to_string
+
 import json
 
 class ImageSelectLocalizacao(forms.Widget):
     template_name = 'widget_localizacao.html'
 
     class Media:
-        css = {'all': ('/static/widgetSelectLocalizacao/widget_localizacao.css',)}
+        css = {'all': ('/static/widgetSelectLocalizacao/widget_localizacao.css', )}
         js = ('js/jquery.imagemapster.js', '/static/widgetSelectLocalizacao/widget_localizacao.js', )
     
     # def __init__(self, attrs=None, choices=(), field_img=None):
@@ -38,6 +34,8 @@ class ImageSelectMovimentacao(forms.Widget):
 
     class Media:
         js = ('/static/widgetSelectMovimentacao/modalMovimentacao.js',)
+        css = {'all': ('/static/widgetSelectMovimentacao/css_movimentacao.css',)}
+
 
     def render(self, name, value, attrs=None, renderer=None):
         movimentacao = Movimentacao.movimentacoes_busca
