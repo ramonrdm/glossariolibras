@@ -150,11 +150,11 @@ class Sinal(models.Model):
         verbose_name_plural = 'sinais'
         unique_together = ('traducaoP', 'traducaoI', 'cmE','cmD', 'localizacao', 'movimentacao')
     
-    original_mode = None
+    videos_originais_converter = []
 
     def __init__(self, *args, **kwargs):
         super(Sinal, self).__init__(*args, **kwargs)
-        self.original_mode = self.sinalLibras
+        self.videos_originais_converter = [self.sinalLibras, self.descLibras, self.exemploLibras, self.varicLibras]
 
     glossario = models.ForeignKey(Glossario, verbose_name='glossário', null=True, on_delete=models.CASCADE)
     traducaoP = models.CharField('palavra', max_length=30)

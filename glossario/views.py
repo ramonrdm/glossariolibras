@@ -220,7 +220,8 @@ def busca(formSinais, formPesquisa):
         print( 'Pesquisa como texto ')
     else:
         if localizacao:
-            print("localizacao")
+            print("###############################localizacao")
+            
             print(localizacao)
             sinais = sinais.filter(localizacao=localizacao)
         if movimentacao != '0':
