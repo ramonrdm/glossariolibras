@@ -6,12 +6,7 @@ from django.contrib.auth import hashers
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from django.core.mail import send_mail
-from django.conf import settings
-import datetime
-import subprocess
-from django.contrib.auth.models import (
-    BaseUserManager, AbstractBaseUser, PermissionsMixin
-)
+from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
 
 class UserManagerGlossario(BaseUserManager):
     
@@ -76,10 +71,6 @@ class UserGlossario(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 
-class Video(FileField):
-    capa = models.ImageField(blank=True)
-    videoMp4 = models.FileField()
-
 class Glossario(models.Model):
 
     class Meta:
@@ -92,7 +83,7 @@ class Glossario(models.Model):
     imagem = models.ImageField('Imagem', blank =True)
     link = models.CharField('Link', max_length=20)
     dataCriacao = models.DateField('data de criação', auto_now_add=True)
-    videoGlossario = Video('Vídeo', blank=True)
+    videoGlossario = FileField('Vídeo', blank=True)
     visivel = models.BooleanField("Visivel", default=True)
 
     def __str__(self):
@@ -101,7 +92,7 @@ class Glossario(models.Model):
 class CM (models.Model):
     """Total de 261 configurações de mão divididas em 10 grupos."""
     class Meta:
-        verbose_name_plural='Configurações de mão'
+        verbose_name_plural='Configurações de Mão'
 
     bsw = models.TextField('BSW', blank=True, default='0')
     name = models.TextField('name', default='')
@@ -143,7 +134,7 @@ class Movimentacao(models.Model):
 class Tema(models.Model):
     nome = models.CharField('Nome', max_length=30)
     descricao = models.CharField('Descrição', max_length=100, null=True)
-    video = Video('Vídeo', null=True, blank=True)
+    video = FileField('Vídeo', null=True, blank=True)
     imagem = models.ImageField('Imagem', blank=False, null=True)
     temaPai = models.ForeignKey('self',null=True, blank = True, verbose_name = 'Tema Pai', on_delete=models.CASCADE)
 
@@ -158,6 +149,12 @@ class Sinal(models.Model):
     class Meta:
         verbose_name_plural = 'sinais'
         unique_together = ('traducaoP', 'traducaoI', 'cmE','cmD', 'localizacao', 'movimentacao')
+    
+    original_mode = None
+
+    def __init__(self, *args, **kwargs):
+        super(Sinal, self).__init__(*args, **kwargs)
+        self.original_mode = self.sinalLibras
 
     glossario = models.ForeignKey(Glossario, verbose_name='glossário', null=True, on_delete=models.CASCADE)
     traducaoP = models.CharField('palavra', max_length=30)
@@ -171,36 +168,11 @@ class Sinal(models.Model):
     create_data = models.DateTimeField(auto_now_add=True)
     postador = models.ForeignKey(UserGlossario, null=True, on_delete=models.CASCADE)
     publicado = models.BooleanField(default=False)
-    sinalLibras = Video('Vídeo do sinal', upload_to=sinal_upload_path, null=True, blank=True)
-    preview = models.ImageField('Preview do Video de sinal', null=True)
-    descLibras = Video('Vídeo da descrição', upload_to=sinal_upload_path, null=True, blank=True)
-    exemploLibras = Video('Vídeo do exemplo', upload_to=sinal_upload_path, null=True, blank=True)
-    varicLibras = Video('Vídeo da variante', upload_to=sinal_upload_path, null=True, blank=True)
+    sinalLibras = FileField('Vídeo do sinal', upload_to=sinal_upload_path, null=True, blank=True)
+    descLibras = FileField('Vídeo da descrição', upload_to=sinal_upload_path, null=True, blank=True)
+    exemploLibras = FileField('Vídeo do exemplo', upload_to=sinal_upload_path, null=True, blank=True)
+    varicLibras = FileField('Vídeo da variante', upload_to=sinal_upload_path, null=True, blank=True)
     tema = models.ForeignKey(Tema, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.traducaoP
-
-@receiver(post_save, sender=Sinal)
-def update_upload_path(sender, instance, created, **kwargs):
-    # o arquivo será salvo em MEDIA_ROOT/sinal_videos/convertidos/<id>-<tag>-<YYYY>-<MM>-<DD>-<HH><MM><SS>
-
-    originais = '{0}/sinal_videos/originais'.format(settings.MEDIA_ROOT)
-    convertidos = '{0}/sinal_videos/convertidos'.format(settings.MEDIA_ROOT)
-
-    videoFields = [instance.sinalLibras, instance.descLibras, instance.exemploLibras, instance.varicLibras]
-    tags = ['sinal', 'descricao', 'exemplo', 'variacao']
-
-    for index, field in enumerate(videoFields):
-        if field:
-            subprocess.call('ffmpeg -i {0}/{1} -c:v libx264 -crf 19 -movflags faststart -threads 0 -preset slow -c:a aac -strict -2 {2}/{3}-{4}-%s.mp4'
-                .format(
-                    originais,
-                    str(field).split('/')[2],
-                    convertidos,
-                    instance.id,
-                    tags[index]
-                    )
-                    % datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'),
-                    shell=True
-                    )
