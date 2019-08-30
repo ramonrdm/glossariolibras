@@ -1,9 +1,8 @@
 $(document).ready(function(){
 
-
     if ((window.screen.availWidth < 800)){
         $('.telaWeb').html('');
-//        $('.telaWeb').attr('src', $(this).attr('src'));
+        $('.telaMobile').attr('style', "display: block;" );
         $('.sidenav').css({ 'z-index' : "1000"});
         $('.sidenav').css({ 'padding-top' : "0%"});
         $('.blockContainer').css({ 'padding-left': "0%"});
@@ -12,12 +11,8 @@ $(document).ready(function(){
 
    }else{
         $('.telaMobile').html('');
-//                $('.telaWeb').attr('src', $(this).attr('src'))
-//display: block;
-
+        $('.telaWeb').attr('style', "display: block;" );
    }
-
-
 
     $('.sidenav').sidenav();
     $('#telaMobile').show();

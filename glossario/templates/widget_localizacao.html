@@ -18,13 +18,13 @@ var loc_js = {{ localizacoes|safe }};
 </div>
 
 {% load staticfiles %}
-<div id="modalLocalizacao" class="modal">
-    <div class="modal-content">
-        <h4>Localização</h4>
-        <div class="mapModal">
-            <div class="row">
-                <div class="col s12">
-                    <img id="modeloImg" src="{% static 'img/modelo2.png' %}" alt="" usemap="#modeloMap"/>
+<div id="modalLocalizacao" class="modal center">
+    <div class="modal-content center">
+        <h4 class="black-text center">Localização</h4>
+        <div class="mapModal center">
+            <div class="row center">
+                <div class="col s12 center">
+                    <img class="responsive-img" id="modeloImg" src="{% static 'img/modelo2.png' %}" alt="" usemap="#modeloMap"/>
                     <map name="modeloMap" id="modeloMap" class="modal-action modal-close">
                         <!-- USAR DATA-KEY COMO O VALUE DAS OPTIONS DO SELECT -->
                         <area data-key="0" alt="" title="" href="#" shape="poly" coords="191,0,0,165,0,0">
