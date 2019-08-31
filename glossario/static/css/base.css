@@ -207,11 +207,6 @@ ul.dropdown-content.select-dropdown li span {
 	line-height: 2.5;
 }
 
-/* Define as dimensões do avatar */
-img#modeloImg {
-	width: 600%;
-	height: 600%;
-}
 
 /* Esconde as options que não estão selecionadas ao construir a página */
 div.thumbnail:not(.selected) {
@@ -222,32 +217,7 @@ div.thumbnail:not(.selected) {
 	display: inline-block !important;
 }
 
-.sinais{
-	background-color: white !important;
-    height:90px  !important;
-    padding: 2px  !important;
-    border-radius: 45px 45px 45px 45px  !important;
-    border-style: outset  !important;
-    border-bottom-width: 2px  !important;
-    box-shadow: 5px 5px 5px rgba(0,0,0,0.1)   !important;
-    margin-top: 3%  !important;
 
-}
-
-
-.sinaisMobile{
-	background-color: white;
-    height: 85px;
-    padding: -1px;
-    border-radius: 45px 45px 45px 45px;
-    border-style: outset;
-    border-bottom-width: 3px;
-    box-shadow: 5px 5px 5px rgba(0,0,0,0.1);
-    margin-left: 30%;
-	margin-right: 50%;
-    margin-top: 10px;
-
-}
 
 /* Correções nos thumbnails na sidenav */
 

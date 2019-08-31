@@ -1,21 +1,17 @@
 from __future__ import unicode_literals
-from django.forms.widgets import Select
 from django import forms
 from django.utils.safestring import mark_safe
 from django.template import loader
 from glossario.models import CM, Movimentacao
-from django.utils.encoding import force_text
-from django.utils.html import format_html
-from django.conf import settings
-from django.template.loader import render_to_string
+
 import json
 
 class ImageSelectLocalizacao(forms.Widget):
     template_name = 'widget_localizacao.html'
 
     class Media:
-        css = {'all': ('/static/widgetSelectLocalizacao/widget_localizacao.css',)}
-        js = ('js/jquery.imagemapster.js', '/static/widgetSelectLocalizacao/widget_localizacao.js', )
+        css = {'all': ('/static/widgetSelectLocalizacao/widget_localizacao.css', )}
+        js = ('/static/widgetSelectLocalizacao/widget_localizacao.js', 'js/jquery.imagemapster.js',)
     
     # def __init__(self, attrs=None, choices=(), field_img=None):
     #     super(ImageSelectLocalizacao, self).__init__(attrs)
@@ -38,8 +34,13 @@ class ImageSelectMovimentacao(forms.Widget):
 
     class Media:
         js = ('/static/widgetSelectMovimentacao/modalMovimentacao.js',)
+        css = {'all': ('/static/widgetSelectMovimentacao/css_movimentacao.css',)}
+
 
     def render(self, name, value, attrs=None, renderer=None):
+
+
+        print(value)
         movimentacao = Movimentacao.movimentacoes_busca
         template = loader.get_template(self.template_name).render({'movimentacao': movimentacao,})
         return mark_safe(template)
@@ -51,10 +52,15 @@ class ImageSelectMao(forms.Widget):
         js = ('/static/widgetSelectMao/modalCM.js',)
 
     def render(self, name, value, attrs=None, renderer=None):
+
+        print('name')
+        print(name)
+        print('value')
+        print(value)
         cm = CM.objects.all()
         cmGrupos = [c.group for c in cm]
         cmGrupos = sorted(list(dict.fromkeys(cmGrupos)))
-        template = loader.get_template(self.template_name).render({'cm': cm, 'cmGrupos': cmGrupos, })
+        template = loader.get_template(self.template_name).render({'cm': cm, 'cmGrupos': cmGrupos,'name': name,'value': value})
         return mark_safe(template)
 
 

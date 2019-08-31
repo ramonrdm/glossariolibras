@@ -1,7 +1,9 @@
 $(document).ready(function(){
     //$("#imagem_localizacao").hide();
+
     $('.modal').modal();
     $('#modeloImg').parent().css({"margin":"0 auto"});
+//      $('#modeloImg').mapster('resize',width,height,duration);
 
     $('#modeloImg').mapster( {
         fillColor: '000000',
@@ -67,7 +69,7 @@ $(document).ready(function(){
                 key: "14",
                 toolTip: "Mãos"
             }
-            
+
         ]
 });
 $('#modeloImg').parent().css({"margin":"0 auto"});
@@ -75,9 +77,9 @@ $('#modeloImg').parent().css({"margin":"0 auto"});
 $('area').click(function() {
     let attrValue = $(this).attr('data-key');
     $('#id_localizacao').val(attrValue);
-    $('#imagem_localizacao').attr('src', 'static/img/'+loc_js[attrValue]);
-    $('#imagem_localizacao_mobile').attr('src', 'static/img/'+loc_js[attrValue]);
-});
+    $('#imagem_localizacao').attr('src', '/static/img/'+loc_js[attrValue]);
+    $('#imagem_localizacao_mobile').attr('src', '/static/img/'+loc_js[attrValue]);
 
 });
 
+});

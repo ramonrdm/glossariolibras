@@ -1,6 +1,5 @@
 $(document).ready(function(){
-
-
+    $('.modal').modal();
     $('.escolhaMovimentacao').click(function(){
          var escolhaMovimentacao = $(this).attr('id');
          $('#id_movimentacao').val(escolhaMovimentacao);

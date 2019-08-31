@@ -217,23 +217,13 @@ def busca(formSinais, formPesquisa):
     sinais = Sinal.objects.filter(publicado=True)
     if resultadoTraducao != '':
         sinais = sinais.filter(Q(traducaoI__icontains=resultadoTraducao) | Q(traducaoP__icontains=resultadoTraducao))
-        print( 'Pesquisa como texto ')
     else:
         if localizacao:
-            print("###############################localizacao")
-            
-            print(localizacao)
             sinais = sinais.filter(localizacao=localizacao)
         if movimentacao != '0':
-            print("entrou em movimentacao")
-            print(movimentacao)
             sinais = sinais.filter(movimentacao=movimentacao)
-            print(sinais)
         if mao:
-            print("entrou em cm")
-            print(mao.id)
             sinais = sinais.filter(Q(cmE=mao) | Q(cmD=mao))
-    print(sinais)
     return sinais
 
 def registration(request):

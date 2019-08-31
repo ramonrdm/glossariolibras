@@ -54,3 +54,175 @@
 #movimentacao{
     font-size: 143%;
 }
+
+.textoSinal {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.videoSinal {
+	margin-top: 2%;
+	margin-bottom: 2%;
+	width: 750px;
+}
+
+.mao {
+	margin-top: 20px;
+}
+
+.cardSinalMao {
+	min-height: 200px;
+	max-height: 200px;
+}
+
+@media only screen and (max-width : 992px) {
+	.cardSinalMao {
+		min-height: 200px;
+	}
+}
+
+.cardSinal {
+	min-height: 200px;
+	max-height: 200px;
+}
+
+
+.imgSinal {
+	width: 120px;
+	height: 120px;
+}
+
+.textoTraducoes {
+	margin-top: 3%;
+}
+
+/* Arrumar a largura das tabs mobile */
+@media screen and (max-width: 992px) {
+	a.white-text {
+		padding: 0 !important;
+	}
+}
+
+#textoDescricao {
+  background-size: cover;
+  height: 190px;
+}
+
+#movimentacao{
+    font-size: 143%;
+}
+
+.textoSinal {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.videoSinal {
+	margin-top: 2%;
+	margin-bottom: 2%;
+	width: 750px;
+}
+
+.mao {
+	margin-top: 20px;
+}
+
+.cardSinalMao {
+	min-height: 200px;
+	max-height: 200px;
+}
+
+@media only screen and (max-width : 992px) {
+	.cardSinalMao {
+		min-height: 200px;
+	}
+}
+
+.cardSinal {
+	min-height: 200px;
+	max-height: 200px;
+}
+
+
+.imgSinal {
+	width: 120px;
+	height: 120px;
+}
+
+.textoTraducoes {
+	margin-top: 3%;
+}
+
+/* Arrumar a largura das tabs mobile */
+@media screen and (max-width: 992px) {
+	a.white-text {
+		padding: 0 !important;
+	}
+}
+
+#textoDescricao {
+  background-size: cover;
+  height: 190px;
+}
+
+#movimentacao{
+    font-size: 143%;
+}
+
+.textoSinal {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.videoSinal {
+	margin-top: 2%;
+	margin-bottom: 2%;
+	width: 750px;
+}
+
+.mao {
+	margin-top: 20px;
+}
+
+.cardSinalMao {
+	min-height: 200px;
+	max-height: 200px;
+}
+
+@media only screen and (max-width : 992px) {
+	.cardSinalMao {
+		min-height: 200px;
+	}
+}
+
+.cardSinal {
+	min-height: 200px;
+	max-height: 200px;
+}
+
+
+.imgSinal {
+	width: 120px;
+	height: 120px;
+}
+
+.textoTraducoes {
+	margin-top: 3%;
+}
+
+/* Arrumar a largura das tabs mobile */
+@media screen and (max-width: 992px) {
+	a.white-text {
+		padding: 0 !important;
+	}
+}
+
+#textoDescricao {
+  background-size: cover;
+  height: 190px;
+}
+
+#movimentacao{
+    font-size: 143%;
+}
+
