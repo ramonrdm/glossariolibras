@@ -1,15 +1,5 @@
 
-/* Esconde o modelo do avatar da localização e corrige um deslocamento do highlight com a imagem */
-.map {
-	display: none;
-	line-height: 2.5;
-}
 
-/* Define as dimensões do avatar */
-img#modeloImg {
-	width: 650px;
-	height: 650px;
-}
 
 /* Esconde as options que não estão selecionadas ao construir a página */
 div.thumbnail:not(.selected) {

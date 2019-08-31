@@ -207,11 +207,6 @@ ul.dropdown-content.select-dropdown li span {
 	line-height: 2.5;
 }
 
-/* Define as dimensões do avatar */
-img#modeloImg {
-	width: 600%;
-	height: 600%;
-}
 
 /* Esconde as options que não estão selecionadas ao construir a página */
 div.thumbnail:not(.selected) {
