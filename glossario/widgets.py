@@ -38,6 +38,9 @@ class ImageSelectMovimentacao(forms.Widget):
 
 
     def render(self, name, value, attrs=None, renderer=None):
+
+
+        print(value)
         movimentacao = Movimentacao.movimentacoes_busca
         template = loader.get_template(self.template_name).render({'movimentacao': movimentacao,})
         return mark_safe(template)
@@ -49,10 +52,15 @@ class ImageSelectMao(forms.Widget):
         js = ('/static/widgetSelectMao/modalCM.js',)
 
     def render(self, name, value, attrs=None, renderer=None):
+
+        print('name')
+        print(name)
+        print('value')
+        print(value)
         cm = CM.objects.all()
         cmGrupos = [c.group for c in cm]
         cmGrupos = sorted(list(dict.fromkeys(cmGrupos)))
-        template = loader.get_template(self.template_name).render({'cm': cm, 'cmGrupos': cmGrupos, })
+        template = loader.get_template(self.template_name).render({'cm': cm, 'cmGrupos': cmGrupos,'name': name,'value': value})
         return mark_safe(template)
 
 

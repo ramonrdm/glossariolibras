@@ -83,6 +83,3 @@ $('area').click(function() {
 });
 
 });
-
-
-alert("passeiaasd")
