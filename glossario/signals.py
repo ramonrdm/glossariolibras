@@ -26,42 +26,43 @@ def set_new_user_group(sender, instance, **kwargs):
 
 @receiver(post_save, sender=Sinal)
 def update_upload_path(sender, instance, created, **kwargs):
-    # o arquivo será salvo em MEDIA_ROOT/sinal_videos/convertidos/<id>-<tag>-<YYYY>-<MM>-<DD>-<HH><MM><SS>
-
-    originais = '{0}/sinal_videos/originais'.format(settings.MEDIA_ROOT)
-    convertidos = '{0}/sinal_videos/convertidos'.format(settings.MEDIA_ROOT)
-
-
+    
+    url_base = settings.MEDIA_ROOT
+    pasta_sinal_videos = '{0}/sinal_videos'.format(url_base)
     videoFields = [instance.sinalLibras, instance.descLibras, instance.exemploLibras, instance.varicLibras]
     tags = ['sinal', 'descricao', 'exemplo', 'variacao']
 
     for index, field in enumerate(videoFields):
         if field and instance.videos_originais_converter[index] != field.name:
-            original_file = field.name
-            file_name_new = str(instance.id)+'-'+tags[index]+'-'+datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')+".mp4"
-            new_file = convertidos+'/'+file_name_new
+            nome_video_converter = str(instance.id)+'-'+tags[index]+'-'+datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')+".mp4"
+            arquivo_video_converter = pasta_sinal_videos+'/'+nome_video_converter
+            
             subprocess.call('ffmpeg -i {0}/{1} -y -hide_banner -nostats -c:v libx264 -crf 19 -movflags faststart -threads 0 -preset slow -an -strict -2 {2}'
                 .format(
-                    originais,
-                    str(field).split('/')[2],
-                    new_file
-                    ),
-                    shell=True
-                    )
-            print("############## VIDEO CONVERTER ####################")
+                    url_base,
+                    field.name,
+                    arquivo_video_converter
+                    ),shell=True)
+            print("############# VIDEO CONVERTER ###############")
             print(instance.videos_originais_converter[index])
             print(field.name)
-            print(new_file)
-            name_update = 'sinal_videos/convertidos/'+file_name_new
-            Sinal.objects.filter(id=instance.id).update(**{"%s" % field.field.name: name_update} )
-            if os.path.isfile(settings.MEDIA_ROOT+'/'+field.name):
-                print("deletando    " + settings.MEDIA_ROOT+'/'+field.name)
-                os.remove(settings.MEDIA_ROOT+'/'+field.name)
-            if os.path.isfile(settings.MEDIA_ROOT+'/'+str(instance.videos_originais_converter[index])):
-                print("deletando    " +  settings.MEDIA_ROOT+'/'+str(instance.videos_originais_converter[index]))
+            print(arquivo_video_converter)
+            nome_relativo_arquivo_convertido = 'sinal_videos/'+nome_video_converter
+            Sinal.objects.filter(id=instance.id).update(**{"%s" % field.field.name: nome_relativo_arquivo_convertido} )
+            if os.path.isfile(url_base+'/'+field.name):
+                print("deletando    " + url_base+'/'+field.name)
+                os.remove(url_base+'/'+field.name)
+            if os.path.isfile(url_base+'/'+str(instance.videos_originais_converter[index])):
+                print("deletando    " +  url_base+'/'+str(instance.videos_originais_converter[index]))
+                os.remove(url_base+'/'+str(instance.videos_originais_converter[index]))
+            print("############ ############## #################")
+
+        else:
+            print("############## NÃO MUDOU ####################")
+            print(instance.videos_originais_converter[index])
+            print(field.name)
+            if field.name == '' and instance.videos_originais_converter[index] != '':
+                print("deletando    " +  url_base+'/'+str(instance.videos_originais_converter[index]))
                 os.remove(settings.MEDIA_ROOT+'/'+str(instance.videos_originais_converter[index]))
-            print("############## ################ ####################")
-        # else:
-        #     if field.name == '' and instance.videos_originais_converter[index] != None:
-        #         print("deletando    " +  settings.MEDIA_ROOT+'/'+str(instance.videos_originais_converter[index]))
-        #         os.remove(settings.MEDIA_ROOT+'/'+str(instance.videos_originais_converter[index]))
+            print("############ ############## #################")
+

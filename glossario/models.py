@@ -143,7 +143,7 @@ class Tema(models.Model):
 
 def sinal_upload_path(instance, filename):
     # o arquivo será salvo em MEDIA_ROOT/sinal_videos/originais/<filename>
-    return 'sinal_videos/originais/{0}'.format(filename)
+    return 'sinal_videos/{0}'.format(filename)
 
 class Sinal(models.Model):
     class Meta:
