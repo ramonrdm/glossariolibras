@@ -16,10 +16,14 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-    $('.modal').modal();
-    $('#id_{{ name }}').val({{ value }});
-    $('#imagem_{{ name }}').attr('src', $(cm_{{ name }}_{{ value }}).attr('src'));
-    $('#image_{{ name }}_mobile').attr('src', $(cm_{{ name }}_{{ value }}).attr('src'));
+
+    var valor_{{ name }}= "{{ value|safe }}";
+    if(valor_{{ name }} != "None" ){
+        $('#id_{{ name }}').val(valor_{{ name }});
+        $('#imagem_{{ name }}').attr('src', $(cm_{{ name }}_{{ value }}).attr('src'));
+        $('#image_{{ name }}_mobile').attr('src', $(cm_{{ name }}_{{ value }}).attr('src'));
+    }
+
     $('.escolhaCM{{ name }}').click(function(){
          var escolhaCM = $(this).attr('id_cm');
          $('#id_{{ name }}').val(escolhaCM);
@@ -46,7 +50,7 @@ $(document).ready(function(){
         <h4 class="black-text center" >Configuração de Mão</h4>
         {% for cm in cm %}
             {% if cm.group == grupo %}
-                <img id="cm_{{ name }}_{{ cm.id }}"  id_cm={{ cm.id }} src="/static/img/configuracoes_de_mao/{{ cm.group }}/{{ cm.bsw }}.png" class="sinais escolhaCM{{ name }} modal-action modal-close thumbnailModal" href="#modalCM">
+                <img id="cm_{{ name }}_{{ cm.id }}"  id_cm="{{ cm.id }}" src="/static/img/configuracoes_de_mao/{{ cm.group }}/{{ cm.bsw }}.png" class="sinais escolhaCM{{ name }} modal-action modal-close thumbnailModal" href="#modalCM">
             {% endif %}
         {% endfor %}
     </div>
