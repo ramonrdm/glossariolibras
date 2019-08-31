@@ -1,7 +1,9 @@
 <div class="col l3 m12 s12 card z-depth-1 grey lighten-4 " onclick="window.location='/sinal/{{s.id}}';">
 
 	<div class="card-image">
+	{% if s.sinalLibras %}
 			<div class="field-video_tag_sinal"><video autoplay="" loop="" src="{{s.sinalLibras.url}}" height="325"></video></div>
+	{% endif %}
 	</div>
 
 	<div class="card-content row">
@@ -27,4 +29,3 @@
 				{% endif %}
 	 </div>
 </div>
-
