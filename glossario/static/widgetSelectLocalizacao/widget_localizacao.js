@@ -77,8 +77,8 @@ $('#modeloImg').parent().css({"margin":"0 auto"});
 $('area').click(function() {
     let attrValue = $(this).attr('data-key');
     $('#id_localizacao').val(attrValue);
-    $('#imagem_localizacao').attr('src', '/static/img/'+loc_js[attrValue]);
-    $('#imagem_localizacao_mobile').attr('src', '/static/img/'+loc_js[attrValue]);
+    $('#imagem_localizacao').attr('src', '/static/img/'+objetos_localizacao[attrValue]);
+    $('#imagem_localizacao_mobile').attr('src', '/static/img/'+objetos_localizacao[attrValue]);
 
 });
 

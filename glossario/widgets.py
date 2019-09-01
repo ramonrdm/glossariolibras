@@ -20,7 +20,7 @@ class ImageSelectLocalizacao(forms.Widget):
     
     def render(self, name, value, attrs=None, renderer=None):
         localizacoes = json.dumps(self.localizacoes)
-        template = loader.get_template(self.template_name).render({'localizacoes': localizacoes,'name': name,'value': value})
+        template = loader.get_template(self.template_name).render({'objetos': localizacoes,'name': name,'value': value})
         print("localizacoes ------------------>")
         print(value)
         return mark_safe(template)
@@ -35,8 +35,9 @@ class ImageSelectMao(forms.Widget):
         cm = CM.objects.all()
         cmGrupos = [c.group for c in cm]
         cmGrupos = sorted(list(dict.fromkeys(cmGrupos)))
-        template = loader.get_template(self.template_name).render({'cm': cm, 'cmGrupos': cmGrupos,'name': name,'value': value})
-        print("localizacoes ------------------>")
+        template = loader.get_template(self.template_name).render({'objetos': {'nada':'',},'cm': cm, 'cmGrupos': cmGrupos,'name': name,'value': value})
+        print("CMs ------------------>")
+        print(cmGrupos)
         print(value)
         return mark_safe(template)
 
@@ -49,11 +50,10 @@ class ImageSelectMovimentacao(forms.Widget):
 
     def render(self, name, value, attrs=None, renderer=None):
         movimentacao = Movimentacao.movimentacoes_busca
-        template = loader.get_template(self.template_name).render({'movimentacao': movimentacao,'name': name,'value': value})
-        print("localizacoes ------------------>")
+        template = loader.get_template(self.template_name).render({'objetos': {'nada': '',},'movimentacao': movimentacao,'name': name,'value': value})
+        print("Movimentacao ------------------>")
         print(value)
         return mark_safe(template)
-
 
 
 

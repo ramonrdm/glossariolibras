@@ -3,7 +3,7 @@
 <input type="hidden" id="id_{{ name }}" name="{{ name }}" value="{{ value|default:"" }}">
 
 <script type="text/javascript">
-var objetos_{{name}} = {{ localizacoes|safe }};
+var objetos_{{name}} = {{ objetos|safe }};
 $(document).ready(function(){
     var valor_{{ name }} = "{{ value|safe }}";
     if(valor_{{ name }} != "None" ){
