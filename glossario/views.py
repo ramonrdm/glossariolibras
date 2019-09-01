@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, render_to_response, redirect
-from glossario.models import Glossario, Sinal, Tema, UserGlossario, Localizacao, Movimentacao
+from glossario.models import Glossario, Sinal, UserGlossario, Localizacao, Movimentacao
 from django.contrib.auth.models import User
-from glossario.forms import PesquisaForm, EnviarSinaisForm, PesquisaSinaisForm, CustomUserCreationForm
+from glossario.forms import PesquisaForm, PesquisaSinaisForm, CustomUserCreationForm
 from django.http import JsonResponse
 from django.db.models import Q
 from django.template import RequestContext
@@ -40,14 +40,32 @@ def index(request, glossario=None):
                 sinal.movimentacao = "/static/img/" + Movimentacao.movimentacoes_imagens[sinal.movimentacao]
         return render(request, 'pesquisa.html', {
             'formPesquisa': formPesquisa, 'sinais': sinais, 'resultado': resultado,
-            'formSinais': formSinais, 'form': EnviarSinaisForm(request.POST, request.FILES)})
+            'formSinais': formSinais})
     else:
         formSinais = PesquisaSinaisForm()
         formPesquisa = PesquisaForm()
 
     return render(request, 'index.html', {'glossarios': glossarios, 'glossario': glossario, 'formPesquisa': formPesquisa,
-         'formSinais': formSinais, 'form': EnviarSinaisForm(request.POST, request.FILES)
+         'formSinais': formSinais,
         })
+
+def busca(formSinais, formPesquisa):
+
+    resultadoTraducao = formPesquisa.cleaned_data['busca']
+    localizacao = formSinais.cleaned_data['localizacao']
+    movimentacao = formSinais.cleaned_data['movimentacao']
+    mao = formSinais.cleaned_data['cmE']
+    sinais = Sinal.objects.filter(publicado=True)
+    if resultadoTraducao != '':
+        sinais = sinais.filter(Q(portugues__icontains=resultadoTraducao) | Q(ingles__icontains=resultadoTraducao))
+    else:
+        if localizacao:
+            sinais = sinais.filter(localizacao=localizacao)
+        if movimentacao != '0':
+            sinais = sinais.filter(movimentacao=movimentacao)
+        if mao:
+            sinais = sinais.filter(Q(cmE=mao) | Q(cmD=mao))
+    return sinais
 
 def glossarioSelecionado(request, glossario):
     try:
@@ -82,7 +100,7 @@ def glossarioSelecionado(request, glossario):
         # formSinais = PesquisaSinaisForm()
         formPesquisa = PesquisaForm()
 
-        return render(request, 'glossario.html', {'glossario': glossario, 'formPesquisa': formPesquisa, 'formSinais': formSinais, 'form': EnviarSinaisForm(request.POST, request.FILES)
+        return render(request, 'glossario.html', {'glossario': glossario, 'formPesquisa': formPesquisa, 'formSinais': formSinais
             })
 
 def sinal(request, sinal=None, glossario=None):
@@ -116,115 +134,11 @@ def historia(request):
     return render(request, "historia.html")
 
 def equipe(request):
-    usuarios = UserGlossario.objects.all()
-    return render(request, "equipe.html", {'usuarios': usuarios})
+    return render(request, "equipe.html", {})
 
 def contato(request):
 
     return render(request, "contato.html", {'test': settings.TESTE_USER_DB})
-
-def temas(request, temas=None):
-    global queryTemas
-    queryTemas = Tema.objects.all()
-    try:
-        raiz = criaNodo(queryTemas.get(temaPai=None))
-        mostraNodo(raiz, 0)
-    except Tema.DoesNotExist:
-        raiz = None
-    return render(request, "temas.html", dict(raiz=raiz))
-
-@login_required
-def enviarSinais(request):
-    formSinais = EnviarSinaisForm
-    if request.method == 'POST':
-        toastSucesso = True
-        try:
-            if formSinais.is_valid():
-                dados = formSinais.save(commit=False)
-                dados.glossario = Glossario.objects.get(nome='Sugestões')
-                dados.create_data = datetime.date.today()
-                if request.FILES.get('sinalLibras'):
-                    dados.sinalLibras = request.FILES['sinalLibras']
-                if request.FILES.get('descLibras'):
-                    dados.descLibras = request.FILES['descLibras']
-                if request.FILES.get('exemploLibras'):
-                    dados.exemploLibras = request.FILES['exemploLibras']
-                if request.FILES.get('varicLibras'):
-                    dados.varicLibras = request.FILES['varicLibras']
-                dados.save()
-                formSinais = EnviarSinaisForm()
-                return render(request, 'enviarsinais.html', {'formSinais': formSinais, 'toastSucesso': toastSucesso})
-        except ValueError:
-            toastRepetido = True
-            return render(request, 'enviarsinais.html', {'formSinais': formSinais, 'toastRepetido': toastRepetido})
-    else:
-        return render(request, 'enviarsinais.html', {'formSinais': formSinais,})
-
-def criaNodo(nodoPai):
-    filhosPai = queryTemas.filter(temaPai=nodoPai)
-    filhos = list()
-    for filho in filhosPai:
-        filhos.append(criaNodo(filho))
-    nodoPai.filhos = filhos
-    return nodoPai
-
-#Metodo simples para exibição da lista no terminal
-def mostraNodo(nodoTema1, n):
-    txt = " - "*n
-    if nodoTema1.filhos:
-        print( str(n) + txt +nodoTema1.nome)
-        filhos = nodoTema1.filhos
-        for filho in filhos:
-            mostraNodo(filho, n+1)
-    else:
-        print (str(n) + txt +nodoTema1.nome)
-
-def mostraNodoJson(nodoTema1):
-    if nodoTema1.filhos:
-        filhos = nodoTema1.filhos
-        jsonTemas['edges'][nodoTema1.nome] = {}
-        for filho in filhos:
-            mostraNodoJson(filho)
-            jsonTemas['edges'][nodoTema1.nome][filho.nome] = {}
-    jsonTemas['nodes'][nodoTema1.nome] = {"color":"green", "shape":"dot", "alpha":1, "link":"www.libras.ufsc.br" }
-
-def temasjson(request):
-    global jsonTemas
-    jsonTemas = {"nodes":{},"edges":{}}
-    data = {
-        "nodes":{
-            "joao" : {"color":"red", "shape":"dot", "alpha":1 },
-            "ramon" : {"color":"green", "shape":"dot", "alpha":1, "link":"ramon" },
-            "glossario" :{"color":"#b2b19d", "shape":"dot", "alpha":1},
-            "NALS" :{"color":"#b2b19d", "shape":"dot", "alpha":1}
-        },
-        "edges":{
-            "glossario":{"joao":{},"ramon":{}}
-        }
-    }
-    data['nodes']['glossario'] = {"color":"green", "shape":"dot", "alpha":1, "link":"ramon" }
-    raiz = criaNodo(Tema.objects.get(temaPai=None))
-    mostraNodoJson(raiz)
-    print (jsonTemas)
-    return JsonResponse(jsonTemas)
-
-def busca(formSinais, formPesquisa):
-
-    resultadoTraducao = formPesquisa.cleaned_data['busca']
-    localizacao = formSinais.cleaned_data['localizacao']
-    movimentacao = formSinais.cleaned_data['movimentacao']
-    mao = formSinais.cleaned_data['cmE']
-    sinais = Sinal.objects.filter(publicado=True)
-    if resultadoTraducao != '':
-        sinais = sinais.filter(Q(traducaoI__icontains=resultadoTraducao) | Q(traducaoP__icontains=resultadoTraducao))
-    else:
-        if localizacao:
-            sinais = sinais.filter(localizacao=localizacao)
-        if movimentacao != '0':
-            sinais = sinais.filter(movimentacao=movimentacao)
-        if mao:
-            sinais = sinais.filter(Q(cmE=mao) | Q(cmD=mao))
-    return sinais
 
 def registration(request):
     if request.method == 'POST':

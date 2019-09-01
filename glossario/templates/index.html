@@ -8,14 +8,6 @@
 {% endblock %}
 {% block body %}
     <div class="row center blockContainer">
-        <div class="block col s6 m2">
-            <a href="{% url 'temas' %}">
-                <img class="circle z-depth-2 hoverable imgIndex" src="{% static 'img/arvore_banyan_havai.png' %}">
-                <div>
-                    <span class="flow-text textoIndex">Explorar</span>
-                </div>
-            </a>
-        </div>
         {% for glossario in glossarios %}
             <div class="block col s6 m2">
                 {% if glossario.imagem %}

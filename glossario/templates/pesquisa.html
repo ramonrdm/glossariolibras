@@ -29,13 +29,13 @@
 							<tbody>
 							{% for s in sinais %}
 								<tr onclick="window.location='/sinal/{{s.id}}';">
-									{% if s.sinalLibras %}
-										<td class="field-video_tag_sinal"><video autoplay="" loop="" src="{{s.sinalLibras.url}}" height="70"></video></td>
+									{% if s.video_sinal %}
+										<td class="field-video_tag_sinal"><video autoplay="" loop="" src="{{s.video_sinal.url}}" height="70"></video></td>
 									{% else %}
 										<td><img src="/static/img/X.svg" width="50" class="circle"></td>
 									{% endif %}
-									<td>{{s.traducaoP}}</td>
-									<td>{{s.traducaoI}}</td>
+									<td>{{s.portugues}}</td>
+									<td>{{s.ingles}}</td>
 									{% if s.cmE.imagem %}
 										<td><img src="/static/img/configuracoes_de_mao/{{s.cmE.imagem}}" width="50" class="circle"></td>
 									{% endif %}
@@ -86,7 +86,7 @@
 							<table class="table-responsive highlight centered">
 								{% for s in sinais %}
 									<tr onclick="window.location='/sinal/{{s.id}}';">
-										<td>{{s.traducaoP}}</td>
+										<td>{{s.portugues}}</td>
 										{% if s.cmE.imagem %}
 											<td><img src="/static/img/configuracoes_de_mao/{{s.cmE.imagem}}" width="50" class="circle"></td>
 										{% endif %}

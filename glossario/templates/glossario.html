@@ -7,12 +7,12 @@
 {% block body %}
  <div class="row center blockContainer">
 		<div class="col s12 m6 center">
-			{% if glossario.videoGlossario %}
+			{% if glossario.video %}
 				 <video class="hide-on-small-only" id="videoGlossario" controls>
-						<source src="{{glossario.videoGlossario.url}}" type="video/mp4">
+						<source src="{{glossario.video.url}}" type="video/mp4">
 				 </video>
 				<video class="hide-on-large-only"  controls>
-						<source src="{{glossario.videoGlossario.url}}" type="video/mp4">
+						<source src="{{glossario.video.url}}" type="video/mp4">
 				 </video>
 			{% else %}
 				<div class="videoGlossario">

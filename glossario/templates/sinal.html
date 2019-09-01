@@ -40,9 +40,9 @@
 		<div id="tabSinal" class="col s12">
 			<div class="center" id="videoSinal">
 
-				{% if sinal.sinalLibras %}
+				{% if sinal.video_sinal %}
 					<video class="responsive-video z-depth-5 videoSinal" controls preload="metadata">
-						<source src="{{sinal.sinalLibras.url}}">
+						<source src="{{sinal.video_sinal.url}}">
 						Seu navegador não suporta vídeo html5, por favor atualize seu navegador.
 					</video>
 				{% else %}
@@ -52,9 +52,9 @@
 		</div>
 		<div id="tabDescricao" class="col s12">
 			<div class="center" id="videoDescricao">
-				{% if sinal.descLibras %}
+				{% if sinal.video_descricao %}
 					<video class="responsive-video z-depth-5 videoSinal" controls preload="metadata">
-						<source src="{{sinal.descLibras.url}}">
+						<source src="{{sinal.video_descricao.url}}">
 						Seu navegador não suporta vídeo html5, por favor atualize seu navegador.
 					</video>
 				{% else %}
@@ -64,9 +64,9 @@
 		</div>
 		<div id="tabExemplo" class="col s12">
 			<div class="center" id="videoExemplo">
-				{% if sinal.exemploLibras %}
+				{% if sinal.video_exemplo %}
 					<video class="responsive-video z-depth-5 videoSinal" controls preload="metadata">
-						<source src="{{sinal.exemploLibras.url}}">
+						<source src="{{sinal.video_exemplo.url}}">
 						Seu navegador não suporta vídeo html5, por favor atualize seu navegador.
 					</video>
 				{% else %}
@@ -76,9 +76,9 @@
 		</div>
 		<div id="tabVariacao" class="col s12">
 			<div class="center" id="videoVariacao">
-				{% if sinal.varicLibras %}
+				{% if sinal.video_variacao %}
 					<video class="responsive-video z-depth-5 videoSinal" controls preload="metadata">
-						<source src="{{sinal.varicLibras.url}}">
+						<source src="{{sinal.video_variacao.url}}">
 						Seu navegador não suporta vídeo html5, por favor atualize seu navegador.
 					</video>
 				{% else %}
@@ -153,8 +153,8 @@
 		<li id="definicao" class="divider divisor col s12 m12 l12"></li>
 
 		<div class="card-panel teal col s12 m6 l6 grey lighten-5 z-depth-0">
-			<h4 class="sinalPortugues">{{sinal.traducaoP}}</h4>
-			<h6 class="sinalIngles">{{sinal.traducaoI}}</h6>
+			<h4 class="sinalPortugues">{{sinal.portugues}}</h4>
+			<h6 class="sinalIngles">{{sinal.ingles}}</h6>
 		</div>
 
 		<div class="col s12 m6 l6">

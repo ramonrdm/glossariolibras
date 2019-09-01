@@ -16,16 +16,16 @@ class GlossarioAdmin(admin.ModelAdmin):
     
     form = GlossarioForm
     list_display = ('nome', 'image_tag')
-    list_filter = ('responsavel', 'membros', 'dataCriacao')
+    list_filter = ('responsaveis', 'membros', 'data_criacao')
     
     def get_readonly_fields(self, request, obj=None):
         qs = super(GlossarioAdmin, self).get_queryset(request)
-        qsResp = qs.filter(responsavel=request.user)
+        qsResp = qs.filter(responsaveis=request.user)
         qsMemb = qs.filter(membros=request.user)
         if obj in qsResp or request.user.is_superuser:
             return []
         if obj in qsMemb:
-            return ('nome', 'responsavel', 'membros', 'imagem', 'videoGlossario', 'descricao')
+            return ('nome', 'responsaveis', 'membros', 'imagem', 'video', 'descricao')
         return []
 
     def get_actions(self, request):
@@ -39,7 +39,7 @@ class GlossarioAdmin(admin.ModelAdmin):
         qs = super(GlossarioAdmin, self).get_queryset(request)
         if request.user.is_superuser:
             return qs
-        return qs.filter(Q(responsavel=request.user) | Q(membros=request.user)).distinct()
+        return qs.filter(Q(responsaveis=request.user) | Q(membros=request.user)).distinct()
 
     def has_add_permission(self, request):
         if request.user.is_superuser:
@@ -62,9 +62,9 @@ class GlossarioAdmin(admin.ModelAdmin):
 
 class SinalAdmin(admin.ModelAdmin):
     form = SinalForm
-    readonly_fields=('create_data',)
-    list_display = ('traducaoP', 'video_tag_sinal', 'traducaoI', 'tema', 'glossario', 'image_tag_cmE', 'image_tag_cmD', 'image_tag_localizacao', 'image_tag_movimentacao' , 'publicado')
-    list_filter = ('tema', 'glossario', 'localizacao', 'movimentacao', 'publicado')
+    readonly_fields=('data_criacao',)
+    list_display = ('portugues', 'video_tag_sinal', 'ingles', 'glossario', 'image_tag_cmE', 'image_tag_cmD', 'image_tag_localizacao', 'image_tag_movimentacao' , 'publicado')
+    list_filter = ('glossario', 'localizacao', 'movimentacao', 'publicado')
     actions = ['publicar_sinal',]
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
@@ -72,7 +72,7 @@ class SinalAdmin(admin.ModelAdmin):
             if request.user.is_superuser:
                 kwargs["queryset"] = Glossario.objects.all()
             else:
-                kwargs["queryset"] = Glossario.objects.filter(Q(responsavel=request.user) | Q(membros=request.user)).distinct()
+                kwargs["queryset"] = Glossario.objects.filter(Q(responsaveis=request.user) | Q(membros=request.user)).distinct()
         return super(SinalAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
     def save_model(self, request, obj, form, change):
@@ -83,7 +83,7 @@ class SinalAdmin(admin.ModelAdmin):
         self.exclude = ['postador','create_data']
         if not request.user.is_superuser:
             if obj != None:
-                responsaveis = obj.glossario.responsavel.all()
+                responsaveis = obj.glossario.responsaveis.all()
                 if not request.user in responsaveis:
                     self.exclude.append('publicado')
             else:
@@ -96,8 +96,8 @@ class SinalAdmin(admin.ModelAdmin):
     publicar_sinal.short_description = 'Publicar sinais selecionados'
 
     def video_tag_sinal(self, obj):
-        if obj.sinalLibras:
-            return format_html('<video autoplay loop src="/media/{}" height="70" />'.format(obj.sinalLibras))
+        if obj.video_sinal:
+            return format_html('<video autoplay loop src="/media/{}" height="70" />'.format(obj.video_sinal))
         else:
             return format_html('<p>Sem Imagem</p>')
 
@@ -140,7 +140,7 @@ class SinalAdmin(admin.ModelAdmin):
         qs = super(SinalAdmin, self).get_queryset(request)
         if request.user.is_superuser:
             return qs
-        return qs.filter(Q(glossario__responsavel=request.user) | Q(glossario__membros=request.user)).distinct()
+        return qs.filter(Q(glossario__responsaveis=request.user) | Q(glossario__membros=request.user)).distinct()
 
 class CMAdmin(admin.ModelAdmin):
     form = CMForm
@@ -228,7 +228,6 @@ class UserAdmin(BaseUserAdmin):
     filter_horizontal = ()
 
 admin.site.register(UserGlossario, UserAdmin)
-admin.site.register(Tema)
 admin.site.register(Glossario, GlossarioAdmin)
 admin.site.register(Sinal, SinalAdmin)
 admin.site.register(CM, CMAdmin)

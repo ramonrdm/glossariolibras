@@ -13,7 +13,7 @@ from django.db.models import FileField
 
 @receiver(post_save, sender=Glossario)
 def set_new_user_group(sender, instance, **kwargs):
-    responsaveis = instance.responsavel.all()
+    responsaveis = instance.responsaveis.all()
     membros = instance.membros.all()
     responsaveis_group = Group.objects.get_or_create(name='responsaveis')[0]
     membros_group = Group.objects.get_or_create(name='membros')[0]
@@ -29,7 +29,7 @@ def update_upload_path(sender, instance, created, **kwargs):
     
     url_base = settings.MEDIA_ROOT
     pasta_sinal_videos = '{0}/sinal_videos'.format(url_base)
-    videoFields = [instance.sinalLibras, instance.descLibras, instance.exemploLibras, instance.varicLibras]
+    videoFields = [instance.video_sinal, instance.video_descricao, instance.video_exemplo, instance.video_variacao]
     tags = ['sinal', 'descricao', 'exemplo', 'variacao']
 
     for index, field in enumerate(videoFields):

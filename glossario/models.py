@@ -77,13 +77,13 @@ class Glossario(models.Model):
         verbose_name='Glossário'
 
     nome = models.CharField('Nome do Glossário', max_length=100)
-    responsavel = models.ManyToManyField(UserGlossario, verbose_name = 'responsável')
+    responsaveis = models.ManyToManyField(UserGlossario, verbose_name = 'responsaveis')
     membros = models.ManyToManyField(UserGlossario, related_name='glossario_membros', verbose_name='membros', blank=True)
-    descricao = models.TextField("descrição", default='')
+    descricao = models.TextField("descrição", blank=True, null=True)
     imagem = models.ImageField('Imagem', blank =True)
     link = models.CharField('Link', max_length=20)
-    dataCriacao = models.DateField('data de criação', auto_now_add=True)
-    videoGlossario = FileField('Vídeo', blank=True)
+    data_criacao = models.DateField('data de criação', auto_now_add=True)
+    video = FileField('Vídeo', blank=True)
     visivel = models.BooleanField("Visivel", default=True)
 
     def __str__(self):
@@ -131,16 +131,6 @@ class Movimentacao(models.Model):
 
     movimentacoes_busca = (( '0X.svg'), ('1parede.png'), ('2chao.png'), ('3circular.png'), ('4contato.png'))
 
-class Tema(models.Model):
-    nome = models.CharField('Nome', max_length=30)
-    descricao = models.CharField('Descrição', max_length=100, null=True)
-    video = FileField('Vídeo', null=True, blank=True)
-    imagem = models.ImageField('Imagem', blank=False, null=True)
-    temaPai = models.ForeignKey('self',null=True, blank = True, verbose_name = 'Tema Pai', on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.nome
-
 def sinal_upload_path(instance, filename):
     # o arquivo será salvo em MEDIA_ROOT/sinal_videos/originais/<filename>
     return 'sinal_videos/{0}'.format(filename)
@@ -148,31 +138,30 @@ def sinal_upload_path(instance, filename):
 class Sinal(models.Model):
     class Meta:
         verbose_name_plural = 'sinais'
-        unique_together = ('traducaoP', 'traducaoI', 'cmE','cmD', 'localizacao', 'movimentacao')
+        unique_together = ('portugues', 'ingles', 'cmE','cmD', 'localizacao', 'movimentacao')
     
     videos_originais_converter = []
 
     def __init__(self, *args, **kwargs):
         super(Sinal, self).__init__(*args, **kwargs)
-        self.videos_originais_converter = [self.sinalLibras, self.descLibras, self.exemploLibras, self.varicLibras]
+        self.videos_originais_converter = [self.video_sinal, self.video_descricao, self.video_exemplo, self.video_variacao]
 
     glossario = models.ForeignKey(Glossario, verbose_name='glossário', null=True, on_delete=models.CASCADE)
-    traducaoP = models.CharField('palavra', max_length=30)
-    traducaoI = models.CharField('word', max_length=30)
+    portugues = models.CharField('palavra', max_length=30)
+    ingles = models.CharField('word', blank=True, null=True, max_length=30)
     bsw = models.TextField(null=True, blank=True)
-    descricao = models.TextField('descrição',  null=True)
+    descricao = models.TextField('descrição',  blank=True, null=True)
     cmE = models.ForeignKey(CM, related_name='C_M_Esquerda', verbose_name='configuração da mão esquerda', on_delete=models.CASCADE)
     cmD = models.ForeignKey(CM, related_name='C_M_Direita', verbose_name='configuração da mão direita', on_delete=models.CASCADE)
     localizacao = models.CharField(max_length=2, choices=Localizacao.localizacoes, default=0)
     movimentacao = models.CharField(max_length=10, choices=Movimentacao.movimentacoes, default=0)
-    create_data = models.DateTimeField(auto_now_add=True)
+    data_criacao = models.DateTimeField(auto_now_add=True)
     postador = models.ForeignKey(UserGlossario, null=True, on_delete=models.CASCADE)
     publicado = models.BooleanField(default=False)
-    sinalLibras = FileField('Vídeo do sinal', upload_to=sinal_upload_path, null=True, blank=True)
-    descLibras = FileField('Vídeo da descrição', upload_to=sinal_upload_path, null=True, blank=True)
-    exemploLibras = FileField('Vídeo do exemplo', upload_to=sinal_upload_path, null=True, blank=True)
-    varicLibras = FileField('Vídeo da variante', upload_to=sinal_upload_path, null=True, blank=True)
-    tema = models.ForeignKey(Tema, null=True, on_delete=models.CASCADE)
+    video_sinal = FileField('Vídeo do sinal', upload_to=sinal_upload_path, null=True)
+    video_descricao = FileField('Vídeo da descrição', upload_to=sinal_upload_path, null=True, blank=True)
+    video_exemplo = FileField('Vídeo do exemplo', upload_to=sinal_upload_path, null=True, blank=True)
+    video_variacao = FileField('Vídeo de variações', upload_to=sinal_upload_path, null=True, blank=True)
 
     def __str__(self):
-        return self.traducaoP
+        return self.portugues
