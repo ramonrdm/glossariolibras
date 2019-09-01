@@ -5,11 +5,7 @@ from glossario.models import Glossario, Sinal
 from django.conf import settings
 import subprocess
 import datetime
-from django.core.files.base import ContentFile
 import os, os.path
-from django.core.files.base import File
-from django.db.models import FileField
-
 
 @receiver(post_save, sender=Glossario)
 def set_new_user_group(sender, instance, **kwargs):
