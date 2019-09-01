@@ -61,7 +61,7 @@ def busca(formSinais, formPesquisa):
     else:
         if localizacao:
             sinais = sinais.filter(localizacao=localizacao)
-        if movimentacao != '0':
+        if movimentacao:
             sinais = sinais.filter(movimentacao=movimentacao)
         if mao:
             sinais = sinais.filter(Q(cmE=mao) | Q(cmD=mao))

@@ -1,45 +1,27 @@
-
-<!--{% if  value == 0 %}-->
-
-
-<!--{% else %}-->
-    <!--<img id="image_cm" src="/static/img/configuracoes_de_mao/{{ cm.group }}/{{ cm.bsw }}.png" class="hide-on-small-only sinais waves-effect waves-light modal-trigger" href="#modalGrupos">-->
-    <!--<img id="image_cm_mobile" src="/static/img/configuracoes_de_mao/{{ cm.group }}/{{ cm.bsw }}.png" class="hide-on-large-only sinaisMobile waves-effect waves-light modal-trigger" href="#modalGrupos">-->
-    <!--<input type="text" id= ID  name= NOME  value= VALOR style="display:none"/>-->
-
-<!--{% endif %}-->
-
-    <img id="imagem_{{ name }}" src="/static/img/X.svg" class="hide-on-small-only sinais waves-effect waves-light modal-trigger" href="#modalGrupos{{ name }}">
-    <img id="image_{{ name }}_mobile" src="/static/img/X.svg" class="hide-on-large-only sinaisMobile waves-effect waves-light modal-trigger" href="#modalGrupos{{ name }}">
-    {% if value == None %}
-    <input type="text" id='id_{{ name }}'  name="{{ name }}" value="" style="display:none"/>
-    {% else %}
-    <input type="text" id='id_{{ name }}'  name="{{ name }}" value="{{ value }}" style="display:none"/>
-    {% endif %}
+<img id="imagem_{{ name }}" class="hide-on-small-only sinais waves-effect waves-light modal-trigger" src="/static/img/X.svg" href="#modal-libras-{{ name }}">
+<img id="imagem_{{ name }}_mobile" class="hide-on-large-only sinaisMobile waves-effect waves-light modal-trigger" src="/static/img/X.svg" href="#modal-libras-{{ name }}">
+<input type="hidden" id="id_{{ name }}" name="{{ name }}" value="{{ value|default:"" }}">
 
 <script type="text/javascript">
-
+var objetos_{{name}} = {{ localizacoes|safe }};
 $(document).ready(function(){
-
-    var valor_{{ name }}= "{{ value|safe }}";
+    var valor_{{ name }} = "{{ value|safe }}";
     if(valor_{{ name }} != "None" ){
         $('#id_{{ name }}').val(valor_{{ name }});
         $('#imagem_{{ name }}').attr('src', $(cm_{{ name }}_{{ value }}).attr('src'));
-        $('#image_{{ name }}_mobile').attr('src', $(cm_{{ name }}_{{ value }}).attr('src'));
+        $('#imagem_{{ name }}_mobile').attr('src', $(cm_{{ name }}_{{ value }}).attr('src'));
     }
-
     $('.escolhaCM{{ name }}').click(function(){
          var escolhaCM = $(this).attr('id_cm');
          $('#id_{{ name }}').val(escolhaCM);
          $('#imagem_{{ name }}').attr('src', $(this).attr('src'));
-         $('#image_{{ name }}_mobile').attr('src', $(this).attr('src'));
+         $('#imagem_{{ name }}_mobile').attr('src', $(this).attr('src'));
 
      });
 });
-
 </script>
 
-<div id="modalGrupos{{ name }}" class="modal">
+<div id="modal-libras-{{ name }}" class="modal">
     <div class="modal-content">
         <h4 class="black-text center">Grupos</h4>
         {% for grupo in cmGrupos %}
@@ -54,7 +36,10 @@ $(document).ready(function(){
         <h4 class="black-text center" >Configuração de Mão</h4>
         {% for cm in cm %}
             {% if cm.group == grupo %}
-                <img id="cm_{{ name }}_{{ cm.id }}"  id_cm="{{ cm.id }}" src="/static/img/configuracoes_de_mao/{{ cm.group }}/{{ cm.bsw }}.png" class="sinais escolhaCM{{ name }} modal-action modal-close thumbnailModal" href="#modalCM">
+                <img id="cm_{{ name }}_{{ cm.id }}"  id_cm="{{ cm.id }}" 
+                src="/static/img/configuracoes_de_mao/{{ cm.group }}/{{ cm.bsw }}.png" 
+                class="sinais escolhaCM{{ name }} modal-action modal-close thumbnailModal" 
+                href="#modalCM">
             {% endif %}
         {% endfor %}
     </div>

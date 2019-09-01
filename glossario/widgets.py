@@ -3,7 +3,6 @@ from django import forms
 from django.utils.safestring import mark_safe
 from django.template import loader
 from glossario.models import CM, Movimentacao
-
 import json
 
 class ImageSelectLocalizacao(forms.Widget):
@@ -13,11 +12,6 @@ class ImageSelectLocalizacao(forms.Widget):
         css = {'all': ('/static/widgetSelectLocalizacao/widget_localizacao.css', )}
         js = ('/static/widgetSelectLocalizacao/widget_localizacao.js', 'js/jquery.imagemapster.js',)
     
-    # def __init__(self, attrs=None, choices=(), field_img=None):
-    #     super(ImageSelectLocalizacao, self).__init__(attrs)
-    #     self.choices = list(choices)
-    #     self.field_img = field_img
-    
     localizacoes = dict([('0', 'X.svg'),('1', 'localizacaoCabeca.png'), ('2', 'localizacaoOmbros.png'), ('3', 'localizacaoBracos.png'),
                          ('4', 'localizacaoNariz.png'), ('5', 'localizacaoBochechas.png'), ('6', 'localizacaoBoca.png'),
                          ('7', 'localizacaoTronco.png'), ('8', 'localizacaoNeutro.png'), ('9', 'localizacaoOlhos.png'),
@@ -25,21 +19,10 @@ class ImageSelectLocalizacao(forms.Widget):
                          ('13', 'localizacaoTesta.png')])
     
     def render(self, name, value, attrs=None, renderer=None):
-        loc = json.dumps(self.localizacoes)
-        template = loader.get_template(self.template_name).render({'localizacoes': loc,})
-        return mark_safe(template)
-
-class ImageSelectMovimentacao(forms.Widget):
-    template_name = 'widget_movimentacao.html'
-
-    class Media:
-        js = ('/static/widgetSelectMovimentacao/modalMovimentacao.js',)
-        css = {'all': ('/static/widgetSelectMovimentacao/css_movimentacao.css',)}
-
-
-    def render(self, name, value, attrs=None, renderer=None):
-        movimentacao = Movimentacao.movimentacoes_busca
-        template = loader.get_template(self.template_name).render({'movimentacao': movimentacao,})
+        localizacoes = json.dumps(self.localizacoes)
+        template = loader.get_template(self.template_name).render({'localizacoes': localizacoes,'name': name,'value': value})
+        print("localizacoes ------------------>")
+        print(value)
         return mark_safe(template)
 
 class ImageSelectMao(forms.Widget):
@@ -53,7 +36,24 @@ class ImageSelectMao(forms.Widget):
         cmGrupos = [c.group for c in cm]
         cmGrupos = sorted(list(dict.fromkeys(cmGrupos)))
         template = loader.get_template(self.template_name).render({'cm': cm, 'cmGrupos': cmGrupos,'name': name,'value': value})
+        print("localizacoes ------------------>")
+        print(value)
         return mark_safe(template)
+
+class ImageSelectMovimentacao(forms.Widget):
+    template_name = 'widget_movimentacao.html'
+
+    class Media:
+        js = ('/static/widgetSelectMovimentacao/modalMovimentacao.js',)
+        css = {'all': ('/static/widgetSelectMovimentacao/css_movimentacao.css',)}
+
+    def render(self, name, value, attrs=None, renderer=None):
+        movimentacao = Movimentacao.movimentacoes_busca
+        template = loader.get_template(self.template_name).render({'movimentacao': movimentacao,'name': name,'value': value})
+        print("localizacoes ------------------>")
+        print(value)
+        return mark_safe(template)
+
 
 
 

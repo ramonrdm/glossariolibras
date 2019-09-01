@@ -1,22 +1,21 @@
+<img id="imagem_{{ name }}" class="hide-on-small-only sinais waves-effect waves-light modal-trigger" src="/static/img/X.svg" href="#modal-libras-{{ name }}">
+<img id="imagem_{{ name }}_mobile" class="hide-on-large-only sinaisMobile waves-effect waves-light modal-trigger" src="/static/img/X.svg" href="#modal-libras-{{ name }}">
+<input type="hidden" id="id_{{ name }}" name="{{ name }}" value="{{ value|default:"" }}">
+
 <script type="text/javascript">
-
-var loc_js = {{ localizacoes|safe }};
-
+var objetos_{{name}} = {{ localizacoes|safe }};
+$(document).ready(function(){
+    var valor_{{ name }} = "{{ value }}";
+    if(valor_{{ name }}){
+        $('#id_{{ name }}').val(valor_{{ name }});
+        $('#imagem_{{ name }}').attr('src', '/static/img/'+objetos_{{name}}[valor_{{ name }}]);
+        $('#imagem_{{ name }}_mobile').attr('src', '/static/img/'+objetos_{{name}}[valor_{{ name }}]);
+    }
+});
 </script>
-<img class="hide-on-small-only sinais modal-trigger waves-effect waves-light" id="imagem_localizacao" src="/static/img/X.svg" href="#modalLocalizacao">
-<img class="hide-on-large-only sinaisMobile modal-trigger waves-effect waves-light" id="imagem_localizacao_mobile" src="/static/img/X.svg" href="#modalLocalizacao">
-<input type="text" name="localizacao" id="id_localizacao" value="" >
-
-<div id="modal1" class="modal">
-    <div class="modal-content">
-    </div>
-    <div class="modal-footer">
-        <a href="#!" class="modal-close">Fechar</a>
-    </div>
-</div>
 
 {% load staticfiles %}
-<div id="modalLocalizacao" class="modal center">
+<div id="modal-libras-{{ name }}" class="modal center">
     <div class="modal-content center">
         <h4 class="black-text center">Localização</h4>
         <div class="mapModal center">
