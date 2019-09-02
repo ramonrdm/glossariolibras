@@ -129,7 +129,7 @@ class Movimentacao(models.Model):
     movimentacoes_imagens = dict(
         [('0', '0X.svg'), ('1', '1parede.png'), ('2', '2chao.png'), ('3', '3circular.png'), ('4', '4contato.png')])
 
-    movimentacoes_busca = (( '0X.svg'), ('1parede.png'), ('2chao.png'), ('3circular.png'), ('4contato.png'))
+    movimentacoes_busca = (('1parede.png'), ('2chao.png'), ('3circular.png'), ('4contato.png'))
 
 def sinal_upload_path(instance, filename):
     # o arquivo será salvo em MEDIA_ROOT/sinal_videos/originais/<filename>
