@@ -142,8 +142,8 @@ class SinalAdmin(admin.ModelAdmin):
             return qs
         return qs.filter(Q(glossario__responsaveis=request.user) | Q(glossario__membros=request.user)).distinct()
 
-    def publicado(self, request):
-        return format_html('<form action="#"><p><label><input type="checkbox" class="filled-in" checked="checked" /><span>Filled in</span></label></p></form>')
+    # def publicado(self):
+    #     return format_html('<form action="#"><p><label><input type="checkbox" class="filled-in" checked="checked" /><span></span></label></p></form>')
 
 class CMAdmin(admin.ModelAdmin):
     form = CMForm
