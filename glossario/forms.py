@@ -16,8 +16,8 @@ class GlossarioForm(forms.ModelForm):
 class SinalForm(forms.ModelForm):
 
     class Media:
-        css = {'all': ('/static/css/materialize.css', '/static/css/base.css',)}
-        js = ('/static/js/materialize.min.js',)
+        css = {'all': ('/static/css/materialize_modal.css',)}
+        js = ('/static/js/materialize_modal.js', '/static/js/base.js',)
 
     class Meta:
         model = Sinal
