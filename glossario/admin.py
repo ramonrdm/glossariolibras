@@ -103,14 +103,14 @@ class SinalAdmin(admin.ModelAdmin):
 
     def image_tag_cmE(self, obj):
         if obj.cmE.imagem:
-            return format_html('<img src="/static/img/configuracoes_de_mao/{}" width="50" height="50" />'.format(obj.cmE.imagem()))
+            return format_html('<img style="border-radius: 25px 25px 25px 25px;" src="/static/img/configuracoes_de_mao/{}" width="50" height="50" />'.format(obj.cmE.imagem()))
         else:
             return format_html('<p>Sem Imagem</p>')
         image_tag_cmE.short_description = "Esquerda"
 
     def image_tag_cmD(self, obj):
         if obj.cmD.imagem:
-            return format_html('<img src="/static/img/configuracoes_de_mao/{}" width="50" height="50" />'.format(obj.cmD.imagem()))
+            return format_html('<img style="border-radius: 25px 25px 25px 25px;" src="/static/img/configuracoes_de_mao/{}" width="50" height="50" />'.format(obj.cmD.imagem()))
         else:
             return format_html('<p>Sem Imagem</p>')
         image_tag_cmD.short_description = 'direita'
@@ -141,6 +141,9 @@ class SinalAdmin(admin.ModelAdmin):
         if request.user.is_superuser:
             return qs
         return qs.filter(Q(glossario__responsaveis=request.user) | Q(glossario__membros=request.user)).distinct()
+
+    def publicado(self, request):
+        return format_html('<form action="#"><p><label><input type="checkbox" class="filled-in" checked="checked" /><span>Filled in</span></label></p></form>')
 
 class CMAdmin(admin.ModelAdmin):
     form = CMForm
