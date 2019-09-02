@@ -6,7 +6,6 @@
 var objetos_{{name}} = {{ objetos|safe }};
 $(document).ready(function(){
     var valor_{{ name }} = "{{ value|safe }}";
-    console.log("valor {{name}}: {{value}}");
     if(valor_{{ name }}){
         $('#id_{{ name }}').val(valor_{{ name }});
         $('#imagem_{{ name }}').attr('src', '/static/img/'+objetos_{{name}}[valor_{{ name }}]);
@@ -25,7 +24,7 @@ $(document).ready(function(){
                     <img class="responsive-img" id="modeloImg" src="{% static 'img/modelo2.png' %}" alt="" usemap="#modeloMap"/>
                     <map name="modeloMap" id="modeloMap" class="modal-action modal-close">
                         <!-- USAR DATA-KEY COMO O VALUE DAS OPTIONS DO SELECT -->
-                        <area data-key="0" alt="" title="" href="#" shape="poly" coords="191,0,0,165,0,0">
+                        <area data-key="" alt="" title="" href="#" shape="poly" coords="191,0,0,165,0,0">
                         <area data-key="2" alt="" title="" href="#" shape="poly" coords="241,123,247,144,302,133,339,135,385,152,391,154,400,125,365,108,351,103,324,122,314,122,292,105,242,123">
                         <area data-key="3" alt="" title="" href="#" shape="poly" coords="247,120,230,136,204,145,173,155,144,167,93,189,75,198,73,201,80,213,172,192,209,180,235,175,247,169,249,167,247,120,397,120,422,138,481,160,573,200,567,218,493,199,472,194,464,195,432,184,401,172,393,171,393,167,389,120">
                         <area data-key="4" alt="" title="" href="#" shape="poly" coords="316,53,309,67,309,70,332,71,332,68,324,54,321,52,320,52">

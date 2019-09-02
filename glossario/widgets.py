@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 from django import forms
 from django.utils.safestring import mark_safe
 from django.template import loader
-from glossario.models import CM, Movimentacao
+from glossario.models import CM, Movimentacao, Localizacao
 import json
 
 class ImageSelectLocalizacao(forms.Widget):
@@ -12,11 +12,7 @@ class ImageSelectLocalizacao(forms.Widget):
         css = {'all': ('/static/widgetSelectLocalizacao/widget_localizacao.css', )}
         js = ('/static/widgetSelectLocalizacao/widget_localizacao.js', 'js/jquery.imagemapster.js',)
     
-    localizacoes = dict([('0', 'X.svg'),('1', 'localizacaoCabeca.png'), ('2', 'localizacaoOmbros.png'), ('3', 'localizacaoBracos.png'),
-                         ('4', 'localizacaoNariz.png'), ('5', 'localizacaoBochechas.png'), ('6', 'localizacaoBoca.png'),
-                         ('7', 'localizacaoTronco.png'), ('8', 'localizacaoNeutro.png'), ('9', 'localizacaoOlhos.png'),
-                         ('10', 'localizacaoOrelhas.png'), ('11', 'localizacaoPescoco.png'), ('12', 'localizacaoQueixo.png'),
-                         ('13', 'localizacaoTesta.png')])
+    localizacoes = Localizacao.localizacoes_imagens
     
     def render(self, name, value, attrs=None, renderer=None):
         localizacoes = json.dumps(self.localizacoes)
@@ -54,6 +50,4 @@ class ImageSelectMovimentacao(forms.Widget):
         print("Movimentacao ------------------>")
         print(value)
         return mark_safe(template)
-
-
 

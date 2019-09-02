@@ -76,9 +76,16 @@ $('#modeloImg').parent().css({"margin":"0 auto"});
 
 $('area').click(function() {
     let attrValue = $(this).attr('data-key');
-    $('#id_localizacao').val(attrValue);
-    $('#imagem_localizacao').attr('src', '/static/img/'+objetos_localizacao[attrValue]);
-    $('#imagem_localizacao_mobile').attr('src', '/static/img/'+objetos_localizacao[attrValue]);
+    if(attrValue){
+        $('#id_localizacao').val(attrValue);
+        $('#imagem_localizacao').attr('src', '/static/img/'+objetos_localizacao[attrValue]);
+        $('#imagem_localizacao_mobile').attr('src', '/static/img/'+objetos_localizacao[attrValue]);
+    }else{
+        $('#id_localizacao').val('');
+        $('#imagem_localizacao').attr('src', '/static/img/X.svg');
+        $('#imagem_localizacao_mobile').attr('src', '/static/img/X.svg');
+    }
+    
 
 });
 

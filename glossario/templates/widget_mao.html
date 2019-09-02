@@ -6,7 +6,7 @@
 var objetos_{{name}} = {{ objetos|safe }};
 $(document).ready(function(){
     var valor_{{ name }} = "{{ value|safe }}";
-    if(valor_{{ name }} != "None" ){
+    if(valor_{{ name }}){
         $('#id_{{ name }}').val(valor_{{ name }});
         $('#imagem_{{ name }}').attr('src', $(cm_{{ name }}_{{ value }}).attr('src'));
         $('#imagem_{{ name }}_mobile').attr('src', $(cm_{{ name }}_{{ value }}).attr('src'));
