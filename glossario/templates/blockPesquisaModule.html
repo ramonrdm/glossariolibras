@@ -5,7 +5,6 @@
 			<div class="field-video_tag_sinal"><video autoplay="" loop="" src="{{s.video_sinal.url}}" height="325"></video></div>
 	{% endif %}
 	</div>
-
 	<div class="card-content row">
 		<span class="sinalPortugues">{{s.portugues}}  </span>
 		<span class="sinalPortugues">  .  </span>
@@ -13,13 +12,11 @@
 	</div>
 	<div class="center card-content">
 				{% if s.cmE.imagem %}
-
 					<img src="/static/img/configuracoes_de_mao/{{s.cmE.imagem}}" width="21%" class="circle">
 				{% endif %}
 				{% if s.cmD.imagem %}
 					<img  src="/static/img/configuracoes_de_mao/{{s.cmD.imagem}}" width="21%" class="circle">
 				{% endif %}
-
 				{% if s.localizacao %}
 					<img  src="{{s.localizacao}}" width="21%" class="circle">
 				{% endif %}
