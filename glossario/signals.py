@@ -1,7 +1,7 @@
 from django.contrib.auth.models import Group
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from glossario.models import Glossario, Sinal
+from glossario.models import Glossario, Sinal, UserGlossario
 from django.conf import settings
 import subprocess
 import datetime
@@ -19,6 +19,19 @@ def set_new_user_group(sender, instance, **kwargs):
 
     for user in membros:
         membros_group.user_set.add(user)
+
+
+@receiver(post_save, sender=UserGlossario)
+def set_new_user_group(sender, instance, **kwargs):
+    user = UserGlossario.objects.get(id=instance.id)
+    sugestoes, created = Glossario.objects.get_or_create(nome="Sugestões",)
+    sugestoes.membros.add(user)
+    membros_group = Group.objects.get_or_create(name='membros')[0]
+    membros_group.user_set.add(user)
+
+
+
+
 
 @receiver(post_save, sender=Sinal)
 def update_upload_path(sender, instance, created, **kwargs):

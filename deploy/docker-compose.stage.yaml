@@ -1,13 +1,17 @@
 version: "3.1"
 
-secrets:
-  test:
-    external: true
+volumes:
+  media_gll:
+    driver: local
+    driver_opts:
+      type: ceph
+      o: name=user,secret=pass
+      device: ip:porta:pasta
 
 services:
   glossario:
     image: ramonufsc/glossario:latest
-    secrets:
-      - test
     ports:
-    - 40110:8000
+        - 40110:8000
+    volumes:
+        - media_gll:/code/media
