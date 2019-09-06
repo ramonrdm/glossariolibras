@@ -62,7 +62,7 @@ class GlossarioAdmin(admin.ModelAdmin):
 
 class SinalAdmin(admin.ModelAdmin):
     form = SinalForm
-    readonly_fields=('data_criacao',)
+    readonly_fields=('data_criacao', 'postador')
     list_display = ('portugues', 'video_tag_sinal', 'ingles', 'glossario', 'image_tag_cmE', 'image_tag_cmD', 'image_tag_localizacao', 'image_tag_movimentacao' , 'publicado')
     list_filter = ('glossario', 'localizacao', 'movimentacao', 'publicado')
     actions = ['publicar_sinal',]
@@ -141,9 +141,6 @@ class SinalAdmin(admin.ModelAdmin):
         if request.user.is_superuser:
             return qs
         return qs.filter(Q(glossario__responsaveis=request.user) | Q(glossario__membros=request.user)).distinct()
-
-    # def publicado(self):
-    #     return format_html('<form action="#"><p><label><input type="checkbox" class="filled-in" checked="checked" /><span></span></label></p></form>')
 
 class CMAdmin(admin.ModelAdmin):
     form = CMForm
