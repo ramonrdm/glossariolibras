@@ -56,12 +56,25 @@ WSGI_APPLICATION = 'glossariolibras.wsgi.application'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+if get_secret('glossario_name_db'):
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': get_secret('glossario_name_db'),
+            'USER': get_secret('glossario_user_db'),
+            'PASSWORD': get_secret('glossario_password_db'),
+            'HOST': 'mysql.sites.ufsc.br',
+            'PORT': '3306',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 LANGUAGE_CODE = 'pt-br'
 
@@ -103,3 +116,9 @@ LOGIN_REDIRECT_URL = 'index'
 LOGIN_URL = 'login'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_HOST = "smtp.sistemas.ufsc.br"
+EMAIL_PORT = 465
+EMAIL_HOST_USER = get_secret('email_libras_user')
+EMAIL_HOST_PASSWORD = get_secret('email_libras_password')
+EMAIL_USE_SSL = True

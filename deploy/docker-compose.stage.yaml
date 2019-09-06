@@ -1,5 +1,18 @@
 version: "3.1"
 
+secrets:
+  email_libras_password:
+    external: true
+  email_libars_user:
+    external: true
+  glossario_name_db:
+    external: true
+  glossario_password_db:
+    external: true
+  glossario_user_db:
+    external: true
+
+
 volumes:
   media_gll:
     driver: local
@@ -10,7 +23,15 @@ volumes:
 
 services:
   glossario:
+    stdin_open: true
+    tty: true
     image: ramonufsc/glossario:latest
+    secrets:
+      - email_libras_password
+      - email_libars_user
+      - glossario_name_db
+      - glossario_password_db
+      - glossario_user_db
     ports:
         - 40110:8000
     volumes:
