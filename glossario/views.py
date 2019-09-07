@@ -37,7 +37,8 @@ def index(request, glossario=None):
         if sinais:
             for sinal in sinais:
                 sinal.localizacao = "/static/img/" + Localizacao.localizacoes_imagens[sinal.localizacao]
-                sinal.movimentacao = "/static/img/" + Movimentacao.movimentacoes_imagens[sinal.movimentacao]
+                if sinal.movimentacao:
+                    sinal.movimentacao = "/static/img/" + Movimentacao.movimentacoes_imagens[sinal.movimentacao]
         return render(request, 'pesquisa.html', {
             'formPesquisa': formPesquisa, 'sinais': sinais, 'resultado': resultado,
             'formSinais': formSinais})
@@ -134,6 +135,12 @@ def historia(request):
     return render(request, "historia.html")
 
 def equipe(request):
+    import json
+    with open('/code/gll_teste.json', 'r') as f:
+        sinais = json.load(f)
+    for sinal in sinais:
+        Sinal.objects.create(**sinal)
+
     return render(request, "equipe.html", {})
 
 def contato(request):

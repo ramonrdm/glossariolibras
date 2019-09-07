@@ -108,16 +108,16 @@ class Localizacao(models.Model):
     class Meta:
         abstract = True
     
-    localizacoes = (('','Nunhuma'),('1','Cabeça'),('2','Ombros'),('3','Braços'),('4','Nariz'),('5','Bochechas'),
-                    ('6','Boca'),('7','Tronco'),('8','Espaço Neutro'),('9','Olhos'),('10','Orelhas'),
-                    ('11','Pescoço'),('12','Queixo'),('13','Testa')
+    localizacoes = (('','Nunhuma'),('4','Cabeça'),('12','Ombros'),('3','Braços'),('6','Nariz'),('2','Bochechas'),
+                    ('1','Boca'),('16','Tronco'),('10','Espaço Neutro'),('11','Olhos'),('17','Orelhas'),
+                    ('13','Pescoço'),('14','Queixo'),('15','Testa'),('5','Mãos')
                 )
     localizacoes_imagens = dict(
-            [('1', 'localizacaoCabeca.png'), ('2', 'localizacaoOmbros.png'), ('3', 'localizacaoBracos.png'),
-             ('4', 'localizacaoNariz.png'), ('5', 'localizacaoBochechas.png'), ('6', 'localizacaoBoca.png'),
-             ('7', 'localizacaoTronco.png'), ('8', 'localizacaoNeutro.png'), ('9', 'localizacaoOlhos.png'),
-             ('10', 'localizacaoOrelhas.png'),
-             ('11', 'localizacaoPescoco.png'), ('12', 'localizacaoQueixo.png'), ('13', 'localizacaoTesta.png')])
+            [('4', 'localizacaoCabeca.png'), ('12', 'localizacaoOmbros.png'), ('3', 'localizacaoBracos.png'),
+             ('6', 'localizacaoNariz.png'), ('2', 'localizacaoBochechas.png'), ('1', 'localizacaoBoca.png'),
+             ('16', 'localizacaoTronco.png'), ('10', 'localizacaoNeutro.png'), ('11', 'localizacaoOlhos.png'),
+             ('17', 'localizacaoOrelhas.png'),('13', 'localizacaoPescoco.png'), ('14', 'localizacaoQueixo.png'),
+              ('15', 'localizacaoTesta.png'), ('5','maos.png')])
 
         
 class Movimentacao(models.Model):
