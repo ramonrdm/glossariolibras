@@ -66,6 +66,7 @@ if get_secret('glossario_name_db'):
             'PASSWORD': get_secret('glossario_password_db'),
             'HOST': 'mysql.sites.ufsc.br',
             'PORT': '3306',
+            'OPTIONS': {'charset': 'utf8mb4'},
         }
     }
 else:

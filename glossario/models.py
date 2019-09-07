@@ -138,7 +138,7 @@ def sinal_upload_path(instance, filename):
 class Sinal(models.Model):
     class Meta:
         verbose_name_plural = 'sinais'
-        unique_together = ('portugues', 'glossario' , 'ingles', 'cmE','cmD', 'localizacao', 'movimentacao')
+        #unique_together = ('portugues', 'glossario' , 'ingles', 'cmE','cmD', 'localizacao', 'movimentacao')
     
     videos_originais_converter = []
 
