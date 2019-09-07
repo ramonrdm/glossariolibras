@@ -36,10 +36,11 @@
           <p>Por favor confirme seu endereço de email para completar o registro</p>
         </div>
         <div class="modal-footer">
-          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
+          <a class="modal-close waves-effect waves-green btn-flat">Fechar</a>
         </div>
       </div>
-    {% elif modalConfirmeEmailErro %}
+    {% endif%}
+    {% if modalConfirmeEmailErro %}
         <div id="confirmeEmailErro" class="modal">
         <div class="modal-content">
           <h5>Erro confimação de e-mail!</h5>

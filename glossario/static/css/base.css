@@ -59,6 +59,8 @@ nav .brand-logo {
   padding: 18px;
   max-width: 235px;
 
+
+
 }
 
 nav.nav-extended {
@@ -119,9 +121,6 @@ nav .brand-logo.center {
     transition-duration: 0.4s;
     width: 250px !important ;
 }
-
-
-
 
 #videoGlossario {
 	position: relative;
