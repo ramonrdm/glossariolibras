@@ -36,7 +36,8 @@ def index(request, glossario=None):
 
         if sinais:
             for sinal in sinais:
-                sinal.localizacao = "/static/img/" + Localizacao.localizacoes_imagens[sinal.localizacao]
+                if sinal.localizacao:
+                    sinal.localizacao = "/static/img/" + Localizacao.localizacoes_imagens[sinal.localizacao]
                 if sinal.movimentacao:
                     sinal.movimentacao = "/static/img/" + Movimentacao.movimentacoes_imagens[sinal.movimentacao]
         return render(request, 'pesquisa.html', {
