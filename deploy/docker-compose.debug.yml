@@ -1,5 +1,7 @@
 version: '3'
 
+volumes:
+  data:
 services:
   glossario:
     build: ../.
@@ -7,3 +9,21 @@ services:
       - ../.:/code
     ports:
       - 8000:8000
+
+  db:
+    image: mysql:5.6.30
+    ports:
+      - 3306:3306
+    volumes:
+      - data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=glossario
+      - MYSQL_DATABASE=glossario
+networks:
+  default:
+  proxy-network:
+    #name: proxy-network
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.30.0.0/16
