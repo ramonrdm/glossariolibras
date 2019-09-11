@@ -23,7 +23,7 @@
 									<th>Configuração esquerda</th>
 									<th>Configuração direita</th>
 									<th>Localização</th>
-									<th>Movimentação</th>
+									<th>Movimento</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -81,25 +81,39 @@
 		<a id="buttonViewModuleMobile" class="btn-floating btn waves-effect waves-light blue right"><i class="material-icons">view_module</i></a>
 			{% if sinais %}
 				<p class="flow-text">Encontrado {{resultado}} resultado(s):</p>
-					<div class="row">
-						<div class="col l4">
-							<table class="table-responsive highlight centered">
+
+
+							<table class="table-responsive highlight right">
+								<thead>
+								<tr>
+
+									<th></th>
+									<th style="font-size: 0.9em;">Esquerda</th>
+									<th style="font-size: 0.9em;">Direita</th>
+									<th style="font-size: 0.9em;">Localização</th>
+									<th style="font-size: 0.9em;">Movimento</th>
+								</tr>
+							</thead>
+
 								{% for s in sinais %}
+								<div class="row">
 									<tr onclick="window.location='/sinal/{{s.id}}';">
 										<td>{{s.portugues}}</td>
 										{% if s.cmE.imagem %}
-											<td><img src="/static/img/configuracoes_de_mao/{{s.cmE.imagem}}" width="50" class="circle"></td>
+											<td class="col s2"><img src="/static/img/configuracoes_de_mao/{{s.cmE.imagem}}" class="circle  responsive-img"></td>
+
 										{% endif %}
 										{% if s.cmD.imagem %}
-											<td><img src="/static/img/configuracoes_de_mao/{{s.cmD.imagem}}" width="50" class="circle"></td>
+											<td class="col s2 "><img src="/static/img/configuracoes_de_mao/{{s.cmD.imagem}}" style="display: block; position=relative; max-width=100%;" class="circle  responsive-img"></td>
 										{% endif %}
 										{% if s.localizacao %}
-											<td><img src="{{s.localizacao}}" width="50" class="circle"></td>
+											<td class="col s2 "><img src="{{s.localizacao}}"style="display: block; position=relative; max-width=100%;"class="circle  "></td>
 										{% endif %}
 										{% if s.movimentacao %}
-											<td><img src="{{ s.movimentacao}}" width="50" class="circle"></td>
+											<td class="col s2 "><img src="{{ s.movimentacao}}"  style="display: block; position=relative; max-width=1px;" class="circle  "></td>
 										{% endif %}
 									</tr>
+								</div>
 								{% endfor %}
 							</table>
 						</div>
