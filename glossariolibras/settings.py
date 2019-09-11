@@ -73,10 +73,10 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': os.getenv('MYSQL_DATABASE'),
-            'USER': os.getenv('MYSQL_DATABASE'),
-            'PASSWORD': os.getenv('MYSQL_ROOT_PASSWORD'),
-            'HOST': 'db',
+            'NAME': 'glossario',
+            'USER': 'glossario',
+            'PASSWORD': 'glossario',
+            'HOST': 'db_gll',
             'PORT': '3306',
             'OPTIONS': {'charset': 'utf8mb4'},
         }
