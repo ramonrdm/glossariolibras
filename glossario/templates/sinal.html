@@ -91,37 +91,35 @@
 	<!------------------------------ Descrição  ------------------------------------->
 
 	<div class="col s12 m7 l7">
-		<div class="col m3">
+		<div class="col s6 l3 m3">
 			<div class="card blue darken-4  cardSinalMao z-depth-0">
 				<div class="card-content white-text">
-						<span  id="movimentacao" class="card-title center">Esquerda</span>
-						<div class="center imgMao">
-							{% if sinal.cmE.imagem %}
-								<img class="circle imgSinal" src="/static/img/configuracoes_de_mao/{{sinal.cmE.imagem}}">
-							{% else %}
-								<i class="large material-icons white-text imgSinal">cloud_off</i>
-							{% endif %}
-						</div>
+					<span  id="movimentacao" class="card-title center">Esquerda</span>
+					<div class="center imgMao">
+						{% if sinal.cmE.imagem %}
+							<img class="circle imgSinal" src="/static/img/configuracoes_de_mao/{{sinal.cmE.imagem}}">
+						{% else %}
+							<i class="large material-icons white-text imgSinal">cloud_off</i>
+						{% endif %}
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col m3">
+		<div class="col s6 l3 m3">
 			<div class="card blue darken-4  cardSinalMao z-depth-0">
 				<div class="card-content white-text">
-
-						<span  id="movimentacao"  class="card-title center">Direita</span>
-						<div class="center imgMao">
-							{% if sinal.cmD.imagem %}
-								<img class="circle imgSinal" src="/static/img/configuracoes_de_mao/{{sinal.cmD.imagem}}">
-							{% else %}
-								<i class="large material-icons white-text imgSinal">cloud_off</i>
-							{% endif %}
-						</div>
-
+					<span  id="movimentacao"  class="card-title center">Direita</span>
+					<div class="center imgMao">
+						{% if sinal.cmD.imagem %}
+							<img class="circle imgSinal" src="/static/img/configuracoes_de_mao/{{sinal.cmD.imagem}}">
+						{% else %}
+							<i class="large material-icons white-text imgSinal">cloud_off</i>
+						{% endif %}
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col m3">
+		<div class="col s6 l3 m3">
 			<div class="card blue darken-4 cardSinal z-depth-0">
 				<div class="card-content white-text">
 					<span id="movimentacao" class="card-title center">Localização</span>
@@ -135,7 +133,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col m3">
+		<div class="col s6 l3 m3">
 			<div class="card blue darken-4  cardSinal z-depth-0">
 				<div class="card-content white-text">
 					<span id="movimentacao"  class="card-title center">Movimento</span>

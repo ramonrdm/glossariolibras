@@ -84,43 +84,43 @@
 							<table class="table-responsive centered " >
 								<thead>
 								<tr>
-									<th style="font-size: 0.9em;" >Preview</th>
-									<th style="font-size: 0.9em;">Esquerda</th>
-									<th style="font-size: 0.9em;">Direita</th>
-									<th style="font-size: 0.9em;">Localização</th>
-									<th style="font-size: 0.9em;">Movimento</th>
+									<th style="font-size: 0.8em;" >Preview</th>
+									<th style="font-size: 0.8em;">Esquerda</th>
+									<th style="font-size: 0.8em;">Direita</th>
+									<th style="font-size: 0.8em;">Localização</th>
+									<th style="font-size: 0.8em;">Movimento</th>
 								</tr>
 							</thead>
 								{% for s in sinais %}
-								<div class="row center">
+
 									<tr onclick="window.location='/sinal/{{s.id}}';">
-											{% if s.video_sinal %}
-											<td class="col s3 field-video_tag_sinal"><video autoplay="" loop="" src="{{s.video_sinal.url}}" height="60"></video></td>
+										{% if s.video_sinal %}
+											<td class="col s1 field-video_tag_sinal"><video autoplay="" loop="" src="{{s.video_sinal.url}}" height="55px"></video></td>
 										{% else %}
 											<td><img src="/static/img/X.svg" width="50" class="circle"></td>
 										{% endif %}
 										{% if s.cmE.imagem %}
-											<td class="col s2"><img src="/static/img/configuracoes_de_mao/{{s.cmE.imagem}}"  width=60px" class="circle "></td>
+											<td class="col s1"><img src="/static/img/configuracoes_de_mao/{{s.cmE.imagem}}"  width="55px" class="circle "></td>
 										{% endif %}
 										{% if s.cmD.imagem %}
-											<td class="col s2 "><img src="/static/img/configuracoes_de_mao/{{s.cmD.imagem}}"   width=60px" class="circle  "></td>
+											<td class="col s1 "><img src="/static/img/configuracoes_de_mao/{{s.cmD.imagem}}"   width="55px" class="circle  "></td>
 										{% endif %}
 										{% if s.localizacao %}
-											<td class="col s2 "><img src="{{s.localizacao}}"  width=60px"  class="circle  "></td>
+											<td class="col s1 "><img src="{{s.localizacao}}"  width="55px"  class="circle  "></td>
 										{% endif %}
+
 										{% if s.movimentacao %}
-											<td class="col s2 "><img src="{{ s.movimentacao}}"  width=60px" class="circle "></td>
-
+											<td class="col s1 "><img src="{{ s.movimentacao}}"  width="55px" class="circle "></td>
 										{% endif %}
+										</tr>
+									<!--<tr class="center" onclick="window.location='/sinal/{{s.id}}';">-->
+									<!--<div class="row center">-->
+										<!--<td class="sinalPortugues">{{s.portugues}}  </td>-->
+										<!--<td class="sinalPortugues"> . </td>-->
+										<!--<td class="sinalIngles">   {{s.ingles}}</td>-->
+									<!--</div>-->
+								<!--</tr>-->
 
-									</tr>
-								</div>
-								<tfoot>
-									<div class="row center">
-										<td class="col s6"><h6>{{s.portugues}}</h6></td>
-										<td class="col s6"><h7>{{s.ingles}}</h7></td>
-									</div>
-								</tfoot>
 								{% endfor %}
 							</table>
 						</div>

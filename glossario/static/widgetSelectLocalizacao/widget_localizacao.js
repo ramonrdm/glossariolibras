@@ -68,6 +68,10 @@ $(document).ready(function(){
             {
                 key: "5",
                 toolTip: "Mãos"
+            },
+            {
+             key: "0",
+                toolTip: "Sem Localização"
             }
 
         ]
@@ -76,6 +80,9 @@ $('#modeloImg').parent().css({"margin":"0 auto"});
 
 $('area').click(function() {
     let attrValue = $(this).attr('data-key');
+    if(attrValue == '0'){
+        attrValue = null;
+    }
     if(attrValue){
         $('#id_localizacao').val(attrValue);
         $('#imagem_localizacao').attr('src', '/static/img/'+objetos_localizacao[attrValue]);
