@@ -74,7 +74,7 @@ else:
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'glossario',
-            'USER': 'glossario',
+            'USER': 'root',
             'PASSWORD': 'glossario',
             'HOST': 'db_gll',
             'PORT': '3306',

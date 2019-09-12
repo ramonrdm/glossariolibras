@@ -1,21 +1,9 @@
 version: '3'
 
-volumes:
-  data:
+# volumes:
+#   data:
 
 services:
-  db_gll:
-    restart: always
-    image: mysql:5.6.30
-    ports:
-      - 3306:3306
-    volumes:
-      - data:/var/lib/mysql
-    environment:
-      - MYSQL_USER=glossario
-      - MYSQL_DATABASE=glossario
-      - MYSQL_PASSWORD=glossario
-      - MYSQL_ROOT_PASSWORD=glossario
 
   glossario:
     restart: always
@@ -33,6 +21,22 @@ services:
       - db_gll
     # links:
     #   - db_gll
+
+  db_gll:
+    # restart: always
+    image: mysql:5.6.30
+    # ports:
+    #   - 3306:3306
+    # volumes:
+    #   - data:/var/lib/mysql
+    environment:
+            MYSQL_ROOT_PASSWORD: glossario
+            MYSQL_DATABASE: glossario
+      # - MYSQL_USER=glossario
+      # - MYSQL_DATABASE=glossario
+      # - MYSQL_PASSWORD=glossario
+      # - MYSQL_ROOT_PASSWORD=glossario
+
 
 # networks:
 #   default:
