@@ -2,28 +2,43 @@ version: '3'
 
 volumes:
   data:
-services:
-  glossario:
-    build: ../.
-    volumes:
-      - ../.:/code
-    ports:
-      - 8000:8000
 
-  db:
+services:
+  db_gll:
+    restart: always
     image: mysql:5.6.30
     ports:
       - 3306:3306
     volumes:
       - data:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=glossario
+      - MYSQL_USER=glossario
       - MYSQL_DATABASE=glossario
-networks:
-  default:
-  proxy-network:
-    #name: proxy-network
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.30.0.0/16
+      - MYSQL_PASSWORD=glossario
+      - MYSQL_ROOT_PASSWORD=glossario
+
+  glossario:
+    restart: always
+    build: ../.
+    volumes:
+      - ../.:/code
+    ports:
+      - 8000:8000
+    # environment:
+    #   MYSQL_ROOT_PASSWORD: "glossario"
+    #   MYSQL_DATABASE: "glossario"
+    #   MYSQL_PASSWORD: 'glossario'
+    #   MYSQL_ROOT_PASSWORD: 'glossario'
+    depends_on:
+      - db_gll
+    # links:
+    #   - db_gll
+
+# networks:
+#   default:
+#   proxy-network:
+#     #name: proxy-network
+#     ipam:
+#       driver: default
+#       config:
+#         - subnet: 172.30.0.0/16

@@ -56,41 +56,38 @@ WSGI_APPLICATION = 'glossariolibras.wsgi.application'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+if get_secret('glossario_name_db'):
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': get_secret('glossario_name_db'),
+            'USER': get_secret('glossario_user_db'),
+            'PASSWORD': get_secret('glossario_password_db'),
+            'HOST': 'mysql.sites.ufsc.br',
+            'PORT': '3306',
+            'OPTIONS': {'charset': 'utf8mb4'},
+        }
     }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'glossario',
+            'USER': 'glossario',
+            'PASSWORD': 'glossario',
+            'HOST': 'db_gll',
+            'PORT': '3306',
+            'OPTIONS': {'charset': 'utf8mb4'},
+        }
 }
 
-# if get_secret('glossario_name_db'):
-#
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.mysql',
-#             'NAME': get_secret('glossario_name_db'),
-#             'USER': get_secret('glossario_user_db'),
-#             'PASSWORD': get_secret('glossario_password_db'),
-#             'HOST': 'mysql.sites.ufsc.br',
-#             'PORT': '3306',
-#             'OPTIONS': {'charset': 'utf8mb4'},
-#         }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
-# else:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.mysql',
-#             'NAME': os.getenv('MYSQL_DATABASE'),
-#             'USER': os.getenv('MYSQL_DATABASE'),
-#             'PASSWORD': os.getenv('MYSQL_ROOT_PASSWORD'),
-#             'HOST': 'db',
-#             'PORT': '3306',
-#             'OPTIONS': {'charset': 'utf8mb4'},
-#         }
-#     }
-
-
+# }
 
 
 LANGUAGE_CODE = 'pt-br'
