@@ -136,12 +136,6 @@ def historia(request):
     return render(request, "historia.html")
 
 def equipe(request):
-    import json
-    with open('/code/gll_teste.json', 'r') as f:
-        sinais = json.load(f)
-    for sinal in sinais:
-        Sinal.objects.create(**sinal)
-
     return render(request, "equipe.html", {})
 
 def contato(request):

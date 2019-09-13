@@ -35,28 +35,6 @@
     }
 },
 {
-    "model": "glossario.userglossario",
-    "fields": {
-        "password": "pbkdf2_sha256$120000$9XWE5aMklAFT$0qzp5hoybkhXPCy+KM7jB2V58I5570LSFrPn33iV77A=",
-        "last_login": "2019-08-12T22:19:53.647Z",
-        "is_superuser": true,
-        "email": "admin@admin.com",
-        "nome_completo": "admin",
-        "email_confirmed": false,
-        "is_staff": true,
-        "is_active": true,
-        "groups": [
-            [
-                "responsaveis"
-            ],
-            [
-                "membros"
-            ]
-        ],
-        "user_permissions": []
-    }
-},
-{
     "model": "glossario.cm",
     "pk": 1,
     "fields": {

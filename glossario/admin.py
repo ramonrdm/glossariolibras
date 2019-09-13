@@ -66,6 +66,7 @@ class SinalAdmin(admin.ModelAdmin):
     list_display = ('portugues', 'video_tag_sinal', 'ingles', 'glossario', 'image_tag_cmE', 'image_tag_cmD', 'image_tag_localizacao', 'image_tag_movimentacao' , 'publicado')
     list_filter = ('glossario', 'localizacao', 'movimentacao', 'publicado')
     actions = ['publicar_sinal',]
+    search_fields = ('portugues', 'ingles')
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == "glossario":
@@ -102,14 +103,14 @@ class SinalAdmin(admin.ModelAdmin):
             return format_html('<p>Sem Imagem</p>')
 
     def image_tag_cmE(self, obj):
-        if obj.cmE.imagem:
+        if obj.cmE:
             return format_html('<img style="border-radius: 25px 25px 25px 25px;" src="/static/img/configuracoes_de_mao/{}" width="50" height="50" />'.format(obj.cmE.imagem()))
         else:
             return format_html('<p>Sem Imagem</p>')
         image_tag_cmE.short_description = "Esquerda"
 
     def image_tag_cmD(self, obj):
-        if obj.cmD.imagem:
+        if obj.cmD:
             return format_html('<img style="border-radius: 25px 25px 25px 25px;" src="/static/img/configuracoes_de_mao/{}" width="50" height="50" />'.format(obj.cmD.imagem()))
         else:
             return format_html('<p>Sem Imagem</p>')

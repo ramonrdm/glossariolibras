@@ -12,11 +12,6 @@ services:
       - ../.:/code
     ports:
       - 8000:8000
-    # environment:
-    #   MYSQL_ROOT_PASSWORD: "glossario"
-    #   MYSQL_DATABASE: "glossario"
-    #   MYSQL_PASSWORD: 'glossario'
-    #   MYSQL_ROOT_PASSWORD: 'glossario'
     depends_on:
       - db_gll
     # links:
@@ -32,13 +27,18 @@ services:
     environment:
             MYSQL_ROOT_PASSWORD: glossario
             MYSQL_DATABASE: glossario
-      # - MYSQL_USER=glossario
-      # - MYSQL_DATABASE=glossario
-      # - MYSQL_PASSWORD=glossario
-      # - MYSQL_ROOT_PASSWORD=glossario
 
 
-# networks:
+  # phpmyadmin:
+  #   image: phpmyadmin/phpmyadmin:latest
+  #   links:
+  #     - db_gll
+  #   ports:
+  #     - 8080:80
+  #   environment:
+  #     - PMA_ARBITRARY=1
+
+  # networks:
 #   default:
 #   proxy-network:
 #     #name: proxy-network

@@ -66,7 +66,7 @@ if get_secret('glossario_name_db'):
             'PASSWORD': get_secret('glossario_password_db'),
             'HOST': 'mysql.sites.ufsc.br',
             'PORT': '3306',
-            'OPTIONS': {'charset': 'utf8mb4'},
+            'OPTIONS': {'charset': 'utf8',},
         }
     }
 else:
@@ -78,7 +78,7 @@ else:
             'PASSWORD': 'glossario',
             'HOST': 'db_gll',
             'PORT': '3306',
-            'OPTIONS': {'charset': 'utf8mb4'},
+            'OPTIONS': {'charset': 'utf8'},
         }
 }
 
@@ -132,7 +132,7 @@ LOGIN_URL = 'login'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 EMAIL_HOST = "smtp.sistemas.ufsc.br"
-EMAIL_PORT = 465
+EMAIL_PORT = 587
 EMAIL_HOST_USER = get_secret('email_libras_user')
 EMAIL_HOST_PASSWORD = get_secret('email_libras_password')
 EMAIL_USE_SSL = True
