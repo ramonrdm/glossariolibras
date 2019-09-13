@@ -66,7 +66,7 @@ if get_secret('glossario_name_db'):
             'PASSWORD': get_secret('glossario_password_db'),
             'HOST': 'mysql.sites.ufsc.br',
             'PORT': '3306',
-            'OPTIONS': {'charset': 'utf8',},
+            'OPTIONS': {'charset': 'latin1',}, # o banco tá em utf8, mas se não colocar latin1 aqui da erro...
         }
     }
 else:
