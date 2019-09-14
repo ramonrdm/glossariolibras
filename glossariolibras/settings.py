@@ -8,8 +8,6 @@ def get_secret(secret_name):
     except IOError:
         return None
 
-TESTE_USER_DB = get_secret('teste')
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '@9e1s9zexj93d%n^^2)vxi0p4lwmz2tn0y67%*65#$nn5g64q1'
 

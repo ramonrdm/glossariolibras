@@ -111,7 +111,8 @@ def sinal(request, sinal=None, glossario=None):
             sinal = Sinal.objects.get(id=sinal)
             glossario = sinal.glossario
             sinal.localizacao = "/static/img/"+Localizacao.localizacoes_imagens[sinal.localizacao]
-            sinal.movimentacao = "/static/img/" + Movimentacao.movimentacoes_imagens[sinal.movimentacao]
+            if sinal.movimentacao:
+                sinal.movimentacao = "/static/img/" + Movimentacao.movimentacoes_imagens[sinal.movimentacao]
 
         except Sinal.DoesNotExist:
             sinal = None
@@ -140,7 +141,7 @@ def equipe(request):
 
 def contato(request):
 
-    return render(request, "contato.html", {'test': settings.TESTE_USER_DB})
+    return render(request, "contato.html")
 
 def registration(request):
     if request.method == 'POST':

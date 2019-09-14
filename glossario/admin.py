@@ -98,7 +98,7 @@ class SinalAdmin(admin.ModelAdmin):
 
     def video_tag_sinal(self, obj):
         if obj.video_sinal:
-            return format_html('<video autoplay loop src="/media/{}" height="70" />'.format(obj.video_sinal))
+            return format_html('<video loop src="/media/{}" height="70" style="cursor:pointer;" onclick="this.paused?this.play():this.pause()" />'.format(obj.video_sinal))
         else:
             return format_html('<p>Sem Imagem</p>')
 

@@ -30,7 +30,7 @@
 							{% for s in sinais %}
 								<tr onclick="window.location='/sinal/{{s.id}}';">
 									{% if s.video_sinal %}
-										<td class="field-video_tag_sinal"><video autoplay="" loop="" src="{{s.video_sinal.url}}" height="70"></video></td>
+										<td class="field-video_tag_sinal"><video style="cursor:pointer;"  onmouseover="this.play()" onmouseout="this.pause()" loop="" src="{{s.video_sinal.url}}" height="70"></video></td>
 									{% else %}
 										<td><img src="/static/img/X.svg" width="50" class="circle"></td>
 									{% endif %}
