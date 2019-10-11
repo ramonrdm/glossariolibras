@@ -67,6 +67,7 @@ class SinalAdmin(admin.ModelAdmin):
     list_filter = ('glossario', 'localizacao', 'movimentacao', 'publicado')
     actions = ['publicar_sinal',]
     search_fields = ('portugues', 'ingles')
+    list_per_page = 30
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == "glossario":

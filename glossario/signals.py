@@ -8,7 +8,7 @@ import datetime
 import os, os.path
 
 @receiver(post_save, sender=Glossario)
-def set_new_user_group(sender, instance, **kwargs):
+def set_news_group(sender, instance, **kwargs):
     responsaveis = instance.responsaveis.all()
     membros = instance.membros.all()
     responsaveis_group = Group.objects.get_or_create(name='responsaveis')[0]

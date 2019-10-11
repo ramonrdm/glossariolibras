@@ -2,6 +2,12 @@
 
 
 
+
+.modal.bottom-sheet {
+	max-height: 85%;
+}
+
+
 :root{
     --primary: white;
     --secondary:black;

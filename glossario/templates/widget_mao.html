@@ -25,7 +25,7 @@ $(document).ready(function(){
 });
 </script>
 
-<div id="modal-libras-{{ name }}" class="modal">
+<div id="modal-libras-{{ name }}" class="modal center bottom-sheet">
     <div class="modal-content">
         <h4 class="black-text center">Grupos de Configurações de Mãos</h4>
         {% for grupo in cmGrupos %}
@@ -35,7 +35,7 @@ $(document).ready(function(){
 </div>
 
 {% for grupo in cmGrupos %}
-<div id="{{ grupo }}{{ name }}" class="modal">
+<div id="{{ grupo }}{{ name }}" class="modal center bottom-sheet">
     <div class="modal-content">
         <h4 class="black-text center" >Configuração de Mão</h4>
         {% for cm in cm %}

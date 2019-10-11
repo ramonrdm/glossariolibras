@@ -14,7 +14,7 @@ SECRET_KEY = '@9e1s9zexj93d%n^^2)vxi0p4lwmz2tn0y67%*65#$nn5g64q1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['glossarios.libras.ufsc.br', 'glossario.libras.ufsc.br', 'localhost']
+ALLOWED_HOSTS = ['glossarios.libras.ufsc.br', 'glossario.libras.ufsc.br', 'localhost', '200.135.84.165']
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -67,25 +67,25 @@ if get_secret('glossario_name_db'):
             'OPTIONS': {'charset': 'latin1',}, # o banco tá em utf8, mas se não colocar latin1 aqui da erro...
         }
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'glossario',
-            'USER': 'root',
-            'PASSWORD': 'glossario',
-            'HOST': 'db_gll',
-            'PORT': '3306',
-            'OPTIONS': {'charset': 'utf8'},
-        }
-}
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
+# else:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.mysql',
+#             'NAME': 'glossario',
+#             'USER': 'root',
+#             'PASSWORD': 'glossario',
+#             'HOST': 'db_gll',
+#             'PORT': '3306',
+#             'OPTIONS': {'charset': 'utf8'},
+#         }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 
 LANGUAGE_CODE = 'pt-br'
