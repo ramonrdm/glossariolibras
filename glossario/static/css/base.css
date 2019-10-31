@@ -31,17 +31,26 @@
 
 } */
 
-.sinalPortugues{
+
+
+.tituloSinais{
     font-style: normal;
-    font-size: 200%;
+    font-size: 15px;
     color: #01579b;
     font-weight: bold;
 
 }
 
+.sinalPortugues{
+    font-style: normal;
+    font-size: 18px;
+    color: #01579b;
+    font-weight: bold;
+}
+
 .sinalIngles{
     font-style: italic;
-    font-size: 140%;
+    font-size: 16px;
     color: #0288d1;
 }
 

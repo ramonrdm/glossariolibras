@@ -3,8 +3,8 @@
 <div class="telaWeb" style= "display: none;" >
     <div class="navbar-fixed">
     {% if formPesquisa %}
-        <nav class="row white">
-            <form method="post">
+        <nav class="row white" >
+            <form method="post" action="{% url 'pesquisa'  %}" >
                 <ul class=" col l0 left">
                     <li>
                         <a id="abrirSidenav" class="btn-floating btn-flat waves-effect waves-light white">
@@ -31,12 +31,12 @@
                 {% endfor %}
                     <div class="col l1 right">
                         <li>
-                            <button class="btn waves-effect waves-light botaoPesquisar" type="submit" id="botaoPesquisar" name="botaoPesquisar">Pesquisar<i class="material-icons right">send</i></button>
+                            <button class="btn waves-effect waves-light botaoPesquisar" type="submit" id="botaoPesquisar" name="botaoPesquisar" >Pesquisar<i class="material-icons right">send</i></button>
                         </li>
                     </div>
                 </ul>
                 <div class=" col l2 right nav-wrapper">
-                    <div class="input-field right">
+                    <div class="input-field right" name="pesquisa">
                     {% csrf_token %}
                     {{ formPesquisa }}
                         <label class="label-icon" for="search">
@@ -100,8 +100,7 @@
             </nav>
             <nav id="mobileSearchEscrita">
                 <div class="nav-wrapper grey lighten-4">
-                    <form method="post">
-                        <ul class=" input-field">
+                    <form method="post" name>
                             {% csrf_token %}
                             {{ formPesquisa }}
                             <label class="label-icon" for="search"><i class="material-icons grey-text">search</i></label>

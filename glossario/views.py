@@ -16,9 +16,14 @@ from django.utils.http import urlsafe_base64_decode
 
 
 def index(request, glossario=None):
-
     glossarios = Glossario.objects.filter(visivel=True)
+    formSinais = PesquisaSinaisForm()
+    formPesquisa = PesquisaForm()
+    return render(request, 'index.html', {'glossarios': glossarios, 'glossario': glossario, 'formPesquisa': formPesquisa, 'formSinais': formSinais})
+
+def pesquisa(request):
     if request.method == 'POST':
+        print('passei no post')
         sinais = None
         formPesquisa = PesquisaForm(request.POST)
         formSinais = PesquisaSinaisForm(request.POST)
@@ -36,7 +41,7 @@ def index(request, glossario=None):
                     sinal.movimentacao = "/static/img/" + Movimentacao.movimentacoes_imagens[sinal.movimentacao]
 
         page = request.GET.get('page', 1)
-        paginator = Paginator(sinais, 5)
+        paginator = Paginator(sinais, 10)
 
         try:
             sinais_page = paginator.page(page)
@@ -44,16 +49,39 @@ def index(request, glossario=None):
             sinais_page = paginator.page(1)
         except EmptyPage:
             sinais_page = paginator.page(paginator.num_pages)
-        return render(request, 'pesquisa.html', {
-            'formPesquisa': formPesquisa, 'sinais_page': sinais_page, 'resultado': resultado,
-            'formSinais': formSinais})
-    else:
-        formSinais = PesquisaSinaisForm()
-        formPesquisa = PesquisaForm()
+        return render(request, 'pesquisa.html', {'formPesquisa': formPesquisa, 'sinais_page': sinais_page, 'resultado': resultado,'formSinais': formSinais})
 
-    return render(request, 'index.html', {'glossarios': glossarios, 'glossario': glossario, 'formPesquisa': formPesquisa,
-         'formSinais': formSinais,
-    })
+    if request.method == 'GET':
+        print('passei no get')
+        sinais = None
+        formPesquisa = PesquisaForm(request.POST)
+        formSinais = PesquisaSinaisForm(request.POST)
+
+        if formPesquisa.is_valid() and formSinais.is_valid():
+            sinais = busca(formSinais, formPesquisa).filter(glossario__visivel=True)
+        formPesquisa = PesquisaForm()
+        resultado = len(sinais) if sinais else None
+
+        if sinais:
+            for sinal in sinais:
+                if sinal.localizacao:
+                    sinal.localizacao = "/static/img/" + Localizacao.localizacoes_imagens[sinal.localizacao]
+                if sinal.movimentacao:
+                    sinal.movimentacao = "/static/img/" + Movimentacao.movimentacoes_imagens[sinal.movimentacao]
+
+        page = request.GET.get('page', 1)
+        paginator = Paginator(sinais, 10)
+
+        try:
+            sinais_page = paginator.page(page)
+        except PageNotAnInteger:
+            sinais_page = paginator.page(1)
+        except EmptyPage:
+            sinais_page = paginator.page(paginator.num_pages)
+        return render(request, 'pesquisa.html',
+                      {'formPesquisa': formPesquisa, 'sinais_page': sinais_page, 'resultado': resultado,
+                       'formSinais': formSinais})
+
 
 def busca(formSinais, formPesquisa):
 
