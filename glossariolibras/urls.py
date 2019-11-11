@@ -16,6 +16,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('logout/', views.sair, name='logout'),
     path('equipe', views.equipe, name='equipe'),
+    path('pesquisa', views.pesquisa, name='pesquisa'),
     path('contato', views.contato, name='contato'),
     path('historia', views.historia, name='historia'),
     path('registration', views.registration, name='registration'),
