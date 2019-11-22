@@ -128,10 +128,26 @@ LOGIN_REDIRECT_URL = 'index'
 
 LOGIN_URL = 'login'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-EMAIL_HOST = "smtp.sistemas.ufsc.br"
+# EMAIL_HOST = "smtp.sistemas.ufsc.br"
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = get_secret('email_libras_user')
+# EMAIL_HOST_PASSWORD = get_secret('email_libras_password')
+# EMAIL_USE_SSL = True
+# FAULT_FROM_EMAIL = 'TestSite Team <cleberton.oliveira@grad.ufsc.br>'
+
+
+# EMAIL_HOST = 'smtp.sendgrid.net'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'testsite_app'
+# EMAIL_HOST_PASSWORD = 'mys3cr3tp4ssw0rd'
+# EMAIL_USE_TLS = True
+# DEFAULT_FROM_EMAIL = 'TestSite Team <noreply@example.com>'
+
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = get_secret('email_libras_user')
-EMAIL_HOST_PASSWORD = get_secret('email_libras_password')
-EMAIL_USE_SSL = True
+EMAIL_HOST_USER = 'clebertonoliveira.cnt@gmail.com'
+EMAIL_HOST_PASSWORD = 'ylfvwsmhvqxaljha'
