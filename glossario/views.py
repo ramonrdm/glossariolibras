@@ -41,7 +41,7 @@ def pesquisa(request):
                     sinal.movimentacao = "/static/img/" + Movimentacao.movimentacoes_imagens[sinal.movimentacao]
 
         page = request.GET.get('page', 1)
-        paginator = Paginator(sinais, 10)
+        paginator = Paginator(sinais, 12)
 
         try:
             sinais_page = paginator.page(page)

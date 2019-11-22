@@ -1,0 +1,57 @@
+<div class="blockContainer center">
+    <p class="flow-text">Encontrado {{resultado}} resultado(s):</p>
+        <div class="container divider"></div>
+        <ul class="row">
+            <a class="tituloSinais col s2" style="font-size: 9pt">Preview</a>
+            <a class="tituloSinais col s3"  style="font-size: 9pt">Esquerda</a>
+            <a class="tituloSinais col s2"  width="20%" style="font-size: 9pt">Direita</a>
+            <a class="tituloSinais col s3"  width="20%" style="font-size: 9pt">Localização</a>
+            <a class="tituloSinais col s2"  width="20%" style="font-size: 9pt">Movimento</a>
+        </ul>
+        <div class="infinite-sinal-web">
+            {% for s in sinais_page %}
+            <div class="infinite-item ">
+                <ul class="collection" >
+                    <a href="/sinal/{{s.id}}" class="collection-item row center">
+                        <li class="field-video_tag_sinal col s12">
+                            {% if s.video_sinal %}
+                                <video  loop="" src="{{s.video_sinal.url}}" width="23%"></video>
+                            {% else %}
+                                <img src="/static/img/X.svg"  width="18%" class="circle">
+                            {% endif %}
+                            {% if s.cmE.imagem %}
+                                <img src="/static/img/configuracoes_de_mao/{{s.cmE.imagem}}"  width="18%" class="circle">
+                            {% else %}
+                                <img src="/static/img/X.svg"  width="18%" class="circle">
+                            {% endif %}
+                            {% if s.cmD.imagem %}
+                                <img src="/static/img/configuracoes_de_mao/{{s.cmD.imagem}}"  width="18%" class="circle">
+                            {% else %}
+                                <img src="/static/img/X.svg"  width="18%" class="circle">
+                            {% endif %}
+                            {% if s.localizacao %}
+                                <img src="{{s.localizacao}}" width="18%" class="circle">
+                            {% else %}
+                                <img src="/static/img/X.svg"  width="18%"class="circle">
+                            {% endif %}
+                            {% if s.movimentacao %}
+                                <img src="{{ s.movimentacao}}"  width="18%" class="circle">
+                            {% else %}
+                                <img src="/static/img/X.svg"  width="18%" class="circle">
+                            {% endif %}
+                            <div class="divider white"></div>
+                        </li>
+                        {% if s.portugues %}
+                        <li class="col s6">
+                            <div class="sinalPortugues right">{{s.portugues}}</div>
+                        </li>
+                        <li class="col s5">
+                            <div class="sinalIngle left">{{s.ingles}}</div>
+                        </li>
+                        {% endif %}
+                    </a>
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+</div>

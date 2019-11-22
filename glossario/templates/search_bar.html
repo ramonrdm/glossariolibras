@@ -83,24 +83,26 @@
         </div>
     </nav>
     {% if formPesquisa %}
-        <form method="post">
-            <nav id="mobileSearchLibras" class="row nav-extended grey lighten-4">
-                <ul>
+        <form method="post" action="{% url 'pesquisa'  %}">
+
+       <footer id="mobileSearchLibras" class="white" style="position: fixed; bottom: 0; z-index: 1; -webkit-box-shadow:  0 0 0 3px rgba(0, 0, 0, 0.1); top: 88.5%; width: 100%">
+                   <div class="row">
                     {% for field in formSinais %}
                          <div class="col s3 left">
-                        {{field}}
-                             </div>
+                             {{field}}
+                         </div>
                     {% endfor %}
 
                     <div class="col s3 right">
-                        <button style="margin-top: 25px;" class="btn-flat" type="submit" id="botaoPesquisar" name="botaoPesquisar"><i class="material-icons right">send</i></button>
+                        <button style="margin-top: 20px;" class=" btn-floating btn-large waves-effect right" type="submit" id="botaoPesquisar" name="botaoPesquisar"><i class="  material-icons center grey lighten-1 ">search</i></button>
                     </div>
-                </ul>
-                <a  id="abrirNavSearchMobile" class="btn-floating btn-large halfway-fab waves-effect waves-light indigo darken-4" style="position: fixed;" ><i class="material-icons white-text">text_format</i></a></nav>
-            </nav>
-            <nav id="mobileSearchEscrita">
-                <div class="nav-wrapper grey lighten-4">
-                    <form method="post" name>
+                <a  id="abrirNavSearchMobile" class="btn-floating btn-large halfway-fab waves-effect waves-light indigo darken-4" style="position: absolute; top: -80%;"><i class="material-icons white-text">text_format</i></a></nav>
+            </div>
+        </footer>
+           <footer id="mobileSearchEscrita" class="white" style="position: fixed; bottom: 0; z-index: 1; -webkit-box-shadow:  0 0 0 3px rgba(0, 0, 0, 0.1); top: 88.5%; width: 100%">
+                 <div class="nav-wrapper grey lighten-4">
+                    <form method="post">
+                        <ul class=" input-field">
                             {% csrf_token %}
                             {{ formPesquisa }}
                             <label class="label-icon" for="search"><i class="material-icons grey-text">search</i></label>
@@ -108,10 +110,11 @@
                         </ul>
                     </form>
                 </div>
-                <a id="fecharNavSearchMobile" class="btn-floating btn-large halfway-fab waves-effect waves-light indigo darken-4"  style="position: fixed;"><i class="material-icons white-text">pan_tool</i></a>
-            </nav>
-        </form>
+                <a  id="fecharNavSearchMobile" class="btn-floating btn-large halfway-fab waves-effect waves-light indigo darken-4" style="position: absolute; top: -80%;"><i class="material-icons white-text">pan_tool</i></a></nav>
+        </footer>
     {% else %}
+
+
     {% endif %}
     <ul class="sidenav" id="mobile-demo">
         {% include 'menu.html' %}

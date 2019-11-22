@@ -1,8 +1,6 @@
 /* ================= COMUM ================= */
 
 
-
-
 .modal.bottom-sheet {
 	max-height: 85%;
 }
@@ -43,14 +41,14 @@
 
 .sinalPortugues{
     font-style: normal;
-    font-size: 18px;
+    font-size: 15px;
     color: #01579b;
     font-weight: bold;
 }
 
 .sinalIngles{
     font-style: italic;
-    font-size: 16px;
+    font-size: 15px;
     color: #0288d1;
 }
 
@@ -77,6 +75,17 @@ nav .brand-logo {
 
 
 }
+
+
+.collection .collection-item {
+  background-color: #fff;
+  line-height: 1.5rem;
+  padding: 10px 10px;
+  margin: 0;
+  border-bottom: px solid #e0e0e0;
+}
+
+
 
 
 

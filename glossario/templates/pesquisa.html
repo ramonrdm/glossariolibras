@@ -6,197 +6,83 @@
 	<title>{% block title %}Pesquisa {{ glossario.nome }} - Glossário Letras Libras {% endblock %}</title>
 {% endblock %}
 {% block body %}
-<div class="hide-on-small-only blockContainer">
+<div class="telaWeb" style= "display: none;">
+
 	<div class="pesquisaViewList">
 		<a id="buttonViewModule" class="btn-floating btn-large waves-effect waves-light blue right"><i class="material-icons">view_module</i></a>
 		<h2 class="thin center">{{glossario.nome}}</h2>
-			{% if sinais_page %}
-				<div class="container center">
-					<p class="flow-text center">Encontrado {{resultado}} resultado(s):</p>
-						<ul class="row center">
-								<li class="col l2 tituloSinais">Preview</li>
-								<li class="col l2 tituloSinais">Nome</li>
-								<li class="col l2 tituloSinais">Configuração esquerda</li>
-								<li class="col l2 tituloSinais">Configuração direita</li>
-								<li class="col l2 tituloSinais">Localização</li>
-								<li class="col l2 tituloSinais">Movimento</li>
-						</ul>
-					<div class="infinite-container">
-						{% for s in sinais_page %}
-						<div class="infinite-item ">
-							<ul class="collection">
-							<a href="/sinal/{{s.id}}" class="collection-item row center">
+		{% if sinais_page %}
+			{% include 'blockPesquisaList.html' %}
+		{% else %}
+			<p class="flow-text center">Nenhum sinal encontrado</p>
+		{% endif %}
 
-									{% if s.video_sinal %}
-										<li class="field-video_tag_sinal col l2">
-											<video autoplay="" loop="" src="{{s.video_sinal.url}}" height="70"></video>
-										</li>
-									{% else %}
-										<li class="col l2">
-											<img src="/static/img/X.svg" width="50" class="circle">
-										</li>
-									{% endif %}
-
-									{% if s.portugues %}
-										<li class="col l2">
-											<div class="sinalPortugues">{{s.portugues}}</div><br/>
-											<div class="sinalIngles">{{s.ingles}}</div>
-										</li>
-									{% endif %}
-
-									{% if s.cmE.imagem %}
-										<li class="col l2">
-											<img src="/static/img/configuracoes_de_mao/{{s.cmE.imagem}}" width="60" class="circle">
-										</li>
-									{% else %}
-										<li class="col l2">
-											<img src="/static/img/X.svg" width="60" class="circle">
-										</li>
-									{% endif %}
-
-									{% if s.cmD.imagem %}
-										<li class="col l2">
-											<img src="/static/img/configuracoes_de_mao/{{s.cmD.imagem}}" width="60" class="circle">
-										</li>
-									{% else %}
-										<li class="col l2">
-											<img src="/static/img/X.svg" width="60" class="circle">
-										</li>
-									{% endif %}
-
-									{% if s.localizacao %}
-										<li class="col l2">
-											<img src="{{s.localizacao}}" width="60" class="circle">
-										</li>
-									{% else %}
-										<li class="col l2">
-											<img src="/static/img/X.svg" width="60" class="circle">
-										</li>
-									{% endif %}
-
-									{% if s.movimentacao %}
-										<li class="col l2">
-											<img src="{{ s.movimentacao}}" width="60" class="circle">
-										</li>
-									{% else %}
-										<li class="col l2">
-											<img src="/static/img/X.svg" width="60" class="circle">
-										</li>
-									{% endif %}
-							</a>
-						</ul>
-						</div>
-						{% endfor %}
-					</div>
-					<div class="loading" style="display:none;" >
-						Loading...
-					</div>
-					{% if sinais_page.has_next %}
-						<a class="infinite-more-link" href="?page={{ sinais_page.next_page_number }}">More</a>
-					{% endif %}
-
-			{% else %}
-				<p class="flow-text center">Nenhum sinal encontrado</p>
-			{% endif %}
 	</div>
-</div>
-	<div class="pesquisaViewModule row">
+	<div class="pesquisaViewModule row blockContainer">
 		<a id="buttonViewList" class="btn-floating btn-large waves-effect waves-light blue right"><i class="material-icons">view_headline</i></a>
 		<h2 class="thin center">{{glossario.nome}}</h2>
-		<div class="container divider"></div>
-				{% if sinais_page %}
-					<p class="flow-text center">Encontrado {{resultado}} resultado(s):</p>
-						{% for s in sinais_page %}
-							{% include 'blockPesquisaModule.html' %}
-						{% endfor %}
-
-				{% else %}
-					<p class="flow-text center">Nenhum sinal encontrado</p>
-				{% endif %}
+		{% if sinais_page %}
+			<p class="flow-text center">Encontrado {{resultado}} resultado(s):</p>
+				{% for s in sinais_page %}
+					<div class="col l2">
+						{% include 'blockPesquisaModule.html' %}
+					</div>
+				{% endfor %}
+		{% else %}
+		<p class="flow-text center">Nenhum sinal encontrado</p>
+		{% endif %}
 	</div>
+
 </div>
 
-<div class="hide-on-large-only blockContainer center">
+<div class="telaMobile" style= "display: none;">
+
 	<div class="pesquisaViewList">
+		<a id="buttonViewModule" class="btn-floating btn waves-effect waves-light blue right"><i class="material-icons">view_module</i></a>
 		<h2 class="thin center">{{glossario.nome}}</h2>
-		<div class="container divider center"></div>
-		<a id="buttonViewModuleMobile" class="btn-floating btn waves-effect waves-light blue right"><i class="material-icons">view_module</i></a>
-			{% if sinais_page %}
-				<p class="flow-text">Encontrado {{resultado}} resultado(s):</p>
-							<table class="table-responsive centered " >
-								<thead>
-								<tr>
-									<th style="font-size: 0.8em;" >Preview</th>
-									<th style="font-size: 0.8em;">Esquerda</th>
-									<th style="font-size: 0.8em;">Direita</th>
-									<th style="font-size: 0.8em;">Localização</th>
-									<th style="font-size: 0.8em;">Movimento</th>
-								</tr>
-							</thead>
-								{% for s in sinais_page %}
-
-									<tr onclick="window.location='/sinal/{{s.id}}';">
-										{% if s.video_sinal %}
-											<td class="col s1 field-video_tag_sinal"><video autoplay="" loop="" src="{{s.video_sinal.url}}" height="55px"></video></td>
-										{% else %}
-											<td><img src="/static/img/X.svg" width="50" class="circle"></td>
-										{% endif %}
-										{% if s.cmE.imagem %}
-											<td class="col s1"><img src="/static/img/configuracoes_de_mao/{{s.cmE.imagem}}"  width="55px" class="circle "></td>
-										{% endif %}
-										{% if s.cmD.imagem %}
-											<td class="col s1 "><img src="/static/img/configuracoes_de_mao/{{s.cmD.imagem}}"   width="55px" class="circle  "></td>
-										{% endif %}
-										{% if s.localizacao %}
-											<td class="col s1 "><img src="{{s.localizacao}}"  width="55px"  class="circle  "></td>
-										{% endif %}
-
-										{% if s.movimentacao %}
-											<td class="col s1 "><img src="{{ s.movimentacao}}"  width="55px" class="circle "></td>
-										{% endif %}
-										</tr>
-									<!--<tr class="center" onclick="window.location='/sinal/{{s.id}}';">-->
-									<!--<div class="row center">-->
-										<!--<td class="sinalPortugues">{{s.portugues}}  </td>-->
-										<!--<td class="sinalPortugues"> . </td>-->
-										<!--<td class="sinalIngles">   {{s.ingles}}</td>-->
-									<!--</div>-->
-								<!--</tr>-->
-
-								{% endfor %}
-							</table>
-			{% else %}
-				<p class="flow-text">Nenhum sinal encontrado</p>
-			{% endif %}
+		{% if sinais_page %}
+			{% include 'blockPesquisaListMobile.html' %}
+		{% else %}
+			<p class="flow-text center">Nenhum sinal encontrado</p>
+		{% endif %}
 	</div>
 	<div class="pesquisaViewModule">
 		<h2 class="thin center">{{glossario.nome}}</h2>
-		<div class="container divider"></div>
 		<a id="buttonViewListMobile" class="btn-floating btn waves-effect waves-light blue right"><i class="material-icons">view_headline</i></a>
-				{% if sinais_page %}
-					<p class="flow-text center">Encontrado {{resultado}} resultado(s):</p>
-						{% for s in sinais_page %}
-							{% include 'blockPesquisaModule.html' %}
-						{% endfor %}
-
-				{% else %}
-					<p class="flow-text">Nenhum sinal encontrado</p>
-				{% endif %}
+		{% if sinais_page %}
+			<p class="flow-text center">Encontrado {{resultado}} resultado(s):</p>
+			<div class="container divider"></div>
+			{% for s in sinais_page %}
+			<div class="row container">
+				<div class="col s12">
+					{% include 'blockPesquisaModule.html' %}
+				</div>
+			</div>
+		{% endfor %}
+		{% else %}
+			<p class="flow-text">Nenhum sinal encontrado</p>
+		{% endif %}
 	</div>
+
 </div>
 
 
-  <script>
-    var infinite = new Waypoint.Infinite({
-      element: $('.infinite-container')[0],
-      onBeforePageLoad: function () {
-        $('.loading').show();
-        alert('passei');
-      },
-      onAfterPageLoad: function ($items) {
-        $('.loading').hide();
-      }
-    });
-  </script>
+<div class="loading" style="display:none;" >
+	Loading...
+</div>
+{% if sinais_page.has_next %}
+	<a class="infinite-more-link" href="?page={{ sinais_page.next_page_number }}">More</a>
+{% endif %}
+<script>
+	var infinite = new Waypoint.Infinite({
+	  element: $('.infinite-sinal-web')[0],
+	  onBeforePageLoad: function () {
+		$('.loading').show();
 
+	  },
+	  onAfterPageLoad: function ($items) {
+		$('.loading').hide();
+	  }
+	});
+</script>
 {% endblock %}
