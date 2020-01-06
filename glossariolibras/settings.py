@@ -1,14 +1,16 @@
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-def get_secret(secret_name):
-    try:
-        with open('/run/secrets/{0}'.format(secret_name), 'r') as secret_file:
-            return secret_file.read()
-    except IOError:
-        return None
+from django.core.exceptions import ImproperlyConfigured
 
-TESTE_USER_DB = get_secret('teste')
+
+def get_env_value(env_variable):
+    try:
+        return os.environ[env_variable]
+    except KeyError:
+        error_msg = 'Set the {} environment variable'.format(env_variable)
+        raise ImproperlyConfigured(error_msg)
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '@9e1s9zexj93d%n^^2)vxi0p4lwmz2tn0y67%*65#$nn5g64q1'
@@ -56,16 +58,16 @@ WSGI_APPLICATION = 'glossariolibras.wsgi.application'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-if get_secret('glossario_name_db'):
+if get_env_value('POSTGRES_DB'):
 
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': get_secret('glossario_name_db'),
-            'USER': get_secret('glossario_user_db'),
-            'PASSWORD': get_secret('glossario_password_db'),
-            'HOST': 'mysql.sites.ufsc.br',
-            'PORT': '3306',
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': get_env_value('POSTGRES_DB'),
+            'USER': get_env_value('POSTGRES_USER'),
+            'PASSWORD': get_env_value('POSTGRES_PASSWORD'),
+            'HOST': 'localhost',
+            'PORT': '5432',
         }
     }
 else:
@@ -119,6 +121,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 EMAIL_HOST = "smtp.sistemas.ufsc.br"
 EMAIL_PORT = 465
-EMAIL_HOST_USER = get_secret('email_libras_user')
-EMAIL_HOST_PASSWORD = get_secret('email_libras_password')
+EMAIL_HOST_USER = get_env_value('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = get_env_value('EMAIL_HOST_PASSWORD')
 EMAIL_USE_SSL = True
