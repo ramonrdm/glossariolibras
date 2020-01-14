@@ -6,7 +6,7 @@ from django.conf import settings
 import subprocess
 import datetime
 import os, os.path
-
+"""
 @receiver(post_save, sender=Glossario)
 def set_new_user_group(sender, instance, **kwargs):
     responsaveis = instance.responsaveis.all()
@@ -75,3 +75,4 @@ def update_upload_path(sender, instance, created, **kwargs):
                 os.remove(settings.MEDIA_ROOT+'/'+str(instance.videos_originais_converter[index]))
             print("############ ############## #################")
 
+"""

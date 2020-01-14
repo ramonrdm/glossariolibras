@@ -58,7 +58,6 @@ WSGI_APPLICATION = 'glossariolibras.wsgi.application'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-print(get_env_value('POSTGRES_DB'))
 if get_env_value('POSTGRES_DB'):
 
     DATABASES = {
@@ -67,15 +66,8 @@ if get_env_value('POSTGRES_DB'):
             'NAME': get_env_value('POSTGRES_DB'),
             'USER': get_env_value('POSTGRES_USER'),
             'PASSWORD': get_env_value('POSTGRES_PASSWORD'),
-            'HOST': 'db',
+            'HOST': 'db_postgres',
             'PORT': '5432',
-        }
-    }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
 

@@ -147,12 +147,12 @@ class Sinal(models.Model):
         self.videos_originais_converter = [self.video_sinal, self.video_descricao, self.video_exemplo, self.video_variacao]
 
     glossario = models.ForeignKey(Glossario, verbose_name='glossário', null=True, on_delete=models.CASCADE)
-    portugues = models.CharField('palavra', max_length=30)
-    ingles = models.CharField('word', blank=True, null=True, max_length=30)
+    portugues = models.CharField('palavra', max_length=50)
+    ingles = models.CharField('word', blank=True, null=True, max_length=50)
     bsw = models.TextField(null=True, blank=True)
     descricao = models.TextField('descrição',  blank=True, null=True)
-    cmE = models.ForeignKey(CM, related_name='C_M_Esquerda', verbose_name='configuração da mão esquerda', on_delete=models.CASCADE, default='')
-    cmD = models.ForeignKey(CM, related_name='C_M_Direita', verbose_name='configuração da mão direita', on_delete=models.CASCADE, default='')
+    cmE = models.ForeignKey(CM, related_name='C_M_Esquerda', verbose_name='configuração da mão esquerda', on_delete=models.CASCADE, blank=True, null=True)
+    cmD = models.ForeignKey(CM, related_name='C_M_Direita', verbose_name='configuração da mão direita', on_delete=models.CASCADE, blank=True, null=True)
     localizacao = models.CharField(max_length=2, choices=Localizacao.localizacoes, default='')
     movimentacao = models.CharField(max_length=10, choices=Movimentacao.movimentacoes, default='')
     data_criacao = models.DateTimeField(auto_now_add=True)
