@@ -58,21 +58,17 @@ WSGI_APPLICATION = 'glossariolibras.wsgi.application'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-if get_env_value('POSTGRES_DB'):
-
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': get_env_value('POSTGRES_DB'),
-            'USER': get_env_value('POSTGRES_USER'),
-            'PASSWORD': get_env_value('POSTGRES_PASSWORD'),
-            'HOST': 'db_postgres',
-            'PORT': '5432',
-        }
-
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': get_env_value('POSTGRES_DB'),
+        'USER': get_env_value('POSTGRES_USER'),
+        'PASSWORD': get_env_value('POSTGRES_PASSWORD'),
+        'HOST': get_env_value('POSTGRES_DB_HOST'),
+        'PORT': '5432',
     }
 
-
+}
 
 LANGUAGE_CODE = 'pt-br'
 
@@ -112,23 +108,6 @@ AUTH_USER_MODEL = 'glossario.UserGlossario'
 LOGIN_REDIRECT_URL = 'index'
 
 LOGIN_URL = 'login'
-
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-# EMAIL_HOST = "smtp.sistemas.ufsc.br"
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = get_secret('email_libras_user')
-# EMAIL_HOST_PASSWORD = get_secret('email_libras_password')
-# EMAIL_USE_SSL = True
-# FAULT_FROM_EMAIL = 'TestSite Team <cleberton.oliveira@grad.ufsc.br>'
-
-
-# EMAIL_HOST = 'smtp.sendgrid.net'
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = 'testsite_app'
-# EMAIL_HOST_PASSWORD = 'mys3cr3tp4ssw0rd'
-# EMAIL_USE_TLS = True
-# DEFAULT_FROM_EMAIL = 'TestSite Team <noreply@example.com>'
 
 EMAIL_HOST = "smtp.sistemas.ufsc.br"
 EMAIL_PORT = 465

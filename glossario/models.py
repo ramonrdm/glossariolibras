@@ -150,17 +150,10 @@ class Sinal(models.Model):
     ingles = models.CharField('word', blank=True, null=True, max_length=50)
     bsw = models.TextField(null=True, blank=True)
     descricao = models.TextField('descrição',  blank=True, null=True)
-<<<<<<< HEAD
-    cmE = models.ForeignKey(CM, related_name='C_M_Esquerda', verbose_name='configuração da mão esquerda', on_delete=models.CASCADE, blank=True, null=True)
-    cmD = models.ForeignKey(CM, related_name='C_M_Direita', verbose_name='configuração da mão direita', on_delete=models.CASCADE, blank=True, null=True)
-    localizacao = models.CharField(max_length=2, choices=Localizacao.localizacoes, default='')
-    movimentacao = models.CharField(max_length=10, choices=Movimentacao.movimentacoes, default='')
-=======
     cmE = models.ForeignKey(CM, related_name='C_M_Esquerda', verbose_name='configuração da mão esquerda', blank=True, null=True, on_delete=models.CASCADE, default='')
     cmD = models.ForeignKey(CM, related_name='C_M_Direita', verbose_name='configuração da mão direita', blank=True, null=True, on_delete=models.CASCADE, default='')
     localizacao = models.CharField(max_length=2, choices=Localizacao.localizacoes, blank=True, null=True, default='')
     movimentacao = models.CharField(max_length=10, choices=Movimentacao.movimentacoes, blank=True, null=True, default='')
->>>>>>> d81babd305cdfe152dd2c718a7701eb0af87ece5
     data_criacao = models.DateTimeField(auto_now_add=True)
     postador = models.ForeignKey(UserGlossario, on_delete=models.CASCADE)
     publicado = models.BooleanField(default=False)

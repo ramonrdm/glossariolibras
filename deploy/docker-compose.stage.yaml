@@ -1,17 +1,4 @@
-version: "3.1"
-
-secrets:
-  email_libras_password:
-    external: true
-  email_libars_user:
-    external: true
-  glossario_name_db:
-    external: true
-  glossario_password_db:
-    external: true
-  glossario_user_db:
-    external: true
-
+version: "3.2"
 
 volumes:
   media_gll:
@@ -23,15 +10,15 @@ volumes:
 
 services:
   glossario:
-    stdin_open: true
-    tty: true
+    restart: always
     image: ramonufsc/glossario:latest
-    secrets:
-      - email_libras_password
-      - email_libars_user
-      - glossario_name_db
-      - glossario_password_db
-      - glossario_user_db
+    environment:
+      - POSTGRES_DB=glossariolibras
+      - POSTGRES_USER=glossariolibras
+      - POSTGRES_PASSWORD=igh9Viev
+      - POSTGRES_DB_HOST=libras
+      - EMAIL_HOST_USER=libras
+      - EMAIL_HOST_PASSWORD=l1br4sufsc
     ports:
         - 40110:8000
     volumes:
