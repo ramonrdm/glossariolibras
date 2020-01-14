@@ -1,31 +1,40 @@
-<div class="col l3 m12 s12 card z-depth-1 grey lighten-4 " onclick="window.location='/sinal/{{s.id}}';">
-
-	<div class="card-image">
-	{% if s.video_sinal %}
-			<div class="field-video_tag_sinal"><video autoplay="" loop="" src="{{s.video_sinal.url}}" height="325"></video></div>
-	{% endif %}
-	</div>
-
-	<div class="card-content row">
-		<span class="sinalPortugues">{{s.portugues}}  </span>
-		<span class="sinalPortugues">  .  </span>
-		<span class="sinalIngles">   {{s.ingles}}</span>
-	</div>
-	<div class="center card-content">
+<div class="collection">
+	<a href="/sinal/{{s.id}}" class="collection-item center">
+		<ul>
+			<li>
+				<div class="center" style=" ">
+				{% if s.video_sinal %}
+						<div class="field-video_tag_sinal center"><video autoplay="" loop="" src="{{s.video_sinal.url}}" width="100%"></video></div>
+				{% endif %}
+				</div>
+			</li>
+			<div class="container divider white"></div>
+			<li class="center">
 				{% if s.cmE.imagem %}
-
-					<img src="/static/img/configuracoes_de_mao/{{s.cmE.imagem}}" width="21%" class="circle">
+					<img src="/static/img/configuracoes_de_mao/{{s.cmE.imagem}}"  width="23%"   class="circle">
 				{% endif %}
 				{% if s.cmD.imagem %}
-					<img  src="/static/img/configuracoes_de_mao/{{s.cmD.imagem}}" width="21%" class="circle">
+					<img  src="/static/img/configuracoes_de_mao/{{s.cmD.imagem}}" width="23%" class="circle">
 				{% endif %}
-
 				{% if s.localizacao %}
-					<img  src="{{s.localizacao}}" width="21%" class="circle">
+					<img  src="{{s.localizacao}}" width="23%" class="circle">
 				{% endif %}
-
 				{% if s.movimentacao %}
-					<img  src="{{ s.movimentacao}}" width="21%" class="circle">
+					<img  src="{{ s.movimentacao}}" width="23%" class="circle">
 				{% endif %}
-	 </div>
+			</li>
+			<div class="container divider white"></div>
+			<li class="center">
+				<span class="sinalPortugues" style="padding-right: 6px">{{s.portugues}}</span>
+
+				<span class="sinalIngles" style="padding-left: 6px" >{{s.ingles}}</span>
+			</li>
+		</ul>
+	</a>
 </div>
+
+
+
+
+
+

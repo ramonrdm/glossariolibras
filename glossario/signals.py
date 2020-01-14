@@ -8,7 +8,7 @@ import datetime
 import os, os.path
 """
 @receiver(post_save, sender=Glossario)
-def set_new_user_group(sender, instance, **kwargs):
+def set_news_group(sender, instance, **kwargs):
     responsaveis = instance.responsaveis.all()
     membros = instance.membros.all()
     responsaveis_group = Group.objects.get_or_create(name='responsaveis')[0]
@@ -76,3 +76,43 @@ def update_upload_path(sender, instance, created, **kwargs):
             print("############ ############## #################")
 
 """
+
+def converter_todos(sinal_inicio=1):
+    sinais = Sinal.objects.all()
+    import logging
+    logging.basicConfig(filename=settings.MEDIA_ROOT+"/conversao.log", level=logging.INFO, 
+                    format='%(asctime)s:%(name)s:%(levelname)s:%(message)s', datefmt='%Y/%m/%d-%H:%M:%S')
+    log = logging.getLogger("conversao")
+    log.info("################  Começando  ################")
+
+    for sinal in sinais:
+        if(sinal.id < int(sinal_inicio)):
+            print(" maior ###", sinal.id, sinal_inicio)
+            continue
+        url_base = settings.MEDIA_ROOT
+        pasta_sinal_videos = '{0}/sinal_videos'.format(url_base)
+        videoFields = [sinal.video_sinal, sinal.video_descricao, sinal.video_exemplo, sinal.video_variacao]
+        tags = ['sinal', 'descricao', 'exemplo', 'variacao']
+
+        for index, field in enumerate(videoFields):
+            if field:
+                log.info(str(sinal.id)+ '  ' + tags[index] +"- tem nome")
+                if os.path.isfile(url_base+'/'+field.name):
+                    log.info(str(sinal.id)+ '  ' + tags[index] +"- tem arquivo")
+                    nome_video_converter = str(sinal.id)+'-'+tags[index]+'-'+datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')+".mp4"
+                    arquivo_video_converter = pasta_sinal_videos+'/'+nome_video_converter
+                    log.info(str(sinal.id)+ " convertendo " + field.name +' para '+arquivo_video_converter)
+                    subprocess.call('ffmpeg -i {0}/{1} -y -hide_banner -nostats -c:v libx264 -crf 19 -movflags faststart -threads 0 -preset slow -an -strict -2 {2}'
+                        .format(
+                            url_base,
+                            field.name,
+                            arquivo_video_converter
+                            ),shell=True)
+                    log.info("############# VIDEO CONVERTIDO ###############")
+                    nome_relativo_arquivo_convertido = 'sinal_videos/'+nome_video_converter
+                    Sinal.objects.filter(id=sinal.id).update(**{"%s" % field.field.name: nome_relativo_arquivo_convertido} )
+                else:
+                    log.info(str(sinal.id)+ '  ' + tags[index] +"- não tem arquivo")
+
+    log.info("################### terminou  ################")
+

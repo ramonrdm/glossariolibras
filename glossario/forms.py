@@ -17,7 +17,7 @@ class SinalForm(forms.ModelForm):
 
     class Media:
         css = {'all': ('/static/css/materialize_modal.css',)}
-        js = ('/static/js/materialize_modal.js', '/static/js/base.js',)
+
 
     class Meta:
         model = Sinal

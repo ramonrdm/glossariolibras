@@ -1,0 +1,78 @@
+<div class="container center">
+    <p class="flow-text">Encontrado {{resultado}} resultado(s):</p>
+        <div class="container divider"></div>
+        <ul class="row">
+            <li class="col l2 tituloSinais">Preview</li>
+            <li class="col l2 tituloSinais">Nome</li>
+            <li class="col l2 tituloSinais">Configuração esquerda</li>
+            <li class="col l2 tituloSinais">Configuração direita</li>
+            <li class="col l2 tituloSinais">Localização</li>
+            <li class="col l2 tituloSinais">Movimento</li>
+        </ul>
+        <div class="infinite-sinal-web">
+            {% for s in sinais_page %}
+                <div class="infinite-item ">
+                    <ul class="collection">
+                        <a href="/sinal/{{s.id}}" class="collection-item row center">
+                            {% if s.video_sinal %}
+                                <li class="field-video_tag_sinal col l2">
+                                    <video  loop="" src="{{s.video_sinal.url}}" height="70"></video>
+                                </li>
+                            {% else %}
+                                <li class="col l2">
+                                    <img src="/static/img/X.svg" width="50" class="circle">
+                                </li>
+                            {% endif %}
+
+                            {% if s.portugues %}
+                                <li class="col l2">
+                                    <div class="sinalPortugues">{{s.portugues}}</div><br/>
+                                    <div class="sinalIngles">{{s.ingles}}</div>
+                                </li>
+                            {% endif %}
+
+                            {% if s.cmE.imagem %}
+                                <li class="col l2">
+                                    <img src="/static/img/configuracoes_de_mao/{{s.cmE.imagem}}" width="70" class="circle">
+                                </li>
+                            {% else %}
+                                <li class="col l2">
+                                    <img src="/static/img/X.svg" width="70" class="circle">
+                                </li>
+                            {% endif %}
+
+                            {% if s.cmD.imagem %}
+                                <li class="col l2">
+                                    <img src="/static/img/configuracoes_de_mao/{{s.cmD.imagem}}" width="70" class="circle">
+                                </li>
+                            {% else %}
+                                <li class="col l2">
+                                    <img src="/static/img/X.svg" width="70" class="circle">
+                                </li>
+                            {% endif %}
+
+                            {% if s.localizacao %}
+                                <li class="col l2">
+                                    <img src="{{s.localizacao}}" width="70" class="circle">
+                                </li>
+                            {% else %}
+                                <li class="col l2">
+                                    <img src="/static/img/X.svg" width="70" class="circle">
+                                </li>
+                            {% endif %}
+
+                            {% if s.movimentacao %}
+                                <li class="col l2">
+                                    <img src="{{ s.movimentacao}}" width="70" class="circle">
+                                </li>
+                            {% else %}
+                                <li class="col l2">
+                                    <img src="/static/img/X.svg" width="70" class="circle">
+                                </li>
+                            {% endif %}
+                        </a>
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+</div>

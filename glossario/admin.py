@@ -25,7 +25,7 @@ class GlossarioAdmin(admin.ModelAdmin):
         if obj in qsResp or request.user.is_superuser:
             return []
         if obj in qsMemb:
-            return ('nome', 'responsaveis', 'membros', 'imagem', 'video', 'descricao')
+            return ('nome', 'responsaveis', 'membros', 'imagem', 'gad', 'descricao')
         return []
 
     def get_actions(self, request):
@@ -66,6 +66,8 @@ class SinalAdmin(admin.ModelAdmin):
     list_display = ('portugues', 'video_tag_sinal', 'ingles', 'glossario', 'image_tag_cmE', 'image_tag_cmD', 'image_tag_localizacao', 'image_tag_movimentacao' , 'publicado')
     list_filter = ('glossario', 'localizacao', 'movimentacao', 'publicado')
     actions = ['publicar_sinal',]
+    search_fields = ('portugues', 'ingles')
+    list_per_page = 30
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == "glossario":
@@ -97,7 +99,7 @@ class SinalAdmin(admin.ModelAdmin):
 
     def video_tag_sinal(self, obj):
         if obj.video_sinal:
-            return format_html('<video autoplay loop src="/media/{}" height="70" />'.format(obj.video_sinal))
+            return format_html('<video loop src="/media/{}" height="70" style="cursor:pointer;" onclick="this.paused?this.play():this.pause()" />'.format(obj.video_sinal))
         else:
             return format_html('<p>Sem Imagem</p>')
 
@@ -117,11 +119,7 @@ class SinalAdmin(admin.ModelAdmin):
 
     def image_tag_localizacao(self, obj):
         if obj.localizacao:
-            localizacoes = dict([('0','X.svg'), ('1','localizacaoCabeca.png'),('2','localizacaoOmbros.png'),('3','localizacaoBracos.png'),
-                                ('4','localizacaoNariz.png'),('5','localizacaoBochechas.png'),('6','localizacaoBoca.png'),
-                                ('7','localizacaoTronco.png'),('8','localizacaoNeutro.png'),('9','localizacaoOlhos.png'),('10','localizacaoOrelhas.png'),
-                                ('11','localizacaoPescoco.png'),('12','localizacaoQueixo.png'),('13','localizacaoTesta.png')])
-            return format_html('<img src="/static/img/{}" width="50" height="50" />'.format(localizacoes[obj.localizacao]))
+            return format_html('<img src="/static/img/{}" width="50" height="50" />'.format(Localizacao.localizacoes_imagens[obj.localizacao]))
         else:
             return format_html('<p>Sem Imagem</p>')
         image_tag_localizacao.short_description = 'localização'

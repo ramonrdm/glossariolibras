@@ -14,11 +14,11 @@ $(document).ready(function(){
         showToolTip: true,
         areas: [
             {
-                key: "1",
+                key: "4",
                 toolTip: "Cabeça",
             },
             {
-                key: "2",
+                key: "12",
                 toolTip: "Ombros"
             },
             {
@@ -26,48 +26,52 @@ $(document).ready(function(){
                 toolTip: "Braços"
             },
             {
-                key: "4",
+                key: "6",
                 toolTip: "Nariz"
             },
             {
-                key: "5",
+                key: "2",
                 toolTip: "Bochechas"
             },
             {
-                key: "6",
+                key: "1",
                 toolTip: "Boca"
             },
             {
-                key: "7",
+                key: "16",
                 toolTip: "Tronco"
             },
             {
-                key: "8",
+                key: "10",
                 toolTip: "Espaço-neutro"
             },
             {
-                key: "9",
+                key: "11",
                 toolTip: "Olhos"
             },
             {
-                key: "10",
+                key: "17",
                 toolTip: "Orelhas"
             },
             {
-                key: "11",
+                key: "13",
                 toolTip: "Pescoço"
             },
             {
-                key: "12",
+                key: "14",
                 toolTip: "Queixo"
             },
             {
-                key: "13",
+                key: "15",
                 toolTip: "Testa"
             },
             {
-                key: "14",
+                key: "5",
                 toolTip: "Mãos"
+            },
+            {
+             key: "0",
+                toolTip: "Sem Localização"
             }
 
         ]
@@ -76,6 +80,9 @@ $('#modeloImg').parent().css({"margin":"0 auto"});
 
 $('area').click(function() {
     let attrValue = $(this).attr('data-key');
+    if(attrValue == '0'){
+        attrValue = null;
+    }
     if(attrValue){
         $('#id_localizacao').val(attrValue);
         $('#imagem_localizacao').attr('src', '/static/img/'+objetos_localizacao[attrValue]);

@@ -11,14 +11,14 @@ def get_env_value(env_variable):
         error_msg = 'Set the {} environment variable'.format(env_variable)
         raise ImproperlyConfigured(error_msg)
 
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '@9e1s9zexj93d%n^^2)vxi0p4lwmz2tn0y67%*65#$nn5g64q1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['glossarios.libras.ufsc.br', 'glossario.libras.ufsc.br', 'localhost']
+
+ALLOWED_HOSTS = ['glossarios.libras.ufsc.br', 'glossario.libras.ufsc.br', 'localhost', '200.135.84.253']
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -69,7 +69,10 @@ if get_env_value('POSTGRES_DB'):
             'HOST': 'db_postgres',
             'PORT': '5432',
         }
+
     }
+
+
 
 LANGUAGE_CODE = 'pt-br'
 
@@ -110,10 +113,26 @@ LOGIN_REDIRECT_URL = 'index'
 
 LOGIN_URL = 'login'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# EMAIL_HOST = "smtp.sistemas.ufsc.br"
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = get_secret('email_libras_user')
+# EMAIL_HOST_PASSWORD = get_secret('email_libras_password')
+# EMAIL_USE_SSL = True
+# FAULT_FROM_EMAIL = 'TestSite Team <cleberton.oliveira@grad.ufsc.br>'
+
+
+# EMAIL_HOST = 'smtp.sendgrid.net'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'testsite_app'
+# EMAIL_HOST_PASSWORD = 'mys3cr3tp4ssw0rd'
+# EMAIL_USE_TLS = True
+# DEFAULT_FROM_EMAIL = 'TestSite Team <noreply@example.com>'
 
 EMAIL_HOST = "smtp.sistemas.ufsc.br"
 EMAIL_PORT = 465
 EMAIL_HOST_USER = get_env_value('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = get_env_value('EMAIL_HOST_PASSWORD')
 EMAIL_USE_SSL = True
+

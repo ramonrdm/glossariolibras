@@ -53,7 +53,7 @@ class UserGlossario(AbstractBaseUser, PermissionsMixin):
     nome_completo = models.CharField(max_length=255, null=False)
     email_confirmed = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=True)
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     objects = UserManagerGlossario()
 
     USERNAME_FIELD = 'email'
@@ -108,16 +108,16 @@ class Localizacao(models.Model):
     class Meta:
         abstract = True
     
-    localizacoes = (('','Nunhuma'),('1','Cabeça'),('2','Ombros'),('3','Braços'),('4','Nariz'),('5','Bochechas'),
-                    ('6','Boca'),('7','Tronco'),('8','Espaço Neutro'),('9','Olhos'),('10','Orelhas'),
-                    ('11','Pescoço'),('12','Queixo'),('13','Testa')
+    localizacoes = (('','Nunhuma'),('4','Cabeça'),('12','Ombros'),('3','Braços'),('6','Nariz'),('2','Bochechas'),
+                    ('1','Boca'),('16','Tronco'),('10','Espaço Neutro'),('11','Olhos'),('17','Orelhas'),
+                    ('13','Pescoço'),('14','Queixo'),('15','Testa'),('5','Mãos')
                 )
     localizacoes_imagens = dict(
-            [('1', 'localizacaoCabeca.png'), ('2', 'localizacaoOmbros.png'), ('3', 'localizacaoBracos.png'),
-             ('4', 'localizacaoNariz.png'), ('5', 'localizacaoBochechas.png'), ('6', 'localizacaoBoca.png'),
-             ('7', 'localizacaoTronco.png'), ('8', 'localizacaoNeutro.png'), ('9', 'localizacaoOlhos.png'),
-             ('10', 'localizacaoOrelhas.png'),
-             ('11', 'localizacaoPescoco.png'), ('12', 'localizacaoQueixo.png'), ('13', 'localizacaoTesta.png')])
+            [('4', 'localizacaoCabeca.png'), ('12', 'localizacaoOmbros.png'), ('3', 'localizacaoBracos.png'),
+             ('6', 'localizacaoNariz.png'), ('2', 'localizacaoBochechas.png'), ('1', 'localizacaoBoca.png'),
+             ('16', 'localizacaoTronco.png'), ('10', 'localizacaoNeutro.png'), ('11', 'localizacaoOlhos.png'),
+             ('17', 'localizacaoOrelhas.png'),('13', 'localizacaoPescoco.png'), ('14', 'localizacaoQueixo.png'),
+              ('15', 'localizacaoTesta.png'), ('5','maos.png')])
 
         
 class Movimentacao(models.Model):
@@ -138,7 +138,6 @@ def sinal_upload_path(instance, filename):
 class Sinal(models.Model):
     class Meta:
         verbose_name_plural = 'sinais'
-        unique_together = ('portugues', 'ingles', 'cmE','cmD', 'localizacao', 'movimentacao')
     
     videos_originais_converter = []
 
@@ -151,12 +150,19 @@ class Sinal(models.Model):
     ingles = models.CharField('word', blank=True, null=True, max_length=50)
     bsw = models.TextField(null=True, blank=True)
     descricao = models.TextField('descrição',  blank=True, null=True)
+<<<<<<< HEAD
     cmE = models.ForeignKey(CM, related_name='C_M_Esquerda', verbose_name='configuração da mão esquerda', on_delete=models.CASCADE, blank=True, null=True)
     cmD = models.ForeignKey(CM, related_name='C_M_Direita', verbose_name='configuração da mão direita', on_delete=models.CASCADE, blank=True, null=True)
     localizacao = models.CharField(max_length=2, choices=Localizacao.localizacoes, default='')
     movimentacao = models.CharField(max_length=10, choices=Movimentacao.movimentacoes, default='')
+=======
+    cmE = models.ForeignKey(CM, related_name='C_M_Esquerda', verbose_name='configuração da mão esquerda', blank=True, null=True, on_delete=models.CASCADE, default='')
+    cmD = models.ForeignKey(CM, related_name='C_M_Direita', verbose_name='configuração da mão direita', blank=True, null=True, on_delete=models.CASCADE, default='')
+    localizacao = models.CharField(max_length=2, choices=Localizacao.localizacoes, blank=True, null=True, default='')
+    movimentacao = models.CharField(max_length=10, choices=Movimentacao.movimentacoes, blank=True, null=True, default='')
+>>>>>>> d81babd305cdfe152dd2c718a7701eb0af87ece5
     data_criacao = models.DateTimeField(auto_now_add=True)
-    postador = models.ForeignKey(UserGlossario, null=True, on_delete=models.CASCADE)
+    postador = models.ForeignKey(UserGlossario, on_delete=models.CASCADE)
     publicado = models.BooleanField(default=False)
     video_sinal = FileField('Vídeo do sinal', upload_to=sinal_upload_path, null=True)
     video_descricao = FileField('Vídeo da descrição', upload_to=sinal_upload_path, null=True, blank=True)

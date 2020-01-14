@@ -3,8 +3,8 @@
 <div class="telaWeb" style= "display: none;" >
     <div class="navbar-fixed">
     {% if formPesquisa %}
-        <nav class="row white">
-            <form method="post">
+        <nav class="row white" >
+            <form method="post" action="{% url 'pesquisa'  %}" >
                 <ul class=" col l0 left">
                     <li>
                         <a id="abrirSidenav" class="btn-floating btn-flat waves-effect waves-light white">
@@ -31,12 +31,12 @@
                 {% endfor %}
                     <div class="col l1 right">
                         <li>
-                            <button class="btn waves-effect waves-light botaoPesquisar" type="submit" id="botaoPesquisar" name="botaoPesquisar">Pesquisar<i class="material-icons right">send</i></button>
+                            <button class="btn waves-effect waves-light botaoPesquisar" type="submit" id="botaoPesquisar" name="botaoPesquisar" >Pesquisar<i class="material-icons right">send</i></button>
                         </li>
                     </div>
                 </ul>
                 <div class=" col l2 right nav-wrapper">
-                    <div class="input-field right">
+                    <div class="input-field right" name="pesquisa">
                     {% csrf_token %}
                     {{ formPesquisa }}
                         <label class="label-icon" for="search">
@@ -70,69 +70,7 @@
     {% endif %}
         <ul id="mostrarSidenav" class="sidenav sidenav-fixed">
             <div id="" class="sideNavLinks">
-            {%  if user.is_authenticated  %}
-                <li>
-                    <a class="waves-effect waves-blue left" href="{% url 'admin:index' %}">
-                        <i class="material-icons">account_circle</i>
-                            {{ user.nome_completo }}
-                    </a>
-                </li>
-                <li>
-                    <a class="waves-effect waves-blue color" href="{% url 'logout' %}">
-                        <i class="material-icons">close</i>
-                    </a>
-                </li>
-                <li>
-                    <a class="waves-effect waves-blue" href="/admin/glossario/sinal/add/">
-                        <i class="material-icons">send</i>
-                        Sugerir um Sinal
-                    </a>
-                </li>
-            {% else %}
-                <li>
-                    <a class="waves-effect waves-blue" href="{% url 'registration' %}">
-                        <i class="material-icons">account_circle</i>
-                        Criar Usuario
-                    </a>
-                </li>
-                <li>
-                    <a class="waves-effect waves-blue" href="{% url 'admin:index'  %}">
-                        <i class="material-icons">https</i>
-                        Admin
-                    </a>
-                </li>
-            {% endif %}
-                <li>
-                    <a class="waves-effect waves-blue" href="{% url 'historia' %}">
-                        <i class="material-icons">library_books</i>
-                        História
-                    </a>
-                </li>
-                <li>
-                    <a class="waves-effect waves-blue" href="{% url 'equipe' %}">
-                        <i class="material-icons">supervisor_account</i>
-                        Equipe
-                    </a>
-                </li>
-                <li>
-                    <a class="waves-effect waves-blue" href="{% url 'contato' %}">
-                        <i class="material-icons">call</i>
-                        Contato
-                    </a>
-                </li>
-                <li>
-                    <a class="waves-effect waves-blue" href="https://libras.ufsc.br/">
-                        <i class="material-icons">
-                            <img class="iconePortalLibras" src='{% static "img/marca_portal_libras2.png" %}'>
-                        </i>
-                        Portal Libras
-                    </a>
-                </li>
-                <div class="nav-wrapper">
-                    <a href="http://ufsc.br">
-                        <img class="logoUFSC" src='{% static "img/marca_ufsc.png" %}'>
-                    </a>
-                </div>
+                {% include 'menu.html' %}
             </div>
         </ul>
     </div>
@@ -145,23 +83,24 @@
         </div>
     </nav>
     {% if formPesquisa %}
-        <form method="post">
-            <nav id="mobileSearchLibras" class="row nav-extended grey lighten-4">
-                <ul>
+        <form method="post" action="{% url 'pesquisa'  %}">
+
+       <footer id="mobileSearchLibras" class="white" style="position: fixed; bottom: 0; z-index: 1; -webkit-box-shadow:  0 0 0 3px rgba(0, 0, 0, 0.1); top: 88.5%; width: 100%">
+                   <div class="row">
                     {% for field in formSinais %}
                          <div class="col s3 left">
-                        {{field}}
-                             </div>
+                             {{field}}
+                         </div>
                     {% endfor %}
 
                     <div class="col s3 right">
-                        <button style="margin-top: 25px;" class="btn-flat" type="submit" id="botaoPesquisar" name="botaoPesquisar"><i class="material-icons right">send</i></button>
+                        <button style="margin-top: 20px;" class=" btn-floating btn-large waves-effect right" type="submit" id="botaoPesquisar" name="botaoPesquisar"><i class="  material-icons center grey lighten-1 ">search</i></button>
                     </div>
-                </ul>
-                <a id="abrirNavSearchMobile" class="btn-floating btn-large halfway-fab waves-effect waves-light indigo darken-4"><i class="material-icons white-text">text_format</i></a></nav>
-            </nav>
-            <nav id="mobileSearchEscrita">
-                <div class="nav-wrapper grey lighten-4">
+                <a  id="abrirNavSearchMobile" class="btn-floating btn-large halfway-fab waves-effect waves-light indigo darken-4" style="position: absolute; top: -80%;"><i class="material-icons white-text">text_format</i></a></nav>
+            </div>
+        </footer>
+           <footer id="mobileSearchEscrita" class="white" style="position: fixed; bottom: 0; z-index: 1; -webkit-box-shadow:  0 0 0 3px rgba(0, 0, 0, 0.1); top: 88.5%; width: 100%">
+                 <div class="nav-wrapper grey lighten-4">
                     <form method="post">
                         <ul class=" input-field">
                             {% csrf_token %}
@@ -171,28 +110,13 @@
                         </ul>
                     </form>
                 </div>
-                <a id="fecharNavSearchMobile" class="btn-floating btn-large halfway-fab waves-effect waves-light indigo darken-4"><i class="material-icons white-text">pan_tool</i></a>
-            </nav>
-        </form>
+                <a  id="fecharNavSearchMobile" class="btn-floating btn-large halfway-fab waves-effect waves-light indigo darken-4" style="position: absolute; top: -80%;"><i class="material-icons white-text">pan_tool</i></a></nav>
+        </footer>
     {% else %}
+
+
     {% endif %}
     <ul class="sidenav" id="mobile-demo">
-        {%  if user.is_authenticated  %}
-            <li><a class="waves-effect waves-blue left" href="{% url 'admin:index' %}"><i class="material-icons">account_circle</i>{{ user.nome_completo }}</a></li>
-            <li><a class="waves-effect waves-blue color" href="{% url 'logout' %}"><i class="material-icons">close</i></a></li>
-            <li><a class="waves-effect waves-blue" href="{% url 'historia' %}"><i class="material-icons">library_books</i>História</a></li>
-            <li><a class="waves-effect waves-blue" href="{% url 'equipe' %}"><i class="material-icons">supervisor_account</i>Equipe</a></li>
-            <li><a class="waves-effect waves-blue" href="{% url 'contato' %}"><i class="material-icons">call</i>Contato</a></li>
-            <li><a class="waves-effect waves-blue" href="https://libras.ufsc.br/"><i class="material-icons"><img class="iconePortalLibras" src='{% static "img/marca_portal_libras2.png" %}'></i>Portal Libras</a></li>
-            <li><a class="waves-effect waves-blue" href="/admin/glossario/sinal/add/"><i class="material-icons">send</i>Sugerir um Sinal</a></li>
-            <li><a class="waves-effect waves-blue" href="{% url 'admin:index' %}"><i class="material-icons">https</i>Admin</a></li>
-        {% else %}
-            <li><a class="waves-effect waves-blue" href="{% url 'historia' %}"><i class="material-icons">library_books</i>História</a></li>
-            <li><a class="waves-effect waves-blue" href="{% url 'equipe' %}"><i class="material-icons">supervisor_account</i>Equipe</a></li>
-            <li><a class="waves-effect waves-blue" href="{% url 'contato' %}"><i class="material-icons">call</i>Contato</a></li>
-            <li><a class="waves-effect waves-blue" href="https://libras.ufsc.br/"><i class="material-icons"><img class="iconePortalLibras" src='{% static "img/marca_portal_libras2.png" %}'></i>Portal Libras</a></li>
-            <li><a class="waves-effect waves-blue" href="{% url 'registration' %}"><i class="material-icons">account_circle</i>Criar Usuario</a></li>
-            <li><a class="waves-effect waves-blue" href="{% url 'admin:index'  %}"><i class="material-icons">https</i>Admin</a></li>
-        {% endif %}
+        {% include 'menu.html' %}
     </ul>
 </div>

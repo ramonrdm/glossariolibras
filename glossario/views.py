@@ -1,13 +1,9 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render, render_to_response, redirect
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import render, redirect
 from glossario.models import Glossario, Sinal, UserGlossario, Localizacao, Movimentacao
-from django.contrib.auth.models import User
 from glossario.forms import PesquisaForm, PesquisaSinaisForm, CustomUserCreationForm
-from django.http import JsonResponse
 from django.db.models import Q
-from django.template import RequestContext
-import json
-import datetime
 from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.contrib.sites.shortcuts import get_current_site
@@ -17,14 +13,17 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
-from django.conf import settings
-from django.contrib.auth.decorators import login_required
+
 
 def index(request, glossario=None):
-
     glossarios = Glossario.objects.filter(visivel=True)
+    formSinais = PesquisaSinaisForm()
+    formPesquisa = PesquisaForm()
+    return render(request, 'index.html', {'glossarios': glossarios, 'glossario': glossario, 'formPesquisa': formPesquisa, 'formSinais': formSinais})
 
+def pesquisa(request):
     if request.method == 'POST':
+        print('passei no post')
         sinais = None
         formPesquisa = PesquisaForm(request.POST)
         formSinais = PesquisaSinaisForm(request.POST)
@@ -36,18 +35,53 @@ def index(request, glossario=None):
 
         if sinais:
             for sinal in sinais:
-                sinal.localizacao = "/static/img/" + Localizacao.localizacoes_imagens[sinal.localizacao]
-                sinal.movimentacao = "/static/img/" + Movimentacao.movimentacoes_imagens[sinal.movimentacao]
-        return render(request, 'pesquisa.html', {
-            'formPesquisa': formPesquisa, 'sinais': sinais, 'resultado': resultado,
-            'formSinais': formSinais})
-    else:
-        formSinais = PesquisaSinaisForm()
-        formPesquisa = PesquisaForm()
+                if sinal.localizacao:
+                    sinal.localizacao = "/static/img/" + Localizacao.localizacoes_imagens[sinal.localizacao]
+                if sinal.movimentacao:
+                    sinal.movimentacao = "/static/img/" + Movimentacao.movimentacoes_imagens[sinal.movimentacao]
 
-    return render(request, 'index.html', {'glossarios': glossarios, 'glossario': glossario, 'formPesquisa': formPesquisa,
-         'formSinais': formSinais,
-        })
+        page = request.GET.get('page', 1)
+        paginator = Paginator(sinais, 12)
+
+        try:
+            sinais_page = paginator.page(page)
+        except PageNotAnInteger:
+            sinais_page = paginator.page(1)
+        except EmptyPage:
+            sinais_page = paginator.page(paginator.num_pages)
+        return render(request, 'pesquisa.html', {'formPesquisa': formPesquisa, 'sinais_page': sinais_page, 'resultado': resultado,'formSinais': formSinais})
+
+    if request.method == 'GET':
+        print('passei no get')
+        sinais = None
+        formPesquisa = PesquisaForm(request.POST)
+        formSinais = PesquisaSinaisForm(request.POST)
+
+        if formPesquisa.is_valid() and formSinais.is_valid():
+            sinais = busca(formSinais, formPesquisa).filter(glossario__visivel=True)
+        formPesquisa = PesquisaForm()
+        resultado = len(sinais) if sinais else None
+
+        if sinais:
+            for sinal in sinais:
+                if sinal.localizacao:
+                    sinal.localizacao = "/static/img/" + Localizacao.localizacoes_imagens[sinal.localizacao]
+                if sinal.movimentacao:
+                    sinal.movimentacao = "/static/img/" + Movimentacao.movimentacoes_imagens[sinal.movimentacao]
+
+        page = request.GET.get('page', 1)
+        paginator = Paginator(sinais, 10)
+
+        try:
+            sinais_page = paginator.page(page)
+        except PageNotAnInteger:
+            sinais_page = paginator.page(1)
+        except EmptyPage:
+            sinais_page = paginator.page(paginator.num_pages)
+        return render(request, 'pesquisa.html',
+                      {'formPesquisa': formPesquisa, 'sinais_page': sinais_page, 'resultado': resultado,
+                       'formSinais': formSinais})
+
 
 def busca(formSinais, formPesquisa):
 
@@ -109,7 +143,8 @@ def sinal(request, sinal=None, glossario=None):
             sinal = Sinal.objects.get(id=sinal)
             glossario = sinal.glossario
             sinal.localizacao = "/static/img/"+Localizacao.localizacoes_imagens[sinal.localizacao]
-            sinal.movimentacao = "/static/img/" + Movimentacao.movimentacoes_imagens[sinal.movimentacao]
+            if sinal.movimentacao:
+                sinal.movimentacao = "/static/img/" + Movimentacao.movimentacoes_imagens[sinal.movimentacao]
 
         except Sinal.DoesNotExist:
             sinal = None
@@ -138,7 +173,7 @@ def equipe(request):
 
 def contato(request):
 
-    return render(request, "contato.html", {'test': settings.TESTE_USER_DB})
+    return render(request, "contato.html")
 
 def registration(request):
     if request.method == 'POST':
@@ -185,4 +220,4 @@ def activate(request, uidb64, token):
 
 def account_activation_sent(request):
     modalConfirmeEmail = True
-    return render(request, 'index.html', {'modalConfirmeEmail':modalConfirmeEmail})
+    return render(request, 'index.html', {'modalConfirmeEmail': modalConfirmeEmail})

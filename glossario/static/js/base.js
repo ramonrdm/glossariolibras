@@ -36,6 +36,7 @@ $(document).ready(function(){
     });
 
     $('#fecharSidenav').click(function(){
+
            $('#abrirSidenav').show();
            $('#fecharSidenav').hide();
            $('.blockContainer').css({ 'padding-left': "6%"});

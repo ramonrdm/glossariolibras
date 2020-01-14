@@ -25,9 +25,9 @@ $(document).ready(function(){
 });
 </script>
 
-<div id="modal-libras-{{ name }}" class="modal">
+<div id="modal-libras-{{ name }}" class="modal center bottom-sheet">
     <div class="modal-content">
-        <h4 class="black-text center">Grupos</h4>
+        <h4 class="black-text center">Grupos de Configurações de Mãos</h4>
         {% for grupo in cmGrupos %}
              <img src="/static/img/configuracoes_de_mao/{{ grupo }}/{{ grupo }}.png"  class="sinais waves-effect waves-light modal-trigger modal-close" href="#{{ grupo }}{{ name }}">
         {% endfor %}
@@ -35,7 +35,7 @@ $(document).ready(function(){
 </div>
 
 {% for grupo in cmGrupos %}
-<div id="{{ grupo }}{{ name }}" class="modal">
+<div id="{{ grupo }}{{ name }}" class="modal center bottom-sheet">
     <div class="modal-content">
         <h4 class="black-text center" >Configuração de Mão</h4>
         {% for cm in cm %}

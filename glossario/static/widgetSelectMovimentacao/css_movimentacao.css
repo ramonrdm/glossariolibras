@@ -12,8 +12,8 @@
 
 
 .sinaisMobile{
+    width:81%;
 	background-color: white;
-    height: 85px;
     padding: -1px;
     border-radius: 45px 45px 45px 45px;
     border-style: outset;

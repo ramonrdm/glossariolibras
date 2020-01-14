@@ -1,6 +1,10 @@
 /* ================= COMUM ================= */
 
 
+.modal.bottom-sheet {
+	max-height: 85%;
+}
+
 
 :root{
     --primary: white;
@@ -25,17 +29,26 @@
 
 } */
 
-.sinalPortugues{
+
+
+.tituloSinais{
     font-style: normal;
-    font-size: 200%;
+    font-size: 15px;
     color: #01579b;
     font-weight: bold;
 
 }
 
+.sinalPortugues{
+    font-style: normal;
+    font-size: 15px;
+    color: #01579b;
+    font-weight: bold;
+}
+
 .sinalIngles{
     font-style: italic;
-    font-size: 140%;
+    font-size: 15px;
     color: #0288d1;
 }
 
@@ -59,7 +72,22 @@ nav .brand-logo {
   padding: 18px;
   max-width: 235px;
 
+
+
 }
+
+
+.collection .collection-item {
+  background-color: #fff;
+  line-height: 1.5rem;
+  padding: 10px 10px;
+  margin: 0;
+  border-bottom: px solid #e0e0e0;
+}
+
+
+
+
 
 nav.nav-extended {
   height: 100px;
@@ -119,9 +147,6 @@ nav .brand-logo.center {
     transition-duration: 0.4s;
     width: 250px !important ;
 }
-
-
-
 
 #videoGlossario {
 	position: relative;

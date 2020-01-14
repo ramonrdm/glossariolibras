@@ -12,10 +12,9 @@ $(document).ready(function(){
     }
 });
 </script>
-
-<div id="modal-libras-{{ name }}" class="modal">
+<div id="modal-libras-{{ name }}" class="modal center bottom-sheet">
     <div class="modal-content">
-        <h4 class="black-text center">Movimentações</h4>
+        <h4 class="black-text center">Movimento</h4>
         <img id="imagem_modal_{{name}}_vazio" id-field="" src="/static/img/X.svg" class="sinais escolhaMovimentacao waves-effect waves-light modal-trigger modal-close">
         {% for movimentacao in movimentacao %}
             <img id="imagem_modal_{{name}}_{{ movimentacao.0 }}" id-field="{{ movimentacao.0 }}" src="/static/img/{{ movimentacao }}" class="sinais escolhaMovimentacao waves-effect waves-light modal-trigger modal-close">
