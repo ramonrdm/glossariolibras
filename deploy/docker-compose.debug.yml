@@ -10,20 +10,20 @@ services:
     depends_on:
       - db
     environment:
-      POSTGRES_DB: libras
-      POSTGRES_USER: libras
-      POSTGRES_PASSWORD: libras
-      EMAIL_HOST_USER: libras
-      EMAIL_HOST_PASSWORD: libras
+      - POSTGRES_DB=libras
+      - POSTGRES_USER=libras
+      - POSTGRES_PASSWORD=libras
+      - EMAIL_HOST_USER=libras
+      - EMAIL_HOST_PASSWORD=libras
 
   db:
     image: postgres:9.6.6
     ports:
       - 5432:5432
     environment:
-      POSTGRES_DB: libras
-      POSTGRES_USER: libras
-      POSTGRES_PASSWORD: libras
-      EMAIL_HOST_USER: libras
-      EMAIL_HOST_PASSWORD: libras
+      - POSTGRES_DB=libras
+      - POSTGRES_USER=libras
+      - POSTGRES_PASSWORD=libras
+      - EMAIL_HOST_USER=libras
+      - EMAIL_HOST_PASSWORD=libras
 

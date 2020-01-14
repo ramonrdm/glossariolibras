@@ -7,7 +7,10 @@ RUN pip install --upgrade pip
 WORKDIR /code
 COPY . /code/
 RUN pip install -r requirements.txt
-RUN python3 manage.py migrate && python3 manage.py collectstatic --noinput
+#RUN python3 manage.py migrate && python3 manage.py collectstatic --noinput
 
 EXPOSE 8000
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+#CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD python3 manage.py migrate && \
+	python3 manage.py collectstatic --noinput && \
+	python3 manage.py runserver 0.0.0.0:8000
