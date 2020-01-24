@@ -76,12 +76,13 @@ class Glossario(models.Model):
     class Meta:
         verbose_name='Glossário'
 
-    nome = models.CharField('Nome do Glossário', max_length=100)
+    max_length_name = 100
+    nome = models.CharField('Nome do Glossário', max_length=max_length_name)
     responsaveis = models.ManyToManyField(UserGlossario, verbose_name = 'responsaveis')
     membros = models.ManyToManyField(UserGlossario, related_name='glossario_membros', verbose_name='membros', blank=True)
     descricao = models.TextField("descrição", blank=True, null=True)
     imagem = models.ImageField('Imagem', blank =True)
-    link = models.CharField('Link', max_length=20)
+    link = models.CharField('Link', max_length=max_length_name)
     data_criacao = models.DateField('data de criação', auto_now_add=True)
     video = FileField('Vídeo', blank=True)
     visivel = models.BooleanField("Visivel", default=True)

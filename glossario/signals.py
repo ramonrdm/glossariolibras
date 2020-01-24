@@ -6,7 +6,7 @@ from django.conf import settings
 import subprocess
 import datetime
 import os, os.path
-"""
+
 @receiver(post_save, sender=Glossario)
 def set_news_group(sender, instance, **kwargs):
     responsaveis = instance.responsaveis.all()
@@ -29,10 +29,7 @@ def set_new_user_group(sender, instance, **kwargs):
     membros_group = Group.objects.get_or_create(name='membros')[0]
     membros_group.user_set.add(user)
 
-
-
-
-
+"""
 @receiver(post_save, sender=Sinal)
 def update_upload_path(sender, instance, created, **kwargs):
     
@@ -74,7 +71,6 @@ def update_upload_path(sender, instance, created, **kwargs):
                 print("deletando    " +  url_base+'/'+str(instance.videos_originais_converter[index]))
                 os.remove(settings.MEDIA_ROOT+'/'+str(instance.videos_originais_converter[index]))
             print("############ ############## #################")
-
 """
 
 def converter_todos(sinal_inicio=1):
