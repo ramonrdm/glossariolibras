@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 echo "versão: "
 read v
 docker build -t glossario:$v .
