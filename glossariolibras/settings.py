@@ -27,7 +27,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_registration',
     'glossario',
+
 
 )
 
@@ -70,6 +72,22 @@ DATABASES = {
 
 }
 
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
+
+
 LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'America/Sao_Paulo'
@@ -104,10 +122,7 @@ TEMPLATES = [
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 AUTH_USER_MODEL = 'glossario.UserGlossario'
-
-LOGIN_REDIRECT_URL = 'index'
-
-LOGIN_URL = 'login'
+ACCOUNT_ACTIVATION_DAYS = 3
 
 EMAIL_HOST = "smtp.sistemas.ufsc.br"
 EMAIL_PORT = 465

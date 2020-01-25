@@ -15,10 +15,10 @@ services:
     environment:
       - POSTGRES_DB=glossariolibras
       - POSTGRES_USER=glossariolibras
-      - POSTGRES_PASSWORD=igh9Viev
+      - POSTGRES_PASSWORD=libras
       - POSTGRES_DB_HOST=libras
       - EMAIL_HOST_USER=libras
-      - EMAIL_HOST_PASSWORD=l1br4sufsc
+      - EMAIL_HOST_PASSWORD=libras
     ports:
         - 40110:8000
     volumes:
