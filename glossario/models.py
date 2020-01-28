@@ -8,8 +8,7 @@ from django.dispatch import receiver
 from django.core.mail import send_mail
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
 
-class UserManagerGlossario(BaseUserManager):
-    
+class UserManagerGlossario(BaseUserManager): 
     def _create_user(self, email, nome_completo, password, **extra_fields):
         if not email:
             raise ValueError('Users must have an email address')
@@ -17,6 +16,7 @@ class UserManagerGlossario(BaseUserManager):
         user = self.model(email=email, nome_completo=nome_completo, **extra_fields)
         user.set_password(password)
         user.save(using = self._db)
+        return user
 
     def create_user(self, email, nome_completo, password=None, **extra_fields):
         if not email:
@@ -24,7 +24,6 @@ class UserManagerGlossario(BaseUserManager):
         extra_fields.setdefault('is_active', True)
         extra_fields.setdefault('is_superuser', False)
         extra_fields.setdefault('is_staff', True)
-
         return self._create_user(email, nome_completo, password, **extra_fields)
 
     def create_superuser(self, email, password, nome_completo, **extra_fields):
@@ -41,7 +40,6 @@ class UserManagerGlossario(BaseUserManager):
         return self._create_user(email, nome_completo, password, **extra_fields)
 
 class UserGlossario(AbstractBaseUser, PermissionsMixin):
-    
     class Meta:
         verbose_name = "Usuário"
 
@@ -61,27 +59,23 @@ class UserGlossario(AbstractBaseUser, PermissionsMixin):
 
     def email_user(self, subject, message, from_email=None, **kwargs):
         """Send an email to this user."""
-        send_mail(subject, message, from_email, [self.email], **kwargs)
-
-    def update_user_profile(sender, instance, created, **extra_fields):
-        if created:
-            UserGlossario.objects.create_user(user=instance)
-        instance.save()
+        send_mail(subject, message, from_email, [self.email], fail_silently=False, **kwargs)
 
     def __str__(self):
-        return self.email
+        return self.nome_completo
 
 class Glossario(models.Model):
 
     class Meta:
         verbose_name='Glossário'
 
-    nome = models.CharField('Nome do Glossário', max_length=100)
+    max_length_name = 100
+    nome = models.CharField('Nome do Glossário', max_length=max_length_name)
     responsaveis = models.ManyToManyField(UserGlossario, verbose_name = 'responsaveis')
     membros = models.ManyToManyField(UserGlossario, related_name='glossario_membros', verbose_name='membros', blank=True)
     descricao = models.TextField("descrição", blank=True, null=True)
     imagem = models.ImageField('Imagem', blank =True)
-    link = models.CharField('Link', max_length=20)
+    link = models.CharField('Link', max_length=max_length_name)
     data_criacao = models.DateField('data de criação', auto_now_add=True)
     video = FileField('Vídeo', blank=True)
     visivel = models.BooleanField("Visivel", default=True)

@@ -2,7 +2,7 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
 from glossario.models import Glossario, Sinal, UserGlossario, Localizacao, Movimentacao
-from glossario.forms import PesquisaForm, PesquisaSinaisForm, CustomUserCreationForm
+from glossario.forms import PesquisaForm, PesquisaSinaisForm
 from django.db.models import Q
 from django.contrib.auth import login
 from django.contrib.auth import logout
@@ -175,49 +175,6 @@ def contato(request):
 
     return render(request, "contato.html")
 
-def registration(request):
-    if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            current_site = get_current_site(request)
-            subject = 'Activate Your MySite Account'
-            message = render_to_string('account_activation_email.html', {
-                'user': user,
-                'domain': current_site.domain,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'token': account_activation_token.make_token(user),
-            })
-            user.email_user(subject, message)
-
-            return redirect('account_activation_sent')
-    else:
-        form = CustomUserCreationForm()
-    return render(request, 'registration.html', {'form': form})
-
 def sair(request):
     logout(request)
     return render(request, 'index.html')
-
-def activate(request, uidb64, token):
-    try:
-        uid = force_text(urlsafe_base64_decode(uidb64))
-        user = UserGlossario.objects.get(pk=uid)
-    except (TypeError, ValueError, OverflowError, UserGlossario.DoesNotExist):
-        user = None
-
-    if user is not None and account_activation_token.check_token(user, token):
-        user.is_active = True
-        user.is_staff = True
-        user.email_confirmed = True
-        user.save()
-        login(request, user)
-        modalLogin = True
-        return render(request, 'index.html', {'modalLogin': modalLogin})
-    else:
-        modalConfirmeEmailErro = True
-        return render(request, 'index.html', {'modalConfirmeEmailErro': modalConfirmeEmailErro})
-
-def account_activation_sent(request):
-    modalConfirmeEmail = True
-    return render(request, 'index.html', {'modalConfirmeEmail': modalConfirmeEmail})

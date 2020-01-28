@@ -1,7 +1,4 @@
-version: '3'
-
-# volumes:
-#   data:
+version: '3.2'
 
 services:
 
@@ -13,36 +10,23 @@ services:
     ports:
       - 8000:8000
     depends_on:
-      - db_gll
-    # links:
-    #   - db_gll
-
-  db_gll:
-    # restart: always
-    image: mysql:5.6.30
-    # ports:
-    #   - 3306:3306
-    # volumes:
-    #   - data:/var/lib/mysql
+      - db_postgres
     environment:
-            MYSQL_ROOT_PASSWORD: glossario
-            MYSQL_DATABASE: glossario
+      - POSTGRES_DB=libras
+      - POSTGRES_USER=libras
+      - POSTGRES_PASSWORD=libras
+      - POSTGRES_DB_HOST=db_postgres
+      - EMAIL_HOST_USER=libras
+      - EMAIL_HOST_PASSWORD=libras
 
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin:latest
-    links:
-      - db_gll
+  db_postgres:
+    image: postgres:9.6.6
     ports:
-      - 8080:80
+      - 5432:5432
     environment:
-      - PMA_ARBITRARY=1
+      - POSTGRES_DB=libras
+      - POSTGRES_USER=libras
+      - POSTGRES_PASSWORD=libras
+      - EMAIL_HOST_USER=libras
+      - EMAIL_HOST_PASSWORD=libras
 
-  # networks:
-#   default:
-#   proxy-network:
-#     #name: proxy-network
-#     ipam:
-#       driver: default
-#       config:
-#         - subnet: 172.30.0.0/16

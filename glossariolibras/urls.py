@@ -7,9 +7,10 @@ from django.urls import path
 from django.views.generic import RedirectView
 from django.urls import reverse
 from django.shortcuts import redirect
-
-
+from django_registration.backends.one_step.views import RegistrationView
+from glossario.forms import CustomRegistrationForm
 from django.conf.urls import url, include
+
 urlpatterns = [
     path('', views.index, name='index'),
     path('admin/', lambda _: redirect(to="glossario/sinal/")),
@@ -19,13 +20,16 @@ urlpatterns = [
     path('pesquisa', views.pesquisa, name='pesquisa'),
     path('contato', views.contato, name='contato'),
     path('historia', views.historia, name='historia'),
-    path('registration', views.registration, name='registration'),
     path('sinal/<int:sinal>', views.sinal, name='sinal'),
     url('', include('django.contrib.auth.urls')),
     url(r'^favicon\.ico$',RedirectView.as_view(url='/static/img/marca_glossario2.png')),
     path('<slug:glossario>/', views.glossarioSelecionado, name='glossarios'),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
-    url(r'^account_activation_sent/$', views.account_activation_sent, name='account_activation_sent'),
-    url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',views.activate, name='activate'),
+    url(r'^accounts/register/',
+            RegistrationView.as_view(success_url='/profile/', form_class=CustomRegistrationForm),
+            name='django_registration_register'),
+    url(r'^accounts/login/$', RedirectView.as_view(url='/admin/login/', permanent=True), name='index'),
+    url(r'^accounts/', include('django_registration.backends.activation.urls')),
+    url(r'^accounts/', include('django.contrib.auth.urls')),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

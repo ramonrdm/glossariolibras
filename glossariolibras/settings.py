@@ -1,12 +1,15 @@
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-def get_secret(secret_name):
+from django.core.exceptions import ImproperlyConfigured
+
+
+def get_env_value(env_variable):
     try:
-        with open('/run/secrets/{0}'.format(secret_name), 'r') as secret_file:
-            return secret_file.read()
-    except IOError:
-        return None
+        return os.environ[env_variable]
+    except KeyError:
+        error_msg = 'Set the {} environment variable'.format(env_variable)
+        raise ImproperlyConfigured(error_msg)
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '@9e1s9zexj93d%n^^2)vxi0p4lwmz2tn0y67%*65#$nn5g64q1'
@@ -24,7 +27,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_registration',
     'glossario',
+
 
 )
 
@@ -55,38 +60,32 @@ WSGI_APPLICATION = 'glossariolibras.wsgi.application'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-if get_secret('glossario_name_db'):
-
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': get_secret('glossario_name_db'),
-            'USER': get_secret('glossario_user_db'),
-            'PASSWORD': get_secret('glossario_password_db'),
-            'HOST': 'mysql.sites.ufsc.br',
-            'PORT': '3306',
-            'OPTIONS': {'charset': 'latin1',}, # o banco tá em utf8, mas se não colocar latin1 aqui da erro...
-        }
-    }
-# else:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.mysql',
-#             'NAME': 'glossario',
-#             'USER': 'root',
-#             'PASSWORD': 'glossario',
-#             'HOST': 'db_gll',
-#             'PORT': '3306',
-#             'OPTIONS': {'charset': 'utf8'},
-#         }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': get_env_value('POSTGRES_DB'),
+        'USER': get_env_value('POSTGRES_USER'),
+        'PASSWORD': get_env_value('POSTGRES_PASSWORD'),
+        'HOST': get_env_value('POSTGRES_DB_HOST'),
+        'PORT': '5432',
     }
+
 }
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
 
 
 LANGUAGE_CODE = 'pt-br'
@@ -123,31 +122,12 @@ TEMPLATES = [
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 AUTH_USER_MODEL = 'glossario.UserGlossario'
+ACCOUNT_ACTIVATION_DAYS = 3
 
-LOGIN_REDIRECT_URL = 'index'
+EMAIL_HOST = "smtp.sistemas.ufsc.br"
+EMAIL_PORT = 465
+EMAIL_HOST_USER = get_env_value('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = get_env_value('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = os.getenv('DJANGO_SENDMAIL_FROM')
+EMAIL_USE_SSL = True
 
-LOGIN_URL = 'login'
-
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-# EMAIL_HOST = "smtp.sistemas.ufsc.br"
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = get_secret('email_libras_user')
-# EMAIL_HOST_PASSWORD = get_secret('email_libras_password')
-# EMAIL_USE_SSL = True
-# FAULT_FROM_EMAIL = 'TestSite Team <cleberton.oliveira@grad.ufsc.br>'
-
-
-# EMAIL_HOST = 'smtp.sendgrid.net'
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = 'testsite_app'
-# EMAIL_HOST_PASSWORD = 'mys3cr3tp4ssw0rd'
-# EMAIL_USE_TLS = True
-# DEFAULT_FROM_EMAIL = 'TestSite Team <noreply@example.com>'
-
-
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'clebertonoliveira.cnt@gmail.com'
-EMAIL_HOST_PASSWORD = 'ylfvwsmhvqxaljha'

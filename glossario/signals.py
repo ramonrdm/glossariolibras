@@ -20,7 +20,6 @@ def set_news_group(sender, instance, **kwargs):
     for user in membros:
         membros_group.user_set.add(user)
 
-
 @receiver(post_save, sender=UserGlossario)
 def set_new_user_group(sender, instance, **kwargs):
     user = UserGlossario.objects.get(id=instance.id)
@@ -28,10 +27,6 @@ def set_new_user_group(sender, instance, **kwargs):
     sugestoes.membros.add(user)
     membros_group = Group.objects.get_or_create(name='membros')[0]
     membros_group.user_set.add(user)
-
-
-
-
 
 @receiver(post_save, sender=Sinal)
 def update_upload_path(sender, instance, created, **kwargs):
@@ -113,4 +108,3 @@ def converter_todos(sinal_inicio=1):
                     log.info(str(sinal.id)+ '  ' + tags[index] +"- não tem arquivo")
 
     log.info("################### terminou  ################")
-
