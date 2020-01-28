@@ -67,4 +67,4 @@ class PesquisaForm(forms.Form):
 class CustomRegistrationForm(RegistrationForm):
     class Meta:
         model = UserGlossario
-        fields = ('email', 'nome_completo', 'password1', 'password2',)
+        fields = ['email', 'nome_completo', 'password1', 'password2']

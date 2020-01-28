@@ -51,13 +51,13 @@ class UserGlossario(AbstractBaseUser, PermissionsMixin):
     nome_completo = models.CharField(max_length=255, null=False)
     email_confirmed = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=True)
-    is_active = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
     objects = UserManagerGlossario()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['nome_completo']
 
-    def email_user(self, subject, message, from_email=None, **kwargs):
+    def email_user(self, subject, message, from_email, **kwargs):
         """Send an email to this user."""
         send_mail(subject, message, from_email, [self.email], fail_silently=False, **kwargs)
 

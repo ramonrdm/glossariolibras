@@ -5,6 +5,7 @@ services:
   glossario:
     restart: always
     build: ../.
+    tty: true
     volumes:
       - ../.:/code
     ports:
