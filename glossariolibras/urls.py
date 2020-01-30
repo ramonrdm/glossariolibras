@@ -21,7 +21,6 @@ urlpatterns = [
     path('contato', views.contato, name='contato'),
     path('historia', views.historia, name='historia'),
     path('sinal/<int:sinal>', views.sinal, name='sinal'),
-    url('', include('django.contrib.auth.urls')),
     url(r'^favicon\.ico$',RedirectView.as_view(url='/static/img/marca_glossario2.png')),
     path('<slug:glossario>/', views.glossarioSelecionado, name='glossarios'),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),

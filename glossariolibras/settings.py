@@ -119,6 +119,7 @@ TEMPLATES = [
     },
 ]
 
+LOGIN_REDIRECT_URL='/index'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 AUTH_USER_MODEL = 'glossario.UserGlossario'
