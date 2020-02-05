@@ -156,9 +156,9 @@ class CMAdmin(admin.ModelAdmin):
 
 class UserAdmin(BaseUserAdmin):
     search_fields = ('email','nome_completo')
-    ordering = ('email',)
+    ordering = ('nome_completo',)
     filter_horizontal = ()
-    list_display = ('email', 'nome_completo', 'is_superuser',)
+    list_display = ('nome_completo', 'email', 'is_superuser', 'last_login',)
     list_filter = ('is_superuser',)
     
     fieldsets = (
