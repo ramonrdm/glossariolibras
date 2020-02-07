@@ -111,7 +111,7 @@ class Localizacao(models.Model):
              ('6', 'localizacaoNariz.png'), ('2', 'localizacaoBochechas.png'), ('1', 'localizacaoBoca.png'),
              ('16', 'localizacaoTronco.png'), ('10', 'localizacaoNeutro.png'), ('11', 'localizacaoOlhos.png'),
              ('17', 'localizacaoOrelhas.png'),('13', 'localizacaoPescoco.png'), ('14', 'localizacaoQueixo.png'),
-              ('15', 'localizacaoTesta.png'), ('5','maos.png')])
+              ('15', 'localizacaoTesta.png'), ('5','localizacaoMaos.png')])
 
         
 class Movimentacao(models.Model):
