@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'glossario/base.html' %}
 {% block head %}
 	{{ block.super }}
     {{ formSinais.media }}
@@ -12,7 +12,7 @@
 		<a id="buttonViewModule" class="btn-floating btn-large waves-effect waves-light blue right"><i class="material-icons">view_module</i></a>
 		<h2 class="thin center">{{glossario.nome}}</h2>
 		{% if sinais_page %}
-			{% include 'blockPesquisaList.html' %}
+			{% include 'glossario/blockPesquisaList.html' %}
 		{% else %}
 			<p class="flow-text center">Nenhum sinal encontrado</p>
 		{% endif %}
@@ -25,7 +25,7 @@
 			<p class="flow-text center">Encontrado {{resultado}} resultado(s):</p>
 				{% for s in sinais_page %}
 					<div class="col l2">
-						{% include 'blockPesquisaModule.html' %}
+						{% include 'glossario/blockPesquisaModule.html' %}
 					</div>
 				{% endfor %}
 		{% else %}
@@ -41,7 +41,7 @@
 		<a id="buttonViewModule" class="btn-floating btn waves-effect waves-light blue right"><i class="material-icons">view_module</i></a>
 		<h2 class="thin center">{{glossario.nome}}</h2>
 		{% if sinais_page %}
-			{% include 'blockPesquisaListMobile.html' %}
+			{% include 'glossario/blockPesquisaListMobile.html' %}
 		{% else %}
 			<p class="flow-text center">Nenhum sinal encontrado</p>
 		{% endif %}
@@ -55,7 +55,7 @@
 			{% for s in sinais_page %}
 			<div class="row container">
 				<div class="col s12">
-					{% include 'blockPesquisaModule.html' %}
+					{% include 'glossario/blockPesquisaModule.html' %}
 				</div>
 			</div>
 		{% endfor %}

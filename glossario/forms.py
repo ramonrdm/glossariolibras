@@ -3,7 +3,7 @@ from django import forms
 from django.forms.models import ModelChoiceField
 from glossario.models import Glossario, Sinal, CM, UserGlossario
 from django.conf import settings
-from glossario.widgets import ImageSelectLocalizacao, ImageSelectMao, ImageSelectMovimentacao
+from glossario.widgets import VideoInput, ImageSelectLocalizacao, ImageSelectMao, ImageSelectMovimentacao
 from django.core.exceptions import ValidationError
 from django.contrib.auth import password_validation
 from django_registration.forms import RegistrationForm
@@ -28,7 +28,11 @@ class SinalForm(forms.ModelForm):
                     'localizacao': ImageSelectLocalizacao(),
                     'cmE': ImageSelectMao(),
                     'cmD': ImageSelectMao(),
-                    'movimentacao': ImageSelectMovimentacao()
+                    'movimentacao': ImageSelectMovimentacao(),
+                    'video_sinal': VideoInput(),
+                    'video_descricao': VideoInput(),
+                    'video_exemplo': VideoInput(),
+                    'video_variacao': VideoInput(),
         }
 
 

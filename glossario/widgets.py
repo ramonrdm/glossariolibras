@@ -6,7 +6,7 @@ from glossario.models import CM, Movimentacao, Localizacao
 import json
 
 class ImageSelectLocalizacao(forms.Widget):
-    template_name = 'widget_localizacao.html'
+    template_name = 'glossario/widget_localizacao.html'
 
     class Media:
         css = {'all': ('/static/widgetSelectLocalizacao/widget_localizacao.css', )}
@@ -21,7 +21,7 @@ class ImageSelectLocalizacao(forms.Widget):
         return mark_safe(template)
 
 class ImageSelectMao(forms.Widget):
-    template_name = 'widget_mao.html'
+    template_name = 'glossario/widget_mao.html'
 
     class Media:
         js = ('/static/widgetSelectMao/modalCM.js',)
@@ -35,7 +35,7 @@ class ImageSelectMao(forms.Widget):
         return mark_safe(template)
 
 class ImageSelectMovimentacao(forms.Widget):
-    template_name = 'widget_movimentacao.html'
+    template_name = 'glossario/widget_movimentacao.html'
 
     class Media:
         js = ('/static/widgetSelectMovimentacao/modalMovimentacao.js',)
@@ -46,4 +46,6 @@ class ImageSelectMovimentacao(forms.Widget):
         template = loader.get_template(self.template_name).render({'objetos': {'nada': '',},'movimentacao': movimentacao,'name': name,'value': value})
 
         return mark_safe(template)
-
+from django.forms.widgets import ClearableFileInput
+class VideoInput(ClearableFileInput):
+    template_name = 'admin/video_clearable_file_input.html'

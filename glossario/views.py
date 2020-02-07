@@ -19,7 +19,7 @@ def index(request, glossario=None):
     glossarios = Glossario.objects.filter(visivel=True)
     formSinais = PesquisaSinaisForm()
     formPesquisa = PesquisaForm()
-    return render(request, 'index.html', {'glossarios': glossarios, 'glossario': glossario, 'formPesquisa': formPesquisa, 'formSinais': formSinais})
+    return render(request, 'glossario/index.html', {'glossarios': glossarios, 'glossario': glossario, 'formPesquisa': formPesquisa, 'formSinais': formSinais})
 
 def pesquisa(request):
     if request.method == 'POST':
@@ -49,7 +49,7 @@ def pesquisa(request):
             sinais_page = paginator.page(1)
         except EmptyPage:
             sinais_page = paginator.page(paginator.num_pages)
-        return render(request, 'pesquisa.html', {'formPesquisa': formPesquisa, 'sinais_page': sinais_page, 'resultado': resultado,'formSinais': formSinais})
+        return render(request, 'glossario/pesquisa.html', {'formPesquisa': formPesquisa, 'sinais_page': sinais_page, 'resultado': resultado,'formSinais': formSinais})
 
     if request.method == 'GET':
         print('passei no get')
@@ -78,7 +78,7 @@ def pesquisa(request):
             sinais_page = paginator.page(1)
         except EmptyPage:
             sinais_page = paginator.page(paginator.num_pages)
-        return render(request, 'pesquisa.html',
+        return render(request, 'glossario/pesquisa.html',
                       {'formPesquisa': formPesquisa, 'sinais_page': sinais_page, 'resultado': resultado,
                        'formSinais': formSinais})
 
@@ -124,7 +124,7 @@ def glossarioSelecionado(request, glossario):
             sinal.localizacao = "/static/img/" + Localizacao.localizacoes_imagens[sinal.localizacao]
             sinal.movimentacao = "/static/img/" + movimentacoes[sinal.movimentacao]
 
-        return render(request, 'pesquisa.html', {
+        return render(request, 'glossario/pesquisa.html', {
             'formPesquisa': formPesquisa, 'sinais': sinais, 'resultado': resultado, 'glossario':
             glossario,
             'formSinais': formSinais
@@ -134,7 +134,7 @@ def glossarioSelecionado(request, glossario):
         # formSinais = PesquisaSinaisForm()
         formPesquisa = PesquisaForm()
 
-        return render(request, 'glossario.html', {'glossario': glossario, 'formPesquisa': formPesquisa, 'formSinais': formSinais
+        return render(request, 'glossario/glossario.html', {'glossario': glossario, 'formPesquisa': formPesquisa, 'formSinais': formSinais
             })
 
 def sinal(request, sinal=None, glossario=None):
@@ -158,23 +158,23 @@ def sinal(request, sinal=None, glossario=None):
             sinaisGlossario = Sinal.objects.filter(glossario=glossario).filter(publicado=True)
         formPesquisa = PesquisaForm()
         resultado = len(sinais) if sinais else None
-        return render(request, 'pesquisa.html', {'formPesquisa': formPesquisa, 'sinais': sinais, 'sinaisGlossario': sinaisGlossario, 'resultado': resultado, 'glossario':
+        return render(request, 'glossario/pesquisa.html', {'formPesquisa': formPesquisa, 'sinais': sinais, 'sinaisGlossario': sinaisGlossario, 'resultado': resultado, 'glossario':
             glossario, 'formSinais': formSinais, })
     else:
         formPesquisa = PesquisaForm()
         formSinais = PesquisaSinaisForm()
-        return render(request, "sinal.html", {'sinal': sinal, 'glossario': glossario, 'formPesquisa': formPesquisa,'formSinais': formSinais, })
+        return render(request, "glossario/sinal.html", {'sinal': sinal, 'glossario': glossario, 'formPesquisa': formPesquisa,'formSinais': formSinais, })
 
 def historia(request):
-    return render(request, "historia.html")
+    return render(request, "glossario/historia.html")
 
 def equipe(request):
-    return render(request, "equipe.html", {})
+    return render(request, "glossario/equipe.html", {})
 
 def contato(request):
 
-    return render(request, "contato.html")
+    return render(request, "glossario/contato.html")
 
 def sair(request):
     logout(request)
-    return render(request, 'index.html')
+    return render(request, 'glossario/index.html')
