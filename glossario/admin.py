@@ -17,6 +17,7 @@ class GlossarioAdmin(admin.ModelAdmin):
     form = GlossarioForm
     list_display = ('nome', 'image_tag')
     list_filter = ('responsaveis', 'membros', 'data_criacao')
+    autocomplete_fields = ['responsaveis', 'membros']
     
     def get_readonly_fields(self, request, obj=None):
         qs = super(GlossarioAdmin, self).get_queryset(request)
