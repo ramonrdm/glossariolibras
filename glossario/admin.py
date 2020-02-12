@@ -50,7 +50,7 @@ class GlossarioAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         gLink = obj.nome.lower()
         gLink = gLink.replace(" ", "-")
-        gLink = normalize('NFKD', gLink)
+        gLink = normalize('NFKD', gLink).encode('ASCII', 'ignore').decode('ASCII')
         obj.link = gLink
         obj.save()  
 
