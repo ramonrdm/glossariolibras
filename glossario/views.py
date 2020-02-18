@@ -49,7 +49,14 @@ def pesquisa(request):
             sinais_page = paginator.page(1)
         except EmptyPage:
             sinais_page = paginator.page(paginator.num_pages)
-        return render(request, 'glossario/pesquisa.html', {'formPesquisa': formPesquisa, 'sinais_page': sinais_page, 'resultado': resultado,'formSinais': formSinais})
+
+
+        context = { 'formPesquisa': formPesquisa, 
+                    'sinais_page': sinais_page, 
+                    'resultado': resultado,
+                    'formSinais': formSinais
+        }
+        return render(request, 'glossario/pesquisa.html', context)
 
     if request.method == 'GET':
         print('passei no get')
@@ -78,9 +85,14 @@ def pesquisa(request):
             sinais_page = paginator.page(1)
         except EmptyPage:
             sinais_page = paginator.page(paginator.num_pages)
-        return render(request, 'glossario/pesquisa.html',
-                      {'formPesquisa': formPesquisa, 'sinais_page': sinais_page, 'resultado': resultado,
-                       'formSinais': formSinais})
+
+
+        context = { 'formPesquisa': formPesquisa, 
+                    'sinais_page': sinais_page, 
+                    'resultado': resultado,
+                    'formSinais': formSinais
+        }
+        return render(request, 'glossario/pesquisa.html', context)
 
 
 def busca(formSinais, formPesquisa):
