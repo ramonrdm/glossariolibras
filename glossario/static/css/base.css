@@ -1,61 +1,59 @@
 /* ================= COMUM ================= */
 
+.menu-lateral {
+    max-width: 100px;
+}
+
+.center-align {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
 .modal.bottom-sheet {
-	max-height: 85%;
+    max-height: 85%;
 }
 
-
-:root{
+:root {
     --primary: white;
-    --secondary:black;
+    --secondary: black;
 }
 
-.nav-wrapper{
+.nav-wrapper {
     background-color: white;
- }
+}
 
 .sidenav {
-    z-index: -1 ;
+    z-index: -1;
     position: absolute;
     padding-top: 120px;
 }
 
-
-/* nav {
-    height: 80px;
-    line-height: 110px;
-    z-index: 2;
-
-} */
-
-
-
-.tituloSinais{
-    font-style: normal;
-    font-size: 15px;
-    color: #01579b;
-    font-weight: bold;
-
-}
-
-.sinalPortugues{
+.tituloSinais {
     font-style: normal;
     font-size: 15px;
     color: #01579b;
     font-weight: bold;
 }
 
-.sinalIngles{
+.sinalPortugues {
+    font-style: normal;
+    font-size: 15px;
+    color: #01579b;
+    font-weight: bold;
+}
+
+.sinalIngles {
     font-style: italic;
     font-size: 15px;
     color: #0288d1;
 }
 
 nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
-    height: 200%;
+    /* height: 200%; */
     line-height: 230%;
-    color: grey ;
+    color: grey;
 }
 
 nav .button-collapse i {
@@ -63,71 +61,52 @@ nav .button-collapse i {
     line-height: 30px;
 }
 
-
 nav .brand-logo {
-  position: relative;
-  color: #fff;
-  display: inline-block;
-  font-size: 2.1rem;
-  padding: 18px;
-  max-width: 235px;
-
-
-
+    position: relative;
+    color: #fff;
+    display: inline-block;
+    font-size: 2.1rem;
+    padding: 18px;
+    max-width: 235px;
 }
-
 
 .collection .collection-item {
-  background-color: #fff;
-  line-height: 1.5rem;
-  padding: 10px 10px;
-  margin: 0;
-  border-bottom: px solid #e0e0e0;
+    background-color: #fff;
+    line-height: 1.5rem;
+    padding: 10px 10px;
+    margin: 0;
+    border-bottom: px solid #e0e0e0;
 }
-
-
-
-
 
 nav.nav-extended {
-  height: 100px;
+    height: 100px;
 }
-
 
 nav .brand-logo.center {
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
 }
 
-
-@media only screen and (min-width: 601px){
+@media only screen and (min-width: 590px) {
     nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
         height: 100px;
         line-height: 100px;
-
-
-
     }
 }
 
 .btn-floating.btn-large.halfway-fab {
-  bottom: 15px;
+    bottom: 15px;
+    margin: left;
 }
-
 
 .blockContainer {
     padding-left: 100px;
     position: relative;
     margin-top: 4%;
     transition-duration: 0.4s;
+}
 
-}
-.containerTabs {
-    padding-left: 20px;
-    position: relative;
-    margin-top: 37px;
-}
 .container {
     padding-left: 1%;
     position: relative;
@@ -135,134 +114,127 @@ nav .brand-logo.center {
     transition-duration: 0.4s;
 }
 
-
 .sidenav {
     width: 79px;
     position: fixed;
     transition-duration: 0.4s;
-
 }
 
-.sidenav:hover{
+.sidenav:hover {
     transition-duration: 0.4s;
-    width: 250px !important ;
+    width: 250px !important;
 }
 
 #videoGlossario {
-	position: relative;
-	margin-left: 40px;
-	width: 85%;
-	padding-left: 4%;
-	margin-top: 10%;
-
+    position: relative;
+    width: 85%;
+    margin-top: 10%;
 }
 
 #videoPesquisa {
-	position: relative;
-	width: 100%;
-
+    position: relative;
+    width: 100%;
 }
 
 /* ================= NAVBAR ================= */
 
-
-
 /* Retira o deslocamento da página causado pela sidenav fixa */
 
 body {
-	padding-left: 0;
-	background-color: #f7f7f7;
+    padding-left: 0;
+    background-color: #f7f7f7;
 }
 
 .iconePortalLibras {
-	width: 130%;
+    width: 130%;
 }
 
 /* Cor do underline do campo de texto de formulários */
+
 .input-field input[type=text]:focus {
-	border-bottom: 1px solid #003a99;
-	box-shadow: 0 1px 0 0 #003a99;
+    border-bottom: 1px solid #003a99;
+    box-shadow: 0 1px 0 0 #003a99;
 }
 
 /* Cor do texto de selects de formulários */
+
 ul.dropdown-content.select-dropdown li span {
     color: black;
 }
 
 /* Cor padrão da aplicação para os material icons */
+
 .icone {
-	color: #003a99;
+    color: #003a99;
 }
 
 /* Para as imagens na sidenav mobile não mudarem de cor no hover */
 
-
 .imgIndex {
-	width: 120px;
-	height: 160px;
+    width: 120px;
+    height: 160px;
 }
 
 .textoIndex {
-	color: #003a99;
+    color: #003a99;
 }
 
 /* Estrutura dos glossários no index */
 
-
 /* Glossários no index */
+
 .block {
-	width: 200px;
-	display: inline-block;
-	margin-top: 2%;
+    width: 200px;
+    display: inline-block;
+    margin-top: 2%;
 }
 
 /* Footer da sidenav */
 
-.imagemGlossario{
-  width: 140px;
+.imagemGlossario {
+    width: 140px;
 }
 
 .formSinais {
-	zoom: 0.5;
+    zoom: 0.5;
 }
 
 /* Esconde o modelo do avatar da localização e corrige um deslocamento do highlight com a imagem */
+
 .map {
-	display: none;
-	line-height: 2.5;
+    display: none;
+    line-height: 2.5;
 }
 
-
 /* Esconde as options que não estão selecionadas ao construir a página */
+
 div.thumbnail:not(.selected) {
-	display: none;
+    display: none;
 }
 
 .thumbnailModal div.thumbnail:not(.selected) {
-	display: inline-block !important;
+    display: inline-block !important;
 }
 
-
-
 /* Correções nos thumbnails na sidenav */
-
 
 /* =================================== */
 
 /* Define o texto das thumbnails como preto quando não está selecionado */
-div.thumbnail.hoverable:not(.selected) p{
-	color: black;
+
+div.thumbnail.hoverable:not(.selected) p {
+    color: black;
 }
 
 /* Centralizar a descrição da option */
+
 .thumbnails li p {
-	color: white;
-	text-align: center;
+    color: white;
+    text-align: center;
 }
 
-
 .imgGlossario {
-	width: 170px;
+    width: 170px;
     border: white Solid 80px;
     border-width: 8px;
     position: absolute;
@@ -270,387 +242,182 @@ div.thumbnail.hoverable:not(.selected) p{
     left: 350px;
 }
 
-
 .logoGlossarioMobile {
-   	max-width: 50%;
-	height: auto !important;
-	margin-left: 10%;
-	margin-right: 10%;
-    margin-top: 5%;
+    max-width: 50%;
+    height: auto !important;
+}
 
+.logoAnchorTag {
+    position: absolute;
+}
+
+.logo {
+    width: 10%;
+}
+
+#sidenav-icon {
+    position: absolute;
 }
 
 .glossarioSearch {
-	width: 90%;
-	margin-top: 0;
-	margin-left: 5%;
-	margin-right: 5%;
+    width: 90%;
+    margin-top: 0;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+#search {
+    width: 160%;
 }
 
 .videoSinal {
-	display: inline;
+    display: inline;
 }
 
-.botaoEnviarSinal, .botaoEnviarSinal:focus, .botaoPesquisar, .botaoPesquisar:focus {
-	background-color: #003a99;
+.botaoEnviarSinal, .botaoEnviarSinal:focus, .botaoPesquisar, .botaoPesquisarMobile .botaoPesquisar:focus {
+    background-color: #003a99;
+    margin: 1%;
+}
+
+.nenhumSinal {
+    margin-top: 1%;
 }
 
 .botaoEnviarSinal {
-	margin-top: 20px;
+    margin-top: 20px;
 }
 
 .botaoEnviarSinal:hover, .botaoPesquisar:hover {
-	background-color: #0060ff;
-}
-
-/* Corrige centralização vertical do ícone no botão */
-.botaoPesquisar i.material-icons {
-	line-height: 36px;
+    background-color: #0060ff;
 }
 
 .titulo {
-	margin-top: 5%;
-	text-align: center;
-}
-
-.historia-titulo {
-	margin-top: 5%;
-	margin-left: 5%;
+    margin-top: 5%;
+    text-align: center;
 }
 
 .historia {
-	margin-left: 10%;
-	margin-right: 10%;
-	text-align: justify;
-	white-space: pre-line;
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: justify;
+    white-space: pre-line;
 }
 
-.definicao-titulo {
-	margin-top: 5%;
-	margin-left: 5%;
+.imgIndex {
+    width: 110px;
+    height: 110px;
 }
 
-.definicao {
-	margin-top: 5%;
-	margin-left: 10%;
-	margin-right: 10%;
-	text-align: justify;
+.logoUFSC {
+    width: 220px;
+    position: absolute;
+    margin-left: 25px;
+    bottom: 8%;
 }
 
-.rodape {
-	text-align: center;
-	white-space: pre-line;
-	margin-bottom: 10%;
+h3 {
+    font-size: 24px;
+    text-indent: 30px;
+    font-weight: bold;
+    color: #01579b;
+    list-style: none;
 }
 
-/* =============== FIM COMUM =============== */
-
-/* =============== IPHONE 4 =============== */
-
-@media screen and (max-height: 480px) {
-
-	.logoGlossario {
-	    width="320"
-	    height="205"
-		margin-left: 10%;
-	}
-
-	.logoGlossarioSearch {
-		width: 200px;
-	}
-
-	.logoUFSC {
-		width: 220px;
-		position: absolute;
-		margin-left: 20px;
-		margin-top: 3%;
-	}
-
-	.logoUFSCSearch {
-		display: none;
-	}
-
-	.logoUFSCSmall {
-		width: 50px;
-		position: absolute;
-		right: 20px;
-	}
-
-	.logosPositionFix {
-		padding: 0 !important;
-		margin-bottom: 2px;
-	}
-
-	.sideNavLinks {
-		margin-top: 3%;
-	}
-
-	.sideNavSearchLinks {
-		margin-top: 12%;
-	}
-
-	.linkHeightFix {
-		height: 43px !important;
-	}
-
-	.imgIndex {
-		width: 80px;
-		height: 80px;
-	}
-
+* {
+    margin: 0;
+    padding: 0;
 }
 
-/* ============== FIM IPHONE 4 ============== */
-
-/* ============== IPHONE 5 + ============== */
-
-@media screen and (min-height: 481px) {
-
-	.logoGlossario {
-		width: 280px;
-		margin-left: 10px;
-	}
-
-	a.logoGlossarioPaddingFix {
-		padding: 0;
-	}
-
-	.logoGlossarioSearch {
-		width: 250px;
-	}
-
-	.logoUFSCSmall {
-		display: none;
-	}
-
-	.logoUFSC {
-		width: 220px;
-		position: absolute;
-		margin-left: 25px;
-		bottom: 8%;
-	}
-
-	.logoUFSCSearch {
-		width: 220px;
-		position: absolute;
-		margin-left: 40px;
-		bottom: 7%
-	}
-
-	.glossarioSearch {
-		margin-top: 2%;
-	}
-
-	div.row.logosPositionFix {
-		margin-bottom: 0;
-	}
-
-	.sideNavLinks {
-		margin-top: 11%;
-	}
-
-	.sideNavSearchLinks {
-		margin-top: 14%;
-	}
-
-	.linkHeightFix {
-		height: 44px !important;
-	}
-
-	.imgIndex {
-		width: 80px;
-		height: 80px;
-	}
-
-
+html, body {
+    height: 100%;
 }
 
-/* ============ FIM IPHONE 5 + ============= */
-
-/* ============ IPHONE 6S + ============= */
-
-@media screen and (min-height: 581px) {
-
-	.linkHeightFix {
-		height: 48px !important;
-	}
-
-	.sideNavSearchLinks {
-		margin-top: 23%;
-	}
-
-	.glossarioSearch {
-		margin-top: 8%;
-	}
-
-	.checkboxes {
-		text-align: center;
-		line-height: 70px;
-		max-height: 25px;
-	}
-
-	.imgIndex {
-		width: 100px;
-		height: 100px;
-	}
-
+.geral {
+    min-height: 100%;
+    position: relative;
+    width: 800px;
 }
 
-
-@media screen and (min-width: 992px, min-height: 769px) {
-
-	/* Desloca a página para a direita por causa da sidenav fixa */
-	body {
-		padding-left: 300px;
-		background-color: #f7f7f7;
-	}
-
-	.logoGlossario, .logoGlossarioSearch {
-		width: 280px;
-	}
-
-	.logoUFSC {
-		position: absolute;
-		margin-left: 40px;
-		bottom: 7%;
-		width: 220px;
-	}
-
-	.logoUFSCSearch {
-		margin-top: 34%;
-		width: 220px;
-	}
-
-	.sideNavLinks {
-		margin-top: 15%;
-	}
-
-	.linkContainer {
-		margin-top: 25%;
-	}
-
-	.footer{
-		position: fixed;
-		bottom: 0px;
-		min-width: 100%;
-		margin-bottom:-6px;
-		text-align: center;
-		z-index: 1;
-	}
-
-	}
-
-
-	.videoOff {
-		margin-top: 15%;
-	}
-
-	.cardTexto {
-		text-align: justify;
-	}
-
-	.formEnviarSinais {
-		padding-top: 5%;
-	}
-
-	.titulo {
-		margin-top: 5%;
-		text-align: center;
-	}
-
-	.historia-titulo {
-		margin-top: 5%;
-		margin-left: 5%;
-	}
-
-	.historia {
-		margin-left: 10%;
-		margin-right: 10%;
-		text-align: justify;
-		white-space: pre-line;
-	}
-
-	.definicao-titulo {
-		margin-top: 5%;
-		margin-left: 5%;
-	}
-
-	.definicao {
-		margin-top: 5%;
-		margin-left: 10%;
-		margin-right: 10%;
-		text-align: justify;
-	}
-
-	.rodape {
-		text-align: center;
-		white-space: pre-line;
-		margin-bottom: 10%;
-	}
-
+.area-para-footer {
+    /* padding-bottom: 40%; */
 }
 
-/* =============== FIM DESKTOP =============== */
-
-/* =============== NADA DE MAIS... =============== */
-
-@-webkit-keyframes nadaDeMais {
-    0%   { color  : red;    }
-    10%  { color  : orange; }
-    20%  { color  : yellow; }
-    40%  { color  : purple  }
-    50%  { color  : blue;   }
-    30%  { color  : green;  }
-    60%  { color  : pink;   }
-    70%  { color  : red;    }
-    80%  { color  : orange; }
-    90%  { color  : yellow; }
-    100% { color  : black;  }
+.containerTabs {
+    padding-left: 20px;
+    position: relative;
+    padding-top: 37px;
 }
 
-@-moz-keyframes nadaDeMais {
-    0%   { color  : red;    }
-    10%  { color  : orange; }
-    20%  { color  : yellow; }
-    40%  { color  : purple  }
-    50%  { color  : blue;   }
-    30%  { color  : green;  }
-    60%  { color  : pink;   }
-    70%  { color  : red;    }
-    80%  { color  : orange; }
-    90%  { color  : yellow; }
-    100% { color  : black;  }
+/* Mobile Padding */
+
+@media only screen and (max-width: 992px) {
+    .blockContainer {
+        margin-bottom: 25%;
+        padding-left: 0px;
+        position: relative;
+        margin-top: 4%;
+        transition-duration: 0.4s;
+    }
+    .containerTabs {
+        padding-left: 0;
+        position: relative;
+        padding-top: 0;
+    }
+    #search-bar {
+        background-color: white;
+        position: fixed;
+        padding: 2% 0 2%;
+        margin-bottom: 0px;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        z-index: 2;
+        -webkit-box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    }
+    .botaoPesquisarMobile {
+        position: absolute;
+        right: 2%;
+        top: -80%;
+    }
+    .sidenav {
+        padding-top: 0;
+        width: 80%;
+        z-index: 1000;
+        position: fixed;
+        transition-duration: 0.4s;
+    }
+    .chipGlossario {
+        position: fixed;
+        bottom: 12%;
+        z-index: 1;
+        margin-left: 10%;
+    }
 }
 
-@keyframes nadaDeMais {
-    0%   { color  : red;    }
-    10%  { color  : orange; }
-    20%  { color  : yellow; }
-    40%  { color  : purple  }
-    50%  { color  : blue;   }
-    30%  { color  : green;  }
-    60%  { color  : pink;   }
-    70%  { color  : red;    }
-    80%  { color  : orange; }
-    90%  { color  : yellow; }
-    100% { color  : black;  }
+/* Tablet settings */
+
+@media only screen and (max-width: 992px) and (min-width: 590px) {
+    .containerTabs {
+        padding-left: 0;
+        position: relative;
+        padding-top: 37px;
+    }
+    .sidenav {
+        padding-top: 0;
+        width: 35%;
+        z-index: 1000;
+        position: fixed;
+        transition-duration: 0.4s;
+    }
+    .botaoPesquisarMobile {
+        position: absolute;
+        right: 2%;
+        top: -50%;
+    }
+    .chipGlossario {
+        position: fixed;
+        bottom: 15%;
+        z-index: 1;
+        margin-left: 10%;
+    }
 }
-
-
-.nadaDeMais {
-    -webkit-animation: nadaDeMais 0.1s linear infinite;
-    -moz-animation: nadaDeMais 0.1s linear infinite;
-    animation: nadaDeMais 0.1s linear infinite;
-}
-
-
-h3{
-	font-size: 24px;
-	text-indent: 30px;
-	font-weight: bold;
-	color: #01579b;
-	list-style: none;
-}
-
-/* ============= FIM NADA DE MAIS... ============= */
-

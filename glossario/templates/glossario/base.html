@@ -1,32 +1,38 @@
 <!DOCTYPE html>
 <html>
-    <head>
-    {% block head %}
-        {% load staticfiles %}
-        <meta name="author" content="Ramon Dutra Miranda"/>
-        <meta name="description" content="Glossario libras, ufsc, dicionario, letras libras, glossario cinema"/>
-        <meta name="keywords" content="glossario, libras, ufsc, glossário, glossários, letras libras, dicionario"/>
-        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
+
+<head>
+  {% block head %}
+  {% load staticfiles %}
+  <meta name="author" content="Ramon Dutra Miranda" />
+  <meta name="description" content="Glossario libras, ufsc, dicionario, letras libras, glossario cinema" />
+  <meta name="keywords" content="glossario, libras, ufsc, glossário, glossários, letras libras, dicionario" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link type="text/css" rel="stylesheet" href='{% static "css/materialize.css" %}' media="screen,projection" />
+  <link type="text/css" rel="stylesheet" href='{% static "css/material-icons.css" %}' media="screen,projection" />
+  <link type="text/css" rel="stylesheet" href='{% static "css/base.css" %}' />
+  
+  {% endblock %}
+  <title>{% block title %}Glossário Libras{% endblock %}</title>
+</head>
+
+<body>
+  <script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
 
 
-          <!--<script type="text/javascript" src="{% static 'js/jquery-3.1.1.min.js' %}"></script>-->
-          <script type="text/javascript" src="{% static 'js/jquery.waypoints.min.js' %}"></script>
-          <script type="text/javascript" src="{% static 'js/infinite.min.js' %}"></script>
+  <!--<script type="text/javascript" src="{% static 'js/jquery-3.1.1.min.js' %}"></script>-->
+  <script type="text/javascript" src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/infinite.min.js' %}"></script>
 
 
-        <script type="text/javascript" src="{% static 'js/materialize.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/base.js' %}"></script>
-        <link type="text/css" rel="stylesheet" href='{% static "css/materialize.css" %}'  media="screen,projection"/>
-        <link type="text/css" rel="stylesheet" href='{% static "css/material-icons.css" %}'  media="screen,projection"/>
-        <link type="text/css" rel="stylesheet" href='{% static "css/base.css" %}'/>
-    {% endblock %}
-        <title>{% block title %}Glossário Libras{% endblock %}</title>
-    </head>
-    <body>
-        {% include 'glossario/search_bar.html' %}
-        {% block body %}
-        {% endblock %}
-    </body>
+  <script type="text/javascript" src="{% static 'js/materialize.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/base.js' %}"></script>
+  {% include 'glossario/search_bar.html' %}
+  {% block body %}
+  {% endblock %}
+
+</body>
+
 </html>

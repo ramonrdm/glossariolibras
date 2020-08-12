@@ -3,6 +3,7 @@ from django import forms
 from django.utils.safestring import mark_safe
 from django.template import loader
 from glossario.models import CM, Movimentacao, Localizacao
+from django.forms.widgets import ClearableFileInput
 import json
 
 class ImageSelectLocalizacao(forms.Widget):
@@ -46,6 +47,6 @@ class ImageSelectMovimentacao(forms.Widget):
         template = loader.get_template(self.template_name).render({'objetos': {'nada': '',},'movimentacao': movimentacao,'name': name,'value': value})
 
         return mark_safe(template)
-from django.forms.widgets import ClearableFileInput
+
 class VideoInput(ClearableFileInput):
     template_name = 'admin/video_clearable_file_input.html'

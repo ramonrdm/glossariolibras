@@ -64,13 +64,22 @@ class UserGlossario(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.nome_completo
 
+# Formata os nomes dos glossarios para title 
+class NameField(models.CharField):
+    def __init__(self, *args, **kwargs):
+        super(NameField, self).__init__(*args, **kwargs)
+
+    def get_prep_value(self, value):
+        return str(value).title()
+
 class Glossario(models.Model):
 
     class Meta:
         verbose_name='Glossário'
 
     max_length_name = 100
-    nome = models.CharField('Nome do Glossário', max_length=max_length_name)
+    # Nome do glossario deve ser unico
+    nome = NameField('Nome do Glossário', max_length=max_length_name, unique=True, error_messages={'unique':"Um glossário com este nome já existe."})
     responsaveis = models.ManyToManyField(UserGlossario, verbose_name = 'responsaveis')
     membros = models.ManyToManyField(UserGlossario, related_name='glossario_membros', verbose_name='membros', blank=True)
     descricao = models.TextField("descrição", blank=True, null=True)
@@ -81,7 +90,7 @@ class Glossario(models.Model):
     visivel = models.BooleanField("Visivel", default=True)
 
     def __str__(self):
-        return self.nome
+        return self.nome.title()
 
 class CM (models.Model):
     """Total de 261 configurações de mão divididas em 10 grupos."""
@@ -121,7 +130,7 @@ class Movimentacao(models.Model):
     movimentacoes = (('', 'Sem Movimentação'),('1', 'Parede'), ('2', 'Chão'), ('3', 'Circular'), ('4', 'Contato'))
 
     movimentacoes_imagens = dict(
-        [('0', '0X.svg'), ('1', '1parede.png'), ('2', '2chao.png'), ('3', '3circular.png'), ('4', '4contato.png')])
+        [('0', 'M.jpg'), ('1', '1parede.png'), ('2', '2chao.png'), ('3', '3circular.png'), ('4', '4contato.png')])
 
     movimentacoes_busca = (('1parede.png'), ('2chao.png'), ('3circular.png'), ('4contato.png'))
 

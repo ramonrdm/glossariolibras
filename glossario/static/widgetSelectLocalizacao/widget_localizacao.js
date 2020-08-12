@@ -89,8 +89,8 @@ $('area').click(function() {
         $('#imagem_localizacao_mobile').attr('src', '/static/img/'+objetos_localizacao[attrValue]);
     }else{
         $('#id_localizacao').val('');
-        $('#imagem_localizacao').attr('src', '/static/img/X.svg');
-        $('#imagem_localizacao_mobile').attr('src', '/static/img/X.svg');
+        $('#imagem_localizacao').attr('src', '/static/img/L.jpg');
+        $('#imagem_localizacao_mobile').attr('src', '/static/img/L.jpg');
     }
     
 

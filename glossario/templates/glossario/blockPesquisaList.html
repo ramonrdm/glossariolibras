@@ -1,5 +1,17 @@
 <div class="container center">
-    <p class="flow-text">Encontrado {{resultado}} resultado(s):</p>
+    {% if glossario %}
+           <div> 
+                <img class="circle left" height="65" src="{{ glossario.imagem.url }}" />
+                <p class="flow-text ">
+                    Encontrado {{resultado}} resultado(s) em  
+                    <a href="{{ glossario.link }}"style="color:darkblue">{{ glossario.nome }}</a> 
+                    :           
+                </p> 
+            </div>
+    {% else %}
+        <p class="flow-text">Encontrado {{resultado}} resultado(s):</p>
+    {% endif %}
+
         <div class="container divider"></div>
         <ul class="row">
             <li class="col l2 tituloSinais">Preview</li>

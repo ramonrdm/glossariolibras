@@ -1,36 +1,13 @@
-<img id="imagem_{{ name }}" class="hide-on-small-only sinais waves-effect waves-light modal-trigger" src="/static/img/X.svg" href="#modal-libras-{{ name }}">
-<img id="imagem_{{ name }}_mobile" class="hide-on-large-only sinaisMobile waves-effect waves-light modal-trigger" src="/static/img/X.svg" href="#modal-libras-{{ name }}">
+<img id="imagem_{{ name }}" class="hide-on-med-and-down sinais waves-effect waves-light modal-trigger" src="/static/img/C.M.jpg" href="#modal-libras-{{ name }}">
+<img id="imagem_{{ name }}_mobile" class="hide-on-large-only sinaisMobile waves-effect waves-light modal-trigger" src="/static/img/C.M.jpg" href="#modal-libras-{{ name }}">
 <input type="hidden" id="id_{{ name }}" name="{{ name }}" value="{{ value|default:"" }}">
-
-<script type="text/javascript">
-var objetos_{{name}} = {{ objetos|safe }};
-$(document).ready(function(){
-    var valor_{{ name }} = "{{ value|safe }}";
-    if(valor_{{ name }} == "None"){
-        valor_{{ name }} = null;
-    }
-    if(valor_{{ name }}){
-        $('#id_{{ name }}').val(valor_{{ name }});
-        $('#imagem_{{ name }}').attr('src', $(cm_{{ name }}_{{ value }}).attr('src'));
-        $('#imagem_{{ name }}_mobile').attr('src', $(cm_{{ name }}_{{ value }}).attr('src'));
-    }
-    $('.escolhaCM{{ name }}').click(function(){
-         var escolhaCM = $(this).attr('id_cm');
-         $('#id_{{ name }}').val(escolhaCM);
-         $('#imagem_{{ name }}').attr('src', $(this).attr('src'));
-         $('#imagem_{{ name }}_mobile').attr('src', $(this).attr('src'));
-
-     });
-
-
-    $('.datepicker').datepicker();
-
-});
-</script>
 
 <div id="modal-libras-{{ name }}" class="modal center bottom-sheet">
     <div class="modal-content">
         <h4 class="black-text center">Grupos de Configurações de Mãos</h4>
+       
+        <img src="/static/img/C.M.jpg" class="sinais waves-effect waves-light modal-close escolhaCM{{ name }}"  id="imagem_cmE" href="#modal-libras-cmE">
+       
         {% for grupo in cmGrupos %}
              <img src="/static/img/configuracoes_de_mao/{{ grupo }}/{{ grupo }}.png"  class="sinais waves-effect waves-light modal-trigger modal-close" href="#{{ grupo }}{{ name }}">
         {% endfor %}
@@ -52,3 +29,31 @@ $(document).ready(function(){
     </div>
 </div>
 {% endfor %}
+
+<!-- JS -->
+
+<script type="text/javascript">
+    var objetos_{{ name }} = {{ objetos|safe }};
+    $(document).ready(function(){
+        var valor_{{ name }} = "{{ value|safe }}";
+        if(valor_{{ name }} == "None"){
+            valor_{{ name }} = null;
+        }
+        if(valor_{{ name }}){
+            $('#id_{{ name }}').val(valor_{{ name }});
+            $('#imagem_{{ name }}').attr('src', $(cm_{{ name }}_{{ value }}).attr('src'));
+            $('#imagem_{{ name }}_mobile').attr('src', $(cm_{{ name }}_{{ value }}).attr('src'));
+        }
+        $('.escolhaCM{{ name }}').click(function(){
+             var escolhaCM = $(this).attr('id_cm');
+             $('#id_{{ name }}').val(escolhaCM);
+             $('#imagem_{{ name }}').attr('src', $(this).attr('src'));
+             $('#imagem_{{ name }}_mobile').attr('src', $(this).attr('src'));
+    
+         });
+    
+    
+        $('.datepicker').datepicker();
+    
+    });
+</script>

@@ -1,5 +1,5 @@
 FROM python:3.7
-MAINTAINER ramon.rdm <ramon.rdm@ufsc.br>
+LABEL maintainer="ramon.rdm@ufsc.br"
 ENV PYTHONUNBUFFERED 0
 
 RUN apt-get update && apt-get upgrade -y

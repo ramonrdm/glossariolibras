@@ -1,58 +1,58 @@
 {% load staticfiles %}
 {%  if user.is_authenticated  %}
-    <li>
-        <a class="waves-effect waves-blue left" href="{% url 'admin:index' %}">
-            <i class="material-icons">account_circle</i>
-                {{ user.nome_completo }}
-            <a href="{% url 'logout' %}" class="material-icons">close</a>
-        </a>
-        </a>
+<li>
+  <a class="waves-effect waves-blue left" href="{% url 'admin:index' %}">
+    <i class="material-icons">account_circle</i>
+    {{ user.nome_completo }}
+    <a href="{% url 'logout' %}" class="material-icons">close</a>
+  </a>
+  </a>
 
 
-    </li>
+</li>
 {% else %}
 
-    <li>
-        <a class="waves-effect waves-blue" href="{% url 'admin:index'  %}">
-            <i class="material-icons">https</i>
-            Admin
-        </a>
-    </li>
+<li>
+  <a class="waves-effect waves-blue" href="{% url 'admin:index'  %}">
+    <i class="material-icons">https</i>
+    Admin
+  </a>
+</li>
 {% endif %}
-        <li>
-            <a class="waves-effect waves-blue" href="/admin/glossario/sinal/add/">
-                <i class="material-icons">send</i>
-                Sugerir um Sinal
-            </a>
-        </li>
-        <li>
-            <a class="waves-effect waves-blue" href="{% url 'historia' %}">
-                <i class="material-icons">library_books</i>
-                História
-            </a>
-        </li>
-        <li>
-            <a class="waves-effect waves-blue" href="{% url 'equipe' %}">
-                <i class="material-icons">supervisor_account</i>
-                Equipe
-            </a>
-        </li>
-        <li>
-            <a class="waves-effect waves-blue" href="{% url 'contato' %}">
-                <i class="material-icons">call</i>
-                Contato
-            </a>
-        </li>
-        <li>
-            <a class="waves-effect waves-blue" href="https://libras.ufsc.br/">
-                <i class="material-icons">
-                    <img class="iconePortalLibras" src='{% static "img/marca_portal_libras2.png" %}'>
-                </i>
-                Portal Libras
-            </a>
-        </li>
-        <div class="nav-wrapper">
-            <a href="http://ufsc.br">
-                <img class="logoUFSC" src='{% static "img/marca_ufsc.png" %}'>
-            </a>
-        </div>
+<li>
+  <a class="waves-effect waves-blue" href="/admin/glossario/sinal/add/">
+    <i class="material-icons">send</i>
+    Sugerir um Sinal
+  </a>
+</li>
+<li>
+  <a class="waves-effect waves-blue" href="{% url 'historia' %}">
+    <i class="material-icons">library_books</i>
+    História
+  </a>
+</li>
+<li>
+  <a class="waves-effect waves-blue" href="{% url 'equipe' %}">
+    <i class="material-icons">supervisor_account</i>
+    Equipe
+  </a>
+</li>
+<li>
+  <a class="waves-effect waves-blue" href="{% url 'contato' %}">
+    <i class="material-icons">call</i>
+    Contato
+  </a>
+</li>
+<li>
+  <a class="waves-effect waves-blue" href="https://libras.ufsc.br/">
+    <i class="material-icons">
+      <img class="iconePortalLibras" src='{% static "img/marca_portal_libras2.png" %}'>
+    </i>
+    Portal Libras
+  </a>
+</li>
+<div class="nav-wrapper">
+  <a href="http://ufsc.br">
+    <img class="logoUFSC" src='{% static "img/marca_ufsc.png" %}'>
+  </a>
+</div>

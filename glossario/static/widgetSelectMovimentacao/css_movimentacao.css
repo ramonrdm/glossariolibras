@@ -2,7 +2,7 @@
 	background-color: white !important;
     height:90px  !important;
     padding: 2px  !important;
-    border-radius: 45px 45px 45px 45px  !important;
+    border-radius: 100%  !important;
     border-style: outset  !important;
     border-bottom-width: 2px  !important;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.1)   !important;
@@ -15,7 +15,7 @@
     width:81%;
 	background-color: white;
     padding: -1px;
-    border-radius: 45px 45px 45px 45px;
+    border-radius: 100%;
     border-style: outset;
     border-bottom-width: 3px;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.1);

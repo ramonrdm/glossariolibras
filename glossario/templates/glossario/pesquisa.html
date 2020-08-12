@@ -1,88 +1,116 @@
 {% extends 'glossario/base.html' %}
 {% block head %}
-	{{ block.super }}
-    {{ formSinais.media }}
-	{% load staticfiles %}
-	<title>{% block title %}Pesquisa {{ glossario.nome }} - Glossário Letras Libras {% endblock %}</title>
+{{ block.super }}
+{{ formSinais.media }}
+{% load staticfiles %}
+<title>{% block title %}Pesquisa {{ glossario.nome }} - Glossário Letras Libras {% endblock %}</title>
 {% endblock %}
 {% block body %}
-<div class="telaWeb" style= "display: none;">
 
-	<div class="pesquisaViewList">
-		<a id="buttonViewModule" class="btn-floating btn-large waves-effect waves-light blue right"><i class="material-icons">view_module</i></a>
-		<h2 class="thin center">{{glossario.nome}}</h2>
-		{% if sinais_page %}
-			{% include 'glossario/blockPesquisaList.html' %}
-		{% else %}
-			<p class="flow-text center">Nenhum sinal encontrado</p>
-		{% endif %}
+<!-- TELA WEB -->
+<div class="telaWeb hide-on-med-and-down">
 
-	</div>
-	<div class="pesquisaViewModule row blockContainer">
-		<a id="buttonViewList" class="btn-floating btn-large waves-effect waves-light blue right"><i class="material-icons">view_headline</i></a>
-		<h2 class="thin center">{{glossario.nome}}</h2>
-		{% if sinais_page %}
-			<p class="flow-text center">Encontrado {{resultado}} resultado(s):</p>
-				{% for s in sinais_page %}
-					<div class="col l2">
-						{% include 'glossario/blockPesquisaModule.html' %}
-					</div>
-				{% endfor %}
-		{% else %}
-		<p class="flow-text center">Nenhum sinal encontrado</p>
-		{% endif %}
-	</div>
+  <!-- View dos Sinais em Lista -->
+
+  <div class="pesquisaViewList">
+    {% if sinais_page %}
+    {% include 'glossario/blockPesquisaList.html' %}
+    {% else %}
+    </br>
+    <p class="flow-text center nenhumSinal">Nenhum sinal encontrado</p>
+    {% endif %}
+  </div>
+
+  {% if sinais_page.has_other_pages %}
+  <ul class="pagination center">
+
+    <!-- Seta para trás -->
+    {% if sinais_page.has_previous %}
+    <li class="waves-effect"><a
+        onclick="nextPage('{{ sinais_page.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}')"><i
+          class="material-icons">chevron_left</i></a></li>
+    {% else %}
+    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+    {% endif %}
+
+    <!-- Numeros  -->
+    {% for num in sinais_page.paginator.page_range %}
+    {% if sinais_page.number == num %}
+    <li class="active blue"><a>{{ num }}</a></li>
+    {% else %}
+    <li class="waves-effect"><a
+        onclick="nextPage('{{ num }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}')">{{ num }}</a></li>
+    {% endif %}
+    {% endfor %}
+
+    <!-- Seta para Frente -->
+    {% if sinais_page.has_next %}
+    <li class="waves-effect"><a
+        onclick="nextPage('{{ sinais_page.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}')"><i
+          class="material-icons">chevron_right</i></a></li>
+    {% else %}
+    <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+    {% endif %}
+  </ul>
+  {% endif %}
+
+
+
 
 </div>
 
-<div class="telaMobile" style= "display: none;">
+<!-- TELA MOBILE -->
+<div class="telaMobile area-para-footer hide-on-large-only">
 
-	<div class="pesquisaViewList">
-		<a id="buttonViewModule" class="btn-floating btn waves-effect waves-light blue right"><i class="material-icons">view_module</i></a>
-		<h2 class="thin center">{{glossario.nome}}</h2>
-		{% if sinais_page %}
-			{% include 'glossario/blockPesquisaListMobile.html' %}
-		{% else %}
-			<p class="flow-text center">Nenhum sinal encontrado</p>
-		{% endif %}
-	</div>
-	<div class="pesquisaViewModule">
-		<h2 class="thin center">{{glossario.nome}}</h2>
-		<a id="buttonViewListMobile" class="btn-floating btn waves-effect waves-light blue right"><i class="material-icons">view_headline</i></a>
-		{% if sinais_page %}
-			<p class="flow-text center">Encontrado {{resultado}} resultado(s):</p>
-			<div class="container divider"></div>
-			{% for s in sinais_page %}
-			<div class="row container">
-				<div class="col s12">
-					{% include 'glossario/blockPesquisaModule.html' %}
-				</div>
-			</div>
-		{% endfor %}
-		{% else %}
-			<p class="flow-text">Nenhum sinal encontrado</p>
-		{% endif %}
-	</div>
+  <div class="pesquisaViewList">
+    <h2 class="thin center">{{glossario.nome}}</h2>
+    {% if sinais_page %}
+    {% include 'glossario/blockPesquisaListMobile.html' %}
+    {% else %}
+    <p class="flow-text center nenhumSinal">Nenhum sinal encontrado</p>
+    {% endif %}
+  </div>
+
+
+
+  {% if sinais_page.has_other_pages %}
+  <ul class="pagination center">
+    <!-- Seta para trás -->
+    {% if sinais_page.has_previous %}
+    <li class="waves-effect"><a
+        onclick="nextPage('{{ sinais_page.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}')"><i
+          class="material-icons">chevron_left</i></a></li>
+    {% else %}
+    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+    {% endif %}
+
+    <!-- Numeros  -->
+    {% for num in sinais_page.paginator.page_range %}
+    {% if sinais_page.number == num %}
+    <li class="active blue"><a>{{ num }}</a></li>
+    {% else %}
+    <li class="waves-effect"><a
+        onclick="nextPage('{{ num }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}')">{{ num }}</a></li>
+    {% endif %}
+    {% endfor %}
+
+    <!-- Seta para Frente -->
+    {% if sinais_page.has_next %}
+    <li class="waves-effect"><a
+        onclick="nextPage('{{ sinais_page.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}')"><i
+          class="material-icons">chevron_right</i></a></li>
+    {% else %}
+    <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+    {% endif %}
+  </ul>
+  {% endif %}
 
 </div>
 
-
-<div class="loading" style="display:none;" >
-	Loading...
-</div>
-{% if sinais_page.has_next %}
-	<a class="infinite-more-link" href="?page={{ sinais_page.next_page_number }}">More</a>
-{% endif %}
-<script>
-	var infinite = new Waypoint.Infinite({
-	  element: $('.infinite-sinal-web')[0],
-	  onBeforePageLoad: function () {
-		$('.loading').show();
-
-	  },
-	  onAfterPageLoad: function ($items) {
-		$('.loading').hide();
-	  }
-	});
+<script type="text/javascript">
+  function nextPage(valor) {
+    document.getElementById("id_page").value = valor;
+    document.getElementById("formSinais").submit();
+  }
 </script>
 {% endblock %}

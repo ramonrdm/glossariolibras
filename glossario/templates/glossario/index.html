@@ -1,65 +1,65 @@
 {% extends 'glossario/base.html' %}
 {% block head %}
-	{{ block.super }}
-    {% load staticfiles %}
+{{ block.super }}
+{% load staticfiles %}
 {% endblock %}
 {% block title %}
-  Glossários de Libras - Glossário Letras Libras
+Glossários de Libras - Glossário Letras Libras
 {% endblock %}
 {% block body %}
-    <div class="row center blockContainer">
-        {% for glossario in glossarios %}
-            <div class="block col s6 m2">
-                {% if glossario.imagem %}
-                    <a href="/{{glossario.link}}">
-                        <img class="circle z-depth-2 hoverable imgIndex" src="{{glossario.imagem.url}}">
-                        <div>
-                            <span class="flow-text textoIndex">{{glossario.nome}}</span>
-                        </div>
-                    </a>
-                {% else %}
-                    <a href="/{{glossario.link}}">
-                        <i class="large material-icons icone imgIndex">cloud_off</i>
-                        <div>
-                            <span class="flow-text textoIndex">{{glossario.nome}}</span>
-                        </div>
-                    </a>
-                {% endif %}
-            </div>
-        {% endfor %}
-    </div>
-
-    {% if modalConfirmeEmail %}
-      <div id="confirmeEmail" class="modal">
-        <div class="modal-content">
-          <h5>Obrigado por se Cadastrar</h5>
-          <p>Por favor confirme seu endereço de email para completar o registro</p>
-        </div>
-        <div class="modal-footer">
-          <a class="modal-close waves-effect waves-green btn-flat">Fechar</a>
-        </div>
+<div class="row center blockContainer">
+  {% for glossario in glossarios %}
+  <div class="block col s6 m4 l2">
+    {% if glossario.imagem %}
+    <a href="/{{glossario.link}}">
+      <img class="circle z-depth-2 hoverable imgIndex" src="{{glossario.imagem.url}}">
+      <div>
+        <span class="flow-text textoIndex">{{glossario.nome}}</span>
       </div>
-    {% endif%}
-    {% if modalConfirmeEmailErro %}
-        <div id="confirmeEmailErro" class="modal">
-        <div class="modal-content">
-          <h5>Erro confimação de e-mail!</h5>
-          <p>Confirmação de e-mail invalida, possivelmente por já ter sido usada</p>
-        </div>
-        <div class="modal-footer">
-          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
-        </div>
+    </a>
+    {% else %}
+    <a href="/{{glossario.link}}">
+      <i class="large material-icons icone imgIndex">cloud_off</i>
+      <div>
+        <span class="flow-text textoIndex">{{glossario.nome}}</span>
       </div>
-    {% elif modalLogin %}
-        <div id="login" class="modal">
-        <div class="modal-content">
-          <h5>Registrado com Sucesso!</h5>
-          <p>Confirmação de e-mail valida, usuario cadastrado com sucesso.</p>
-        </div>
-        <div class="modal-footer">
-          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
-        </div>
-      </div>
+    </a>
     {% endif %}
+  </div>
+  {% endfor %}
+</div>
+
+{% if modalConfirmeEmail %}
+<div id="confirmeEmail" class="modal">
+  <div class="modal-content">
+    <h5>Obrigado por se Cadastrar</h5>
+    <p>Por favor confirme seu endereço de email para completar o registro</p>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-close waves-effect waves-green btn-flat">Fechar</a>
+  </div>
+</div>
+{% endif%}
+{% if modalConfirmeEmailErro %}
+<div id="confirmeEmailErro" class="modal">
+  <div class="modal-content">
+    <h5>Erro confimação de e-mail!</h5>
+    <p>Confirmação de e-mail invalida, possivelmente por já ter sido usada</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
+  </div>
+</div>
+{% elif modalLogin %}
+<div id="login" class="modal">
+  <div class="modal-content">
+    <h5>Registrado com Sucesso!</h5>
+    <p>Confirmação de e-mail valida, usuario cadastrado com sucesso.</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
+  </div>
+</div>
+{% endif %}
 
 {% endblock %}
