@@ -47,28 +47,16 @@ def update_upload_path(sender, instance, created, **kwargs):
                     field.name,
                     arquivo_video_converter
                     ),shell=True)
-            print("############# VIDEO CONVERTER ###############")
-            print(instance.videos_originais_converter[index])
-            print(field.name)
-            print(arquivo_video_converter)
             nome_relativo_arquivo_convertido = 'sinal_videos/'+nome_video_converter
             Sinal.objects.filter(id=instance.id).update(**{"%s" % field.field.name: nome_relativo_arquivo_convertido} )
             if os.path.isfile(url_base+'/'+field.name):
-                print("deletando    " + url_base+'/'+field.name)
                 os.remove(url_base+'/'+field.name)
             if os.path.isfile(url_base+'/'+str(instance.videos_originais_converter[index])):
-                print("deletando    " +  url_base+'/'+str(instance.videos_originais_converter[index]))
                 os.remove(url_base+'/'+str(instance.videos_originais_converter[index]))
-            print("############ ############## #################")
 
         else:
-            print("############## NÃO MUDOU ####################")
-            print(instance.videos_originais_converter[index])
-            print(field.name)
             if field.name == '' and instance.videos_originais_converter[index] != '':
-                print("deletando    " +  url_base+'/'+str(instance.videos_originais_converter[index]))
                 os.remove(settings.MEDIA_ROOT+'/'+str(instance.videos_originais_converter[index]))
-            print("############ ############## #################")
 
 def converter_todos(sinal_inicio=1):
     sinais = Sinal.objects.all()
@@ -80,7 +68,6 @@ def converter_todos(sinal_inicio=1):
 
     for sinal in sinais:
         if(sinal.id < int(sinal_inicio)):
-            print(" maior ###", sinal.id, sinal_inicio)
             continue
         url_base = settings.MEDIA_ROOT
         pasta_sinal_videos = '{0}/sinal_videos'.format(url_base)

@@ -14,6 +14,28 @@ para fazer o dumpdata:
 Popular o banco de dados local (sqlite3): chamar o comando:
 $ ./manage.py loaddata glossario/fixtures/initial.json
 
+Docker e docker-compose:
+Rodar todos os aplicativos, primeira vez é necessário a flag --build:
+```bash
+docker-compose up --build
+```
+
+Fecha e deleta todos os containers:
+```bash
+docker-compose down
+```
+
+Rodar comandos dentro de um container pelo shell
+```bash
+docker exec -it [CONTAINER NAME] /bin/bash
+```
+
+Rodar comandos dentro do container do Postgresql:
+```bash
+docker exec -it [container_name] psql -U [postgres_user]
+```
+
+
 Desenvolvedor Ramon Dutra Miranda
 
 Professores responseveis pela pesquisa:
@@ -21,9 +43,10 @@ Janine Soares de Oliveira
 Marianne Rossi Stumpf
 
 Bolsistas: 
-Cleberton de Souza Oliveira 
+Bryan Martins Lima
 
 Equipe antiga:
+Cleberton de Souza Oliveira
 João Pedro Gutierrez Kieling Villegas
 Sabrina Hanich
 Thiago Brezinski

@@ -7,71 +7,16 @@
 {% endblock %}
 {% block body %}
 
-<!-- TELA WEB -->
-<div class="telaWeb hide-on-med-and-down">
+<div>
 
-  <!-- View dos Sinais em Lista -->
-
-  <div class="pesquisaViewList">
-    {% if sinais_page %}
-    {% include 'glossario/blockPesquisaList.html' %}
-    {% else %}
-    </br>
-    <p class="flow-text center nenhumSinal">Nenhum sinal encontrado</p>
-    {% endif %}
-  </div>
-
-  {% if sinais_page.has_other_pages %}
-  <ul class="pagination center">
-
-    <!-- Seta para trás -->
-    {% if sinais_page.has_previous %}
-    <li class="waves-effect"><a
-        onclick="nextPage('{{ sinais_page.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}')"><i
-          class="material-icons">chevron_left</i></a></li>
-    {% else %}
-    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-    {% endif %}
-
-    <!-- Numeros  -->
-    {% for num in sinais_page.paginator.page_range %}
-    {% if sinais_page.number == num %}
-    <li class="active blue"><a>{{ num }}</a></li>
-    {% else %}
-    <li class="waves-effect"><a
-        onclick="nextPage('{{ num }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}')">{{ num }}</a></li>
-    {% endif %}
-    {% endfor %}
-
-    <!-- Seta para Frente -->
-    {% if sinais_page.has_next %}
-    <li class="waves-effect"><a
-        onclick="nextPage('{{ sinais_page.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}')"><i
-          class="material-icons">chevron_right</i></a></li>
-    {% else %}
-    <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-    {% endif %}
-  </ul>
-  {% endif %}
-
-
-
-
-</div>
-
-<!-- TELA MOBILE -->
-<div class="telaMobile area-para-footer hide-on-large-only">
-
-  <div class="pesquisaViewList">
-    <h2 class="thin center">{{glossario.nome}}</h2>
+  <div>
+    <h2 class="thin center">{{glossario.nome}}:</h2>
     {% if sinais_page %}
     {% include 'glossario/blockPesquisaListMobile.html' %}
     {% else %}
     <p class="flow-text center nenhumSinal">Nenhum sinal encontrado</p>
     {% endif %}
   </div>
-
-
 
   {% if sinais_page.has_other_pages %}
   <ul class="pagination center">

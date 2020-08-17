@@ -25,7 +25,6 @@ def index(request, glossario=None):
 def glossarioSelecionado(request, glossario):
     try:
         glossario = Glossario.objects.get(link=glossario)
-        print("Glossario: ", glossario)
     except Glossario.DoesNotExist:
         glossario = None
 
@@ -109,13 +108,12 @@ def busca(formSinais):
     mao = formSinais.cleaned_data['cmE']
     glossario = formSinais.cleaned_data['glossario']
     sinais = Sinal.objects.filter(publicado=True)
-    print("glossario:", glossario)
 
     if glossario != None:
         sinais = sinais.filter(glossario=glossario)
 
     if resultadoTraducao != '':
-        sinais = sinais.filter(Q(portugues__icontains=resultadoTraducao) | Q(
+        sinais = sinais.filter(Q(portugues__unaccent=resultadoTraducao) | Q(
             ingles__icontains=resultadoTraducao))
     else:
         if localizacao:

@@ -1,6 +1,5 @@
-<img id="imagem_{{ name }}" class="hide-on-med-and-down sinais waves-effect waves-light modal-trigger" src="/static/img/C.M.jpg" href="#modal-libras-{{ name }}">
-<img id="imagem_{{ name }}_mobile" class="hide-on-large-only sinaisMobile waves-effect waves-light modal-trigger" src="/static/img/C.M.jpg" href="#modal-libras-{{ name }}">
-<input type="hidden" id="id_{{ name }}" name="{{ name }}" value="{{ value|default:"" }}">
+<img id="imagem_{{ name }}" class="sinais sinaisMobile waves-effect waves-light modal-trigger" src="/static/img/C.M.jpg" href="#modal-libras-{{ name }}">
+<input type="hidden" id="id_{{ name }}" name="{{ name }}" value="{{ value|default:'' }}">
 
 <div id="modal-libras-{{ name }}" class="modal center bottom-sheet">
     <div class="modal-content">
@@ -42,13 +41,11 @@
         if(valor_{{ name }}){
             $('#id_{{ name }}').val(valor_{{ name }});
             $('#imagem_{{ name }}').attr('src', $(cm_{{ name }}_{{ value }}).attr('src'));
-            $('#imagem_{{ name }}_mobile').attr('src', $(cm_{{ name }}_{{ value }}).attr('src'));
         }
         $('.escolhaCM{{ name }}').click(function(){
              var escolhaCM = $(this).attr('id_cm');
              $('#id_{{ name }}').val(escolhaCM);
              $('#imagem_{{ name }}').attr('src', $(this).attr('src'));
-             $('#imagem_{{ name }}_mobile').attr('src', $(this).attr('src'));
     
          });
     
