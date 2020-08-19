@@ -9,7 +9,7 @@
     margin-top: 3% !important;
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 591px) {
     .sinaisMobile {
         height: auto !important;
         width: 81% !important;

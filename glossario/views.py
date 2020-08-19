@@ -113,7 +113,7 @@ def busca(formSinais):
         sinais = sinais.filter(glossario=glossario)
 
     if resultadoTraducao != '':
-        sinais = sinais.filter(Q(portugues__unaccent=resultadoTraducao) | Q(
+        sinais = sinais.filter(Q(portugues__unaccent__icontains=resultadoTraducao) | Q(
             ingles__icontains=resultadoTraducao))
     else:
         if localizacao:
