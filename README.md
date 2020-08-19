@@ -1,41 +1,54 @@
-Glossário Letras Libras UFSC
+## Glossário Letras Libras UFSC
 
 user: admin@admin.com
 senha: admin
 
-Requisitos:
+## Requisitos
 
+```bash
 $ pip install -r requirements.txt
 $ sudo apt install ffmpeg
+```
 
+## Comandos úteis
 para fazer o dumpdata:
+
+```python
 ./manage.py dumpdata --indent 4 --natural-foreign --natural-primary -e auth.permission -e contenttypes -e sessions -e admin  > glossario/fixtures/initial.json
+```
 
 Popular o banco de dados local (sqlite3): chamar o comando:
-$ ./manage.py loaddata glossario/fixtures/initial.json
+
+```python
+./manage.py loaddata glossario/fixtures/initial.json
+```
 
 Docker e docker-compose:
 Rodar todos os aplicativos, primeira vez é necessário a flag --build:
+
 ```bash
 docker-compose up --build
 ```
 
 Fecha e deleta todos os containers:
+
 ```bash
 docker-compose down
 ```
 
 Rodar comandos dentro de um container pelo shell
+
 ```bash
 docker exec -it [CONTAINER NAME] /bin/bash
 ```
 
 Rodar comandos dentro do container do Postgresql:
+
 ```bash
 docker exec -it [container_name] psql -U [postgres_user]
 ```
 
-
+## Desenvolvimento
 Desenvolvedor Ramon Dutra Miranda
 
 Professores responseveis pela pesquisa:
