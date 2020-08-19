@@ -7,19 +7,20 @@
 {% endblock %}
 {% block body %}
 
-<div>
 
+<div>
   <div>
-    <h2 class="thin center">{{glossario.nome}}:</h2>
     {% if sinais_page %}
-    {% include 'glossario/blockPesquisaListMobile.html' %}
+    {% include 'glossario/blockPesquisaList.html' %}
     {% else %}
+    </br>
     <p class="flow-text center nenhumSinal">Nenhum sinal encontrado</p>
     {% endif %}
   </div>
-
+  
   {% if sinais_page.has_other_pages %}
   <ul class="pagination center">
+
     <!-- Seta para trás -->
     {% if sinais_page.has_previous %}
     <li class="waves-effect"><a
@@ -49,7 +50,6 @@
     {% endif %}
   </ul>
   {% endif %}
-
 </div>
 
 <script type="text/javascript">

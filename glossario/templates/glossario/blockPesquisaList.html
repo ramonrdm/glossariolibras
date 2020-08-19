@@ -1,90 +1,102 @@
-<div class="container center">
-    {% if glossario %}
-           <div> 
-                <img class="circle left" height="65" src="{{ glossario.imagem.url }}" />
-                <p class="flow-text ">
-                    Encontrado {{resultado}} resultado(s) em  
-                    <a href="{{ glossario.link }}"style="color:darkblue">{{ glossario.nome }}</a> 
-                    :           
-                </p> 
-            </div>
-    {% else %}
-        <p class="flow-text">Encontrado {{resultado}} resultado(s):</p>
-    {% endif %}
+<div class="container center no-padding-right-left">
+  {% if glossario %}
+  <div>
+    <img class="circle left glossario-icon" src="{{ glossario.imagem.url }}" />
+    <p class="flow-text ">
+      Encontrado {{resultado}} resultado(s) em
+      <a href="{{ glossario.link }}" style="color:darkblue">{{ glossario.nome }}</a>
+      :
+    </p>
+  </div>
+  {% else %}
+  <p class="flow-text">Encontrado {{resultado}} resultado(s):</p>
+  {% endif %}
 
-        <div class="container divider"></div>
-        <ul class="row">
-            <li class="col l2 tituloSinais">Preview</li>
-            <li class="col l2 tituloSinais">Nome</li>
-            <li class="col l2 tituloSinais">Configuração esquerda</li>
-            <li class="col l2 tituloSinais">Configuração direita</li>
-            <li class="col l2 tituloSinais">Localização</li>
-            <li class="col l2 tituloSinais">Movimento</li>
-        </ul>
-        <div class="infinite-sinal-web">
-            {% for s in sinais_page %}
-                <div class="infinite-item ">
-                    <ul class="collection">
-                        <a href="/sinal/{{s.id}}" class="collection-item row center">
-                            {% if s.video_sinal %}
-                                <li class="field-video_tag_sinal col l2">
-                                    <video  loop="" src="{{s.video_sinal.url}}" height="70"></video>
-                                </li>
-                            {% else %}
-                                <li class="col l2">
-                                    <img src="/static/img/X.svg" width="50" class="circle">
-                                </li>
-                            {% endif %}
-
-                            {% if s.portugues %}
-                                <li class="col l2">
-                                    <div class="sinalPortugues">{{s.portugues}}</div><br/>
-                                    <div class="sinalIngles">{{s.ingles}}</div>
-                                </li>
-                            {% endif %}
-
-                            {% if s.cmE.imagem %}
-                                <li class="col l2">
-                                    <img src="/static/img/configuracoes_de_mao/{{s.cmE.imagem}}" width="70" class="circle">
-                                </li>
-                            {% else %}
-                                <li class="col l2">
-                                    <img src="/static/img/X.svg" width="70" class="circle">
-                                </li>
-                            {% endif %}
-
-                            {% if s.cmD.imagem %}
-                                <li class="col l2">
-                                    <img src="/static/img/configuracoes_de_mao/{{s.cmD.imagem}}" width="70" class="circle">
-                                </li>
-                            {% else %}
-                                <li class="col l2">
-                                    <img src="/static/img/X.svg" width="70" class="circle">
-                                </li>
-                            {% endif %}
-
-                            {% if s.localizacao %}
-                                <li class="col l2">
-                                    <img src="{{s.localizacao}}" width="70" class="circle">
-                                </li>
-                            {% else %}
-                                <li class="col l2">
-                                    <img src="/static/img/X.svg" width="70" class="circle">
-                                </li>
-                            {% endif %}
-
-                            {% if s.movimentacao %}
-                                <li class="col l2">
-                                    <img src="{{ s.movimentacao}}" width="70" class="circle">
-                                </li>
-                            {% else %}
-                                <li class="col l2">
-                                    <img src="/static/img/X.svg" width="70" class="circle">
-                                </li>
-                            {% endif %}
-                        </a>
-                    </ul>
-                </div>
-            {% endfor %}
-        </div>
+  <div class="container divider"></div>
+  <ul class="row">
+    <li class="tituloSinais col l2 m2 s5ths">Preview</li>
+    <li class="tituloSinais col l2 m2 s5ths offset-l2">Esquerda</li>
+    <li class="tituloSinais col l2 m2 s5ths">Direita</li>
+    <li class="tituloSinais col l2 m2 s5ths">Localização</li>
+    <li class="tituloSinais col l2 m2 s5ths">Movimento</li>
+  </ul>
+  <div class="infinite-sinal-web">
+    {% for s in sinais_page %}
+    <div class="infinite-item ">
+      <ul class="collection">
+        <a href="/sinal/{{s.id}}" class="collection-item row center no-padding-right-left">
+          <li class="field-video_tag_sinal col l12 s12 no-padding-right-left">
+            {% if s.video_sinal %}
+            <li class="field-video_tag_sinal col l2 m2 s5ths no-padding-right-left">
+              <video loop="" src="{{s.video_sinal.url}}" class="video-pesquisa"></video>
+            </li>
+            {% else %}
+            <li class="col l2 m2 s5ths">
+              <img src="/static/img/X.svg" class="circle img-pesquisa">
+            </li>
+            {% endif %}
+  
+            {% if s.portugues %}  
+            <li class="col l2 m2 hide-on-med-and-down">
+              <div class="sinalPortugues">{{s.portugues}}</div><br />
+              <div class="sinalIngles">{{s.ingles}}</div>
+            </li>
+            {% endif %}
+  
+            {% if s.cmE.imagem %}
+            <li class="col l2 m2 s5ths">
+              <img src="/static/img/configuracoes_de_mao/{{s.cmE.imagem}}" class="circle img-pesquisa">
+            </li>
+            {% else %}
+            <li class="col l2 m2 s5ths">
+              <img src="/static/img/X.svg" class="circle img-pesquisa">
+            </li>
+            {% endif %}
+  
+            {% if s.cmD.imagem %}
+            <li class="col l2 m2 s5ths">
+              <img src="/static/img/configuracoes_de_mao/{{s.cmD.imagem}}" class="circle img-pesquisa">
+            </li>
+            {% else %}
+            <li class="col l2 m2 s5ths">
+              <img src="/static/img/X.svg" class="circle img-pesquisa">
+            </li>
+            {% endif %}
+  
+            {% if s.localizacao %}
+            <li class="col l2 m2 s5ths">
+              <img src="{{s.localizacao}}" class="circle img-pesquisa">
+            </li>
+            {% else %}
+            <li class="col l2 m2 s5ths">
+              <img src="/static/img/X.svg" class="circle img-pesquisa">
+            </li>
+            {% endif %}
+  
+            {% if s.movimentacao %}
+            <li class="col l2 m2 s5ths">
+              <img src="{{ s.movimentacao}}" class="circle img-pesquisa">
+            </li>
+            {% else %}
+            <li class="col l2 m2 s5ths">
+              <img src="/static/img/X.svg" class="circle img-pesquisa">
+            </li>
+            {% endif %}
+            <div class="divider col s12 hide-on-large-only"></div>
+          </li>
+          {% if s.portugues %}
+          <div class="hide-on-large-only">
+            <li class="col s6">
+              <div class="sinalPortugues right">{{s.portugues}}</div>
+            </li>
+            <li class="col s6">
+              <div class="sinalIngle left">{{s.ingles}}</div>
+            </li>
+          </div>
+          {% endif %}
+        </a>
+      </ul>
+    </div>
+    {% endfor %}
+  </div>
 </div>
