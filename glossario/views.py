@@ -66,21 +66,22 @@ def pesquisa(request):
         sinais = None
         formSinais = PesquisaSinaisForm(request.POST)
 
+
         if formSinais.is_valid():
             sinais = busca(formSinais).filter(glossario__visivel=True)
             glossario = formSinais.cleaned_data['glossario']
-
+      
+ 
         resultado = len(sinais) if sinais else None
 
         if sinais:
             for sinal in sinais:
                 if sinal.localizacao:
-                    sinal.localizacao = "/static/img/" + \
-                        Localizacao.localizacoes_imagens[sinal.localizacao]
+                    sinal.localizacao = "/static/img/" + Localizacao.localizacoes_imagens[sinal.localizacao]
                 if sinal.movimentacao:
-                    sinal.movimentacao = "/static/img/" + \
-                        Movimentacao.movimentacoes_imagens[sinal.movimentacao]
+                    sinal.movimentacao = "/static/img/" + Movimentacao.movimentacoes_imagens[sinal.movimentacao]
 
+        
         paginator = Paginator(sinais, 5)
         page = request.POST.get('page')
 
@@ -91,11 +92,12 @@ def pesquisa(request):
         except EmptyPage:
             sinais_page = paginator.page(paginator.num_pages)
 
-        context = {
-            'glossario': glossario,
-            'sinais_page': sinais_page,
-            'resultado': resultado,
-            'formSinais': formSinais
+
+        context = { 
+                    'glossario' : glossario,
+                    'sinais_page': sinais_page, 
+                    'resultado': resultado,
+                    'formSinais': formSinais
         }
         return render(request, 'glossario/pesquisa.html', context)
 
