@@ -28,14 +28,12 @@
         </div>
       </nav>
       {% if formSinais %}
-
       <!-- Logo -->
       <div class="col l3 hide-on-med-and-down">
         <a href="/">
           <img class="brand-logo left" src='{% static "img/marca_glossario.png" %}'>
         </a>
       </div>
-
       <!-- busca -->
       <ul>
         <form method="post" action="{% url 'pesquisa'  %}" id="formSinais">
@@ -47,6 +45,9 @@
               {{ n }}
             </div>
             {% endfor %}
+            <button type="submit" id="botaoPesquisarMobile"
+            class="btn-floating btn-large waves-effect waves-light indigo darken-4 botaoPesquisarMobile hide-on-large-only">
+            <i class="material-icons white-text">search</i></a></button>
           </div>
           <!-- Opção de glossario -->
           {% if glossario %}

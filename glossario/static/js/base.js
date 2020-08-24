@@ -38,4 +38,25 @@ $(document).ready(function () {
         });
     });
 
+    
+    // Preview
+    $('.preview').each(function(i) {
+        $(this).prop('id', `preview-${i}`);
+
+        var isFirst = true;
+
+        $(`#preview-${i} img:gt(0)`).hide();
+        $(`#preview-${i}`).hover(function(){
+            if (isFirst) {    
+            timer = setInterval(function(){   $(`#preview-${i} :first-child`).fadeOut()
+            .next('img').fadeIn()
+            .end().appendTo(`#preview-${i}`);},             
+            800);
+            isFirst = false;
+        }
+        }, function() {
+        clearInterval(timer);
+        isFirst = true;
+        });
+    })
 });

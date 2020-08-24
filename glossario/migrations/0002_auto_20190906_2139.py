@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='sinal',
             name='localizacao',
-            field=models.CharField(choices=[('', 'Nunhuma'), ('4', 'Cabeça'), ('12', 'Ombros'), ('3', 'Braços'), ('6', 'Nariz'), ('2', 'Bochechas'), ('1', 'Boca'), ('16', 'Tronco'), ('10', 'Espaço Neutro'), ('11', 'Olhos'), ('17', 'Orelhas'), ('13', 'Pescoço'), ('14', 'Queixo'), ('15', 'Testa'), ('5', 'Mãos')], default='', max_length=2),
+            field=models.CharField(choices=[('', 'Nenhuma'), ('4', 'Cabeça'), ('12', 'Ombros'), ('3', 'Braços'), ('6', 'Nariz'), ('2', 'Bochechas'), ('1', 'Boca'), ('16', 'Tronco'), ('10', 'Espaço Neutro'), ('11', 'Olhos'), ('17', 'Orelhas'), ('13', 'Pescoço'), ('14', 'Queixo'), ('15', 'Testa'), ('5', 'Mãos')], default='', max_length=2),
         ),
         migrations.AlterUniqueTogether(
             name='sinal',

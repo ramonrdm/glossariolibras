@@ -357,11 +357,14 @@ html, body {
     width: 70px;
 }
 
-.video-pesquisa {
+.video-preview {
     height: 70px;
 }
-/* Mobile Padding */
 
+.preview { position:relative; }
+.preview img { position:absolute; left:0; top:0; }
+
+/* Mobile Padding */
 @media only screen and (max-width: 992px) {
     /* Melhor posicionamento para 5 colunas */
     .row .col.s5ths {
@@ -425,9 +428,12 @@ html, body {
         width: 100%;
         height: auto !important;
     }
-    .video-pesquisa {
+    .video-preview {
         width: 100%;
         height: 50px;
+    }
+    .area-para-footer{
+        padding-bottom: 30%;
     }
 }
 
@@ -463,8 +469,12 @@ html, body {
     .img-pesquisa {
         width: 70px;
     }
-    .video-pesquisa {
+    .video-preview {
         width: 120px;
         height: 70px;
+    }
+    .area-para-footer{
+        padding-top: 3%;
+        padding-bottom: 20%;
     }
 }
