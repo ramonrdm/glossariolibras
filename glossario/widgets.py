@@ -1,10 +1,10 @@
 from __future__ import unicode_literals
+import json
 from django import forms
 from django.utils.safestring import mark_safe
 from django.template import loader
-from glossario.models import CM, Movimentacao, Localizacao
 from django.forms.widgets import ClearableFileInput
-import json
+from glossario.models import CM, Movimentacao, Localizacao
 
 class ImageSelectLocalizacao(forms.Widget):
     template_name = 'glossario/widget_localizacao.html'

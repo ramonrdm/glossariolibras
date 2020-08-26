@@ -65,7 +65,7 @@ class UserGlossario(AbstractBaseUser, PermissionsMixin):
     def email_user(self, subject, message, from_email, **kwargs):
         """Send an email to this user."""
         send_mail(subject, message, from_email, [
-                  self.email], fail_silently=False, **kwargs)
+            self.email], fail_silently=False, **kwargs)
 
     def __str__(self):
         return self.nome_completo
@@ -78,8 +78,8 @@ class Glossario(models.Model):
         ordering = ['nome']
 
     max_length_name = 100
-    nome = models.CharField('Nome do Glossário', max_length=max_length_name, unique=True, error_messages={
-                            'unique': "Um glossário com este nome já existe."})
+    nome = models.CharField('Nome do Glossário', max_length=max_length_name, unique=True,
+                            error_messages={'unique': "Um glossário com este nome já existe."})
     responsaveis = models.ManyToManyField(
         UserGlossario, verbose_name='responsaveis')
     membros = models.ManyToManyField(
@@ -118,33 +118,31 @@ class Localizacao(models.Model):
     class Meta:
         abstract = True
 
-    localizacoes = (('', 'Nenhuma'), ('4', 'Cabeça'), ('12', 'Ombros'), ('3', 'Braços'), ('6', 'Nariz'), ('2', 'Bochechas'),
-                    ('1', 'Boca'), ('16', 'Tronco'), ('10',
-                                                      'Espaço Neutro'), ('11', 'Olhos'), ('17', 'Orelhas'),
-                    ('13', 'Pescoço'), ('14', 'Queixo'), ('15', 'Testa'), ('5', 'Mãos')
+    localizacoes = (('0', 'Nenhuma'), ('4', 'Cabeça'), ('12', 'Ombros'), ('3', 'Braços'),
+                    ('6', 'Nariz'), ('2', 'Bochechas'), ('1', 'Boca'), ('16', 'Tronco'),
+                    ('10', 'Espaço Neutro'), ('11', 'Olhos'), ('17', 'Orelhas'),
+                    ('13', 'Pescoço'), ('14', 'Queixo'), ('15', 'Testa'),
+                    ('5', 'Mãos')
                     )
     localizacoes_imagens = dict(
-        [('4', 'localizacaoCabeca.png'), ('12', 'localizacaoOmbros.png'), ('3', 'localizacaoBracos.png'),
-         ('6', 'localizacaoNariz.png'), ('2',
-                                         'localizacaoBochechas.png'), ('1', 'localizacaoBoca.png'),
-         ('16', 'localizacaoTronco.png'), ('10',
-                                           'localizacaoNeutro.png'), ('11', 'localizacaoOlhos.png'),
-         ('17', 'localizacaoOrelhas.png'), ('13',
-                                            'localizacaoPescoco.png'), ('14', 'localizacaoQueixo.png'),
-         ('15', 'localizacaoTesta.png'), ('5', 'localizacaoMaos.png')])
+        [('0', 'L.jpg'), ('4', 'localizacaoCabeca.png'), ('12', 'localizacaoOmbros.png'),
+         ('3', 'localizacaoBracos.png'), ('6', 'localizacaoNariz.png'), ('2','localizacaoBochechas.png'),
+         ('1', 'localizacaoBoca.png'), ('16', 'localizacaoTronco.png'), ('10', 'localizacaoNeutro.png'),
+         ('11', 'localizacaoOlhos.png'), ('17', 'localizacaoOrelhas.png'), ('13','localizacaoPescoco.png'),
+         ('14', 'localizacaoQueixo.png'), ('15', 'localizacaoTesta.png'), ('5', 'localizacaoMaos.png')])
 
 
 class Movimentacao(models.Model):
     class Meta:
         abstract = True
 
-    movimentacoes = (('', 'Sem Movimentação'), ('1', 'Parede'),
+    movimentacoes = (('0', 'Sem Movimentação'), ('1', 'Parede'),
                      ('2', 'Chão'), ('3', 'Circular'), ('4', 'Contato'))
 
     movimentacoes_imagens = dict(
-        [('0', 'M.jpg'), ('1', '1parede.png'), ('2', '2chao.png'), ('3', '3circular.png'), ('4', '4contato.png')])
+        [('0', '0M.jpg'), ('1', '1parede.png'), ('2', '2chao.png'), ('3', '3circular.png'), ('4', '4contato.png')])
 
-    movimentacoes_busca = (('1parede.png'), ('2chao.png'),
+    movimentacoes_busca = (('0M.jpg'), ('1parede.png'), ('2chao.png'),
                            ('3circular.png'), ('4contato.png'))
 
 

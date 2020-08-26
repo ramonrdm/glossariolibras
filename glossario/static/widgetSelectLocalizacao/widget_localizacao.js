@@ -1,11 +1,11 @@
-$(document).ready(function(){
+$(document).ready(function () {
     //$("#imagem_localizacao").hide();
 
     $('.modal').modal();
-    $('#modeloImg').parent().css({"margin":"0 auto"});
-//      $('#modeloImg').mapster('resize',width,height,duration);
+    $('#modeloImg').parent().css({ "margin": "0 auto" });
+    //      $('#modeloImg').mapster('resize',width,height,duration);
 
-    $('#modeloImg').mapster( {
+    $('#modeloImg').mapster({
         fillColor: '000000',
         mapKey: 'data-key',
         singleSelect: true,
@@ -70,30 +70,30 @@ $(document).ready(function(){
                 toolTip: "Mãos"
             },
             {
-             key: "0",
+                key: "0",
                 toolTip: "Sem Localização"
             }
 
         ]
-});
-$('#modeloImg').parent().css({"margin":"0 auto"});
+    });
+    $('#modeloImg').parent().css({ "margin": "0 auto" });
 
-$('area').click(function() {
-    let attrValue = $(this).attr('data-key');
-    if(attrValue == '0'){
-        attrValue = null;
-    }
-    if(attrValue){
-        $('#id_localizacao').val(attrValue);
-        $('#imagem_localizacao').attr('src', '/static/img/'+objetos_localizacao[attrValue]);
-        $('#imagem_localizacao_mobile').attr('src', '/static/img/'+objetos_localizacao[attrValue]);
-    }else{
-        $('#id_localizacao').val('');
-        $('#imagem_localizacao').attr('src', '/static/img/L.jpg');
-        $('#imagem_localizacao_mobile').attr('src', '/static/img/L.jpg');
-    }
-    
+    $('area').click(function () {
+        let attrValue = $(this).attr('data-key');
+        // if (attrValue == '0') {
+        //     attrValue = null;
+        // }
+        if (attrValue) {
+            $('#id_localizacao').val(attrValue);
+            $('#imagem_localizacao').attr('src', '/static/img/' + objetos_localizacao[attrValue]);
+            $('#imagem_localizacao_mobile').attr('src', '/static/img/' + objetos_localizacao[attrValue]);
+        } else {
+            $('#id_localizacao').val('');
+            $('#imagem_localizacao').attr('src', '/static/img/L.jpg');
+            $('#imagem_localizacao_mobile').attr('src', '/static/img/L.jpg');
+        }
 
-});
+
+    });
 
 });

@@ -1,7 +1,7 @@
 ## Glossário Letras Libras UFSC
 
-user: admin@admin.com
-senha: admin
+user: admin@admin.com  
+senha: admin  
 
 ## Requisitos
 
@@ -11,7 +11,7 @@ $ sudo apt install ffmpeg
 ```
 
 ## Comandos úteis
-para fazer o dumpdata:
+Para fazer o dumpdata:
 
 ```python
 ./manage.py dumpdata --indent 4 --natural-foreign --natural-primary -e auth.permission -e contenttypes -e sessions -e admin  > glossario/fixtures/initial.json
@@ -51,31 +51,31 @@ docker exec -it [container_name] psql -U [postgres_user]
 ## Desenvolvimento
 Desenvolvedor Ramon Dutra Miranda
 
-Professores responseveis pela pesquisa:
-Janine Soares de Oliveira
+Professores responseveis pela pesquisa:  
+Janine Soares de Oliveira  
 Marianne Rossi Stumpf
 
-Bolsistas: 
+Bolsistas:  
 Bryan Martins Lima
 
-Equipe antiga:
-Cleberton de Souza Oliveira
-João Pedro Gutierrez Kieling Villegas
-Sabrina Hanich
-Thiago Brezinski
+Equipe antiga:  
+Cleberton de Souza Oliveira  
+João Pedro Gutierrez Kieling Villegas  
+Sabrina Hanich  
+Thiago Brezinski  
 
-Apoio institucional:
-Universidade Federal de Santa Catarina - UFSC
-Letras Libras UFSC
+Apoio institucional:  
+Universidade Federal de Santa Catarina - UFSC  
+Letras Libras UFSC  
 NALS - UFSC
 
-Este projeto inicia a nova fase do glossario.libras.ufsc.br
-Fique a vontade para compartilhar o conhecimento!
-:)
+Este projeto inicia a nova fase do glossario.libras.ufsc.br  
+Fique a vontade para compartilhar o conhecimento!  
+:)  
 
 Estamos usando Django 2.1.x e Python 3.x
 
-Plataforma de Glossários Libras
+Plataforma de Glossários Libras  
 Um glossário que reunie glossários de varias areas do conhecimento humano.
 
 - PGL

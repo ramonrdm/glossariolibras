@@ -36,6 +36,15 @@
     },
     {
         "model": "glossario.cm",
+        "pk": 0,
+        "fields": {
+            "bsw": "0",
+            "name": "No Input",
+            "group": "Nenhum"
+        }
+    },
+    {
+        "model": "glossario.cm",
         "pk": 1,
         "fields": {
             "bsw": "100",
