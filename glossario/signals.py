@@ -46,6 +46,10 @@ def update_upload_path(sender, instance, created, **kwargs):
                       instance.preview3, instance.preview4]
     tags = ['sinal', 'descricao', 'exemplo', 'variacao']
 
+    # Verifica se a pasta sinal_preview existe
+    if not os.path.exists(pasta_sinal_preview):
+        os.makedirs(pasta_sinal_preview)
+
     for index, field in enumerate(video_fields):
         if field and instance.videos_originais_converter[index] != field.name:
             # Videos

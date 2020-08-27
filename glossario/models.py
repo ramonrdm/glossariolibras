@@ -8,7 +8,6 @@ from django.dispatch import receiver
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
-import subprocess
 
 
 class UserManagerGlossario(BaseUserManager):
@@ -125,7 +124,7 @@ class Localizacao(models.Model):
                     ('5', 'Mãos')
                     )
     localizacoes_imagens = dict(
-        [('0', 'L.jpg'), ('4', 'localizacaoCabeca.png'), ('12', 'localizacaoOmbros.png'),
+        [('0', '0.png'), ('4', 'localizacaoCabeca.png'), ('12', 'localizacaoOmbros.png'),
          ('3', 'localizacaoBracos.png'), ('6', 'localizacaoNariz.png'), ('2','localizacaoBochechas.png'),
          ('1', 'localizacaoBoca.png'), ('16', 'localizacaoTronco.png'), ('10', 'localizacaoNeutro.png'),
          ('11', 'localizacaoOlhos.png'), ('17', 'localizacaoOrelhas.png'), ('13','localizacaoPescoco.png'),
@@ -140,9 +139,9 @@ class Movimentacao(models.Model):
                      ('2', 'Chão'), ('3', 'Circular'), ('4', 'Contato'))
 
     movimentacoes_imagens = dict(
-        [('0', '0M.jpg'), ('1', '1parede.png'), ('2', '2chao.png'), ('3', '3circular.png'), ('4', '4contato.png')])
+        [('0', '0.png'), ('1', '1parede.png'), ('2', '2chao.png'), ('3', '3circular.png'), ('4', '4contato.png')])
 
-    movimentacoes_busca = (('0M.jpg'), ('1parede.png'), ('2chao.png'),
+    movimentacoes_busca = (('0.png'), ('1parede.png'), ('2chao.png'),
                            ('3circular.png'), ('4contato.png'))
 
 
@@ -208,6 +207,4 @@ class Sinal(models.Model):
         url_base = settings.MEDIA_ROOT
         pasta_sinal_preview = '{0}/sinal_preview'.format(url_base)
         pasta_sinal_videos = '{0}/sinal_videos'.format(url_base)
-        subprocess.call(['ffmpeg', '-i', pasta_sinal_videos, '-ss',
-                         '00:00:05.000', '-vframes', '1', pasta_sinal_preview])
         super().save(*args, **kwargs)

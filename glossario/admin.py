@@ -128,7 +128,7 @@ class SinalAdmin(admin.ModelAdmin):
     def image_tag_movimentacao(self, obj):
         if obj.movimentacao:
             movimentacoes = dict(
-                [('0', '0X.svg'), ('1', '1parede.png'), ('2', '2chao.png'), ('3', '3circular.png'), ('4', '4contato.png')])
+                [('0', '0.png'), ('1', '1parede.png'), ('2', '2chao.png'), ('3', '3circular.png'), ('4', '4contato.png')])
             return format_html(
                 '<img src="/static/img/{}" width="50" height="50" />'.format(movimentacoes[obj.movimentacao]))
         else:
