@@ -90,6 +90,9 @@ class Glossario(models.Model):
     video = FileField('Vídeo', blank=True)
     visivel = models.BooleanField("Visivel", default=True)
 
+    def sinais_number(self):
+        return Sinal.objects.filter(publicado=True, glossario=self).count()
+
     def clean(self):
         self.nome = self.nome.title()
 
@@ -176,9 +179,9 @@ class Sinal(models.Model):
                             blank=True, null=True, on_delete=models.CASCADE, default='')
     cmD = models.ForeignKey(CM, related_name='C_M_Direita', verbose_name='configuração da mão direita',
                             blank=True, null=True, on_delete=models.CASCADE, default='')
-    localizacao = models.CharField(
+    localizacao = models.CharField('Localização',
         max_length=2, choices=Localizacao.localizacoes, blank=True, null=True, default='')
-    movimentacao = models.CharField(
+    movimentacao = models.CharField('Movimento',
         max_length=10, choices=Movimentacao.movimentacoes, blank=True, null=True, default='')
     data_criacao = models.DateTimeField(auto_now_add=True)
     postador = models.ForeignKey(UserGlossario, on_delete=models.CASCADE)

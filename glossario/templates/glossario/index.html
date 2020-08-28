@@ -11,15 +11,17 @@ Glossários de Libras - Glossário Letras Libras
   {% for glossario in glossarios %}
   <div class="block col s6 m4 l2">
     {% if glossario.imagem %}
-    <a href="/{{glossario.link}}">
+    <a href="/{{glossario.link}}" class="glossarioSinais">
       <img class="circle z-depth-2 hoverable imgIndex" src="{{glossario.imagem.url}}">
+      <span class="sinaisBadge">{{glossario.sinais_number}}</span>
       <div>
         <span class="flow-text textoIndex">{{glossario.nome|title}}</span>
       </div>
     </a>
     {% else %}
-    <a href="/{{glossario.link}}">
+    <a href="/{{glossario.link}}" class="glossarioSinais">
       <i class="large material-icons icone imgIndex">cloud_off</i>
+      <span class="sinaisBadge">{{glossario.sinais_number}}</span>
       <div>
         <span class="flow-text textoIndex">{{glossario.nome}}</span>
       </div>
