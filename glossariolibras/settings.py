@@ -30,6 +30,7 @@ INSTALLED_APPS = (
     'django_registration',
     'django.contrib.postgres',
     'glossario',
+    'star_ratings'
 
 
 )
@@ -99,9 +100,16 @@ USE_L10N = True
 
 USE_TZ = True
 
+
 STATIC_URL = '/static/'
 PROJECT_ROOT = os.path.dirname(os.path.dirname(__file__))
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'glossario/static')
+
+
+
+LOCALE_PATHS = [
+    os.path.join(PROJECT_ROOT, 'star_ratings/locale'),
+]
 
 TEMPLATES = [
     {
