@@ -18,16 +18,17 @@
 			{% endif %}
 		</div>
 		<div class="block col s12 m12 l6">
-			<div class="block col m3 s3 l3">
+			<div class="block col m3 s12 l3">
 				{% if glossario.imagem %}
 					<a href="/{{glossario.link}}"><img class="circle imgIndex" src="{{ glossario.imagem.url }}"/></a>
 				{% else %}
 					<a href="/{{glossario.link}}"><i class="large material-icons icone">cloud_off</i></a>
 				{% endif %}
 			</div>
-			<div class="block col m6">
+			<div class="block col m6 s12">
 				 <div class="titulo center hide-on-med-and-down"><h4 class="thin">{{glossario.nome}}</h4></div>
 				 <div class="historia-titulo center hide-on-large-only "><h5>{{glossario.nome}}</h5></div>
+				 <p class="sinais_publicados">Sinais publicados: {{glossario.sinais_number}}</p>
 			</div>
 			<ul class="col s12 m12 ">
 				<li id="definicao" class="divider divisor"></li>

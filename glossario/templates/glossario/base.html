@@ -3,7 +3,7 @@
 
 <head>
   {% block head %}
-  {% load staticfiles %}
+  {% load static %}
   <meta name="author" content="Ramon Dutra Miranda" />
   <meta name="description" content="Glossario libras, ufsc, dicionario, letras libras, glossario cinema" />
   <meta name="keywords" content="glossario, libras, ufsc, glossário, glossários, letras libras, dicionario" />
@@ -13,7 +13,10 @@
   <link type="text/css" rel="stylesheet" href='{% static "css/materialize.css" %}' media="screen,projection" />
   <link type="text/css" rel="stylesheet" href='{% static "css/material-icons.css" %}' media="screen,projection" />
   <link type="text/css" rel="stylesheet" href='{% static "css/base.css" %}' />
-  
+
+  <!-- ratings -->
+  <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+  <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
   {% endblock %}
   <title>{% block title %}Glossário Libras{% endblock %}</title>
 </head>

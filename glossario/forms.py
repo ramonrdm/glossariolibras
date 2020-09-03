@@ -40,6 +40,35 @@ class SinalForm(forms.ModelForm):
         super(SinalForm, self).__init__(*args, **kwargs)
         self.fields['bsw'].help_text = "<b><a target='_blank' href='http://glossario.libras.ufsc.br/swis/signmaker.php'>Criar codigo aqui</a></b>"
         self.fields['bsw'].widget = forms.TextInput(attrs={})
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        publicado = cleaned_data.get("publicado")
+        if publicado:
+            movimento = cleaned_data.get("movimentacao")
+            localizacao = cleaned_data.get("localizacao")
+            cm_esq = cleaned_data.get("cmE")
+            cm_dir = cleaned_data.get("cmD")
+            if movimento is None:
+                self._errors['movimentacao'] = self.error_class([
+                    "Movimento deve ser selecionado"
+                ])
+
+            if localizacao is None:
+                self._errors['localizacao'] = self.error_class([
+                    "Localizacao deve ser selecionado"
+                ])
+
+            if cm_esq is None:
+                self._errors['cmE'] = self.error_class([
+                    "Algum movimento deve ser selecionado"
+                ])
+
+            if cm_dir is None:
+                self._errors['cmD'] = self.error_class([
+                    "Algum movimento deve ser selecionado"
+                ])
+        return self.cleaned_data
 
 
 class PesquisaSinaisForm(forms.ModelForm):

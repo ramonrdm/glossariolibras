@@ -1,10 +1,9 @@
-<img id="imagem_{{ name }}" class="sinais sinaisMobile waves-effect waves-light modal-trigger" src="/static/img/M.jpg" href="#modal-libras-{{ name }}">
+<img id="imagem_{{ name }}" class="sinais sinaisMobile waves-effect waves-light modal-trigger" src="/static/img/0M.jpg" href="#modal-libras-{{ name }}">
 <input type="hidden" id="id_{{ name }}" name="{{ name }}" value="{{ value|default:'' }}">
 
 <div id="modal-libras-{{ name }}" class="modal center bottom-sheet">
     <div class="modal-content">
         <h4 class="black-text center">Movimento</h4>
-        <img id="imagem_modal_{{name}}_vazio" id-field="" src="/static/img/M.jpg" onclick="sem_movimento()"class="sinais escolhaMovimentacao waves-effect waves-light modal-trigger modal-close">
         {% for movimentacao in movimentacao %}
             <img id="imagem_modal_{{name}}_{{ movimentacao.0 }}" id-field="{{ movimentacao.0 }}" src="/static/img/{{ movimentacao }}" class="sinais escolhaMovimentacao waves-effect waves-light modal-trigger modal-close">
         {% endfor %}
@@ -17,7 +16,9 @@
 <script type="text/javascript">
     $(document).ready(function(){
         var valor_{{ name }} = "{{ value }}";
-        console.log(valor_{{ name }});
+        if(valor_{{ name }} == "None"){
+            valor_{{ name }} = null;
+        }
         if(valor_{{ name }}){
             $('#id_{{ name }}').val(valor_{{ name }});
             $('#imagem_{{ name }}').attr('src', $('#imagem_modal_{{name}}_{{ value }}').attr('src'));

@@ -18,8 +18,9 @@ from django.utils.http import urlsafe_base64_decode
 def index(request, glossario=None):
     glossarios = Glossario.objects.filter(visivel=True)
     formSinais = PesquisaSinaisForm()
+    sinais_pub = Sinal.objects.filter(publicado=True).count()
 
-    return render(request, 'glossario/index.html', {'glossarios': glossarios, 'glossario': glossario, 'formSinais': formSinais})
+    return render(request, 'glossario/index.html', {'glossarios': glossarios, 'glossario': glossario, 'formSinais': formSinais, 'sinais_pub': sinais_pub})
 
 
 def glossarioSelecionado(request, glossario):
@@ -57,8 +58,7 @@ def glossarioSelecionado(request, glossario):
             'sinaisCheckboxes') else PesquisaSinaisForm()
         # formSinais = PesquisaSinaisForm()
 
-        return render(request, 'glossario/glossario.html', {'glossario': glossario, 'formSinais': formSinais
-                                                            })
+        return render(request, 'glossario/glossario.html', {'glossario': glossario, 'formSinais': formSinais})
 
 
 def pesquisa(request):
