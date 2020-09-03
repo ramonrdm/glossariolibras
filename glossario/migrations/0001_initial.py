@@ -72,7 +72,7 @@ class Migration(migrations.Migration):
                 ('ingles', models.CharField(blank=True, max_length=30, null=True, verbose_name='word')),
                 ('bsw', models.TextField(blank=True, null=True)),
                 ('descricao', models.TextField(blank=True, null=True, verbose_name='descrição')),
-                ('localizacao', models.CharField(choices=[('', 'Nenhuma'), ('1', 'Cabeça'), ('2', 'Ombros'), ('3', 'Braços'), ('4', 'Nariz'), ('5', 'Bochechas'), ('6', 'Boca'), ('7', 'Tronco'), ('8', 'Espaço Neutro'), ('9', 'Olhos'), ('10', 'Orelhas'), ('11', 'Pescoço'), ('12', 'Queixo'), ('13', 'Testa')], default='', max_length=2)),
+                ('localizacao', models.CharField(choices=[('', 'Nunhuma'), ('1', 'Cabeça'), ('2', 'Ombros'), ('3', 'Braços'), ('4', 'Nariz'), ('5', 'Bochechas'), ('6', 'Boca'), ('7', 'Tronco'), ('8', 'Espaço Neutro'), ('9', 'Olhos'), ('10', 'Orelhas'), ('11', 'Pescoço'), ('12', 'Queixo'), ('13', 'Testa')], default='', max_length=2)),
                 ('movimentacao', models.CharField(choices=[('', 'Sem Movimentação'), ('1', 'Parede'), ('2', 'Chão'), ('3', 'Circular'), ('4', 'Contato')], default='', max_length=10)),
                 ('data_criacao', models.DateTimeField(auto_now_add=True)),
                 ('publicado', models.BooleanField(default=False)),
