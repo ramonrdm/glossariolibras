@@ -1,9 +1,5 @@
 $(document).ready(function () {
-    //$("#imagem_localizacao").hide();
-
-    $('.modal').modal();
     $('#modeloImg').parent().css({ "margin": "0 auto" });
-    //      $('#modeloImg').mapster('resize',width,height,duration);
 
     $('#modeloImg').mapster({
         fillColor: '000000',
@@ -80,20 +76,13 @@ $(document).ready(function () {
 
     $('area').click(function () {
         let attrValue = $(this).attr('data-key');
-        // if (attrValue == '0') {
-        //     attrValue = null;
-        // }
         if (attrValue) {
             $('#id_localizacao').val(attrValue);
             $('#imagem_localizacao').attr('src', '/static/img/' + objetos_localizacao[attrValue]);
-            $('#imagem_localizacao_mobile').attr('src', '/static/img/' + objetos_localizacao[attrValue]);
         } else {
             $('#id_localizacao').val('');
             $('#imagem_localizacao').attr('src', '/static/img/L.jpg');
-            $('#imagem_localizacao_mobile').attr('src', '/static/img/L.jpg');
         }
-
-
     });
 
 });

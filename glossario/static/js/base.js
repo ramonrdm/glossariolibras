@@ -38,16 +38,20 @@ $(document).ready(function () {
         });
     });
 
-    $('#abrirNavSearchMobile').click(function () {
-        $('#mobileSearchLibras').hide();
-        $('#mobileSearchEscrita').show();
-    });
-
-    $('#fecharNavSearchMobile').click(function () {
-        $('#mobileSearchLibras').show();
-        $('#mobileSearchEscrita').hide();
-    });
-
+    // Lazy Loading images
+    if ('loading' in HTMLImageElement.prototype) {
+        const images = document.querySelectorAll("img.lazyload");
+        images.forEach(img => {
+            img.src = img.dataset.src;
+        });
+    } else {
+        // Dynamically import the LazySizes library if browser doesnt support
+        let script = document.createElement("script");
+        script.async = true;
+        script.src =
+            "https://cdnjs.cloudflare.com/ajax/libs/lazysizes/4.1.8/lazysizes.min.js";
+        document.body.appendChild(script);
+    }
 
     // Preview
     $('.preview').each(function (i) {
@@ -70,5 +74,5 @@ $(document).ready(function () {
             clearInterval(timer);
             isFirst = true;
         });
-    })
+    });
 });

@@ -24,9 +24,6 @@ class ImageSelectLocalizacao(forms.Widget):
 class ImageSelectMao(forms.Widget):
     template_name = 'glossario/widget_mao.html'
 
-    class Media:
-        js = ('/static/widgetSelectMao/modalCM.js',)
-
     def render(self, name, value, attrs=None, renderer=None):
         cm = CM.objects.all()
         cmGrupos = [c.group for c in cm]
@@ -39,7 +36,6 @@ class ImageSelectMovimentacao(forms.Widget):
     template_name = 'glossario/widget_movimentacao.html'
 
     class Media:
-        js = ('/static/widgetSelectMovimentacao/modalMovimentacao.js',)
         css = {'all': ('/static/widgetSelectMovimentacao/css_movimentacao.css',)}
 
     def render(self, name, value, attrs=None, renderer=None):

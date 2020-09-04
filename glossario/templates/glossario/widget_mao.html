@@ -1,11 +1,11 @@
-<img id="imagem_{{ name }}" class="sinais sinaisMobile waves-effect waves-light modal-trigger" src="/static/img/C.M.jpg" href="#modal-libras-{{ name }}">
+<img id="imagem_{{ name }}" class="sinais sinaisMobile waves-effect waves-light modal-trigger" loading ="eager" src="/static/img/C.M.jpg" href="#modal-libras-{{ name }}">
 <input type="hidden" id="id_{{ name }}" name="{{ name }}" value="{{ value|default:'' }}">
 
 <div id="modal-libras-{{ name }}" class="modal center bottom-sheet">
     <div class="modal-content">
         <h4 class="black-text center">Grupos de Configurações de Mãos</h4>
        
-        <img src="/static/img/configuracoes_de_mao/Nenhum/0.png" class="sinais waves-effect waves-light modal-close escolhaCM{{ name }}"  id="cm_{{ name }}"  id_cm="0" href="#modalCM">
+        <img src="/static/img/configuracoes_de_mao/Nenhum/0.png" loading ="lazy" class="sinais waves-effect waves-light modal-close escolhaCM{{ name }}"  id="cm_{{ name }}"  id_cm="0" href="#modalCM">
        
         {% for grupo in cmGrupos %}
         {% if grupo != "Nenhum" %}
@@ -24,7 +24,7 @@
                 <img id="cm_{{ name }}_{{ cm.id }}"  id_cm="{{ cm.id }}" 
                 src="/static/img/configuracoes_de_mao/{{ cm.group }}/{{ cm.bsw }}.png" 
                 class="sinais escolhaCM{{ name }} modal-action modal-close thumbnailModal" 
-                href="#modalCM">
+                href="#modalCM" loading ="lazy">
             {% endif %}
         {% endfor %}
     </div>
@@ -32,27 +32,18 @@
 {% endfor %}
 
 <!-- JS -->
-
 <script type="text/javascript">
-    var objetos_{{ name }} = {{ objetos|safe }};
     $(document).ready(function(){
         var valor_{{ name }} = "{{ value|safe }}";
-        if(valor_{{ name }} == "None"){
-            valor_{{ name }} = null;
-        }
         if(valor_{{ name }}){
             $('#id_{{ name }}').val(valor_{{ name }});
-            $('#imagem_{{ name }}').attr('src', $(cm_{{ name }}_{{ value }}).attr('src'));
+            $('#imagem_{{ name }}').attr('src', $(cm_{{name}}_{{ value }}).attr('src'));
         }
         $('.escolhaCM{{ name }}').click(function(){
              var escolhaCM = $(this).attr('id_cm');
              $('#id_{{ name }}').val(escolhaCM);
              $('#imagem_{{ name }}').attr('src', $(this).attr('src'));
-    
          });
-    
-    
         $('.datepicker').datepicker();
-    
     });
 </script>

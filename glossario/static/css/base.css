@@ -195,10 +195,6 @@ ul.dropdown-content.select-dropdown li span {
     width: 140px;
 }
 
-.formSinais {
-    zoom: 0.5;
-}
-
 /* Esconde o modelo do avatar da localização e corrige um deslocamento do highlight com a imagem */
 
 .map {

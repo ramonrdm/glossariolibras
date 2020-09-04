@@ -1,29 +1,30 @@
-<img id="imagem_{{ name }}" class="sinais sinaisMobile waves-effect waves-light modal-trigger" src="/static/img/0M.jpg" href="#modal-libras-{{ name }}">
+<img id="imagem_{{ name }}" class="sinais sinaisMobile waves-effect waves-light modal-trigger" loading ="eager" src="/static/img/0M.jpg" href="#modal-libras-{{ name }}">
 <input type="hidden" id="id_{{ name }}" name="{{ name }}" value="{{ value|default:'' }}">
 
 <div id="modal-libras-{{ name }}" class="modal center bottom-sheet">
     <div class="modal-content">
         <h4 class="black-text center">Movimento</h4>
         {% for movimentacao in movimentacao %}
-            <img id="imagem_modal_{{name}}_{{ movimentacao.0 }}" id-field="{{ movimentacao.0 }}" src="/static/img/{{ movimentacao }}" class="sinais escolhaMovimentacao waves-effect waves-light modal-trigger modal-close">
+            <img id="imagem_{{ name }}_{{ movimentacao.0 }}" id-field="{{ movimentacao.0 }}"
+            src="/static/img/{{ movimentacao }}" href="#{{ name }}_{{ movimentacao.0 }}"
+            loading ="lazy" class="sinais escolhaMovimentacao waves-effect waves-light modal-action modal-close">
         {% endfor %}
     </div>
 </div>
 
-
 <!-- JS -->
-
 <script type="text/javascript">
     $(document).ready(function(){
-        var valor_{{ name }} = "{{ value }}";
-        if(valor_{{ name }} == "None"){
-            valor_{{ name }} = null;
-        }
+        var valor_{{ name }} = "{{ value|safe }}";
         if(valor_{{ name }}){
             $('#id_{{ name }}').val(valor_{{ name }});
-            $('#imagem_{{ name }}').attr('src', $('#imagem_modal_{{name}}_{{ value }}').attr('src'));
+            $('#imagem_{{ name }}').attr('src', $(imagem_{{ name }}_{{ value }}).attr('src'));
         }
-
+        $('.escolhaMovimentacao').click(function(){
+            var escolhaMovimentacao = $(this).attr('id-field');
+            $('#id_movimentacao').val(escolhaMovimentacao);
+            $('#imagem_movimentacao').attr('src', $(this).attr('src'));
+        });
     });
  </script>
     
