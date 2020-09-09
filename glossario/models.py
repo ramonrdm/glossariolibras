@@ -133,7 +133,6 @@ class Localizacao(models.Model):
          ('11', 'localizacaoOlhos.png'), ('17', 'localizacaoOrelhas.png'), ('13','localizacaoPescoco.png'),
          ('14', 'localizacaoQueixo.png'), ('15', 'localizacaoTesta.png'), ('5', 'localizacaoMaos.png')])
 
-
 class Movimentacao(models.Model):
     class Meta:
         abstract = True
@@ -143,10 +142,6 @@ class Movimentacao(models.Model):
 
     movimentacoes_imagens = dict(
         [('0', '0.png'), ('1', '1parede.png'), ('2', '2chao.png'), ('3', '3circular.png'), ('4', '4contato.png')])
-
-    movimentacoes_busca = (('0.png'), ('1parede.png'), ('2chao.png'),
-                           ('3circular.png'), ('4contato.png'))
-
 
 def sinal_upload_path(instance, filename):
     # o arquivo será salvo em MEDIA_ROOT/sinal_videos/originais/<filename>

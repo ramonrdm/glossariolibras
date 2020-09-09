@@ -5,5 +5,6 @@ img#modeloImg {
 	width: 650px;
 	height: 650px;
 	position: center;
+	margin: 0 auto;
 }
 

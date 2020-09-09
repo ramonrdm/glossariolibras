@@ -18,7 +18,7 @@ SECRET_KEY = '@9e1s9zexj93d%n^^2)vxi0p4lwmz2tn0y67%*65#$nn5g64q1'
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['glossarios.libras.ufsc.br', 'glossario.libras.ufsc.br', 'localhost', '192.168.0.235']
+ALLOWED_HOSTS = ['glossarios.libras.ufsc.br', 'glossario.libras.ufsc.br', 'localhost']
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -30,7 +30,7 @@ INSTALLED_APPS = (
     'django_registration',
     'django.contrib.postgres',
     'glossario',
-    'star_ratings'
+    'star_ratings',
 
 
 )

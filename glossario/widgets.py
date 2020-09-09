@@ -13,11 +13,11 @@ class ImageSelectLocalizacao(forms.Widget):
         css = {'all': ('/static/widgetSelectLocalizacao/widget_localizacao.css', )}
         js = ('/static/widgetSelectLocalizacao/widget_localizacao.js', 'js/jquery.imagemapster.js',)
     
-    localizacoes = Localizacao.localizacoes_imagens
     
     def render(self, name, value, attrs=None, renderer=None):
-        localizacoes = json.dumps(self.localizacoes)
-        template = loader.get_template(self.template_name).render({'objetos': localizacoes,'name': name,'value': value})
+        local_nomes = dict(Localizacao.localizacoes)
+        localizacoes = Localizacao.localizacoes_imagens
+        template = loader.get_template(self.template_name).render({'objetos': localizacoes,'local_nomes': local_nomes, 'name': name,'value': value})
 
         return mark_safe(template)
 
@@ -39,7 +39,7 @@ class ImageSelectMovimentacao(forms.Widget):
         css = {'all': ('/static/widgetSelectMovimentacao/css_movimentacao.css',)}
 
     def render(self, name, value, attrs=None, renderer=None):
-        movimentacao = Movimentacao.movimentacoes_busca
+        movimentacao = Movimentacao.movimentacoes_imagens.values()
         template = loader.get_template(self.template_name).render({'objetos': {'nada': '',},'movimentacao': movimentacao,'name': name,'value': value})
 
         return mark_safe(template)

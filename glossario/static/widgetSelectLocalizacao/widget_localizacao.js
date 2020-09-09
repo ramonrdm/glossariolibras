@@ -1,6 +1,4 @@
 $(document).ready(function () {
-    $('#modeloImg').parent().css({ "margin": "0 auto" });
-
     $('#modeloImg').mapster({
         fillColor: '000000',
         mapKey: 'data-key',
