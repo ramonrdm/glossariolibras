@@ -37,6 +37,7 @@ class ImageSelectMovimentacao(forms.Widget):
 
     class Media:
         css = {'all': ('/static/widgetSelectMovimentacao/css_movimentacao.css',)}
+        js = ('/static/widgetSelectMovimentacao/widget_movimentacao.js',)
 
     def render(self, name, value, attrs=None, renderer=None):
         movimentacao = Movimentacao.movimentacoes_imagens.values()

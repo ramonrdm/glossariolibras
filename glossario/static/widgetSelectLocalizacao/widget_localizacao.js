@@ -1,4 +1,21 @@
-$(document).ready(function () {
+$(document).ready(function () {    
+    $('.modal').modal();
+    var valor_localizacao = JSON.parse(document.getElementById('valor_localizacao').textContent);
+    var objetos_localizacao = JSON.parse(document.getElementById('objetos_localizacao').textContent);
+    // Trata a escolha na versão mobile
+    if(valor_localizacao){
+        $('#id_localizacao').val(valor_localizacao);
+        $('#imagem_localizacao').attr('src', '/static/img/' + objetos_localizacao[valor_localizacao]);
+    }
+        
+    $('.escolhaLocalizacao').click(function(){
+        var escolhaLocalizacao = $(this).children('img').attr('id-field');
+        console.log(escolhaLocalizacao);
+        $('#id_localizacao').val(escolhaLocalizacao);
+        $('#imagem_localizacao').attr('src', $(this).children('img').attr('src'));
+    });
+
+    // Trata a escolha na versão Desktop
     $('#modeloImg').mapster({
         fillColor: '000000',
         mapKey: 'data-key',
@@ -82,5 +99,4 @@ $(document).ready(function () {
             $('#imagem_localizacao').attr('src', '/static/img/L.jpg');
         }
     });
-
 });
