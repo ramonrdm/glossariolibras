@@ -1,2386 +1,2396 @@
 [
-{
-    "model": "auth.group",
-    "fields": {
-        "name": "responsaveis",
-        "permissions": []
-    }
-},
-{
-    "model": "auth.group",
-    "fields": {
-        "name": "membros",
-        "permissions": [
-            [
-                "add_sinal",
-                "glossario",
-                "sinal"
-            ],
-            [
-                "change_sinal",
-                "glossario",
-                "sinal"
-            ],
-            [
-                "delete_sinal",
-                "glossario",
-                "sinal"
-            ],
-            [
-                "view_sinal",
-                "glossario",
-                "sinal"
+    {
+        "model": "auth.group",
+        "fields": {
+            "name": "responsaveis",
+            "permissions": []
+        }
+    },
+    {
+        "model": "auth.group",
+        "fields": {
+            "name": "membros",
+            "permissions": [
+                [
+                    "add_sinal",
+                    "glossario",
+                    "sinal"
+                ],
+                [
+                    "change_sinal",
+                    "glossario",
+                    "sinal"
+                ],
+                [
+                    "delete_sinal",
+                    "glossario",
+                    "sinal"
+                ],
+                [
+                    "view_sinal",
+                    "glossario",
+                    "sinal"
+                ]
             ]
-        ]
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 1,
-    "fields": {
-        "bsw": "100",
-        "name": "Index",
-        "group": "100"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 2,
-    "fields": {
-        "bsw": "101",
-        "name": "Index on Circle",
-        "group": "100"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 3,
-    "fields": {
-        "bsw": "102",
-        "name": "Index on Cup",
-        "group": "100"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 4,
-    "fields": {
-        "bsw": "103",
-        "name": "Index on Oval",
-        "group": "100"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 5,
-    "fields": {
-        "bsw": "104",
-        "name": "Index on Hinge",
-        "group": "100"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 6,
-    "fields": {
-        "bsw": "105",
-        "name": "Index on Angle",
-        "group": "100"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 7,
-    "fields": {
-        "bsw": "106",
-        "name": "Index Bent",
-        "group": "100"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 8,
-    "fields": {
-        "bsw": "107",
-        "name": "Index Bent on Circle",
-        "group": "100"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 9,
-    "fields": {
-        "bsw": "108",
-        "name": "Index Bent on Fist Thumb Under",
-        "group": "100"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 10,
-    "fields": {
-        "bsw": "109",
-        "name": "Index Raised Knuckle",
-        "group": "100"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 11,
-    "fields": {
-        "bsw": "10a",
-        "name": "Index Cup",
-        "group": "100"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 12,
-    "fields": {
-        "bsw": "10b",
-        "name": "Index Hinge",
-        "group": "100"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 13,
-    "fields": {
-        "bsw": "10c",
-        "name": "Index Hinge Low",
-        "group": "100"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 14,
-    "fields": {
-        "bsw": "10d",
-        "name": "Index Hinge on Circle",
-        "group": "100"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 15,
-    "fields": {
-        "bsw": "10e",
-        "name": "Index Middle",
-        "group": "10e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 16,
-    "fields": {
-        "bsw": "10f",
-        "name": "Index Middle on Circle",
-        "group": "10e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 17,
-    "fields": {
-        "bsw": "110",
-        "name": "Index Middle Bent",
-        "group": "10e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 18,
-    "fields": {
-        "bsw": "111",
-        "name": "Index Middle Raised Knuckles",
-        "group": "10e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 19,
-    "fields": {
-        "bsw": "112",
-        "name": "Index Middle Hinge",
-        "group": "10e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 20,
-    "fields": {
-        "bsw": "113",
-        "name": "Index Up - Middle Hinge",
-        "group": "10e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 21,
-    "fields": {
-        "bsw": "114",
-        "name": "Index Hinge - Middle Up",
-        "group": "10e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 22,
-    "fields": {
-        "bsw": "115",
-        "name": "Index Middle Unit",
-        "group": "10e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 23,
-    "fields": {
-        "bsw": "116",
-        "name": "Index Middle Unit - Index Bent",
-        "group": "10e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 24,
-    "fields": {
-        "bsw": "117",
-        "name": "Index Middle Unit - Middle Bent",
-        "group": "10e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 25,
-    "fields": {
-        "bsw": "118",
-        "name": "Index Middle Unit - Cup",
-        "group": "10e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 26,
-    "fields": {
-        "bsw": "119",
-        "name": "Index Middle Unit - Hinge",
-        "group": "10e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 27,
-    "fields": {
-        "bsw": "11a",
-        "name": "Index Middle Cross",
-        "group": "10e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 28,
-    "fields": {
-        "bsw": "11b",
-        "name": "Index Middle Cross on Circle",
-        "group": "10e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 29,
-    "fields": {
-        "bsw": "11c",
-        "name": "Middle Bent Over Index",
-        "group": "10e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 30,
-    "fields": {
-        "bsw": "11d",
-        "name": "Index Bent Over Middle",
-        "group": "10e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 31,
-    "fields": {
-        "bsw": "11e",
-        "name": "Index Middle Thumb",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 32,
-    "fields": {
-        "bsw": "11f",
-        "name": "Index Middle Thumb on Circle",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 33,
-    "fields": {
-        "bsw": "120",
-        "name": "Index Middle Straight - Thumb Bent",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 34,
-    "fields": {
-        "bsw": "121",
-        "name": "Index Middle Bent - Thumb Straight",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 35,
-    "fields": {
-        "bsw": "122",
-        "name": "Index Middle Thumb Bent",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 36,
-    "fields": {
-        "bsw": "123",
-        "name": "Index Middle Hinge Spread - Thumb Side",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 37,
-    "fields": {
-        "bsw": "124",
-        "name": "Index Up - Middle Hinge - Thumb Side",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 38,
-    "fields": {
-        "bsw": "125",
-        "name": "Index Up - Middle Hinge - Thumb Unit",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 39,
-    "fields": {
-        "bsw": "126",
-        "name": "Index Hinge - Middle Up - Thumb Side",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 40,
-    "fields": {
-        "bsw": "127",
-        "name": "Index Middle Up Spread - Thumb Forward",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 41,
-    "fields": {
-        "bsw": "128",
-        "name": "Index Middle Thumb Cup",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 42,
-    "fields": {
-        "bsw": "129",
-        "name": "Index Middle Thumb Circle",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 43,
-    "fields": {
-        "bsw": "12a",
-        "name": "Index Middle Thumb Hook",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 44,
-    "fields": {
-        "bsw": "12b",
-        "name": "Index Middle Thumb Hinge",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 45,
-    "fields": {
-        "bsw": "12c",
-        "name": "Thumb Between Index Middle Straight",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 46,
-    "fields": {
-        "bsw": "12d",
-        "name": "Index Middle Unit - Thumb Side",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 47,
-    "fields": {
-        "bsw": "12e",
-        "name": "Index Middle Unit - Thumb Side Unit",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 48,
-    "fields": {
-        "bsw": "12f",
-        "name": "Index Middle Unit - Thumb Side Bent",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 49,
-    "fields": {
-        "bsw": "130",
-        "name": "Middle Thumb Hook - Index Up",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 50,
-    "fields": {
-        "bsw": "131",
-        "name": "Index Thumb Hook - Middle Up",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 51,
-    "fields": {
-        "bsw": "132",
-        "name": "Index Middle Unit Hinge - Thumb Side",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 52,
-    "fields": {
-        "bsw": "133",
-        "name": "Index Middle Cross - Thumb Side",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 53,
-    "fields": {
-        "bsw": "134",
-        "name": "Index Middle Unit - Thumb Forward",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 54,
-    "fields": {
-        "bsw": "135",
-        "name": "Index Middle Unit Cup - Thumb Forward",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 55,
-    "fields": {
-        "bsw": "136",
-        "name": "Middle Thumb Cup - Index Up",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 56,
-    "fields": {
-        "bsw": "137",
-        "name": "Index Thumb Cup - Middle Up",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 57,
-    "fields": {
-        "bsw": "138",
-        "name": "Middle Thumb Circle - Index Up",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 58,
-    "fields": {
-        "bsw": "139",
-        "name": "Middle Thumb Circle - Index Hinge",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 59,
-    "fields": {
-        "bsw": "13a",
-        "name": "Index Thumb Angle Out - Middle Up",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 60,
-    "fields": {
-        "bsw": "13b",
-        "name": "Index Thumb Angle In - Middle Up",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 61,
-    "fields": {
-        "bsw": "13c",
-        "name": "Index Thumb Circle - Middle Up",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 62,
-    "fields": {
-        "bsw": "13d",
-        "name": "Index Middle Thumb - Unit Hinge",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 63,
-    "fields": {
-        "bsw": "13e",
-        "name": "Index Middle Thumb - Angle Out",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 64,
-    "fields": {
-        "bsw": "13f",
-        "name": "Index Middle Thumb - Angle",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 65,
-    "fields": {
-        "bsw": "140",
-        "name": "Middle Thumb Angle Out - Index Up",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 66,
-    "fields": {
-        "bsw": "141",
-        "name": "Middle Thumb Angle Out - Index Crossed",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 67,
-    "fields": {
-        "bsw": "142",
-        "name": "Middle Thumb Angle - Index Up",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 68,
-    "fields": {
-        "bsw": "143",
-        "name": "Index Thumb Hook - Middle Hinge",
-        "group": "11e"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 69,
-    "fields": {
-        "bsw": "144",
-        "name": "Four Fingers",
-        "group": "144"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 70,
-    "fields": {
-        "bsw": "145",
-        "name": "Four Fingers Bent",
-        "group": "144"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 71,
-    "fields": {
-        "bsw": "146",
-        "name": "Four Fingers Hinge",
-        "group": "144"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 72,
-    "fields": {
-        "bsw": "147",
-        "name": "Four Fingers Unit",
-        "group": "144"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 73,
-    "fields": {
-        "bsw": "148",
-        "name": "Four Fingers Unit Split",
-        "group": "144"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 74,
-    "fields": {
-        "bsw": "149",
-        "name": "Four Fingers Unit Claw",
-        "group": "144"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 75,
-    "fields": {
-        "bsw": "14a",
-        "name": "Four Fingers Unit Bent",
-        "group": "144"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 76,
-    "fields": {
-        "bsw": "14b",
-        "name": "Four Fingers Unit Hinge",
-        "group": "144"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 77,
-    "fields": {
-        "bsw": "14c",
-        "name": "Five Fingers Spread",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 78,
-    "fields": {
-        "bsw": "14d",
-        "name": "Five Fingers Spread Heel",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 79,
-    "fields": {
-        "bsw": "14e",
-        "name": "Five Fingers Spread - Four Bent",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 80,
-    "fields": {
-        "bsw": "14f",
-        "name": "Five Fingers Spread - Four Bent Heel",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 81,
-    "fields": {
-        "bsw": "150",
-        "name": "Five Fingers Spread Bent",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 82,
-    "fields": {
-        "bsw": "151",
-        "name": "Five Fingers Spread Bent Heel",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 83,
-    "fields": {
-        "bsw": "152",
-        "name": "Five Fingers Spread - Thumb Forward",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 84,
-    "fields": {
-        "bsw": "153",
-        "name": "Five Fingers Spread Cup",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 85,
-    "fields": {
-        "bsw": "154",
-        "name": "Five Fingers Spread Cup Open",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 86,
-    "fields": {
-        "bsw": "155",
-        "name": "Five Fingers Spread Hinge Open",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 87,
-    "fields": {
-        "bsw": "156",
-        "name": "Five Fingers Spread Oval",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 88,
-    "fields": {
-        "bsw": "157",
-        "name": "Five Fingers Spread Hinge",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 89,
-    "fields": {
-        "bsw": "158",
-        "name": "Five Fingers Spread Hinge - Thumb Side",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 90,
-    "fields": {
-        "bsw": "159",
-        "name": "Five Fingers Spread Hinge - No Thumb",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 91,
-    "fields": {
-        "bsw": "15a",
-        "name": "Flat",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 92,
-    "fields": {
-        "bsw": "15b",
-        "name": "Flat - Between Palm Facings",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 93,
-    "fields": {
-        "bsw": "15c",
-        "name": "Flat Heel",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 94,
-    "fields": {
-        "bsw": "15d",
-        "name": "Flat - Thumb Side",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 95,
-    "fields": {
-        "bsw": "15e",
-        "name": "Flat - Thumb Side Heel",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 96,
-    "fields": {
-        "bsw": "15f",
-        "name": "Flat - Thumb Bent",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 97,
-    "fields": {
-        "bsw": "160",
-        "name": "Flat - Thumb Forward",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 98,
-    "fields": {
-        "bsw": "161",
-        "name": "Flat Split Index - Thumb Side",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 99,
-    "fields": {
-        "bsw": "162",
-        "name": "Flat Split Center",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 100,
-    "fields": {
-        "bsw": "163",
-        "name": "Flat Split Center - Thumb Side",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 101,
-    "fields": {
-        "bsw": "164",
-        "name": "Flat Split Center - Thumb Side Bent",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 102,
-    "fields": {
-        "bsw": "165",
-        "name": "Flat Split Baby",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 103,
-    "fields": {
-        "bsw": "166",
-        "name": "Claw",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 104,
-    "fields": {
-        "bsw": "167",
-        "name": "Claw - Thumb Side",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 105,
-    "fields": {
-        "bsw": "168",
-        "name": "Claw - No Thumb",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 106,
-    "fields": {
-        "bsw": "169",
-        "name": "Claw - Thumb Forward",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 107,
-    "fields": {
-        "bsw": "16a",
-        "name": "Hook Curlicue",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 108,
-    "fields": {
-        "bsw": "16b",
-        "name": "Hook",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 109,
-    "fields": {
-        "bsw": "16c",
-        "name": "Cup Open",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 110,
-    "fields": {
-        "bsw": "16d",
-        "name": "Cup",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 111,
-    "fields": {
-        "bsw": "16e",
-        "name": "Cup Open - Thumb Side",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 112,
-    "fields": {
-        "bsw": "16f",
-        "name": "Cup - Thumb Side",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 113,
-    "fields": {
-        "bsw": "170",
-        "name": "Cup Open - No Thumb",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 114,
-    "fields": {
-        "bsw": "171",
-        "name": "Cup - No Thumb",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 115,
-    "fields": {
-        "bsw": "172",
-        "name": "Cup Open - Thumb Forward",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 116,
-    "fields": {
-        "bsw": "173",
-        "name": "Cup - Thumb Forward",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 117,
-    "fields": {
-        "bsw": "174",
-        "name": "Curlicue Open",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 118,
-    "fields": {
-        "bsw": "175",
-        "name": "Curlicue",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 119,
-    "fields": {
-        "bsw": "176",
-        "name": "Circle",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 120,
-    "fields": {
-        "bsw": "177",
-        "name": "Oval",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 121,
-    "fields": {
-        "bsw": "178",
-        "name": "Oval - Thumb Side",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 122,
-    "fields": {
-        "bsw": "179",
-        "name": "Oval - No Thumb",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 123,
-    "fields": {
-        "bsw": "17a",
-        "name": "Oval - Thumb Forward",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 124,
-    "fields": {
-        "bsw": "17b",
-        "name": "Hinge Open",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 125,
-    "fields": {
-        "bsw": "17c",
-        "name": "Hinge Open - Thumb Forward",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 126,
-    "fields": {
-        "bsw": "17d",
-        "name": "Hinge",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 127,
-    "fields": {
-        "bsw": "17e",
-        "name": "Hinge Small",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 128,
-    "fields": {
-        "bsw": "17f",
-        "name": "Hinge Open - Thumb Side",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 129,
-    "fields": {
-        "bsw": "180",
-        "name": "Hinge - Thumb Side",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 130,
-    "fields": {
-        "bsw": "181",
-        "name": "Hinge Open - No Thumb",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 131,
-    "fields": {
-        "bsw": "182",
-        "name": "Hinge - No Thumb",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 132,
-    "fields": {
-        "bsw": "183",
-        "name": "Hinge - Thumb Side Touches Index",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 133,
-    "fields": {
-        "bsw": "184",
-        "name": "Hinge - Thumb Between Middle Ring",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 134,
-    "fields": {
-        "bsw": "185",
-        "name": "Angle",
-        "group": "14c"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 135,
-    "fields": {
-        "bsw": "186",
-        "name": "Index Middle Ring",
-        "group": "186"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 136,
-    "fields": {
-        "bsw": "187",
-        "name": "Index Middle Ring on Circle",
-        "group": "186"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 137,
-    "fields": {
-        "bsw": "188",
-        "name": "Index Middle Ring on Hinge",
-        "group": "186"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 138,
-    "fields": {
-        "bsw": "189",
-        "name": "Index Middle Ring on Angle",
-        "group": "186"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 139,
-    "fields": {
-        "bsw": "18a",
-        "name": "Baby Hinge",
-        "group": "186"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 140,
-    "fields": {
-        "bsw": "18b",
-        "name": "Index Middle Ring - Bent",
-        "group": "186"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 141,
-    "fields": {
-        "bsw": "18c",
-        "name": "Index Middle Ring - Unit",
-        "group": "186"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 142,
-    "fields": {
-        "bsw": "18d",
-        "name": "Index Middle Ring - Unit Hinge",
-        "group": "186"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 143,
-    "fields": {
-        "bsw": "18e",
-        "name": "Baby Down",
-        "group": "186"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 144,
-    "fields": {
-        "bsw": "18f",
-        "name": "Baby Down - Ripple Straight",
-        "group": "186"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 145,
-    "fields": {
-        "bsw": "190",
-        "name": "Baby Down - Ripple Curved",
-        "group": "186"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 146,
-    "fields": {
-        "bsw": "191",
-        "name": "Baby Down - Others Circle",
-        "group": "186"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 147,
-    "fields": {
-        "bsw": "192",
-        "name": "Baby Up",
-        "group": "186"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 148,
-    "fields": {
-        "bsw": "193",
-        "name": "Baby Up on Fist Thumb Under",
-        "group": "186"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 149,
-    "fields": {
-        "bsw": "194",
-        "name": "Baby Up on Circle",
-        "group": "186"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 150,
-    "fields": {
-        "bsw": "195",
-        "name": "Baby Up on Oval",
-        "group": "186"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 151,
-    "fields": {
-        "bsw": "196",
-        "name": "Baby Up on Angle",
-        "group": "186"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 152,
-    "fields": {
-        "bsw": "197",
-        "name": "Baby Raised Knuckle",
-        "group": "186"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 153,
-    "fields": {
-        "bsw": "198",
-        "name": "Baby Bent",
-        "group": "186"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 154,
-    "fields": {
-        "bsw": "199",
-        "name": "Baby Touches Thumb",
-        "group": "186"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 155,
-    "fields": {
-        "bsw": "19a",
-        "name": "Baby Thumb",
-        "group": "186"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 156,
-    "fields": {
-        "bsw": "19b",
-        "name": "Baby Thumb on Hinge",
-        "group": "186"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 157,
-    "fields": {
-        "bsw": "19c",
-        "name": "Baby Index Thumb",
-        "group": "186"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 158,
-    "fields": {
-        "bsw": "19d",
-        "name": "Baby Index Thumb on Hinge",
-        "group": "186"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 159,
-    "fields": {
-        "bsw": "19e",
-        "name": "Baby Index Thumb - Index Thumb Angle Out",
-        "group": "186"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 160,
-    "fields": {
-        "bsw": "19f",
-        "name": "Baby Index Thumb - Index Thumb Angle",
-        "group": "186"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 161,
-    "fields": {
-        "bsw": "1a0",
-        "name": "Baby Index",
-        "group": "186"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 162,
-    "fields": {
-        "bsw": "1a1",
-        "name": "Baby Index on Circle",
-        "group": "186"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 163,
-    "fields": {
-        "bsw": "1a2",
-        "name": "Baby Index on Hinge",
-        "group": "186"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 164,
-    "fields": {
-        "bsw": "1a3",
-        "name": "Baby Index on Angle",
-        "group": "186"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 165,
-    "fields": {
-        "bsw": "1a4",
-        "name": "Index Middle Baby",
-        "group": "1a4"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 166,
-    "fields": {
-        "bsw": "1a5",
-        "name": "Index Middle Baby on Circle",
-        "group": "1a4"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 167,
-    "fields": {
-        "bsw": "1a6",
-        "name": "Index Middle Baby on Hinge",
-        "group": "1a4"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 168,
-    "fields": {
-        "bsw": "1a7",
-        "name": "Ring Hinge",
-        "group": "1a4"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 169,
-    "fields": {
-        "bsw": "1a8",
-        "name": "Index Middle Baby on Angle",
-        "group": "1a4"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 170,
-    "fields": {
-        "bsw": "1a9",
-        "name": "Index Middle Cross with Baby",
-        "group": "1a4"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 171,
-    "fields": {
-        "bsw": "1aa",
-        "name": "Index Middle Cross with Baby on Circle",
-        "group": "1a4"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 172,
-    "fields": {
-        "bsw": "1ab",
-        "name": "Ring Down",
-        "group": "1a4"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 173,
-    "fields": {
-        "bsw": "1ac",
-        "name": "Ring Down - Index Thumb Hook - Middle Hinge",
-        "group": "1a4"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 174,
-    "fields": {
-        "bsw": "1ad",
-        "name": "Ring Down - Middle Thumb Angle - Index Cross",
-        "group": "1a4"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 175,
-    "fields": {
-        "bsw": "1ae",
-        "name": "Ring Up",
-        "group": "1a4"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 176,
-    "fields": {
-        "bsw": "1af",
-        "name": "Ring Raised Knuckle",
-        "group": "1a4"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 177,
-    "fields": {
-        "bsw": "1b0",
-        "name": "Ring Baby",
-        "group": "1a4"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 178,
-    "fields": {
-        "bsw": "1b1",
-        "name": "Ring Baby on Circle",
-        "group": "1a4"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 179,
-    "fields": {
-        "bsw": "1b2",
-        "name": "Ring Baby on Oval",
-        "group": "1a4"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 180,
-    "fields": {
-        "bsw": "1b3",
-        "name": "Ring Baby on Angle",
-        "group": "1a4"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 181,
-    "fields": {
-        "bsw": "1b4",
-        "name": "Ring Middle",
-        "group": "1a4"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 182,
-    "fields": {
-        "bsw": "1b5",
-        "name": "Ring Middle Unit",
-        "group": "1a4"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 183,
-    "fields": {
-        "bsw": "1b6",
-        "name": "Ring Middle Raised Knuckles",
-        "group": "1a4"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 184,
-    "fields": {
-        "bsw": "1b7",
-        "name": "Ring Index",
-        "group": "1a4"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 185,
-    "fields": {
-        "bsw": "1b8",
-        "name": "Ring Thumb",
-        "group": "1a4"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 186,
-    "fields": {
-        "bsw": "1b9",
-        "name": "Ring Thumb Hook",
-        "group": "1a4"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 187,
-    "fields": {
-        "bsw": "1ba",
-        "name": "Index Ring Baby",
-        "group": "1ba"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 188,
-    "fields": {
-        "bsw": "1bb",
-        "name": "Index Ring Baby on Circle",
-        "group": "1ba"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 189,
-    "fields": {
-        "bsw": "1bc",
-        "name": "Index Ring Baby on Curlicue",
-        "group": "1ba"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 190,
-    "fields": {
-        "bsw": "1bd",
-        "name": "Index Ring Baby on Hook Out",
-        "group": "1ba"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 191,
-    "fields": {
-        "bsw": "1be",
-        "name": "Index Ring Baby on Hook In",
-        "group": "1ba"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 192,
-    "fields": {
-        "bsw": "1bf",
-        "name": "Index Ring Baby on Hook Under",
-        "group": "1ba"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 193,
-    "fields": {
-        "bsw": "1c0",
-        "name": "Index Ring Baby on Cup",
-        "group": "1ba"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 194,
-    "fields": {
-        "bsw": "1c1",
-        "name": "Index Ring Baby on Hinge",
-        "group": "1ba"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 195,
-    "fields": {
-        "bsw": "1c2",
-        "name": "Index Ring Baby on Angle Out",
-        "group": "1ba"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 196,
-    "fields": {
-        "bsw": "1c3",
-        "name": "Index Ring Baby on Angle",
-        "group": "1ba"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 197,
-    "fields": {
-        "bsw": "1c4",
-        "name": "Middle Down",
-        "group": "1ba"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 198,
-    "fields": {
-        "bsw": "1c5",
-        "name": "Middle Hinge",
-        "group": "1ba"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 199,
-    "fields": {
-        "bsw": "1c6",
-        "name": "Middle Up",
-        "group": "1ba"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 200,
-    "fields": {
-        "bsw": "1c7",
-        "name": "Middle Up on Circle",
-        "group": "1ba"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 201,
-    "fields": {
-        "bsw": "1c8",
-        "name": "Middle Raised Knuckle",
-        "group": "1ba"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 202,
-    "fields": {
-        "bsw": "1c9",
-        "name": "Middle Up - Thumb Side",
-        "group": "1ba"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 203,
-    "fields": {
-        "bsw": "1ca",
-        "name": "Middle Thumb Hook",
-        "group": "1ba"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 204,
-    "fields": {
-        "bsw": "1cb",
-        "name": "Middle Thumb Baby",
-        "group": "1ba"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 205,
-    "fields": {
-        "bsw": "1cc",
-        "name": "Middle Baby",
-        "group": "1ba"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 206,
-    "fields": {
-        "bsw": "1cd",
-        "name": "Middle Ring Baby",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 207,
-    "fields": {
-        "bsw": "1ce",
-        "name": "Middle Ring Baby on Circle",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 208,
-    "fields": {
-        "bsw": "1cf",
-        "name": "Middle Ring Baby on Curlicue",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 209,
-    "fields": {
-        "bsw": "1d0",
-        "name": "Middle Ring Baby on Cup",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 210,
-    "fields": {
-        "bsw": "1d1",
-        "name": "Middle Ring Baby on Hinge",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 211,
-    "fields": {
-        "bsw": "1d2",
-        "name": "Middle Ring Baby on Angle Out",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 212,
-    "fields": {
-        "bsw": "1d3",
-        "name": "Middle Ring Baby on Angle In",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 213,
-    "fields": {
-        "bsw": "1d4",
-        "name": "Middle Ring Baby on Angle",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 214,
-    "fields": {
-        "bsw": "1d5",
-        "name": "Middle Ring Baby Bent",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 215,
-    "fields": {
-        "bsw": "1d6",
-        "name": "Middle Ring Baby Unit on Claw",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 216,
-    "fields": {
-        "bsw": "1d7",
-        "name": "Middle Ring Baby Unit on Claw Side",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 217,
-    "fields": {
-        "bsw": "1d8",
-        "name": "Middle Ring Baby Unit on Hook Out",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 218,
-    "fields": {
-        "bsw": "1d9",
-        "name": "Middle Ring Baby Unit on Hook In",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 219,
-    "fields": {
-        "bsw": "1da",
-        "name": "Middle Ring Baby Unit on Hook",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 220,
-    "fields": {
-        "bsw": "1db",
-        "name": "Index Hinge",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 221,
-    "fields": {
-        "bsw": "1dc",
-        "name": "Index Thumb Side",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 222,
-    "fields": {
-        "bsw": "1dd",
-        "name": "Index Thumb Side on Hinge",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 223,
-    "fields": {
-        "bsw": "1de",
-        "name": "Index Thumb Side - Thumb Diagonal",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 224,
-    "fields": {
-        "bsw": "1df",
-        "name": "Index Thumb Side - Thumb Unit",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 225,
-    "fields": {
-        "bsw": "1e0",
-        "name": "Index Thumb Side - Thumb Bent",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 226,
-    "fields": {
-        "bsw": "1e1",
-        "name": "Index Thumb Side - Index Bent",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 227,
-    "fields": {
-        "bsw": "1e2",
-        "name": "Index Thumb Side - Both Bent",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 228,
-    "fields": {
-        "bsw": "1e3",
-        "name": "Index Thumb Side - Index Hinge",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 229,
-    "fields": {
-        "bsw": "1e4",
-        "name": "Index Thumb Forward - Index Straight",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 230,
-    "fields": {
-        "bsw": "1e5",
-        "name": "Index Thumb Forward - Index Bent",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 231,
-    "fields": {
-        "bsw": "1e6",
-        "name": "Index Thumb Hook",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 232,
-    "fields": {
-        "bsw": "1e7",
-        "name": "Index Thumb Curlicue",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 233,
-    "fields": {
-        "bsw": "1e8",
-        "name": "Index Thumb Curve - Thumb Inside",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 234,
-    "fields": {
-        "bsw": "1e9",
-        "name": "Index Thumb Curve - Thumb Inside on Claw",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 235,
-    "fields": {
-        "bsw": "1ea",
-        "name": "Index Thumb Curve - Thumb Under",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 236,
-    "fields": {
-        "bsw": "1eb",
-        "name": "Index Thumb Circle",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 237,
-    "fields": {
-        "bsw": "1ec",
-        "name": "Index Thumb Cup",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 238,
-    "fields": {
-        "bsw": "1ed",
-        "name": "Index Thumb Cup Open",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 239,
-    "fields": {
-        "bsw": "1ee",
-        "name": "Index Thumb Hinge Open",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 240,
-    "fields": {
-        "bsw": "1ef",
-        "name": "Index Thumb Hinge Large",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 241,
-    "fields": {
-        "bsw": "1f0",
-        "name": "Index Thumb Hinge",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 242,
-    "fields": {
-        "bsw": "1f1",
-        "name": "Index Thumb Hinge Small",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 243,
-    "fields": {
-        "bsw": "1f2",
-        "name": "Index Thumb Angle Out",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 244,
-    "fields": {
-        "bsw": "1f3",
-        "name": "Index Thumb Angle In",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 245,
-    "fields": {
-        "bsw": "1f4",
-        "name": "Index Thumb Angle",
-        "group": "1cd"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 246,
-    "fields": {
-        "bsw": "1f5",
-        "name": "Thumb",
-        "group": "1f5"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 247,
-    "fields": {
-        "bsw": "1f6",
-        "name": "Thumb Heel",
-        "group": "1f5"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 248,
-    "fields": {
-        "bsw": "1f7",
-        "name": "Thumb Side Diagonal",
-        "group": "1f5"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 249,
-    "fields": {
-        "bsw": "1f8",
-        "name": "Thumb Side Unit",
-        "group": "1f5"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 250,
-    "fields": {
-        "bsw": "1f9",
-        "name": "Thumb Side Bent",
-        "group": "1f5"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 251,
-    "fields": {
-        "bsw": "1fa",
-        "name": "Thumb Forward",
-        "group": "1f5"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 252,
-    "fields": {
-        "bsw": "1fb",
-        "name": "Thumb Between Index Middle",
-        "group": "1f5"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 253,
-    "fields": {
-        "bsw": "1fc",
-        "name": "Thumb Between Middle Ring",
-        "group": "1f5"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 254,
-    "fields": {
-        "bsw": "1fd",
-        "name": "Thumb Between Ring Baby",
-        "group": "1f5"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 255,
-    "fields": {
-        "bsw": "1fe",
-        "name": "Thumb Under Two Fingers",
-        "group": "1f5"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 256,
-    "fields": {
-        "bsw": "1ff",
-        "name": "Thumb Over Two Fingers",
-        "group": "1f5"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 257,
-    "fields": {
-        "bsw": "200",
-        "name": "Thumb Under Three Fingers",
-        "group": "1f5"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 258,
-    "fields": {
-        "bsw": "201",
-        "name": "Thumb Under Four Fingers",
-        "group": "1f5"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 259,
-    "fields": {
-        "bsw": "202",
-        "name": "Thumb Over Four Raised Knuckles",
-        "group": "1f5"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 260,
-    "fields": {
-        "bsw": "203",
-        "name": "Fist",
-        "group": "1f5"
-    }
-},
-{
-    "model": "glossario.cm",
-    "pk": 261,
-    "fields": {
-        "bsw": "204",
-        "name": "Fist Heel",
-        "group": "1f5"
-    }
-}
-]
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 0,
+        "fields": {
+            "bsw": "0",
+            "name": "No Input",
+            "group": "Nenhum"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 1,
+        "fields": {
+            "bsw": "100",
+            "name": "Index",
+            "group": "100"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 2,
+        "fields": {
+            "bsw": "101",
+            "name": "Index on Circle",
+            "group": "100"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 3,
+        "fields": {
+            "bsw": "102",
+            "name": "Index on Cup",
+            "group": "100"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 4,
+        "fields": {
+            "bsw": "103",
+            "name": "Index on Oval",
+            "group": "100"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 5,
+        "fields": {
+            "bsw": "104",
+            "name": "Index on Hinge",
+            "group": "100"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 6,
+        "fields": {
+            "bsw": "105",
+            "name": "Index on Angle",
+            "group": "100"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 7,
+        "fields": {
+            "bsw": "106",
+            "name": "Index Bent",
+            "group": "100"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 8,
+        "fields": {
+            "bsw": "107",
+            "name": "Index Bent on Circle",
+            "group": "100"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 9,
+        "fields": {
+            "bsw": "108",
+            "name": "Index Bent on Fist Thumb Under",
+            "group": "100"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 10,
+        "fields": {
+            "bsw": "109",
+            "name": "Index Raised Knuckle",
+            "group": "100"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 11,
+        "fields": {
+            "bsw": "10a",
+            "name": "Index Cup",
+            "group": "100"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 12,
+        "fields": {
+            "bsw": "10b",
+            "name": "Index Hinge",
+            "group": "100"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 13,
+        "fields": {
+            "bsw": "10c",
+            "name": "Index Hinge Low",
+            "group": "100"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 14,
+        "fields": {
+            "bsw": "10d",
+            "name": "Index Hinge on Circle",
+            "group": "100"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 15,
+        "fields": {
+            "bsw": "10e",
+            "name": "Index Middle",
+            "group": "10e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 16,
+        "fields": {
+            "bsw": "10f",
+            "name": "Index Middle on Circle",
+            "group": "10e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 17,
+        "fields": {
+            "bsw": "110",
+            "name": "Index Middle Bent",
+            "group": "10e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 18,
+        "fields": {
+            "bsw": "111",
+            "name": "Index Middle Raised Knuckles",
+            "group": "10e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 19,
+        "fields": {
+            "bsw": "112",
+            "name": "Index Middle Hinge",
+            "group": "10e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 20,
+        "fields": {
+            "bsw": "113",
+            "name": "Index Up - Middle Hinge",
+            "group": "10e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 21,
+        "fields": {
+            "bsw": "114",
+            "name": "Index Hinge - Middle Up",
+            "group": "10e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 22,
+        "fields": {
+            "bsw": "115",
+            "name": "Index Middle Unit",
+            "group": "10e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 23,
+        "fields": {
+            "bsw": "116",
+            "name": "Index Middle Unit - Index Bent",
+            "group": "10e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 24,
+        "fields": {
+            "bsw": "117",
+            "name": "Index Middle Unit - Middle Bent",
+            "group": "10e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 25,
+        "fields": {
+            "bsw": "118",
+            "name": "Index Middle Unit - Cup",
+            "group": "10e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 26,
+        "fields": {
+            "bsw": "119",
+            "name": "Index Middle Unit - Hinge",
+            "group": "10e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 27,
+        "fields": {
+            "bsw": "11a",
+            "name": "Index Middle Cross",
+            "group": "10e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 28,
+        "fields": {
+            "bsw": "11b",
+            "name": "Index Middle Cross on Circle",
+            "group": "10e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 29,
+        "fields": {
+            "bsw": "11c",
+            "name": "Middle Bent Over Index",
+            "group": "10e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 30,
+        "fields": {
+            "bsw": "11d",
+            "name": "Index Bent Over Middle",
+            "group": "10e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 31,
+        "fields": {
+            "bsw": "11e",
+            "name": "Index Middle Thumb",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 32,
+        "fields": {
+            "bsw": "11f",
+            "name": "Index Middle Thumb on Circle",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 33,
+        "fields": {
+            "bsw": "120",
+            "name": "Index Middle Straight - Thumb Bent",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 34,
+        "fields": {
+            "bsw": "121",
+            "name": "Index Middle Bent - Thumb Straight",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 35,
+        "fields": {
+            "bsw": "122",
+            "name": "Index Middle Thumb Bent",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 36,
+        "fields": {
+            "bsw": "123",
+            "name": "Index Middle Hinge Spread - Thumb Side",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 37,
+        "fields": {
+            "bsw": "124",
+            "name": "Index Up - Middle Hinge - Thumb Side",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 38,
+        "fields": {
+            "bsw": "125",
+            "name": "Index Up - Middle Hinge - Thumb Unit",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 39,
+        "fields": {
+            "bsw": "126",
+            "name": "Index Hinge - Middle Up - Thumb Side",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 40,
+        "fields": {
+            "bsw": "127",
+            "name": "Index Middle Up Spread - Thumb Forward",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 41,
+        "fields": {
+            "bsw": "128",
+            "name": "Index Middle Thumb Cup",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 42,
+        "fields": {
+            "bsw": "129",
+            "name": "Index Middle Thumb Circle",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 43,
+        "fields": {
+            "bsw": "12a",
+            "name": "Index Middle Thumb Hook",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 44,
+        "fields": {
+            "bsw": "12b",
+            "name": "Index Middle Thumb Hinge",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 45,
+        "fields": {
+            "bsw": "12c",
+            "name": "Thumb Between Index Middle Straight",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 46,
+        "fields": {
+            "bsw": "12d",
+            "name": "Index Middle Unit - Thumb Side",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 47,
+        "fields": {
+            "bsw": "12e",
+            "name": "Index Middle Unit - Thumb Side Unit",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 48,
+        "fields": {
+            "bsw": "12f",
+            "name": "Index Middle Unit - Thumb Side Bent",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 49,
+        "fields": {
+            "bsw": "130",
+            "name": "Middle Thumb Hook - Index Up",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 50,
+        "fields": {
+            "bsw": "131",
+            "name": "Index Thumb Hook - Middle Up",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 51,
+        "fields": {
+            "bsw": "132",
+            "name": "Index Middle Unit Hinge - Thumb Side",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 52,
+        "fields": {
+            "bsw": "133",
+            "name": "Index Middle Cross - Thumb Side",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 53,
+        "fields": {
+            "bsw": "134",
+            "name": "Index Middle Unit - Thumb Forward",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 54,
+        "fields": {
+            "bsw": "135",
+            "name": "Index Middle Unit Cup - Thumb Forward",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 55,
+        "fields": {
+            "bsw": "136",
+            "name": "Middle Thumb Cup - Index Up",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 56,
+        "fields": {
+            "bsw": "137",
+            "name": "Index Thumb Cup - Middle Up",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 57,
+        "fields": {
+            "bsw": "138",
+            "name": "Middle Thumb Circle - Index Up",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 58,
+        "fields": {
+            "bsw": "139",
+            "name": "Middle Thumb Circle - Index Hinge",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 59,
+        "fields": {
+            "bsw": "13a",
+            "name": "Index Thumb Angle Out - Middle Up",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 60,
+        "fields": {
+            "bsw": "13b",
+            "name": "Index Thumb Angle In - Middle Up",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 61,
+        "fields": {
+            "bsw": "13c",
+            "name": "Index Thumb Circle - Middle Up",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 62,
+        "fields": {
+            "bsw": "13d",
+            "name": "Index Middle Thumb - Unit Hinge",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 63,
+        "fields": {
+            "bsw": "13e",
+            "name": "Index Middle Thumb - Angle Out",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 64,
+        "fields": {
+            "bsw": "13f",
+            "name": "Index Middle Thumb - Angle",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 65,
+        "fields": {
+            "bsw": "140",
+            "name": "Middle Thumb Angle Out - Index Up",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 66,
+        "fields": {
+            "bsw": "141",
+            "name": "Middle Thumb Angle Out - Index Crossed",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 67,
+        "fields": {
+            "bsw": "142",
+            "name": "Middle Thumb Angle - Index Up",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 68,
+        "fields": {
+            "bsw": "143",
+            "name": "Index Thumb Hook - Middle Hinge",
+            "group": "11e"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 69,
+        "fields": {
+            "bsw": "144",
+            "name": "Four Fingers",
+            "group": "144"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 70,
+        "fields": {
+            "bsw": "145",
+            "name": "Four Fingers Bent",
+            "group": "144"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 71,
+        "fields": {
+            "bsw": "146",
+            "name": "Four Fingers Hinge",
+            "group": "144"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 72,
+        "fields": {
+            "bsw": "147",
+            "name": "Four Fingers Unit",
+            "group": "144"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 73,
+        "fields": {
+            "bsw": "148",
+            "name": "Four Fingers Unit Split",
+            "group": "144"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 74,
+        "fields": {
+            "bsw": "149",
+            "name": "Four Fingers Unit Claw",
+            "group": "144"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 75,
+        "fields": {
+            "bsw": "14a",
+            "name": "Four Fingers Unit Bent",
+            "group": "144"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 76,
+        "fields": {
+            "bsw": "14b",
+            "name": "Four Fingers Unit Hinge",
+            "group": "144"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 77,
+        "fields": {
+            "bsw": "14c",
+            "name": "Five Fingers Spread",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 78,
+        "fields": {
+            "bsw": "14d",
+            "name": "Five Fingers Spread Heel",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 79,
+        "fields": {
+            "bsw": "14e",
+            "name": "Five Fingers Spread - Four Bent",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 80,
+        "fields": {
+            "bsw": "14f",
+            "name": "Five Fingers Spread - Four Bent Heel",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 81,
+        "fields": {
+            "bsw": "150",
+            "name": "Five Fingers Spread Bent",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 82,
+        "fields": {
+            "bsw": "151",
+            "name": "Five Fingers Spread Bent Heel",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 83,
+        "fields": {
+            "bsw": "152",
+            "name": "Five Fingers Spread - Thumb Forward",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 84,
+        "fields": {
+            "bsw": "153",
+            "name": "Five Fingers Spread Cup",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 85,
+        "fields": {
+            "bsw": "154",
+            "name": "Five Fingers Spread Cup Open",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 86,
+        "fields": {
+            "bsw": "155",
+            "name": "Five Fingers Spread Hinge Open",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 87,
+        "fields": {
+            "bsw": "156",
+            "name": "Five Fingers Spread Oval",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 88,
+        "fields": {
+            "bsw": "157",
+            "name": "Five Fingers Spread Hinge",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 89,
+        "fields": {
+            "bsw": "158",
+            "name": "Five Fingers Spread Hinge - Thumb Side",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 90,
+        "fields": {
+            "bsw": "159",
+            "name": "Five Fingers Spread Hinge - No Thumb",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 91,
+        "fields": {
+            "bsw": "15a",
+            "name": "Flat",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 92,
+        "fields": {
+            "bsw": "15b",
+            "name": "Flat - Between Palm Facings",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 93,
+        "fields": {
+            "bsw": "15c",
+            "name": "Flat Heel",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 94,
+        "fields": {
+            "bsw": "15d",
+            "name": "Flat - Thumb Side",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 95,
+        "fields": {
+            "bsw": "15e",
+            "name": "Flat - Thumb Side Heel",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 96,
+        "fields": {
+            "bsw": "15f",
+            "name": "Flat - Thumb Bent",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 97,
+        "fields": {
+            "bsw": "160",
+            "name": "Flat - Thumb Forward",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 98,
+        "fields": {
+            "bsw": "161",
+            "name": "Flat Split Index - Thumb Side",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 99,
+        "fields": {
+            "bsw": "162",
+            "name": "Flat Split Center",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 100,
+        "fields": {
+            "bsw": "163",
+            "name": "Flat Split Center - Thumb Side",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 101,
+        "fields": {
+            "bsw": "164",
+            "name": "Flat Split Center - Thumb Side Bent",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 102,
+        "fields": {
+            "bsw": "165",
+            "name": "Flat Split Baby",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 103,
+        "fields": {
+            "bsw": "166",
+            "name": "Claw",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 104,
+        "fields": {
+            "bsw": "167",
+            "name": "Claw - Thumb Side",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 105,
+        "fields": {
+            "bsw": "168",
+            "name": "Claw - No Thumb",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 106,
+        "fields": {
+            "bsw": "169",
+            "name": "Claw - Thumb Forward",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 107,
+        "fields": {
+            "bsw": "16a",
+            "name": "Hook Curlicue",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 108,
+        "fields": {
+            "bsw": "16b",
+            "name": "Hook",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 109,
+        "fields": {
+            "bsw": "16c",
+            "name": "Cup Open",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 110,
+        "fields": {
+            "bsw": "16d",
+            "name": "Cup",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 111,
+        "fields": {
+            "bsw": "16e",
+            "name": "Cup Open - Thumb Side",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 112,
+        "fields": {
+            "bsw": "16f",
+            "name": "Cup - Thumb Side",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 113,
+        "fields": {
+            "bsw": "170",
+            "name": "Cup Open - No Thumb",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 114,
+        "fields": {
+            "bsw": "171",
+            "name": "Cup - No Thumb",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 115,
+        "fields": {
+            "bsw": "172",
+            "name": "Cup Open - Thumb Forward",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 116,
+        "fields": {
+            "bsw": "173",
+            "name": "Cup - Thumb Forward",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 117,
+        "fields": {
+            "bsw": "174",
+            "name": "Curlicue Open",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 118,
+        "fields": {
+            "bsw": "175",
+            "name": "Curlicue",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 119,
+        "fields": {
+            "bsw": "176",
+            "name": "Circle",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 120,
+        "fields": {
+            "bsw": "177",
+            "name": "Oval",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 121,
+        "fields": {
+            "bsw": "178",
+            "name": "Oval - Thumb Side",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 122,
+        "fields": {
+            "bsw": "179",
+            "name": "Oval - No Thumb",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 123,
+        "fields": {
+            "bsw": "17a",
+            "name": "Oval - Thumb Forward",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 124,
+        "fields": {
+            "bsw": "17b",
+            "name": "Hinge Open",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 125,
+        "fields": {
+            "bsw": "17c",
+            "name": "Hinge Open - Thumb Forward",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 126,
+        "fields": {
+            "bsw": "17d",
+            "name": "Hinge",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 127,
+        "fields": {
+            "bsw": "17e",
+            "name": "Hinge Small",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 128,
+        "fields": {
+            "bsw": "17f",
+            "name": "Hinge Open - Thumb Side",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 129,
+        "fields": {
+            "bsw": "180",
+            "name": "Hinge - Thumb Side",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 130,
+        "fields": {
+            "bsw": "181",
+            "name": "Hinge Open - No Thumb",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 131,
+        "fields": {
+            "bsw": "182",
+            "name": "Hinge - No Thumb",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 132,
+        "fields": {
+            "bsw": "183",
+            "name": "Hinge - Thumb Side Touches Index",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 133,
+        "fields": {
+            "bsw": "184",
+            "name": "Hinge - Thumb Between Middle Ring",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 134,
+        "fields": {
+            "bsw": "185",
+            "name": "Angle",
+            "group": "14c"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 135,
+        "fields": {
+            "bsw": "186",
+            "name": "Index Middle Ring",
+            "group": "186"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 136,
+        "fields": {
+            "bsw": "187",
+            "name": "Index Middle Ring on Circle",
+            "group": "186"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 137,
+        "fields": {
+            "bsw": "188",
+            "name": "Index Middle Ring on Hinge",
+            "group": "186"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 138,
+        "fields": {
+            "bsw": "189",
+            "name": "Index Middle Ring on Angle",
+            "group": "186"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 139,
+        "fields": {
+            "bsw": "18a",
+            "name": "Baby Hinge",
+            "group": "186"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 140,
+        "fields": {
+            "bsw": "18b",
+            "name": "Index Middle Ring - Bent",
+            "group": "186"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 141,
+        "fields": {
+            "bsw": "18c",
+            "name": "Index Middle Ring - Unit",
+            "group": "186"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 142,
+        "fields": {
+            "bsw": "18d",
+            "name": "Index Middle Ring - Unit Hinge",
+            "group": "186"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 143,
+        "fields": {
+            "bsw": "18e",
+            "name": "Baby Down",
+            "group": "186"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 144,
+        "fields": {
+            "bsw": "18f",
+            "name": "Baby Down - Ripple Straight",
+            "group": "186"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 145,
+        "fields": {
+            "bsw": "190",
+            "name": "Baby Down - Ripple Curved",
+            "group": "186"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 146,
+        "fields": {
+            "bsw": "191",
+            "name": "Baby Down - Others Circle",
+            "group": "186"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 147,
+        "fields": {
+            "bsw": "192",
+            "name": "Baby Up",
+            "group": "186"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 148,
+        "fields": {
+            "bsw": "193",
+            "name": "Baby Up on Fist Thumb Under",
+            "group": "186"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 149,
+        "fields": {
+            "bsw": "194",
+            "name": "Baby Up on Circle",
+            "group": "186"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 150,
+        "fields": {
+            "bsw": "195",
+            "name": "Baby Up on Oval",
+            "group": "186"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 151,
+        "fields": {
+            "bsw": "196",
+            "name": "Baby Up on Angle",
+            "group": "186"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 152,
+        "fields": {
+            "bsw": "197",
+            "name": "Baby Raised Knuckle",
+            "group": "186"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 153,
+        "fields": {
+            "bsw": "198",
+            "name": "Baby Bent",
+            "group": "186"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 154,
+        "fields": {
+            "bsw": "199",
+            "name": "Baby Touches Thumb",
+            "group": "186"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 155,
+        "fields": {
+            "bsw": "19a",
+            "name": "Baby Thumb",
+            "group": "186"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 156,
+        "fields": {
+            "bsw": "19b",
+            "name": "Baby Thumb on Hinge",
+            "group": "186"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 157,
+        "fields": {
+            "bsw": "19c",
+            "name": "Baby Index Thumb",
+            "group": "186"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 158,
+        "fields": {
+            "bsw": "19d",
+            "name": "Baby Index Thumb on Hinge",
+            "group": "186"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 159,
+        "fields": {
+            "bsw": "19e",
+            "name": "Baby Index Thumb - Index Thumb Angle Out",
+            "group": "186"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 160,
+        "fields": {
+            "bsw": "19f",
+            "name": "Baby Index Thumb - Index Thumb Angle",
+            "group": "186"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 161,
+        "fields": {
+            "bsw": "1a0",
+            "name": "Baby Index",
+            "group": "186"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 162,
+        "fields": {
+            "bsw": "1a1",
+            "name": "Baby Index on Circle",
+            "group": "186"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 163,
+        "fields": {
+            "bsw": "1a2",
+            "name": "Baby Index on Hinge",
+            "group": "186"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 164,
+        "fields": {
+            "bsw": "1a3",
+            "name": "Baby Index on Angle",
+            "group": "186"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 165,
+        "fields": {
+            "bsw": "1a4",
+            "name": "Index Middle Baby",
+            "group": "1a4"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 166,
+        "fields": {
+            "bsw": "1a5",
+            "name": "Index Middle Baby on Circle",
+            "group": "1a4"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 167,
+        "fields": {
+            "bsw": "1a6",
+            "name": "Index Middle Baby on Hinge",
+            "group": "1a4"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 168,
+        "fields": {
+            "bsw": "1a7",
+            "name": "Ring Hinge",
+            "group": "1a4"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 169,
+        "fields": {
+            "bsw": "1a8",
+            "name": "Index Middle Baby on Angle",
+            "group": "1a4"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 170,
+        "fields": {
+            "bsw": "1a9",
+            "name": "Index Middle Cross with Baby",
+            "group": "1a4"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 171,
+        "fields": {
+            "bsw": "1aa",
+            "name": "Index Middle Cross with Baby on Circle",
+            "group": "1a4"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 172,
+        "fields": {
+            "bsw": "1ab",
+            "name": "Ring Down",
+            "group": "1a4"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 173,
+        "fields": {
+            "bsw": "1ac",
+            "name": "Ring Down - Index Thumb Hook - Middle Hinge",
+            "group": "1a4"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 174,
+        "fields": {
+            "bsw": "1ad",
+            "name": "Ring Down - Middle Thumb Angle - Index Cross",
+            "group": "1a4"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 175,
+        "fields": {
+            "bsw": "1ae",
+            "name": "Ring Up",
+            "group": "1a4"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 176,
+        "fields": {
+            "bsw": "1af",
+            "name": "Ring Raised Knuckle",
+            "group": "1a4"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 177,
+        "fields": {
+            "bsw": "1b0",
+            "name": "Ring Baby",
+            "group": "1a4"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 178,
+        "fields": {
+            "bsw": "1b1",
+            "name": "Ring Baby on Circle",
+            "group": "1a4"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 179,
+        "fields": {
+            "bsw": "1b2",
+            "name": "Ring Baby on Oval",
+            "group": "1a4"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 180,
+        "fields": {
+            "bsw": "1b3",
+            "name": "Ring Baby on Angle",
+            "group": "1a4"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 181,
+        "fields": {
+            "bsw": "1b4",
+            "name": "Ring Middle",
+            "group": "1a4"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 182,
+        "fields": {
+            "bsw": "1b5",
+            "name": "Ring Middle Unit",
+            "group": "1a4"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 183,
+        "fields": {
+            "bsw": "1b6",
+            "name": "Ring Middle Raised Knuckles",
+            "group": "1a4"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 184,
+        "fields": {
+            "bsw": "1b7",
+            "name": "Ring Index",
+            "group": "1a4"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 185,
+        "fields": {
+            "bsw": "1b8",
+            "name": "Ring Thumb",
+            "group": "1a4"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 186,
+        "fields": {
+            "bsw": "1b9",
+            "name": "Ring Thumb Hook",
+            "group": "1a4"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 187,
+        "fields": {
+            "bsw": "1ba",
+            "name": "Index Ring Baby",
+            "group": "1ba"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 188,
+        "fields": {
+            "bsw": "1bb",
+            "name": "Index Ring Baby on Circle",
+            "group": "1ba"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 189,
+        "fields": {
+            "bsw": "1bc",
+            "name": "Index Ring Baby on Curlicue",
+            "group": "1ba"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 190,
+        "fields": {
+            "bsw": "1bd",
+            "name": "Index Ring Baby on Hook Out",
+            "group": "1ba"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 191,
+        "fields": {
+            "bsw": "1be",
+            "name": "Index Ring Baby on Hook In",
+            "group": "1ba"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 192,
+        "fields": {
+            "bsw": "1bf",
+            "name": "Index Ring Baby on Hook Under",
+            "group": "1ba"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 193,
+        "fields": {
+            "bsw": "1c0",
+            "name": "Index Ring Baby on Cup",
+            "group": "1ba"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 194,
+        "fields": {
+            "bsw": "1c1",
+            "name": "Index Ring Baby on Hinge",
+            "group": "1ba"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 195,
+        "fields": {
+            "bsw": "1c2",
+            "name": "Index Ring Baby on Angle Out",
+            "group": "1ba"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 196,
+        "fields": {
+            "bsw": "1c3",
+            "name": "Index Ring Baby on Angle",
+            "group": "1ba"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 197,
+        "fields": {
+            "bsw": "1c4",
+            "name": "Middle Down",
+            "group": "1ba"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 198,
+        "fields": {
+            "bsw": "1c5",
+            "name": "Middle Hinge",
+            "group": "1ba"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 199,
+        "fields": {
+            "bsw": "1c6",
+            "name": "Middle Up",
+            "group": "1ba"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 200,
+        "fields": {
+            "bsw": "1c7",
+            "name": "Middle Up on Circle",
+            "group": "1ba"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 201,
+        "fields": {
+            "bsw": "1c8",
+            "name": "Middle Raised Knuckle",
+            "group": "1ba"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 202,
+        "fields": {
+            "bsw": "1c9",
+            "name": "Middle Up - Thumb Side",
+            "group": "1ba"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 203,
+        "fields": {
+            "bsw": "1ca",
+            "name": "Middle Thumb Hook",
+            "group": "1ba"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 204,
+        "fields": {
+            "bsw": "1cb",
+            "name": "Middle Thumb Baby",
+            "group": "1ba"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 205,
+        "fields": {
+            "bsw": "1cc",
+            "name": "Middle Baby",
+            "group": "1ba"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 206,
+        "fields": {
+            "bsw": "1cd",
+            "name": "Middle Ring Baby",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 207,
+        "fields": {
+            "bsw": "1ce",
+            "name": "Middle Ring Baby on Circle",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 208,
+        "fields": {
+            "bsw": "1cf",
+            "name": "Middle Ring Baby on Curlicue",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 209,
+        "fields": {
+            "bsw": "1d0",
+            "name": "Middle Ring Baby on Cup",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 210,
+        "fields": {
+            "bsw": "1d1",
+            "name": "Middle Ring Baby on Hinge",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 211,
+        "fields": {
+            "bsw": "1d2",
+            "name": "Middle Ring Baby on Angle Out",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 212,
+        "fields": {
+            "bsw": "1d3",
+            "name": "Middle Ring Baby on Angle In",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 213,
+        "fields": {
+            "bsw": "1d4",
+            "name": "Middle Ring Baby on Angle",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 214,
+        "fields": {
+            "bsw": "1d5",
+            "name": "Middle Ring Baby Bent",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 215,
+        "fields": {
+            "bsw": "1d6",
+            "name": "Middle Ring Baby Unit on Claw",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 216,
+        "fields": {
+            "bsw": "1d7",
+            "name": "Middle Ring Baby Unit on Claw Side",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 217,
+        "fields": {
+            "bsw": "1d8",
+            "name": "Middle Ring Baby Unit on Hook Out",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 218,
+        "fields": {
+            "bsw": "1d9",
+            "name": "Middle Ring Baby Unit on Hook In",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 219,
+        "fields": {
+            "bsw": "1da",
+            "name": "Middle Ring Baby Unit on Hook",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 220,
+        "fields": {
+            "bsw": "1db",
+            "name": "Index Hinge",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 221,
+        "fields": {
+            "bsw": "1dc",
+            "name": "Index Thumb Side",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 222,
+        "fields": {
+            "bsw": "1dd",
+            "name": "Index Thumb Side on Hinge",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 223,
+        "fields": {
+            "bsw": "1de",
+            "name": "Index Thumb Side - Thumb Diagonal",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 224,
+        "fields": {
+            "bsw": "1df",
+            "name": "Index Thumb Side - Thumb Unit",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 225,
+        "fields": {
+            "bsw": "1e0",
+            "name": "Index Thumb Side - Thumb Bent",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 226,
+        "fields": {
+            "bsw": "1e1",
+            "name": "Index Thumb Side - Index Bent",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 227,
+        "fields": {
+            "bsw": "1e2",
+            "name": "Index Thumb Side - Both Bent",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 228,
+        "fields": {
+            "bsw": "1e3",
+            "name": "Index Thumb Side - Index Hinge",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 229,
+        "fields": {
+            "bsw": "1e4",
+            "name": "Index Thumb Forward - Index Straight",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 230,
+        "fields": {
+            "bsw": "1e5",
+            "name": "Index Thumb Forward - Index Bent",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 231,
+        "fields": {
+            "bsw": "1e6",
+            "name": "Index Thumb Hook",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 232,
+        "fields": {
+            "bsw": "1e7",
+            "name": "Index Thumb Curlicue",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 233,
+        "fields": {
+            "bsw": "1e8",
+            "name": "Index Thumb Curve - Thumb Inside",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 234,
+        "fields": {
+            "bsw": "1e9",
+            "name": "Index Thumb Curve - Thumb Inside on Claw",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 235,
+        "fields": {
+            "bsw": "1ea",
+            "name": "Index Thumb Curve - Thumb Under",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 236,
+        "fields": {
+            "bsw": "1eb",
+            "name": "Index Thumb Circle",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 237,
+        "fields": {
+            "bsw": "1ec",
+            "name": "Index Thumb Cup",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 238,
+        "fields": {
+            "bsw": "1ed",
+            "name": "Index Thumb Cup Open",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 239,
+        "fields": {
+            "bsw": "1ee",
+            "name": "Index Thumb Hinge Open",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 240,
+        "fields": {
+            "bsw": "1ef",
+            "name": "Index Thumb Hinge Large",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 241,
+        "fields": {
+            "bsw": "1f0",
+            "name": "Index Thumb Hinge",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 242,
+        "fields": {
+            "bsw": "1f1",
+            "name": "Index Thumb Hinge Small",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 243,
+        "fields": {
+            "bsw": "1f2",
+            "name": "Index Thumb Angle Out",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 244,
+        "fields": {
+            "bsw": "1f3",
+            "name": "Index Thumb Angle In",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 245,
+        "fields": {
+            "bsw": "1f4",
+            "name": "Index Thumb Angle",
+            "group": "1cd"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 246,
+        "fields": {
+            "bsw": "1f5",
+            "name": "Thumb",
+            "group": "1f5"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 247,
+        "fields": {
+            "bsw": "1f6",
+            "name": "Thumb Heel",
+            "group": "1f5"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 248,
+        "fields": {
+            "bsw": "1f7",
+            "name": "Thumb Side Diagonal",
+            "group": "1f5"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 249,
+        "fields": {
+            "bsw": "1f8",
+            "name": "Thumb Side Unit",
+            "group": "1f5"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 250,
+        "fields": {
+            "bsw": "1f9",
+            "name": "Thumb Side Bent",
+            "group": "1f5"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 251,
+        "fields": {
+            "bsw": "1fa",
+            "name": "Thumb Forward",
+            "group": "1f5"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 252,
+        "fields": {
+            "bsw": "1fb",
+            "name": "Thumb Between Index Middle",
+            "group": "1f5"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 253,
+        "fields": {
+            "bsw": "1fc",
+            "name": "Thumb Between Middle Ring",
+            "group": "1f5"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 254,
+        "fields": {
+            "bsw": "1fd",
+            "name": "Thumb Between Ring Baby",
+            "group": "1f5"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 255,
+        "fields": {
+            "bsw": "1fe",
+            "name": "Thumb Under Two Fingers",
+            "group": "1f5"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 256,
+        "fields": {
+            "bsw": "1ff",
+            "name": "Thumb Over Two Fingers",
+            "group": "1f5"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 257,
+        "fields": {
+            "bsw": "200",
+            "name": "Thumb Under Three Fingers",
+            "group": "1f5"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 258,
+        "fields": {
+            "bsw": "201",
+            "name": "Thumb Under Four Fingers",
+            "group": "1f5"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 259,
+        "fields": {
+            "bsw": "202",
+            "name": "Thumb Over Four Raised Knuckles",
+            "group": "1f5"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 260,
+        "fields": {
+            "bsw": "203",
+            "name": "Fist",
+            "group": "1f5"
+        }
+    },
+    {
+        "model": "glossario.cm",
+        "pk": 261,
+        "fields": {
+            "bsw": "204",
+            "name": "Fist Heel",
+            "group": "1f5"
+        }
+    }
+    ]
+    

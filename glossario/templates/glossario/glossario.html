@@ -5,13 +5,10 @@
 	<title>{% block title %}{{ glossario.nome }} - Glossário Letras Libras{% endblock %}</title>
 {% endblock %}
 {% block body %}
- <div class="row center blockContainer">
-		<div class="col s12 m6 center">
+ <div class="row center blockContainer area-para-footer">
+		<div class="col s12 m12 l6 center">
 			{% if glossario.video %}
-				 <video class="hide-on-small-only" id="videoGlossario" controls>
-						<source src="{{glossario.video.url}}" type="video/mp4">
-				 </video>
-				<video class="hide-on-large-only"  controls>
+				 <video id="videoGlossario" controls>
 						<source src="{{glossario.video.url}}" type="video/mp4">
 				 </video>
 			{% else %}
@@ -20,21 +17,23 @@
 				</div>
 			{% endif %}
 		</div>
-		<div class="block col s12  m6">
-			<div class="block col m3 s3">
+		<div class="block col s12 m12 l6">
+			<div class="block col m3 s12 l3">
 				{% if glossario.imagem %}
-					<a href="/{{glossario.link}}"><img class="circle responsive-img imagemGlossario" src="{{ glossario.imagem.url }}"/></a>
+					<a href="/{{glossario.link}}"><img class="circle imgIndex" src="{{ glossario.imagem.url }}"/></a>
 				{% else %}
 					<a href="/{{glossario.link}}"><i class="large material-icons icone">cloud_off</i></a>
 				{% endif %}
 			</div>
-			 <div class="block col m3">
-				 <div class="titulo center hide-on-small-only"><h2 class="thin">{{glossario.nome}}</h2></div>
-				 <div class="historia-titulo center hide-on-large-only "><h4>{{glossario.nome}}</h4></div>
-			 </div>
-				<ul class="col s12 m12 ">
+			<div class="block col m6 s12">
+				 <div class="titulo center hide-on-med-and-down"><h4 class="thin">{{glossario.nome}}</h4></div>
+				 <div class="historia-titulo center hide-on-large-only "><h5>{{glossario.nome}}</h5></div>
+				 <p class="sinais_publicados">Sinais publicados: {{glossario.sinais_number}}</p>
+			</div>
+			<ul class="col s12 m12 ">
 				<li id="definicao" class="divider divisor"></li>
-				<li class="definicao">{{glossario.descricao}}</li>
+			</br>
+				<li style="color:grey; text-align: justify;"> {{glossario.descricao}}</li>
 			</ul>
 		</div>
  </div>

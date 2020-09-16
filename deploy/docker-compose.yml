@@ -1,0 +1,34 @@
+version: '3.2'
+
+services:
+
+  glossario:
+    container_name: glossario_container
+    restart: always
+    build: ../.
+    tty: true
+    volumes:
+      - ../.:/code
+    ports:
+      - 8000:8000
+    depends_on:
+      - db_postgres
+    environment:
+      - POSTGRES_DB=libras
+      - POSTGRES_USER=libras
+      - POSTGRES_PASSWORD=libras
+      - POSTGRES_DB_HOST=db_postgres
+      - EMAIL_HOST_USER=libras
+      - EMAIL_HOST_PASSWORD=libras
+
+  db_postgres:
+    image: postgres:9.6.6
+    container_name: db_postgres_container
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=libras
+      - POSTGRES_USER=libras
+      - POSTGRES_PASSWORD=libras
+      - EMAIL_HOST_USER=libras
+      - EMAIL_HOST_PASSWORD=libras

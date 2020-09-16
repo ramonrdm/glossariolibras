@@ -18,7 +18,7 @@ SECRET_KEY = '@9e1s9zexj93d%n^^2)vxi0p4lwmz2tn0y67%*65#$nn5g64q1'
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['glossarios.libras.ufsc.br', 'glossario.libras.ufsc.br', 'localhost', '200.135.84.253']
+ALLOWED_HOSTS = ['glossarios.libras.ufsc.br', 'glossario.libras.ufsc.br', 'localhost']
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -28,7 +28,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_registration',
+    'django.contrib.postgres',
     'glossario',
+    'star_ratings',
 
 
 )
@@ -98,9 +100,16 @@ USE_L10N = True
 
 USE_TZ = True
 
+
 STATIC_URL = '/static/'
 PROJECT_ROOT = os.path.dirname(os.path.dirname(__file__))
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'glossario/static')
+
+
+
+LOCALE_PATHS = [
+    os.path.join(PROJECT_ROOT, 'star_ratings/locale'),
+]
 
 TEMPLATES = [
     {

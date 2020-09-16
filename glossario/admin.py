@@ -17,6 +17,7 @@ class GlossarioAdmin(admin.ModelAdmin):
     form = GlossarioForm
     list_display = ('nome', 'image_tag')
     list_filter = ('responsaveis', 'membros', 'data_criacao')
+    autocomplete_fields = ['responsaveis', 'membros']
     
     def get_readonly_fields(self, request, obj=None):
         qs = super(GlossarioAdmin, self).get_queryset(request)
@@ -49,7 +50,7 @@ class GlossarioAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         gLink = obj.nome.lower()
         gLink = gLink.replace(" ", "-")
-        gLink = normalize('NFKD', gLink)
+        gLink = normalize('NFKD', gLink).encode('ASCII', 'ignore').decode('ASCII')
         obj.link = gLink
         obj.save()  
 
@@ -82,7 +83,7 @@ class SinalAdmin(admin.ModelAdmin):
         obj.save()
 
     def get_form(self, request, obj=None, **kwargs):
-        self.exclude = ['postador','create_data']
+        self.exclude = ['postador', 'create_data']
         if not request.user.is_superuser:
             if obj != None:
                 responsaveis = obj.glossario.responsaveis.all()
@@ -108,31 +109,31 @@ class SinalAdmin(admin.ModelAdmin):
             return format_html('<img style="border-radius: 25px 25px 25px 25px;" src="/static/img/configuracoes_de_mao/{}" width="50" height="50" />'.format(obj.cmE.imagem()))
         else:
             return format_html('<p>Sem Imagem</p>')
-        image_tag_cmE.short_description = "Esquerda"
+    image_tag_cmE.short_description = "Esquerda"
 
     def image_tag_cmD(self, obj):
         if obj.cmD:
             return format_html('<img style="border-radius: 25px 25px 25px 25px;" src="/static/img/configuracoes_de_mao/{}" width="50" height="50" />'.format(obj.cmD.imagem()))
         else:
             return format_html('<p>Sem Imagem</p>')
-        image_tag_cmD.short_description = 'direita'
+    image_tag_cmD.short_description = 'direita'
 
     def image_tag_localizacao(self, obj):
         if obj.localizacao:
             return format_html('<img src="/static/img/{}" width="50" height="50" />'.format(Localizacao.localizacoes_imagens[obj.localizacao]))
         else:
             return format_html('<p>Sem Imagem</p>')
-        image_tag_localizacao.short_description = 'localização'
+    image_tag_localizacao.short_description = 'localização'
 
     def image_tag_movimentacao(self, obj):
         if obj.movimentacao:
             movimentacoes = dict(
-                [('0', '0X.svg'), ('1', '1parede.png'), ('2', '2chao.png'), ('3', '3circular.png'), ('4', '4contato.png')])
+                [('0', '0.png'), ('1', '1parede.png'), ('2', '2chao.png'), ('3', '3circular.png'), ('4', '4contato.png')])
             return format_html(
                 '<img src="/static/img/{}" width="50" height="50" />'.format(movimentacoes[obj.movimentacao]))
         else:
             return format_html('<p>Sem Imagem</p>')
-        image_tag_movimentacao.short_description = 'movimentacao'
+    image_tag_movimentacao.short_description = 'movimentacao'
 
     def get_queryset(self, request):
         qs = super(SinalAdmin, self).get_queryset(request)
@@ -150,8 +151,8 @@ class CMAdmin(admin.ModelAdmin):
             return format_html('<img src="/static/img/configuracoes_de_mao/{}" width="50" height="50"/>'.format(obj.imagem()))
         else:
             return format_html('<p>Sem Imagem</p>')
-        image_tag.short_description = 'Imagem'
-        image_tag.allow_tags = True
+    image_tag.short_description = 'Imagem'
+    image_tag.allow_tags = True
 
 
 class UserAdmin(BaseUserAdmin):
@@ -178,6 +179,3 @@ admin.site.register(UserGlossario, UserAdmin)
 admin.site.register(Glossario, GlossarioAdmin)
 admin.site.register(Sinal, SinalAdmin)
 admin.site.register(CM, CMAdmin)
-
-
-

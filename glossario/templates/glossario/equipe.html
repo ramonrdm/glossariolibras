@@ -1,367 +1,433 @@
 {% extends 'glossario/base.html' %}
-    {% load staticfiles %}
-    <title>{% block title %}Equipe - Glossário Letras Libras{% endblock %}</title>
+{% load staticfiles %}
+<title>{% block title %}Equipe - Glossário Letras Libras{% endblock %}</title>
 
 {% block body %}
-<div class="row center blockContainer">
-    <div class="equipe">
-        <center><h2 class="thin">Equipe</h2></center>
-<!-- Equipe Atual -->
-        <div class="historia-titulo"><h4 class="thin">Equipe Atual</h4></div>
-            <div class="divider divisor"></div> </br>
-      <div class="row">
-          <div class="card medium col s12 m3 hoverable">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="{% static 'img/colaboradores/marianne.jpeg' %}">
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">Marianne Rossi Stumpf<i class="material-icons right">more_vert</i></span>
-              <p>Coordenadora do grupo de pesquisa</p>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">Marianne Rossi Stumpf<i class="material-icons right">close</i></span>
-              <p>Professora Doutora.</p>
-              <p><a href="http://lattes.cnpq.br/4624844037162346" target="_blank">Currículo Lattes</a></p>
-            </div>
-          </div>
-
-        <div class="card medium col s12 m3 hoverable">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="{% static 'img/colaboradores/janine.jpeg' %}">
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">Janine Soares de Oliveira<i class="material-icons right">more_vert</i></span>
-              <p>Coordenadora do grupo de pesquisa</p>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">Janine Soares de Oliveira<i class="material-icons right">close</i></span>
-              <p>Professora Doutora.</p>
-              <p><a href="http://lattes.cnpq.br/1612557393864949" target="_blank">Currículo Lattes</a></p>
-            </div>
-          </div>
-
-          <div class="card medium col s12 m3 hoverable">
-            <div class="card-image waves-effect waves-block waves-light ">
-              <img class="activator" src="{% static 'img/colaboradores/ramon.jpeg' %}">
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">Ramon Dutra Miranda<i class="material-icons right">more_vert</i></span>
-              <p>Programador Responsável</p>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">Ramon Dutra Miranda<i class="material-icons right">close</i></span>
-              <p>Bacharel em Ciências da Computação. ramon.rdm@ufsc.br</p>
-              <p><a href="http://lattes.cnpq.br/3221531249010809" target="_blank">Currículo Lattes</a></p>
-            </div>
-          </div>
-
-          <div class="card medium col s12 m3 hoverable">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="{% static 'img/colaboradores/cleberton.jpg' %}">
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">Cleberton Oliveira<i class="material-icons right">more_vert</i></span>
-              <p>Programador</p>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">Cleberton Oliveira<i class="material-icons right">close</i></span>
-              <p>Graduando de Sistemas de Informação - UFSC.</p>
-              <p><a href="http://lattes.cnpq.br/" target="_blank">Currículo Lattes</a></p>
-            </div>
-          </div>
-
-      </div>
-         <div class="row">
-              <!-- Equipe Antiga -->
-          <br></br>
-
-        <div class="historia-titulo"><h4 class="thin">Equipe Antiga</h4></div>
-
-          <div class="divider divisor"></div> </br>
-
-         <div class="card medium col s12 m3 hoverable">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="{% static 'img/colaboradores/sabrina.jpeg' %}">
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">Sabrina Hanich<i class="material-icons right">more_vert</i></span>
-              <p>Programadora</p>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">Sabrina Hanich<i class="material-icons right">close</i></span>
-              <p>Bacharel em Psicologia e Graduanda de Análise e Desenvolvimento de Sistemas do CESUSC. </p>
-              <p><a href="http://lattes.cnpq.br/7693381810969866" target="_blank">Currículo Lattes</a></p>
-            </div>
-          </div>
-
-          <div class="card medium col s12 m3 hoverable">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="{% static 'img/colaboradores/thiago.jpeg' %}">
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">Thiago Brezinski<i class="material-icons right">more_vert</i></span>
-              <p>Programador</p>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">Thiago Brezinski<i class="material-icons right">close</i></span>
-              <p>Graduando de Sistemas de Informação - UFSC. <p class="nadaDeMais">O MELHOR ESTAGIARIO QUE ESTE LABORATÓRIO JA TEVE!</p></p>
-              <p><a href="http://lattes.cnpq.br/9255827597931552" target="_blank">Currículo Lattes</a></p>
-            </div>
-          </div>
-
-          <div class="card medium col s12 m3 hoverable">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="{% static 'img/colaboradores/anaregina.jpeg' %}">
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">Ana Regina Campello<i class="material-icons right">more_vert</i></span>
-              <p>Tradutora de Português/Libras</p>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">Ana Regina Campello<i class="material-icons right">close</i></span>
-              <p>Professora Doutora. </p>
-              <p><a href="http://lattes.cnpq.br/6945261731062194" target="_blank">Currículo Lattes</a></p>
-            </div>
-          </div>
-
-          <div class="card medium col s12 m3 hoverable">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="{% static 'img/colaboradores/debora.jpeg' %}">
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">Débora Wanderley<i class="material-icons right">more_vert</i></span>
-              <p>Tradutora de Português/Libras</p>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">Débora Wanderley<i class="material-icons right">close</i></span>
-              <p>Mestre em Linguística. </p>
-              <p><a href="http://lattes.cnpq.br/9003780617085002" target="_blank">Currículo Lattes</a></p>
-            </div>
-          </div>
-
-          <div class="card medium col s12 m3 hoverable">
-            <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="{% static 'img/colaboradores/Fernanda-Machado.jpg' %}">
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">Fernanda Machado<i class="material-icons right">more_vert</i></span>
-              <p>Tradutora de Português/Libras</p>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">Fernanda Machado<i class="material-icons right">close</i></span>
-              <p>Mestranda do Programa de Pós-Graduação em Estudos da Tradução.</p>
-              <p><a href="#">Currículo Lattes</a></p>
-            </div>
-          </div>
-
-          <div class="card medium col s12 m3 hoverable">
-            <div class="card-image waves-effect waves-block waves-light"> 
-              <img class="activator" src="{% static 'img/colaboradores/franz.jpeg' %}">
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">Franz Kafka Porto Domingos<i class="material-icons right">more_vert</i></span>
-              <p>Tradutor de Libras/Escrita de Sinais</p>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">Franz Kafka Porto Domingos<i class="material-icons right">close</i></span>
-              <p>Mestrando em Estudos da Tradução e Graduando do curso Letras-Libras. </p>
-              <p><a href="http://lattes.cnpq.br/6885796258165008" target="_blank">Currículo Lattes</a></p>
-            </div>
-          </div>
-
-          <div class="card medium col s12 m3 hoverable">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="{% static 'img/colaboradores/germano.jpeg' %}">
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">Germano Dutra Junior<i class="material-icons right">more_vert</i></span>
-              <p>Tradutor de Português/Libras</p>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">Germano Dutra Junior<i class="material-icons right">close</i></span>
-              <p>Graduado em Letras-Libras – Licenciatura e graduando do Curso de Cinema da UniSul.</p>
-              <p><a href="http://lattes.cnpq.br/7563518354797031" target="_blank">Currículo Lattes</a></p>
-            </div>
-          </div>
-
-          <div class="card medium col s12 m3 hoverable">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="{% static 'img/colaboradores/Heloise-Gripp.jpg' %}">
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">Heloíse Gripp<i class="material-icons right">more_vert</i></span>
-              <p>Tradutora de Português/Libras</p>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">Heloíse Gripp<i class="material-icons right">close</i></span>
-              <p>Mestre em Linguística.</p>
-              <p><a href="http://lattes.cnpq.br/0922315610117042" target="_blank">Currículo Lattes</a></p>
-            </div>
-          </div>
-          
-
-          <div class="card medium col s12 m3 hoverable">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="{% static 'img/colaboradores/joao.jpeg' %}">
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">João Ricardo Rover<i class="material-icons right">more_vert</i></span>
-              <p>Programador</p>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">João Ricardo Rover<i class="material-icons right">close</i></span>
-              <p>Bacharel em Ciências da Computação.</p>
-              <p><a href="http://lattes.cnpq.br/2360220129041620" target="_blank">Currículo Lattes</a></p>
-            </div>
-          </div>          
-
-          <div class="card medium col s12 m3 hoverable">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="{% static 'img/colaboradores/lucas.jpeg' %}">
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">Lucas Müller de Jesus<i class="material-icons right">more_vert</i></span>
-              <p>Designer e editor de vídeos</p>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">Lucas Müller de Jesus<i class="material-icons right">close</i></span>
-              <p>Mestre em Design.</p>
-              <p><a href="http://lattes.cnpq.br/2995825736693097" target="_blank">Currículo Lattes</a></p>
-            </div>
-          </div>    
-
-          
-      
-
-          <div class="card medium col s12 m3 hoverable">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="{% static 'img/colaboradores/natalia.jpeg' %}">
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">Natália Pizzetti<i class="material-icons right">more_vert</i></span>
-              <p>Designer</p>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">Natália Pizzetti<i class="material-icons right">close</i></span>
-              <p>Mestre em Design e Expressão Gráfica.</p>
-              <p><a href="http://lattes.cnpq.br/7973881249890562" target="_blank">Currículo Lattes</a></p>
-            </div>
-          </div>          
-
-          <div class="card medium col s12 m3 hoverable">
-            <div class="card-image waves-effect waves-block waves-light ">
-              <img class="activator" src="{% static 'img/colaboradores/rafael.jpeg' %}">
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">Rafael Cavichiolli Teixeira<i class="material-icons right">more_vert</i></span>
-              <p>Cinegrafista</p>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">Rafael Cavichiolli Teixeira<i class="material-icons right">close</i></span>
-              <p>Graduando em Letras-Libras.</p>
-              <p><a href="http://lattes.cnpq.br/4139678786976193" target="_blank">Currículo Lattes</a></p>
-            </div>
-          </div>          
-
-          <div class="card medium col s12 m3 hoverable">
-            <div class="card-image waves-effect waves-block waves-light">
-               <img class="activator" src="{% static 'img/colaboradores/Rimar-Segala.jpg' %}">
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">Rimar Ramalho Segala<i class="material-icons right">more_vert</i></span>
-              <p>Tradutora de Português/Libras</p>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">Rimar Ramalho Segala<i class="material-icons right">close</i></span>
-              <p>Mestre em Linguística.</p>
-              <p><a href="http://lattes.cnpq.br/4770939741538780" target="_blank">Currículo Lattes</a></p>
-            </div>
-          </div>    
-
-
-          <div class="card medium col s12 m3 hoverable">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="{% static 'img/colaboradores/rodrigo.jpeg' %}">
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">Rodrigo Custódio da Silva<i class="material-icons right">more_vert</i></span>
-              <p>Tradutor de Português/Libras</p>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">Rodrigo Custódio da Silva<i class="material-icons right">close</i></span>
-              <p>Mestre em Linguística.</p>
-              <p><a href="http://lattes.cnpq.br/2009310466318492" target="_blank">Currículo Lattes</a></p>
-            </div>
-          </div>    
-
-          <div class="card medium col s12 m3 hoverable">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="{% static 'img/colaboradores/ronice.jpeg' %}">
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">Ronice Müller de Quadros<i class="material-icons right">more_vert</i></span>
-              <p>Pesquisadora</p>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">Ronice Müller de Quadros<i class="material-icons right">close</i></span>
-              <p>Professora Doutora.</p>
-              <p><a href="http://lattes.cnpq.br/2009310466318492" target="_blank">Currículo Lattes</a></p>
-            </div>
-          </div>    
-
-          <div class="card medium col s12 m3 hoverable">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="{% static 'img/colaboradores/ronnie.jpeg' %}">
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">Ronnie Fagundes de Brito<i class="material-icons right">more_vert</i></span>
-              <p>Programador</p>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">Ronnie Fagundes de Brito<i class="material-icons right">close</i></span>
-              <p>Professor Doutor em Engenharia e Gestão do Conhecimento.</p>
-              <p><a href="http://lattes.cnpq.br/9015008667871372" target="_blank">Currículo Lattes</a></p>
-            </div>
-          </div>    
-
-          <div class="card medium col s12 m3 hoverable">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="{% static 'img/colaboradores/rundesth.jpeg' %}">
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">Rundesth Saboia Nobre<i class="material-icons right">more_vert</i></span>
-              <p>Tradutor de Libras/Escrita de Sinais</p>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">Rundesth Saboia Nobre<i class="material-icons right">close</i></span>
-              <p>Mestre em Linguística.</p>
-              <p><a href="http://lattes.cnpq.br/9391586867878720" target="_blank">Currículo Lattes</a></p>
-            </div>
-          </div>    
-
-          <div class="card medium col s12 m3 hoverable">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="{% static 'img/colaboradores/thais.jpeg' %}">
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">Thaís Fleury Avelar<i class="material-icons right">more_vert</i></span>
-              <p>Revisora de Libras/Português</p>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">Thaís Fleury Avelar<i class="material-icons right">close</i></span>
-              <p>Mestre em Linguística.</p>
-              <p><a href="http://lattes.cnpq.br/9891676875964555" target="_blank">Currículo Lattes</a></p>
-            </div>
-          </div>    
-
-      </div>
-      </div>
-
-    </br>
-    </br>
-    </br>
+<div class="row center container">
+  <div class="equipe">
+    <h2 class="thin">Equipe</h2>
+    <!-- Equipe Atual -->
+    <div class="historia-titulo">
+      <h4 class="thin">Equipe Atual</h4>
     </div>
+    <div class="divider divisor"></div> </br>
+    <div class="row">
+      <div class="card medium col s12 m3 hoverable">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="{% static 'img/colaboradores/marianne.jpeg' %}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Marianne Rossi Stumpf<i
+              class="material-icons right">more_vert</i></span>
+          <p>Coordenadora do grupo de pesquisa</p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Marianne Rossi Stumpf<i
+              class="material-icons right">close</i></span>
+          <p>Professora Doutora.</p>
+          <p><a href="http://lattes.cnpq.br/4624844037162346" target="_blank">Currículo Lattes</a></p>
+        </div>
+      </div>
+
+      <div class="card medium col s12 m3 hoverable">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="{% static 'img/colaboradores/janine.jpeg' %}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Janine Soares de Oliveira<i
+              class="material-icons right">more_vert</i></span>
+          <p>Coordenadora do grupo de pesquisa</p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Janine Soares de Oliveira<i
+              class="material-icons right">close</i></span>
+          <p>Professora Doutora.</p>
+          <p><a href="http://lattes.cnpq.br/1612557393864949" target="_blank">Currículo Lattes</a></p>
+        </div>
+      </div>
+
+      <div class="card medium col s12 m3 hoverable">
+        <div class="card-image waves-effect waves-block waves-light ">
+          <img class="activator" src="{% static 'img/colaboradores/ramon.jpeg' %}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Ramon Dutra Miranda<i
+              class="material-icons right">more_vert</i></span>
+          <p>Programador Responsável</p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Ramon Dutra Miranda<i
+              class="material-icons right">close</i></span>
+          <p>Bacharel em Ciências da Computação. ramon.rdm@ufsc.br</p>
+          <p><a href="http://lattes.cnpq.br/3221531249010809" target="_blank">Currículo Lattes</a></p>
+        </div>
+      </div>
+
+      <div class="card medium col s12 m3 hoverable">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="{% static 'img/colaboradores/bryan.jpg' %}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Bryan Lima<i
+              class="material-icons right">more_vert</i></span>
+          <p>Programador</p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Bryan Lima<i
+              class="material-icons right">close</i></span>
+          <p>Graduando de Ciências da Computação - UFSC.</p>
+          <p><a href="http://lattes.cnpq.br/1622111633034881" target="_blank">Currículo Lattes</a></p>
+        </div>
+      </div>
+
     </div>
+    <div class="row">
+      <!-- Equipe Antiga -->
+      <br></br>
+
+      <div class="historia-titulo">
+        <h4 class="thin">Equipe Antiga</h4>
+      </div>
+
+      <div class="divider divisor"></div> </br>
+
+      <div class="card medium col s12 m3 hoverable">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="{% static 'img/colaboradores/cleberton.jpg' %}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Cleberton Oliveira<i
+              class="material-icons right">more_vert</i></span>
+          <p>Programador</p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Cleberton Oliveira<i
+              class="material-icons right">close</i></span>
+          <p>Graduando de Sistemas de Informação - UFSC.</p>
+          <p><a href="http://lattes.cnpq.br/" target="_blank">Currículo Lattes</a></p>
+        </div>
+      </div>
+
+      <div class="card medium col s12 m3 hoverable">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="{% static 'img/colaboradores/sabrina.jpeg' %}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Sabrina Hanich<i
+              class="material-icons right">more_vert</i></span>
+          <p>Programadora</p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Sabrina Hanich<i
+              class="material-icons right">close</i></span>
+          <p>Bacharel em Psicologia e Graduanda de Análise e Desenvolvimento de Sistemas do CESUSC. </p>
+          <p><a href="http://lattes.cnpq.br/7693381810969866" target="_blank">Currículo Lattes</a></p>
+        </div>
+      </div>
+
+      <div class="card medium col s12 m3 hoverable">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="{% static 'img/colaboradores/thiago.jpeg' %}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Thiago Brezinski<i
+              class="material-icons right">more_vert</i></span>
+          <p>Programador</p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Thiago Brezinski<i
+              class="material-icons right">close</i></span>
+          <p>Graduando de Sistemas de Informação - UFSC.
+          <p class="nadaDeMais">O MELHOR ESTAGIARIO QUE ESTE LABORATÓRIO JA TEVE!</p>
+          </p>
+          <p><a href="http://lattes.cnpq.br/9255827597931552" target="_blank">Currículo Lattes</a></p>
+        </div>
+      </div>
+
+      <div class="card medium col s12 m3 hoverable">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="{% static 'img/colaboradores/anaregina.jpeg' %}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Ana Regina Campello<i
+              class="material-icons right">more_vert</i></span>
+          <p>Tradutora de Português/Libras</p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Ana Regina Campello<i
+              class="material-icons right">close</i></span>
+          <p>Professora Doutora. </p>
+          <p><a href="http://lattes.cnpq.br/6945261731062194" target="_blank">Currículo Lattes</a></p>
+        </div>
+      </div>
+
+      <div class="card medium col s12 m3 hoverable">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="{% static 'img/colaboradores/debora.jpeg' %}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Débora Wanderley<i
+              class="material-icons right">more_vert</i></span>
+          <p>Tradutora de Português/Libras</p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Débora Wanderley<i
+              class="material-icons right">close</i></span>
+          <p>Mestre em Linguística. </p>
+          <p><a href="http://lattes.cnpq.br/9003780617085002" target="_blank">Currículo Lattes</a></p>
+        </div>
+      </div>
+
+      <div class="card medium col s12 m3 hoverable">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="{% static 'img/colaboradores/Fernanda-Machado.jpg' %}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Fernanda Machado<i
+              class="material-icons right">more_vert</i></span>
+          <p>Tradutora de Português/Libras</p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Fernanda Machado<i
+              class="material-icons right">close</i></span>
+          <p>Mestranda do Programa de Pós-Graduação em Estudos da Tradução.</p>
+          <p><a href="#">Currículo Lattes</a></p>
+        </div>
+      </div>
+
+      <div class="card medium col s12 m3 hoverable">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="{% static 'img/colaboradores/franz.jpeg' %}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Franz Kafka Porto Domingos<i
+              class="material-icons right">more_vert</i></span>
+          <p>Tradutor de Libras/Escrita de Sinais</p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Franz Kafka Porto Domingos<i
+              class="material-icons right">close</i></span>
+          <p>Mestrando em Estudos da Tradução e Graduando do curso Letras-Libras. </p>
+          <p><a href="http://lattes.cnpq.br/6885796258165008" target="_blank">Currículo Lattes</a></p>
+        </div>
+      </div>
+
+      <div class="card medium col s12 m3 hoverable">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="{% static 'img/colaboradores/germano.jpeg' %}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Germano Dutra Junior<i
+              class="material-icons right">more_vert</i></span>
+          <p>Tradutor de Português/Libras</p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Germano Dutra Junior<i
+              class="material-icons right">close</i></span>
+          <p>Graduado em Letras-Libras – Licenciatura e graduando do Curso de Cinema da UniSul.</p>
+          <p><a href="http://lattes.cnpq.br/7563518354797031" target="_blank">Currículo Lattes</a></p>
+        </div>
+      </div>
+
+      <div class="card medium col s12 m3 hoverable">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="{% static 'img/colaboradores/Heloise-Gripp.jpg' %}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Heloíse Gripp<i
+              class="material-icons right">more_vert</i></span>
+          <p>Tradutora de Português/Libras</p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Heloíse Gripp<i class="material-icons right">close</i></span>
+          <p>Mestre em Linguística.</p>
+          <p><a href="http://lattes.cnpq.br/0922315610117042" target="_blank">Currículo Lattes</a></p>
+        </div>
+      </div>
+
+
+      <div class="card medium col s12 m3 hoverable">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="{% static 'img/colaboradores/joao.jpeg' %}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">João Ricardo Rover<i
+              class="material-icons right">more_vert</i></span>
+          <p>Programador</p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">João Ricardo Rover<i
+              class="material-icons right">close</i></span>
+          <p>Bacharel em Ciências da Computação.</p>
+          <p><a href="http://lattes.cnpq.br/2360220129041620" target="_blank">Currículo Lattes</a></p>
+        </div>
+      </div>
+
+      <div class="card medium col s12 m3 hoverable">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="{% static 'img/colaboradores/lucas.jpeg' %}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Lucas Müller de Jesus<i
+              class="material-icons right">more_vert</i></span>
+          <p>Designer e editor de vídeos</p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Lucas Müller de Jesus<i
+              class="material-icons right">close</i></span>
+          <p>Mestre em Design.</p>
+          <p><a href="http://lattes.cnpq.br/2995825736693097" target="_blank">Currículo Lattes</a></p>
+        </div>
+      </div>
+
+
+
+
+      <div class="card medium col s12 m3 hoverable">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="{% static 'img/colaboradores/natalia.jpeg' %}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Natália Pizzetti<i
+              class="material-icons right">more_vert</i></span>
+          <p>Designer</p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Natália Pizzetti<i
+              class="material-icons right">close</i></span>
+          <p>Mestre em Design e Expressão Gráfica.</p>
+          <p><a href="http://lattes.cnpq.br/7973881249890562" target="_blank">Currículo Lattes</a></p>
+        </div>
+      </div>
+
+      <div class="card medium col s12 m3 hoverable">
+        <div class="card-image waves-effect waves-block waves-light ">
+          <img class="activator" src="{% static 'img/colaboradores/rafael.jpeg' %}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Rafael Cavichiolli Teixeira<i
+              class="material-icons right">more_vert</i></span>
+          <p>Cinegrafista</p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Rafael Cavichiolli Teixeira<i
+              class="material-icons right">close</i></span>
+          <p>Graduando em Letras-Libras.</p>
+          <p><a href="http://lattes.cnpq.br/4139678786976193" target="_blank">Currículo Lattes</a></p>
+        </div>
+      </div>
+
+      <div class="card medium col s12 m3 hoverable">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="{% static 'img/colaboradores/Rimar-Segala.jpg' %}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Rimar Ramalho Segala<i
+              class="material-icons right">more_vert</i></span>
+          <p>Tradutora de Português/Libras</p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Rimar Ramalho Segala<i
+              class="material-icons right">close</i></span>
+          <p>Mestre em Linguística.</p>
+          <p><a href="http://lattes.cnpq.br/4770939741538780" target="_blank">Currículo Lattes</a></p>
+        </div>
+      </div>
+
+
+      <div class="card medium col s12 m3 hoverable">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="{% static 'img/colaboradores/rodrigo.jpeg' %}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Rodrigo Custódio da Silva<i
+              class="material-icons right">more_vert</i></span>
+          <p>Tradutor de Português/Libras</p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Rodrigo Custódio da Silva<i
+              class="material-icons right">close</i></span>
+          <p>Mestre em Linguística.</p>
+          <p><a href="http://lattes.cnpq.br/2009310466318492" target="_blank">Currículo Lattes</a></p>
+        </div>
+      </div>
+
+      <div class="card medium col s12 m3 hoverable">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="{% static 'img/colaboradores/ronice.jpeg' %}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Ronice Müller de Quadros<i
+              class="material-icons right">more_vert</i></span>
+          <p>Pesquisadora</p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Ronice Müller de Quadros<i
+              class="material-icons right">close</i></span>
+          <p>Professora Doutora.</p>
+          <p><a href="http://lattes.cnpq.br/2009310466318492" target="_blank">Currículo Lattes</a></p>
+        </div>
+      </div>
+
+      <div class="card medium col s12 m3 hoverable">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="{% static 'img/colaboradores/ronnie.jpeg' %}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Ronnie Fagundes de Brito<i
+              class="material-icons right">more_vert</i></span>
+          <p>Programador</p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Ronnie Fagundes de Brito<i
+              class="material-icons right">close</i></span>
+          <p>Professor Doutor em Engenharia e Gestão do Conhecimento.</p>
+          <p><a href="http://lattes.cnpq.br/9015008667871372" target="_blank">Currículo Lattes</a></p>
+        </div>
+      </div>
+
+      <div class="card medium col s12 m3 hoverable">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="{% static 'img/colaboradores/rundesth.jpeg' %}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Rundesth Saboia Nobre<i
+              class="material-icons right">more_vert</i></span>
+          <p>Tradutor de Libras/Escrita de Sinais</p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Rundesth Saboia Nobre<i
+              class="material-icons right">close</i></span>
+          <p>Mestre em Linguística.</p>
+          <p><a href="http://lattes.cnpq.br/9391586867878720" target="_blank">Currículo Lattes</a></p>
+        </div>
+      </div>
+
+      <div class="card medium col s12 m3 hoverable">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="{% static 'img/colaboradores/thais.jpeg' %}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Thaís Fleury Avelar<i
+              class="material-icons right">more_vert</i></span>
+          <p>Revisora de Libras/Português</p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Thaís Fleury Avelar<i
+              class="material-icons right">close</i></span>
+          <p>Mestre em Linguística.</p>
+          <p><a href="http://lattes.cnpq.br/9891676875964555" target="_blank">Currículo Lattes</a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  </br>
+  </br>
+  </br>
+</div>
+</div>
 
 </div>
 {% endblock %}
