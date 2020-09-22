@@ -48,6 +48,12 @@ Rodar comandos dentro do container do Postgresql:
 docker exec -it [container_name] psql -U [postgres_user]
 ```
 
+Criar Extensão para o  MySQL
+
+```bash
+CREATE EXTENSION unaccent;
+```
+
 ## Desenvolvimento
 Desenvolvedor Ramon Dutra Miranda
 

@@ -39,14 +39,12 @@ def glossarioSelecionado(request, glossario):
                 glossario=glossario, glossario__visivel=True)
 
         resultado = len(sinais) if sinais else None
-        movimentacoes = dict(
-            [('0', 'X.svg'), ('1', 'parede.png'), ('2', 'chao.png'), ('3', 'circular.png'), ('4', 'contato.png')])
 
         for sinal in sinais:
             sinal.localizacao = "/static/img/" + \
                 Localizacao.localizacoes_imagens[sinal.localizacao]
             sinal.movimentacao = "/static/img/" + \
-                movimentacoes[sinal.movimentacao]
+                Movimentacao.movimentacao_imagens[sinal.movimentacao]
 
         return render(request, 'glossario/pesquisa.html', {
             'sinais': sinais, 'resultado': resultado, 'glossario':

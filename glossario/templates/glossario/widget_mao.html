@@ -39,14 +39,22 @@
             valor_{{ name }} = null;
         }
         if(valor_{{ name }}){
-            $('#id_{{ name }}').val(valor_{{ name }});
             $('#imagem_{{ name }}').attr('src', $(cm_{{name}}_{{ value }}).attr('src'));
+            if (valor_{{ name }} != 0) {
+                $('#id_{{ name }}').val(valor_{{ name }});
+            } else {
+                $('#id_{{ name }}').val('');
+            }
         }
         $('.escolhaCM{{ name }}').click(function(){
              var escolhaCM = $(this).attr('id_cm');
-             $('#id_{{ name }}').val(escolhaCM);
              $('#imagem_{{ name }}').attr('src', $(this).attr('src'));
+             if (escolhaCM != 0) {
+                 $('#id_{{ name }}').val(escolhaCM);
+             } else {
+                $('#id_{{ name }}').val('');
+             }
         });
-        // $('.datepicker').datepicker();
+        $('.datepicker').datepicker();
     });
 </script>

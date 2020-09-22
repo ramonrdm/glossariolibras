@@ -106,31 +106,29 @@ class SinalAdmin(admin.ModelAdmin):
 
     def image_tag_cmE(self, obj):
         if obj.cmE:
-            return format_html('<img style="border-radius: 25px 25px 25px 25px;" src="/static/img/configuracoes_de_mao/{}" width="50" height="50" />'.format(obj.cmE.imagem()))
+            return format_html('<img style="border-radius: 100%;" src="/static/img/configuracoes_de_mao/{}" width="50" height="50" />'.format(obj.cmE.imagem()))
         else:
             return format_html('<p>Sem Imagem</p>')
     image_tag_cmE.short_description = "Esquerda"
 
     def image_tag_cmD(self, obj):
         if obj.cmD:
-            return format_html('<img style="border-radius: 25px 25px 25px 25px;" src="/static/img/configuracoes_de_mao/{}" width="50" height="50" />'.format(obj.cmD.imagem()))
+            return format_html('<img style="border-radius: 100%;" src="/static/img/configuracoes_de_mao/{}" width="50" height="50" />'.format(obj.cmD.imagem()))
         else:
             return format_html('<p>Sem Imagem</p>')
     image_tag_cmD.short_description = 'direita'
 
     def image_tag_localizacao(self, obj):
         if obj.localizacao:
-            return format_html('<img src="/static/img/{}" width="50" height="50" />'.format(Localizacao.localizacoes_imagens[obj.localizacao]))
+            return format_html('<img style="border-radius: 100%;" src="/static/img/{}" width="50" height="50" />'.format(Localizacao.localizacoes_imagens[obj.localizacao]))
         else:
             return format_html('<p>Sem Imagem</p>')
     image_tag_localizacao.short_description = 'localização'
 
     def image_tag_movimentacao(self, obj):
         if obj.movimentacao:
-            movimentacoes = dict(
-                [('0', '0.png'), ('1', '1parede.png'), ('2', '2chao.png'), ('3', '3circular.png'), ('4', '4contato.png')])
             return format_html(
-                '<img src="/static/img/{}" width="50" height="50" />'.format(movimentacoes[obj.movimentacao]))
+                '<img style="border-radius: 100%;" src="/static/img/{}" width="50" height="50" />'.format(Movimentacao.movimentacoes_imagens[obj.movimentacao]))
         else:
             return format_html('<p>Sem Imagem</p>')
     image_tag_movimentacao.short_description = 'movimentacao'
