@@ -127,7 +127,7 @@ class Localizacao(models.Model):
                     ('5', 'Mãos')
                     )
     localizacoes_imagens = dict(
-        [('0', 'L.jpg'), ('4', 'localizacaoCabeca.png'), ('12', 'localizacaoOmbros.png'),
+        [('0', '0.png'), ('4', 'localizacaoCabeca.png'), ('12', 'localizacaoOmbros.png'),
          ('3', 'localizacaoBracos.png'), ('6', 'localizacaoNariz.png'), ('2','localizacaoBochechas.png'),
          ('1', 'localizacaoBoca.png'), ('16', 'localizacaoTronco.png'), ('10', 'localizacaoNeutro.png'),
          ('11', 'localizacaoOlhos.png'), ('17', 'localizacaoOrelhas.png'), ('13','localizacaoPescoco.png'),
@@ -141,7 +141,7 @@ class Movimentacao(models.Model):
                      ('2', 'Chão'), ('3', 'Circular'), ('4', 'Contato'))
 
     movimentacoes_imagens = dict(
-        [('0', '0M.jpg'), ('1', '1parede.png'), ('2', '2chao.png'), ('3', '3circular.png'), ('4', '4contato.png')])
+        [('0', '0.png'), ('1', '1parede.png'), ('2', '2chao.png'), ('3', '3circular.png'), ('4', '4contato.png')])
 
 def sinal_upload_path(instance, filename):
     # o arquivo será salvo em MEDIA_ROOT/sinal_videos/originais/<filename>
