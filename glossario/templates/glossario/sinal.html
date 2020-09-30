@@ -119,7 +119,7 @@
 
           <div class="center imgMao">
             {% if sinal.localizacao %}
-            <img class="circle imgSinal" src="{{sinal.localizacao}}">
+            <img class="circle imgSinal" src="{{sinal.localizacao_imagem}}">
             {% else %}
             <i class="large material-icons white-text imgSinal">cloud_off</i>
             {% endif %}
@@ -134,7 +134,7 @@
 
           <div class="center imgMao">
             {% if sinal.movimentacao %}
-            <img class="circle imgSinal" src="{{sinal.movimentacao}}">
+            <img class="circle imgSinal" src="{{sinal.movimentacao_imagem}}">
             {% else %}
             <i class="large material-icons white-text imgSinal">cloud_off</i>
             {% endif %}
@@ -168,6 +168,14 @@
     </div>
 
     <script type="text/javascript" src='{% static "js/sinal.js" %}'></script>
+  </div>
+
+  <!-- Sinais relacionados -->
+
+  <div class="col s12">
+    <h5 class="center">Sinais Relacionados</h5>
+    {% include 'glossario/glossariosRelacionados.html' %}
+    
   </div>
 </div>
 

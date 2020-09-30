@@ -4,23 +4,14 @@ $(document).ready(function () {
     var objetos_localizacao = JSON.parse(document.getElementById('objetos_localizacao').textContent);
     // Trata a escolha na versão mobile
     if(valor_localizacao){
+        $('#id_localizacao').val(valor_localizacao);
         $('#imagem_localizacao').attr('src', '/static/img/' + objetos_localizacao[valor_localizacao]);
-        // Se for escolhido sem localização, então ignora a localização dos sinais na busca
-        if (valor_localizacao != 0) {
-            $('#id_localizacao').val(valor_localizacao);
-        } else {
-            $('#id_localizacao').val('');
-        }
     }
         
     $('.escolhaLocalizacao').click(function(){
         var escolhaLocalizacao = $(this).children('img').attr('id-field');
         $('#imagem_localizacao').attr('src', $(this).children('img').attr('src'));
-        if (escolhaLocalizacao != 0) {
-            $('#id_localizacao').val(escolhaLocalizacao);
-        } else {
-            $('#id_localizacao').val('');
-        }
+        $('#id_localizacao').val(escolhaLocalizacao);
     });
 
     // Trata a escolha na versão Desktop
@@ -101,11 +92,7 @@ $(document).ready(function () {
         let attrValue = $(this).attr('data-key');
         if (attrValue) {
             $('#imagem_localizacao').attr('src', '/static/img/' + objetos_localizacao[attrValue]);
-            if (attrValue != 0) {
-                $('#id_localizacao').val(attrValue);
-            } else {
-                $('#id_localizacao').val('');
-            }
+            $('#id_localizacao').val(attrValue);
         } else {
             $('#id_localizacao').val('');
             $('#imagem_localizacao').attr('src', '/static/img/L.jpg');
