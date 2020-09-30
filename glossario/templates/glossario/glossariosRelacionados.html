@@ -1,0 +1,96 @@
+<div class="container center no-padding-right-left">
+  <div class="container divider"></div>
+  <ul class="row">
+    <li class="tituloSinais col l2 m2 s5ths">Preview</li>
+    <li class="tituloSinais col l2 m2 s5ths offset-l2">Esquerda</li>
+    <li class="tituloSinais col l2 m2 s5ths">Direita</li>
+    <li class="tituloSinais col l2 m2 s5ths">Localização</li>
+    <li class="tituloSinais col l2 m2 s5ths">Movimento</li>
+  </ul>
+  <div class="infinite-sinal-web">
+    {% for s in relacao %}
+    <div class="infinite-item ">
+      <ul class="collection">
+        <a href="/sinal/{{s.id}}" class="collection-item row center no-padding-right-left">
+          <li class="col l12 s12 no-padding-right-left">
+            {% if s.preview2 %}
+            <li class="col l2 m2 s5ths no-padding-right-left">
+              <div class="preview" id="alouss">
+                <img src="{{s.preview2.url}}" class="video-preview">
+                <img src="{{s.preview3.url}}" class="video-preview">
+                <img src="{{s.preview4.url}}" class="video-preview">
+                <img src="{{s.preview1.url}}" class="video-preview">
+              </div>
+            </li>
+            {% else %}
+            <li class="col l2 m2 s5ths">
+              <img src="/static/img/X.svg" class="circle img-pesquisa">
+            </li>
+            {% endif %}
+
+            {% if s.portugues %}
+            <li class="col l2 m2 hide-on-med-and-down">
+              <div class="sinalPortugues">{{s.portugues}}</div><br />
+              <div class="sinalIngles">{{s.ingles}}</div>
+            </li>
+            {% endif %}
+
+            {% if s.cmE.imagem %}
+            <li class="col l2 m2 s5ths">
+              <img src="/static/img/configuracoes_de_mao/{{s.cmE.imagem}}" class="circle img-pesquisa">
+            </li>
+            {% else %}
+            <li class="col l2 m2 s5ths">
+              <img src="/static/img/X.svg" class="circle img-pesquisa">
+            </li>
+            {% endif %}
+
+            {% if s.cmD.imagem %}
+            <li class="col l2 m2 s5ths">
+              <img src="/static/img/configuracoes_de_mao/{{s.cmD.imagem}}" class="circle img-pesquisa">
+            </li>
+            {% else %}
+            <li class="col l2 m2 s5ths">
+              <img src="/static/img/X.svg" class="circle img-pesquisa">
+            </li>
+            {% endif %}
+
+            {% if s.localizacao %}
+            <li class="col l2 m2 s5ths">
+              <img src="{{s.localizacao_imagem}}" class="circle img-pesquisa">
+            </li>
+            {% else %}
+            <li class="col l2 m2 s5ths">
+              <img src="/static/img/X.svg" class="circle img-pesquisa">
+            </li>
+            {% endif %}
+
+            {% if s.movimentacao %}
+            <li class="col l2 m2 s5ths">
+              <img src="{{s.movimentacao_imagem}}" class="circle img-pesquisa">
+            </li>
+            {% else %}
+            <li class="col l2 m2 s5ths">
+              <img src="/static/img/X.svg" class="circle img-pesquisa">
+            </li>
+            {% endif %}
+            
+            <div class="divider col s12 hide-on-large-only"></div>
+          
+            {% if s.portugues %}
+            <div class="hide-on-large-only">
+              <li class="col s6">
+                <div class="sinalPortugues right">{{s.portugues}}</div>
+              </li>
+              <li class="col s6">
+                <div class="sinalIngle left">{{s.ingles}}</div>
+              </li>
+            </div>
+            {% endif %}
+          </li>
+        </a>
+      </ul>
+    </div>
+    {% endfor %}
+  </div>
+</div>

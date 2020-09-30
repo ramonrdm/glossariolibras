@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from glossario.forms import GlossarioForm, SinalForm, CMForm
+from glossario.forms import GlossarioForm, SinalForm, CMForm, GrupoGlossarioForm
 from unicodedata import normalize
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
@@ -60,6 +60,10 @@ class GlossarioAdmin(admin.ModelAdmin):
             format_html('<img src="{}" width="50" height="50"/>')
         else:
             return format_html('<p>Sem imagem</p>')
+
+class GrupoGlossariosAdmin(GlossarioAdmin):
+    form = GrupoGlossarioForm
+
 
 class SinalAdmin(admin.ModelAdmin):
     form = SinalForm
@@ -175,5 +179,6 @@ class UserAdmin(BaseUserAdmin):
 
 admin.site.register(UserGlossario, UserAdmin)
 admin.site.register(Glossario, GlossarioAdmin)
+admin.site.register(GrupoGlossarios, GrupoGlossariosAdmin)
 admin.site.register(Sinal, SinalAdmin)
 admin.site.register(CM, CMAdmin)

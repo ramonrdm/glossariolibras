@@ -1,51 +1,71 @@
 {% extends 'glossario/base.html' %}
 {% block head %}
-	{{ block.super }}
-	{% load staticfiles %}
-	<title>{% block title %}{{ glossario.nome }} - Glossário Letras Libras{% endblock %}</title>
+{{ block.super }}
+{% load staticfiles %}
+<title>{% block title %}{{ glossario.nome }} - Glossário Letras Libras{% endblock %}</title>
 {% endblock %}
 {% block body %}
- <div class="row center blockContainer area-para-footer">
-		<div class="col s12 m12 l6 center">
-			{% if glossario.video %}
-				 <video id="videoGlossario" controls>
-						<source src="{{glossario.video.url}}" type="video/mp4">
-				 </video>
+<div class="row center blockContainer area-para-footer">
+	<div class="col s12 m12 l6 center">
+		{% if glossario.video %}
+		<video id="videoGlossario" controls>
+			<source src="{{glossario.video.url}}" type="video/mp4">
+		</video>
+		{% else %}
+		<div class="videoGlossario">
+			<i class="large material-icons icone videoOff">videocam_off</i>
+		</div>
+		{% endif %}
+	</div>
+	<div class="block col s12 m12 l6">
+		<div class="block col m3 s12 l3">
+			{% if glossario.imagem %}
+			<a href="/{{glossario.link}}"><img class="circle imgIndex" src="{{ glossario.imagem.url }}" /></a>
 			{% else %}
-				<div class="videoGlossario">
-					<i class="large material-icons icone videoOff">videocam_off</i>
-				</div>
+			<a href="/{{glossario.link}}"><i class="large material-icons icone">cloud_off</i></a>
 			{% endif %}
 		</div>
-		<div class="block col s12 m12 l6">
-			<div class="block col m3 s12 l3">
-				{% if glossario.imagem %}
-					<a href="/{{glossario.link}}"><img class="circle imgIndex" src="{{ glossario.imagem.url }}"/></a>
-				{% else %}
-					<a href="/{{glossario.link}}"><i class="large material-icons icone">cloud_off</i></a>
-				{% endif %}
+		<div class="block col m6 s12">
+			<div class="titulo center hide-on-med-and-down">
+				<h4 class="thin">{{glossario.nome}}</h4>
 			</div>
-			<div class="block col m6 s12">
-				 <div class="titulo center hide-on-med-and-down"><h4 class="thin">{{glossario.nome}}</h4></div>
-				 <div class="historia-titulo center hide-on-large-only "><h5>{{glossario.nome}}</h5></div>
-				 <p class="sinais_publicados">Sinais publicados: {{glossario.sinais_number}}</p>
+			<div class="historia-titulo center hide-on-large-only ">
+				<h5>{{glossario.nome}}</h5>
 			</div>
-			<ul class="col s12 m12 ">
-				<li id="definicao" class="divider divisor"></li>
-			</br>
-				<li style="color:grey; text-align: justify;"> {{glossario.descricao}}</li>
-			</ul>
+			<p class="sinais_publicados">Sinais publicados: {{glossario.sinais_number}}</p>
 		</div>
- </div>
+		<ul class="col s12 m12 ">
+			<li id="definicao" class="divider divisor"></li>
+			</br>
+			<li style="color:grey; text-align: justify;"> {{glossario.descricao}}</li>
+		</ul>
+	</div>
+	<div class="block col s12 m12 l6">
+		<h4 class="thin">Glossários Relacionados</h4>
+		{% for glo in glossario.grupo_de_glossarios.all %}
+		{% if glossario.imagem %}
+		<div class="block center">
+			<a href="/{{glo.link}}" class="glossarioSinais">
+				<img class="circle z-depth-2 hoverable imgIndex" src="{{glo.imagem.url}}">
+				<span class="sinaisBadge">{{glo.sinais_number}}</span>
+				<div>
+					<span class="flow-text textoIndex">{{glo.nome|title}}</span>
+				</div>
+			</a>
+		</div>
+		{% endif %}
+		{% endfor %}
+	</div>
+</div>
 {% endblock %}
 
 
-  <!-- Scaled in -->
-  <a id="scale-demo" href="#!" class="btn-floating btn-large scale-transition">
-    <i class="material-icons">add</i>
-  </a>
+<!-- Scaled in -->
+<a id="scale-demo" href="#!" class="btn-floating btn-large scale-transition">
+	<i class="material-icons">add</i>
+</a>
 
-  <!-- Scaled out -->
-  <a id="scale-demo" href="#!" class="btn-floating btn-large scale-transition scale-out">
-    <i class="material-icons">add</i>
-  </a>
+<!-- Scaled out -->
+<a id="scale-demo" href="#!" class="btn-floating btn-large scale-transition scale-out">
+	<i class="material-icons">add</i>
+</a>

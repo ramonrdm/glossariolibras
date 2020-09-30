@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from django.forms.models import ModelChoiceField
-from glossario.models import Glossario, Sinal, CM, UserGlossario
+from glossario.models import Glossario, Sinal, CM, UserGlossario, GrupoGlossarios
 from django.conf import settings
 from glossario.widgets import VideoInput, ImageSelectLocalizacao, ImageSelectMao, ImageSelectMovimentacao
 from django.core.exceptions import ValidationError
@@ -12,6 +12,11 @@ from django_registration.forms import RegistrationForm
 class GlossarioForm(forms.ModelForm):
     class Meta:
         model = Glossario
+        exclude = ['link', 'data_criacao']
+
+class GrupoGlossarioForm(forms.ModelForm):
+    class Meta:
+        model = GrupoGlossarios
         exclude = ['link', 'data_criacao']
 
 

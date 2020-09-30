@@ -373,7 +373,7 @@ html, body {
 /* Numero de sinais */
 
 .glossarioSinais {
-    display: inline-block;
+    /* display: inline-block; */
     position: relative;
 }
 

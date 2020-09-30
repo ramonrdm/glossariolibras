@@ -32,6 +32,7 @@
 {% endfor %}
 
 <!-- JS -->
+<!-- JS -->
 <script type="text/javascript">
     $(document).ready(function(){
         var valor_{{ name }} = "{{ value|safe }}";
@@ -40,20 +41,12 @@
         }
         if(valor_{{ name }}){
             $('#imagem_{{ name }}').attr('src', $(cm_{{name}}_{{ value }}).attr('src'));
-            if (valor_{{ name }} != 0) {
-                $('#id_{{ name }}').val(valor_{{ name }});
-            } else {
-                $('#id_{{ name }}').val('');
-            }
+            $('#id_{{ name }}').val(valor_{{ name }});
         }
         $('.escolhaCM{{ name }}').click(function(){
              var escolhaCM = $(this).attr('id_cm');
              $('#imagem_{{ name }}').attr('src', $(this).attr('src'));
-             if (escolhaCM != 0) {
-                 $('#id_{{ name }}').val(escolhaCM);
-             } else {
-                $('#id_{{ name }}').val('');
-             }
+             $('#id_{{ name }}').val(escolhaCM);
         });
         $('.datepicker').datepicker();
     });

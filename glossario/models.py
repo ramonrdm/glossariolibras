@@ -8,6 +8,7 @@ from django.dispatch import receiver
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
+from model_utils.managers import InheritanceManager
 
 
 class UserManagerGlossario(BaseUserManager):
@@ -70,11 +71,20 @@ class UserGlossario(AbstractBaseUser, PermissionsMixin):
         return self.nome_completo
 
 
+class AreaConhecimento(models.Model):
+    class Meta:
+        verbose_name = 'Área do Conhecimento'
+
+    areas = [('0', 'Superior'), ('1', 'Fundamental')]
+
 class Glossario(models.Model):
 
     class Meta:
         verbose_name = 'Glossário'
         ordering = ['nome']
+        # unique_together = ('nome', 'area')
+
+    objects = InheritanceManager()
 
     max_length_name = 100
     nome = models.CharField('Nome do Glossário', max_length=max_length_name, unique=True,
@@ -90,6 +100,8 @@ class Glossario(models.Model):
     video = FileField('Vídeo', blank=True)
     visivel = models.BooleanField("Visivel", default=True)
 
+    area = models.CharField(max_length=20, choices=AreaConhecimento.areas, default='')
+
     def sinais_number(self):
         return Sinal.objects.filter(publicado=True, glossario=self).count()
 
@@ -99,6 +111,15 @@ class Glossario(models.Model):
     def __str__(self):
         return self.nome.title()
 
+class GrupoGlossarios(Glossario):
+    grupo_de_glossarios = models.ManyToManyField(Glossario, related_name='grupo_de_glossarios', blank=True)
+
+    def sinais_number(self):
+        num_sinais = Sinal.objects.filter(publicado=True, glossario=self).count()
+        for glossario in self.grupo_de_glossarios.all():
+            num_sinais += Sinal.objects.filter(publicado=True, glossario=glossario).count()
+        return num_sinais
+            
 
 class CM (models.Model):
     """Total de 261 configurações de mão divididas em 10 grupos."""
@@ -127,7 +148,7 @@ class Localizacao(models.Model):
                     ('5', 'Mãos')
                     )
     localizacoes_imagens = dict(
-        [('0', 'L.jpg'), ('4', 'localizacaoCabeca.png'), ('12', 'localizacaoOmbros.png'),
+        [('0', '0.png'), ('4', 'localizacaoCabeca.png'), ('12', 'localizacaoOmbros.png'),
          ('3', 'localizacaoBracos.png'), ('6', 'localizacaoNariz.png'), ('2','localizacaoBochechas.png'),
          ('1', 'localizacaoBoca.png'), ('16', 'localizacaoTronco.png'), ('10', 'localizacaoNeutro.png'),
          ('11', 'localizacaoOlhos.png'), ('17', 'localizacaoOrelhas.png'), ('13','localizacaoPescoco.png'),
@@ -141,7 +162,7 @@ class Movimentacao(models.Model):
                      ('2', 'Chão'), ('3', 'Circular'), ('4', 'Contato'))
 
     movimentacoes_imagens = dict(
-        [('0', '0M.jpg'), ('1', '1parede.png'), ('2', '2chao.png'), ('3', '3circular.png'), ('4', '4contato.png')])
+        [('0', '0.png'), ('1', '1parede.png'), ('2', '2chao.png'), ('3', '3circular.png'), ('4', '4contato.png')])
 
 def sinal_upload_path(instance, filename):
     # o arquivo será salvo em MEDIA_ROOT/sinal_videos/originais/<filename>
@@ -200,6 +221,12 @@ class Sinal(models.Model):
 
     def __str__(self):
         return self.portugues
+
+    def localizacao_imagem(self):
+        return str("/static/img/" + Localizacao.localizacoes_imagens[self.localizacao])
+    
+    def movimentacao_imagem(self):
+        return str("/static/img/" + Movimentacao.movimentacoes_imagens[self.movimentacao])
 
     def save(self, *args, **kwargs):
         url_base = settings.MEDIA_ROOT

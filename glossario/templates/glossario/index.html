@@ -8,27 +8,59 @@ Glossários de Libras - Glossário Letras Libras
 {% endblock %}
 {% block body %}
 <div class="row center blockContainer">
-  {% for glossario in glossarios %}
-  <div class="block col s6 m4 l2">
-    {% if glossario.imagem %}
-    <a href="/{{glossario.link}}" class="glossarioSinais">
-      <img class="circle z-depth-2 hoverable imgIndex" src="{{glossario.imagem.url}}">
-      <span class="sinaisBadge">{{glossario.sinais_number}}</span>
-      <div>
-        <span class="flow-text textoIndex">{{glossario.nome|title}}</span>
-      </div>
-    </a>
-    {% else %}
-    <a href="/{{glossario.link}}" class="glossarioSinais">
-      <i class="large material-icons icone imgIndex">cloud_off</i>
-      <span class="sinaisBadge">{{glossario.sinais_number}}</span>
-      <div>
-        <span class="flow-text textoIndex">{{glossario.nome}}</span>
-      </div>
-    </a>
+  <h5>Área do conhecimento:</h5>
+  <div class="row l12">
+    <h5>Superior:</h5>
+    {% for glossario in glossarios %}
+    {% if glossario.area == '0' %}
+    <div class="block col s6 m4 l2">
+      {% if glossario.imagem %}
+      <a href="/{{glossario.link}}" class="glossarioSinais">
+        <img class="circle z-depth-2 hoverable imgIndex" src="{{glossario.imagem.url}}">
+        <span class="sinaisBadge">{{glossario.sinais_number}}</span>
+        <div>
+          <span class="flow-text textoIndex">{{glossario.nome|title}}</span>
+        </div>
+      </a>
+      {% else %}
+      <a href="/{{glossario.link}}" class="glossarioSinais">
+        <i class="large material-icons icone imgIndex">cloud_off</i>
+        <span class="sinaisBadge">{{glossario.sinais_number}}</span>
+        <div>
+          <span class="flow-text textoIndex">{{glossario.nome|title}}</span>
+        </div>
+      </a>
+      {% endif %}
+    </div>
     {% endif %}
+    {% endfor %}
   </div>
-  {% endfor %}
+  <div class="row l12">
+    <h5>Básico:</h5>
+    {% for glossario in glossarios %}
+    {% if glossario.area == '1' %}
+    <div class="block col s6 m4 l2">
+      {% if glossario.imagem %}
+      <a href="/{{glossario.link}}" class="glossarioSinais">
+        <img class="circle z-depth-2 hoverable imgIndex" src="{{glossario.imagem.url}}">
+        <span class="sinaisBadge">{{glossario.sinais_number}}</span>
+        <div>
+          <span class="flow-text textoIndex">{{glossario.nome|title}}</span>
+        </div>
+      </a>
+      {% else %}
+      <a href="/{{glossario.link}}" class="glossarioSinais">
+        <i class="large material-icons icone imgIndex">cloud_off</i>
+        <span class="sinaisBadge">{{glossario.sinais_number}}</span>
+        <div>
+          <span class="flow-text textoIndex">{{glossario.nome|title}}</span>
+        </div>
+      </a>
+      {% endif %}
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
 </div>
 
 {% if modalConfirmeEmail %}

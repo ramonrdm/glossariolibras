@@ -3,3 +3,4 @@ django-registration==3.0.1
 Pillow
 psycopg2
 django-star-ratings
+django-model-utils
