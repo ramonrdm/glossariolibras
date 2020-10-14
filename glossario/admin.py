@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from glossario.forms import GlossarioForm, SinalForm, CMForm, GrupoGlossarioForm
+from glossario.forms import GlossarioForm, SinalForm, CMForm, AreaForm
 from unicodedata import normalize
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
@@ -48,7 +48,7 @@ class GlossarioAdmin(admin.ModelAdmin):
         return False
 
     def save_model(self, request, obj, form, change):
-        gLink = obj.nome.lower()
+        gLink = 'glossario/'+obj.nome.lower()
         gLink = gLink.replace(" ", "-")
         gLink = normalize('NFKD', gLink).encode('ASCII', 'ignore').decode('ASCII')
         obj.link = gLink
@@ -60,9 +60,6 @@ class GlossarioAdmin(admin.ModelAdmin):
             format_html('<img src="{}" width="50" height="50"/>')
         else:
             return format_html('<p>Sem imagem</p>')
-
-class GrupoGlossariosAdmin(GlossarioAdmin):
-    form = GrupoGlossarioForm
 
 
 class SinalAdmin(admin.ModelAdmin):
@@ -177,8 +174,19 @@ class UserAdmin(BaseUserAdmin):
         ),
     )
 
+class AreaAdmin(admin.ModelAdmin):
+    form = AreaForm
+
+    def save_model(self, request, obj, form, change):
+        slug = obj.nome.lower()
+        slug = slug.replace(" ", "-")
+        slug = normalize('NFKD', slug).encode('ASCII', 'ignore').decode('ASCII')
+        obj.slug = slug
+        obj.save() 
+    
+
 admin.site.register(UserGlossario, UserAdmin)
 admin.site.register(Glossario, GlossarioAdmin)
-admin.site.register(GrupoGlossarios, GrupoGlossariosAdmin)
 admin.site.register(Sinal, SinalAdmin)
 admin.site.register(CM, CMAdmin)
+admin.site.register(Area, AreaAdmin)

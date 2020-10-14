@@ -29,11 +29,18 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django_registration',
     'django.contrib.postgres',
+    # comentarios
+    'django.contrib.sites',
+    'django_comments_xtd',
+    'django_comments',
+
+    'mptt',
     'glossario',
     'star_ratings',
 
-
 )
+
+SITE_ID = 1
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',

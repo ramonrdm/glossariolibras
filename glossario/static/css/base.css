@@ -357,6 +357,10 @@ html, body {
     height: 70px;
 }
 
+.card-panel {
+    padding: 24px !important;
+}
+
 /* Preview */
 
 .preview {

@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+
+from mptt.models import MPTTModel, TreeForeignKey
+
 from django.db.models import FileField, DateTimeField
 from django.core.files import File
 from django.contrib.auth import hashers
@@ -8,7 +11,6 @@ from django.dispatch import receiver
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
-from model_utils.managers import InheritanceManager
 
 
 class UserManagerGlossario(BaseUserManager):
@@ -70,21 +72,27 @@ class UserGlossario(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.nome_completo
 
+class Area(MPTTModel):
 
-class AreaConhecimento(models.Model):
-    class Meta:
-        verbose_name = 'Área do Conhecimento'
+    class MPTTMeta:
+        order_insertion_by = ['nome']
 
-    areas = [('0', 'Superior'), ('1', 'Fundamental')]
+    nome = models.CharField('Nome da Área', max_length=20, unique=True,
+                            error_messages={'unique': 'Uma área com este nome já existe.'})
+    parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
+    slug = models.SlugField(unique=True)
+
+    def __str__(self):
+        return self.nome.title()
+
 
 class Glossario(models.Model):
 
     class Meta:
         verbose_name = 'Glossário'
         ordering = ['nome']
-        # unique_together = ('nome', 'area')
+        unique_together = ('nome', 'area')
 
-    objects = InheritanceManager()
 
     max_length_name = 100
     nome = models.CharField('Nome do Glossário', max_length=max_length_name, unique=True,
@@ -100,7 +108,8 @@ class Glossario(models.Model):
     video = FileField('Vídeo', blank=True)
     visivel = models.BooleanField("Visivel", default=True)
 
-    area = models.CharField(max_length=20, choices=AreaConhecimento.areas, default='')
+    area = models.ForeignKey(
+        Area, verbose_name='Área',blank=True, null=True, on_delete=models.SET_DEFAULT, default=None)
 
     def sinais_number(self):
         return Sinal.objects.filter(publicado=True, glossario=self).count()
@@ -110,15 +119,6 @@ class Glossario(models.Model):
 
     def __str__(self):
         return self.nome.title()
-
-class GrupoGlossarios(Glossario):
-    grupo_de_glossarios = models.ManyToManyField(Glossario, related_name='grupo_de_glossarios', blank=True)
-
-    def sinais_number(self):
-        num_sinais = Sinal.objects.filter(publicado=True, glossario=self).count()
-        for glossario in self.grupo_de_glossarios.all():
-            num_sinais += Sinal.objects.filter(publicado=True, glossario=glossario).count()
-        return num_sinais
             
 
 class CM (models.Model):

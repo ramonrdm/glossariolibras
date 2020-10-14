@@ -9,11 +9,10 @@
         <ul class="collection hide-on-large-only">
             {% for key, img in objetos.items %}
             <li class="collection-item col s12 valign-wrapper">
-                <a href="#" class="col s12 escolhaLocalizacao waves-effect waves-light modal-action modal-close">
+                <a class="col s12 escolhaLocalizacao waves-effect waves-light modal-action modal-close">
                     <h5 class="black-text">{{local_nomes|get_item:key}}</h5>
                     <img id="imagem_{{ name }}_{{ key }}" id-field="{{ key }}"
-                    src="/static/img/{{ img }}" href="#{{ name }}_{{ key }}"
-                    loading ="lazy" class="sinais">
+                    src="/static/img/{{ img }}" loading ="lazy" class="sinais">
                 </a>
             </li>
             {% endfor %}

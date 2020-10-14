@@ -51,12 +51,21 @@
             <!-- <a id="abrirNavSearchMobile" class="btn-floating btn-large halfway-fab waves-effect waves-light indigo darken-4"
           style="position: absolute; top: -80%;"><i class="material-icons white-text">text_format</i></a></nav> -->
           </div>
-          <!-- Opção de glossario -->
-          {% if glossario %}
+          <!-- Opção de glossario e area -->
+          {% if area %}
           <div class="chipGlossario chip">
+            Buscando em {{ area }}
+            <i class="close material-icons" onclick="apagaArea()">close</i>
+          </div>
+          {{area.id}}
+          <input type="hidden" id="areaSelecionada" name="area" value="{{ area.id }}">
+          {% elif glossario %}
+          <div class="chipGlossario chip">
+            {% if glossario.imagem %}
             <img class="circle imgIndex" src="{{ glossario.imagem.url }}" />
+            {% endif %}            
             Buscando em {{ glossario.nome }}
-            <i class="close material-icons" onclick="apagaGLossario()">close</i>
+            <i class="close material-icons" onclick="apagaGlossario()">close</i>
           </div>
           <input type="hidden" id="glossarioSelecionado" name="glossario" value="{{ glossario.id }}">
           {% endif %}
@@ -87,8 +96,11 @@
 </div>
 
 <script type="text/javascript">
-  function apagaGLossario() {
+  function apagaGlossario() {
     document.getElementById("glossarioSelecionado").value = "";
+  }
+  function apagaArea() {
+    document.getElementById("areaSelecionada").value = "";
   }
 </script>
 
