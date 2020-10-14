@@ -8,6 +8,12 @@
       :
     </p>
   </div>
+  {% elif area %}
+  <div>
+    <p class="flow-text ">
+      Encontrado {{resultado}} resultado(s) em {{ area }} :
+    </p>
+  </div>
   {% else %}
   <p class="flow-text">Encontrado {{resultado}} resultado(s):</p>
   {% endif %}

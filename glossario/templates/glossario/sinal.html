@@ -172,12 +172,26 @@
 
   <!-- Sinais relacionados -->
 
+  {% if sinais_relacionados %}
   <div class="col s12">
     <h5 class="center">Sinais Relacionados</h5>
     {% include 'glossario/glossariosRelacionados.html' %}
-    
   </div>
-</div>
+  {% endif %}
 
+  <!-- Comentarios -->
+  <!-- {% load comments %}
+  <div class="container center no-padding-right-left">
+    {% get_comment_count for sinal as comment_count %}
+    Numero de comentarios :{{ comment_count }} .
+    {% if comment_count %}
+    <hr/>
+    <div class="comments">
+      {% render_comment_list for sinal %}
+    </div>
+    {% endif %}
+
+    {% render_comment_form for sinal %} -->
+</div>
 
 {% endblock %}

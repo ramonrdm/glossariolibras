@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from django.forms.models import ModelChoiceField
-from glossario.models import Glossario, Sinal, CM, UserGlossario, GrupoGlossarios
+from glossario.models import Glossario, Sinal, CM, UserGlossario, Area
 from django.conf import settings
 from glossario.widgets import VideoInput, ImageSelectLocalizacao, ImageSelectMao, ImageSelectMovimentacao
 from django.core.exceptions import ValidationError
@@ -14,11 +14,11 @@ class GlossarioForm(forms.ModelForm):
         model = Glossario
         exclude = ['link', 'data_criacao']
 
-class GrupoGlossarioForm(forms.ModelForm):
+class AreaForm(forms.ModelForm):
     class Meta:
-        model = GrupoGlossarios
-        exclude = ['link', 'data_criacao']
-
+        model = Area
+        fields = ['nome', 'parent']
+        exclude = ['slug']
 
 class SinalForm(forms.ModelForm):
 
@@ -79,6 +79,8 @@ class SinalForm(forms.ModelForm):
 class PesquisaSinaisForm(forms.ModelForm):
     busca = forms.CharField(required=False, label="",  widget=forms.TextInput(
         attrs={'id': 'search', 'type': 'search', 'placeholder': 'Pesquisar em glossário'}))
+
+    area = forms.ModelChoiceField(queryset=Area.objects.all())
 
     class Meta:
         model = Sinal

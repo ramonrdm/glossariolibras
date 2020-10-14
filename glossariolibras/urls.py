@@ -9,7 +9,7 @@ from django.urls import reverse
 from django.shortcuts import redirect
 from django_registration.backends.one_step.views import RegistrationView
 from glossario.forms import CustomRegistrationForm
-from django.conf.urls import url, include
+from django.conf.urls import url, include, re_path
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -18,11 +18,12 @@ urlpatterns = [
     path('logout/', views.sair, name='logout'),
     path('equipe', views.equipe, name='equipe'),
     path('pesquisa', views.pesquisa, name='pesquisa'),
+    path('pesquisa/<slug:area>', views.pesquisa, name='pesquisa'),
     path('contato', views.contato, name='contato'),
     path('historia', views.historia, name='historia'),
     path('sinal/<int:sinal>', views.sinal, name='sinal'),
     url(r'^favicon\.ico$',RedirectView.as_view(url='/static/img/marca_glossario2.png')),
-    path('<slug:glossario>/', views.glossarioSelecionado, name='glossarios'),
+    path('glossario/<slug:glossario>/', views.glossarioSelecionado, name='glossarios'),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
     url(r'^accounts/register/',
             RegistrationView.as_view(success_url='/profile/', form_class=CustomRegistrationForm),
@@ -31,5 +32,7 @@ urlpatterns = [
     url(r'^accounts/', include('django_registration.backends.activation.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
     path('ratings/', include('star_ratings.urls', namespace='ratings')),
+    path(r'comments/', include('django_comments_xtd.urls')),
+
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
