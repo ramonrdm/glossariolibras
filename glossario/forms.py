@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from django.forms.models import ModelChoiceField
-from glossario.models import Glossario, Sinal, CM, UserGlossario, Area
+from glossario.models import Glossario, Sinal, CM, UserGlossario, Area, Comment
 from django.conf import settings
 from glossario.widgets import VideoInput, ImageSelectLocalizacao, ImageSelectMao, ImageSelectMovimentacao
 from django.core.exceptions import ValidationError
@@ -107,3 +107,8 @@ class CustomRegistrationForm(RegistrationForm):
     class Meta:
         model = UserGlossario
         fields = ['email', 'nome_completo', 'password1', 'password2']
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['comentario']

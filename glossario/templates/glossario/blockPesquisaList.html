@@ -1,7 +1,9 @@
 <div class="container center no-padding-right-left">
   {% if glossario %}
   <div>
+    {% if glossario.imagem %}
     <img class="circle left glossario-icon" src="{{ glossario.imagem.url }}" />
+    {% endif %}
     <p class="flow-text ">
       Encontrado {{resultado}} resultado(s) em
       <a href="{{ glossario.link }}" style="color:darkblue">{{ glossario.nome }}</a>

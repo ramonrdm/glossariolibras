@@ -8,7 +8,7 @@ from django.contrib.auth.models import Group
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.conf import settings
-from glossario.models import Glossario, Sinal, UserGlossario
+from glossario.models import Glossario, Sinal, UserGlossario, Area
 
 
 @receiver(post_save, sender=Glossario)
@@ -32,6 +32,10 @@ def set_new_user_group(sender, instance, **kwargs):
     sugestoes.membros.add(user)
     membros_group = Group.objects.get_or_create(name='membros')[0]
     membros_group.user_set.add(user)
+
+    area, created = Area.objects.get_or_create(nome="Superior")
+    area.slug= 'superior'
+    area.save()
 
 
 @receiver(post_save, sender=Sinal)
@@ -73,12 +77,14 @@ def update_upload_path(sender, instance, created, **kwargs):
                     arquivo_video_converter
                 ), capture_output=True, shell=True, check=False)
                 duration = output.stdout.decode()
-                duration = math.ceil(int(duration)/4)
+                # duracao menos 60 para remover a soma dos frames inicias com os finais
+                duration_preview = math.ceil((int(duration)-60)/4)
 
                 nome_preview = str(instance.id)+"-preview%3d.png"
                 arquivo_preview = pasta_sinal_preview+'/'+nome_preview
-                subprocess.call("ffmpeg -i {0} -vf select='not(mod(n\,{1}))' -vsync vfr {2}".format(
-                    arquivo_video_converter, duration, arquivo_preview), shell=True)
+                # valor 15 para pular os primeiros frames
+                subprocess.call("ffmpeg -i {0} -vf select='between(n\,15\,{1})*not(mod(n\,{2}))' -vsync vfr {3}".format(
+                    arquivo_video_converter, int(duration)-45,duration_preview, arquivo_preview), shell=True)
                 # Atualiza path dos preview
                 for i, preview in enumerate(preview_fields):
                     nome_relativo_preview = "sinal_preview/" + \

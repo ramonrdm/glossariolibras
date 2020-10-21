@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-
 from mptt.models import MPTTModel, TreeForeignKey
-
 from django.db.models import FileField, DateTimeField
 from django.core.files import File
 from django.contrib.auth import hashers
@@ -45,7 +43,6 @@ class UserManagerGlossario(BaseUserManager):
 
         return self._create_user(email, nome_completo, password, **extra_fields)
 
-
 class UserGlossario(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = "Usuário"
@@ -85,7 +82,6 @@ class Area(MPTTModel):
     def __str__(self):
         return self.nome.title()
 
-
 class Glossario(models.Model):
 
     class Meta:
@@ -93,6 +89,12 @@ class Glossario(models.Model):
         ordering = ['nome']
         unique_together = ('nome', 'area')
 
+    def get_default_area():
+        """ Cria area padrão Superior caso não exista  """
+        area, created = Area.objects.get_or_create(nome="Superior")
+        area.slug= 'superior'
+        area.save()
+        return area
 
     max_length_name = 100
     nome = models.CharField('Nome do Glossário', max_length=max_length_name, unique=True,
@@ -108,8 +110,7 @@ class Glossario(models.Model):
     video = FileField('Vídeo', blank=True)
     visivel = models.BooleanField("Visivel", default=True)
 
-    area = models.ForeignKey(
-        Area, verbose_name='Área',blank=True, null=True, on_delete=models.SET_DEFAULT, default=None)
+    area = models.ForeignKey(Area, verbose_name='Área', on_delete=models.SET_DEFAULT, default=get_default_area)
 
     def sinais_number(self):
         return Sinal.objects.filter(publicado=True, glossario=self).count()
@@ -119,6 +120,8 @@ class Glossario(models.Model):
 
     def __str__(self):
         return self.nome.title()
+    
+
             
 
 class CM (models.Model):
@@ -233,3 +236,16 @@ class Sinal(models.Model):
         pasta_sinal_preview = '{0}/sinal_preview'.format(url_base)
         pasta_sinal_videos = '{0}/sinal_videos'.format(url_base)
         super().save(*args, **kwargs)
+
+class Comment(models.Model):
+    sinal = models.ForeignKey(Sinal, on_delete=models.CASCADE, related_name='comments')
+    usuario = models.ForeignKey(UserGlossario, verbose_name='Usuário', on_delete=models.CASCADE)
+    comentario = models.TextField()
+    criado_em = models.DateTimeField(auto_now_add=True)
+    ativo = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['criado_em']
+
+    def __str__(self):
+        return '´Comentario {} por {}'.format(self.comentario, self.nome)
