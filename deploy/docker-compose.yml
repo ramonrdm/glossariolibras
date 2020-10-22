@@ -1,4 +1,4 @@
-version: '3.2'
+version: '3.4'
 
 services:
 
@@ -19,7 +19,12 @@ services:
       - POSTGRES_PASSWORD=libras
       - POSTGRES_DB_HOST=db_postgres
       - EMAIL_HOST_USER=libras
-      - EMAIL_HOST_PASSWORD=libras   
+      - EMAIL_HOST_PASSWORD=libras
+    # Espera pela porta TCP 5432 para rodar servidor
+    command: sh -c "./wait-for-it.sh db_postgres:5432 &&
+            python3 manage.py migrate &&
+            python3 manage.py collectstatic --noinput &&
+            python3 manage.py runserver 0.0.0.0:8000"
 
   db_postgres:
     image: postgres:9.6.6
@@ -32,3 +37,5 @@ services:
       - POSTGRES_PASSWORD=libras
       - EMAIL_HOST_USER=libras
       - EMAIL_HOST_PASSWORD=libras
+    volumes:
+      - ./scripts:/docker-entrypoint-initdb.d

@@ -10,10 +10,6 @@ WORKDIR /code
 COPY . /code/
 RUN pip install -r requirements.txt
 
-# Instala unaccent extension
-COPY install-unaccent.sh /docker-entrypoint-initdb.d/
-
-
 EXPOSE 8000
 
 CMD python3 manage.py migrate && \

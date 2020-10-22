@@ -91,10 +91,10 @@ class Glossario(models.Model):
 
     def get_default_area():
         """ Cria area padrão Superior caso não exista  """
-        area, created = Area.objects.get_or_create(nome="Superior")
+        area = Area.objects.get_or_create(nome="Superior")[0]
         area.slug= 'superior'
         area.save()
-        return area
+        return area.id
 
     max_length_name = 100
     nome = models.CharField('Nome do Glossário', max_length=max_length_name, unique=True,
@@ -120,9 +120,6 @@ class Glossario(models.Model):
 
     def __str__(self):
         return self.nome.title()
-    
-
-            
 
 class CM (models.Model):
     """Total de 261 configurações de mão divididas em 10 grupos."""
