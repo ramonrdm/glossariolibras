@@ -4,4 +4,3 @@ Pillow
 psycopg2
 django-star-ratings
 django-mptt
-django-comments-xtd
