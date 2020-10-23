@@ -70,6 +70,9 @@ class UserGlossario(AbstractBaseUser, PermissionsMixin):
         return self.nome_completo
 
 class Area(MPTTModel):
+    class Meta:
+        verbose_name = 'Área'
+        ordering = ['nome']
 
     class MPTTMeta:
         order_insertion_by = ['nome']
@@ -235,6 +238,10 @@ class Sinal(models.Model):
         super().save(*args, **kwargs)
 
 class Comment(models.Model):
+    class Meta:
+        verbose_name = 'Comentário'
+        ordering = ['sinal']
+
     sinal = models.ForeignKey(Sinal, on_delete=models.CASCADE, related_name='comments')
     usuario = models.ForeignKey(UserGlossario, verbose_name='Usuário', on_delete=models.CASCADE)
     comentario = models.TextField()
