@@ -11,6 +11,7 @@ from django.utils.html import format_html
 from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from glossario.models import UserGlossario
+from django.template.defaultfilters import slugify
 
 class GlossarioAdmin(admin.ModelAdmin):
     
@@ -48,9 +49,7 @@ class GlossarioAdmin(admin.ModelAdmin):
         return False
 
     def save_model(self, request, obj, form, change):
-        gLink = 'glossario/'+obj.nome.lower()
-        gLink = gLink.replace(" ", "-")
-        gLink = normalize('NFKD', gLink).encode('ASCII', 'ignore').decode('ASCII')
+        gLink = 'glossario/' + slugify(obj.nome)
         obj.link = gLink
         obj.save()  
 
