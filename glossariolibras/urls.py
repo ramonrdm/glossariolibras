@@ -9,7 +9,7 @@ from django.urls import reverse
 from django.shortcuts import redirect
 from django_registration.backends.one_step.views import RegistrationView
 from glossario.forms import CustomRegistrationForm
-from django.conf.urls import url, include, re_path
+from django.conf.urls import url, include
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -32,7 +32,8 @@ urlpatterns = [
     url(r'^accounts/', include('django_registration.backends.activation.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
     path('ratings/', include('star_ratings.urls', namespace='ratings')),
-    path(r'comments/', include('django_comments_xtd.urls')),
+    # url para atualizar previews e urls dos glossarios
+    path('update',views.update, name='update'),
 
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

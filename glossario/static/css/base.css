@@ -374,6 +374,9 @@ html, body {
     width: auto;
 }
 
+strong { font-weight: bold; }
+hr { color: white;}
+
 /* Numero de sinais */
 
 .glossarioSinais {
@@ -479,6 +482,13 @@ html, body {
         padding-left: 0;
         position: relative;
         padding-top: 37px;
+    }
+    .blockContainer {
+        margin-bottom: 25%;
+        padding-left: 0px;
+        position: relative;
+        margin-top: 7%;
+        transition-duration: 0.4s;
     }
     .sidenav {
         padding-top: 0;

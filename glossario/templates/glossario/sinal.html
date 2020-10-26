@@ -178,20 +178,32 @@
     {% include 'glossario/glossariosRelacionados.html' %}
   </div>
   {% endif %}
-
-  <!-- Comentarios -->
-  <!-- {% load comments %}
-  <div class="container center no-padding-right-left">
-    {% get_comment_count for sinal as comment_count %}
-    Numero de comentarios :{{ comment_count }} .
-    {% if comment_count %}
-    <hr/>
-    <div class="comments">
-      {% render_comment_list for sinal %}
-    </div>
-    {% endif %}
-
-    {% render_comment_form for sinal %} -->
 </div>
+
+<!-- Comentarios -->
+{% if user.is_authenticated %}
+<div class="row container">
+  <h4>Comentário</h4>
+  {% for comentario in comentarios %}
+  <div class="" style="padding: 10px;">
+    <p class="font-weight-bold">
+      <strong>  
+        {{ comentario.usuario.nome_completo }}
+        <span class=" text-muted font-weight-normal">
+          {{ comentario.criado_em }}
+        </span>
+      </strong>
+    </p>
+    {{ comentario.comentario | linebreaks }}
+  </div>
+  {% endfor %}
+  <h3>Deixe um comentário</h3>
+  <form method="post" style="margin-top: 1.3em;">
+    {{ form_comentario.as_p }}
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+  </form>
+</div>
+{% endif %}
 
 {% endblock %}

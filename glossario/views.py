@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.shortcuts import render, redirect
-from glossario.models import Glossario, Sinal, UserGlossario, Localizacao, Movimentacao, Area
-from glossario.forms import PesquisaSinaisForm
+from django.shortcuts import render, redirect, get_object_or_404
+from glossario.models import Glossario, Sinal, UserGlossario, Localizacao, Movimentacao, Area, Comment
+from glossario.forms import PesquisaSinaisForm, CommentForm
 from django.db.models import Q
 from django.contrib.auth import login
 from django.contrib.auth import logout
@@ -13,7 +13,14 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
+from django.views.generic.edit import FormView
 
+
+import subprocess
+import math
+from django.conf import settings
+import os
+from django.template.defaultfilters import slugify
 
 def index(request, glossario=None):
     glossarios = Glossario.objects.filter(visivel=True)
@@ -136,37 +143,56 @@ def busca(formSinais):
                 sinais = sinais.filter(Q(cmE=mao) | Q(cmD=mao))
     return sinais    
 
-# def busca_area(area):
-
-        
-#     return Sinal.objects.filter(query)
-
 def sinal(request, sinal=None, glossario=None):
     if sinal:
         try:
             sinal = Sinal.objects.get(id=sinal)
             glossario = sinal.glossario
+            comentarios = sinal.comments.filter(ativo=True)
 
         except Sinal.DoesNotExist:
             sinal = None
+            comentarios = None
 
     if request.method == 'POST':
         sinais = sinaisGlossario = None
 
         request.session['sinaisCheckboxes'] = request.POST.copy()
+        # Pesquisa
         formSinais = PesquisaSinaisForm(request.session)
         if formSinais.is_valid():
             sinaisGlossario = Sinal.objects.filter(
                 glossario=glossario).filter(publicado=True)
+        # Comentarios
+        form_comentario = CommentForm(data=request.POST)
+        if form_comentario.is_valid():
+            if request.user.is_authenticated:
+                usuario = request.user
+            # Create Comment object but don't save to database yet
+            novo_comentario = form_comentario.save(commit=False)
+            novo_comentario.usuario = usuario
+            novo_comentario.sinal = sinal
+            novo_comentario.save()
+
+            sinais_relacionados = get_sinais_relacionados(sinal)
+            formSinais = PesquisaSinaisForm()
+            form_comentario = CommentForm()
+            return render(request, "glossario/sinal.html", {'sinal': sinal,'glossario': glossario,
+                'formSinais': formSinais, 'sinais_relacionados':sinais_relacionados,
+                'form_comentario': form_comentario, 'comentarios': comentarios})
 
         resultado = len(sinais) if sinais else None
-        return render(request, 'glossario/pesquisa.html', {'sinais': sinais, 'sinaisGlossario': sinaisGlossario, 'resultado': resultado, 'glossario':
-                                                           glossario, 'formSinais': formSinais, })
+        return render(request, 'glossario/pesquisa.html', {'sinais': sinais,
+            'sinaisGlossario': sinaisGlossario, 'resultado': resultado, 'glossario': glossario,
+            'formSinais': formSinais, 'form_comentario': form_comentario})
     else:
         # Procura sinais relacionados
         sinais_relacionados = get_sinais_relacionados(sinal)
         formSinais = PesquisaSinaisForm()
-        return render(request, "glossario/sinal.html", {'sinal': sinal,'glossario': glossario, 'formSinais': formSinais, 'sinais_relacionados':sinais_relacionados})
+        form_comentario = CommentForm()
+        return render(request, "glossario/sinal.html", {'sinal': sinal,'glossario': glossario,
+            'formSinais': formSinais, 'sinais_relacionados':sinais_relacionados,
+            'form_comentario': form_comentario, 'comentarios': comentarios})
 
 def get_sinais_relacionados(sinal):
     sinais_relacionados = Sinal.objects.exclude(id=sinal.id).filter(publicado=True)
@@ -204,10 +230,56 @@ def equipe(request):
 
 
 def contato(request):
-
     return render(request, "glossario/contato.html")
 
 
 def sair(request):
     logout(request)
     return render(request, 'glossario/index.html')
+
+def update(request):
+    # Atualiza preview dos sinais
+    sinais = Sinal.objects.all()
+    url_base = settings.MEDIA_ROOT
+    pasta_sinal_preview = '{0}/sinal_preview'.format(url_base)
+
+    # Verifica se a pasta sinal_preview existe
+    if not os.path.exists(pasta_sinal_preview):
+        os.makedirs(pasta_sinal_preview)
+
+    for sinal in sinais:
+        preview_fields = [sinal.preview1, sinal.preview2,
+                          sinal.preview3, sinal.preview4]
+
+        arquivo_video_converter = str(url_base) +"/"+ str(sinal.video_sinal)
+
+        # Pega o numero total de frames do video
+        output = subprocess.run("ffprobe -v error -select_streams v:0 -show_entries stream=nb_frames -of default=nokey=1:noprint_wrappers=1 {0}".format(
+            arquivo_video_converter
+        ), capture_output=True, shell=True, check=False)
+        duration = output.stdout.decode()
+
+        # duracao menos 60 para remover a soma dos frames inicias com os finais
+        duration_preview = math.ceil((int(duration)-60)/4)
+
+        nome_preview = str(sinal.id)+"-preview%3d.png"
+        arquivo_preview = pasta_sinal_preview+'/'+nome_preview
+        # valor 15 para pular os primeiros frames
+        subprocess.call("ffmpeg -i {0} -vf select='between(n\,15\,{1})*not(mod(n\,{2}))' -vsync vfr {3}".format(
+            arquivo_video_converter, int(duration)-45,duration_preview, arquivo_preview), shell=True)
+        # Atualiza path dos preview
+        for i, preview in enumerate(preview_fields):
+            nome_relativo_preview = "sinal_preview/" + \
+                str(sinal.id)+"-preview00"+str(i+1)+".png"
+            Sinal.objects.filter(id=sinal.id).update(
+                **{"%s" % preview.field.name: nome_relativo_preview}
+            )
+    # Atualiza url dos glossarios
+    glossarios = Glossario.objects.all()
+
+    for glossario in glossarios:
+        gLink = 'glossario/' + slugify(glossario.nome)
+        glossario.link = gLink
+        glossario.save()
+
+    return render(request, 'glossario/contato.html')

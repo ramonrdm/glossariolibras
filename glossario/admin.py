@@ -11,6 +11,7 @@ from django.utils.html import format_html
 from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from glossario.models import UserGlossario
+from django.template.defaultfilters import slugify
 
 class GlossarioAdmin(admin.ModelAdmin):
     
@@ -48,9 +49,7 @@ class GlossarioAdmin(admin.ModelAdmin):
         return False
 
     def save_model(self, request, obj, form, change):
-        gLink = 'glossario/'+obj.nome.lower()
-        gLink = gLink.replace(" ", "-")
-        gLink = normalize('NFKD', gLink).encode('ASCII', 'ignore').decode('ASCII')
+        gLink = 'glossario/' + slugify(obj.nome)
         obj.link = gLink
         obj.save()  
 
@@ -65,7 +64,7 @@ class GlossarioAdmin(admin.ModelAdmin):
 class SinalAdmin(admin.ModelAdmin):
     form = SinalForm
     readonly_fields=('data_criacao', 'postador')
-    list_display = ('portugues', 'video_tag_sinal', 'ingles', 'glossario', 'image_tag_cmE', 'image_tag_cmD', 'image_tag_localizacao', 'image_tag_movimentacao' , 'publicado')
+    list_display = ('portugues', 'preview', 'ingles', 'glossario', 'image_tag_cmE', 'image_tag_cmD', 'image_tag_localizacao', 'image_tag_movimentacao' , 'publicado')
     list_filter = ('glossario', 'localizacao', 'movimentacao', 'publicado')
     actions = ['publicar_sinal',]
     search_fields = ('portugues', 'ingles')
@@ -99,9 +98,9 @@ class SinalAdmin(admin.ModelAdmin):
         queryset.update(publicado=True)
     publicar_sinal.short_description = 'Publicar sinais selecionados'
 
-    def video_tag_sinal(self, obj):
-        if obj.video_sinal:
-            return format_html('<video loop src="/media/{}" height="70" style="cursor:pointer;" onclick="this.paused?this.play():this.pause()" />'.format(obj.video_sinal))
+    def preview(self, obj):
+        if obj.preview2:
+            return format_html('<img class="preview" src="/media/{}" height="70" />'.format(obj.preview2))
         else:
             return format_html('<p>Sem Imagem</p>')
 
@@ -176,17 +175,20 @@ class UserAdmin(BaseUserAdmin):
 
 class AreaAdmin(admin.ModelAdmin):
     form = AreaForm
-
-    def save_model(self, request, obj, form, change):
-        slug = obj.nome.lower()
-        slug = slug.replace(" ", "-")
-        slug = normalize('NFKD', slug).encode('ASCII', 'ignore').decode('ASCII')
-        obj.slug = slug
-        obj.save() 
     
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('usuario', 'comentario', 'sinal', 'criado_em', 'ativo')
+    list_filter = ('ativo', 'criado_em')
+    search_fields = ('usuario', 'comentario')
+    readonly_fields = ('usuario','criado_em','sinal')
+    actions = ['approve_comments']
+
+    def approve_comments(self, request, queryset):
+        queryset.update(active=True)
 
 admin.site.register(UserGlossario, UserAdmin)
 admin.site.register(Glossario, GlossarioAdmin)
 admin.site.register(Sinal, SinalAdmin)
 admin.site.register(CM, CMAdmin)
 admin.site.register(Area, AreaAdmin)
+admin.site.register(Comment, CommentAdmin)
