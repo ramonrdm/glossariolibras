@@ -32,6 +32,8 @@ urlpatterns = [
     url(r'^accounts/', include('django_registration.backends.activation.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
     path('ratings/', include('star_ratings.urls', namespace='ratings')),
+    # url para atualizar previews e urls dos glossarios
+    path('update',views.update, name='update'),
 
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
