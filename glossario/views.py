@@ -239,15 +239,27 @@ def sair(request):
 
 def update(request):
     # Atualiza preview dos sinais
-    sinais = Sinal.objects.all()
+    sinais = Sinal.objects.all().order_by("id")
     url_base = settings.MEDIA_ROOT
     pasta_sinal_preview = '{0}/sinal_preview'.format(url_base)
 
     # Verifica se a pasta sinal_preview existe
     if not os.path.exists(pasta_sinal_preview):
         os.makedirs(pasta_sinal_preview)
+    
+    # Atualiza url dos glossarios
+    glossarios = Glossario.objects.all()
+
+    for glossario in glossarios:
+        gLink = 'glossario/' + slugify(glossario.nome)
+        glossario.link = gLink
+        glossario.save()
 
     for sinal in sinais:
+        if not sinal.video_sinal:
+            continue
+        if sinal.preview1:
+            continue
         preview_fields = [sinal.preview1, sinal.preview2,
                           sinal.preview3, sinal.preview4]
 
@@ -257,6 +269,7 @@ def update(request):
         output = subprocess.run("ffprobe -v error -select_streams v:0 -show_entries stream=nb_frames -of default=nokey=1:noprint_wrappers=1 {0}".format(
             arquivo_video_converter
         ), capture_output=True, shell=True, check=False)
+        
         duration = output.stdout.decode()
 
         # duracao menos 60 para remover a soma dos frames inicias com os finais
@@ -274,12 +287,6 @@ def update(request):
             Sinal.objects.filter(id=sinal.id).update(
                 **{"%s" % preview.field.name: nome_relativo_preview}
             )
-    # Atualiza url dos glossarios
-    glossarios = Glossario.objects.all()
 
-    for glossario in glossarios:
-        gLink = 'glossario/' + slugify(glossario.nome)
-        glossario.link = gLink
-        glossario.save()
 
     return render(request, 'glossario/contato.html')
