@@ -127,7 +127,7 @@ def busca(formSinais):
         sinais = sinais.filter(glossario=glossario)
 
     if resultadoTraducao != '':
-        sinais = sinais.filter(Q(portugues__unaccent__icontains=resultadoTraducao) | Q(
+        sinais = sinais.filter(Q(portugues__icontains=resultadoTraducao) | Q(
             ingles__icontains=resultadoTraducao))
     else:
     # Se o campo for nulo ignora ele na pesquisa
@@ -201,7 +201,7 @@ def get_sinais_relacionados(sinal):
     query_pt = Q()
     related_palavras = sinal.portugues.split()
     for palavra in related_palavras:
-        query_pt |= Q(portugues__unaccent__icontains=palavra)
+        query_pt |= Q(portugues__icontains=palavra)
 
     # Palavras semelhantes ingles
     query_en = Q()
