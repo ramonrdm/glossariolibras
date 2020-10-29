@@ -134,9 +134,15 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 AUTH_USER_MODEL = 'glossario.UserGlossario'
 ACCOUNT_ACTIVATION_DAYS = 3
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 EMAIL_HOST = "smtp.sistemas.ufsc.br"
 EMAIL_PORT = 465
 EMAIL_HOST_USER = get_env_value('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = get_env_value('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = os.getenv('DJANGO_SENDMAIL_FROM')
 EMAIL_USE_SSL = True
+
+# Redireciona para index apos um login ou logout
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'login'

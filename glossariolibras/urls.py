@@ -10,7 +10,7 @@ from django.shortcuts import redirect
 from django_registration.backends.one_step.views import RegistrationView
 from glossario.forms import CustomRegistrationForm
 from django.conf.urls import url, include
-
+from glossario.views import SignUpView, ActivateAccount
 urlpatterns = [
     path('', views.index, name='index'),
     path('admin/', lambda _: redirect(to="glossario/sinal/")),
@@ -25,12 +25,18 @@ urlpatterns = [
     url(r'^favicon\.ico$',RedirectView.as_view(url='/static/img/marca_glossario2.png')),
     path('glossario/<slug:glossario>/', views.glossarioSelecionado, name='glossarios'),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
-    url(r'^accounts/register/',
-            RegistrationView.as_view(success_url='/profile/', form_class=CustomRegistrationForm),
-            name='django_registration_register'),
-    url(r'^accounts/login/$', RedirectView.as_view(url='/admin/login/', permanent=True), name='index'),
-    url(r'^accounts/', include('django_registration.backends.activation.urls')),
-    url(r'^accounts/', include('django.contrib.auth.urls')),
+    # url(r'^accounts/register/',
+    #         RegistrationView.as_view(success_url='', form_class=CustomRegistrationForm),
+    #         name='django_registration_register'),
+    # url(r'^accounts/login/$', RedirectView.as_view(url='/admin/login/', permanent=True), name='index'),
+    # url(r'^accounts/', include('django_registration.backends.activation.urls')),
+    # url(r'^accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('signup/', SignUpView.as_view(), name='signup'),
+    path('activate/<uidb64>/<token>/', ActivateAccount.as_view(), name='activate'),
+    # url(r'^signup/$', views.signup, name='signup'),
+    # url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+    #     views.activate, name='activate'),
     path('ratings/', include('star_ratings.urls', namespace='ratings')),
     # url para atualizar previews e urls dos glossarios
     path('update',views.update, name='update'),

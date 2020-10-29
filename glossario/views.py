@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
+from django.http import HttpResponse
+
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect, get_object_or_404
 from glossario.models import Glossario, Sinal, UserGlossario, Localizacao, Movimentacao, Area, Comment
-from glossario.forms import PesquisaSinaisForm, CommentForm
+from glossario.forms import PesquisaSinaisForm, CommentForm, CustomRegistrationForm
 from django.db.models import Q
 from django.contrib.auth import login
 from django.contrib.auth import logout
@@ -22,6 +24,113 @@ from django.conf import settings
 import os
 from django.template.defaultfilters import slugify
 
+from django.urls import reverse_lazy
+from django.views import generic
+from django.views.generic import View
+
+from django.core.mail import EmailMessage
+from django.contrib import messages
+
+class SignUpView(generic.CreateView):
+    form_class = CustomRegistrationForm
+    success_url = reverse_lazy('login')
+    template_name = 'registration/signup.html'
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+
+            user = form.save(commit=False)
+            user.is_active = False # Deactivate account till it is confirmed
+            # user.save()
+
+            current_site = get_current_site(request)
+            mail_subject = 'Ativar sua conta Glossario'
+            message = render_to_string('registration/account_activation_email.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user),
+            })
+
+            to_email = form.cleaned_data.get('email')
+            email = EmailMessage(
+                        mail_subject, message, to=[to_email]
+            )
+            email.send()
+            user.save()
+            # user.email_user(subject, message)
+
+            messages.success(request, ('Please Confirm your email to complete registration.'))
+
+            return redirect('login')
+
+        return render(request, self.template_name, {'form': form})
+
+class ActivateAccount(View):
+
+    def get(self, request, uidb64, token, *args, **kwargs):
+        try:
+            uid = force_text(urlsafe_base64_decode(uidb64))
+            user = UserGlossario.objects.get(pk=uid)
+        except (TypeError, ValueError, OverflowError, UserGlossario.DoesNotExist):
+            user = None
+
+        if user is not None and account_activation_token.check_token(user, token):
+            user.is_active = True
+            user.profile.email_confirmed = True
+            user.save()
+            login(request, user)
+            messages.success(request, ('Your account have been confirmed.'))
+            return redirect('index')
+        else:
+            messages.warning(request, ('The confirmation link was invalid, possibly because it has already been used.'))
+            return redirect('index')
+
+# def signup(request):
+#     if request.method == 'POST':
+#         form = CustomRegistrationForm(request.POST)
+#         if form.is_valid():
+#             user = form.save(commit=False)
+#             user.is_active = False
+#             current_site = get_current_site(request)
+#             mail_subject = 'Ativar sua conta Glossario'
+#             message = render_to_string('registration/account_activation_email.html', {
+#                 'user': user,
+#                 'domain': current_site.domain,
+#                 'uid':urlsafe_base64_encode(force_bytes(user.pk)),
+#                 'token':account_activation_token.make_token(user),
+#             })
+#             to_email = form.cleaned_data.get('email')
+#             email = EmailMessage(
+#                         mail_subject, message, to=[to_email]
+#             )
+#             email.send()
+#             user.save()
+#             return HttpResponse('Please confirm your email address to complete the registration')
+#     else:
+#         form = CustomRegistrationForm()
+#     return render(request, 'registration/signup.html', {'form': form})
+
+# def activate(request, uidb64, token):
+#     try:
+#         uid = force_text(urlsafe_base64_decode(uidb64))
+#         user = UserGlossario.objects.get(pk=uid)
+#     except(TypeError, ValueError, OverflowError, UserGlossario.DoesNotExist):
+#         user = None
+#     if user is not None and account_activation_token.check_token(user, token):
+#         user.is_active = True
+#         user.save()
+#         login(request, user)
+#         # return redirect('home')
+#         return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+#     else:
+#         return HttpResponse('Activation link is invalid!')
+
 def index(request, glossario=None):
     glossarios = Glossario.objects.filter(visivel=True)
     areas = Area.objects.all()
@@ -29,7 +138,16 @@ def index(request, glossario=None):
     formSinais = PesquisaSinaisForm()
     sinais_pub = Sinal.objects.filter(publicado=True).count()
 
-    return render(request, 'glossario/index.html', {'glossarios': glossarios, 'glossario': glossario,'areas':areas, 'area':area, 'formSinais': formSinais, 'sinais_pub': sinais_pub})
+    context = {
+        'glossarios': glossarios,
+        'glossario': glossario,
+        'areas':areas,
+        'area':area,
+        'formSinais': formSinais,
+        'sinais_pub': sinais_pub
+    }
+
+    return render(request, 'glossario/index.html', context)
 
 
 def glossarioSelecionado(request, glossario):
@@ -51,17 +169,22 @@ def glossarioSelecionado(request, glossario):
 
         resultado = len(sinais) if sinais else None
 
-        return render(request, 'glossario/pesquisa.html', {
+        context = {
             'sinais': sinais,
             'resultado': resultado,
             'glossario': glossario,
             'formSinais': formSinais
-        })
+        }
+        return render(request, 'glossario/pesquisa.html', context)
     else:
-        formSinais = PesquisaSinaisForm(request.session) if request.session.get(
-            'sinaisCheckboxes') else PesquisaSinaisForm()
+        formSinais = PesquisaSinaisForm(request.session) if request.session.get('sinaisCheckboxes') else PesquisaSinaisForm()
 
-        return render(request, 'glossario/glossario.html', {'glossario': glossario, 'glossarios_relacionados':glossarios_relacionados, 'formSinais': formSinais})
+        context = {
+            'glossario': glossario,
+            'formSinais': formSinais,
+            'glossarios_relacionados': glossarios_relacionados
+        }
+        return render(request, 'glossario/glossario.html', context)
 
 
 def pesquisa(request, area=None):
@@ -121,13 +244,14 @@ def busca(formSinais):
     glossario = formSinais.cleaned_data['glossario']
     area = formSinais.cleaned_data['area']
     sinais = Sinal.objects.filter(publicado=True)
+
     if area != None:
         sinais = busca_na_area(area)
     elif glossario != None:
         sinais = sinais.filter(glossario=glossario)
-
+    # Tratar busca sem acento
     if resultadoTraducao != '':
-        sinais = sinais.filter(Q(portugues__unaccent__icontains=resultadoTraducao) | Q(
+        sinais = sinais.filter(Q(portugues__icontains=resultadoTraducao) | Q(
             ingles__icontains=resultadoTraducao))
     else:
     # Se o campo for nulo ignora ele na pesquisa
@@ -156,8 +280,8 @@ def sinal(request, sinal=None, glossario=None):
 
     if request.method == 'POST':
         sinais = sinaisGlossario = None
-
         request.session['sinaisCheckboxes'] = request.POST.copy()
+        
         # Pesquisa
         formSinais = PesquisaSinaisForm(request.session)
         if formSinais.is_valid():
@@ -168,7 +292,7 @@ def sinal(request, sinal=None, glossario=None):
         if form_comentario.is_valid():
             if request.user.is_authenticated:
                 usuario = request.user
-            # Create Comment object but don't save to database yet
+            # Cria objeto comentario sem salvar
             novo_comentario = form_comentario.save(commit=False)
             novo_comentario.usuario = usuario
             novo_comentario.sinal = sinal
@@ -177,22 +301,42 @@ def sinal(request, sinal=None, glossario=None):
             sinais_relacionados = get_sinais_relacionados(sinal)
             formSinais = PesquisaSinaisForm()
             form_comentario = CommentForm()
-            return render(request, "glossario/sinal.html", {'sinal': sinal,'glossario': glossario,
-                'formSinais': formSinais, 'sinais_relacionados':sinais_relacionados,
-                'form_comentario': form_comentario, 'comentarios': comentarios})
+
+            context = {
+                'glossario': glossario,
+                'formSinais': formSinais,
+                'form_comentario': form_comentario,
+                'sinal': sinal,
+                'sinais_relacionados':sinais_relacionados,
+                'comentarios': comentarios
+            }
+            return render(request, "glossario/sinal.html", context)
 
         resultado = len(sinais) if sinais else None
-        return render(request, 'glossario/pesquisa.html', {'sinais': sinais,
-            'sinaisGlossario': sinaisGlossario, 'resultado': resultado, 'glossario': glossario,
-            'formSinais': formSinais, 'form_comentario': form_comentario})
+        context = {
+            'glossario': glossario,
+            'formSinais': formSinais,
+            'form_comentario': form_comentario,
+            'sinais': sinais,
+            'sinaisGlossario': sinaisGlossario,
+            'resultado': resultado,
+        }
+        return render(request, 'glossario/pesquisa.html', )
     else:
         # Procura sinais relacionados
         sinais_relacionados = get_sinais_relacionados(sinal)
         formSinais = PesquisaSinaisForm()
         form_comentario = CommentForm()
-        return render(request, "glossario/sinal.html", {'sinal': sinal,'glossario': glossario,
-            'formSinais': formSinais, 'sinais_relacionados':sinais_relacionados,
-            'form_comentario': form_comentario, 'comentarios': comentarios})
+
+        context = {
+            'glossario': glossario,
+            'formSinais': formSinais,
+            'form_comentario': form_comentario,
+            'sinal': sinal,
+            'sinais_relacionados':sinais_relacionados,
+            'comentarios': comentarios
+        }
+        return render(request, "glossario/sinal.html", context)
 
 def get_sinais_relacionados(sinal):
     sinais_relacionados = Sinal.objects.exclude(id=sinal.id).filter(publicado=True)
@@ -200,8 +344,9 @@ def get_sinais_relacionados(sinal):
     # Palavras semelhantes portugues
     query_pt = Q()
     related_palavras = sinal.portugues.split()
+    # Tratar busca sem acento
     for palavra in related_palavras:
-        query_pt |= Q(portugues__unaccent__icontains=palavra)
+        query_pt |= Q(portugues__icontains=palavra)
 
     # Palavras semelhantes ingles
     query_en = Q()
@@ -217,12 +362,19 @@ def get_sinais_relacionados(sinal):
         Q(cmE=sinal.cmE) |
         Q(cmD=sinal.cmD) |
         Q(movimentacao=sinal.movimentacao)
-    )
+    )[:5]
         
     return sinais_relacionados
 
 def historia(request):
-    return render(request, "glossario/historia.html")
+    sinais_publicados = Sinal.objects.filter(publicado=True).count()
+    sinais_totais = Sinal.objects.all().count()
+
+    context = {
+        'sinais_publicados': sinais_publicados,
+        'sinais_totais': sinais_totais
+    }
+    return render(request, "glossario/historia.html", context)
 
 
 def equipe(request):
@@ -257,6 +409,7 @@ def update(request):
         output = subprocess.run("ffprobe -v error -select_streams v:0 -show_entries stream=nb_frames -of default=nokey=1:noprint_wrappers=1 {0}".format(
             arquivo_video_converter
         ), capture_output=True, shell=True, check=False)
+        output.wait()
         duration = output.stdout.decode()
 
         # duracao menos 60 para remover a soma dos frames inicias com os finais

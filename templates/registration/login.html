@@ -1,0 +1,20 @@
+{% extends 'glossario/base.html' %}
+{% block body %}
+<div class="row container" id="{{field.auto_id}}">
+    <div class="col l4 offset-l4 m6 offset-m3 s12">
+        <!-- <form method="post" class="formEnviarSinais" enctype="multipart/form-data"> -->
+        <h2 class="thin center">Login</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn waves-effect waves-light botaoEnviarSinal col l4  s4 right">login</button>
+            <a  class=" waves-effect waves-light left" href="{% url 'password_reset' %}">Esqueci minha senha</a>
+            <br>
+            <a class="waves-effect waves-blue" href="{% url 'signup' %}">
+            Criar Usuario
+            </a>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

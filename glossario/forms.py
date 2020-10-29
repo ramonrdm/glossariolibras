@@ -104,6 +104,7 @@ class CMForm(forms.ModelForm):
 
 
 class CustomRegistrationForm(RegistrationForm):
+    email = forms.EmailField(max_length=150)
     class Meta:
         model = UserGlossario
         fields = ['email', 'nome_completo', 'password1', 'password2']

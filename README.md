@@ -10,6 +10,21 @@ $ pip install -r requirements.txt
 $ sudo apt install ffmpeg
 ```
 
+## Como rodar o projeto
+É necessário o docker para rodar o seguinte comando na pasta deploy:
+```bash
+docker-compose up --build
+```
+
+Para inicializar com os sinais inicias e usuario admin, entre no container do glossario:
+```bash
+docker exec -it glossario_container /bin/bash
+```
+E rode o seguinte comando:
+```python
+./manage.py loaddata glossario/fixtures/initial.json
+```
+
 ## Comandos úteis
 Para fazer o dumpdata:
 
@@ -46,12 +61,6 @@ Rodar comandos dentro do container do Postgresql:
 
 ```bash
 docker exec -it [container_name] psql -U [postgres_user]
-```
-
-Criar Extensão para o  MySQL
-
-```bash
-CREATE EXTENSION unaccent;
 ```
 
 ## Desenvolvimento

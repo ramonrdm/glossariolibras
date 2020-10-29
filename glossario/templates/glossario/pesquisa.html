@@ -30,14 +30,18 @@
     <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
     {% endif %}
 
+    {% if page_obj.number|add:'-4' > 1 %}
+    <li><a href="?page={{ page_obj.number|add:'-5' }}">&hellip;</a></li>
+    {% endif %}
+
     <!-- Numeros  -->
     {% for num in sinais_page.paginator.page_range %}
-    {% if sinais_page.number == num %}
-    <li class="active blue"><a>{{ num }}</a></li>
-    {% else %}
-    <li class="waves-effect"><a
-        onclick="nextPage('{{ num }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}')">{{ num }}</a></li>
-    {% endif %}
+      {% if sinais_page.number == num %}
+      <li class="active blue"><a>{{ num }}</a></li>
+      {% else %}
+      <li class="waves-effect"><a
+          onclick="nextPage('{{ num }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}')">{{ num }}</a></li>
+      {% endif %}
     {% endfor %}
 
     <!-- Seta para Frente -->

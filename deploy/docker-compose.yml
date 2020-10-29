@@ -21,8 +21,7 @@ services:
       - EMAIL_HOST_USER=libras
       - EMAIL_HOST_PASSWORD=libras
     # Espera pela porta TCP 5432 para rodar servidor
-    command: sh -c "./wait-for-it.sh db_postgres:5432 &&
-            python3 manage.py migrate &&
+    command: sh -c "python3 manage.py migrate &&
             python3 manage.py collectstatic --noinput &&
             python3 manage.py runserver 0.0.0.0:8000"
 
@@ -37,5 +36,3 @@ services:
       - POSTGRES_PASSWORD=libras
       - EMAIL_HOST_USER=libras
       - EMAIL_HOST_PASSWORD=libras
-    volumes:
-      - ./scripts:/docker-entrypoint-initdb.d
