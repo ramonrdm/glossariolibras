@@ -1,5 +1,4 @@
 #!/bin/bash
-docker login
 echo "versão: "
 read v
 docker build -t glossario:$v .

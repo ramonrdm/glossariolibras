@@ -36,5 +36,3 @@ services:
       - POSTGRES_PASSWORD=libras
       - EMAIL_HOST_USER=libras
       - EMAIL_HOST_PASSWORD=libras
-    volumes:
-      - ./scripts:/docker-entrypoint-initdb.d

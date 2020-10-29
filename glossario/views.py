@@ -217,7 +217,7 @@ def get_sinais_relacionados(sinal):
         Q(cmE=sinal.cmE) |
         Q(cmD=sinal.cmD) |
         Q(movimentacao=sinal.movimentacao)
-    )
+    )[:5]
         
     return sinais_relacionados
 
