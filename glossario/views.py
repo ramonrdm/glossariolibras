@@ -108,7 +108,7 @@ def busca_na_area(area):
     areas = Area.objects.filter(id=area.id).get_descendants(include_self=True)
     for _area in areas:
         query |= Q(glossario__area=_area)
-    return Sinal.objects.filter(query)
+    return Sinal.objects.filter(query, publicado=True)
 
 def busca(formSinais):
     class Meta:
