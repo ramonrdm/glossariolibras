@@ -288,5 +288,11 @@ def update(request):
                 **{"%s" % preview.field.name: nome_relativo_preview}
             )
 
+    # For debug
+    # duplicar modelos existentes
+    # for _ in range (0,200):
+    #     sinal = Sinal.objects.get(pk=1)
+    #     sinal.pk = None
+    #     sinal.save()
 
     return render(request, 'glossario/contato.html')

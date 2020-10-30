@@ -35,6 +35,38 @@
         }
     },
     {
+        "model": "glossario.userglossario",
+        "fields": {
+            "password": "pbkdf2_sha256$150000$3OXUepCuxGoh$Kw4tn8TuCSlAm8Xkj7HmLLswFpqqxW4gZK2qmmsp0nY=",
+            "last_login": "2020-10-28T13:22:43.668Z",
+            "is_superuser": true,
+            "email": "admin@admin.com",
+            "nome_completo": "admin",
+            "email_confirmed": false,
+            "is_staff": true,
+            "is_active": true,
+            "groups": [
+                [
+                    "membros"
+                ]
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "glossario.area",
+        "pk": 1,
+        "fields": {
+            "nome": "Superior",
+            "parent": null,
+            "slug": "superior",
+            "lft": 1,
+            "rght": 2,
+            "tree_id": 1,
+            "level": 0
+        }
+    },
+    {
         "model": "glossario.cm",
         "pk": 0,
         "fields": {
