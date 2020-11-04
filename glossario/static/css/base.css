@@ -299,6 +299,11 @@ div.thumbnail.hoverable:not(.selected) p {
     white-space: pre-line;
 }
 
+.historia-sinais {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
 .imgIndex {
     width: 110px;
     height: 110px;

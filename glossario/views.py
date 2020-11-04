@@ -29,7 +29,15 @@ def index(request, glossario=None):
     formSinais = PesquisaSinaisForm()
     sinais_pub = Sinal.objects.filter(publicado=True).count()
 
-    return render(request, 'glossario/index.html', {'glossarios': glossarios, 'glossario': glossario,'areas':areas, 'area':area, 'formSinais': formSinais, 'sinais_pub': sinais_pub})
+    context = {
+        'glossarios': glossarios,
+        'glossario': glossario,
+        'areas':areas,
+        'area':area,
+        'formSinais': formSinais,
+        'sinais_pub': sinais_pub
+    }
+    return render(request, 'glossario/index.html', context)
 
 
 def glossarioSelecionado(request, glossario):
@@ -51,17 +59,24 @@ def glossarioSelecionado(request, glossario):
 
         resultado = len(sinais) if sinais else None
 
-        return render(request, 'glossario/pesquisa.html', {
+        context = {
             'sinais': sinais,
             'resultado': resultado,
             'glossario': glossario,
             'formSinais': formSinais
-        })
-    else:
-        formSinais = PesquisaSinaisForm(request.session) if request.session.get(
-            'sinaisCheckboxes') else PesquisaSinaisForm()
+        }
 
-        return render(request, 'glossario/glossario.html', {'glossario': glossario, 'glossarios_relacionados':glossarios_relacionados, 'formSinais': formSinais})
+        return render(request, 'glossario/pesquisa.html', context)
+        
+    else:
+        formSinais = PesquisaSinaisForm(request.session) if request.session.get('sinaisCheckboxes') else PesquisaSinaisForm()
+
+        context = {
+            'glossario': glossario,
+            'formSinais': formSinais,
+            'glossarios_relacionados': glossarios_relacionados
+        }
+        return render(request, 'glossario/glossario.html', context)
 
 
 def pesquisa(request, area=None):
@@ -177,22 +192,40 @@ def sinal(request, sinal=None, glossario=None):
             sinais_relacionados = get_sinais_relacionados(sinal)
             formSinais = PesquisaSinaisForm()
             form_comentario = CommentForm()
-            return render(request, "glossario/sinal.html", {'sinal': sinal,'glossario': glossario,
-                'formSinais': formSinais, 'sinais_relacionados':sinais_relacionados,
-                'form_comentario': form_comentario, 'comentarios': comentarios})
+            context = {
+                'glossario': glossario,
+                'formSinais': formSinais,
+                'form_comentario': form_comentario,
+                'sinal': sinal,
+                'sinais_relacionados':sinais_relacionados,
+                'comentarios': comentarios
+            }
+            return render(request, "glossario/sinal.html", context)
 
         resultado = len(sinais) if sinais else None
-        return render(request, 'glossario/pesquisa.html', {'sinais': sinais,
-            'sinaisGlossario': sinaisGlossario, 'resultado': resultado, 'glossario': glossario,
-            'formSinais': formSinais, 'form_comentario': form_comentario})
+        context = {
+            'glossario': glossario,
+            'formSinais': formSinais,
+            'form_comentario': form_comentario,
+            'sinais': sinais,
+            'sinaisGlossario': sinaisGlossario,
+            'resultado': resultado,
+        }
+        return render(request, 'glossario/pesquisa.html', context)
     else:
         # Procura sinais relacionados
         sinais_relacionados = get_sinais_relacionados(sinal)
         formSinais = PesquisaSinaisForm()
         form_comentario = CommentForm()
-        return render(request, "glossario/sinal.html", {'sinal': sinal,'glossario': glossario,
-            'formSinais': formSinais, 'sinais_relacionados':sinais_relacionados,
-            'form_comentario': form_comentario, 'comentarios': comentarios})
+        context = {
+            'glossario': glossario,
+            'formSinais': formSinais,
+            'form_comentario': form_comentario,
+            'sinal': sinal,
+            'sinais_relacionados':sinais_relacionados,
+            'comentarios': comentarios
+        }
+        return render(request, "glossario/sinal.html", context)
 
 def get_sinais_relacionados(sinal):
     sinais_relacionados = Sinal.objects.exclude(id=sinal.id).filter(publicado=True)
@@ -222,7 +255,14 @@ def get_sinais_relacionados(sinal):
     return sinais_relacionados
 
 def historia(request):
-    return render(request, "glossario/historia.html")
+    sinais_publicados = Sinal.objects.filter(publicado=True).count()
+    sinais_totais = Sinal.objects.all().count()
+
+    context = {
+        'sinais_publicados': sinais_publicados,
+        'sinais_totais': sinais_totais
+    }
+    return render(request, "glossario/historia.html", context)
 
 
 def equipe(request):
