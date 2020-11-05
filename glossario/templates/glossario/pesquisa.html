@@ -17,41 +17,34 @@
     <p class="flow-text center nenhumSinal">Nenhum sinal encontrado</p>
     {% endif %}
   </div>
-  
+
   {% if sinais_page.has_other_pages %}
   <ul class="pagination center">
-
-    <!-- Seta para trás -->
-    {% if sinais_page.has_previous %}
-    <li class="waves-effect"><a
-        onclick="nextPage('{{ sinais_page.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}')"><i
-          class="material-icons">chevron_left</i></a></li>
-    {% else %}
-    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-    {% endif %}
-
-    {% if page_obj.number|add:'-4' > 1 %}
-    <li><a href="?page={{ page_obj.number|add:'-5' }}">&hellip;</a></li>
-    {% endif %}
-
-    <!-- Numeros  -->
-    {% for num in sinais_page.paginator.page_range %}
-      {% if sinais_page.number == num %}
-      <li class="active blue"><a>{{ num }}</a></li>
-      {% else %}
+    {% for n in sinais_page.paginator.page_range %}
+    {{ sinais_page.page}}
+      {% if sinais_page.number|add:'-3' == n %}
+      <!-- Primeira Pagina -->
       <li class="waves-effect"><a
-          onclick="nextPage('{{ num }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}')">{{ num }}</a></li>
+        onclick="nextPage('1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}')">1</a></li>
+        {% if n != 1 %}
+        <li class="disabled"><a>&#8943;</a></li>
+        {% endif %}
+      {% elif sinais_page.number == n %}
+        <!-- Pagina atual  -->
+        <li class="active blue"><a  >{{ n }}</a></li>
+      {% elif sinais_page.number|add:'-3' < n and n < sinais_page.number|add:'3' %}
+        <!-- Paginas perto da pagina atual -->
+        <li class="waves-effect"><a
+          onclick="nextPage('{{ n }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}')">{{ n }}</a></li>
+      {% elif sinais_page.number|add:'3' == n %}
+        <!-- Ultima pagina -->
+        {% if n != sinais_page.paginator.num_pages %}
+        <li class="disabled"><a>&#8943;</a></li>
+        {% endif %}
+        <li class="waves-effect"><a
+          onclick="nextPage('{{ sinais_page.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}')">{{ sinais_page.paginator.num_pages }}</a></li>
       {% endif %}
     {% endfor %}
-
-    <!-- Seta para Frente -->
-    {% if sinais_page.has_next %}
-    <li class="waves-effect"><a
-        onclick="nextPage('{{ sinais_page.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}')"><i
-          class="material-icons">chevron_right</i></a></li>
-    {% else %}
-    <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-    {% endif %}
   </ul>
   {% endif %}
 </div>

@@ -11,6 +11,7 @@ $ sudo apt install ffmpeg
 ```
 
 ## Como rodar o projeto
+
 É necessário o docker para rodar o seguinte comando na pasta deploy:
 ```bash
 docker-compose up --build
@@ -26,6 +27,7 @@ E rode o seguinte comando:
 ```
 
 ## Comandos úteis
+
 Para fazer o dumpdata:
 
 ```python

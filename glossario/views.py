@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
-from django.http import HttpResponse
-
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect, get_object_or_404
 from glossario.models import Glossario, Sinal, UserGlossario, Localizacao, Movimentacao, Area, Comment
-from glossario.forms import PesquisaSinaisForm, CommentForm, CustomRegistrationForm
+from glossario.forms import PesquisaSinaisForm, CommentForm, SignupForm
 from django.db.models import Q
 from django.contrib.auth import login
 from django.contrib.auth import logout
@@ -24,112 +22,46 @@ from django.conf import settings
 import os
 from django.template.defaultfilters import slugify
 
-from django.urls import reverse_lazy
-from django.views import generic
-from django.views.generic import View
-
 from django.core.mail import EmailMessage
-from django.contrib import messages
 
-class SignUpView(generic.CreateView):
-    form_class = CustomRegistrationForm
-    success_url = reverse_lazy('login')
-    template_name = 'registration/signup.html'
-
-    def get(self, request, *args, **kwargs):
-        form = self.form_class()
-        return render(request, self.template_name, {'form': form})
-
-    def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST)
+def signup(request):
+    if request.method == 'POST':
+        form = SignupForm(request.POST)
         if form.is_valid():
-
             user = form.save(commit=False)
-            user.is_active = False # Deactivate account till it is confirmed
-            # user.save()
-
+            user.is_active = False
+            user.save()
             current_site = get_current_site(request)
-            mail_subject = 'Ativar sua conta Glossario'
+            mail_subject = 'Activate your blog account.'
             message = render_to_string('registration/account_activation_email.html', {
                 'user': user,
                 'domain': current_site.domain,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'token': account_activation_token.make_token(user),
+                'uid':urlsafe_base64_encode(force_bytes(user.pk)),
+                'token':account_activation_token.make_token(user),
             })
-
             to_email = form.cleaned_data.get('email')
             email = EmailMessage(
                         mail_subject, message, to=[to_email]
             )
             email.send()
-            user.save()
-            # user.email_user(subject, message)
+            return render(request, 'registration/email_confirmation_message.html')
+    else:
+        form = SignupForm()
+    return render(request, 'registration/signup.html', {'form': form})
 
-            messages.success(request, ('Please Confirm your email to complete registration.'))
-
-            return redirect('login')
-
-        return render(request, self.template_name, {'form': form})
-
-class ActivateAccount(View):
-
-    def get(self, request, uidb64, token, *args, **kwargs):
-        try:
-            uid = force_text(urlsafe_base64_decode(uidb64))
-            user = UserGlossario.objects.get(pk=uid)
-        except (TypeError, ValueError, OverflowError, UserGlossario.DoesNotExist):
-            user = None
-
-        if user is not None and account_activation_token.check_token(user, token):
-            user.is_active = True
-            user.profile.email_confirmed = True
-            user.save()
-            login(request, user)
-            messages.success(request, ('Your account have been confirmed.'))
-            return redirect('index')
-        else:
-            messages.warning(request, ('The confirmation link was invalid, possibly because it has already been used.'))
-            return redirect('index')
-
-# def signup(request):
-#     if request.method == 'POST':
-#         form = CustomRegistrationForm(request.POST)
-#         if form.is_valid():
-#             user = form.save(commit=False)
-#             user.is_active = False
-#             current_site = get_current_site(request)
-#             mail_subject = 'Ativar sua conta Glossario'
-#             message = render_to_string('registration/account_activation_email.html', {
-#                 'user': user,
-#                 'domain': current_site.domain,
-#                 'uid':urlsafe_base64_encode(force_bytes(user.pk)),
-#                 'token':account_activation_token.make_token(user),
-#             })
-#             to_email = form.cleaned_data.get('email')
-#             email = EmailMessage(
-#                         mail_subject, message, to=[to_email]
-#             )
-#             email.send()
-#             user.save()
-#             return HttpResponse('Please confirm your email address to complete the registration')
-#     else:
-#         form = CustomRegistrationForm()
-#     return render(request, 'registration/signup.html', {'form': form})
-
-# def activate(request, uidb64, token):
-#     try:
-#         uid = force_text(urlsafe_base64_decode(uidb64))
-#         user = UserGlossario.objects.get(pk=uid)
-#     except(TypeError, ValueError, OverflowError, UserGlossario.DoesNotExist):
-#         user = None
-#     if user is not None and account_activation_token.check_token(user, token):
-#         user.is_active = True
-#         user.save()
-#         login(request, user)
-#         # return redirect('home')
-#         return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
-#     else:
-#         return HttpResponse('Activation link is invalid!')
+def activate(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = UserGlossario.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, UserGlossario.DoesNotExist):
+        user = None
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        login(request, user)
+        return render(request, 'registration/email_link_valid.html')
+    else:
+        return render(request, 'registration/email_link_invalid.html')
 
 def index(request, glossario=None):
     glossarios = Glossario.objects.filter(visivel=True)
@@ -146,7 +78,6 @@ def index(request, glossario=None):
         'formSinais': formSinais,
         'sinais_pub': sinais_pub
     }
-
     return render(request, 'glossario/index.html', context)
 
 
@@ -175,7 +106,9 @@ def glossarioSelecionado(request, glossario):
             'glossario': glossario,
             'formSinais': formSinais
         }
+
         return render(request, 'glossario/pesquisa.html', context)
+        
     else:
         formSinais = PesquisaSinaisForm(request.session) if request.session.get('sinaisCheckboxes') else PesquisaSinaisForm()
 
@@ -231,7 +164,7 @@ def busca_na_area(area):
     areas = Area.objects.filter(id=area.id).get_descendants(include_self=True)
     for _area in areas:
         query |= Q(glossario__area=_area)
-    return Sinal.objects.filter(query)
+    return Sinal.objects.filter(query, publicado=True)
 
 def busca(formSinais):
     class Meta:
@@ -244,12 +177,11 @@ def busca(formSinais):
     glossario = formSinais.cleaned_data['glossario']
     area = formSinais.cleaned_data['area']
     sinais = Sinal.objects.filter(publicado=True)
-
     if area != None:
         sinais = busca_na_area(area)
     elif glossario != None:
         sinais = sinais.filter(glossario=glossario)
-    # Tratar busca sem acento
+
     if resultadoTraducao != '':
         sinais = sinais.filter(Q(portugues__icontains=resultadoTraducao) | Q(
             ingles__icontains=resultadoTraducao))
@@ -280,8 +212,8 @@ def sinal(request, sinal=None, glossario=None):
 
     if request.method == 'POST':
         sinais = sinaisGlossario = None
+
         request.session['sinaisCheckboxes'] = request.POST.copy()
-        
         # Pesquisa
         formSinais = PesquisaSinaisForm(request.session)
         if formSinais.is_valid():
@@ -292,7 +224,7 @@ def sinal(request, sinal=None, glossario=None):
         if form_comentario.is_valid():
             if request.user.is_authenticated:
                 usuario = request.user
-            # Cria objeto comentario sem salvar
+            # Create Comment object but don't save to database yet
             novo_comentario = form_comentario.save(commit=False)
             novo_comentario.usuario = usuario
             novo_comentario.sinal = sinal
@@ -301,7 +233,6 @@ def sinal(request, sinal=None, glossario=None):
             sinais_relacionados = get_sinais_relacionados(sinal)
             formSinais = PesquisaSinaisForm()
             form_comentario = CommentForm()
-
             context = {
                 'glossario': glossario,
                 'formSinais': formSinais,
@@ -321,13 +252,12 @@ def sinal(request, sinal=None, glossario=None):
             'sinaisGlossario': sinaisGlossario,
             'resultado': resultado,
         }
-        return render(request, 'glossario/pesquisa.html', )
+        return render(request, 'glossario/pesquisa.html', context)
     else:
         # Procura sinais relacionados
         sinais_relacionados = get_sinais_relacionados(sinal)
         formSinais = PesquisaSinaisForm()
         form_comentario = CommentForm()
-
         context = {
             'glossario': glossario,
             'formSinais': formSinais,
@@ -344,7 +274,6 @@ def get_sinais_relacionados(sinal):
     # Palavras semelhantes portugues
     query_pt = Q()
     related_palavras = sinal.portugues.split()
-    # Tratar busca sem acento
     for palavra in related_palavras:
         query_pt |= Q(portugues__icontains=palavra)
 
@@ -391,15 +320,27 @@ def sair(request):
 
 def update(request):
     # Atualiza preview dos sinais
-    sinais = Sinal.objects.all()
+    sinais = Sinal.objects.all().order_by("id")
     url_base = settings.MEDIA_ROOT
     pasta_sinal_preview = '{0}/sinal_preview'.format(url_base)
 
     # Verifica se a pasta sinal_preview existe
     if not os.path.exists(pasta_sinal_preview):
         os.makedirs(pasta_sinal_preview)
+    
+    # Atualiza url dos glossarios
+    glossarios = Glossario.objects.all()
+
+    for glossario in glossarios:
+        gLink = 'glossario/' + slugify(glossario.nome)
+        glossario.link = gLink
+        glossario.save()
 
     for sinal in sinais:
+        if not sinal.video_sinal:
+            continue
+        if sinal.preview1:
+            continue
         preview_fields = [sinal.preview1, sinal.preview2,
                           sinal.preview3, sinal.preview4]
 
@@ -409,7 +350,7 @@ def update(request):
         output = subprocess.run("ffprobe -v error -select_streams v:0 -show_entries stream=nb_frames -of default=nokey=1:noprint_wrappers=1 {0}".format(
             arquivo_video_converter
         ), capture_output=True, shell=True, check=False)
-        output.wait()
+        
         duration = output.stdout.decode()
 
         # duracao menos 60 para remover a soma dos frames inicias com os finais
@@ -427,12 +368,12 @@ def update(request):
             Sinal.objects.filter(id=sinal.id).update(
                 **{"%s" % preview.field.name: nome_relativo_preview}
             )
-    # Atualiza url dos glossarios
-    glossarios = Glossario.objects.all()
 
-    for glossario in glossarios:
-        gLink = 'glossario/' + slugify(glossario.nome)
-        glossario.link = gLink
-        glossario.save()
+    # For debug
+    # duplicar modelos existentes
+    # for _ in range (0,200):
+    #     sinal = Sinal.objects.get(pk=1)
+    #     sinal.pk = None
+    #     sinal.save()
 
     return render(request, 'glossario/contato.html')

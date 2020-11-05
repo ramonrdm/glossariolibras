@@ -1,6 +1,6 @@
 Django==2.2
 django-registration==3.0.1
 Pillow
-psycopg2
+psycopg2-binary
 django-star-ratings
 django-mptt
