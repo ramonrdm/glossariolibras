@@ -1,23 +1,25 @@
- {% extends 'glossario/base.html' %}
+{% extends 'glossario/base.html' %}
 {% block head %}
-	{{ block.super }}
-    {% load staticfiles %}
-     <script type="text/javascript" src="{% static 'js/registration.js' %}"></script>
+{{ block.super }}
+{% load staticfiles %}
+<script type="text/javascript" src="{% static 'js/registration.js' %}"></script>
 {% endblock %}
 {% block body %}
-    <div class="container">
-        <h2 class="thin center">Registrar</h2>
-        <div class="divider"></div>
+    <div class="container row">
+        <div class="col l6 offset-l3 m6 offset-m3 s12">
+            <h2 class="thin center">Registrar</h2>
+            <div class="divider"></div>
             <div class="file-field ">
                 <form method="post">
                     {{ form.as_p }}
                     {% csrf_token %}
                     <button  class="btn waves-effect botaoEnviarSinal center" value='Registrar' type="submit" name="Registrar">Registrar </button>
                     <div class="col l7 push-l5 s17 push-s5 ">
-                </div>
+                    </div>
                 </form>
             </div>
         </div>
+    </div>
     </div>
 {% endblock %}
 
