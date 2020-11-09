@@ -24,6 +24,7 @@ from django.template.defaultfilters import slugify
 
 from django.core.mail import EmailMessage
 
+
 def signup(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
@@ -32,7 +33,7 @@ def signup(request):
             user.is_active = False
             user.save()
             current_site = get_current_site(request)
-            mail_subject = 'Activate your blog account.'
+            mail_subject = 'Ative sua conta Glossário Libras'
             message = render_to_string('registration/account_activation_email.html', {
                 'user': user,
                 'domain': current_site.domain,

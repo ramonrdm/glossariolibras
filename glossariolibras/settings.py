@@ -141,7 +141,5 @@ EMAIL_HOST_PASSWORD = get_env_value('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = os.getenv('DJANGO_SENDMAIL_FROM')
 EMAIL_USE_SSL = True
 
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 LOGOUT_REDIRECT_URL = 'index'
 LOGIN_REDIRECT_URL = 'admin:index'

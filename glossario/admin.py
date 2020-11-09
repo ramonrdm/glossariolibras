@@ -175,6 +175,11 @@ class UserAdmin(BaseUserAdmin):
 
 class AreaAdmin(admin.ModelAdmin):
     form = AreaForm
+
+    def save_model(self, request, obj, form, change):
+        slug = slugify(obj.nome)
+        obj.slug = slug
+        obj.save()  
     
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('usuario', 'comentario', 'sinal', 'criado_em', 'ativo')

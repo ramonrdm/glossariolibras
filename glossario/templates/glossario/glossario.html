@@ -41,21 +41,23 @@
 		</ul>
 	</div>
 	<div class="block col s12 m12 l6">
-		{% if glossarios_relacionados %}
-			<h4 class="thin">Glossários Relacionados</h4>
-			{% for glossario in glossarios_relacionados %}
-			{% if glossario.imagem %}
-			<div class="block center">
-				<a href="/{{glossario.link}}" class="glossarioSinais">
-					<img class="circle z-depth-2 hoverable imgIndex" src="{{glossario.imagem.url}}">
-					<span class="sinaisBadge">{{glossario.sinais_number}}</span>
-					<div>
-						<span class="flow-text textoIndex">{{glossario.nome|title}}</span>
-					</div>
-				</a>
-			</div>
+		{% if not glossario.area.id == 1 %}
+			{% if glossarios_relacionados %}
+				<h4 class="thin">Glossários Relacionados</h4>
+				{% for glossario in glossarios_relacionados %}
+				{% if glossario.imagem %}
+				<div class="block center">
+					<a href="/{{glossario.link}}" class="glossarioSinais">
+						<img class="circle z-depth-2 hoverable imgIndex" src="{{glossario.imagem.url}}">
+						<span class="sinaisBadge">{{glossario.sinais_number}}</span>
+						<div>
+							<span class="flow-text textoIndex">{{glossario.nome|title}}</span>
+						</div>
+					</a>
+				</div>
+				{% endif %}
+				{% endfor %}
 			{% endif %}
-			{% endfor %}
 		{% endif %}
 	</div>
 </div>
