@@ -131,7 +131,6 @@ TEMPLATES = [
     },
 ]
 
-LOGIN_REDIRECT_URL='/index'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 AUTH_USER_MODEL = 'glossario.UserGlossario'
@@ -144,5 +143,6 @@ EMAIL_HOST_PASSWORD = get_env_value('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = os.getenv('DJANGO_SENDMAIL_FROM')
 EMAIL_USE_SSL = True
 
+LOGIN_URL = '/accounts/login'
 LOGOUT_REDIRECT_URL = 'index'
-LOGIN_REDIRECT_URL = 'admin:index'
+LOGIN_REDIRECT_URL = '/admin/glossario/sinal/add/'

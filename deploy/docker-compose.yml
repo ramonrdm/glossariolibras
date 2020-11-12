@@ -24,6 +24,7 @@ services:
       - POSTGRES_DB_HOST=db_postgres
       - EMAIL_HOST_USER=libras
       - EMAIL_HOST_PASSWORD=libras
+
   nginx:
     build: ./nginx
     volumes:
@@ -32,6 +33,7 @@ services:
       - 1337:80
     depends_on:
       - glossario
+
   db_postgres:
     image: postgres:9.6.6
     container_name: db_postgres_container

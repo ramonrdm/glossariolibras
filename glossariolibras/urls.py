@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.admin.views.decorators import staff_member_required
 from django.conf.urls.static import static
 from django.conf import settings
 from glossario import views
@@ -11,8 +12,13 @@ from django_registration.backends.one_step.views import RegistrationView
 from glossario.forms import SignupForm
 from django.conf.urls import url, include
 
+admin.site.login = staff_member_required(admin.site.login, login_url=settings.LOGIN_URL)
+admin.site.site_header = 'Administração Glossário Libras'
+admin.site.site_title = 'Administração Glossário Libras'
+
 urlpatterns = [
     path('', views.index, name='index'),
+    url(r'^admin/login$', RedirectView.as_view(url=settings.LOGIN_URL, permanent=True)),
     path('admin/', lambda _: redirect(to="glossario/sinal/")),
     path('admin/', admin.site.urls),
     path('logout/', views.sair, name='logout'),
