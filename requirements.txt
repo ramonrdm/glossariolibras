@@ -4,3 +4,4 @@ Pillow
 psycopg2-binary
 django-star-ratings
 django-mptt
+gunicorn

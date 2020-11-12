@@ -1,16 +1,20 @@
 version: '3.2'
 
 services:
-
   glossario:
     container_name: glossario_container
     restart: always
     build: ../.
     tty: true
+    command: sh -c "python3 manage.py migrate &&
+            python3 manage.py collectstatic --noinput &&
+            gunicorn glossariolibras.wsgi:application --bind 0.0.0.0:8000"
     volumes:
       - ../.:/code
-    ports:
-      - 8000:8000
+    env_file:
+      - ./.env.dev
+    expose:
+      - 8000
     depends_on:
       - db_postgres
     environment:
@@ -20,11 +24,14 @@ services:
       - POSTGRES_DB_HOST=db_postgres
       - EMAIL_HOST_USER=libras
       - EMAIL_HOST_PASSWORD=libras
-    # Espera pela porta TCP 5432 para rodar servidor
-    command: sh -c "python3 manage.py migrate &&
-            python3 manage.py collectstatic --noinput &&
-            python3 manage.py runserver 0.0.0.0:8000"
-
+  nginx:
+    build: ./nginx
+    volumes:
+      - ../.:/code
+    ports:
+      - 1337:80
+    depends_on:
+      - glossario
   db_postgres:
     image: postgres:9.6.6
     container_name: db_postgres_container
