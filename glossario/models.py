@@ -48,7 +48,7 @@ class UserGlossario(AbstractBaseUser, PermissionsMixin):
         verbose_name = "Usuário"
 
     email = models.EmailField(
-        verbose_name='email address',
+        verbose_name='E-mail',
         max_length=255,
         unique=True,
     )
