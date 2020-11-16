@@ -240,16 +240,14 @@ class Sinal(models.Model):
 class Comment(models.Model):
     class Meta:
         verbose_name = 'Comentário'
-        ordering = ['sinal']
+        verbose_name_plural = 'Comentários'
+        ordering = ['criado_em']
 
     sinal = models.ForeignKey(Sinal, on_delete=models.CASCADE, related_name='comments')
     usuario = models.ForeignKey(UserGlossario, verbose_name='Usuário', on_delete=models.CASCADE)
     comentario = models.TextField()
     criado_em = models.DateTimeField(auto_now_add=True)
     ativo = models.BooleanField(default=True)
-
-    class Meta:
-        ordering = ['criado_em']
 
     def __str__(self):
         return '´Comentario {} por {}'.format(self.comentario, self.nome)
