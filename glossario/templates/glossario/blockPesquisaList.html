@@ -6,7 +6,7 @@
     {% endif %}
     <p class="flow-text ">
       Encontrado {{resultado}} resultado(s) em
-      <a href="{{ glossario.link }}" style="color:darkblue">{{ glossario.nome }}</a>
+      <a href="{% url 'glossario' glossario=glossario.slugify %}" style="color:darkblue">{{ glossario.nome }}</a>
       :
     </p>
   </div>

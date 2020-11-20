@@ -112,6 +112,7 @@ nav .brand-logo.center {
     position: relative;
     margin-top: 4%;
     transition-duration: 0.4s;
+    width: 90%;
 }
 
 .sidenav {

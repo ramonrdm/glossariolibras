@@ -24,6 +24,8 @@ from django.template.defaultfilters import slugify
 
 from django.core.mail import EmailMessage
 
+from django.contrib.postgres.search import SearchVector
+
 
 def signup(request):
     if request.method == 'POST':
@@ -93,7 +95,7 @@ def glossarioSelecionado(request, glossario):
     if request.method == 'POST':
         sinais = None
 
-        formSinais = PesquisaSinaisForm(request.POST)
+        formSinais = PesquisaSinaisForm(request.GET)
 
         if formSinais.is_valid():
             sinais = busca(formSinais).filter(
@@ -120,29 +122,32 @@ def glossarioSelecionado(request, glossario):
         }
         return render(request, 'glossario/glossario.html', context)
 
+# def pesquisa(request, area=None, query=None, glossario=None):
+def pesquisa(request):
+    # area = request.GET.get('area', None)
+    # glossario = request.GET.get('glossario', None)
 
-def pesquisa(request, area=None):
     sinais = None
     glossario = None
-    formSinais = PesquisaSinaisForm(request.POST)
+    area = None
+    formSinais = PesquisaSinaisForm(request.GET)
 
-    if area:
-        area = Area.objects.get(slug=area)
+    # if area:
+    #     area = get_object_or_404(Area, slug=area)
 
-    # Pesquisa normal
-    if request.method == 'POST':
-        if formSinais.is_valid():
-            sinais = busca(formSinais).filter(glossario__visivel=True)
-            glossario = formSinais.cleaned_data['glossario']
-            area = formSinais.cleaned_data['area']
-    # Caso o usuario selecione a area
-    else:
-        sinais = busca_na_area(area)
+    # if glossario:
+    #     glossario = get_object_or_404(Glossario, nome=glossario)
+
+
+    if formSinais.is_valid():
+        sinais = busca(formSinais, request).filter(glossario__visivel=True)
+        glossario = formSinais.cleaned_data['glossario']
+        area = formSinais.cleaned_data['area']
 
     resultado = len(sinais) if sinais else None
 
     paginator = Paginator(sinais, 5)
-    page = request.POST.get('page')
+    page = request.GET.get('page')
 
     try:
         sinais_page = paginator.page(page)
@@ -151,12 +156,21 @@ def pesquisa(request, area=None):
     except EmptyPage:
         sinais_page = paginator.page(paginator.num_pages)
 
+
+    glossarios = Glossario.objects.filter(visivel=True)
+    areas = Area.objects.all()
+    alfabeto = ['a','b','c','d','e','f','g','h','i','j','k','l','m',
+                'n','o','p','q','r','s','t','u','v','w','x','y','z']
+
     context = { 
-                'glossario' : glossario,
-                'sinais_page': sinais_page, 
-                'resultado': resultado,
-                'area': area,
-                'formSinais': formSinais
+        'glossario' : glossario,
+        'sinais_page': sinais_page, 
+        'resultado': resultado,
+        'area': area,
+        'formSinais': formSinais,
+        'glossarios': glossarios,
+        'areas':areas,
+        'alfabeto':alfabeto,
     }
     return render(request, 'glossario/pesquisa.html', context)
 
@@ -167,31 +181,46 @@ def busca_na_area(area):
         query |= Q(glossario__area=_area)
     return Sinal.objects.filter(query, publicado=True)
 
-def busca(formSinais):
+def busca(formSinais, request):
     class Meta:
         ordering = ["-created_date"]
+
+    letra_inicial = request.GET.get('letra_inicial', None)
+    area = request.GET.get('area', None)
+    glossario = request.GET.get('glossario', None)
 
     resultadoTraducao = formSinais.cleaned_data['busca']
     localizacao = formSinais.cleaned_data['localizacao']
     movimentacao = formSinais.cleaned_data['movimentacao']
     mao = formSinais.cleaned_data['cmE']
-    glossario = formSinais.cleaned_data['glossario']
-    area = formSinais.cleaned_data['area']
+    # glossario = formSinais.cleaned_data['glossario']
+    # area = formSinais.cleaned_data['area']
     sinais = Sinal.objects.filter(publicado=True)
-    if area != None:
+    print("#####################################")
+    print(area)
+    print(glossario)
+    print(letra_inicial)
+
+    if area != None and area != '':
         sinais = busca_na_area(area)
-    elif glossario != None:
+    elif glossario != '' and glossario != None:
         sinais = sinais.filter(glossario=glossario)
 
+    # Pesquisa por texto
     if resultadoTraducao != '':
-        sinais = sinais.filter(Q(portugues__icontains=resultadoTraducao) | Q(
-            ingles__icontains=resultadoTraducao))
+        sinais = sinais.annotate(
+            search = SearchVector('portugues', 'ingles','descricao'),
+        ).filter(search=resultadoTraducao)
+    # Utiliza startswith para letras inicial selecionada
+    elif letra_inicial != None:
+        sinais = sinais.filter(Q(portugues__istartswith=letra_inicial) | Q(
+            ingles__istartswith=letra_inicial))
+    # Pesquisa por sinal
     else:
     # Se o campo for nulo ignora ele na pesquisa
         if localizacao:
             if localizacao != '0':
                 sinais = sinais.filter(localizacao=localizacao)
-
         if movimentacao:
             if movimentacao != '0':
                 sinais = sinais.filter(movimentacao=movimentacao)
@@ -270,29 +299,20 @@ def sinal(request, sinal=None, glossario=None):
         return render(request, "glossario/sinal.html", context)
 
 def get_sinais_relacionados(sinal):
-    sinais_relacionados = Sinal.objects.exclude(id=sinal.id).filter(publicado=True)
+    # sinais_relacionados = Sinal.objects.exclude(id=sinal.id).filter(publicado=True)
 
-    # Palavras semelhantes portugues
-    query_pt = Q()
     related_palavras = sinal.portugues.split()
-    for palavra in related_palavras:
-        query_pt |= Q(portugues__icontains=palavra)
+    for palavra in related_palavras:    
+        sinais_relacionados = Sinal.objects.annotate(
+            search = SearchVector('portugues', 'ingles','descricao'),
+        ).exclude(id=sinal.id).filter(publicado=True, search=palavra)[:5]
 
-    # Palavras semelhantes ingles
-    query_en = Q()
-    if sinal.ingles:
-        related_palavras = sinal.ingles.split()
-        for palavra in related_palavras:
-            query_en |= Q(ingles__icontains=palavra)
-
-    sinais_relacionados = sinais_relacionados.filter(
-        query_pt |
-        query_en |
-        Q(localizacao=sinal.localizacao) |
-        Q(cmE=sinal.cmE) |
-        Q(cmD=sinal.cmD) |
-        Q(movimentacao=sinal.movimentacao)
-    )[:5]
+    # sinais_relacionados = sinais_relacionados.filter(
+    #     Q(localizacao=sinal.localizacao) |
+    #     Q(cmE=sinal.cmE) |
+    #     Q(cmD=sinal.cmD) |
+    #     Q(movimentacao=sinal.movimentacao)
+    # )[:5]
         
     return sinais_relacionados
 
@@ -372,9 +392,9 @@ def update(request):
 
     # For debug
     # duplicar modelos existentes
-    # for _ in range (0,200):
-    #     sinal = Sinal.objects.get(pk=1)
-    #     sinal.pk = None
-    #     sinal.save()
+    for _ in range (0,200):
+        sinal = Sinal.objects.get(pk=1)
+        sinal.pk = None
+        sinal.save()
 
     return render(request, 'glossario/contato.html')

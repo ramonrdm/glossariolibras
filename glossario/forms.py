@@ -77,11 +77,6 @@ class SinalForm(forms.ModelForm):
 
 
 class PesquisaSinaisForm(forms.ModelForm):
-    busca = forms.CharField(required=False, label="",  widget=forms.TextInput(
-        attrs={'id': 'search', 'type': 'search', 'placeholder': 'Pesquisar em glossário'}))
-
-    area = forms.ModelChoiceField(queryset=Area.objects.all())
-
     class Meta:
         model = Sinal
         fields = ['localizacao', 'cmE', 'movimentacao', 'glossario']
@@ -90,6 +85,10 @@ class PesquisaSinaisForm(forms.ModelForm):
             'cmE': ImageSelectMao(),
             'movimentacao': ImageSelectMovimentacao()
         }
+
+    busca = forms.CharField(required=False, label="",  widget=forms.TextInput(
+        attrs={'id': 'search', 'type': 'search', 'placeholder': 'Pesquisar em glossário'}))
+    area = forms.ModelChoiceField(queryset=Area.objects.all(), required=False)
 
     def __init__(self, *args, **kwargs):
         super(PesquisaSinaisForm, self).__init__(*args, **kwargs)

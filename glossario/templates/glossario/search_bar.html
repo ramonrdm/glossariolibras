@@ -36,8 +36,7 @@
       </div>
       <!-- busca -->
       <ul>
-        <form method="post" action="{% url 'pesquisa'  %}" id="formSinais">
-          {% csrf_token %}
+        <form method="GET" action="{% url 'pesquisa'  %}" id="formSinais">
           <!-- Search bar -->
           <div id="search-bar" class="col l5">
             {% for field in formSinais %}
@@ -74,8 +73,8 @@
           <div class="col l1 right hide-on-med-and-down">
             <li>
               <input type="hidden" name="page" id="id_page" value="">
-              <button class="btn waves-effect waves-light botaoPesquisar" type="submit"
-                name="botaoPesquisar">Pesquisar<i class="material-icons">close</i></button>
+              <button class="btn waves-effect waves-light botaoPesquisar" type="submit">
+                Pesquisar<i class="material-icons">close</i></button>
             </li>
           </div>
         </form>

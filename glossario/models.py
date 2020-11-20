@@ -9,6 +9,7 @@ from django.dispatch import receiver
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
+from django.template.defaultfilters import slugify
 
 
 class UserManagerGlossario(BaseUserManager):
@@ -123,6 +124,9 @@ class Glossario(models.Model):
 
     def __str__(self):
         return self.nome.title()
+
+    def slugify(self):
+        return slugify(self.nome)
 
 class CM (models.Model):
     """Total de 261 configurações de mão divididas em 10 grupos."""

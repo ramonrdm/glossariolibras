@@ -8,51 +8,139 @@
 {% block body %}
 
 
-<div class="area-para-footer">
-  <div>
-    {% if sinais_page %}
-    {% include 'glossario/blockPesquisaList.html' %}
-    {% else %}
-    </br>
-    <p class="flow-text center nenhumSinal">Nenhum sinal encontrado</p>
-    {% endif %}
-  </div>
+<div class="area-para-footer row container">
+  <div class="col l2 hide-on-med-and-down">
+    <!-- Filtros -->
+    <section>
+      <h5>Filtros</h5>
 
-  {% if sinais_page.has_other_pages %}
-  <ul class="pagination center">
-    {% for n in sinais_page.paginator.page_range %}
-    {{ sinais_page.page}}
+      <!-- Glossários -->
+      <section>
+        <h6>Glossários</h6>
+        {% for glossario in glossarios %}
+        <div>
+          <form action="{% url 'pesquisa' %}" method="GET">
+            <p>
+              <label>
+                <input onChange="this.form.submit()" name="glossario" value="{{ glossario.id }}"
+                id="{{glossario.id}}" class="with-gap" type="radio" />
+                <span class="dark-blue-text">{{glossario.nome}}</span>
+              </label>
+            </p>
+          </form>
+        </div>
+        {% endfor %}
+      </section>
+
+      <!-- Areas -->
+      <section>
+        <h6>Áreas</h6>
+        <form action="{% url 'pesquisa' %}" method="GET">
+          {% for area in areas %}
+          <div>
+            <p>
+              <label>
+                <input name="area" value="{{ area.id }}"
+                class="with-gap" type="radio" />
+                <span class="dark-blue-text">{{area.nome}}</span>
+              </label>
+            </p>
+          </div>
+          {% endfor %}
+        </form>
+      </section>
+
+      <!-- Letras -->
+      <section>
+        <h6>Letra Inicial</h6>
+        {% for letter in alfabeto %}
+
+        <div>
+          <form action="{% url 'pesquisa' %}" method="GET">
+            <p>
+              <label>
+                <input name="letra_inicial" value="{{ letter }}" class="with-gap" type="radio" />
+                <span class="dark-blue-text">{{letter}}</span>
+              </label>
+            </p>
+          </form>
+        </div>
+        {% endfor %}
+      </section>
+    </section>
+  </div>
+  <div class="col l10 s12">
+    <div>
+      {% if sinais_page %}
+      {% include 'glossario/blockPesquisaList.html' %}
+      {% else %}
+        {% if glossario %}
+        <div>
+          {% if glossario.imagem %}
+          <img class="circle left glossario-icon" src="{{ glossario.imagem.url }}" />
+          {% endif %}
+          <p class="flow-text center nenhumSinal">
+            Nenhum sinal encontrado em
+            <a href="{% url 'glossario' glossario=glossario.slugify %}" style="color:darkblue">{{ glossario.nome }}</a>
+            :
+          </p>
+        </div>
+        {% elif area %}
+        <div>
+          <p class="flow-text center nenhumSinal">
+            Nenhum sinal encontrado em {{ area }} :
+          </p>
+        </div>
+        {% else %}
+        <p class="flow-text center nenhumSinal">Nenhum sinal encontrado</p>
+        {% endif %}
+      {% endif %}
+    </div>
+
+    {% if sinais_page.has_other_pages %}
+    <ul class="pagination center">
+      {% for n in sinais_page.paginator.page_range %}
+      {{ sinais_page.page}}
       {% if sinais_page.number|add:'-3' == n %}
       <!-- Primeira Pagina -->
-      <li class="waves-effect"><a
-        onclick="nextPage('1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}')">1</a></li>
+      <li class="waves-effect">
+        <a href="?page=1">1</a>
         {% if n != 1 %}
-        <li class="disabled"><a>&#8943;</a></li>
-        {% endif %}
-      {% elif sinais_page.number == n %}
-        <!-- Pagina atual  -->
-        <li class="active blue"><a  >{{ n }}</a></li>
-      {% elif sinais_page.number|add:'-3' < n and n < sinais_page.number|add:'3' %}
-        <!-- Paginas perto da pagina atual -->
-        <li class="waves-effect"><a
-          onclick="nextPage('{{ n }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}')">{{ n }}</a></li>
-      {% elif sinais_page.number|add:'3' == n %}
-        <!-- Ultima pagina -->
-        {% if n != sinais_page.paginator.num_pages %}
-        <li class="disabled"><a>&#8943;</a></li>
-        {% endif %}
-        <li class="waves-effect"><a
-          onclick="nextPage('{{ sinais_page.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}')">{{ sinais_page.paginator.num_pages }}</a></li>
+      <li class="disabled"><a>&#8943;</a></li>
       {% endif %}
-    {% endfor %}
-  </ul>
-  {% endif %}
+      {% elif sinais_page.number == n %}
+      <!-- Pagina atual  -->
+      <li class="active blue"><a>{{ n }}</a></li>
+      {% elif sinais_page.number|add:'-3' < n and n < sinais_page.number|add:'3' %}
+      <!-- Paginas perto da pagina atual -->
+      <li class="waves-effect">
+        <a href="?page={{ n }}">{{ n }}</a>
+      </li>
+      {% elif sinais_page.number|add:'3' == n %}
+      <!-- Ultima pagina -->
+      {% if n != sinais_page.paginator.num_pages %}
+      <li class="disabled"><a>&#8943;</a></li>
+      {% endif %}
+      <li class="waves-effect">
+        <a href="?page={{ sinais_page.paginator.num_pages }}">{{ sinais_page.paginator.num_pages }}</a>
+      </li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
 </div>
 
 <script type="text/javascript">
-  function nextPage(valor) {
-    document.getElementById("id_page").value = valor;
-    document.getElementById("formSinais").submit();
-  }
+  $(document).ready(function(){
+    var valor_glossario = "{{ glossario }}";
+
+    if(valor_glossario){
+      $('#{{ glossario.id }}').prop("checked", true);
+      // document.getElementById('checkbox').click();
+      //   $('#imagem_{{ name }}').attr('src', $(cm_{{name}}_{{ value }}).attr('src'));
+      //   $('#id_{{ name }}').val(valor_{{ name }});
+    }
+  });
 </script>
 {% endblock %}
