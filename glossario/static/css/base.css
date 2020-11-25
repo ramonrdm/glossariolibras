@@ -405,6 +405,12 @@ hr { color: white;}
     font-size: 1.2rem;
 }
 
+.collapsible li.active .expand_less {
+    -ms-transform: rotate(180deg); /* IE 9 */
+    -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+    transform: rotate(180deg);
+}
+
 /* Mobile Padding */
 
 @media only screen and (max-width: 992px) {

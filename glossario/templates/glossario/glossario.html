@@ -61,6 +61,15 @@
 		{% endif %}
 	</div>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+	  var valor_glossario = "{{ glossario.id }}";
+
+	  $('#id_glossario').val(valor_glossario);
+	  
+	});
+</script>
 {% endblock %}
 
 

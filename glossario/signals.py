@@ -27,8 +27,6 @@ def set_news_group(sender, instance, **kwargs):
 @receiver(post_save, sender=UserGlossario)
 def set_new_user_group(sender, instance, **kwargs):
     user = UserGlossario.objects.get(id=instance.id)
-    sugestoes, created = Glossario.objects.get_or_create(nome="Sugestões",)
-    sugestoes.membros.add(user)
     membros_group = Group.objects.get_or_create(name='membros')[0]
     membros_group.user_set.add(user)
 

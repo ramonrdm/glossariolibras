@@ -13,60 +13,67 @@
     <!-- Filtros -->
     <section>
       <h5>Filtros</h5>
+      <ul class="collapsible">      
 
       <!-- Glossários -->
-      <section>
-        <h6>Glossários</h6>
-        {% for glossario in glossarios %}
-        <div>
-          <form action="{% url 'pesquisa' %}" method="GET">
-            <p>
-              <label>
-                <input onChange="this.form.submit()" name="glossario" value="{{ glossario.id }}"
-                id="{{glossario.id}}" class="with-gap" type="radio" />
-                <span class="dark-blue-text">{{glossario.nome}}</span>
-              </label>
-            </p>
-          </form>
-        </div>
-        {% endfor %}
-      </section>
-
-      <!-- Areas -->
-      <section>
-        <h6>Áreas</h6>
-        <form action="{% url 'pesquisa' %}" method="GET">
-          {% for area in areas %}
-          <div>
-            <p>
-              <label>
-                <input name="area" value="{{ area.id }}"
-                class="with-gap" type="radio" />
-                <span class="dark-blue-text">{{area.nome}}</span>
-              </label>
-            </p>
+        <li class="active">
+          <div class="collapsible-header"><h6>Glossários</h6><h6 class="material-icons expand_less">expand_less</h6></div>
+          <div class="collapsible-body">
+            <form action="{% url 'pesquisa' %}" method="GET">
+              {% for glossario in glossarios %}
+                <p>
+                  <label>
+                    <input value="{{ glossario.id }}" class="with-gap escolhaGlossario"
+                    id="{{ glossario.id }}" type="radio"/>
+                    <span class="dark-blue-text">{{glossario.nome}}</span>
+                  </label>
+                </p>
+                {% endfor %}
+            </form>
           </div>
-          {% endfor %}
-        </form>
-      </section>
+        </li>
 
-      <!-- Letras -->
-      <section>
-        <h6>Letra Inicial</h6>
-        {% for letter in alfabeto %}
+        <!-- Areas -->
+        <li class="active">
+          <div class="collapsible-header"><h6>Áreas</h6><h6 class="material-icons expand_less">expand_less</h6></div>
+          <div class="collapsible-body">
+            <form action="{% url 'pesquisa' %}" method="GET">
+              {% for area in areas %}
+              <div>
+                <p>
+                  <label>
+                    <input value="{{ area.id }}" class="with-gap escolhaArea"
+                    id="area_{{ area.id }}" type="radio"/>
+                    <span class="dark-blue-text">{{area.nome}}</span>
+                  </label>
+                </p>
+              </div>
+              {% endfor %}
+            </form>
+          </div>
+        </li>
 
-        <div>
-          <form action="{% url 'pesquisa' %}" method="GET">
-            <p>
-              <label>
-                <input name="letra_inicial" value="{{ letter }}" class="with-gap" type="radio" />
-                <span class="dark-blue-text">{{letter}}</span>
-              </label>
-            </p>
-          </form>
-        </div>
-        {% endfor %}
-      </section>
+        <!-- Letras -->
+        <li class="active">
+          <div class="collapsible-header"><h6>Letra Inicial</h6><h6 class="material-icons expand_less">expand_less</h6></div>
+          <div class="collapsible-body">
+            <form id="formLetra" action="{% url 'pesquisa' %}" method="GET">
+              {% for letter in alfabeto %}
+              <div>
+                <p>
+                  <label>
+                    <input name="letra_inicial" value="{{ letter }}" class="with-gap escolhaLetra"
+                    id="letra_{{ letter }}" class="with-gap" type="radio"/>
+                    <span class="dark-blue-text">{{letter}}</span>
+                  </label>
+                </p>
+              </div>
+              {% endfor %}
+            </form>
+          </div>
+        </li>
+      </ul>
+
     </section>
   </div>
   <div class="col l10 s12">
@@ -133,14 +140,49 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-    var valor_glossario = "{{ glossario }}";
+    $(".collapsible").collapsible({ accordion: false });
 
-    if(valor_glossario){
-      $('#{{ glossario.id }}').prop("checked", true);
-      // document.getElementById('checkbox').click();
-      //   $('#imagem_{{ name }}').attr('src', $(cm_{{name}}_{{ value }}).attr('src'));
-      //   $('#id_{{ name }}').val(valor_{{ name }});
+    var valor_glossario = "{{ glossario.id }}";
+    var valor_area = "{{ area }}";
+    var valor_letra = "{{ letra_inicial }}";
+
+    if(valor_letra){
+      $('#letra_{{ letra_inicial }}').prop("checked", true);
     }
+    if(valor_glossario){
+      $('.escolhaGlossario#{{ glossario.id }}').prop("checked", true);
+      $('#id_glossario').val(valor_glossario);
+    }
+    if(valor_area){
+      $('#area_{{ area.id }}').prop("checked", true);
+    }
+
+    $('.escolhaGlossario').click(function(){
+      // alert(this.id)
+      if(valor_glossario == this.id){
+        $('#id_glossario').val("");
+        $('#formSinais').submit();
+      } else {
+        var escolhaGlossario = $(this).attr('value');
+        $('#id_glossario').val(escolhaGlossario);
+        $('#formSinais').submit();
+      }
+    });
+
+    $('.escolhaArea').click(function(){
+      var escolhaArea = $(this).attr('value');
+      $('#id_area').val(escolhaArea);
+      $('#formSinais').submit();
+    });
+
+    $('.escolhaLetra').click(function(){
+      // var escolhaLetra = $(this).attr('value');
+      // $('#id_glossario').val(escolhaGlossario);
+      // alert(this);
+      // this.submit();
+      $('#formLetra').submit();
+    });
+    
   });
 </script>
 {% endblock %}

@@ -3,7 +3,6 @@ $(document).ready(function () {
     $('#fecharSidenav').hide();
     $('.tabs').tabs();
 
-
     $('.modal').modal();
     $('#confirmeEmail').modal('open');
     $('#confirmeEmailErro').modal('open');

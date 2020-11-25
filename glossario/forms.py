@@ -90,6 +90,8 @@ class PesquisaSinaisForm(forms.ModelForm):
         attrs={'id': 'search', 'type': 'search', 'placeholder': 'Pesquisar em glossário'}))
     area = forms.ModelChoiceField(queryset=Area.objects.all(), required=False)
 
+    
+
     def __init__(self, *args, **kwargs):
         super(PesquisaSinaisForm, self).__init__(*args, **kwargs)
         for field in self.fields:

@@ -128,7 +128,7 @@ def pesquisa(request):
     # glossario = request.GET.get('glossario', None)
 
     sinais = None
-    glossario = None
+    # glossario = None
     area = None
     formSinais = PesquisaSinaisForm(request.GET)
 
@@ -140,9 +140,11 @@ def pesquisa(request):
 
 
     if formSinais.is_valid():
+        print("##########################")
         sinais = busca(formSinais, request).filter(glossario__visivel=True)
         glossario = formSinais.cleaned_data['glossario']
         area = formSinais.cleaned_data['area']
+        letra_inicial = request.GET.get('letra_inicial', None)
 
     resultado = len(sinais) if sinais else None
 
@@ -171,12 +173,13 @@ def pesquisa(request):
         'glossarios': glossarios,
         'areas':areas,
         'alfabeto':alfabeto,
+        'letra_inicial':letra_inicial,
     }
     return render(request, 'glossario/pesquisa.html', context)
 
 def busca_na_area(area):
     query = Q()
-    areas = Area.objects.filter(id=area.id).get_descendants(include_self=True)
+    areas = Area.objects.filter(id=area).get_descendants(include_self=True)
     for _area in areas:
         query |= Q(glossario__area=_area)
     return Sinal.objects.filter(query, publicado=True)
@@ -196,15 +199,23 @@ def busca(formSinais, request):
     # glossario = formSinais.cleaned_data['glossario']
     # area = formSinais.cleaned_data['area']
     sinais = Sinal.objects.filter(publicado=True)
-    print("#####################################")
-    print(area)
-    print(glossario)
-    print(letra_inicial)
+
+    query = Q()
 
     if area != None and area != '':
-        sinais = busca_na_area(area)
-    elif glossario != '' and glossario != None:
-        sinais = sinais.filter(glossario=glossario)
+        # Gera erro 404 se não existir
+        get_object_or_404(Area, id=area)
+
+        areas = Area.objects.filter(id=area).get_descendants(include_self=True)
+        for _area in areas:
+            query |= Q(glossario__area=_area)
+
+    if glossario != '' and glossario != None:
+        # Gera erro 404 se não existir
+        get_object_or_404(Glossario, id=glossario)
+        query |= Q(id=glossario)
+        # sinais = sinais.filter(id=glossario)
+    sinais = Sinal.objects.filter(query, publicado=True)
 
     # Pesquisa por texto
     if resultadoTraducao != '':
