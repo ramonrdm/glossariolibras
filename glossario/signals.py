@@ -72,7 +72,7 @@ def update_upload_path(sender, instance, created, **kwargs):
                 # duracao menos 60 para remover a soma dos frames inicias com os finais
                 duration_preview = math.ceil((int(duration)-60)/4)
 
-                nome_preview = str(instance.id)+"-preview%3d.png"
+                nome_preview = str(instance.id)+"-preview%3d.jpg"
                 arquivo_preview = pasta_sinal_preview+'/'+nome_preview
                 # valor 15 para pular os primeiros frames
                 subprocess.call("ffmpeg -i {0} -vf select='between(n\,15\,{1})*not(mod(n\,{2}))' -vsync vfr {3}".format(
@@ -80,7 +80,7 @@ def update_upload_path(sender, instance, created, **kwargs):
                 # Atualiza path dos preview
                 for i, preview in enumerate(preview_fields):
                     nome_relativo_preview = "sinal_preview/" + \
-                        str(instance.id)+"-preview00"+str(i+1)+".png"
+                        str(instance.id)+"-preview00"+str(i+1)+".jpg"
                     Sinal.objects.filter(id=instance.id).update(
                         **{"%s" % preview.field.name: nome_relativo_preview}
                     )

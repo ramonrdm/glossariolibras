@@ -1,24 +1,5 @@
 <div class="container center no-padding-right-left">
-  {% if glossario %}
-  <div>
-    {% if glossario.imagem %}
-    <img class="circle left glossario-icon" src="{{ glossario.imagem.url }}" />
-    {% endif %}
-    <p class="flow-text ">
-      Encontrado {{resultado}} resultado(s) em
-      <a href="{% url 'glossario' glossario=glossario.slugify %}" style="color:darkblue">{{ glossario.nome }}</a>
-      :
-    </p>
-  </div>
-  {% elif area %}
-  <div>
-    <p class="flow-text ">
-      Encontrado {{resultado}} resultado(s) em {{ area }} :
-    </p>
-  </div>
-  {% else %}
   <p class="flow-text">Encontrado {{resultado}} resultado(s):</p>
-  {% endif %}
 
   <div class="container divider"></div>
   <ul class="row">

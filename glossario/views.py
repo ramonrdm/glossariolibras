@@ -25,7 +25,7 @@ from django.template.defaultfilters import slugify
 from django.core.mail import EmailMessage
 
 from django.contrib.postgres.search import SearchVector
-
+import json
 
 def signup(request):
     if request.method == 'POST':
@@ -122,29 +122,27 @@ def glossarioSelecionado(request, glossario):
         }
         return render(request, 'glossario/glossario.html', context)
 
-# def pesquisa(request, area=None, query=None, glossario=None):
 def pesquisa(request):
-    # area = request.GET.get('area', None)
-    # glossario = request.GET.get('glossario', None)
-
+    # Inicialização das variaveis
     sinais = None
-    # glossario = None
-    area = None
+    glossarios = []
+    areas = []
     formSinais = PesquisaSinaisForm(request.GET)
 
-    # if area:
-    #     area = get_object_or_404(Area, slug=area)
-
-    # if glossario:
-    #     glossario = get_object_or_404(Glossario, nome=glossario)
-
-
     if formSinais.is_valid():
-        print("##########################")
         sinais = busca(formSinais, request).filter(glossario__visivel=True)
-        glossario = formSinais.cleaned_data['glossario']
-        area = formSinais.cleaned_data['area']
-        letra_inicial = request.GET.get('letra_inicial', None)
+        # Limpa glossarios para js
+        _glossarios = formSinais.cleaned_data['glossarios']
+        for glossario in _glossarios:
+            glossarios.append(glossario.id)
+        json.dumps(glossarios)
+        # Limpa areas para js
+        _areas = formSinais.cleaned_data['areas']
+        for area in _areas:
+            areas.append(area.id)
+        json.dumps(areas)
+
+        letra_inicial = formSinais.cleaned_data['letra_inicial']
 
     resultado = len(sinais) if sinais else None
 
@@ -159,19 +157,19 @@ def pesquisa(request):
         sinais_page = paginator.page(paginator.num_pages)
 
 
-    glossarios = Glossario.objects.filter(visivel=True)
-    areas = Area.objects.all()
+    todos_glossarios = Glossario.objects.filter(visivel=True)
+    todas_areas = Area.objects.all()
     alfabeto = ['a','b','c','d','e','f','g','h','i','j','k','l','m',
                 'n','o','p','q','r','s','t','u','v','w','x','y','z']
 
     context = { 
-        'glossario' : glossario,
+        'glossarios' : glossarios,
         'sinais_page': sinais_page, 
         'resultado': resultado,
-        'area': area,
+        'areas': areas,
         'formSinais': formSinais,
-        'glossarios': glossarios,
-        'areas':areas,
+        'todos_glossarios': todos_glossarios,
+        'todas_areas':todas_areas,
         'alfabeto':alfabeto,
         'letra_inicial':letra_inicial,
     }
@@ -188,33 +186,33 @@ def busca(formSinais, request):
     class Meta:
         ordering = ["-created_date"]
 
-    letra_inicial = request.GET.get('letra_inicial', None)
-    area = request.GET.get('area', None)
-    glossario = request.GET.get('glossario', None)
+    letra_inicial = formSinais.cleaned_data['letra_inicial']
+    areas = formSinais.cleaned_data['areas']
+    glossarios = formSinais.cleaned_data['glossarios']
 
     resultadoTraducao = formSinais.cleaned_data['busca']
     localizacao = formSinais.cleaned_data['localizacao']
     movimentacao = formSinais.cleaned_data['movimentacao']
     mao = formSinais.cleaned_data['cmE']
-    # glossario = formSinais.cleaned_data['glossario']
-    # area = formSinais.cleaned_data['area']
     sinais = Sinal.objects.filter(publicado=True)
 
     query = Q()
 
-    if area != None and area != '':
-        # Gera erro 404 se não existir
-        get_object_or_404(Area, id=area)
+    if areas != None and areas != '':
+        for area in areas:
+            # Gera erro 404 se não existir
+            get_object_or_404(Area, id=area.id)
 
-        areas = Area.objects.filter(id=area).get_descendants(include_self=True)
-        for _area in areas:
-            query |= Q(glossario__area=_area)
+            sub_areas = Area.objects.filter(id=area.id).get_descendants(include_self=True)
+            for _area in sub_areas:
+                query |= Q(glossario__area=_area)
 
-    if glossario != '' and glossario != None:
-        # Gera erro 404 se não existir
-        get_object_or_404(Glossario, id=glossario)
-        query |= Q(id=glossario)
-        # sinais = sinais.filter(id=glossario)
+    if glossarios != None and glossarios != '':
+        for glossario in glossarios:
+            # Gera erro 404 se não existir
+            get_object_or_404(Glossario, id=glossario.id)
+            query |= Q(glossario__id=glossario.id)
+
     sinais = Sinal.objects.filter(query, publicado=True)
 
     # Pesquisa por texto
@@ -228,7 +226,7 @@ def busca(formSinais, request):
             ingles__istartswith=letra_inicial))
     # Pesquisa por sinal
     else:
-    # Se o campo for nulo ignora ele na pesquisa
+        # Se o campo for nulo ignora ele na pesquisa
         if localizacao:
             if localizacao != '0':
                 sinais = sinais.filter(localizacao=localizacao)
@@ -371,8 +369,8 @@ def update(request):
     for sinal in sinais:
         if not sinal.video_sinal:
             continue
-        if sinal.preview1:
-            continue
+        # if sinal.preview1:
+        #     continue
         preview_fields = [sinal.preview1, sinal.preview2,
                           sinal.preview3, sinal.preview4]
 
@@ -388,7 +386,7 @@ def update(request):
         # duracao menos 60 para remover a soma dos frames inicias com os finais
         duration_preview = math.ceil((int(duration)-60)/4)
 
-        nome_preview = str(sinal.id)+"-preview%3d.png"
+        nome_preview = str(sinal.id)+"-preview%3d.jpg"
         arquivo_preview = pasta_sinal_preview+'/'+nome_preview
         # valor 15 para pular os primeiros frames
         subprocess.call("ffmpeg -i {0} -vf select='between(n\,15\,{1})*not(mod(n\,{2}))' -vsync vfr {3}".format(
@@ -396,16 +394,16 @@ def update(request):
         # Atualiza path dos preview
         for i, preview in enumerate(preview_fields):
             nome_relativo_preview = "sinal_preview/" + \
-                str(sinal.id)+"-preview00"+str(i+1)+".png"
+                str(sinal.id)+"-preview00"+str(i+1)+".jpg"
             Sinal.objects.filter(id=sinal.id).update(
                 **{"%s" % preview.field.name: nome_relativo_preview}
             )
 
     # For debug
     # duplicar modelos existentes
-    for _ in range (0,200):
-        sinal = Sinal.objects.get(pk=1)
-        sinal.pk = None
-        sinal.save()
+    # for _ in range (0,200):
+    #     sinal = Sinal.objects.get(pk=1)
+    #     sinal.pk = None
+    #     sinal.save()
 
     return render(request, 'glossario/contato.html')

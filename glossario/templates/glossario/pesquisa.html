@@ -20,11 +20,11 @@
           <div class="collapsible-header"><h6>Glossários</h6><h6 class="material-icons expand_less">expand_less</h6></div>
           <div class="collapsible-body">
             <form action="{% url 'pesquisa' %}" method="GET">
-              {% for glossario in glossarios %}
+              {% for glossario in todos_glossarios %}
                 <p>
                   <label>
                     <input value="{{ glossario.id }}" class="with-gap escolhaGlossario"
-                    id="{{ glossario.id }}" type="radio"/>
+                    id="glossario_{{ glossario.id }}" type="checkbox"/>
                     <span class="dark-blue-text">{{glossario.nome}}</span>
                   </label>
                 </p>
@@ -38,12 +38,12 @@
           <div class="collapsible-header"><h6>Áreas</h6><h6 class="material-icons expand_less">expand_less</h6></div>
           <div class="collapsible-body">
             <form action="{% url 'pesquisa' %}" method="GET">
-              {% for area in areas %}
+              {% for area in todas_areas %}
               <div>
                 <p>
                   <label>
                     <input value="{{ area.id }}" class="with-gap escolhaArea"
-                    id="area_{{ area.id }}" type="radio"/>
+                    id="area_{{ area.id }}" type="checkbox"/>
                     <span class="dark-blue-text">{{area.nome}}</span>
                   </label>
                 </p>
@@ -57,7 +57,8 @@
         <li class="active">
           <div class="collapsible-header"><h6>Letra Inicial</h6><h6 class="material-icons expand_less">expand_less</h6></div>
           <div class="collapsible-body">
-            <form id="formLetra" action="{% url 'pesquisa' %}" method="GET">
+            <form action="{% url 'pesquisa' %}" method="GET">
+              <a href="#" class="limparLetra"><h6>Limpar</h6></a>
               {% for letter in alfabeto %}
               <div>
                 <p>
@@ -81,26 +82,7 @@
       {% if sinais_page %}
       {% include 'glossario/blockPesquisaList.html' %}
       {% else %}
-        {% if glossario %}
-        <div>
-          {% if glossario.imagem %}
-          <img class="circle left glossario-icon" src="{{ glossario.imagem.url }}" />
-          {% endif %}
-          <p class="flow-text center nenhumSinal">
-            Nenhum sinal encontrado em
-            <a href="{% url 'glossario' glossario=glossario.slugify %}" style="color:darkblue">{{ glossario.nome }}</a>
-            :
-          </p>
-        </div>
-        {% elif area %}
-        <div>
-          <p class="flow-text center nenhumSinal">
-            Nenhum sinal encontrado em {{ area }} :
-          </p>
-        </div>
-        {% else %}
-        <p class="flow-text center nenhumSinal">Nenhum sinal encontrado</p>
-        {% endif %}
+      <p class="flow-text center nenhumSinal">Nenhum sinal encontrado</p>
       {% endif %}
     </div>
 
@@ -142,45 +124,77 @@
   $(document).ready(function(){
     $(".collapsible").collapsible({ accordion: false });
 
-    var valor_glossario = "{{ glossario.id }}";
-    var valor_area = "{{ area }}";
+    var valor_glossario = {{ glossarios|safe }};
+    var valor_area = {{ areas|safe }};
     var valor_letra = "{{ letra_inicial }}";
+    
+    if (valor_area.length){
+      $.each(valor_area, function(index, area_id) {
+        $('.escolhaArea#area_'+area_id).prop("checked", true);
+      });
+    }
+
+    if (valor_glossario.length){
+      $.each(valor_glossario, function(index, glossario_id) {
+        $('.escolhaGlossario#glossario_'+glossario_id).prop("checked", true);
+      });
+    }
 
     if(valor_letra){
       $('#letra_{{ letra_inicial }}').prop("checked", true);
     }
-    if(valor_glossario){
-      $('.escolhaGlossario#{{ glossario.id }}').prop("checked", true);
-      $('#id_glossario').val(valor_glossario);
-    }
-    if(valor_area){
-      $('#area_{{ area.id }}').prop("checked", true);
-    }
 
     $('.escolhaGlossario').click(function(){
-      // alert(this.id)
-      if(valor_glossario == this.id){
-        $('#id_glossario').val("");
-        $('#formSinais').submit();
-      } else {
-        var escolhaGlossario = $(this).attr('value');
-        $('#id_glossario').val(escolhaGlossario);
-        $('#formSinais').submit();
+      var valor_checkbox = parseInt($(this).attr('value'));
+      var uncheck = false;
+
+      if (valor_glossario.includes(valor_checkbox)) {
+        uncheck = true;
       }
+      // Se valor for deselecionado remove do array
+      if (uncheck) {
+        var escolhaGlossarios = valor_glossario.filter(function(value, index, arr){
+          return value != valor_checkbox;
+        });
+      } else {
+        var escolhaGlossarios = valor_glossario;
+        escolhaGlossarios.push(valor_checkbox);
+      }
+
+      $('#id_glossarios').val(escolhaGlossarios);
+      $('#formSinais').submit();
     });
 
     $('.escolhaArea').click(function(){
-      var escolhaArea = $(this).attr('value');
-      $('#id_area').val(escolhaArea);
+      var valor_checkbox = parseInt($(this).attr('value'));
+      var uncheck = false;
+
+      if (valor_area.includes(valor_checkbox)) {
+        uncheck = true;
+      }
+      // Se valor for deselecionado remove do array
+      if (uncheck) {
+        var escolhaAreas = valor_area.filter(function(value, index, arr){
+          return value != valor_checkbox;
+        });
+      } else {
+        var escolhaAreas = valor_area;
+        escolhaAreas.push(valor_checkbox);
+      }
+
+      $('#id_areas').val(escolhaAreas);
       $('#formSinais').submit();
     });
 
     $('.escolhaLetra').click(function(){
-      // var escolhaLetra = $(this).attr('value');
-      // $('#id_glossario').val(escolhaGlossario);
-      // alert(this);
-      // this.submit();
-      $('#formLetra').submit();
+      var escolhaLetra = $(this).attr('value');
+      $('#id_letra_inicial').val(escolhaLetra);
+      $('#formSinais').submit();
+    });
+
+    $('.limparLetra').click(function(){
+      $('#id_letra_inicial').val("");
+      $('#formSinais').submit();
     });
     
   });

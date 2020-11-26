@@ -7,6 +7,7 @@ from glossario.widgets import VideoInput, ImageSelectLocalizacao, ImageSelectMao
 from django.core.exceptions import ValidationError
 from django.contrib.auth import password_validation
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.postgres.forms import SimpleArrayField
 
 
 class GlossarioForm(forms.ModelForm):
@@ -79,7 +80,7 @@ class SinalForm(forms.ModelForm):
 class PesquisaSinaisForm(forms.ModelForm):
     class Meta:
         model = Sinal
-        fields = ['localizacao', 'cmE', 'movimentacao', 'glossario']
+        fields = ['localizacao', 'cmE', 'movimentacao']
         widgets = {
             'localizacao': ImageSelectLocalizacao(),
             'cmE': ImageSelectMao(),
@@ -88,9 +89,9 @@ class PesquisaSinaisForm(forms.ModelForm):
 
     busca = forms.CharField(required=False, label="",  widget=forms.TextInput(
         attrs={'id': 'search', 'type': 'search', 'placeholder': 'Pesquisar em glossário'}))
-    area = forms.ModelChoiceField(queryset=Area.objects.all(), required=False)
-
-    
+    areas = forms.ModelMultipleChoiceField(queryset=Area.objects.all())
+    glossarios = forms.ModelMultipleChoiceField(queryset=Glossario.objects.all())
+    letra_inicial = forms.CharField(max_length=1, widget=forms.HiddenInput())
 
     def __init__(self, *args, **kwargs):
         super(PesquisaSinaisForm, self).__init__(*args, **kwargs)

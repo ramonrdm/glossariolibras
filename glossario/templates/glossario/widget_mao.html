@@ -35,6 +35,9 @@
 <script type="text/javascript">
     $(document).ready(function(){
         var valor_{{ name }} = "{{ value|safe }}";
+        if(valor_{{ name }} == "None"){
+            valor_{{ name }} = null;
+        }
         if(valor_{{ name }}){
             $('#imagem_{{ name }}').attr('src', $(cm_{{name}}_{{ value }}).attr('src'));
             $('#id_{{ name }}').val(valor_{{ name }});
