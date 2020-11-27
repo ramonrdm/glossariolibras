@@ -39,16 +39,34 @@
         <form method="GET" action="{% url 'pesquisa'  %}" id="formSinais">
           <!-- Search bar -->
           <div id="search-bar" class="col l5">
+            <!-- Pesquisa por sinais -->
             {% for field in formSinais %}
-            <div class="col s3 m2 l2 center">
+            {% if field.name == "busca" %}
+            <div id="searchTexto" class="col s6 m6 l3 center hide-on-med-and-down">
               {{ field }}
             </div>
+            {% else %}
+            <div class="col s3 m3 l2 center searchSinais">
+              {{ field }}
+            </div>
+            {% endif %}
             {% endfor %}
+            <!-- Botão para trocar para pesquisa em texto MOBILE -->
+            <div class="col s3 m3 l2 center hide-on-large-only">
+              <button type="button" id="abrirSearchTexto"
+              class="btn-floating btn-large waves-effect waves-light grey botaoTexto">
+              <i class="material-icons white-text">text_format</i></a></button>
+            </div>
+            <!-- Botão para trocar para pesquisa por sinais MOBILE -->
+            <div class="col s3 m3 l2 center hide-on-large-only">
+              <button type="button" id="fecharSearchTexto"
+              class="btn-floating btn-large waves-effect waves-light grey botaoTexto hide">
+              <i class="material-icons white-text">pan_tool</i></a></button>
+            </div>
+            <!-- Botão de submit -->
             <button type="submit" id="botaoPesquisarMobile"
             class="btn-floating btn-large waves-effect waves-light indigo darken-4 botaoPesquisarMobile hide-on-large-only">
             <i class="material-icons white-text">search</i></a></button>
-            <!-- <a id="abrirNavSearchMobile" class="btn-floating btn-large halfway-fab waves-effect waves-light indigo darken-4"
-          style="position: absolute; top: -80%;"><i class="material-icons white-text">text_format</i></a></nav> -->
           </div>          
           <!-- Botão pesquisa WEB-->
           <div class="col l1 right hide-on-med-and-down">
@@ -79,5 +97,22 @@
 <ul class="sidenav" id="mobile-demo">
   {% include 'glossario/menu.html' %}
 </ul>
-
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $('#abrirSearchTexto').click(function(){
+      $('.searchSinais').hide();
+      $('#searchTexto').removeClass("hide-on-med-and-down");
+      $(this).addClass("hide")
+      $('#fecharSearchTexto').removeClass("hide");
+    });
+    $('#fecharSearchTexto').click(function(){
+      $('.searchSinais').show();
+      $('#searchTexto').addClass("hide-on-med-and-down");
+      $(this).addClass("hide")
+      $('#abrirSearchTexto').removeClass("hide");
+    });
+  });
+</script>

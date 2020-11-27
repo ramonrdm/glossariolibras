@@ -13,7 +13,7 @@ Glossários de Libras - Glossário Letras Libras
   <h5>Áreas:</h5>
   {% recursetree areas %}
     <div class="col s12 card-panel blue-grey lighten-5">
-      <a href="/pesquisa/?area={{node.id}}" id="areaSelecionada">
+      <a href="/pesquisa/?areas={{node.id}}" id="areaSelecionada">
         <h5 class="s12">{{ node.nome|title }}:</h5>
       </a>
       {% for glossario in glossarios %}
