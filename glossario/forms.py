@@ -1,13 +1,8 @@
 # -*- coding: utf-8 -*-
 from django import forms
-from django.forms.models import ModelChoiceField
 from glossario.models import Glossario, Sinal, CM, UserGlossario, Area, Comment
-from django.conf import settings
 from glossario.widgets import VideoInput, ImageSelectLocalizacao, ImageSelectMao, ImageSelectMovimentacao
-from django.core.exceptions import ValidationError
-from django.contrib.auth import password_validation
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.postgres.forms import SimpleArrayField
+from django_registration.forms import RegistrationForm
 
 
 class GlossarioForm(forms.ModelForm):
@@ -105,7 +100,7 @@ class CMForm(forms.ModelForm):
         fields = ['bsw', 'name', 'group']
 
 
-class SignupForm(UserCreationForm):
+class CustomRegistrationForm(RegistrationForm):
     class Meta:
         model = UserGlossario
         fields = ['email', 'nome_completo', 'password1', 'password2']

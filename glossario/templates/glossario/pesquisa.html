@@ -3,12 +3,26 @@
 {{ block.super }}
 {{ formSinais.media }}
 {% load staticfiles %}
-<title>{% block title %}Pesquisa {{ glossario.nome }} - Glossário Letras Libras {% endblock %}</title>
+<title>{% block title %}Pesquisa - Glossário Letras Libras {% endblock %}</title>
 {% endblock %}
 {% block body %}
-
-
 <div class="area-para-footer row container">
+  <div class="row hide-on-large-only">
+    <div class="">
+      <a href="#" class="sidenav-trigger waves-effect waves-light btn col s12 botaoFiltro" data-target="menu-side">
+        <h6>Filtros</h6>
+      </a>
+  
+      <ul class="sidenav filtros fixed right" id="menu-side">
+        <li>
+          <div class="col s12">
+            {% include 'glossario/filtros.html' %}
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
   <div class="col l2 hide-on-med-and-down">
     {% include 'glossario/filtros.html' %}
   </div>

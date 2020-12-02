@@ -8,7 +8,7 @@ from django.contrib.auth.models import Group
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.conf import settings
-from glossario.models import Glossario, Sinal, UserGlossario, Area
+from glossario.models import Glossario, Sinal, UserGlossario
 
 
 @receiver(post_save, sender=Glossario)

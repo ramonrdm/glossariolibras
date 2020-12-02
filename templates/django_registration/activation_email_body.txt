@@ -3,5 +3,5 @@ Olá  {{ user.nome_completo }},
 
 Por favor click no link para confirmar seu registro:
 
-http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+{{ scheme }}://{{ site }}{% url 'django_registration_activate' activation_key=activation_key %}
 {% endautoescape %}

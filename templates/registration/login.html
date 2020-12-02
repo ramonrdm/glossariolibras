@@ -8,10 +8,10 @@
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit" class="btn waves-effect waves-light botaoEnviarSinal col l4  s4 right">login</button>
-            <a  class=" waves-effect waves-light left" href="{% url 'password_reset' %}">Esqueci minha senha</a>
+            <a class=" waves-effect waves-light left" href="{% url 'password_reset' %}">Esqueci minha senha</a>
             <br>
-            <a class="waves-effect waves-blue" href="{% url 'index' %}">
-            Criar Usuario
+            <a class="waves-effect waves-blue" href="{% url 'django_registration_register' %}">
+                Criar Usuario
             </a>
         </form>
     </div>

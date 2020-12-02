@@ -271,7 +271,7 @@ div.thumbnail.hoverable:not(.selected) p {
     display: inline;
 }
 
-.botaoEnviarSinal, .botaoEnviarSinal:focus, .botaoPesquisar, .botaoPesquisarMobile .botaoPesquisar:focus {
+.botaoEnviarSinal, .botaoEnviarSinal:focus, .botaoPesquisar, .botaoPesquisarMobile .botaoPesquisar:focus, .botaoFiltro {
     background-color: #003a99;
     margin: 1%;
 }
@@ -484,7 +484,7 @@ hr { color: white;}
         height: 50px;
     }
     .area-para-footer {
-        padding-bottom: 30%;
+        padding-bottom: 45%;
     }
     .preview img {
         margin-left: 0;

@@ -1,11 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
-from django.db.models import FileField, DateTimeField
-from django.core.files import File
-from django.contrib.auth import hashers
-from django.db.models.signals import post_save, pre_save
-from django.dispatch import receiver
+from django.db.models import FileField
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
@@ -56,7 +52,7 @@ class UserGlossario(AbstractBaseUser, PermissionsMixin):
     nome_completo = models.CharField(max_length=255, null=False)
     email_confirmed = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=True)
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     objects = UserManagerGlossario()
 
     USERNAME_FIELD = 'email'
