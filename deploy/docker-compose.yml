@@ -11,8 +11,6 @@ services:
             gunicorn glossariolibras.wsgi:application --bind 0.0.0.0:8000"
     volumes:
       - ../.:/code
-    env_file:
-      - ./.env.dev
     expose:
       - 8000
     depends_on:

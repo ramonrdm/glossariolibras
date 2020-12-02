@@ -165,15 +165,19 @@ def busca(formSinais, request):
 
     # Pesquisa por texto
     if resultadoTraducao != '':
+        print("entrei texto")
         sinais = sinais.annotate(
             search = SearchVector('portugues', 'ingles','descricao'),
         ).filter(search=resultadoTraducao)
     # Utiliza startswith para letras inicial selecionada
-    elif letra_inicial != None:
+    elif letra_inicial != '':
+        print("entrei letra inicial")
+        print(letra_inicial)
         sinais = sinais.filter(Q(portugues__istartswith=letra_inicial) | Q(
             ingles__istartswith=letra_inicial))
     # Pesquisa por sinal
     else:
+        print("entrei sinal")
         # Se o campo for nulo ignora ele na pesquisa
         if localizacao:
             if localizacao != '0':

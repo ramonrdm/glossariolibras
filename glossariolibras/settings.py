@@ -11,17 +11,11 @@ def get_env_value(env_variable):
         error_msg = 'Set the {} environment variable'.format(env_variable)
         raise ImproperlyConfigured(error_msg)
 
-# # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = '@9e1s9zexj93d%n^^2)vxi0p4lwmz2tn0y67%*65#$nn5g64q1'
-# # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-# ALLOWED_HOSTS = ['glossarios.libras.ufsc.br', 'glossario.libras.ufsc.br', 'localhost']
-
-SECRET_KEY = os.environ.get("SECRET_KEY")
-
-DEBUG = int(os.environ.get("DEBUG", default=0))
-
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = '@9e1s9zexj93d%n^^2)vxi0p4lwmz2tn0y67%*65#$nn5g64q1'
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+ALLOWED_HOSTS = ['glossarios.libras.ufsc.br', 'glossario.libras.ufsc.br', 'localhost']
 
 INSTALLED_APPS = (
     'django.contrib.admin',
