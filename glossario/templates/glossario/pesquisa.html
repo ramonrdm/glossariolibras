@@ -3,56 +3,149 @@
 {{ block.super }}
 {{ formSinais.media }}
 {% load staticfiles %}
-<title>{% block title %}Pesquisa {{ glossario.nome }} - Glossário Letras Libras {% endblock %}</title>
+<title>{% block title %}Pesquisa - Glossário Letras Libras {% endblock %}</title>
 {% endblock %}
 {% block body %}
-
-
-<div class="area-para-footer">
-  <div>
-    {% if sinais_page %}
-    {% include 'glossario/blockPesquisaList.html' %}
-    {% else %}
-    </br>
-    <p class="flow-text center nenhumSinal">Nenhum sinal encontrado</p>
-    {% endif %}
+<div class="area-para-footer row container">
+  <div class="row hide-on-large-only">
+    <div class="">
+      <a href="#" class="sidenav-trigger waves-effect waves-light btn col s12 botaoFiltro" data-target="menu-side">
+        <h6>Filtros</h6>
+      </a>
+  
+      <ul class="sidenav filtros fixed right" id="menu-side">
+        <li>
+          <div class="col s12">
+            {% include 'glossario/filtros.html' %}
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 
-  {% if sinais_page.has_other_pages %}
-  <ul class="pagination center">
-    {% for n in sinais_page.paginator.page_range %}
-    {{ sinais_page.page}}
+  <div class="col l2 hide-on-med-and-down">
+    {% include 'glossario/filtros.html' %}
+  </div>
+  <div class="col l10 s12">
+    <div>
+      {% if sinais_page %}
+      {% include 'glossario/blockPesquisaList.html' %}
+      {% else %}
+      <p class="flow-text center nenhumSinal">Nenhum sinal encontrado</p>
+      {% endif %}
+    </div>
+
+    {% if sinais_page.has_other_pages %}
+    <ul class="pagination center">
+      {% for n in sinais_page.paginator.page_range %}
+      {{ sinais_page.page}}
       {% if sinais_page.number|add:'-3' == n %}
       <!-- Primeira Pagina -->
-      <li class="waves-effect"><a
-        onclick="nextPage('1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}')">1</a></li>
+      <li class="waves-effect">
+        <a href="?page=1">1</a>
         {% if n != 1 %}
-        <li class="disabled"><a>&#8943;</a></li>
-        {% endif %}
-      {% elif sinais_page.number == n %}
-        <!-- Pagina atual  -->
-        <li class="active blue"><a  >{{ n }}</a></li>
-      {% elif sinais_page.number|add:'-3' < n and n < sinais_page.number|add:'3' %}
-        <!-- Paginas perto da pagina atual -->
-        <li class="waves-effect"><a
-          onclick="nextPage('{{ n }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}')">{{ n }}</a></li>
-      {% elif sinais_page.number|add:'3' == n %}
-        <!-- Ultima pagina -->
-        {% if n != sinais_page.paginator.num_pages %}
-        <li class="disabled"><a>&#8943;</a></li>
-        {% endif %}
-        <li class="waves-effect"><a
-          onclick="nextPage('{{ sinais_page.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}')">{{ sinais_page.paginator.num_pages }}</a></li>
+      <li class="disabled"><a>&#8943;</a></li>
       {% endif %}
-    {% endfor %}
-  </ul>
-  {% endif %}
+      {% elif sinais_page.number == n %}
+      <!-- Pagina atual  -->
+      <li class="active blue"><a>{{ n }}</a></li>
+      {% elif sinais_page.number|add:'-3' < n and n < sinais_page.number|add:'3' %}
+      <!-- Paginas perto da pagina atual -->
+      <li class="waves-effect">
+        <a href="?page={{ n }}">{{ n }}</a>
+      </li>
+      {% elif sinais_page.number|add:'3' == n %}
+      <!-- Ultima pagina -->
+      {% if n != sinais_page.paginator.num_pages %}
+      <li class="disabled"><a>&#8943;</a></li>
+      {% endif %}
+      <li class="waves-effect">
+        <a href="?page={{ sinais_page.paginator.num_pages }}">{{ sinais_page.paginator.num_pages }}</a>
+      </li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
 </div>
 
 <script type="text/javascript">
-  function nextPage(valor) {
-    document.getElementById("id_page").value = valor;
-    document.getElementById("formSinais").submit();
-  }
+  $(document).ready(function(){
+    $(".collapsible").collapsible({ accordion: false });
+
+    var valor_glossario = {{ glossarios|safe }};
+    var valor_area = {{ areas|safe }};
+    var valor_letra = "{{ letra_inicial }}";
+    
+    if (valor_area.length){
+      $.each(valor_area, function(index, area_id) {
+        $('.escolhaArea#area_'+area_id).prop("checked", true);
+      });
+    }
+
+    if (valor_glossario.length){
+      $.each(valor_glossario, function(index, glossario_id) {
+        $('.escolhaGlossario#glossario_'+glossario_id).prop("checked", true);
+      });
+    }
+
+    if(valor_letra){
+      $('#letra_{{ letra_inicial }}').prop("checked", true);
+    }
+
+    $('.escolhaGlossario').click(function(){
+      var valor_checkbox = parseInt($(this).attr('value'));
+      var uncheck = false;
+
+      if (valor_glossario.includes(valor_checkbox)) {
+        uncheck = true;
+      }
+      // Se valor for deselecionado remove do array
+      if (uncheck) {
+        var escolhaGlossarios = valor_glossario.filter(function(value, index, arr){
+          return value != valor_checkbox;
+        });
+      } else {
+        var escolhaGlossarios = valor_glossario;
+        escolhaGlossarios.push(valor_checkbox);
+      }
+
+      $('#id_glossarios').val(escolhaGlossarios);
+      $('#formSinais').submit();
+    });
+
+    $('.escolhaArea').click(function(){
+      var valor_checkbox = parseInt($(this).attr('value'));
+      var uncheck = false;
+
+      if (valor_area.includes(valor_checkbox)) {
+        uncheck = true;
+      }
+      // Se valor for deselecionado remove do array
+      if (uncheck) {
+        var escolhaAreas = valor_area.filter(function(value, index, arr){
+          return value != valor_checkbox;
+        });
+      } else {
+        var escolhaAreas = valor_area;
+        escolhaAreas.push(valor_checkbox);
+      }
+
+      $('#id_areas').val(escolhaAreas);
+      $('#formSinais').submit();
+    });
+
+    $('.escolhaLetra').click(function(){
+      var escolhaLetra = $(this).attr('value');
+      $('#id_letra_inicial').val(escolhaLetra);
+      $('#formSinais').submit();
+    });
+
+    $('.limparLetra').click(function(){
+      $('#id_letra_inicial').val("");
+      $('#formSinais').submit();
+    });
+    
+  });
 </script>
 {% endblock %}

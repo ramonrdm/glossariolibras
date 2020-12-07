@@ -20,9 +20,9 @@
 	<div class="block col s12 m12 l6">
 		<div class="block col m3 s12 l3">
 			{% if glossario.imagem %}
-			<a href="/{{glossario.link}}"><img class="circle imgIndex" src="{{ glossario.imagem.url }}" /></a>
+			<a href="{% url 'glossario' glossario=glossario.slugify %}"><img class="circle imgIndex" src="{{ glossario.imagem.url }}" /></a>
 			{% else %}
-			<a href="/{{glossario.link}}"><i class="large material-icons icone">cloud_off</i></a>
+			<a href="{% url 'glossario' glossario=glossario.slugify %}"><i class="large material-icons icone">cloud_off</i></a>
 			{% endif %}
 		</div>
 		<div class="block col m6 s12">
@@ -47,7 +47,7 @@
 				{% for glossario in glossarios_relacionados %}
 				{% if glossario.imagem %}
 				<div class="block center">
-					<a href="/{{glossario.link}}" class="glossarioSinais">
+					<a href="{% url 'glossario' glossario=glossario.slugify %}" class="glossarioSinais">
 						<img class="circle z-depth-2 hoverable imgIndex" src="{{glossario.imagem.url}}">
 						<span class="sinaisBadge">{{glossario.sinais_number}}</span>
 						<div>
@@ -61,6 +61,15 @@
 		{% endif %}
 	</div>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+	  var valor_glossario = "{{ glossario.id }}";
+
+	  $('#id_glossarios').val(valor_glossario);
+	  
+	});
+</script>
 {% endblock %}
 
 

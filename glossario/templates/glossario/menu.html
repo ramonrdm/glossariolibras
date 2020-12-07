@@ -6,25 +6,27 @@
     {{ user.nome_completo }}
     <a href="{% url 'logout' %}" class="material-icons">close</a>
   </a>
-  </a>
-
-
 </li>
-{% else %}
-
 <li>
-  <a class="waves-effect waves-blue" href="{% url 'login'  %}">
-    <i class="material-icons">https</i>
-    Admin
-  </a>
-</li>
-{% endif %}
-<li>
-  <a class="waves-effect waves-blue" href="/admin/glossario/sinal/add/">
+  <a class="waves-effect waves-blue" href="{% url 'admin:glossario_sinal_add' %}">
     <i class="material-icons">send</i>
     Sugerir um Sinal
   </a>
 </li>
+{% else %}
+<li>
+  <a class="waves-effect waves-blue" href="{% url 'admin:index'  %}">
+    <i class="material-icons">https</i>
+    Admin
+  </a>
+</li>
+<li>
+  <a class="waves-effect waves-blue" href="{% url 'login' %}">
+    <i class="material-icons">send</i>
+    Sugerir um Sinal
+  </a>
+</li>
+{% endif %}
 <li>
   <a class="waves-effect waves-blue" href="{% url 'historia' %}">
     <i class="material-icons">library_books</i>

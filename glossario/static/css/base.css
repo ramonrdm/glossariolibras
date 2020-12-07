@@ -112,6 +112,7 @@ nav .brand-logo.center {
     position: relative;
     margin-top: 4%;
     transition-duration: 0.4s;
+    width: 90%;
 }
 
 .sidenav {
@@ -270,7 +271,7 @@ div.thumbnail.hoverable:not(.selected) p {
     display: inline;
 }
 
-.botaoEnviarSinal, .botaoEnviarSinal:focus, .botaoPesquisar, .botaoPesquisarMobile .botaoPesquisar:focus {
+.botaoEnviarSinal, .botaoEnviarSinal:focus, .botaoPesquisar, .botaoPesquisarMobile .botaoPesquisar:focus, .botaoFiltro {
     background-color: #003a99;
     margin: 1%;
 }
@@ -404,6 +405,11 @@ hr { color: white;}
     font-size: 1.2rem;
 }
 
+.collapsible li.active .expand_less {
+    -ms-transform: rotate(180deg); /* IE 9 */
+    -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+    transform: rotate(180deg);
+}
 /* Mobile Padding */
 
 @media only screen and (max-width: 992px) {
@@ -441,9 +447,14 @@ hr { color: white;}
         -webkit-box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
     }
     .botaoPesquisarMobile {
-        position: absolute;
-        right: 2%;
-        top: -80%;
+        position: fixed;
+        right: 4.7%;
+        bottom: 14.5%;
+    }
+    .botaoTexto {
+        position: fixed;
+        right: 4.7%;
+        bottom: 1%;
     }
     .sidenav {
         padding-top: 0;
@@ -473,7 +484,7 @@ hr { color: white;}
         height: 50px;
     }
     .area-para-footer {
-        padding-bottom: 30%;
+        padding-bottom: 45%;
     }
     .preview img {
         margin-left: 0;
@@ -504,8 +515,13 @@ hr { color: white;}
     }
     .botaoPesquisarMobile {
         position: absolute;
-        right: 2%;
+        right: 4.7%;
         top: -50%;
+    }
+    .botaoTexto {
+        position: fixed;
+        right: 4.7%;
+        bottom: 3.2%;
     }
     .chipGlossario {
         position: fixed;

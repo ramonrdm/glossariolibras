@@ -1,14 +1,11 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
-from django.db.models import FileField, DateTimeField
-from django.core.files import File
-from django.contrib.auth import hashers
-from django.db.models.signals import post_save, pre_save
-from django.dispatch import receiver
+from django.db.models import FileField
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
+from django.template.defaultfilters import slugify
 
 
 class UserManagerGlossario(BaseUserManager):
@@ -48,14 +45,14 @@ class UserGlossario(AbstractBaseUser, PermissionsMixin):
         verbose_name = "Usuário"
 
     email = models.EmailField(
-        verbose_name='email address',
+        verbose_name='E-mail',
         max_length=255,
         unique=True,
     )
     nome_completo = models.CharField(max_length=255, null=False)
     email_confirmed = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=True)
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     objects = UserManagerGlossario()
 
     USERNAME_FIELD = 'email'
@@ -123,6 +120,9 @@ class Glossario(models.Model):
 
     def __str__(self):
         return self.nome.title()
+
+    def slugify(self):
+        return slugify(self.nome)
 
 class CM (models.Model):
     """Total de 261 configurações de mão divididas em 10 grupos."""
@@ -240,16 +240,14 @@ class Sinal(models.Model):
 class Comment(models.Model):
     class Meta:
         verbose_name = 'Comentário'
-        ordering = ['sinal']
+        verbose_name_plural = 'Comentários'
+        ordering = ['criado_em']
 
     sinal = models.ForeignKey(Sinal, on_delete=models.CASCADE, related_name='comments')
     usuario = models.ForeignKey(UserGlossario, verbose_name='Usuário', on_delete=models.CASCADE)
     comentario = models.TextField()
     criado_em = models.DateTimeField(auto_now_add=True)
     ativo = models.BooleanField(default=True)
-
-    class Meta:
-        ordering = ['criado_em']
 
     def __str__(self):
         return '´Comentario {} por {}'.format(self.comentario, self.nome)

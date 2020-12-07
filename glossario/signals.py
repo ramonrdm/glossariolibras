@@ -8,7 +8,7 @@ from django.contrib.auth.models import Group
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.conf import settings
-from glossario.models import Glossario, Sinal, UserGlossario, Area
+from glossario.models import Glossario, Sinal, UserGlossario
 
 
 @receiver(post_save, sender=Glossario)
@@ -27,8 +27,6 @@ def set_news_group(sender, instance, **kwargs):
 @receiver(post_save, sender=UserGlossario)
 def set_new_user_group(sender, instance, **kwargs):
     user = UserGlossario.objects.get(id=instance.id)
-    sugestoes, created = Glossario.objects.get_or_create(nome="Sugestões",)
-    sugestoes.membros.add(user)
     membros_group = Group.objects.get_or_create(name='membros')[0]
     membros_group.user_set.add(user)
 
@@ -74,7 +72,7 @@ def update_upload_path(sender, instance, created, **kwargs):
                 # duracao menos 60 para remover a soma dos frames inicias com os finais
                 duration_preview = math.ceil((int(duration)-60)/4)
 
-                nome_preview = str(instance.id)+"-preview%3d.png"
+                nome_preview = str(instance.id)+"-preview%3d.jpg"
                 arquivo_preview = pasta_sinal_preview+'/'+nome_preview
                 # valor 15 para pular os primeiros frames
                 subprocess.call("ffmpeg -i {0} -vf select='between(n\,15\,{1})*not(mod(n\,{2}))' -vsync vfr {3}".format(
@@ -82,7 +80,7 @@ def update_upload_path(sender, instance, created, **kwargs):
                 # Atualiza path dos preview
                 for i, preview in enumerate(preview_fields):
                     nome_relativo_preview = "sinal_preview/" + \
-                        str(instance.id)+"-preview00"+str(i+1)+".png"
+                        str(instance.id)+"-preview00"+str(i+1)+".jpg"
                     Sinal.objects.filter(id=instance.id).update(
                         **{"%s" % preview.field.name: nome_relativo_preview}
                     )

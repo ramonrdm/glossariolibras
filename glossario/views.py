@@ -1,68 +1,18 @@
 # -*- coding: utf-8 -*-
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.shortcuts import render, redirect, get_object_or_404
-from glossario.models import Glossario, Sinal, UserGlossario, Localizacao, Movimentacao, Area, Comment
-from glossario.forms import PesquisaSinaisForm, CommentForm, SignupForm
-from django.db.models import Q
-from django.contrib.auth import login
-from django.contrib.auth import logout
-from django.contrib.sites.shortcuts import get_current_site
-from django.utils.encoding import force_bytes
-from django.utils.http import urlsafe_base64_encode
-from django.template.loader import render_to_string
-from .tokens import account_activation_token
-from django.utils.encoding import force_text
-from django.utils.http import urlsafe_base64_decode
-from django.views.generic.edit import FormView
-
-
 import subprocess
 import math
-from django.conf import settings
+import json
 import os
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import render, get_object_or_404
+from glossario.models import Glossario, Sinal, Area
+from glossario.forms import PesquisaSinaisForm, CommentForm
+from django.db.models import Q
+from django.contrib.auth import logout
+from django.conf import settings
 from django.template.defaultfilters import slugify
+from django.contrib.postgres.search import SearchVector
 
-from django.core.mail import EmailMessage
-
-
-def signup(request):
-    if request.method == 'POST':
-        form = SignupForm(request.POST)
-        if form.is_valid():
-            user = form.save(commit=False)
-            user.is_active = False
-            user.save()
-            current_site = get_current_site(request)
-            mail_subject = 'Ative sua conta Glossário Libras'
-            message = render_to_string('registration/account_activation_email.html', {
-                'user': user,
-                'domain': current_site.domain,
-                'uid':urlsafe_base64_encode(force_bytes(user.pk)),
-                'token':account_activation_token.make_token(user),
-            })
-            to_email = form.cleaned_data.get('email')
-            email = EmailMessage(
-                        mail_subject, message, to=[to_email]
-            )
-            email.send()
-            return render(request, 'registration/email_confirmation_message.html')
-    else:
-        form = SignupForm()
-    return render(request, 'registration/signup.html', {'form': form})
-
-def activate(request, uidb64, token):
-    try:
-        uid = force_text(urlsafe_base64_decode(uidb64))
-        user = UserGlossario.objects.get(pk=uid)
-    except(TypeError, ValueError, OverflowError, UserGlossario.DoesNotExist):
-        user = None
-    if user is not None and account_activation_token.check_token(user, token):
-        user.is_active = True
-        user.save()
-        login(request, user)
-        return render(request, 'registration/email_link_valid.html')
-    else:
-        return render(request, 'registration/email_link_invalid.html')
 
 def index(request, glossario=None):
     glossarios = Glossario.objects.filter(visivel=True)
@@ -93,7 +43,7 @@ def glossarioSelecionado(request, glossario):
     if request.method == 'POST':
         sinais = None
 
-        formSinais = PesquisaSinaisForm(request.POST)
+        formSinais = PesquisaSinaisForm(request.GET)
 
         if formSinais.is_valid():
             sinais = busca(formSinais).filter(
@@ -120,29 +70,32 @@ def glossarioSelecionado(request, glossario):
         }
         return render(request, 'glossario/glossario.html', context)
 
-
-def pesquisa(request, area=None):
+def pesquisa(request):
+    # Inicialização das variaveis
     sinais = None
-    glossario = None
-    formSinais = PesquisaSinaisForm(request.POST)
+    glossarios = []
+    areas = []
+    formSinais = PesquisaSinaisForm(request.GET)
 
-    if area:
-        area = Area.objects.get(slug=area)
+    if formSinais.is_valid():
+        sinais = busca(formSinais, request).filter(glossario__visivel=True)
+        # Limpa glossarios para js
+        _glossarios = formSinais.cleaned_data['glossarios']
+        for glossario in _glossarios:
+            glossarios.append(glossario.id)
+        json.dumps(glossarios)
+        # Limpa areas para js
+        _areas = formSinais.cleaned_data['areas']
+        for area in _areas:
+            areas.append(area.id)
+        json.dumps(areas)
 
-    # Pesquisa normal
-    if request.method == 'POST':
-        if formSinais.is_valid():
-            sinais = busca(formSinais).filter(glossario__visivel=True)
-            glossario = formSinais.cleaned_data['glossario']
-            area = formSinais.cleaned_data['area']
-    # Caso o usuario selecione a area
-    else:
-        sinais = busca_na_area(area)
+        letra_inicial = formSinais.cleaned_data['letra_inicial']
 
     resultado = len(sinais) if sinais else None
 
     paginator = Paginator(sinais, 5)
-    page = request.POST.get('page')
+    page = request.GET.get('page')
 
     try:
         sinais_page = paginator.page(page)
@@ -151,47 +104,84 @@ def pesquisa(request, area=None):
     except EmptyPage:
         sinais_page = paginator.page(paginator.num_pages)
 
+
+    todos_glossarios = Glossario.objects.filter(visivel=True)
+    todas_areas = Area.objects.all()
+    alfabeto = ['a','b','c','d','e','f','g','h','i','j','k','l','m',
+                'n','o','p','q','r','s','t','u','v','w','x','y','z']
+
     context = { 
-                'glossario' : glossario,
-                'sinais_page': sinais_page, 
-                'resultado': resultado,
-                'area': area,
-                'formSinais': formSinais
+        'glossarios' : glossarios,
+        'sinais_page': sinais_page, 
+        'resultado': resultado,
+        'areas': areas,
+        'formSinais': formSinais,
+        'todos_glossarios': todos_glossarios,
+        'todas_areas':todas_areas,
+        'alfabeto':alfabeto,
+        'letra_inicial':letra_inicial,
     }
     return render(request, 'glossario/pesquisa.html', context)
 
 def busca_na_area(area):
     query = Q()
-    areas = Area.objects.filter(id=area.id).get_descendants(include_self=True)
+    areas = Area.objects.filter(id=area).get_descendants(include_self=True)
     for _area in areas:
         query |= Q(glossario__area=_area)
     return Sinal.objects.filter(query, publicado=True)
 
-def busca(formSinais):
+def busca(formSinais, request):
     class Meta:
         ordering = ["-created_date"]
+
+    letra_inicial = formSinais.cleaned_data['letra_inicial']
+    areas = formSinais.cleaned_data['areas']
+    glossarios = formSinais.cleaned_data['glossarios']
 
     resultadoTraducao = formSinais.cleaned_data['busca']
     localizacao = formSinais.cleaned_data['localizacao']
     movimentacao = formSinais.cleaned_data['movimentacao']
     mao = formSinais.cleaned_data['cmE']
-    glossario = formSinais.cleaned_data['glossario']
-    area = formSinais.cleaned_data['area']
     sinais = Sinal.objects.filter(publicado=True)
-    if area != None:
-        sinais = busca_na_area(area)
-    elif glossario != None:
-        sinais = sinais.filter(glossario=glossario)
 
+    query = Q()
+
+    if areas != None and areas != '':
+        for area in areas:
+            # Gera erro 404 se não existir
+            get_object_or_404(Area, id=area.id)
+
+            sub_areas = Area.objects.filter(id=area.id).get_descendants(include_self=True)
+            for _area in sub_areas:
+                query |= Q(glossario__area=_area)
+
+    if glossarios != None and glossarios != '':
+        for glossario in glossarios:
+            # Gera erro 404 se não existir
+            get_object_or_404(Glossario, id=glossario.id)
+            query |= Q(glossario__id=glossario.id)
+
+    sinais = Sinal.objects.filter(query, publicado=True)
+
+    # Pesquisa por texto
     if resultadoTraducao != '':
-        sinais = sinais.filter(Q(portugues__icontains=resultadoTraducao) | Q(
-            ingles__icontains=resultadoTraducao))
+        print("entrei texto")
+        sinais = sinais.annotate(
+            search = SearchVector('portugues', 'ingles','descricao'),
+        ).filter(search=resultadoTraducao)
+    # Utiliza startswith para letras inicial selecionada
+    elif letra_inicial != '':
+        print("entrei letra inicial")
+        print(letra_inicial)
+        sinais = sinais.filter(Q(portugues__istartswith=letra_inicial) | Q(
+            ingles__istartswith=letra_inicial))
+    # Pesquisa por sinal
     else:
-    # Se o campo for nulo ignora ele na pesquisa
+        print("entrei sinal")
+        # Se o campo for nulo ignora ele na pesquisa
         if localizacao:
             if localizacao != '0':
                 sinais = sinais.filter(localizacao=localizacao)
-
         if movimentacao:
             if movimentacao != '0':
                 sinais = sinais.filter(movimentacao=movimentacao)
@@ -270,29 +260,20 @@ def sinal(request, sinal=None, glossario=None):
         return render(request, "glossario/sinal.html", context)
 
 def get_sinais_relacionados(sinal):
-    sinais_relacionados = Sinal.objects.exclude(id=sinal.id).filter(publicado=True)
+    # sinais_relacionados = Sinal.objects.exclude(id=sinal.id).filter(publicado=True)
 
-    # Palavras semelhantes portugues
-    query_pt = Q()
     related_palavras = sinal.portugues.split()
-    for palavra in related_palavras:
-        query_pt |= Q(portugues__icontains=palavra)
+    for palavra in related_palavras:    
+        sinais_relacionados = Sinal.objects.annotate(
+            search = SearchVector('portugues', 'ingles','descricao'),
+        ).exclude(id=sinal.id).filter(publicado=True, search=palavra)[:5]
 
-    # Palavras semelhantes ingles
-    query_en = Q()
-    if sinal.ingles:
-        related_palavras = sinal.ingles.split()
-        for palavra in related_palavras:
-            query_en |= Q(ingles__icontains=palavra)
-
-    sinais_relacionados = sinais_relacionados.filter(
-        query_pt |
-        query_en |
-        Q(localizacao=sinal.localizacao) |
-        Q(cmE=sinal.cmE) |
-        Q(cmD=sinal.cmD) |
-        Q(movimentacao=sinal.movimentacao)
-    )[:5]
+    # sinais_relacionados = sinais_relacionados.filter(
+    #     Q(localizacao=sinal.localizacao) |
+    #     Q(cmE=sinal.cmE) |
+    #     Q(cmD=sinal.cmD) |
+    #     Q(movimentacao=sinal.movimentacao)
+    # )[:5]
         
     return sinais_relacionados
 
@@ -340,8 +321,8 @@ def update(request):
     for sinal in sinais:
         if not sinal.video_sinal:
             continue
-        if sinal.preview1:
-            continue
+        # if sinal.preview1:
+        #     continue
         preview_fields = [sinal.preview1, sinal.preview2,
                           sinal.preview3, sinal.preview4]
 
@@ -357,7 +338,7 @@ def update(request):
         # duracao menos 60 para remover a soma dos frames inicias com os finais
         duration_preview = math.ceil((int(duration)-60)/4)
 
-        nome_preview = str(sinal.id)+"-preview%3d.png"
+        nome_preview = str(sinal.id)+"-preview%3d.jpg"
         arquivo_preview = pasta_sinal_preview+'/'+nome_preview
         # valor 15 para pular os primeiros frames
         subprocess.call("ffmpeg -i {0} -vf select='between(n\,15\,{1})*not(mod(n\,{2}))' -vsync vfr {3}".format(
@@ -365,7 +346,7 @@ def update(request):
         # Atualiza path dos preview
         for i, preview in enumerate(preview_fields):
             nome_relativo_preview = "sinal_preview/" + \
-                str(sinal.id)+"-preview00"+str(i+1)+".png"
+                str(sinal.id)+"-preview00"+str(i+1)+".jpg"
             Sinal.objects.filter(id=sinal.id).update(
                 **{"%s" % preview.field.name: nome_relativo_preview}
             )

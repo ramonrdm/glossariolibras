@@ -1,0 +1,73 @@
+<section>
+  <h5>Filtros</h5>
+  <ul class="collapsible">
+    <!-- Glossários -->
+    <li class="active">
+      <div class="collapsible-header">
+        <h6>Glossários</h6>
+        <h6 class="material-icons expand_less">expand_less</h6>
+      </div>
+      <div class="collapsible-body">
+        <form action="{% url 'pesquisa' %}" method="GET">
+          {% for glossario in todos_glossarios %}
+          <p>
+            <label>
+              <input value="{{ glossario.id }}" class="with-gap escolhaGlossario" id="glossario_{{ glossario.id }}"
+                type="checkbox" />
+              <span class="dark-blue-text">{{glossario.nome}}</span>
+            </label>
+          </p>
+          {% endfor %}
+        </form>
+      </div>
+    </li>
+
+    <!-- Areas -->
+    <li class="active">
+      <div class="collapsible-header">
+        <h6>Áreas</h6>
+        <h6 class="material-icons expand_less">expand_less</h6>
+      </div>
+      <div class="collapsible-body">
+        <form action="{% url 'pesquisa' %}" method="GET">
+          {% for area in todas_areas %}
+          <div>
+            <p>
+              <label>
+                <input value="{{ area.id }}" class="with-gap escolhaArea" id="area_{{ area.id }}" type="checkbox" />
+                <span class="dark-blue-text">{{area.nome}}</span>
+              </label>
+            </p>
+          </div>
+          {% endfor %}
+        </form>
+      </div>
+    </li>
+
+    <!-- Letras -->
+    <li class="active">
+      <div class="collapsible-header">
+        <h6>Letra Inicial</h6>
+        <h6 class="material-icons expand_less">expand_less</h6>
+      </div>
+      <div class="collapsible-body">
+        <form action="{% url 'pesquisa' %}" method="GET">
+          <a href="#" class="limparLetra">
+            <h6>Limpar</h6>
+          </a>
+          {% for letter in alfabeto %}
+          <div>
+            <p>
+              <label>
+                <input name="letra_inicial" value="{{ letter }}" class="with-gap escolhaLetra" id="letra_{{ letter }}"
+                  class="with-gap" type="radio" />
+                <span class="dark-blue-text">{{letter}}</span>
+              </label>
+            </p>
+          </div>
+          {% endfor %}
+        </form>
+      </div>
+    </li>
+  </ul>
+</section>

@@ -1,15 +1,10 @@
 # -*- coding: utf-8 -*-
 from glossario.forms import GlossarioForm, SinalForm, CMForm, AreaForm
-from unicodedata import normalize
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from django.contrib.auth.models import Group
 from django.db.models import Q
-from .models import *
-from django.contrib.contenttypes.models import ContentType
+from .models import Glossario, Localizacao, Movimentacao, Sinal, CM, Area, Comment
 from django.utils.html import format_html
-from django import forms
-from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from glossario.models import UserGlossario
 from django.template.defaultfilters import slugify
 

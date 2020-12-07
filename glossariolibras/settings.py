@@ -13,11 +13,8 @@ def get_env_value(env_variable):
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '@9e1s9zexj93d%n^^2)vxi0p4lwmz2tn0y67%*65#$nn5g64q1'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-
 ALLOWED_HOSTS = ['glossarios.libras.ufsc.br', 'glossario.libras.ufsc.br', 'localhost']
 
 INSTALLED_APPS = (
@@ -128,7 +125,6 @@ TEMPLATES = [
     },
 ]
 
-LOGIN_REDIRECT_URL='/index'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 AUTH_USER_MODEL = 'glossario.UserGlossario'
@@ -141,5 +137,6 @@ EMAIL_HOST_PASSWORD = get_env_value('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = os.getenv('DJANGO_SENDMAIL_FROM')
 EMAIL_USE_SSL = True
 
+LOGIN_URL = '/accounts/login'
 LOGOUT_REDIRECT_URL = 'index'
-LOGIN_REDIRECT_URL = 'admin:index'
+LOGIN_REDIRECT_URL = '/admin/glossario/sinal/add/'
